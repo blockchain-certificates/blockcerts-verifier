@@ -1,0 +1,13 @@
+{
+  "name": "blockcerts-universal-verifier",
+  "description": "A standalone universal viewer &amp; verifier for blockcerts credentials",
+  "main": "blockcerts-universal-verifier.js",
+  "dependencies": {
+    "@polymer/polymer": "^3.0.0"
+  },
+  "devDependencies": {
+    "@polymer/iron-demo-helpers": "^3.0.0-pre.12",
+    "@webcomponents/webcomponentsjs": "^2.0.0",
+    "wct-browser-legacy": "^1.0.0"
+  }
+}
