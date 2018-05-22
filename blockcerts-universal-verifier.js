@@ -9,7 +9,7 @@ import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
  * @demo demo/index.html
  */
 class BlockcertsUniversalVerifier extends PolymerElement {
-  static get template() {
+  static get template () {
     return html`
       <style>
         :host {
@@ -19,12 +19,12 @@ class BlockcertsUniversalVerifier extends PolymerElement {
       <h2>Hello [[prop1]]!</h2>
     `;
   }
-  static get properties() {
+  static get properties () {
     return {
       prop1: {
         type: String,
-        value: 'blockcerts-universal-verifier',
-      },
+        value: 'blockcerts-universal-verifier'
+      }
     };
   }
 }
