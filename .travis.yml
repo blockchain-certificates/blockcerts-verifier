@@ -7,6 +7,7 @@ branches:
     - master
 before_install:
   - npm i -g npm@6
+  - npm i -g polymer-cli
 before_script:
   - npm run test
   - npm run lint
