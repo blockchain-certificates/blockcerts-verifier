@@ -5,10 +5,13 @@ cache:
 branches:
   only:
     - master
+addons:
+  firefox: latest
+  chrome: stable
 before_install:
   - npm i -g npm@6
 before_script:
-  - npm run test
   - npm run lint
+  - npm run test
 script:
 - echo "This is the script, but you should probably do something else with it"
