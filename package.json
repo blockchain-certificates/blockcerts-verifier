@@ -14,7 +14,7 @@
     "wct-browser-legacy": "^1.0.1"
   },
   "scripts": {
-    "test": "echo \"no test yet\" ",
+    "test": "polymer test",
     "start": "polymer serve",
     "lint": "semistandard \"**/*.js\" | snazzy",
     "prepush": "npm run test && npm run lint"
