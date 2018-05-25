@@ -8,11 +8,14 @@
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@webcomponents/webcomponentsjs": "^2.0.0",
+    "axe-core": "^3.0.2",
     "husky": "^0.14.3",
     "polymer-cli": "^1.7.2",
+    "pwa-helpers": "^0.8.2",
     "semistandard": "^12.0.1",
     "snazzy": "^7.1.1",
-    "wct-browser-legacy": "^1.0.1"
+    "wct-browser-legacy": "^1.0.1",
+    "web-component-tester": "^6.6.0"
   },
   "scripts": {
     "test": "polymer test",

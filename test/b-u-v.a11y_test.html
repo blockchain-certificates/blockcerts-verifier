@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockcerts Universal Verifier - a11y test</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../src/blockcerts-universal-verifier.js"></script>
+</head>
+<body>
+    <test-fixture id="BUVA11y">
+        <template>
+            <blockcerts-universal-verifier></blockcerts-universal-verifier>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+      import 'axe-core/axe.min.js';
+      import {axeReport} from 'pwa-helpers/axe-report.js';
+
+      suite('A11y testing', function() {
+        test('default view', function() {
+          const el = fixture('BUVA11y');
+          return axeReport(el);
+        });
+      });
+    </script>
+</body>
+</html>
