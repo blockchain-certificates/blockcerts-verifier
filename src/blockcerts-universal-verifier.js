@@ -1,6 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
-
-
+import Input from './components/atoms/Input'
 
 class BlockcertsUniversalVerifier extends LitElement {
   _render () {
@@ -49,15 +48,7 @@ class BlockcertsUniversalVerifier extends LitElement {
          }
        </style>
        <h1>Blockcerts Universal Verifier</h1>
-       <label 
-         for='certificate-json-url'
-         class='buv-u-visually-hidden'>Enter the certificate URL</label>
-       <input 
-         type='text'
-         id='certificate-json-url'
-         placeholder='Credential URL'
-         class='buv-c-input'
-       />
+       ${Input}
     `
   }
 }
