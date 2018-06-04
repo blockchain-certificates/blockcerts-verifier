@@ -1,4 +1,4 @@
-import { html, LitElement } from '@polymer/lit-element';
+import { html } from '@polymer/lit-element';
 
 const Input = html`
     <label 

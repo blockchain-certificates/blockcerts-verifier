@@ -1,5 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
-import Input from './components/atoms/Input'
+import Input from './components/atoms/Input';
 
 import CSS from './styles/main.js';
 
@@ -9,7 +9,7 @@ class BlockcertsUniversalVerifier extends LitElement {
        ${CSS}
        <h1>Blockcerts Universal Verifier</h1>
        ${Input}
-    `
+    `;
   }
 }
 
