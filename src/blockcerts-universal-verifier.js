@@ -1,31 +1,15 @@
-import {html, PolymerElement} from '@polymer/polymer/polymer-element.js';
+import { html, LitElement } from '@polymer/lit-element';
+import Input from './components/atoms/Input';
 
-/**
- * `blockcerts-universal-verifier`
- * A standalone universal viewer &amp; verifier for blockcerts credentials
- *
- * @customElement
- * @polymer
- * @demo demo/index.html
- */
-class BlockcertsUniversalVerifier extends PolymerElement {
-  static get template () {
+import CSS from './styles/main.js';
+
+class BlockcertsUniversalVerifier extends LitElement {
+  _render () {
     return html`
-      <style>
-        :host {
-          display: block;
-        }
-      </style>
-      <h2>Hello [[prop1]]!</h2>
+       ${CSS}
+       <h1>Blockcerts Universal Verifier</h1>
+       ${Input}
     `;
-  }
-  static get properties () {
-    return {
-      prop1: {
-        type: String,
-        value: 'blockcerts-universal-verifier'
-      }
-    };
   }
 }
 
