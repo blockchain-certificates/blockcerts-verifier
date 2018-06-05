@@ -36,5 +36,5 @@ function shouldWatch () {
 convertSassToCss();
 
 if (shouldWatch()) {
-  watcher(STYLES_DIRECTORY, { ignoreFiles: [OUTPUT_FILE], cb: convertSassToCss});
+  watcher(STYLES_DIRECTORY, { ignoreFiles: [OUTPUT_FILE], cb: convertSassToCss });
 }
