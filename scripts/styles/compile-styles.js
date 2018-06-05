@@ -29,6 +29,12 @@ function writeToTemplate (cssString) {
   fs.writeFileSync(OUTPUT_FILE, cssContent);
 }
 
+function shouldWatch () {
+  return process.argv.find(arg => arg === '--watch');
+}
+
 convertSassToCss();
 
-watcher(STYLES_DIRECTORY, { ignoreFiles: [OUTPUT_FILE], cb: convertSassToCss});
+if (shouldWatch()) {
+  watcher(STYLES_DIRECTORY, { ignoreFiles: [OUTPUT_FILE], cb: convertSassToCss});
+}

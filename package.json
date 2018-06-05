@@ -23,7 +23,7 @@
     "test": "polymer test",
     "start": "polymer serve",
     "styles:compile": "node scripts/styles/compile-styles.js",
-    "styles:compile:watch": "node scripts/styles/compile-styles.js",
+    "styles:compile:watch": "node scripts/styles/compile-styles.js --watch",
     "lint": "npm run lint:js && npm run lint:polymer",
     "lint:js": "semistandard \"**/*.js\" | snazzy",
     "lint:polymer": "polymer lint",
