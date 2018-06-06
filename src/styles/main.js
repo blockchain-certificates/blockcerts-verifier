@@ -6,6 +6,18 @@ export default html`<style>/*
   https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/
 */
 /* components */
+.buv-c-button {
+  background-color: #2ab27b;
+  border-radius: 0 2px 2px 0;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 38px;
+  border: 0 none;
+  height: 100%; }
+
 .buv-c-input {
   font-size: 15px;
   color: #031532;
