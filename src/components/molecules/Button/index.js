@@ -8,10 +8,10 @@ class Button extends LitElement {
     this.showSpinner = false;
   }
 
-  static get properties() {
+  static get properties () {
     return {
       showSpinner: Boolean
-    }
+    };
   }
 
   handleClick () {
