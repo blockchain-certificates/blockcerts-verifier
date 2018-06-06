@@ -9,6 +9,7 @@
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "axe-core": "^3.0.2",
+    "concurrently": "^3.5.1",
     "husky": "^0.14.3",
     "node-sass": "^4.9.0",
     "polymer-cli": "^1.7.2",
@@ -21,7 +22,7 @@
   },
   "scripts": {
     "test": "polymer test",
-    "start": "polymer serve",
+    "start": "concurrently 'polymer serve' 'npm run styles:compile:watch'",
     "styles:compile": "node scripts/styles/compile-styles.js",
     "styles:compile:watch": "node scripts/styles/compile-styles.js --watch",
     "lint": "npm run lint:js && npm run lint:polymer",
