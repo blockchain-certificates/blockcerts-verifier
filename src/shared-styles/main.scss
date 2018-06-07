@@ -1,0 +1,14 @@
+/*
+  following ITCSS
+  https://github.com/sky-uk/css
+  https://www.xfive.co/blog/itcss-scalable-maintainable-css-architecture/
+*/
+
+// NOTE: keeping this file just for track record and explanation of intent.
+
+/* components */
+@import '../components/molecules/Button/components.button';
+@import '../components/atoms/Input/components.input';
+
+/* utils */
+@import 'utils.a11y';

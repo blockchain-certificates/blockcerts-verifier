@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Button component test suite</title>
+
+    <script src="../../../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../../../node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../../src/components/molecules/Button/index.js"></script>
+</head>
+<body>
+    <test-fixture id="click">
+        <template>
+            <buv-button></buv-button>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+      describe('Button test suite', function() {
+        describe('when the button is clicked', function () {
+          it('should set the text to "Spinner"', function () {
+            const el = fixture('click');
+            const button = el.shadowRoot.querySelectorAll('button')[0];
+            button.click();
+
+            // allow for repaint
+            setTimeout(() => { expect(button.innerHTML).to.equal('Spinner'); }, 0);
+          });
+        });
+      });
+    </script>
+</body>
+</html>
