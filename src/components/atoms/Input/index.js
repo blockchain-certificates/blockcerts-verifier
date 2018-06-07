@@ -1,3 +1,3 @@
-import Input from './Input';
+import { InputContainer as Input } from './InputContainer';
 
-export default Input
+window.customElements.define('buv-input', Input);

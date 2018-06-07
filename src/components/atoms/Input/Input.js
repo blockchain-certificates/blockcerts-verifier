@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.input-css';
 
-const Input = () => {
+const Input = ({ onInput = () => {} } = {}) => {
   return html`
     ${CSS}
     <label 
@@ -12,6 +12,7 @@ const Input = () => {
       id='certificate-json-url'
       placeholder='Certificate Url'
       class='buv-c-input'
+      on-input='${onInput}'
     />
   `;
 };
