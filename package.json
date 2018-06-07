@@ -10,8 +10,10 @@
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "axe-core": "^3.0.2",
+    "babel-preset-env": "^1.7.0",
     "concurrently": "^3.5.1",
     "husky": "^0.14.3",
+    "jest": "^23.1.0",
     "polymer-cli": "^1.7.2",
     "pwa-helpers": "^0.8.2",
     "semistandard": "^12.0.1",
@@ -21,7 +23,10 @@
     "web-component-tester": "^6.6.0"
   },
   "scripts": {
-    "test": "polymer test",
+    "test": "npm run test:application && npm run test:components",
+    "test:components": "polymer test",
+    "test:application": "jest",
+    "test:application:watch": "jest --watch",
     "start": "concurrently 'polymer serve' 'npm run styles:compile:watch'",
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
@@ -29,5 +34,20 @@
     "lint:js": "semistandard \"**/*.js\" | snazzy",
     "lint:polymer": "polymer lint",
     "prepush": "npm run test && npm run lint"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "jest": {
+    "modulePaths": [
+      "<rootDir>/src/",
+      "<rootDir>/node_modules"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json"
+    ]
   }
 }
