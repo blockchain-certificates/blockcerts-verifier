@@ -7,7 +7,7 @@ import CSS from './_components.certificate-input-css';
 const CertificateInput = html`
     ${CSS}
     <div class="buv-c-certificate-input">
-        ${Input}<buv-button></buv-button>        
+        ${Input()}<buv-button></buv-button>        
     </div>
 `;
 
