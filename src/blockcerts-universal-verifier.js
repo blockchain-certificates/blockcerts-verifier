@@ -1,7 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import { configureStore } from './store';
-import Input from './components/atoms/Input';
-import './components/molecules/Button';
+import CertificateInput from './components/organisms/CertificateInput';
 
 class BlockcertsUniversalVerifier extends LitElement {
   constructor () {
@@ -11,7 +10,7 @@ class BlockcertsUniversalVerifier extends LitElement {
   _render () {
     return html`
        <h1>Blockcerts Universal Verifier</h1>
-       ${Input}<buv-button></buv-button>
+       ${CertificateInput}
     `;
   }
 }
