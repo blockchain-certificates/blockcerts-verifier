@@ -25,10 +25,10 @@
     "start": "concurrently 'polymer serve' 'npm run styles:compile:watch'",
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
-    "lint": "npm run lint:js && npm run lint:polymer",
+    "lint": "npm run lint:js && npm run lint:polymer && npm run lint:styles",
     "lint:js": "semistandard \"**/*.js\" | snazzy",
-    "lint:styles": "sass-lint --verbose",
     "lint:polymer": "polymer lint",
+    "lint:styles": "sass-lint --verbose",
     "prepush": "npm run test && npm run lint"
   }
 }
