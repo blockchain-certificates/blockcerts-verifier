@@ -4,27 +4,27 @@ import { accumulateDiff as differ } from '../helpers/deepDiff';
 const dictionary = {
   'E': {
     color: `#2196F3`,
-    text: `CHANGED:`,
+    text: `CHANGED:`
   },
   'N': {
     color: `#4CAF50`,
-    text: `ADDED:`,
+    text: `ADDED:`
   },
   'D': {
     color: `#F44336`,
-    text: `DELETED:`,
+    text: `DELETED:`
   },
   'A': {
     color: `#2196F3`,
-    text: `ARRAY:`,
-  },
+    text: `ARRAY:`
+  }
 };
 
-function style(kind) {
+function style (kind) {
   return `color: ${dictionary[kind].color}; font-weight: bold`;
 }
 
-function render(diff) {
+function render (diff) {
   const { kind, path, lhs, rhs, index, item } = diff;
 
   switch (kind) {
@@ -41,7 +41,7 @@ function render(diff) {
   }
 }
 
-export default function diffLogger(prevState, newState, logger, isCollapsed) {
+export default function diffLogger (prevState, newState, logger, isCollapsed) {
   const diff = differ(prevState, newState);
 
   try {

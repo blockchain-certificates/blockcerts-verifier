@@ -1,7 +1,7 @@
 var validKinds = ['N', 'E', 'A', 'D'];
 
 // nodejs compatible on server side and in the browser.
-function inherits(ctor, superCtor) {
+function inherits (ctor, superCtor) {
   ctor.super_ = superCtor;
   ctor.prototype = Object.create(superCtor.prototype, {
     constructor: {
@@ -13,7 +13,7 @@ function inherits(ctor, superCtor) {
   });
 }
 
-function Diff(kind, path) {
+function Diff (kind, path) {
   Object.defineProperty(this, 'kind', {
     value: kind,
     enumerable: true
@@ -26,7 +26,7 @@ function Diff(kind, path) {
   }
 }
 
-function DiffEdit(path, origin, value) {
+function DiffEdit (path, origin, value) {
   DiffEdit.super_.call(this, 'E', path);
   Object.defineProperty(this, 'lhs', {
     value: origin,
@@ -39,7 +39,7 @@ function DiffEdit(path, origin, value) {
 }
 inherits(DiffEdit, Diff);
 
-function DiffNew(path, value) {
+function DiffNew (path, value) {
   DiffNew.super_.call(this, 'N', path);
   Object.defineProperty(this, 'rhs', {
     value: value,
@@ -48,7 +48,7 @@ function DiffNew(path, value) {
 }
 inherits(DiffNew, Diff);
 
-function DiffDeleted(path, value) {
+function DiffDeleted (path, value) {
   DiffDeleted.super_.call(this, 'D', path);
   Object.defineProperty(this, 'lhs', {
     value: value,
@@ -57,7 +57,7 @@ function DiffDeleted(path, value) {
 }
 inherits(DiffDeleted, Diff);
 
-function DiffArray(path, index, item) {
+function DiffArray (path, index, item) {
   DiffArray.super_.call(this, 'A', path);
   Object.defineProperty(this, 'index', {
     value: index,
@@ -70,14 +70,14 @@ function DiffArray(path, index, item) {
 }
 inherits(DiffArray, Diff);
 
-function arrayRemove(arr, from, to) {
+function arrayRemove (arr, from, to) {
   var rest = arr.slice((to || from) + 1 || arr.length);
   arr.length = from < 0 ? arr.length + from : from;
   arr.push.apply(arr, rest);
   return arr;
 }
 
-function realTypeOf(subject) {
+function realTypeOf (subject) {
   var type = typeof subject;
   if (type !== 'object') {
     return type;
@@ -98,7 +98,7 @@ function realTypeOf(subject) {
 }
 
 // http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
-function hashThisString(string) {
+function hashThisString (string) {
   var hash = 0;
   if (string.length === 0) { return hash; }
   for (var i = 0; i < string.length; i++) {
@@ -111,7 +111,7 @@ function hashThisString(string) {
 
 // Gets a hash of the given object in an array order-independent fashion
 // also object key order independent (easier since they can be alphabetized)
-function getOrderIndependentHash(object) {
+function getOrderIndependentHash (object) {
   var accum = 0;
   var type = realTypeOf(object);
 
@@ -141,7 +141,7 @@ function getOrderIndependentHash(object) {
   return accum + hashThisString(stringToHash);
 }
 
-function deepDiff(lhs, rhs, changes, prefilter, path, key, stack, orderIndependent) {
+function deepDiff (lhs, rhs, changes, prefilter, path, key, stack, orderIndependent) {
   changes = changes || [];
   path = path || [];
   stack = stack || [];
@@ -254,7 +254,7 @@ function deepDiff(lhs, rhs, changes, prefilter, path, key, stack, orderIndepende
   }
 }
 
-function observableDiff(lhs, rhs, observer, prefilter, orderIndependent) {
+function observableDiff (lhs, rhs, observer, prefilter, orderIndependent) {
   var changes = [];
   deepDiff(lhs, rhs, changes, prefilter, null, null, null, orderIndependent);
   if (observer) {
@@ -265,36 +265,37 @@ function observableDiff(lhs, rhs, observer, prefilter, orderIndependent) {
   return changes;
 }
 
-function orderIndependentDeepDiff(lhs, rhs, changes, prefilter, path, key, stack) {
+function orderIndependentDeepDiff (lhs, rhs, changes, prefilter, path, key, stack) {
   return deepDiff(lhs, rhs, changes, prefilter, path, key, stack, true);
 }
 
-export function accumulateDiff(lhs, rhs, prefilter, accum) {
-  var observer = (accum) ?
-    function (difference) {
+export function accumulateDiff (lhs, rhs, prefilter, accum) {
+  var observer = (accum)
+    ? function (difference) {
       if (difference) {
         accum.push(difference);
       }
     } : undefined;
   var changes = observableDiff(lhs, rhs, observer, prefilter);
-  return (accum) ? accum : (changes.length) ? changes : undefined;
+  return (accum) || ((changes.length) ? changes : undefined);
 }
 
-function accumulateOrderIndependentDiff(lhs, rhs, prefilter, accum) {
-  var observer = (accum) ?
-    function (difference) {
+function accumulateOrderIndependentDiff (lhs, rhs, prefilter, accum) {
+  var observer = (accum)
+    ? function (difference) {
       if (difference) {
         accum.push(difference);
       }
     } : undefined;
   var changes = observableDiff(lhs, rhs, observer, prefilter, true);
-  return (accum) ? accum : (changes.length) ? changes : undefined;
+  return (accum) || ((changes.length) ? changes : undefined);
 }
 
-function applyArrayChange(arr, index, change) {
+function applyArrayChange (arr, index, change) {
   if (change.path && change.path.length) {
-    var it = arr[index],
-      i, u = change.path.length - 1;
+    var it = arr[index];
+    var i;
+    var u = change.path.length - 1;
     for (i = 0; i < u; i++) {
       it = it[change.path[i]];
     }
@@ -327,14 +328,14 @@ function applyArrayChange(arr, index, change) {
   return arr;
 }
 
-function applyChange(target, source, change) {
+function applyChange (target, source, change) {
   if (typeof change === 'undefined' && source && ~validKinds.indexOf(source.kind)) {
     change = source;
   }
   if (target && change && change.kind) {
-    var it = target,
-      i = -1,
-      last = change.path ? change.path.length - 1 : 0;
+    var it = target;
+    var i = -1;
+    var last = change.path ? change.path.length - 1 : 0;
     while (++i < last) {
       if (typeof it[change.path[i]] === 'undefined') {
         it[change.path[i]] = (typeof change.path[i + 1] !== 'undefined' && typeof change.path[i + 1] === 'number') ? [] : {};
@@ -359,11 +360,12 @@ function applyChange(target, source, change) {
   }
 }
 
-function revertArrayChange(arr, index, change) {
+function revertArrayChange (arr, index, change) {
   if (change.path && change.path.length) {
     // the structure of the object at the index has changed...
-    var it = arr[index],
-      i, u = change.path.length - 1;
+    var it = arr[index];
+    var i;
+    var u = change.path.length - 1;
     for (i = 0; i < u; i++) {
       it = it[change.path[i]];
     }
@@ -401,11 +403,11 @@ function revertArrayChange(arr, index, change) {
   return arr;
 }
 
-function revertChange(target, source, change) {
+function revertChange (target, source, change) {
   if (target && source && change && change.kind) {
-    var it = target,
-      i, u;
-    u = change.path.length - 1;
+    var it = target;
+    var i;
+    var u = change.path.length - 1;
     for (i = 0; i < u; i++) {
       if (typeof it[change.path[i]] === 'undefined') {
         it[change.path[i]] = {};
@@ -434,7 +436,7 @@ function revertChange(target, source, change) {
   }
 }
 
-function applyDiff(target, source, filter) {
+function applyDiff (target, source, filter) {
   if (target && source) {
     var onChange = function (change) {
       if (!filter || filter(target, source, change)) {
@@ -486,4 +488,3 @@ Object.defineProperties(accumulateDiff, {
     enumerable: true
   }
 });
-

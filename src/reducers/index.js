@@ -7,6 +7,6 @@ export function app (state, action) {
       return updateCertificateUrl(state, action);
 
     default:
-      return state
+      return state;
   }
 }

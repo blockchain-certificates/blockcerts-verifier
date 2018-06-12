@@ -1,4 +1,4 @@
-import { configureStore } from '../../../src/store'
+import { configureStore } from '../../../src/store';
 import updateCertificateUrl from '../../../src/actions/updateCertificateUrl';
 
 describe('updateCertificateUrl action creator test suite', function () {

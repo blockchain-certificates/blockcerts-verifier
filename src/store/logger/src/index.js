@@ -21,10 +21,10 @@ import defaults from './defaults';
  *
  * @returns {function} logger middleware
  */
-function createLogger(options = {}) {
+function createLogger (options = {}) {
   const loggerOptions = {
     ...defaults,
-    ...options,
+    ...options
   };
 
   const {
@@ -33,7 +33,7 @@ function createLogger(options = {}) {
     errorTransformer,
     predicate,
     logErrors,
-    diffPredicate,
+    diffPredicate
   } = loggerOptions;
 
   // Return if 'console' object is not defined
@@ -125,7 +125,7 @@ const defaultLogger = ({ dispatch, getState } = {}) => {
 export {
   defaults,
   createLogger,
-  defaultLogger as logger,
+  defaultLogger as logger
 };
 
 export default defaultLogger;

@@ -5,7 +5,7 @@ import { configureStore } from './store';
 
 const store = configureStore();
 
-export default function connector(component, { mapDispatchToProps }) {
+export default function connector (component, { mapDispatchToProps }) {
   return class extends connect(store)(LitElement) {
     mapDispatchToProps () {
       return bindActionCreators(mapDispatchToProps, store.dispatch);
@@ -18,5 +18,5 @@ export default function connector(component, { mapDispatchToProps }) {
     _stateChanged () {
 
     }
-  }
+  };
 }

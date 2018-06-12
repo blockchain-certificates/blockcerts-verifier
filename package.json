@@ -44,5 +44,13 @@
       "js",
       "json"
     ]
+  },
+  "semistandard": {
+    "globals": [
+      "describe",
+      "expect",
+      "it",
+      "performance"
+    ]
   }
 }

@@ -11,7 +11,7 @@ import diffLogger from './diff';
  *
  * @returns {string} level
  */
-function getLogLevel(level, action, payload, type) {
+function getLogLevel (level, action, payload, type) {
   switch (typeof level) {
     case `object`:
       return typeof level[type] === `function` ? level[type](...payload) : level[type];
@@ -22,10 +22,10 @@ function getLogLevel(level, action, payload, type) {
   }
 }
 
-function defaultTitleFormatter(options) {
+function defaultTitleFormatter (options) {
   const {
     timestamp,
-    duration,
+    duration
   } = options;
 
   return (action, time, took) => {
@@ -39,7 +39,7 @@ function defaultTitleFormatter(options) {
   };
 }
 
-export function printBuffer(buffer, options) {
+export function printBuffer (buffer, options) {
   const {
     logger,
     actionTransformer,
@@ -47,7 +47,7 @@ export function printBuffer(buffer, options) {
     collapsed,
     colors,
     level,
-    diff,
+    diff
   } = options;
 
   buffer.forEach((logEntry, key) => {

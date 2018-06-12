@@ -14,11 +14,11 @@ export default {
     prevState: () => `#9E9E9E`,
     action: () => `#03A9F4`,
     nextState: () => `#4CAF50`,
-    error: () => `#F20404`,
+    error: () => `#F20404`
   },
   diff: false,
   diffPredicate: undefined,
 
   // Deprecated options
-  transformer: undefined,
+  transformer: undefined
 };

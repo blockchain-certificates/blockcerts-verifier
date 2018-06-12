@@ -4,5 +4,5 @@ export default function updateCertificateUrl (url) {
     payload: {
       url
     }
-  }
+  };
 }
