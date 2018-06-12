@@ -13,6 +13,7 @@
     "husky": "^0.14.3",
     "polymer-cli": "^1.7.2",
     "pwa-helpers": "^0.8.2",
+    "sass-lint": "^1.12.1",
     "semistandard": "^12.0.1",
     "snazzy": "^7.1.1",
     "wc-sass-render": "^1.0.0",
@@ -26,6 +27,7 @@
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
     "lint": "npm run lint:js && npm run lint:polymer",
     "lint:js": "semistandard \"**/*.js\" | snazzy",
+    "lint:styles": "sass-lint --verbose",
     "lint:polymer": "polymer lint",
     "prepush": "npm run test && npm run lint"
   }
