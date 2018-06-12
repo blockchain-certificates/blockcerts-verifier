@@ -1,0 +1,10 @@
+## This is a hack
+[Redux Logger](https://github.com/evgenyrodionov/redux-logger) is a nice utility enabling the logging of redux events.
+
+Unfortunately in the context of Polymer, we can't seem to be able to resolve a normal `import` (as the exposed library does not provide ES modules export when compiled), nor use requirejs as a dependency to manage the require of commonjs module.
+
+`Polymer serve` does not compile on the fly (?), so for us to be able to implement redux-logger in our code, we copied the source into our codebase.
+
+Similarly, we had to copy the dependency from [deep-diff](https://github.com/flitbit/diff) for redux-logger to work.
+
+TODO: implement a webpack build to not depend on `polymer serve` and replace this code by the normal dependency management for redux-logger.

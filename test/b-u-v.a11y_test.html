@@ -10,6 +10,15 @@
     <script type="module" src="../src/blockcerts-universal-verifier.js"></script>
 </head>
 <body>
+    <script>
+      // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
+      // the module is loaded.
+      window.process = {
+        env: {
+          NODE_ENV: 'production'
+        }
+      };
+    </script>
     <test-fixture id="BUVA11y">
         <template>
             <blockcerts-universal-verifier></blockcerts-universal-verifier>
