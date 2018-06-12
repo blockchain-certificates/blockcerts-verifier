@@ -3,7 +3,7 @@ import connector from '../../../connector';
 import Input from './Input';
 
 const mapDispatchToProps = {
-  onInput: e => updateCertificateUrl(e.target.value)
+  onInput: updateCertificateUrl
 };
 
 const InputContainer = connector(Input, { mapDispatchToProps });
