@@ -35,11 +35,6 @@
     "lint:polymer": "polymer lint",
     "prepush": "npm run test && npm run lint"
   },
-  "babel": {
-    "presets": [
-      "env"
-    ]
-  },
   "jest": {
     "modulePaths": [
       "<rootDir>/src/",
