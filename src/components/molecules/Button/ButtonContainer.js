@@ -1,5 +1,5 @@
 import verifyCertificate from '../../../actions/verifyCertificate';
-import connector from '../../../connector';
+import connector from '../../../store/connector';
 import { Button } from './Button';
 
 const mapDispatchToProps = {
