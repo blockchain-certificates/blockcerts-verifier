@@ -109,12 +109,12 @@ We need to encapsulate the button (that we need to define as a reusable componen
 **Container**
 
 ```javascript
-import verifyCertificate from '../../../actions/verifyCertificate';
+import bar from '../../../actions/bar';
 import connector from '../../../store/connector';
 import { Button } from './Button';
 
 const mapDispatchToProps = {
-  onClick: verifyCertificate
+  onClick: bar
 };
 
 const ButtonContainer = connector(Button, { mapDispatchToProps });
