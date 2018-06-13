@@ -9,28 +9,28 @@
   width: 100%;
 }
 
-.buv-c-input::-moz-placeholder{
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+.buv-c-input::-moz-placeholder {
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color: rgba(3, 21, 50, .3);
   letter-spacing: -.25px;
 }
 
 .buv-c-input::-webkit-input-placeholder {
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color: rgba(3, 21, 50, .3);
   letter-spacing: -.25px;
 }
 
 .buv-c-input:-moz-placeholder {
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color: rgba(3, 21, 50, .3);
   letter-spacing: -.25px;
 }
 
 .buv-c-input:-ms-input-placeholder {
-  font-family: "Open Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color: rgba(3, 21, 50, .3);
   letter-spacing: -.25px;
 }
 
-@import "../../../shared-styles/utils.a11y";
+@import '../../../shared-styles/utils.a11y';
