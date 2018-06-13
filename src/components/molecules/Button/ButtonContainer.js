@@ -1,8 +1,9 @@
+import verifyCertificate from '../../../actions/verifyCertificate';
 import connector from '../../../connector';
 import { Button } from './Button';
 
 const mapDispatchToProps = {
-  onClick: () => { console.log('button click'); }
+  onClick: verifyCertificate
 };
 
 const ButtonContainer = connector(Button, { mapDispatchToProps });
