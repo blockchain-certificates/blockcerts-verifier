@@ -68,26 +68,15 @@ Example of a class component:
 **Component**
 ```javascript
 class Button extends LitElement {
-  constructor () {
-    super();
-    this.handleClick = this.handleClick.bind(this);
-  }
-
   static get properties () {
     return {
       onClick: Function
     };
   }
 
-  handleClick () {
-    this._props.onClick();
-  }
-
   _render (_props) {
-    // TODO: find a better location to assign these props
-    this._props = _props;
     return html`
-      <button on-click='${this.handleClick}'>
+      <button on-click='${_props.onClick}'>
        Label
       </button>
     `;
