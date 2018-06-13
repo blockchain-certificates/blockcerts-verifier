@@ -37,7 +37,7 @@ window.customElements.define('buv-button-raw', Button);
 // wrap Button in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function ButtonWrapper (props) {
-  return html`<buv-button-raw onClick='${props.onClick}'></buv-button-raw>`
+  return html`<buv-button-raw onClick='${props.onClick}'></buv-button-raw>`;
 }
 
 export { ButtonWrapper as Button };
