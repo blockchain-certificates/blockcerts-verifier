@@ -1,7 +1,7 @@
 import { html, LitElement } from '@polymer/lit-element/lit-element';
 import { connect } from 'pwa-helpers/connect-mixin';
 import { bindActionCreators } from 'redux';
-import { configureStore } from './store';
+import { configureStore } from './index';
 
 const store = configureStore();
 

@@ -1,5 +1,5 @@
 import updateCertificateUrl from '../../../actions/updateCertificateUrl';
-import connector from '../../../connector';
+import connector from '../../../store/connector';
 import Input from './Input';
 
 const mapDispatchToProps = {

@@ -10,6 +10,15 @@
     <script type="module" src="../../../../src/components/molecules/Button/index.js"></script>
 </head>
 <body>
+    <script>
+      // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
+      // the module is loaded.
+      window.process = {
+        env: {
+          NODE_ENV: 'production'
+        }
+      };
+    </script>
     <test-fixture id="click">
         <template>
             <buv-button></buv-button>
@@ -21,7 +30,8 @@
         describe('when the button is clicked', function () {
           it('should set the text to "Spinner"', function () {
             const el = fixture('click');
-            const button = el.shadowRoot.querySelectorAll('button')[0];
+            const rawButtonComponent = el.shadowRoot.querySelectorAll('buv-button-raw')[0];
+            const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
             button.click();
 
             // allow for repaint
