@@ -14,5 +14,13 @@ export default function retrieve (url) {
   const urlWithParam = url + param;
 
   return fetch(urlWithParam)
-    .then(res => res.json());
+    .then(res => res.text())
+    .then(text => {
+      try {
+        return JSON.parse(text);
+      } catch (err) {
+        console.warn(err);
+        return 'Not a valid certificate url';
+      }
+    });
 }
