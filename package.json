@@ -30,10 +30,10 @@
   "scripts": {
     "test": "npm run test:application && npm run test:components",
     "test:components": "polymer test",
-    "test:application": "concurrently 'npm run start:mock-server' 'jest'",
+    "test:application": "npm run start:mock-server && jest",
     "test:application:watch": "concurrently 'npm run start:mock-server' 'jest --watch'",
     "start": "concurrently 'polymer serve' 'npm run styles:compile:watch'",
-    "start:mock-server": "babel-node test/mock-server",
+    "start:mock-server": "babel-node test/mock-server &",
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
     "lint": "npm run lint:js && npm run lint:polymer && npm run lint:styles",
