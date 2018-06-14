@@ -14,5 +14,5 @@ export default function retrieve (url) {
   const urlWithParam = url + param;
 
   return fetch(urlWithParam)
-    .then(res => res.json())
+    .then(res => res.json());
 }

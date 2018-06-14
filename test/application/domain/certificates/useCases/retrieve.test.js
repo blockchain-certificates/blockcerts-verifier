@@ -18,6 +18,6 @@ describe('domain certificates retrieve method test suite', function () {
 
       const result = domain.certificates.retrieve(url);
       expect(result).toBe(null);
-    })
+    });
   });
 });

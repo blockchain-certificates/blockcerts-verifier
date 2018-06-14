@@ -1,8 +1,7 @@
+import mockCertificate from '../fixtures/certificate-example';
 const express = require('express');
 const app = express();
 const server = require('http').createServer(app);
-
-import mockCertificate from '../fixtures/certificate-example';
 
 app.get('/to/certificate', (req, res) => res.send(mockCertificate));
 

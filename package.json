@@ -60,7 +60,8 @@
       "describe",
       "expect",
       "it",
-      "performance"
+      "performance",
+      "fetch"
     ]
   }
 }
