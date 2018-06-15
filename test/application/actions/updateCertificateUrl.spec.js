@@ -1,5 +1,6 @@
 import { configureStore } from '../../../src/store';
 import updateCertificateUrl from '../../../src/actions/updateCertificateUrl';
+import { getCertificateUrl } from '../../../src/selectors/input';
 
 describe('updateCertificateUrl action creator test suite', function () {
   describe('given it is dispatched with a url', function () {
@@ -9,7 +10,7 @@ describe('updateCertificateUrl action creator test suite', function () {
       store.dispatch(updateCertificateUrl(fixtureUrl));
       const state = store.getState();
 
-      expect(state.input.certificateUrl).toBe(fixtureUrl);
+      expect(getCertificateUrl(state)).toBe(fixtureUrl);
     });
   });
 });
