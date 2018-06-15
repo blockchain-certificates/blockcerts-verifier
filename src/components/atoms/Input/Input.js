@@ -11,7 +11,7 @@ const Input = ({ onInput = () => {} } = {}) => {
       type='text'
       id='certificate-json-url'
       placeholder='Certificate Url'
-      class='buv-c-input'
+      class='buv-c-input is-invalid'
       on-input='${(e) => { onInput(e.target.value); }}'
     />
   `;
