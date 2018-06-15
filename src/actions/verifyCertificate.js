@@ -1,10 +1,11 @@
+import domain from '../domain';
 import * as ACTIONS from '../constants/actionTypes';
 import validateUrlInput from './validateUrlInput';
 import { getCertificateUrl } from '../selectors/input';
+import updateCertificateDefinition from './updateCertificateDefinition';
 
 export default function verifyCertificate () {
-  return function (dispatch, getState) {
-    // validate input url
+  return async function (dispatch, getState) {
     const url = getCertificateUrl(getState());
     let validInput = true;
     if (url) {
@@ -14,9 +15,13 @@ export default function verifyCertificate () {
     if (!validInput) {
       return null;
     }
-    // retrieve certificate
-    // store certificate
-    // call verifier
+
+    const certificateDefinition = await domain.certificates.retrieve(url);
+    if (typeof certificateDefinition !== 'string') {
+      dispatch(updateCertificateDefinition(certificateDefinition));
+    }
+
+    // TODO: call verifier once implement
 
     dispatch({
       type: ACTIONS.VERIFY_CERTIFICATE
