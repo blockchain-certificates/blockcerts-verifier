@@ -4,7 +4,8 @@
   "main": "blockcerts-universal-verifier.js",
   "dependencies": {
     "@polymer/lit-element": "^0.5.1",
-    "redux": "^4.0.0"
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
