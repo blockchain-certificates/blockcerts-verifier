@@ -57,6 +57,8 @@
   },
   "semistandard": {
     "globals": [
+      "afterEach",
+      "beforeEach",
       "describe",
       "expect",
       "it",
