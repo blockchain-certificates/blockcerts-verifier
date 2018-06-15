@@ -1,5 +1,6 @@
 import { configureStore } from '../../../src/store';
 import validateUrlInput from '../../../src/actions/validateUrlInput';
+import { getUrlIsValid } from '../../../src/selectors/input';
 
 describe('validateUrlInput action creator test suite', function () {
   describe('given it is dispatched with a valid url', function () {
@@ -9,7 +10,7 @@ describe('validateUrlInput action creator test suite', function () {
       store.dispatch(validateUrlInput(fixtureUrl));
       const state = store.getState();
 
-      expect(state.input.isValid).toBe(true);
+      expect(getUrlIsValid(state)).toBe(true);
     });
   });
 
@@ -20,7 +21,7 @@ describe('validateUrlInput action creator test suite', function () {
       store.dispatch(validateUrlInput(fixtureUrl));
       const state = store.getState();
 
-      expect(state.input.isValid).toBe(false);
+      expect(getUrlIsValid(state)).toBe(false);
     });
   });
 });
