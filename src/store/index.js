@@ -7,7 +7,7 @@ import { ENV } from '../utils/environment';
 function getInitialState () {
   return {
     input: {}
-  }
+  };
 }
 
 export function configureStore ({ initialState = getInitialState() } = {}) {
