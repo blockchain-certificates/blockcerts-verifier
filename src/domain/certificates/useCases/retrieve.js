@@ -1,8 +1,4 @@
-function isValidUrl (url) {
-  // https://stackoverflow.com/a/15734347/4064775
-  const regex = /^(ftp|http|https):\/\/[^ "]+$/;
-  return regex.test(url);
-}
+import { isValidUrl } from '../../../helpers/validations';
 
 export default function retrieve (url) {
   if (!isValidUrl(url)) {
