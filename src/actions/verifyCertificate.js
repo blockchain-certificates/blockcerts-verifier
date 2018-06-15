@@ -7,17 +7,15 @@ import updateCertificateDefinition from './updateCertificateDefinition';
 export default function verifyCertificate () {
   return async function (dispatch, getState) {
     const url = getCertificateUrl(getState());
-    let validInput = true;
-    if (url) {
-      validInput = dispatch(validateUrlInput(url)).payload.isValid;
-    }
 
+    const validInput = dispatch(validateUrlInput(url)).payload.isValid;
     if (!validInput) {
       return null;
     }
 
     const certificateDefinition = await domain.certificates.retrieve(url);
-    if (typeof certificateDefinition !== 'string') {
+
+    if (certificateDefinition && typeof certificateDefinition !== 'string') {
       dispatch(updateCertificateDefinition(certificateDefinition));
     }
 
