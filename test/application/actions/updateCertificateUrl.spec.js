@@ -9,7 +9,7 @@ describe('updateCertificateUrl action creator test suite', function () {
       store.dispatch(updateCertificateUrl(fixtureUrl));
       const state = store.getState();
 
-      expect(state.certificateUrl).toBe(fixtureUrl);
+      expect(state.input.certificateUrl).toBe(fixtureUrl);
     });
   });
 });
