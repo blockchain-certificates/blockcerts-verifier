@@ -25,6 +25,7 @@
               let buvComponent;
               let inputComponent;
               let buttonComponent;
+              let button;
 
               beforeEach(function () {
                 const el = fixture('invalid-input');
@@ -32,7 +33,7 @@
                 inputComponent = el.shadowRoot.querySelectorAll('buv-input')[0];
 
                 const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
-                const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
+                button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
                 button.click();
               });
 
@@ -40,6 +41,7 @@
                 buvComponent = null;
                 inputComponent = null;
                 buttonComponent = null;
+                button = null;
               });
 
               it('should invalidate the input', async function () {
@@ -50,8 +52,9 @@
                 expect(classes.indexOf('is-invalid') > -1).to.equal(true);
               });
 
-              xit('should remove the spinner on the button', function () {
-
+              it('should remove the spinner on the button', async function () {
+                await wait(0);
+                expect(button.innerText).to.equal('Verify');
               });
 
               xit('should display an error message', function () {
