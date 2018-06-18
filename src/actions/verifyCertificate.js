@@ -24,5 +24,5 @@ export default function verifyCertificate () {
     dispatch({
       type: ACTIONS.VERIFY_CERTIFICATE
     });
-  }
+  };
 }

@@ -30,9 +30,9 @@
   "scripts": {
     "test": "npm run test:application && npm run test:components",
     "test:components": "polymer test",
-    "test:application": "concurrently --kill-others --success first 'npm run start:mock-server' 'jest'",
-    "test:application:watch": "concurrently 'npm run start:mock-server' 'jest --watch'",
-    "start": "concurrently 'polymer serve' 'npm run styles:compile:watch'",
+    "test:application": "jest",
+    "test:application:watch": "jest --watch",
+    "start": "concurrently 'polymer serve' 'npm run styles:compile:watch' 'npm run start:mock-server'",
     "start:mock-server": "babel-node test/mock-server",
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
@@ -57,6 +57,8 @@
   },
   "semistandard": {
     "globals": [
+      "afterEach",
+      "beforeEach",
       "describe",
       "expect",
       "it",
