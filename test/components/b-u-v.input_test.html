@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockcerts Universal Verifier - input entry test</title>
+    <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../src/blockcerts-universal-verifier.js"></script>
+</head>
+<body>
+    <script src="./helpers/redux-hack.js"></script>
+    <script src="./helpers/wait.js"></script>
+    <test-fixture id="invalid-input">
+        <template>
+            <blockcerts-universal-verifier></blockcerts-universal-verifier>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+      describe('Blockcerts Universal Verifier test suite', function () {
+        describe('input stage testing', function () {
+          describe('given nothing was inputted in the input', function () {
+            describe('when clicking the verify button', function () {
+              let buvComponent;
+              let inputComponent;
+              let buttonComponent;
+
+              beforeEach(function () {
+                const el = fixture('invalid-input');
+                buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
+                inputComponent = el.shadowRoot.querySelectorAll('buv-input')[0];
+
+                const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
+                const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
+                button.click();
+              });
+
+              afterEach(function () {
+                buvComponent = null;
+                inputComponent = null;
+                buttonComponent = null;
+              });
+
+              it('should invalidate the input', async function () {
+                const input = inputComponent.shadowRoot.querySelectorAll('input')[0];
+                // allow repaint
+                await wait(0);
+                const classes = Array.from(input.classList);
+                expect(classes.indexOf('is-invalid') > -1).to.equal(true);
+              });
+
+              xit('should remove the spinner on the button', function () {
+
+              });
+
+              xit('should display an error message', function () {
+
+              });
+            });
+          });
+        });
+      });
+</script>
+</body>
+</html>

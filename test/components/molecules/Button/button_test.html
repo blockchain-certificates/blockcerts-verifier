@@ -10,15 +10,8 @@
     <script type="module" src="../../../../src/components/molecules/Button/index.js"></script>
 </head>
 <body>
-    <script>
-      // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
-      // the module is loaded.
-      window.process = {
-        env: {
-          NODE_ENV: 'production'
-        }
-      };
-    </script>
+    <script src="../../helpers/redux-hack.js"></script>
+    <script src="../../helpers/wait.js"></script>
     <test-fixture id="click">
         <template>
             <buv-button></buv-button>
@@ -28,14 +21,16 @@
     <script type="module">
       describe('Button test suite', function() {
         describe('when the button is clicked', function () {
-          it('should set the text to "Spinner"', function () {
+          it('should set the text to "Spinner"', async function () {
             const el = fixture('click');
             const rawButtonComponent = el.shadowRoot.querySelectorAll('buv-button-raw')[0];
             const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
-            button.click();
 
-            // allow for repaint
-            setTimeout(() => { expect(button.innerHTML).to.equal('Spinner'); }, 0);
+            button.click();
+            // allow repaint
+            await wait(0);
+
+            expect(button.innerText).to.equal('Spinner');
           });
         });
       });

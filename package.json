@@ -30,6 +30,7 @@
   "scripts": {
     "test": "npm run test:application && npm run test:components",
     "test:components": "polymer test",
+    "test:components:persist": "polymer test -p",
     "test:application": "jest",
     "test:application:watch": "jest --watch",
     "start": "concurrently 'polymer serve' 'npm run styles:compile:watch' 'npm run start:mock-server'",
