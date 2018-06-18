@@ -7,14 +7,13 @@
     <script src="../../../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../../../node_modules/web-component-tester/browser.js"></script>
 
-    <script type="module" src="../../../../src/components/molecules/Button/index.js"></script>
+    <script type="module" src="../../../../src/components/molecules/Button/Button.js"></script>
 </head>
 <body>
-    <script src="../../helpers/redux-hack.js"></script>
     <script src="../../helpers/wait.js"></script>
     <test-fixture id="click">
         <template>
-            <buv-button></buv-button>
+            <buv-button-raw></buv-button-raw>
         </template>
     </test-fixture>
 
@@ -23,8 +22,7 @@
         describe('when the button is clicked', function () {
           it('should set the text to "Spinner"', async function () {
             const el = fixture('click');
-            const rawButtonComponent = el.shadowRoot.querySelectorAll('buv-button-raw')[0];
-            const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
+            const button = el.shadowRoot.querySelectorAll('button')[0];
 
             button.click();
             // allow repaint
