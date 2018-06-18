@@ -1,3 +1,3 @@
-import { ButtonContainer as Button } from './ButtonContainer';
+import { default as Button } from './ButtonContainer';
 
 window.customElements.define('buv-button', Button);

@@ -54,6 +54,9 @@
     ],
     "setupFiles": [
       "./test/setupJest.js"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!(@polymer|lit-html|pwa-helpers)/)"
     ]
   },
   "semistandard": {

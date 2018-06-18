@@ -4,13 +4,20 @@ import CSS from './_components.button-css';
 class Button extends LitElement {
   constructor () {
     super();
+    this.defaultProps();
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  defaultProps () {
     this.showSpinner = false;
+    this.cancelSpinner = false;
+    this.onClick = () => {}
   }
 
   static get properties () {
     return {
       showSpinner: Boolean,
+      cancelSpinner: Boolean,
       onClick: Function
     };
   }
@@ -20,9 +27,17 @@ class Button extends LitElement {
     this.showSpinner = !this.showSpinner;
   }
 
+  _propertiesChanged(props, changedProps, prevProps) {
+    this._props = props;
+
+    if (this._props.cancelSpinner && this.showSpinner) {
+      this.showSpinner = false;
+    }
+
+    super._propertiesChanged(props, changedProps, prevProps);
+  }
+
   _render (_props) {
-    // TODO: find a better location to assign these props
-    this._props = _props;
     return html`
       ${CSS}
       <button class='buv-c-button' on-click='${this.handleClick}'>
@@ -37,7 +52,7 @@ window.customElements.define('buv-button-raw', Button);
 // wrap Button in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function ButtonWrapper (props) {
-  return html`<buv-button-raw onClick='${props.onClick}'></buv-button-raw>`;
+  return html`<buv-button-raw onClick='${props.onClick}' cancelSpinner='${props.cancelSpinner}'></buv-button-raw>`;
 }
 
 export { ButtonWrapper as Button };
