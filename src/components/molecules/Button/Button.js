@@ -24,16 +24,11 @@ class Button extends LitElement {
 
   handleClick () {
     this._props.onClick();
-    this.showSpinner = !this.showSpinner;
+    this.showSpinner = true;
   }
 
   _propertiesChanged(props, changedProps, prevProps) {
     this._props = props;
-
-    if (this._props.cancelSpinner && this.showSpinner) {
-      this.showSpinner = false;
-    }
-
     super._propertiesChanged(props, changedProps, prevProps);
   }
 
@@ -41,7 +36,7 @@ class Button extends LitElement {
     return html`
       ${CSS}
       <button class='buv-c-button' on-click='${this.handleClick}'>
-       ${this.showSpinner ? 'Spinner' : 'Verify'}
+       ${this.showSpinner && !this.cancelSpinner ? 'Spinner' : 'Verify'}
       </button>
     `;
   }
