@@ -25,7 +25,7 @@ export default function connector (component, { mapDispatchToProps = {}, mapStat
     }
 
     _stateChanged (state) {
-      this._render();
+      this._requestRender();
     }
   };
 }
