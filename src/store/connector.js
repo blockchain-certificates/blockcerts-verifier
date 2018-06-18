@@ -5,18 +5,27 @@ import { configureStore } from './index';
 
 const store = configureStore();
 
-export default function connector (component, { mapDispatchToProps }) {
+export default function connector (component, { mapDispatchToProps = {}, mapStateToProps = () => {} }) {
   return class extends connect(store)(LitElement) {
     mapDispatchToProps () {
       return bindActionCreators(mapDispatchToProps, store.dispatch);
     }
 
-    _render () {
-      return html`${component(this.mapDispatchToProps())}`;
+    mapStateToProps () {
+      return mapStateToProps(store.getState());
     }
 
-    _stateChanged () {
+    _render () {
+      const props = {
+        ...this.mapDispatchToProps(),
+        ...this.mapStateToProps()
+      };
 
+      return html`${component(props)}`;
+    }
+
+    _stateChanged (state) {
+      this._requestRender();
     }
   };
 }

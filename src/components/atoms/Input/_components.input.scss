@@ -9,6 +9,10 @@
   width: 100%;
 }
 
+.buv-c-input.is-invalid {
+  border: 2px solid #f00;
+}
+
 .buv-c-input::-moz-placeholder {
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color: rgba(3, 21, 50, .3);
