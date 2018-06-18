@@ -11,7 +11,7 @@ class Button extends LitElement {
   defaultProps () {
     this.showSpinner = false;
     this.cancelSpinner = false;
-    this.onClick = () => {}
+    this.onClick = () => {};
   }
 
   static get properties () {
@@ -27,7 +27,7 @@ class Button extends LitElement {
     this.showSpinner = true;
   }
 
-  _propertiesChanged(props, changedProps, prevProps) {
+  _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
     super._propertiesChanged(props, changedProps, prevProps);
   }
