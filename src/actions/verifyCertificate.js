@@ -20,6 +20,7 @@ export default function verifyCertificate () {
     }
 
     // TODO: call verifier once implement
+    domain.certificates.verify(certificateDefinition);
 
     dispatch({
       type: ACTIONS.VERIFY_CERTIFICATE

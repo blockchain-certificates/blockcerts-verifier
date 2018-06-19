@@ -4,7 +4,7 @@
   "main": "blockcerts-universal-verifier.js",
   "dependencies": {
     "@polymer/lit-element": "^0.5.1",
-    "cert-verifier-js": "git+https://github.com/raiseandfall/cert-verifier-js.git#mc/feature/new-events",
+    "cert-verifier-js": "git+https://github.com/blockchain-certificates/cert-verifier-js.git#v2-wip",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
   },
