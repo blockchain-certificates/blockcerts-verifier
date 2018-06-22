@@ -1,4 +1,4 @@
-import { CertificateVerifier } from 'cert-verifier-js';
+import { CertificateVerifier } from 'cert-verifier-js/verifier-es';
 
 export default async function verify (certificateDefinition) {
   const certificateAsString = JSON.stringify(certificateDefinition);
