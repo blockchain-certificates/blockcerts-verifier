@@ -12,6 +12,7 @@ before_install:
   - npm i -g npm@6
 before_script:
   - npm run start:mock-server &
+  - cat node_modules/cert-verifier-js/package.json
   - npm run lint
   - npm run test
 script:
