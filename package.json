@@ -13,6 +13,8 @@
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "axe-core": "^3.0.2",
     "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.0.1",
     "babel-preset-env": "^1.7.0",
     "concurrently": "^3.5.1",
     "express": "^4.16.3",
@@ -57,7 +59,7 @@
       "./test/setupJest.js"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(@polymer|lit-html|pwa-helpers)/)"
+      "node_modules/(?!(@polymer|lit-html|pwa-helpers|cert-verifier-js)/)"
     ]
   },
   "semistandard": {
