@@ -1,17 +1,12 @@
 import { CertificateVerifier } from 'cert-verifier-js/verifier-es';
 
-export default async function verify (certificateDefinition) {
+export default async function verify (certificateDefinition, stepCb, finishCb) {
+  if (typeof certificateDefinition === 'string') {
+    return;
+  }
   const certificateAsString = JSON.stringify(certificateDefinition);
-  const verifier = new CertificateVerifier(certificateAsString, (step, status, message) => {
-    console.log('stepCode', step);
-    console.log('status', status);
-    console.log('message', message);
-  });
-  const res = await verifier.verify((stepCode, status, message) => {
-    console.log('** done **');
-    console.log('stepCode', stepCode);
-    console.log('status', status);
-    console.log('message', message);
-  });
-  console.log(res);
+  const verifier = new CertificateVerifier(certificateAsString, stepCb);
+  const res = await verifier.verify(finishCb);
+
+  return res;
 }
