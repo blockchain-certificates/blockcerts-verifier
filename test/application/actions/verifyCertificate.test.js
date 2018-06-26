@@ -64,7 +64,7 @@ describe('verifyCertificate action creator test suite', function () {
         const state = store.getState();
 
         expect(getVerifiedSteps(state)).toEqual(validCertificateStepsAssertions);
-      })
+      });
     });
 
     describe('and the url is not of a certificate', function () {

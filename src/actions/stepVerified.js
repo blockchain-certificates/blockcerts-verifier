@@ -8,5 +8,5 @@ export default function ({ stepCode, stepName, status }) {
       stepName,
       status
     }
-  }
+  };
 }
