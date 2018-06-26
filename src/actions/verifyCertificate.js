@@ -19,7 +19,6 @@ export default function verifyCertificate () {
       dispatch(updateCertificateDefinition(certificateDefinition));
     }
 
-    // TODO: call verifier once implement
     domain.certificates.verify(certificateDefinition);
 
     dispatch({
