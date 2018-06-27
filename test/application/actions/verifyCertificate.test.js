@@ -2,8 +2,9 @@ import { configureStore } from '../../../src/store';
 import verifyCertificate from '../../../src/actions/verifyCertificate';
 import updateCertificateUrl from '../../../src/actions/updateCertificateUrl';
 import { getUrlIsValid } from '../../../src/selectors/input';
-import { getJSONCertificate } from '../../../src/selectors/certificate';
+import { getJSONCertificate, getVerifiedSteps } from '../../../src/selectors/certificate';
 import certificateFixture from '../../fixtures/certificate-example';
+import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
@@ -56,6 +57,13 @@ describe('verifyCertificate action creator test suite', function () {
         const state = store.getState();
 
         expect(getJSONCertificate(state)).toEqual(certificateFixture);
+      });
+
+      it('should store the different steps in the state', async function () {
+        await store.dispatch(verifyCertificate());
+        const state = store.getState();
+
+        expect(getVerifiedSteps(state)).toEqual(validCertificateStepsAssertions);
       });
     });
 
