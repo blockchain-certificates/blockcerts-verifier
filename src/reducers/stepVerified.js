@@ -3,10 +3,10 @@ function getParentStep(state, parentStep) {
 }
 
 export default function stepVerified (state, action) {
-  const { parentStep, stepCode, stepName, status } = action.payload;
+  const { parentStep, code, name, status } = action.payload;
   const storedParentState = getParentStep(state, parentStep);
   if (parentStep && storedParentState) {
-    storedParentState.substeps.push({ stepCode, stepName, status })
+    storedParentState.substeps.push({ code, name, status })
   } else {
     state.verifiedSteps.push(action.payload);
   }
