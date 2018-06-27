@@ -1,6 +1,5 @@
-function getParentStep(state, parentStep) {
-  return state.verifiedSteps.find(step => step.code === parentStep)
-}
+import { getVerifiedSteps, getParentStep } from '../selectors/certificate';
+
 
 export default function stepVerified (state, action) {
   const { parentStep, code, name, status } = action.payload;
@@ -8,7 +7,7 @@ export default function stepVerified (state, action) {
   if (parentStep && storedParentState) {
     storedParentState.substeps.push({ code, name, status })
   } else {
-    state.verifiedSteps.push(action.payload);
+    getVerifiedSteps(state).push(action.payload);
   }
 
   return state;
