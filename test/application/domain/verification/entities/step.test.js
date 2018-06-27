@@ -1,4 +1,4 @@
-import Step from '../../../../../src/domain/verification/entities/step';
+import Step, { DEFAULT_STATUS } from '../../../../../src/domain/verification/entities/step';
 
 describe('verification Step entity test suite', function () {
   describe('given it is instantiated with valid data', function () {
@@ -32,6 +32,10 @@ describe('verification Step entity test suite', function () {
     it('should set an empty array for the substeps', function () {
       expect(sut.substeps).toEqual([]);
     });
+
+    it('should set the initial status of the step', function () {
+      expect(sut.status).toBe(DEFAULT_STATUS);
+    })
   });
 
   describe('addSubstep method', function () {

@@ -25,7 +25,12 @@ export default function verifyCertificate () {
     }
 
     function stepVerifyCb (stepCode, stepName, status) {
-      dispatch(stepVerified({ stepCode, stepName, status }));
+      const stepDefinition = { stepCode, stepName, status };
+      const step = domain.verification.createStep(stepDefinition);
+      // createStep should find the parent step
+      // stepVerified should attach the step to the correct parent
+
+      dispatch(stepVerified(step));
     }
 
     await domain.certificates.verify(certificateDefinition, stepVerifyCb, stepVerifyCb);
