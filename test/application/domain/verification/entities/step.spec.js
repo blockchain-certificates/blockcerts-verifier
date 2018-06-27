@@ -29,33 +29,28 @@ describe('verification Step entity test suite', function () {
       expect(sut.code).toBe(code);
     });
 
-    it('should set an empty array for the substeps', function () {
-      expect(sut.substeps).toEqual([]);
-    });
-
     it('should set the initial status of the step', function () {
       expect(sut.status).toBe(DEFAULT_STATUS);
-    })
+    });
+
+    describe('given it does not have a parent step', function () {
+      it('should not set the parentStep value', function () {
+        expect(sut.parentStep).toBe(undefined);
+      });
+    });
   });
 
-  describe('addSubstep method', function () {
-    it('should add the substep passed to the substep list', function () {
-      const sut = new Step({
-        name: 'Parent step',
-        code: 'ps'
-      });
-
-      const substepDefinition = {
-        name: 'Substep 1',
-        code: 'substep1'
+  describe('given it has a parent step', function () {
+    it('should retrieve and set the parentStep value', function () {
+      const definition = {
+        name: 'Fetching Remote Hash',
+        code: 'fetchingRemoteHash'
       };
 
-      const substep = new Step(substepDefinition);
+      const sut = new Step(definition);
 
-      sut.addSubstep(substep);
-
-      expect(sut.substeps.length).toBe(1);
-      expect(sut.substeps[0].name).toBe('Substep 1');
+      // see models/verificationSteps
+      expect(sut.parentStep).toBe('formatValidation');
     });
   });
 });

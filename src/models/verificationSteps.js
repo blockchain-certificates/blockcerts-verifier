@@ -17,46 +17,46 @@ export const mainSteps = [
 export const substepMap = [
   {
     code: 'getTransactionId',
-    step: 'formatValidation',
+    parentStep: 'formatValidation',
   },
   {
     code: 'computingLocalHash',
-    step: 'formatValidation',
+    parentStep: 'formatValidation',
   },
   {
     code: 'fetchingRemoteHash',
-    step: 'formatValidation',
+    parentStep: 'formatValidation',
   },
   {
     code: 'gettingIssuerProfile',
-    step: 'formatValidation',
+    parentStep: 'formatValidation',
   },
   {
     code: 'parsingIssuerKeys',
-    step: 'formatValidation',
+    parentStep: 'formatValidation',
   },
   {
     code: 'comparingHashes',
-    step: 'hashComparison',
+    parentStep: 'hashComparison',
   },
   {
     code: 'checkingMerkleRoot',
-    step: 'hashComparison',
+    parentStep: 'hashComparison',
   },
   {
     code: 'checkingReceipt',
-    step: 'hashComparison',
+    parentStep: 'hashComparison',
   },
   {
     code: 'checkingRevokedStatus',
-    step: 'statusCheck',
+    parentStep: 'statusCheck',
   },
   {
     code: 'checkingAuthenticity',
-    step: 'statusCheck',
+    parentStep: 'statusCheck',
   },
   {
     code: 'checkingExpiresDate',
-    step: 'statusCheck',
+    parentStep: 'statusCheck',
   }
 ];
