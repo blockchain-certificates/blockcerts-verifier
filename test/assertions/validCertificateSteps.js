@@ -11,7 +11,7 @@ export default [
       {'status': 'starting', 'code': 'fetchingRemoteHash', 'name': 'Fetching remote hash'},
       {'status': 'success', 'code': 'fetchingRemoteHash', 'name': 'Fetching remote hash'},
       {'status': 'starting', 'code': 'parsingIssuerKeys', 'name': 'Parsing issuer keys'},
-      {'status': 'success', 'code': 'parsingIssuerKeys', 'name': 'Parsing issuer keys'},
+      {'status': 'success', 'code': 'parsingIssuerKeys', 'name': 'Parsing issuer keys'}
     ]
   },
   {
@@ -24,7 +24,7 @@ export default [
       {'status': 'starting', 'code': 'checkingMerkleRoot', 'name': 'Checking Merkle Root'},
       {'status': 'success', 'code': 'checkingMerkleRoot', 'name': 'Checking Merkle Root'},
       {'status': 'starting', 'code': 'checkingReceipt', 'name': 'Checking Receipt'},
-      {'status': 'success', 'code': 'checkingReceipt', 'name': 'Checking Receipt'},
+      {'status': 'success', 'code': 'checkingReceipt', 'name': 'Checking Receipt'}
     ]
   },
   {
@@ -37,7 +37,7 @@ export default [
       {'status': 'starting', 'code': 'checkingAuthenticity', 'name': 'Checking Authenticity'},
       {'status': 'success', 'code': 'checkingAuthenticity', 'name': 'Checking Authenticity'},
       {'status': 'starting', 'code': 'checkingExpiresDate', 'name': 'Checking Expires Date'},
-      {'status': 'success', 'code': 'checkingExpiresDate', 'name': 'Checking Expires Date'},
+      {'status': 'success', 'code': 'checkingExpiresDate', 'name': 'Checking Expires Date'}
     ]
   },
   {'status': 'success', 'code': 'final', 'name': '', substeps: []}

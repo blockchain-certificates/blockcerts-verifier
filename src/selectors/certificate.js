@@ -7,5 +7,5 @@ export function getVerifiedSteps (state) {
 }
 
 export function getParentStep (state, parentStep) {
-  return getVerifiedSteps(state).find(step => step.code === parentStep)
+  return getVerifiedSteps(state).find(step => step.code === parentStep);
 }

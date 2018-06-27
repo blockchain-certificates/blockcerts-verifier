@@ -10,7 +10,7 @@ export function getInitialState () {
   return {
     input: {},
     verifiedSteps: mainSteps.map(step => domain.verification.createStep(step))
-  }
+  };
 }
 
 export function configureStore ({ initialState = getInitialState() } = {}) {
