@@ -3,7 +3,7 @@ export const DEFAULT_STATUS = 'standby';
 
 export default class Step {
   constructor ({ name, code, status }) {
-    this.name = name;
+    this.name = code === 'final' ? 'Verified' : name;
     this.code = code;
     this.status = status || DEFAULT_STATUS;
     this.substeps = [];

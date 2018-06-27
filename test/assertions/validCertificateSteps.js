@@ -40,5 +40,5 @@ export default [
       {'status': 'success', 'code': 'checkingExpiresDate', 'name': 'Checking Expires Date'}
     ]
   },
-  {'status': 'success', 'code': 'final', 'name': '', substeps: []}
+  {'status': 'success', 'code': 'final', 'name': 'Verified', substeps: []}
 ];
