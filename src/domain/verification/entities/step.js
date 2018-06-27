@@ -6,6 +6,7 @@ export default class Step {
     this.name = name;
     this.code = code;
     this.status = status || DEFAULT_STATUS;
+    this.substeps = [];
     this.findParentStep();
   }
 

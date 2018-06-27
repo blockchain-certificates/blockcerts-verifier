@@ -1,8 +1,8 @@
 export default [
   {
     code: 'formatValidation',
-    label: 'Format validation',
-    labelProcess: 'Validating format',
+    name: 'Format validation',
+    status: 'standby',
     substeps: [
       {'status': 'starting', 'stepCode': 'getTransactionId', 'stepName': 'Getting transaction ID'},
       {'status': 'success', 'stepCode': 'getTransactionId', 'stepName': 'Getting transaction ID'},
@@ -16,8 +16,8 @@ export default [
   },
   {
     code: 'hashComparison',
-    label: 'Hash comparison',
-    labelProcess: 'Comparing hash',
+    name: 'Hash comparison',
+    status: 'standby',
     substeps: [
       {'status': 'starting', 'stepCode': 'comparingHashes', 'stepName': 'Comparing Hashes'},
       {'status': 'success', 'stepCode': 'comparingHashes', 'stepName': 'Comparing Hashes'},
@@ -29,8 +29,8 @@ export default [
   },
   {
     code: 'statusCheck',
-    label: 'Status check',
-    labelProcess: 'Checking record status',
+    name: 'Status check',
+    status: 'standby',
     substeps: [
       {'status': 'starting', 'stepCode': 'checkingRevokedStatus', 'stepName': 'Checking Revoked Status'},
       {'status': 'success', 'stepCode': 'checkingRevokedStatus', 'stepName': 'Checking Revoked Status'},

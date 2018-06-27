@@ -1,12 +1,13 @@
 import * as ACTIONS from '../constants/actionTypes';
 
-export default function ({ stepCode, stepName, status }) {
+export default function ({ code, name, status, parentStep }) {
   return {
     type: ACTIONS.STEP_VERIFIED,
     payload: {
-      stepCode,
-      stepName,
-      status
+      stepCode: code,
+      stepName: name,
+      status,
+      parentStep
     }
   };
 }
