@@ -3,7 +3,7 @@ import VerificationStep from '../../atoms/VerificationStep';
 
 export default function VerificationProcess ({ steps }) {
   const innerHTML = steps.map(step => html`
-    ${VerificationStep(step, parent)}
+    ${VerificationStep(step, true)}
     ${step.substeps.map(substep => html`${VerificationStep(substep)}`)}
   `);
 
