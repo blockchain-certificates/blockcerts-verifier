@@ -1,6 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CertificateInput from './components/organisms/CertificateInput';
-import './components/molecules/VerificationProcess';
+import './components/organisms/VerificationProcess';
 
 class BlockcertsUniversalVerifier extends LitElement {
   _render () {
