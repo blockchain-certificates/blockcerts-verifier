@@ -6,8 +6,8 @@ export default class Step {
     this.name = code === 'final' ? 'Verified' : name;
     this.code = code;
     this.status = status || VERIFICATION_STATUS.DEFAULT;
-    this.errorMessage = errorMessage;
     this.substeps = [];
+    this.setErrorMessage(errorMessage);
     this.findParentStep();
   }
 
@@ -16,5 +16,13 @@ export default class Step {
     if (mappedData && mappedData.parentStep) {
       this.parentStep = mappedData.parentStep;
     }
+  }
+
+  setErrorMessage (message) {
+    if (message == null) {
+      return;
+    }
+
+    this.errorMessage = message;
   }
 }

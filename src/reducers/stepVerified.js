@@ -12,11 +12,11 @@ function saveSubstepIn (parent, substep) {
 }
 
 export default function stepVerified (state, action) {
-  const { parentStep, code, name, status } = action.payload;
+  const { parentStep } = action.payload;
   const storedParentState = getParentStep(state, parentStep);
 
   if (parentStep && storedParentState) {
-    saveSubstepIn(storedParentState, { code, name, status });
+    saveSubstepIn(storedParentState, action.payload);
   } else {
     getVerifiedSteps(state).push(action.payload);
   }
