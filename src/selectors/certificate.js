@@ -3,5 +3,9 @@ export function getJSONCertificate (state) {
 }
 
 export function getVerifiedSteps (state) {
-  return state.verifiedSteps;
+  return state.verifiedSteps || [];
+}
+
+export function getParentStep (state, parentStep) {
+  return getVerifiedSteps(state).find(step => step.code === parentStep);
 }

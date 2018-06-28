@@ -24,8 +24,11 @@ export default function verifyCertificate () {
       dispatch(updateCertificateDefinition(certificateDefinition));
     }
 
-    function stepVerifyCb (stepCode, stepName, status) {
-      dispatch(stepVerified({ stepCode, stepName, status }));
+    function stepVerifyCb (code, name, status) {
+      const stepDefinition = { code, name, status };
+      const step = domain.verification.createStep(stepDefinition);
+
+      dispatch(stepVerified(step));
     }
 
     await domain.certificates.verify(certificateDefinition, stepVerifyCb, stepVerifyCb);
