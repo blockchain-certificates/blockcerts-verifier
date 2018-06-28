@@ -1,5 +1,6 @@
 import Step from '../../../../../src/domain/verification/entities/step';
 import * as VERIFICATION_STATUS from '../../../../../src/constants/verificationStatus';
+import domain from '../../../../../src/domain';
 
 describe('verification Step entity test suite', function () {
   describe('given it is instantiated with valid data', function () {
@@ -38,6 +39,21 @@ describe('verification Step entity test suite', function () {
       it('should not set the parentStep value', function () {
         expect(sut.parentStep).toBe(undefined);
       });
+    });
+  });
+
+  describe('given the step definition has an error message', function () {
+    it('should set the errorMessage property', function () {
+      const errorMessage = 'This is an error message';
+      const definition = {
+        name: 'Jean Michel',
+        code: 'jeanmimi',
+        errorMessage
+      };
+
+      const sut = new Step(definition);
+
+      expect(sut.errorMessage).toEqual(errorMessage);
     });
   });
 
