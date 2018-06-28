@@ -2,7 +2,7 @@ export default [
   {
     code: 'formatValidation',
     name: 'Format validation',
-    status: 'standby',
+    status: 'success',
     substeps: [
       {'status': 'success', 'code': 'getTransactionId', 'name': 'Getting transaction ID'},
       {'status': 'success', 'code': 'computingLocalHash', 'name': 'Computing Local Hash'},
@@ -13,7 +13,7 @@ export default [
   {
     code: 'hashComparison',
     name: 'Hash comparison',
-    status: 'standby',
+    status: 'success',
     substeps: [
       {'status': 'success', 'code': 'comparingHashes', 'name': 'Comparing Hashes'},
       {'status': 'success', 'code': 'checkingMerkleRoot', 'name': 'Checking Merkle Root'},
@@ -23,7 +23,7 @@ export default [
   {
     code: 'statusCheck',
     name: 'Status check',
-    status: 'standby',
+    status: 'success',
     substeps: [
       {'status': 'success', 'code': 'checkingRevokedStatus', 'name': 'Checking Revoked Status'},
       {'status': 'success', 'code': 'checkingAuthenticity', 'name': 'Checking Authenticity'},

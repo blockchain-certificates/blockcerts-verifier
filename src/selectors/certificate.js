@@ -8,8 +8,8 @@ export function getVerifiedSteps (state) {
   return state.verifiedSteps || [];
 }
 
-export function getParentStep (state, parentStep) {
-  return getVerifiedSteps(state).find(step => step.code === parentStep);
+export function getParentStep (state, parentStepCode) {
+  return getVerifiedSteps(state).find(step => step.code === parentStepCode);
 }
 
 export function getStartedVerificationSteps (state) {

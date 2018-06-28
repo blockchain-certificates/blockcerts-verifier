@@ -3,6 +3,7 @@ import updateCertificateUrl from './updateCertificateUrl';
 import validateUrlInput from './validateUrlInput';
 import updateCertificateDefinition from './updateCertificateDefinition';
 import stepVerified from './stepVerified';
+import updateParentStepStatus from './updateParentStepStatus';
 
 export function app (state, action) {
   switch (action.type) {
@@ -11,6 +12,9 @@ export function app (state, action) {
 
     case ACTIONS.UPDATE_CERTIFICATE_URL:
       return updateCertificateUrl(state, action);
+
+    case ACTIONS.UPDATE_PARENT_STEP_STATUS:
+      return updateParentStepStatus(state, action);
 
     case ACTIONS.VALIDATE_URL_INPUT:
       return validateUrlInput(state, action);
