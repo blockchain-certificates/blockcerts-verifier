@@ -44,6 +44,6 @@ export default function updateParentStepStatus (parentStepCode) {
         parentStepCode,
         status
       }
-    })
-  }
+    });
+  };
 }

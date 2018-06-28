@@ -11,5 +11,5 @@ export default function stepVerified (step) {
     });
 
     dispatch(updateParentStepStatus(parentStep));
-  }
+  };
 }

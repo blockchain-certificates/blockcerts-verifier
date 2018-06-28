@@ -1,6 +1,5 @@
 import Step from '../../../../../src/domain/verification/entities/step';
 import * as VERIFICATION_STATUS from '../../../../../src/constants/verificationStatus';
-import domain from '../../../../../src/domain';
 
 describe('verification Step entity test suite', function () {
   describe('given it is instantiated with valid data', function () {
