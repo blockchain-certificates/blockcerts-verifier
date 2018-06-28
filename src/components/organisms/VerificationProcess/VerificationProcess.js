@@ -7,6 +7,10 @@ export default function VerificationProcess ({ steps }) {
     ${step.substeps.map(substep => html`${VerificationStep(substep)}`)}
   `);
 
+  if (!innerHTML.length) {
+    return;
+  }
+
   return html`
     <dl>
         ${innerHTML}
