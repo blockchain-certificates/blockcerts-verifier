@@ -4,7 +4,7 @@ import ErrorMessage from '../../atoms/ErrorMessage';
 export default function VerificationStep ({ name, status, errorMessage }, parent) {
   let innerHTML;
   if (parent) {
-    innerHTML = html`<dt>${name}: ${status}</dt>`;
+    innerHTML = html`<dt class='buv-c-verification-step'>${name}: ${status}</dt>`;
   } else {
     innerHTML = html`<dd>
       ${name}: ${status}

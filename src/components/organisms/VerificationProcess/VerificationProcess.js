@@ -1,5 +1,6 @@
 import { html } from '@polymer/lit-element';
 import VerificationStep from '../../molecules/VerificationStep';
+import CSS from './_components.verification-process-css';
 
 export default function VerificationProcess ({ steps }) {
   const innerHTML = steps.map(step => html`
@@ -12,10 +13,14 @@ export default function VerificationProcess ({ steps }) {
   }
 
   return html`
-    <dl>
+    ${CSS}
+    <div class='buv-c-verification-process'>
+      <div class='buv-c-verification-progress-bar'></div>  
+      <dl>
         ${innerHTML}
         <dd></dd>
-    </dl>
+      </dl>
+    </div>
   `;
 }
 
