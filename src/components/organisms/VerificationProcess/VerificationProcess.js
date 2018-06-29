@@ -16,7 +16,7 @@ export default function VerificationProcess ({ steps }) {
     ${CSS}
     <div class='buv-c-verification-process'>
       <div class='buv-c-verification-progress-bar'></div>  
-      <dl>
+      <dl class='buv-c-verification-process__step-list'>
         ${innerHTML}
         <dd></dd>
       </dl>

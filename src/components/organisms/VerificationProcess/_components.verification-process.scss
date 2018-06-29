@@ -1,15 +1,7 @@
 .buv-c-verification-process {
   margin: 30px 0 0 158px;
   position: relative;
-}
-
-.buv-c-verification-step {
-  margin: 0 0 13px;
-}
-
-// TODO: not implemented in HTML
-.buv-c-verification-step__toggle-link {
-  display: block;
+  display: table;
 }
 
 // generic styles, if needed
@@ -34,9 +26,12 @@
   border-radius: 7px;
   margin: 2px 0;
   box-sizing: content-box;
+  // TODO: not animating at this point
   -webkit-transition: height .4s ease-in-out, padding-top .4s ease-in;
   -o-transition: height .4s ease-in-out, padding-top .4s ease-in;
   transition: height .4s ease-in-out, padding-top .4s ease-in;
+  min-height: 100%;
+  display: table-cell;
 }
 
 .buv-c-verification-progress-bar.no-transition {
@@ -44,6 +39,20 @@
   -moz-transition: none !important;
   -o-transition: none !important;
   transition: none !important;
+}
+
+.buv-c-verification-process__step-list {
+  padding-left: 33px;
+  display: table-cell;
+}
+
+.buv-c-verification-step {
+  margin: 0 0 13px;
+}
+
+// TODO: not implemented in HTML
+.buv-c-verification-step__toggle-link {
+  display: block;
 }
 
 :host .step-dot {
