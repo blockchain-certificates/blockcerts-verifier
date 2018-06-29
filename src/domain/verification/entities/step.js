@@ -1,12 +1,13 @@
 import { substepMap } from '../../../models/verificationSteps';
-export const DEFAULT_STATUS = 'standby';
+import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 export default class Step {
-  constructor ({ name, code, status }) {
+  constructor ({ name, code, status, errorMessage }) {
     this.name = code === 'final' ? 'Verified' : name;
     this.code = code;
-    this.status = status || DEFAULT_STATUS;
+    this.status = status || VERIFICATION_STATUS.DEFAULT;
     this.substeps = [];
+    this.setErrorMessage(errorMessage);
     this.findParentStep();
   }
 
@@ -15,5 +16,13 @@ export default class Step {
     if (mappedData && mappedData.parentStep) {
       this.parentStep = mappedData.parentStep;
     }
+  }
+
+  setErrorMessage (message) {
+    if (message == null) {
+      return;
+    }
+
+    this.errorMessage = message;
   }
 }

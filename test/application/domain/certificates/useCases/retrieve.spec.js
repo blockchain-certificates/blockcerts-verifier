@@ -1,5 +1,5 @@
 import domain from '../../../../../src/domain';
-import certificateFixture from '../../../../fixtures/certificate-example';
+import certificateFixture from '../../../../fixtures/valid-certificate-example';
 
 describe('domain certificates retrieve method test suite', function () {
   describe('given a valid url', function () {

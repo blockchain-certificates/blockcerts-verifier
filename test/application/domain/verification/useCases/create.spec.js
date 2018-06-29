@@ -40,6 +40,21 @@ describe('domain verification create use case test suite', function () {
     });
   });
 
+  describe('given the step definition has an error message', function () {
+    it('should set the errorMessage property', function () {
+      const errorMessage = 'This is an error message';
+      const definition = {
+        name: 'Jean Michel',
+        code: 'jeanmimi',
+        errorMessage
+      };
+
+      const sut = domain.verification.createStep(definition);
+
+      expect(sut.errorMessage).toEqual(errorMessage);
+    });
+  });
+
   describe('given the step has a parent', function () {
     it('should set the parentStep property', function () {
       const name = 'Computing local hash';

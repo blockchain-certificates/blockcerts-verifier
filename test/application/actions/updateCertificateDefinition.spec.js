@@ -1,7 +1,7 @@
 import { configureStore } from '../../../src/store';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import { getJSONCertificate } from '../../../src/selectors/certificate';
-import certificateFixture from '../../fixtures/certificate-example';
+import certificateFixture from '../../fixtures/valid-certificate-example';
 
 describe('updateCertificateDefinition action creator test suite', function () {
   describe('given it is dispatched with a certification definition', function () {
