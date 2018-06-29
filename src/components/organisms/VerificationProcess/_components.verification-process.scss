@@ -15,7 +15,6 @@
 //  padding-left: 33px;
 //}
 
-
 .buv-c-verification-progress-bar {
   padding-top: 0;
   position: absolute;
@@ -32,6 +31,10 @@
   transition: height .4s ease-in-out, padding-top .4s ease-in;
   min-height: 100%;
   display: table-cell;
+}
+
+.buv-c-verification-progress-bar.has-errored {
+  background-color: #d0021b;
 }
 
 .buv-c-verification-progress-bar.no-transition {
@@ -109,20 +112,6 @@
 }
 :host .step.opened .sub-steps {
   height: auto;
-}
-:host .step .error-bar {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: #D0021B;
-  display: none;
-  width: 14px;
-  border-radius: 7px;
-  z-index: 1;
-}
-:host .step.failure .error-bar {
-  display: block;
 }
 
 :host li.sub-step {
