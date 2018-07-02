@@ -3,7 +3,6 @@ import ErrorMessage from '../../atoms/ErrorMessage';
 
 export default function VerificationStep ({ name, code, status, errorMessage }, parent, isFirst) {
   // TODO: better handle this dynamic class (cf npm classnames)
-
   let parentStepClasses = [
     'buv-c-verification-step',
     isFirst ? 'is-first' : '',
@@ -12,7 +11,7 @@ export default function VerificationStep ({ name, code, status, errorMessage }, 
 
   let innerHTML;
   if (parent) {
-    innerHTML = html`<dt class$='${parentStepClasses}'>${name}: ${status}</dt>`;
+    innerHTML = html`<dt class$='${parentStepClasses}'>${name}</dt>`;
   } else {
     innerHTML = html`<dd class='buv-c-verification-step  buv-c-verification-substep'>
       ${name}: ${status}
