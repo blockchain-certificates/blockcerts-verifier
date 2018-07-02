@@ -89,15 +89,26 @@
 }
 
 .buv-c-verification-step::after {
-  content: '';
   position: absolute;
+  z-index: 3;
+}
+
+.buv-c-verification-step.is-success::after {
+  content: '';
+  border: solid rgba(42, 178, 123, 1);
+  border-width: 0 2px 2px 0;
   left: -29px;
   width: 5px;
   height: 11px;
-  border: solid rgba(42, 178, 123, 1);
-  border-width: 0 2px 2px 0;
   transform: rotate(45deg);
-  z-index: 3;
+}
+
+.buv-c-verification-step.is-failure::after {
+  content: '\\274C'; // double escape needed for JS
+  left: -31px;
+  top: -1px;
+  font-size: 11px;
+  color: #d0021b;
 }
 
 .buv-c-verification-substep::after {
@@ -181,36 +192,7 @@
 :host .step.opened .step-arrow {
   transform: rotate(180deg);
 }
-:host .step.success > .step-dot,
-:host .step.failure > .step-dot {
-  box-shadow: 0 2px 4px 0 rgba(22,40,55,0.21);
-}
-:host .step > .step-dot::after {
-  opacity: 0;
-  display: block;
-  transition: opacity .2s linear .3s;
-  content: '';
-}
-:host .step.failure > .step-dot::before,
-:host .step.failure > .step-dot::after {
-  position: absolute;
-  left: 11px;
-  top: 5px;
-  content: ' ';
-  height: 14px;
-  width: 2px;
-  background-color: #D0021B;
-}
-:host .step.failure > .step-dot::before {
-  transform: rotate(45deg);
-}
-:host .step.failure > .step-dot::after {
-  transform: rotate(-45deg);
-}
-:host .step.failure > .step-dot::after,
-:host .step.success > .step-dot::after {
-  opacity: 1;
-}
+
 :host .step-arrow {
   width: 0;
   height: 0;
