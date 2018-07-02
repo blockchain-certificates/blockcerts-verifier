@@ -108,5 +108,5 @@ rules:
   url-quotes: 2
   variable-name-format:
     - 2
-    - convention: hyphenatedlowercase
+    - convention: camelcase
   zero-unit: 2
