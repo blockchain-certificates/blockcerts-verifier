@@ -1,7 +1,5 @@
-import { initializeVerifiedSteps } from '../store/getInitialState';
-
 export default function clearVerifiedSteps (state, action) {
-  const resetSteps = initializeVerifiedSteps();
+  const { resetSteps } = action.payload;
 
   return {
     ...state,
