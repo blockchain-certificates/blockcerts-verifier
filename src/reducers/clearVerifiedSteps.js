@@ -4,5 +4,5 @@ export default function clearVerifiedSteps (state, action) {
   return {
     ...state,
     verifiedSteps: resetSteps
-  }
+  };
 }
