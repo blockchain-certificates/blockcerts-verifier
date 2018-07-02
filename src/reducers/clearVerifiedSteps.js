@@ -1,8 +1,7 @@
-import { mainSteps } from '../models/verificationSteps';
-import domain from '../domain';
+import { initializeVerifiedSteps } from '../store/getInitialState';
 
 export default function clearVerifiedSteps (state, action) {
-  const resetSteps = mainSteps.map(step => domain.verification.createStep(step));
+  const resetSteps = initializeVerifiedSteps();
 
   return {
     ...state,

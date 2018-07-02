@@ -1,4 +1,4 @@
-import { getInitialState } from '../../../src/store';
+import getInitialState from '../../../src/store/getInitialState';
 import initialVerifiedStepsAssertion from '../../assertions/initialVerifiedSteps';
 
 describe('store getInitialState test suite', function () {
