@@ -4,9 +4,13 @@ import validateUrlInput from './validateUrlInput';
 import updateCertificateDefinition from './updateCertificateDefinition';
 import stepVerified from './stepVerified';
 import updateParentStepStatus from './updateParentStepStatus';
+import clearVerifiedSteps from './clearVerifiedSteps';
 
 export function app (state, action) {
   switch (action.type) {
+    case ACTIONS.CLEAR_VERIFIED_STEPS:
+      return clearVerifiedSteps(state, action);
+
     case ACTIONS.UPDATE_CERTIFICATE_DEFINITION:
       return updateCertificateDefinition(state, action);
 
