@@ -118,6 +118,20 @@ $errorColor: #d0021b;
   display: none;
 }
 
+.buv-c-verification-process__error-message {
+  background: rgba(208, 2, 27, 0.05);
+  border-radius: 2px;
+  letter-spacing: .05px;
+  padding: 10px;
+}
+
+.buv-c-verification-process__error-message-title {
+  color: $errorColor;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
 // TODO: not implemented in HTML
 .buv-c-verification-step__toggle-link {
   display: block;
@@ -168,28 +182,6 @@ $errorColor: #d0021b;
 :host li.sub-step {
   margin: 0;
   line-height: 1.71428571;
-}
-:host li.sub-step .error {
-  background: rgba(208,2,27,0.05);
-  border-radius: 2px;
-  letter-spacing: .05px;
-  padding: 5px 10px 10px;
-  margin-top: 5px;
-}
-:host li.sub-step .error span {
-  color: #D0021B;
-  font-weight: 600;
-  font-size: 14px;
-}
-:host li.sub-step .error p {
-  margin: 0;
-  line-height: 1.35714286;
-}
-:host li.sub-step .error {
-  display: none;
-}
-:host li.sub-step.failure .error {
-  display: block;
 }
 
 :host .step.opened .step-arrow {
