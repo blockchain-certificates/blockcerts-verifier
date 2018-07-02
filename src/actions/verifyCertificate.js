@@ -4,6 +4,7 @@ import validateUrlInput from './validateUrlInput';
 import stepVerified from './stepVerified';
 import { getCertificateUrl } from '../selectors/input';
 import updateCertificateDefinition from './updateCertificateDefinition';
+import clearVerifiedSteps from './clearVerifiedSteps';
 
 export default function verifyCertificate () {
   return async function (dispatch, getState) {
@@ -17,6 +18,8 @@ export default function verifyCertificate () {
     if (!validInput) {
       return null;
     }
+
+    dispatch(clearVerifiedSteps());
 
     const certificateDefinition = await domain.certificates.retrieve(url);
 

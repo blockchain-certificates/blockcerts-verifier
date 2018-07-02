@@ -1,4 +1,4 @@
-import { getInitialState } from '../../../src/store';
+import getInitialState from '../../../src/store/getInitialState';
 import { getStartedVerificationSteps, getVerifiedSteps } from '../../../src/selectors/certificate';
 import * as VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 
