@@ -7,7 +7,7 @@ import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
 export default function VerificationProcess ({ steps }) {
   const finalStep = steps.pop();
   const innerHTML = steps
-      .map((step, i) => html`
+    .map((step, i) => html`
         ${VerificationStep(step, true, i === 0)}
         ${step.substeps.map(substep => html`${VerificationStep(substep)}`)}
       `);

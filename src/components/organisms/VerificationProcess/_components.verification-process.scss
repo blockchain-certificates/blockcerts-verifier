@@ -56,6 +56,8 @@ $errorColor: #d0021b;
 .buv-c-verification-step {
   position: relative;
   margin: 15px 0 5px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 .buv-c-verification-step.is-first {
@@ -64,6 +66,8 @@ $errorColor: #d0021b;
 
 .buv-c-verification-substep {
   margin: 0 0 3px 15px;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .buv-c-verification-step::before {
@@ -151,60 +155,26 @@ $errorColor: #d0021b;
   margin-bottom: 5px;
 }
 
+@import '../../../shared-styles/utils.flow';
 
 // TODO: not implemented in HTML
 .buv-c-verification-step__toggle-link {
   display: block;
 }
 
-@import '../../../shared-styles/utils.flow';
-
 // TODO: below should be deleted once all implemented
-:host .sub-steps {
-  display: block;
-  height: 0;
-  -webkit-transition: height .6s ease-out;
-  -o-transition: height .6s ease-out;
-  transition: height .6s ease-out;
-  margin: 0 0 0 -33px;
-  padding-top: 5px;
-  overflow: hidden;
-}
-:host .step.out-starting .step-dot,
-:host .step.step-verified > .step-dot,
-:host .sub-steps .step-dot {
-  width: 4px;
-  height: 4px;
-  left: 5px;
-}
-:host .step.out-starting .step-dot {
-  top: 8px;
-}
-:host .sub-steps .step-dot {
-  top: 10px;
-}
-
-:host .starting .step-dot {
-  left: 1px;
-  top: 3px;
-  width: 12px;
-  height: 12px;
-}
 :host .step .loading-txt,
 :host .step.starting > a,
-:host .step.starting .sub-steps{
+:host .step.starting .sub-steps {
   display: none;
 }
+
 :host .step.starting .loading-txt {
   display: block;
 }
+
 :host .step.opened .sub-steps {
   height: auto;
-}
-
-:host li.sub-step {
-  margin: 0;
-  line-height: 1.71428571;
 }
 
 :host .step.opened .step-arrow {
@@ -221,24 +191,6 @@ $errorColor: #d0021b;
   vertical-align: 2px;
   margin: 0 6px;
   -webkit-transition: -webkit-transform .3s ease-in;
-  transition: -webkit-transform .3s ease-in;
   -o-transition: transform .3s ease-in;
-  transition: transform .3s ease-in, -webkit-transform .3s ease-in;
-}
-
-:host .step-verified h4 {
-  color: $errorColor;
-  font-size: 21px;
-  letter-spacing: .08px;
-}
-:host .step-verified h4,
-:host .step-verified span {
-  opacity: 0;
-  -webkit-transition: opacity .3s linear .3s;
-  -o-transition: opacity .3s linear .3s;
-  transition: opacity .3s linear .3s;
-}
-:host .step-verified.in h4,
-:host .step-verified.in span {
-  opacity: 1;
+  transition: transform .3s ease-in;
 }
