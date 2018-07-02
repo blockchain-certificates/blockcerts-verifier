@@ -8,6 +8,6 @@ export default function FinalVerificationStep ({ status, chain = '' }) {
 
   return html`
     <dt class='buv-c-verification-step is-final'>Verified: ${status}</dt>
-    <dd class='buv-c-verification-substep'>This is a valid ${chain} certificate</dd>
+    <dd class='buv-c-verification-substep buv-u-excluded-from-flow'>This is a valid ${chain} certificate</dd>
   `;
 }

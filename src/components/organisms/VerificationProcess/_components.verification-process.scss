@@ -144,11 +144,15 @@ $errorColor: #d0021b;
   margin-bottom: 5px;
 }
 
+
 // TODO: not implemented in HTML
 .buv-c-verification-step__toggle-link {
   display: block;
 }
 
+@import '../../../shared-styles/utils.flow';
+
+// TODO: below should be deleted once all implemented
 :host .sub-steps {
   display: block;
   height: 0;
