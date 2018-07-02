@@ -117,4 +117,20 @@ describe('verifyCertificate action creator test suite', function () {
       });
     });
   });
+
+  describe('verifying a second certificate', function () {
+    describe('given the certificates definitions valid definitions', function () {
+      it('should only maintain the verifiedSteps of the latest certificate verified', async function () {
+        const store = configureStore();
+        store.dispatch(updateCertificateUrl(MOCK_SERVER_VALID_URL));
+        await store.dispatch(verifyCertificate());
+
+        store.dispatch(updateCertificateUrl(MOCK_SERVER_INVALID_URL));
+        await store.dispatch(verifyCertificate());
+        const state = store.getState();
+
+        expect(getVerifiedSteps(state)).toEqual(invalidCertificateStepsAssertions);
+      });
+    });
+  });
 });
