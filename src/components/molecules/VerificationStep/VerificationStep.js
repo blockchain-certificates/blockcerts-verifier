@@ -7,8 +7,7 @@ export default function VerificationStep ({ name, code, status, errorMessage }, 
   let parentStepClasses = [
     'buv-c-verification-step',
     isFirst ? 'is-first' : '',
-    `is-${status}`,
-    code === 'final' ? 'is-final' : ''
+    `is-${status}`
   ].join(' ');
 
   let innerHTML;
