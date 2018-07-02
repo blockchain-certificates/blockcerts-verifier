@@ -1,3 +1,6 @@
+$successColor: rgba(42, 178, 123, 1);
+$errorColor: #d0021b;
+
 .buv-c-verification-process {
   margin: 30px 0 0 158px;
   position: relative;
@@ -20,7 +23,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  background-color: rgba(42, 178, 123, 1);
+  background-color: $successColor;
   width: 14px;
   border-radius: 7px;
   margin: 2px 0;
@@ -35,7 +38,7 @@
 }
 
 .buv-c-verification-progress-bar.has-errored {
-  background-color: #d0021b;
+  background-color: $errorColor;
 }
 
 .buv-c-verification-progress-bar.no-transition {
@@ -95,7 +98,7 @@
 
 .buv-c-verification-step.is-success::after {
   content: '';
-  border: solid rgba(42, 178, 123, 1);
+  border: solid $errorColor;
   border-width: 0 2px 2px 0;
   left: -29px;
   width: 5px;
@@ -108,7 +111,7 @@
   left: -31px;
   top: -1px;
   font-size: 11px;
-  color: #d0021b;
+  color: $errorColor;
 }
 
 .buv-c-verification-substep::after {
@@ -246,7 +249,7 @@
   display: none;
 }
 :host .step-verified h4 {
-  color: rgba(42, 178, 123, 1);
+  color: $errorColor;
   font-size: 21px;
   letter-spacing: .08px;
 }
