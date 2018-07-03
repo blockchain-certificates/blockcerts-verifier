@@ -1,3 +1,3 @@
-import FileUpload from './FileUpload';
+import { FileUploadContainer as FileUpload } from './FileUploadContainer';
 
-export default FileUpload;
+window.customElements.define('buv-file-upload', FileUpload);
