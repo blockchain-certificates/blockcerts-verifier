@@ -8,9 +8,9 @@ import { isValidUrl } from '../helpers/validations';
 export default function updateCertificateUrl (url) {
   return async function (dispatch) {
     const isUrlValid = isValidUrl(url);
+    dispatch(validateUrlInput(isUrlValid));
 
     if (!isUrlValid) {
-      dispatch(validateUrlInput(isUrlValid));
       return null;
     }
 
@@ -26,5 +26,5 @@ export default function updateCertificateUrl (url) {
         url
       }
     });
-  }
+  };
 }
