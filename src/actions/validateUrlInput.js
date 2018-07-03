@@ -1,9 +1,6 @@
 import * as ACTIONS from '../constants/actionTypes';
 
-import { isValidUrl } from '../helpers/validations';
-
-export default function validateUrlInput (url) {
-  const isValid = isValidUrl(url);
+export default function validateUrlInput (isValid) {
   return {
     type: ACTIONS.VALIDATE_URL_INPUT,
     payload: {

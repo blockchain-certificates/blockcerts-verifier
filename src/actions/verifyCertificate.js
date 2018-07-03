@@ -1,10 +1,8 @@
 import domain from '../domain';
 import * as ACTIONS from '../constants/actionTypes';
-import validateUrlInput from './validateUrlInput';
 import stepVerified from './stepVerified';
-import { getCertificateUrl } from '../selectors/input';
-import updateCertificateDefinition from './updateCertificateDefinition';
 import clearVerifiedSteps from './clearVerifiedSteps';
+import { getJSONCertificate } from '../selectors/certificate';
 
 export default function verifyCertificate () {
   return async function (dispatch, getState) {
@@ -12,20 +10,8 @@ export default function verifyCertificate () {
       type: ACTIONS.VERIFY_CERTIFICATE
     });
 
-    const url = getCertificateUrl(getState());
-
-    const validInput = dispatch(validateUrlInput(url)).payload.isValid;
-    if (!validInput) {
-      return null;
-    }
-
     dispatch(clearVerifiedSteps());
-
-    const certificateDefinition = await domain.certificates.retrieve(url);
-
-    if (certificateDefinition && typeof certificateDefinition !== 'string') {
-      dispatch(updateCertificateDefinition(certificateDefinition));
-    }
+    const certificateDefinition = getJSONCertificate(getState());
 
     function stepVerifyCb (code, name, status, errorMessage) {
       const stepDefinition = { code, name, status, errorMessage };

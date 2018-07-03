@@ -10,3 +10,8 @@
   border: 0 none;
   height: 100%;
 }
+
+.buv-c-button.is-disabled {
+  cursor: default;
+  filter: grayscale(100%);
+}
