@@ -11,7 +11,7 @@ export default function FileUpload ({ onChange = () => {} }) {
           accept='application/json'
           id='buv-json-file-upload'
           class='buv-u-visually-hidden'
-          onchange='${(e) => { console.log(e.target.files); onChange(e.target.files[0]); }}'
+          onchange='${(e) => { onChange(e.target.files[0]); }}'
         />
     </label>`;
 }
