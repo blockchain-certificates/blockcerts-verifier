@@ -18,7 +18,8 @@ class Button extends LitElement {
     return {
       showSpinner: Boolean,
       cancelSpinner: Boolean,
-      onClick: Function
+      onClick: Function,
+      isDisabled: Boolean
     };
   }
 
@@ -32,10 +33,15 @@ class Button extends LitElement {
     super._propertiesChanged(props, changedProps, prevProps);
   }
 
-  _render (_props) {
+  _render () {
+    const buttonClass = [
+      'buv-c-button',
+      this.isDisabled ? 'is-disabled' : ''
+    ].join(' ');
+
     return html`
       ${CSS}
-      <button class='buv-c-button' on-click='${this.handleClick}'>
+      <button class$='${buttonClass}' on-click='${this.handleClick}' disabled?='${this.isDisabled}'>
        ${this.showSpinner && !this.cancelSpinner ? 'Spinner' : 'Verify'}
       </button>
     `;
@@ -47,7 +53,12 @@ window.customElements.define('buv-button-raw', Button);
 // wrap Button in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function ButtonWrapper (props) {
-  return html`<buv-button-raw onClick='${props.onClick}' cancelSpinner='${props.cancelSpinner}'></buv-button-raw>`;
+  return html`
+  <buv-button-raw
+    onClick='${props.onClick}'
+    cancelSpinner='${props.cancelSpinner}'
+    isDisabled='${props.isDisabled}'
+  ></buv-button-raw>`;
 }
 
 export { ButtonWrapper as Button };

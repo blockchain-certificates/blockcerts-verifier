@@ -21,47 +21,64 @@
       describe('Blockcerts Universal Verifier test suite', function () {
         describe('input stage testing', function () {
           describe('given nothing was inputted in the input', function () {
-            describe('when clicking the verify button', function () {
-              let buvComponent;
-              let inputComponent;
-              let buttonComponent;
-              let button;
+            it('the button should be disabled', function () {
+              const el = fixture('invalid-input');
+              const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
+              const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
+              const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
 
-              beforeEach(function () {
-                const el = fixture('invalid-input');
-                buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
-                inputComponent = el.shadowRoot.querySelectorAll('buv-input')[0];
-
-                const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
-                button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
-                button.click();
-              });
-
-              afterEach(function () {
-                buvComponent = null;
-                inputComponent = null;
-                buttonComponent = null;
-                button = null;
-              });
-
-              it('should invalidate the input', async function () {
-                const input = inputComponent.shadowRoot.querySelectorAll('input')[0];
-                // allow repaint
-                await wait(0);
-                const classes = Array.from(input.classList);
-                expect(classes.indexOf('is-invalid') > -1).to.equal(true);
-              });
-
-              it('should remove the spinner on the button', async function () {
-                await wait(0);
-                expect(button.innerText).to.equal('Verify');
-              });
-
-              xit('should display an error message', function () {
-
-              });
+              expect(button.disabled).to.equal(true);
             });
           });
+
+          describe('given an invalid url was inputted in the input', function () {
+            it('the input should highlight its invalid state', async function () {
+              const el = fixture('invalid-input');
+              const inputComponent = el.shadowRoot.querySelectorAll('buv-input')[0];
+              const input = inputComponent.shadowRoot.querySelectorAll('input')[0];
+
+              input.value = 'http';
+              const inputEvent = new Event('input', {
+                bubbles: true,
+                cancelable: true
+              });
+
+              input.dispatchEvent(inputEvent);
+
+              await wait(0);
+
+              const classes = Array.from(input.classList);
+
+              expect(classes.indexOf('is-invalid') > -1).to.equal(true);
+            });
+          });
+
+          describe('given an valid url of a certificate definition was inputted in the input', function () {
+            // this test times out in CI
+            // TODO: enable this test when there is an API opening the certificate definition
+            xit('the button should not be disabled', async function () {
+              const el = fixture('invalid-input');
+              const inputComponent = el.shadowRoot.querySelectorAll('buv-input')[0];
+              const input = inputComponent.shadowRoot.querySelectorAll('input')[0];
+              const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
+              const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
+              const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
+
+              input.value = 'https://auto-certificates.learningmachine.io/certificate/ebecbb1552fb5d1f8db5f713db980260';
+              const inputEvent = new Event('input', {
+                bubbles: true,
+                cancelable: true
+              });
+
+              input.dispatchEvent(inputEvent);
+
+              // allow retrieving the certificate. It is a bit weak if network is slow.
+              await wait(1000);
+
+              expect(button.disabled).to.equal(false);
+            });
+          });
+
         });
       });
 </script>
