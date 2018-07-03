@@ -71,7 +71,7 @@
               input.dispatchEvent(inputEvent);
 
               // allow retrieving the certificate. It is a bit weak if network is slow.
-              await wait(1000);
+              await wait(10000);
 
               expect(button.disabled).to.equal(false);
             });
