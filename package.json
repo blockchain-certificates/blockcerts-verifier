@@ -70,7 +70,8 @@
       "expect",
       "it",
       "performance",
-      "fetch"
+      "fetch",
+      "FileReader"
     ]
   }
 }

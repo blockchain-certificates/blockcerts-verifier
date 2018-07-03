@@ -1,7 +1,7 @@
 function readFile (file) {
-  return new Promise(function(resolve, reject) {
+  return new Promise(function (resolve, reject) {
     const reader = new FileReader();
-    reader.onload = function(e) {
+    reader.onload = function (e) {
       resolve(e.target.result);
     };
     reader.onerror = reader.onabort = reject;

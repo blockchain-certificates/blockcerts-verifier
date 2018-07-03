@@ -10,5 +10,5 @@ export default function uploadCertificateDefinition (file) {
     const definition = await domain.certificates.read(file);
 
     dispatch(updateCertificateDefinition(JSON.parse(definition)));
-  }
+  };
 }
