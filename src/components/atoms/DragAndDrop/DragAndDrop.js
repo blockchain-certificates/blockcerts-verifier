@@ -57,7 +57,7 @@ class DragAndDrop extends LitElement {
       this.isDraggedOver ? 'is-active' : ''
     ].join(' ');
 
-    const denyText = this.denyDrop ? 'Only JSON files accepted' : '';
+    const denyText = this.denyDrop ? 'Only JSON files are accepted' : '';
 
     return html`
     ${CSS}
@@ -67,7 +67,7 @@ class DragAndDrop extends LitElement {
       ondragleave='${this.handleDragLeave}'
       ondrop='${this.handleDrop}'
     >
-      <h1>Drag here</h1>
+      <p>You can also drag and drop a certificate file (accepted format: JSON)</p>
       <span>${denyText}</span>
       <slot></slot>
     </div>`;
