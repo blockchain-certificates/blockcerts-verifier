@@ -3,3 +3,8 @@ export function isValidUrl (url) {
   const regex = /^(ftp|http|https):\/\/[^ "]+$/;
   return regex.test(url);
 }
+
+export function isValidLocalPath (path) {
+  const regex = /^(\.\/|\.\.\/|[A-Z]:\/\/|\/)[^ "]+$/;
+  return regex.test(path);
+}

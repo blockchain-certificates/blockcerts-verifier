@@ -3,11 +3,11 @@ import validateUrlInput from './validateUrlInput';
 import domain from '../domain';
 import updateCertificateDefinition from './updateCertificateDefinition';
 
-import { isValidUrl } from '../helpers/validations';
+import { isValidLocalPath, isValidUrl } from '../helpers/validations';
 
 export default function updateCertificateUrl (url) {
   return async function (dispatch) {
-    const isUrlValid = isValidUrl(url);
+    const isUrlValid = isValidUrl(url) || isValidLocalPath(url);
     dispatch(validateUrlInput(isUrlValid));
 
     if (!isUrlValid) {

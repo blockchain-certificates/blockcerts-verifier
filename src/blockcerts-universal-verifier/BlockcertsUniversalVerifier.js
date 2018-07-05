@@ -8,32 +8,12 @@ class BlockcertsUniversalVerifier extends LitElement {
   static get properties () {
     return {
       src: String,
-      certificate: Object
+      onLoad: Function
     }
   }
 
   _firstRendered () {
-    console.log('first rendered', this._props);
-    console.log(this.src);
-    // fetch(this.src)
-    //   .then(res => res.text())
-    //   .then(text => {
-    //     console.log(text);
-    //     try {
-    //       return JSON.parse(text);
-    //     } catch (err) {
-    //       console.warn(err);
-    //       return 'Not a valid certificate url';
-    //     }
-    //   });
-    // var xmlhttp = new XMLHttpRequest();
-    // xmlhttp.onreadystatechange = function(){
-    //   if(xmlhttp.status === 200 && xmlhttp.readyState === 4){
-    //     this.certificate = xmlhttp.responseText;
-    //   }
-    // }.bind(this);
-    // xmlhttp.open("GET", this.src, true);
-    // xmlhttp.send();
+    this.onLoad(this.src)
   }
 
   _propertiesChanged (props, changedProps, prevProps) {
@@ -60,7 +40,7 @@ window.customElements.define('buv-raw', BlockcertsUniversalVerifier);
 // necessary trade-off to deal with class component in the store connector
 function BUVWrapper (props) {
   return html`
-  <buv-raw src='${props.src}'></buv-raw>`;
+  <buv-raw src='${props.src}' onLoad='${props.onLoad}'></buv-raw>`;
 }
 
 export {
