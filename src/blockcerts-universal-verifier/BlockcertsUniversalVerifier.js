@@ -9,16 +9,16 @@ class BlockcertsUniversalVerifier extends LitElement {
     return {
       src: String,
       onLoad: Function
-    }
+    };
   }
 
   _firstRendered () {
-    this.onLoad(this.src)
+    this.onLoad(this.src);
   }
 
   _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
-    super._propertiesChanged(props, changedProps, prevProps)
+    super._propertiesChanged(props, changedProps, prevProps);
   }
 
   _render (_props) {

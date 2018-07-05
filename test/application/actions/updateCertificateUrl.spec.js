@@ -90,7 +90,6 @@ describe('updateCertificateUrl action creator test suite', function () {
     beforeEach(async function () {
       store = configureStore();
       await store.dispatch(updateCertificateUrl(VALID_LOCAL_PATH));
-
     });
 
     afterEach(function () {
