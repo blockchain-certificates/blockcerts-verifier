@@ -28,7 +28,7 @@
           const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
           const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
           // allow time to process
-          await wait(100);
+          await wait(200);
           expect(button.disabled).to.equal(false);
         });
       });
