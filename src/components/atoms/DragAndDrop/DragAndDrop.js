@@ -1,11 +1,16 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.drag-and-drop-css';
 
+function isJson (file) {
+  const { name } = file;
+  return name.substr(name.length - 4, 4) === 'json';
+}
+
 class DragAndDrop extends LitElement {
   constructor () {
     super();
     this.isDraggedOver = false;
-
+    this.denyDrop = false;
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
@@ -14,6 +19,7 @@ class DragAndDrop extends LitElement {
   static get properties () {
     return {
       isDraggedOver: Boolean,
+      denyDrop: Boolean,
       onDrop: Function
     };
   }
@@ -27,9 +33,17 @@ class DragAndDrop extends LitElement {
   }
 
   handleDrop (e) {
-    this.isDraggedOver = false;
-    this._props.onDrop(e.dataTransfer.files[0]);
     e.preventDefault();
+    this.isDraggedOver = false;
+
+    const file = e.dataTransfer.files[0];
+    this.denyDrop = !isJson(file);
+
+    if (this.denyDrop) {
+      return;
+    }
+
+    this._props.onDrop(file);
   }
 
   _propertiesChanged (props, changedProps, prevProps) {
@@ -43,6 +57,8 @@ class DragAndDrop extends LitElement {
       this.isDraggedOver ? 'is-active' : ''
     ].join(' ');
 
+    const denyText = this.denyDrop ? 'Only JSON files accepted' : '';
+
     return html`
     ${CSS}
     <div 
@@ -52,6 +68,7 @@ class DragAndDrop extends LitElement {
       ondrop='${this.handleDrop}'
     >
       <h1>Drag here</h1>
+      <span>${denyText}</span>
       <slot></slot>
     </div>`;
   }
