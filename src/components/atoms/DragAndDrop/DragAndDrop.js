@@ -13,7 +13,8 @@ class DragAndDrop extends LitElement {
 
   static get properties () {
     return {
-      isDraggedOver: Boolean
+      isDraggedOver: Boolean,
+      onDrop: Function
     };
   }
 
@@ -25,15 +26,22 @@ class DragAndDrop extends LitElement {
     this.isDraggedOver = false;
   }
 
-  handleDrop () {
+  handleDrop (e) {
     this.isDraggedOver = false;
+    this._props.onDrop(e.dataTransfer.files[0]);
+    e.preventDefault();
+  }
+
+  _propertiesChanged (props, changedProps, prevProps) {
+    this._props = props;
+    super._propertiesChanged(props, changedProps, prevProps);
   }
 
   _render () {
     const classes = [
       'buv-c-drag-and-drop',
       this.isDraggedOver ? 'is-active' : ''
-    ].join(' ');;
+    ].join(' ');
 
     return html`
     ${CSS}
@@ -49,4 +57,17 @@ class DragAndDrop extends LitElement {
   }
 }
 
-export default DragAndDrop;
+window.customElements.define('buv-drag-and-drop-raw', DragAndDrop);
+
+// wrap DragAndDrop in order to plug into Container
+// necessary trade-off to deal with class component in the store connector
+function DragAndDropWrapper (props) {
+  return html`
+  <buv-drag-and-drop-raw
+    onDrop='${props.onDrop}'
+  >
+  <slot></slot>
+</buv-drag-and-drop-raw>`;
+}
+
+export { DragAndDropWrapper as DragAndDrop };
