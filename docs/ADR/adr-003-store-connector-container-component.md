@@ -110,3 +110,55 @@ const ButtonContainer = connector(Button, { mapDispatchToProps });
 export { ButtonContainer };
 ```
 Encapsulating the wrapping function inside the component allows for containers to always follow the same pattern and improves expectability.
+
+#### mapping actions to a component
+use `mapDispatchToProps`.
+It should be an object expect the key (prop that is going to be passed down to the component), and the value should be the action creator to be mapped. See above example for more details.
+
+#### mapping state to a component
+use `mapStateToProps`.
+It should be a function taking `state` as a parameter, and returning an object with as the key the prop that is going to be passed down to the component, and as a value the selector method reading the state.
+
+```javascript
+import connector from '../../../store/connector';
+import Input from './Input';
+import { foo } from '../../../selectors/foo';
+
+const mapStateToProps = (state) => ({
+  isValid: foo(state)
+});
+
+const InputContainer = connector(Input, { mapStateToProps });
+export { InputContainer };
+
+```
+
+#### exposing the component own props
+use `ownProps`. 
+Sometimes you want to be able to pass the props from where you use the component directly.
+In the case of a connected component, this is not as straightforward as expected.
+In order to do so, you need to map the `ownProps` object to the component's actual properties.
+
+In practice, this means exposing your component as `SourceComponent`, and matching `ownProps` to `SourceComponents.properties`.
+
+ie:
+```javascript
+export {
+  BlockcertsUniversalVerifier as SourceComponent,
+  BUVWrapper as BlockcertsUniversalVerifier
+};
+```
+
+and in the container:
+
+```javascript
+import connector from '../store/connector';
+import { BlockcertsUniversalVerifier, SourceComponent } from './BlockcertsUniversalVerifier';
+
+const ownProps = SourceComponent.properties;
+
+const BlockcertsUniversalVerifierContainer = connector(BlockcertsUniversalVerifier, { ownProps });
+export { BlockcertsUniversalVerifierContainer };
+
+```
+

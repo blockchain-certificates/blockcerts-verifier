@@ -14,26 +14,34 @@ class BlockcertsUniversalVerifier extends LitElement {
 
   _firstRendered () {
     console.log('first rendered', this._props);
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function(){
-      if(xmlhttp.status === 200 && xmlhttp.readyState === 4){
-        this.certificate = xmlhttp.responseText;
-      }
-    }.bind(this);
-    xmlhttp.open("GET", this.src, true);
-    xmlhttp.send();
+    console.log(this.src);
+    // fetch(this.src)
+    //   .then(res => res.text())
+    //   .then(text => {
+    //     console.log(text);
+    //     try {
+    //       return JSON.parse(text);
+    //     } catch (err) {
+    //       console.warn(err);
+    //       return 'Not a valid certificate url';
+    //     }
+    //   });
+    // var xmlhttp = new XMLHttpRequest();
+    // xmlhttp.onreadystatechange = function(){
+    //   if(xmlhttp.status === 200 && xmlhttp.readyState === 4){
+    //     this.certificate = xmlhttp.responseText;
+    //   }
+    // }.bind(this);
+    // xmlhttp.open("GET", this.src, true);
+    // xmlhttp.send();
   }
 
   _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
-    console.log(this._props);
-
     super._propertiesChanged(props, changedProps, prevProps)
   }
 
   _render (_props) {
-    console.log('render', this._props);
-
     return html`
       ${CSS}
       <section class='buv-c-verifier-main'>
@@ -52,7 +60,10 @@ window.customElements.define('buv-raw', BlockcertsUniversalVerifier);
 // necessary trade-off to deal with class component in the store connector
 function BUVWrapper (props) {
   return html`
-  <buv-raw></buv-raw>`;
+  <buv-raw src='${props.src}'></buv-raw>`;
 }
 
-export { BUVWrapper as BlockcertsUniversalVerifier };
+export {
+  BlockcertsUniversalVerifier as SourceComponent,
+  BUVWrapper as BlockcertsUniversalVerifier
+};
