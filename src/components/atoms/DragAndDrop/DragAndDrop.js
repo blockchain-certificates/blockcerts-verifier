@@ -11,6 +11,7 @@ class DragAndDrop extends LitElement {
     super();
     this.isDraggedOver = false;
     this.denyDrop = false;
+    this.handleDragEnter = this.handleDragEnter.bind(this);
     this.handleDragOver = this.handleDragOver.bind(this);
     this.handleDragLeave = this.handleDragLeave.bind(this);
     this.handleDrop = this.handleDrop.bind(this);
@@ -24,11 +25,16 @@ class DragAndDrop extends LitElement {
     };
   }
 
-  handleDragOver () {
+  handleDragEnter () {
     this.isDraggedOver = true;
   }
 
-  handleDragLeave (e) {
+  handleDragOver (e) {
+    e.preventDefault();
+  }
+
+  handleDragLeave () {
+    console.log('leave');
     this.isDraggedOver = false;
   }
 
@@ -58,7 +64,7 @@ class DragAndDrop extends LitElement {
 
   _render () {
     const classes = [
-      'buv-c-drag-and-drop',
+      'buv-c-drag-and-drop__droparea',
       this.isDraggedOver ? 'is-active' : ''
     ].join(' ');
 
@@ -66,12 +72,12 @@ class DragAndDrop extends LitElement {
 
     return html`
     ${CSS}
-    <div 
-      class$='${classes}'
-      ondragover='${this.handleDragOver}'
-      ondragleave='${this.handleDragLeave}'
-      ondrop='${this.handleDrop}'
-    >
+    <div ondragenter='${this.handleDragEnter}'>
+      <div class$='${classes}'
+        ondragover='${this.handleDragOver}'
+        ondragleave='${this.handleDragLeave}'
+        ondrop='${this.handleDrop}'
+      ></div>
       <p ondragleave='${this.ignoreDragLeave}'>You can also drag and drop a certificate file (accepted format: JSON)</p>
       <span ondragleave='${this.ignoreDragLeave}'>${denyText}</span>
       <slot ondragleave='${this.ignoreDragLeave}'></slot>
