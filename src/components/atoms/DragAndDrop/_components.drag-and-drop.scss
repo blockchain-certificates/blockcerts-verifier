@@ -1,3 +1,10 @@
+$borderSize: 2px;
+
+.buv-c-drag-and-drop {
+  padding: $borderSize;
+}
+
 .buv-c-drag-and-drop.is-active {
-  border: 2px dashed #333;
+  padding: 0;
+  border: $borderSize dashed #333;
 }

@@ -28,8 +28,13 @@ class DragAndDrop extends LitElement {
     this.isDraggedOver = true;
   }
 
-  handleDragLeave () {
+  handleDragLeave (e) {
     this.isDraggedOver = false;
+  }
+
+  ignoreDragLeave (e) {
+    e.stopPropagation();
+    e.preventDefault();
   }
 
   handleDrop (e) {
@@ -67,9 +72,9 @@ class DragAndDrop extends LitElement {
       ondragleave='${this.handleDragLeave}'
       ondrop='${this.handleDrop}'
     >
-      <p>You can also drag and drop a certificate file (accepted format: JSON)</p>
-      <span>${denyText}</span>
-      <slot></slot>
+      <p ondragleave='${this.ignoreDragLeave}'>You can also drag and drop a certificate file (accepted format: JSON)</p>
+      <span ondragleave='${this.ignoreDragLeave}'>${denyText}</span>
+      <slot ondragleave='${this.ignoreDragLeave}'></slot>
     </div>`;
   }
 }
