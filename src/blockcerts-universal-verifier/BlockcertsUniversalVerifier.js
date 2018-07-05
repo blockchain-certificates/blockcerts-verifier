@@ -1,8 +1,8 @@
 import { html, LitElement } from '@polymer/lit-element';
-import CertificateInput from './components/organisms/CertificateInput';
-import './components/atoms/FileUpload';
-import './components/organisms/VerificationProcess';
-import CSS from './components/atoms/GlobalStylesheet';
+import CertificateInput from '../components/organisms/CertificateInput';
+import '../components/atoms/FileUpload';
+import '../components/organisms/VerificationProcess';
+import CSS from '../components/atoms/GlobalStylesheet';
 
 class BlockcertsUniversalVerifier extends LitElement {
   static get properties () {
@@ -46,4 +46,13 @@ class BlockcertsUniversalVerifier extends LitElement {
   }
 }
 
-window.customElements.define('blockcerts-universal-verifier', BlockcertsUniversalVerifier);
+window.customElements.define('buv-raw', BlockcertsUniversalVerifier);
+
+// wrap Button in order to plug into Container
+// necessary trade-off to deal with class component in the store connector
+function BUVWrapper (props) {
+  return html`
+  <buv-raw></buv-raw>`;
+}
+
+export { BUVWrapper as BlockcertsUniversalVerifier };

@@ -6,7 +6,7 @@
     <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <script src="../../node_modules/web-component-tester/browser.js"></script>
 
-    <script type="module" src="../../src/blockcerts-universal-verifier.js"></script>
+    <script type="module" src="../../src/blockcerts-universal-verifier/index.js"></script>
 </head>
 <body>
     <script src="./helpers/redux-hack.js"></script>
@@ -22,7 +22,8 @@
         describe('input stage testing', function () {
           describe('given nothing was inputted in the input', function () {
             it('the button should be disabled', function () {
-              const el = fixture('invalid-input');
+              let el = fixture('invalid-input');
+              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
               const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
               const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
               const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
@@ -33,7 +34,8 @@
 
           describe('given an invalid url was inputted in the input', function () {
             it('the input should highlight its invalid state', async function () {
-              const el = fixture('invalid-input');
+              let el = fixture('invalid-input');
+              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
               const inputComponent = el.shadowRoot.querySelectorAll('buv-input')[0];
               const input = inputComponent.shadowRoot.querySelectorAll('input')[0];
 
