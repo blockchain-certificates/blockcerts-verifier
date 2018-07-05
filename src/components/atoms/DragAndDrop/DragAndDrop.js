@@ -1,4 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
+import CSS from './_components.drag-and-drop-css';
 
 class DragAndDrop extends LitElement {
   constructor () {
@@ -29,8 +30,15 @@ class DragAndDrop extends LitElement {
   }
 
   _render () {
+    const classes = [
+      'buv-c-drag-and-drop',
+      this.isDraggedOver ? 'is-active' : ''
+    ].join(' ');;
+
     return html`
+    ${CSS}
     <div 
+      class$='${classes}'
       ondragover='${this.handleDragOver}'
       ondragleave='${this.handleDragLeave}'
       ondrop='${this.handleDrop}'
