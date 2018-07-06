@@ -9,7 +9,7 @@ export default function validate (definition) {
       isValid
     };
   } catch (e) {
-    console.error(e);
+    // console.error(e);
     return {
       isValid,
       errorMessage: 'Not a valid Blockcerts definition.'

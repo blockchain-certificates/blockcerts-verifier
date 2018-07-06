@@ -11,29 +11,59 @@
 <body>
 <script src="./helpers/redux-hack.js"></script>
 <script src="./helpers/wait.js"></script>
-<test-fixture id="api-certificate">
-    <template>
-        <blockcerts-universal-verifier src="../fixtures/valid-certificate-example.json"></blockcerts-universal-verifier>
-    </template>
-</test-fixture>
+    <test-fixture id="api-certificate">
+        <template>
+            <blockcerts-universal-verifier src="../fixtures/valid-certificate-example.json"></blockcerts-universal-verifier>
+        </template>
+    </test-fixture>
 
-<script type="module">
-  describe('Blockcerts Universal Verifier test suite', function () {
-    describe('specifying a certificate via the component API', function () {
-      describe('given the src is of a valid certificate definition', function () {
-        it('the button should be enabled', async function () {
-          let el = fixture('api-certificate');
-          el = el.shadowRoot.querySelectorAll('buv-raw')[0];
-          const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
-          const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
-          const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
-          // allow time to process
-          await wait(200);
-          expect(button.disabled).to.equal(false);
+    <test-fixture id="api-certificate-invalid">
+        <template>
+            <blockcerts-universal-verifier src="../fixtures/not-a-certificate-definition.json"></blockcerts-universal-verifier>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+      describe('Blockcerts Universal Verifier test suite', function () {
+        describe('specifying a certificate via the component API', function () {
+          describe('given the src is of a valid blockcerts definition', function () {
+            it('the button should be enabled', async function () {
+              let el = fixture('api-certificate');
+              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
+              const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
+              const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
+              const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
+              // allow time to process
+              await wait(200);
+              expect(button.disabled).to.equal(false);
+            });
+          });
+
+          describe('given the src is of an invalid blockcerts definition', function () {
+            it('the button should not be enabled', async function () {
+              let el = fixture('api-certificate-invalid');
+              console.log(el);
+              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
+              const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
+              const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
+              const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
+              // allow time to process
+              await wait(200);
+              expect(button.disabled).to.equal(true);
+            });
+
+            it('the error message should be displayed', async function () {
+              let el = fixture('api-certificate-invalid');
+              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
+
+              const errorMessageComponents = el.shadowRoot.querySelectorAll('.buv-qa-error-message');
+              // allow time to process
+              await wait(200);
+              expect(errorMessageComponents.length).to.equal(1);
+            });
+          });
         });
       });
-    });
-  });
-</script>
+    </script>
 </body>
 </html>

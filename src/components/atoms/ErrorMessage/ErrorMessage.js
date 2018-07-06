@@ -8,7 +8,7 @@ export default function ErrorMessage (message) {
 
   return html`
     ${CSS}
-    <p class='buv-c-error-message'>
+    <p class='buv-c-error-message  buv-qa-error-message'>
       <span class='buv-c-error-message-title'>Error</span>
       ${message}
     </p>`;
