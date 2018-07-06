@@ -1,3 +1,3 @@
 export function getErrorMessage (state) {
-  return state.errorMessage
+  return state.errorMessage;
 }

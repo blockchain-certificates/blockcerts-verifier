@@ -6,5 +6,5 @@ export default function setErrorMessage (errorMessage) {
     payload: {
       errorMessage
     }
-  }
+  };
 }

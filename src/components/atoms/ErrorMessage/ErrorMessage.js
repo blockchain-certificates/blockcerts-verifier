@@ -1,4 +1,4 @@
-import { html } from '@polymer/lit-element'
+import { html } from '@polymer/lit-element';
 import CSS from './_components.error-message-css';
 
 export default function ErrorMessage (message) {

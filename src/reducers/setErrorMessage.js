@@ -4,5 +4,5 @@ export default function setErrorMessage (state, action) {
   return {
     ...state,
     errorMessage
-  }
+  };
 }

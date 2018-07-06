@@ -10,7 +10,7 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => {
   return {
     errorMessage: getErrorMessage(state)
-  }
+  };
 };
 
 const ownProps = SourceComponent.properties;
