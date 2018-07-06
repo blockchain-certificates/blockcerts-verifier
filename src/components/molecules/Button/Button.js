@@ -30,11 +30,11 @@ class Button extends LitElement {
   }
 
   getButtonText () {
-    return html`<label>Verify</label>`
+    return html`<label>Verify</label>`;
   }
 
   getSpinner () {
-    return html`${Spinner}`
+    return html`${Spinner}`;
   }
 
   _propertiesChanged (props, changedProps, prevProps) {
@@ -51,11 +51,10 @@ class Button extends LitElement {
       showSpinner ? 'has-spinner' : ''
     ].join(' ');
 
-
     return html`
       ${CSS}
       <button class$='${buttonClass}' on-click='${this.handleClick}' disabled?='${this.isDisabled}'>
-       ${ showSpinner ? this.getSpinner() : this.getButtonText() }
+       ${showSpinner ? this.getSpinner() : this.getButtonText()}
       </button>
     `;
   }
