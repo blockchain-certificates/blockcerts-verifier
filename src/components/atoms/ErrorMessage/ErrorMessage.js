@@ -2,7 +2,7 @@ import { html } from '@polymer/lit-element';
 
 export default function ErrorMessage (message) {
   if (message == null) {
-    return;
+    return null;
   }
 
   return html`<p class='buv-c-verification-process__error-message'>
