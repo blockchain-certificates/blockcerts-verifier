@@ -1,11 +1,6 @@
 import domain from '../../../../../src/domain';
 import certificateFixture from '../../../../fixtures/valid-certificate-example';
-
-const notACertificateDefinition = {
-  name: 'johnny',
-  age: '45',
-  occupation: 'punk rocker'
-};
+import notACertificateDefinition from '../../../../fixtures/not-a-certificate-definition';
 
 describe('domain certificates validate method test suite', function () {
   describe('given a valid definition of a certificate', function () {
