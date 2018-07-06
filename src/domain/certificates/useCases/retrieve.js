@@ -16,7 +16,7 @@ export default function retrieve (url) {
         return JSON.parse(text);
       } catch (err) {
         console.warn(err);
-        return 'Not a valid certificate url';
+        return 'Not a valid certificate URL.';
       }
     });
 }
