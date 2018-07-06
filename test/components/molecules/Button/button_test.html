@@ -20,7 +20,7 @@
     <script type="module">
       describe('Button test suite', function() {
         describe('when the button is clicked', function () {
-          it('should set the text to "Spinner"', async function () {
+          it('should show the spinner', async function () {
             const el = fixture('click');
             const button = el.shadowRoot.querySelectorAll('button')[0];
 
@@ -28,7 +28,9 @@
             // allow repaint
             await wait(0);
 
-            expect(button.innerText).to.equal('Spinner');
+            const spinner = button.querySelectorAll('.buv-qa-spinner');
+
+            expect(spinner.length).to.equal(1);
           });
         });
       });

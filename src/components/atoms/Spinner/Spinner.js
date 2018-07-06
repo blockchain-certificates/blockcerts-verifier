@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
 
-const Spinner = html`<svg class="lds-spinner" width="41px" height="100%" xmlns="http://www.w3.org/2000/svg"
+const Spinner = html`<svg class="buv-qa-spinner" width="41px" height="100%" xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;">
                   <g transform="rotate(0 50 50)">
                     <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" fill="#ffffff">
