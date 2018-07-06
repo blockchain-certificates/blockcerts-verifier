@@ -43,12 +43,14 @@ class Button extends LitElement {
   }
 
   _render () {
+    const showSpinner = this.showSpinner && !this.cancelSpinner;
+
     const buttonClass = [
       'buv-c-button',
-      this.isDisabled ? 'is-disabled' : ''
+      this.isDisabled ? 'is-disabled' : '',
+      showSpinner ? 'has-spinner' : ''
     ].join(' ');
 
-    const showSpinner = this.showSpinner && !this.cancelSpinner;
 
     return html`
       ${CSS}
