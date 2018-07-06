@@ -6,19 +6,36 @@ import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
 
 describe('updateCertificateDefinition action creator test suite', function () {
+  let store;
+
+  beforeEach(function () {
+    store = configureStore();
+  });
+
+  afterEach(function () {
+    store = null;
+  });
+
   describe('given it is dispatched with a certification definition', function () {
     it('should set the certificate definition in the state', function () {
-      const store = configureStore();
       store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
       expect(getJSONCertificate(state)).toBe(certificateFixture);
     });
+
+    it('should set the error in the state to undefined', function () {
+      // initially trigger an error in the state
+      store.dispatch(updateCertificateDefinition(notACertificateDefinition));
+      store.dispatch(updateCertificateDefinition(certificateFixture));
+      const state = store.getState();
+
+      expect(getErrorMessage(state)).toBe(undefined);
+    });
   });
 
   describe('given it is dispatched with a non-valid certification definition', function () {
     it('should not set the definition in the state', function () {
-      const store = configureStore();
       store.dispatch(updateCertificateDefinition(notACertificateDefinition));
       const state = store.getState();
 
@@ -26,7 +43,6 @@ describe('updateCertificateDefinition action creator test suite', function () {
     });
 
     it('should set the error in the state', function () {
-      const store = configureStore();
       store.dispatch(updateCertificateDefinition(notACertificateDefinition));
       const state = store.getState();
 

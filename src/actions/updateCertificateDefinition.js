@@ -8,8 +8,9 @@ export default function updateCertificateDefinition (definition) {
 
     if (!validation.isValid) {
       definition = null;
-      dispatch(setErrorMessage(validation.errorMessage));
     }
+
+    dispatch(setErrorMessage(validation.errorMessage));
 
     return dispatch({
       type: ACTIONS.UPDATE_CERTIFICATE_DEFINITION,
