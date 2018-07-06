@@ -4,6 +4,7 @@ import { getCertificateUrl, getUrlIsValid } from '../../../src/selectors/input';
 import { getJSONCertificate } from '../../../src/selectors/certificate';
 import validCertificateFixture from '../../fixtures/valid-certificate-example';
 import invalidCertificateFixture from '../../fixtures/invalid-certificate-example';
+import { getErrorMessage } from '../../../src/selectors/error';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
@@ -77,6 +78,12 @@ describe('updateCertificateUrl action creator test suite', function () {
         const state = store.getState();
 
         expect(getJSONCertificate(state)).toEqual(undefined);
+      });
+
+      it('should update the state with the error message', async function () {
+        await store.dispatch(updateCertificateUrl(NOT_CERTIFICATE_URL));
+        const state = store.getState();
+        expect(getErrorMessage(state)).toBe('Not a valid certificate URL.');
       });
     });
   });

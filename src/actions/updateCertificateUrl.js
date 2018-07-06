@@ -4,6 +4,7 @@ import domain from '../domain';
 import updateCertificateDefinition from './updateCertificateDefinition';
 
 import { isValidLocalPath, isValidUrl } from '../helpers/validations';
+import setErrorMessage from './setErrorMessage';
 
 export default function updateCertificateUrl (url) {
   return async function (dispatch) {
@@ -18,6 +19,8 @@ export default function updateCertificateUrl (url) {
 
     if (certificateDefinition && typeof certificateDefinition !== 'string') {
       dispatch(updateCertificateDefinition(certificateDefinition));
+    } else {
+      dispatch(setErrorMessage(certificateDefinition));
     }
 
     dispatch({

@@ -18,7 +18,7 @@ describe('domain certificates retrieve method test suite', function () {
     describe('given the url is not of a certificate', function () {
       it('does not do something', async function () {
         const result = await domain.certificates.retrieve(NOT_CERTIFICATE_URL);
-        expect(result).toEqual('Not a valid certificate url');
+        expect(result).toEqual('Not a valid certificate URL.');
       });
     });
     // TODO: handle failing case (no JSON answer)
