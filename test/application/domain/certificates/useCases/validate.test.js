@@ -19,7 +19,7 @@ describe('domain certificates validate method test suite', function () {
     });
 
     it('should return an object with errorMessage property describing the error', function () {
-      expect(domain.certificates.validate(notACertificateDefinition).errorMessage).toBe('Not a valid Blockcerts certificate.');
+      expect(domain.certificates.validate(notACertificateDefinition).errorMessage).toBe('Not a valid Blockcerts definition.');
     });
   });
 });

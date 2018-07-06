@@ -12,7 +12,7 @@ export default function validate (definition) {
     console.error(e);
     return {
       isValid,
-      errorMessage: 'Not a valid Blockcerts certificate.'
+      errorMessage: 'Not a valid Blockcerts definition.'
     }
   }
 }

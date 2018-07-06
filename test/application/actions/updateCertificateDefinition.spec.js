@@ -1,6 +1,7 @@
 import { configureStore } from '../../../src/store';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import { getJSONCertificate } from '../../../src/selectors/certificate';
+import { getErrorMessage } from '../../../src/selectors/error';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
 
@@ -21,15 +22,15 @@ describe('updateCertificateDefinition action creator test suite', function () {
       store.dispatch(updateCertificateDefinition(notACertificateDefinition));
       const state = store.getState();
 
-      expect(getJSONCertificate(state)).toEqual({});
+      expect(getJSONCertificate(state)).toBe(null);
     });
 
-    // it('should set the error in the state', function () {
-    //   const store = configureStore();
-    //   store.dispatch(updateCertificateDefinition(notACertificateDefinition));
-    //   const state = store.getState();
-    //
-    //   expect(getError(state)).toBe('Not a valid Blockcerts definition.');
-    // });
+    it('should set the error in the state', function () {
+      const store = configureStore();
+      store.dispatch(updateCertificateDefinition(notACertificateDefinition));
+      const state = store.getState();
+
+      expect(getErrorMessage(state)).toBe('Not a valid Blockcerts definition.');
+    });
   });
 });
