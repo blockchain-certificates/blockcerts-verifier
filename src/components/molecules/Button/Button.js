@@ -1,5 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.button-css';
+import Spinner from '../../atoms/Spinner';
 
 class Button extends LitElement {
   constructor () {
@@ -28,21 +29,32 @@ class Button extends LitElement {
     this.showSpinner = true;
   }
 
+  getButtonText () {
+    return html`<label>Verify</label>`;
+  }
+
+  getSpinner () {
+    return html`${Spinner}`;
+  }
+
   _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
     super._propertiesChanged(props, changedProps, prevProps);
   }
 
   _render () {
+    const showSpinner = this.showSpinner && !this.cancelSpinner;
+
     const buttonClass = [
       'buv-c-button',
-      this.isDisabled ? 'is-disabled' : ''
+      this.isDisabled ? 'is-disabled' : '',
+      showSpinner ? 'has-spinner' : ''
     ].join(' ');
 
     return html`
       ${CSS}
       <button class$='${buttonClass}' on-click='${this.handleClick}' disabled?='${this.isDisabled}'>
-       ${this.showSpinner && !this.cancelSpinner ? 'Spinner' : 'Verify'}
+       ${showSpinner ? this.getSpinner() : this.getButtonText()}
       </button>
     `;
   }

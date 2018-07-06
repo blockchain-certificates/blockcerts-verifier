@@ -11,6 +11,10 @@
   height: 100%;
 }
 
+.buv-c-button.has-spinner {
+  padding: 0 39px;
+}
+
 .buv-c-button.is-disabled {
   cursor: default;
   filter: grayscale(100%);
