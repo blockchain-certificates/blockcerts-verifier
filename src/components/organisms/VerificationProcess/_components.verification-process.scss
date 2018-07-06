@@ -1,5 +1,4 @@
-$successColor: rgba(42, 178, 123, 1);
-$errorColor: #d0021b;
+@import '../../../shared-styles/setting.variables';
 
 .buv-c-verification-process {
   margin: 30px 0 0 158px;
@@ -130,21 +129,6 @@ $errorColor: #d0021b;
 .buv-c-verification-step.is-final::after,
 .buv-c-verification-substep::after {
   display: none;
-}
-
-.buv-c-verification-process__error-message {
-  background: rgba(208, 2, 27, 0.05);
-  border-radius: 2px;
-  letter-spacing: .05px;
-  padding: 10px;
-}
-
-.buv-c-verification-process__error-message-title {
-  color: $errorColor;
-  font-weight: bold;
-  display: block;
-  margin-bottom: 5px;
-  font-size: 15px;
 }
 
 @import '../../../shared-styles/utils.flow';

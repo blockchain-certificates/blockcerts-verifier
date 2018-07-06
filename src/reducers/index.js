@@ -5,6 +5,7 @@ import updateCertificateDefinition from './updateCertificateDefinition';
 import stepVerified from './stepVerified';
 import updateParentStepStatus from './updateParentStepStatus';
 import clearVerifiedSteps from './clearVerifiedSteps';
+import setErrorMessage from './setErrorMessage';
 
 export function app (state, action) {
   switch (action.type) {
@@ -22,6 +23,9 @@ export function app (state, action) {
 
     case ACTIONS.VALIDATE_URL_INPUT:
       return validateUrlInput(state, action);
+
+    case ACTIONS.SET_ERROR_MESSAGE:
+      return setErrorMessage(state, action);
 
     case ACTIONS.STEP_VERIFIED:
       return stepVerified(state, action);
