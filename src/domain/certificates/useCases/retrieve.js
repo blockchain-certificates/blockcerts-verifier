@@ -1,7 +1,7 @@
-import { isValidUrl } from '../../../helpers/validations';
+import { isValidLocalPath, isValidUrl } from '../../../helpers/validations';
 
 export default function retrieve (url) {
-  if (!isValidUrl(url)) {
+  if (!(isValidUrl(url) || isValidLocalPath(url))) {
     console.error('Invalid url to retrieve:', url);
     return null;
   }

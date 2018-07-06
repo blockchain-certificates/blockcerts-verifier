@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockcerts Universal Verifier - API certificate test</title>
+    <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../src/blockcerts-universal-verifier/index.js"></script>
+</head>
+<body>
+<script src="./helpers/redux-hack.js"></script>
+<script src="./helpers/wait.js"></script>
+<test-fixture id="api-certificate">
+    <template>
+        <blockcerts-universal-verifier src="../fixtures/valid-certificate-example.json"></blockcerts-universal-verifier>
+    </template>
+</test-fixture>
+
+<script type="module">
+  describe('Blockcerts Universal Verifier test suite', function () {
+    describe('specifying a certificate via the component API', function () {
+      describe('given the src is of a valid certificate definition', function () {
+        it('the button should be enabled', async function () {
+          let el = fixture('api-certificate');
+          el = el.shadowRoot.querySelectorAll('buv-raw')[0];
+          const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
+          const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
+          const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
+          // allow time to process
+          await wait(200);
+          expect(button.disabled).to.equal(false);
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>

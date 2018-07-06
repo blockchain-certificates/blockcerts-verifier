@@ -67,6 +67,7 @@
       "afterEach",
       "beforeEach",
       "describe",
+      "xdescribe",
       "expect",
       "it",
       "performance",

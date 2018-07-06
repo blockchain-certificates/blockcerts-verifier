@@ -9,6 +9,7 @@ const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
 const MOCK_SERVER_INVALID_URL = 'http://localhost:3001/to/certificate/invalid';
 const NOT_CERTIFICATE_URL = 'http://www.learningmachine.com';
+const VALID_LOCAL_PATH = '../../fixtures/valid-certificate-example.json';
 
 describe('updateCertificateUrl action creator test suite', function () {
   describe('given the url inputted is an invalid url', function () {
@@ -77,6 +78,32 @@ describe('updateCertificateUrl action creator test suite', function () {
 
         expect(getJSONCertificate(state)).toEqual(undefined);
       });
+    });
+  });
+
+  // failing, issue opened:
+  // https://github.com/bitinn/node-fetch/issues/481
+  // https://github.com/matthew-andrews/isomorphic-fetch/issues/76#issuecomment-402784514
+  xdescribe('given it is dispatched with a valid local path', function () {
+    let store;
+
+    beforeEach(async function () {
+      store = configureStore();
+      await store.dispatch(updateCertificateUrl(VALID_LOCAL_PATH));
+    });
+
+    afterEach(function () {
+      store = null;
+    });
+
+    it('should update the state with the local path', function () {
+      const state = store.getState();
+      expect(getCertificateUrl(state)).toBe(VALID_LOCAL_PATH);
+    });
+
+    it('should update the state with the valid certificate definition', function () {
+      const state = store.getState();
+      expect(getJSONCertificate(state)).toEqual(validCertificateFixture);
     });
   });
 });

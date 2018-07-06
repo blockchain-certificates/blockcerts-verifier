@@ -5,7 +5,7 @@ import { configureStore } from './index';
 
 const store = configureStore();
 
-export default function connector (component, { mapDispatchToProps = {}, mapStateToProps = () => {} }) {
+export default function connector (component, { mapDispatchToProps = {}, mapStateToProps = () => {}, ownProps = {} }) {
   return class extends connect(store)(LitElement) {
     mapDispatchToProps () {
       return bindActionCreators(mapDispatchToProps, store.dispatch);
@@ -15,13 +15,18 @@ export default function connector (component, { mapDispatchToProps = {}, mapStat
       return mapStateToProps(store.getState());
     }
 
-    _render () {
-      const props = {
+    static get properties () {
+      return ownProps;
+    }
+
+    _render (_props) {
+      const componentProps = {
         ...this.mapDispatchToProps(),
-        ...this.mapStateToProps()
+        ...this.mapStateToProps(),
+        ..._props
       };
 
-      return html`${component(props)}`;
+      return html`${component(componentProps)}`;
     }
 
     _stateChanged (state) {
