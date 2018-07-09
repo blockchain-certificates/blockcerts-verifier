@@ -2,7 +2,7 @@ import domain from '../domain';
 import * as ACTIONS from '../constants/actionTypes';
 import stepVerified from './stepVerified';
 import clearVerifiedSteps from './clearVerifiedSteps';
-import { getJSONCertificate } from '../selectors/certificate';
+import { getCertificateDefinition } from '../selectors/certificate';
 
 export default function verifyCertificate () {
   return async function (dispatch, getState) {
@@ -11,7 +11,7 @@ export default function verifyCertificate () {
     });
 
     dispatch(clearVerifiedSteps());
-    const certificateDefinition = getJSONCertificate(getState());
+    const certificateDefinition = getCertificateDefinition(getState());
 
     function stepVerifyCb (code, name, status, errorMessage) {
       const stepDefinition = { code, name, status, errorMessage };

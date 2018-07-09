@@ -1,9 +1,9 @@
 import connector from '../../../store/connector';
 import CardCertificate from './CardCertificate';
-import { getJSONCertificate } from '../../../selectors/certificate';
+import { getCertificateDefinition } from '../../../selectors/certificate';
 
 const mapStateToProps = (state) => ({
-  certificateDefinition: getJSONCertificate(state)
+  certificateDefinition: getCertificateDefinition(state),
 });
 
 const CardCertificateContainer = connector(CardCertificate, { mapStateToProps });

@@ -1,6 +1,6 @@
 import * as VERIFICATION_STATUS from '../constants/verificationStatus';
 
-export function getJSONCertificate (state) {
+export function getCertificateDefinition (state) {
   return state.certificateDefinition;
 }
 
