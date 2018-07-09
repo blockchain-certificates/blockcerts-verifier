@@ -71,7 +71,7 @@ export function getRecordLink (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return  certificateDefinition.id;
+    return certificateDefinition.id;
   }
 
   return '';
