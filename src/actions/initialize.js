@@ -3,15 +3,19 @@ import updateCertificateUrl from './updateCertificateUrl';
 
 export default function initialize (options = {}) {
   return function (dispatch) {
+    const { src, allowAutoVerify } = options;
+
     dispatch({
       type: ACTIONS.INITIALIZE,
       payload: {
-        options
+        options: {
+          allowAutoVerify
+        }
       }
     });
 
-    if (options.src) {
-      dispatch(updateCertificateUrl(options.src));
+    if (src) {
+      dispatch(updateCertificateUrl(src));
     }
   }
 }

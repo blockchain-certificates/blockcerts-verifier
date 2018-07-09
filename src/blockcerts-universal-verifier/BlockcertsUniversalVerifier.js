@@ -13,8 +13,7 @@ class BlockcertsUniversalVerifier extends LitElement {
       src: String,
       onLoad: Function,
       errorMessage: String,
-      // TODO: implement camelCase translator
-      'allow-auto-verify': Boolean
+      allowAutoVerify: Boolean
     };
   }
 
@@ -53,7 +52,7 @@ function BUVWrapper (props) {
           src='${props.src}'
           onLoad='${props.onLoad}'
           errorMessage='${props.errorMessage}'
-          allow-auto-verify='${props['allow-auto-verify']}'
+          allowAutoVerify='${props['allow-auto-verify']}'
         ></buv-raw>`;
 }
 

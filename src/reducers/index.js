@@ -6,11 +6,15 @@ import stepVerified from './stepVerified';
 import updateParentStepStatus from './updateParentStepStatus';
 import clearVerifiedSteps from './clearVerifiedSteps';
 import setErrorMessage from './setErrorMessage';
+import initialize from './initialize';
 
 export function app (state, action) {
   switch (action.type) {
     case ACTIONS.CLEAR_VERIFIED_STEPS:
       return clearVerifiedSteps(state, action);
+
+    case ACTIONS.INITIALIZE:
+      return initialize(state, action);
 
     case ACTIONS.UPDATE_CERTIFICATE_DEFINITION:
       return updateCertificateDefinition(state, action);

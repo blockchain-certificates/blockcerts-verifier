@@ -13,7 +13,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const ownProps = SourceComponent.properties;
+const ownProps = {
+  ...SourceComponent.properties,
+  // make polymer detect external API value
+  'allow-auto-verify': Boolean
+};
 
 const BlockcertsUniversalVerifierContainer = connector(BlockcertsUniversalVerifier, { mapDispatchToProps, mapStateToProps, ownProps });
 export { BlockcertsUniversalVerifierContainer };
