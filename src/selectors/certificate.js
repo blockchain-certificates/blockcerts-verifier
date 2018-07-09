@@ -4,13 +4,23 @@ export function getCertificateDefinition (state) {
   return state.certificateDefinition;
 }
 
+export function getIssuedOn (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.issuedOn;
+  }
+
+  return '';
+}
+
 export function getIssueDate (state) {
   const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
 
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    const objDate = new Date(certificateDefinition.issuedOn);
+    const objDate = new Date(getIssuedOn(state));
     return months[objDate.getMonth()] + ' ' + objDate.getDate() + ', ' + objDate.getFullYear();
   }
 

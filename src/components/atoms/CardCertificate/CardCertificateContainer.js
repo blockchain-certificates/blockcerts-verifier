@@ -4,6 +4,7 @@ import {
   getCertificateDefinition,
   getCertificateTitle,
   getIssueDate,
+  getIssuedOn,
   getIssuerLogo,
   getIssuerName,
   getRecipientName,
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => ({
   recipientName: getRecipientName(state),
   certificateTitle: getCertificateTitle(state),
   issueDate: getIssueDate(state),
+  issuedOn: getIssuedOn(state),
   issuerName: getIssuerName(state),
   issuerLogo: getIssuerLogo(state),
   recordLink: getRecordLink(state)
