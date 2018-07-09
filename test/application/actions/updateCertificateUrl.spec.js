@@ -1,7 +1,7 @@
 import { configureStore } from '../../../src/store';
 import updateCertificateUrl from '../../../src/actions/updateCertificateUrl';
 import { getCertificateUrl, getUrlIsValid } from '../../../src/selectors/input';
-import { getJSONCertificate } from '../../../src/selectors/certificate';
+import { getCertificateDefinition } from '../../../src/selectors/certificate';
 import validCertificateFixture from '../../fixtures/valid-certificate-example';
 import invalidCertificateFixture from '../../fixtures/invalid-certificate-example';
 import { getErrorMessage } from '../../../src/selectors/error';
@@ -59,7 +59,7 @@ describe('updateCertificateUrl action creator test suite', function () {
       it('should update the state with the valid certificate definition', async function () {
         await store.dispatch(updateCertificateUrl(MOCK_SERVER_VALID_URL));
         const state = store.getState();
-        expect(getJSONCertificate(state)).toEqual(validCertificateFixture);
+        expect(getCertificateDefinition(state)).toEqual(validCertificateFixture);
       });
     });
 
@@ -68,7 +68,7 @@ describe('updateCertificateUrl action creator test suite', function () {
         await store.dispatch(updateCertificateUrl(MOCK_SERVER_INVALID_URL));
 
         const state = store.getState();
-        expect(getJSONCertificate(state)).toEqual(invalidCertificateFixture);
+        expect(getCertificateDefinition(state)).toEqual(invalidCertificateFixture);
       });
     });
 
@@ -77,7 +77,7 @@ describe('updateCertificateUrl action creator test suite', function () {
         await store.dispatch(updateCertificateUrl(NOT_CERTIFICATE_URL));
         const state = store.getState();
 
-        expect(getJSONCertificate(state)).toEqual(undefined);
+        expect(getCertificateDefinition(state)).toEqual(undefined);
       });
 
       it('should update the state with the error message', async function () {
@@ -110,7 +110,7 @@ describe('updateCertificateUrl action creator test suite', function () {
 
     it('should update the state with the valid certificate definition', function () {
       const state = store.getState();
-      expect(getJSONCertificate(state)).toEqual(validCertificateFixture);
+      expect(getCertificateDefinition(state)).toEqual(validCertificateFixture);
     });
   });
 });

@@ -2,7 +2,7 @@ import verifyCertificate from '../../../actions/verifyCertificate';
 import connector from '../../../store/connector';
 import { Button } from './Button';
 import { getUrlIsValid } from '../../../selectors/input';
-import { getJSONCertificate } from '../../../selectors/certificate';
+import { getCertificateDefinition } from '../../../selectors/certificate';
 
 const mapDispatchToProps = {
   onClick: verifyCertificate
@@ -10,7 +10,7 @@ const mapDispatchToProps = {
 
 export const mapStateToProps = (state) => ({
   cancelSpinner: typeof getUrlIsValid(state) === 'undefined' ? false : !getUrlIsValid(state),
-  isDisabled: !getJSONCertificate(state)
+  isDisabled: !getCertificateDefinition(state)
 });
 
 const ButtonContainer = connector(Button, { mapDispatchToProps, mapStateToProps });

@@ -1,6 +1,6 @@
 import { configureStore } from '../../../src/store';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import { getJSONCertificate } from '../../../src/selectors/certificate';
+import { getCertificateDefinition } from '../../../src/selectors/certificate';
 import { getErrorMessage } from '../../../src/selectors/error';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
@@ -21,7 +21,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
-      expect(getJSONCertificate(state)).toBe(certificateFixture);
+      expect(getCertificateDefinition(state)).toBe(certificateFixture);
     });
 
     it('should set the error in the state to undefined', function () {
@@ -39,7 +39,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       store.dispatch(updateCertificateDefinition(notACertificateDefinition));
       const state = store.getState();
 
-      expect(getJSONCertificate(state)).toBe(null);
+      expect(getCertificateDefinition(state)).toBe(null);
     });
 
     it('should set the error in the state', function () {
