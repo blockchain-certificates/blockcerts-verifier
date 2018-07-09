@@ -1,10 +1,10 @@
 import connector from '../store/connector';
-import updateCertificateUrl from '../actions/updateCertificateUrl';
+import initialize from '../actions/initialize';
 import { BlockcertsUniversalVerifier, SourceComponent } from './BlockcertsUniversalVerifier';
 import { getErrorMessage } from '../selectors/error';
 
 const mapDispatchToProps = {
-  onLoad: updateCertificateUrl
+  onLoad: initialize
 };
 
 const mapStateToProps = (state) => {

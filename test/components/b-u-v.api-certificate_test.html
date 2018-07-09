@@ -42,7 +42,6 @@
           describe('given the src is of an invalid blockcerts definition', function () {
             it('the button should not be enabled', async function () {
               let el = fixture('api-certificate-invalid');
-              console.log(el);
               el = el.shadowRoot.querySelectorAll('buv-raw')[0];
               const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
               const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];

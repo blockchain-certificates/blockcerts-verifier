@@ -12,14 +12,19 @@ class BlockcertsUniversalVerifier extends LitElement {
     return {
       src: String,
       onLoad: Function,
-      errorMessage: String
+      errorMessage: String,
+      // TODO: implement camelCase translator
+      'allow-auto-verify': Boolean
     };
   }
 
   _firstRendered () {
-    if (this.src) {
-      this.onLoad(this.src);
-    }
+    this.onLoad(this._props);
+  }
+
+  _propertiesChanged(props, changedProps, prevProps) {
+    this._props = props;
+    super._propertiesChanged(props, changedProps, prevProps);
   }
 
   _render (_props) {
@@ -44,7 +49,12 @@ window.customElements.define('buv-raw', BlockcertsUniversalVerifier);
 // wrap Button in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function BUVWrapper (props) {
-  return html`<buv-raw src='${props.src}' onLoad='${props.onLoad}' errorMessage='${props.errorMessage}'></buv-raw>`;
+  return html`<buv-raw
+          src='${props.src}'
+          onLoad='${props.onLoad}'
+          errorMessage='${props.errorMessage}'
+          allow-auto-verify='${props['allow-auto-verify']}'
+        ></buv-raw>`;
 }
 
 export {
