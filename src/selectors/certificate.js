@@ -4,6 +4,69 @@ export function getCertificateDefinition (state) {
   return state.certificateDefinition;
 }
 
+export function getIssueDate (state) {
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    const objDate = new Date(certificateDefinition.issuedOn);
+    return months[objDate.getMonth()] + ' ' + objDate.getDate() + ', ' + objDate.getFullYear();
+  }
+
+  return '';
+}
+
+export function getRecipientName (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.recipientProfile.name;
+  }
+
+  return '';
+}
+
+export function getCertificateTitle (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.badge.name;
+  }
+
+  return '';
+}
+
+export function getIssuerName (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.badge.issuer.name;
+  }
+
+  return '';
+}
+
+export function getIssuerLogo (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.badge.issuer.image;
+  }
+
+  return '';
+}
+
+export function getRecordLink (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return  certificateDefinition.id;
+  }
+
+  return '';
+}
+
 export function getVerifiedSteps (state) {
   return state.verifiedSteps || [];
 }
