@@ -10,7 +10,7 @@ export default function FinalVerificationStep ({ status, chain = '', transaction
     <dt class='buv-c-verification-step is-final'>Verified</dt>
     <dd class='buv-c-verification-substep buv-u-excluded-from-flow'>
       This is a valid ${chain} certificate.<br/>
-      <a href='${transactionLink}' hidden?='${!transactionLink}'>View transaction link</a>
+      <a class='buv-o-link' href='${transactionLink}' hidden?='${!transactionLink}'>View transaction link</a>
     </dd>
   `;
 }

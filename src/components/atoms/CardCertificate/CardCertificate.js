@@ -22,6 +22,6 @@ export default function CardCertificate ({
       <h1 class='buv-c-card__title'>${certificateTitle}</h1>
       <h2 class='buv-c-card__title  buv-c-card__recipient'>${recipientName}</h2>
       <span class='buv-c-card__issue-summary  buv-c-card__subtext'>Issued on <time datetime$='${issuedOn}'>${issueDate}</time> by ${issuerName}</span>
-      <a class='buv-c-card__subtext  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>
+      <a class='buv-c-card__subtext  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>
     </section>`;
 }

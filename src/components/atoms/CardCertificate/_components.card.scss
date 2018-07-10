@@ -1,3 +1,5 @@
+@import '../../../shared-styles/objects.text';
+
 .buv-c-card {
   position: relative;
   height: 112px;
@@ -31,7 +33,6 @@
 }
 
 .buv-c-card__record-link {
-  color: rgba(3, 21, 50, 1);
   position: absolute;
   top: 0;
   right: 0;
