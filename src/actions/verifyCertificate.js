@@ -20,6 +20,9 @@ export default function verifyCertificate () {
       dispatch(stepVerified(step));
     }
 
-    await domain.certificates.verify(certificateDefinition, stepVerifyCb, stepVerifyCb);
+    if (certificateDefinition) {
+      await domain.certificates.verify(certificateDefinition, stepVerifyCb, stepVerifyCb);
+    }
+
   };
 }

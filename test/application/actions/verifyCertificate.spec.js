@@ -13,10 +13,12 @@ describe('verifyCertificate action creator test suite', function () {
       it('should store the different steps in the state', async function () {
         const store = configureStore();
         // prepare state the correct way
+        let state = store.getState();
+        state.disableAutoVerify = true;
         await store.dispatch(updateCertificateDefinition(validCertificateFixture));
 
         await store.dispatch(verifyCertificate());
-        const state = store.getState();
+        state = store.getState();
 
         expect(getVerifiedSteps(state)).toEqual(validCertificateStepsAssertions);
       });
@@ -26,10 +28,12 @@ describe('verifyCertificate action creator test suite', function () {
       it('should store the different steps in the state', async function () {
         const store = configureStore();
         // prepare state the correct way
+        let state = store.getState();
+        state.disableAutoVerify = true;
         await store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
 
         await store.dispatch(verifyCertificate());
-        const state = store.getState();
+        state = store.getState();
 
         expect(getVerifiedSteps(state)).toEqual(invalidCertificateStepsAssertions);
       });
@@ -40,12 +44,15 @@ describe('verifyCertificate action creator test suite', function () {
     describe('given the certificates definitions valid definitions', function () {
       it('should only maintain the verifiedSteps of the latest certificate verified', async function () {
         const store = configureStore();
-        store.dispatch(updateCertificateDefinition(validCertificateFixture));
+        let state = store.getState();
+        state.disableAutoVerify = true;
+
+        await store.dispatch(updateCertificateDefinition(validCertificateFixture));
         await store.dispatch(verifyCertificate());
 
-        store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
+        await store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
         await store.dispatch(verifyCertificate());
-        const state = store.getState();
+        state = store.getState();
 
         expect(getVerifiedSteps(state)).toEqual(invalidCertificateStepsAssertions);
       });
