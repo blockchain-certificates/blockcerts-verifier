@@ -6,6 +6,7 @@ import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
 import validCertificateSteps from '../../assertions/validCertificateSteps';
 import initialVerifiedSteps from '../../assertions/initialVerifiedSteps';
+import getInitialState from '../../../src/store/getInitialState';
 
 describe('updateCertificateDefinition action creator test suite', function () {
   let store;
@@ -37,10 +38,14 @@ describe('updateCertificateDefinition action creator test suite', function () {
 
     describe('given the disableAutoVerify flag is false', function () {
       it('should automatically start the verification process', async function () {
-        let state = store.getState();
-        state.disableAutoVerify = false;
+        const apiConfiguration = {
+          disableAutoVerify: false
+        };
+        const initialState = getInitialState(apiConfiguration);
+        const store = configureStore(initialState);
+
         await store.dispatch(updateCertificateDefinition(certificateFixture));
-        state = store.getState();
+        const state = store.getState();
 
         expect(getVerifiedSteps(state)).toEqual(validCertificateSteps);
       });
@@ -48,13 +53,16 @@ describe('updateCertificateDefinition action creator test suite', function () {
 
     describe('given the disableAutoVerify flag is true', function () {
       it('should not automatically start the verification process', async function () {
-        let state = store.getState();
-        state.disableAutoVerify = true;
+        const apiConfiguration = {
+          disableAutoVerify: true
+        };
+        const initialState = getInitialState(apiConfiguration);
+        const store = configureStore(initialState);
+
         await store.dispatch(updateCertificateDefinition(certificateFixture));
-        state = store.getState();
+        const state = store.getState();
 
         expect(getVerifiedSteps(state)).toEqual(initialVerifiedSteps);
-
       });
     })
   });
