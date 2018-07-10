@@ -1,21 +1,20 @@
 import * as ACTIONS from '../constants/actionTypes';
 import updateCertificateUrl from './updateCertificateUrl';
+import { getAPIOptions } from '../models/API';
 
 export default function initialize (options = {}) {
   return function (dispatch) {
-    const { src, disableAutoVerify } = options;
+    const APIOptions = getAPIOptions(options);
 
     dispatch({
       type: ACTIONS.INITIALIZE,
       payload: {
-        options: {
-          disableAutoVerify
-        }
+        options: APIOptions
       }
     });
 
-    if (src) {
-      dispatch(updateCertificateUrl(src));
+    if (APIOptions.src) {
+      dispatch(updateCertificateUrl(APIOptions.src));
     }
   };
 }
