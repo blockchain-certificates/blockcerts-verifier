@@ -91,6 +91,16 @@ export function getTransactionLink (state) {
   return '';
 }
 
+export function getChain (state) {
+  const certificateMetaInformation = getCertificateMetaInformation(state);
+
+  if (certificateMetaInformation) {
+    return certificateMetaInformation.chain;
+  }
+
+  return '';
+}
+
 export function getVerifiedSteps (state) {
   return state.verifiedSteps || [];
 }
