@@ -6,20 +6,24 @@ import '../components/atoms/DragAndDrop';
 import '../components/atoms/FileUpload';
 import '../components/organisms/VerificationProcess';
 import CSS from '../components/atoms/GlobalStylesheet';
+import { APICamelCase } from '../models/API';
 
 class BlockcertsUniversalVerifier extends LitElement {
   static get properties () {
     return {
-      src: String,
       onLoad: Function,
-      errorMessage: String
+      errorMessage: String,
+      ...APICamelCase
     };
   }
 
   _firstRendered () {
-    if (this.src) {
-      this.onLoad(this.src);
-    }
+    this.onLoad(this._props);
+  }
+
+  _propertiesChanged (props, changedProps, prevProps) {
+    this._props = props;
+    super._propertiesChanged(props, changedProps, prevProps);
   }
 
   _render (_props) {
@@ -44,7 +48,13 @@ window.customElements.define('buv-raw', BlockcertsUniversalVerifier);
 // wrap Button in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function BUVWrapper (props) {
-  return html`<buv-raw src='${props.src}' onLoad='${props.onLoad}' errorMessage='${props.errorMessage}'></buv-raw>`;
+  return html`<buv-raw
+          src='${props.src}'
+          onLoad='${props.onLoad}'
+          errorMessage='${props.errorMessage}'
+          disableAutoVerify='${props['disable-auto-verify']}'
+          disableVerify='${props['disable-verify']}'
+        ></buv-raw>`;
 }
 
 export {

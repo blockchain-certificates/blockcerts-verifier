@@ -5,9 +5,10 @@ export function initializeVerifiedSteps () {
   return mainSteps.map(step => domain.verification.createStep(step));
 }
 
-export default function getInitialState () {
+export default function getInitialState (apiConfiguration) {
   return {
     input: {},
-    verifiedSteps: initializeVerifiedSteps()
+    verifiedSteps: initializeVerifiedSteps(),
+    ...apiConfiguration
   };
 }
