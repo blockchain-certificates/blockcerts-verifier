@@ -77,6 +77,16 @@ export function getRecordLink (state) {
   return '';
 }
 
+export function getTransactionLink (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    //return certificateDefinition.transaction.link > not there?
+  }
+
+  return '';
+}
+
 export function getVerifiedSteps (state) {
   return state.verifiedSteps || [];
 }
