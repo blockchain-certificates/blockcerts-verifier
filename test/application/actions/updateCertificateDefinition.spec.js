@@ -1,12 +1,12 @@
 import { configureStore } from '../../../src/store';
+import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import { getCertificateDefinition, getVerifiedSteps } from '../../../src/selectors/certificate';
+import { getCertificateDefinition, getVerifiedSteps, getTransactionLink } from '../../../src/selectors/certificate';
 import { getErrorMessage } from '../../../src/selectors/error';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
 import validCertificateSteps from '../../assertions/validCertificateSteps';
 import initialVerifiedSteps from '../../assertions/initialVerifiedSteps';
-import getInitialState from '../../../src/store/getInitialState';
 
 describe('updateCertificateDefinition action creator test suite', function () {
   let store;
@@ -34,6 +34,20 @@ describe('updateCertificateDefinition action creator test suite', function () {
       const state = store.getState();
 
       expect(getErrorMessage(state)).toBe(undefined);
+    });
+
+    it('should set the transactionLink in the state', async function () {
+      const apiConfiguration = {
+        disableAutoVerify: true
+      };
+      const initialState = getInitialState(apiConfiguration);
+      const store = configureStore(initialState);
+
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
+      const state = store.getState();
+
+      const expectedOutput = 'https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea';
+      expect(getTransactionLink(state)).toBe(expectedOutput);
     });
 
     describe('given the disableAutoVerify flag is false', function () {

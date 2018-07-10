@@ -6,6 +6,7 @@ import { getDisableAutoVerify } from '../selectors/api';
 
 export default function updateCertificateDefinition (definition) {
   return async function (dispatch) {
+    let metaInformation = null;
     const validation = domain.certificates.validate(definition);
 
     if (!validation.isValid) {
@@ -14,10 +15,15 @@ export default function updateCertificateDefinition (definition) {
 
     dispatch(setErrorMessage(validation.errorMessage));
 
+    if (validation.isValid) {
+      metaInformation = domain.certificates.retrieveMetaInformation(definition);
+    }
+
     dispatch({
       type: ACTIONS.UPDATE_CERTIFICATE_DEFINITION,
       payload: {
-        definition
+        definition,
+        metaInformation
       }
     });
 
