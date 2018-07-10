@@ -23,6 +23,5 @@ export default function verifyCertificate () {
     if (certificateDefinition) {
       await domain.certificates.verify(certificateDefinition, stepVerifyCb, stepVerifyCb);
     }
-
   };
 }

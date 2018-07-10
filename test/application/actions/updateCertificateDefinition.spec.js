@@ -64,7 +64,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
 
         expect(getVerifiedSteps(state)).toEqual(initialVerifiedSteps);
       });
-    })
+    });
   });
 
   describe('given it is dispatched with a non-valid certificate definition', function () {

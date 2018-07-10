@@ -33,5 +33,5 @@ function autoVerify () {
       });
       await dispatch(verifyCertificate());
     }
-  }
+  };
 }
