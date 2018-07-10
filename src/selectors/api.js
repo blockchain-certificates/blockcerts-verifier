@@ -1,3 +1,3 @@
-export function getDisableAllowVerify (state) {
+export function getDisableAutoVerify (state) {
   return state.disableAutoVerify;
 }
