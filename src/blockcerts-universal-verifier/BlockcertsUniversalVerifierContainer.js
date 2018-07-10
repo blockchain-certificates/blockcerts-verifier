@@ -2,6 +2,7 @@ import connector from '../store/connector';
 import initialize from '../actions/initialize';
 import { BlockcertsUniversalVerifier, SourceComponent } from './BlockcertsUniversalVerifier';
 import { getErrorMessage } from '../selectors/error';
+import { APIKeys } from '../models/API';
 
 const mapDispatchToProps = {
   onLoad: initialize
@@ -16,8 +17,7 @@ const mapStateToProps = (state) => {
 const ownProps = {
   ...SourceComponent.properties,
   // make polymer detect external API value
-  'disable-auto-verify': Boolean,
-  'disable-verify': Boolean
+  ...APIKeys
 };
 
 const BlockcertsUniversalVerifierContainer = connector(BlockcertsUniversalVerifier, { mapDispatchToProps, mapStateToProps, ownProps });

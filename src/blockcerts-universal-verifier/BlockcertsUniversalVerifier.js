@@ -6,15 +6,14 @@ import '../components/atoms/DragAndDrop';
 import '../components/atoms/FileUpload';
 import '../components/organisms/VerificationProcess';
 import CSS from '../components/atoms/GlobalStylesheet';
+import { APICamelCase } from '../models/API';
 
 class BlockcertsUniversalVerifier extends LitElement {
   static get properties () {
     return {
-      src: String,
       onLoad: Function,
       errorMessage: String,
-      disableAutoVerify: Boolean,
-      disableVerify: Boolean
+      ...APICamelCase
     };
   }
 
