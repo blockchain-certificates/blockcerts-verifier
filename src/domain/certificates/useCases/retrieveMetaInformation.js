@@ -7,5 +7,5 @@ export default function retrieveMetaInformation (definition) {
 
   return {
     transactionLink
-  }
+  };
 }
