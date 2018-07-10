@@ -82,5 +82,5 @@ describe('verifyCertificate action creator test suite', function () {
 
       expect(getVerifiedSteps(state)).toEqual(initialVerifiedSteps);
     });
-  })
+  });
 });

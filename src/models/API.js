@@ -10,7 +10,7 @@ const APICamelCase = Object.keys(APIKeys)
   .map(snakeToCamelCase)
   .reduce((acc, key) => {
     acc[key] = APIKeys[key];
-    return acc
+    return acc;
   }, {});
 
 function getAPIOptions (options) {
@@ -21,6 +21,6 @@ function getAPIOptions (options) {
       }
       return acc;
     }, {});
-  }
+}
 
 export { APIKeys, APICamelCase, getAPIOptions };
