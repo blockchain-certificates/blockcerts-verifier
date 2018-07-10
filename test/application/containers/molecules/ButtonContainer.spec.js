@@ -2,42 +2,46 @@ import { mapStateToProps } from '../../../../src/components/molecules/Button/But
 import getInitialState from '../../../../src/store/getInitialState';
 import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
+import validateUrlInput from '../../../../src/actions/validateUrlInput';
 import validCertificateDefinition from '../../../fixtures/valid-certificate-example';
 
 describe('ButtonContainer test suite', function () {
   describe('mapStateToProps method', function () {
     describe('cancelSpinner property', function () {
-      describe('when the url is invalid', function () {
+      let store;
+
+      beforeEach(function () {
+        const initialState = getInitialState();
+        store = configureStore(initialState);
+      });
+
+      afterEach(function () {
+        store = null;
+      });
+
+      describe('when the value inputted is invalid', function () {
         it('should be true', function () {
-          const fixtureState = {
-            input: {
-              isValid: false
-            }
-          };
+          store.dispatch(validateUrlInput(false));
+          const state = store.getState();
 
-          expect(mapStateToProps(fixtureState).cancelSpinner).toBe(true);
+          expect(mapStateToProps(state).cancelSpinner).toBe(true);
         });
       });
 
-      describe('when the url is valid', function () {
+      describe('when the value inputted is valid', function () {
         it('should be false', function () {
-          const fixtureState = {
-            input: {
-              isValid: true
-            }
-          };
+          store.dispatch(validateUrlInput(true));
+          const state = store.getState();
 
-          expect(mapStateToProps(fixtureState).cancelSpinner).toBe(false);
+          expect(mapStateToProps(state).cancelSpinner).toBe(false);
         });
       });
 
-      describe('when the url is undefined', function () {
+      describe('when no value was inputted', function () {
         it('should be false', function () {
-          const fixtureState = {
-            input: {}
-          };
+          const state = store.getState();
 
-          expect(mapStateToProps(fixtureState).cancelSpinner).toBe(false);
+          expect(mapStateToProps(state).cancelSpinner).toBe(false);
         });
       });
     });
