@@ -1,6 +1,7 @@
-export default function updateCertificateUrl (state, action) {
+export default function updateCertificateDefinition (state, action) {
   return {
     ...state,
-    certificateDefinition: action.payload.definition
+    certificateDefinition: action.payload.definition,
+    certificateMetaInformation: action.payload.metaInformation
   };
 }

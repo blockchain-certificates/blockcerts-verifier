@@ -4,6 +4,10 @@ export function getCertificateDefinition (state) {
   return state.certificateDefinition;
 }
 
+export function getCertificateMetaInformation (state) {
+  return state.certificateMetaInformation;
+}
+
 export function getIssuedOn (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
@@ -78,10 +82,10 @@ export function getRecordLink (state) {
 }
 
 export function getTransactionLink (state) {
-  const certificateDefinition = getCertificateDefinition(state);
+  const certificateMetaInformation = getCertificateMetaInformation(state);
 
-  if (certificateDefinition) {
-    //return certificateDefinition.transaction.link > not there?
+  if (certificateMetaInformation) {
+    return certificateMetaInformation.transactionLink;
   }
 
   return '';

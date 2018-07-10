@@ -1,6 +1,6 @@
 import { configureStore } from '../../../src/store';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import { getCertificateDefinition } from '../../../src/selectors/certificate';
+import { getCertificateDefinition, getTransactionLink } from '../../../src/selectors/certificate';
 import { getErrorMessage } from '../../../src/selectors/error';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
@@ -31,6 +31,14 @@ describe('updateCertificateDefinition action creator test suite', function () {
       const state = store.getState();
 
       expect(getErrorMessage(state)).toBe(undefined);
+    });
+
+    it('should set the transactionLink in the state', function () {
+      store.dispatch(updateCertificateDefinition(certificateFixture));
+      const state = store.getState();
+
+      const expectedOutput = 'https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea';
+      expect(getTransactionLink(state)).toBe(expectedOutput);
     });
   });
 
