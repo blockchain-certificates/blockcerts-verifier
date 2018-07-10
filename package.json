@@ -41,6 +41,7 @@
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
     "lint": "npm run lint:js && npm run lint:polymer && npm run lint:styles",
+    "lint:fix": "semistandard --fix",
     "lint:js": "semistandard \"**/*.js\" | snazzy",
     "lint:polymer": "polymer lint",
     "lint:styles": "sass-lint --verbose",

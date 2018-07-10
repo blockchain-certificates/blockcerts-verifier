@@ -1,10 +1,10 @@
 import connector from '../store/connector';
-import updateCertificateUrl from '../actions/updateCertificateUrl';
+import initialize from '../actions/initialize';
 import { BlockcertsUniversalVerifier, SourceComponent } from './BlockcertsUniversalVerifier';
 import { getErrorMessage } from '../selectors/error';
 
 const mapDispatchToProps = {
-  onLoad: updateCertificateUrl
+  onLoad: initialize
 };
 
 const mapStateToProps = (state) => {
@@ -13,7 +13,11 @@ const mapStateToProps = (state) => {
   };
 };
 
-const ownProps = SourceComponent.properties;
+const ownProps = {
+  ...SourceComponent.properties,
+  // make polymer detect external API value
+  'disable-auto-verify': Boolean
+};
 
 const BlockcertsUniversalVerifierContainer = connector(BlockcertsUniversalVerifier, { mapDispatchToProps, mapStateToProps, ownProps });
 export { BlockcertsUniversalVerifierContainer };
