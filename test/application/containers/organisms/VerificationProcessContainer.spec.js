@@ -8,14 +8,23 @@ import verifyCertificate from '../../../../src/actions/verifyCertificate';
 
 describe('VerificationProcessContainer test suite', function () {
   describe('mapStateToProps method', function () {
+    let store;
+
+    beforeEach(function () {
+      const apiConfiguration = {
+        disableAutoVerify: true
+      };
+      const initialState = getInitialState(apiConfiguration);
+
+      store = configureStore(initialState);
+    });
+
+    afterEach(function () {
+      store = null;
+    });
+
     describe('given there is a transactionLink set in the state', function () {
       it('should retrieve the correct value', async function () {
-        const apiConfiguration = {
-          disableAutoVerify: true
-        };
-        const initialState = getInitialState(apiConfiguration);
-        const store = configureStore(initialState);
-
         await store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
 
@@ -24,14 +33,18 @@ describe('VerificationProcessContainer test suite', function () {
       });
     });
 
+    describe('given there is a chain of the certificate set in the state', function () {
+      it('should retrieve the correct value', async function () {
+        await store.dispatch(updateCertificateDefinition(certificateFixture));
+        const state = store.getState();
+
+        const expectedOutput = 'testnet';
+        expect(mapStateToProps(state).chain).toBe(expectedOutput);
+      });
+    });
+
     describe('given there are verifiedSteps set in the state', function () {
       it('should retrieve the correct value', async function () {
-        const apiConfiguration = {
-          disableAutoVerify: true
-        };
-        const initialState = getInitialState(apiConfiguration);
-        const store = configureStore(initialState);
-
         await store.dispatch(updateCertificateDefinition(certificateFixture));
         await store.dispatch(verifyCertificate());
         const state = store.getState();

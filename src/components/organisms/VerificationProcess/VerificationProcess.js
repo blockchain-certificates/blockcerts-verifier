@@ -4,7 +4,7 @@ import FinalVerificationStep from '../../atoms/FinalVerificationStep';
 import CSS from './_components.verification-process-css';
 import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
-export default function VerificationProcess ({ steps, transactionLink }) {
+export default function VerificationProcess ({ steps, transactionLink, chain }) {
   const finalStep = steps.pop();
   const innerHTML = steps
     .map((step, i) => html`
@@ -28,7 +28,7 @@ export default function VerificationProcess ({ steps, transactionLink }) {
       <div class$='${progressBarClasses}'></div>  
       <dl class='buv-c-verification-process__step-list'>
         ${innerHTML}
-        ${FinalVerificationStep({ ...finalStep, transactionLink })}
+        ${FinalVerificationStep({ ...finalStep, transactionLink, chain })}
       </dl>
     </div>
   `;
