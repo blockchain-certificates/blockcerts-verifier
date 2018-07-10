@@ -21,7 +21,7 @@ class BlockcertsUniversalVerifier extends LitElement {
     this.onLoad(this._props);
   }
 
-  _propertiesChanged(props, changedProps, prevProps) {
+  _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
     super._propertiesChanged(props, changedProps, prevProps);
   }

@@ -17,5 +17,5 @@ export default function initialize (options = {}) {
     if (src) {
       dispatch(updateCertificateUrl(src));
     }
-  }
+  };
 }
