@@ -13,7 +13,8 @@ class BlockcertsUniversalVerifier extends LitElement {
       src: String,
       onLoad: Function,
       errorMessage: String,
-      disableAutoVerify: Boolean
+      disableAutoVerify: Boolean,
+      disableVerify: Boolean
     };
   }
 
@@ -53,6 +54,7 @@ function BUVWrapper (props) {
           onLoad='${props.onLoad}'
           errorMessage='${props.errorMessage}'
           disableAutoVerify='${props['disable-auto-verify']}'
+          disableVerify='${props['disable-verify']}'
         ></buv-raw>`;
 }
 
