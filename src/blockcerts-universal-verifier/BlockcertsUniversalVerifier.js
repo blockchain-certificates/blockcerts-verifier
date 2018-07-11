@@ -57,6 +57,7 @@ function BUVWrapper (props) {
           disableAutoVerify='${props['disable-auto-verify']}'
           disableVerify='${props['disable-verify']}'
           allowDownload='${props['allow-download']}'
+          allowSocialShare='${props['allow-social-share']}'
         ></buv-raw>`;
 }
 
