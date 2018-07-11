@@ -5,3 +5,7 @@ export function getDisableAutoVerify (state) {
 export function getDisableVerify (state) {
   return state.disableVerify;
 }
+
+export function getAllowDownload (state) {
+  return state.allowDownload;
+}

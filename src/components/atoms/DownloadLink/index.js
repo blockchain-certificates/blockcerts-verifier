@@ -1,3 +1,3 @@
-import DownloadLink from './DownloadLink';
+import { DownloadLinkContainer as DownloadLink } from './DownloadLinkContainer';
 
-export default DownloadLink;
+window.customElements.define('buv-download-link', DownloadLink);
