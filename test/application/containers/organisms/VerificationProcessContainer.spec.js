@@ -38,7 +38,7 @@ describe('VerificationProcessContainer test suite', function () {
         await store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
 
-        const expectedOutput = 'testnet';
+        const expectedOutput = 'Mocknet';
         expect(mapStateToProps(state).chain).toBe(expectedOutput);
       });
     });

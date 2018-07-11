@@ -1,4 +1,5 @@
 import * as VERIFICATION_STATUS from '../constants/verificationStatus';
+import domain from '../domain';
 
 export function getCertificateDefinition (state) {
   return state.certificateDefinition;
@@ -91,11 +92,12 @@ export function getTransactionLink (state) {
   return '';
 }
 
-export function getChain (state) {
+export function getChain (state, toReadable = true) {
   const certificateMetaInformation = getCertificateMetaInformation(state);
 
   if (certificateMetaInformation) {
-    return certificateMetaInformation.chain;
+    const { chain } = certificateMetaInformation;
+    return toReadable ? domain.chain.getReadableName(chain) : chain;
   }
 
   return '';

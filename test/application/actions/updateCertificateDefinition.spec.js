@@ -66,7 +66,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       const state = store.getState();
 
       const expectedOutput = 'testnet';
-      expect(getChain(state)).toBe(expectedOutput);
+      expect(getChain(state, false)).toBe(expectedOutput);
     });
 
     describe('given the disableAutoVerify flag is false', function () {
