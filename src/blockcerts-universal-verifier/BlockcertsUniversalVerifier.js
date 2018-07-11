@@ -54,6 +54,7 @@ function BUVWrapper (props) {
           errorMessage='${props.errorMessage}'
           disableAutoVerify='${props['disable-auto-verify']}'
           disableVerify='${props['disable-verify']}'
+          allowDownload='${props['allow-download']}'
         ></buv-raw>`;
 }
 
