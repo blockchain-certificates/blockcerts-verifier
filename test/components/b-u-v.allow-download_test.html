@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockcerts Universal Verifier - API certificate test</title>
+    <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../src/blockcerts-universal-verifier/index.js"></script>
+</head>
+<body>
+<script src="./helpers/redux-hack.js"></script>
+<script src="./helpers/wait.js"></script>
+    <test-fixture id="downloadable">
+        <template>
+            <blockcerts-universal-verifier src="../fixtures/valid-certificate-example.json" disable-auto-verify allow-download></blockcerts-universal-verifier>
+        </template>
+    </test-fixture>
+
+    <script type="module">
+      describe('Blockcerts Universal Verifier test suite', function () {
+        describe('allowing the download of a certificate', function () {
+          describe('given the src is of a valid blockcerts definition', function () {
+            it('the download link should be available', async function () {
+              let el = fixture('downloadable');
+              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
+              await wait(200);
+              const downloadLinkComponents = el.shadowRoot.querySelectorAll('buv-download-link');
+              expect(downloadLinkComponents.length).to.equal(1);
+            });
+          });
+        });
+      });
+    </script>
+</body>
+</html>

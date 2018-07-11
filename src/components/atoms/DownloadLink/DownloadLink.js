@@ -1,4 +1,4 @@
-import html from '@polymer/lit-element';
+import { html } from '@polymer/lit-element';
 import CSS from './_components.download-link-css';
 
 export default function DownloadLink (allowDownload, certificateDownloadLink) {
