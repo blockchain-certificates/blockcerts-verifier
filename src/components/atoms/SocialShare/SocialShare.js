@@ -1,4 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
+import CSS from './_components.social-share-css';
 
 class SocialShare extends LitElement {
   constructor () {
@@ -31,7 +32,9 @@ class SocialShare extends LitElement {
   }
 
   sharingButton () {
-    return html`<button onclick='${this.toggleOpen}'><label>Share on Social Networks</label></button>`
+    return html`<button onclick='${this.toggleOpen}' class='buv-social-share-link'>
+      <label class='buv-u-visually-hidden'>Share on Social Networks</label>
+    </button>`
   }
 
   _render ({ allowSocialShare, url }) {
@@ -43,7 +46,10 @@ class SocialShare extends LitElement {
       return null;
     }
 
-    return html`${ this.isOpen ? this.sharingTemplate(url) : this.sharingButton() }`;
+    return html`
+      ${CSS}
+      ${ this.isOpen ? this.sharingTemplate(url) : this.sharingButton() }
+    `;
   }
 }
 
