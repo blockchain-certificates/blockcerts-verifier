@@ -3,7 +3,7 @@ import DownloadLink from './DownloadLink';
 import { getAllowDownload } from '../../../selectors/api';
 import { getDownloadLink } from '../../../selectors/certificate';
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   allowDownload: getAllowDownload(state),
   downloadLink: getDownloadLink(state)
 });

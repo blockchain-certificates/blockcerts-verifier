@@ -83,6 +83,12 @@ export function getRecordLink (state) {
 }
 
 export function getDownloadLink (state) {
+  const url = getRecordLink(state);
+
+  if (url) {
+    return domain.certificates.download(url);
+  }
+
   return '';
 }
 
