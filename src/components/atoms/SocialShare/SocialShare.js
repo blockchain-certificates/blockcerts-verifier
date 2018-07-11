@@ -13,7 +13,7 @@ class SocialShare extends LitElement {
       url: String,
       allowSocialShare: Boolean,
       isOpen: String
-    }
+    };
   }
 
   toggleOpen () {
@@ -21,22 +21,39 @@ class SocialShare extends LitElement {
   }
 
   sharingTemplate (url) {
+    const socialServices = [
+      {
+        name: 'LinkedIn',
+        shareUrl: `https://www.linkedin.com/shareArticle?url=${url}&mini=true`
+      },
+      {
+        name: 'Facebook',
+        shareUrl: `https://www.facebook.com/sharer/sharer.php?u=${url}`
+      },
+      {
+        name: 'Twitter',
+        shareUrl: `https://twitter.com/intent/tweet?url=${url}`
+      }
+    ];
+
+    const innerHTMLList = socialServices.map(service =>
+      html`<li><a href='${service.shareUrl}' title='Share on ${service.name}'>Share on ${service.name}</a></li>`
+    );
+
     return html`<div class='buv-c-social-share-modal'>
       <button onclick='${this.toggleOpen}' class='buv-c-social-share-modal__close-button  buv-c-close  buv-c-close--hairline'>
         <label class='buv-u-visually-hidden'>Click to close</label>
       </button>
       <ul class='buv-c-social-share-modal__list'>
-        <li><a href='https://www.linkedin.com/shareArticle?url=${url}&mini=true' title='Share on LinkedIn'>Add to LinkedIn</a></li>
-        <li><a href='https://www.facebook.com/sharer/sharer.php?u=${url}' title='Share on Facebook'>Share on Facebook</a></li>
-        <li><a href='https://twitter.com/intent/tweet?url=${url}' title='Share on Twitter'>Share on Twitter</a></li>
+        ${innerHTMLList}
       </ul>
-    </div>`
+    </div>`;
   }
 
   sharingButton () {
     return html`<button onclick='${this.toggleOpen}' class='buv-c-social-share-link'>
       <label class='buv-u-visually-hidden'>Share on Social Networks</label>
-    </button>`
+    </button>`;
   }
 
   _render ({ allowSocialShare, url }) {
@@ -51,7 +68,7 @@ class SocialShare extends LitElement {
     return html`
       ${CSS}
       ${this.sharingButton()}
-      ${ this.isOpen ? this.sharingTemplate(url) : '' }
+      ${this.isOpen ? this.sharingTemplate(url) : ''}
     `;
   }
 }
