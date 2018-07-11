@@ -4,7 +4,7 @@ class SocialShare extends LitElement {
   constructor () {
     super();
     this.isOpen = false;
-    this.handleClick = this.handleClick.bind(this);
+    this.toggleOpen = this.toggleOpen.bind(this);
   }
 
   static get properties () {
@@ -15,20 +15,23 @@ class SocialShare extends LitElement {
     }
   }
 
-  handleClick () {
-    this.isOpen = true;
+  toggleOpen () {
+    this.isOpen = !this.isOpen;
   }
 
   sharingTemplate (url) {
-    return html`<ul>
-      <li><a href='https://www.linkedin.com/shareArticle?url=${url}&mini=true' title='Share on LinkedIn'>Add to LinkedIn</a></li>
-      <li><a href='https://www.facebook.com/sharer/sharer.php?u=${url}' title='Share on Facebook'>Share on Facebook</a></li>
-      <li><a href='https://twitter.com/intent/tweet?url=${url}' title='Share on Twitter'>Share on Twitter</a></li>
-    </ul>`
+    return html`<div>
+      <button onclick='${this.toggleOpen}'><label>Click to close</label></button>
+      <ul>
+        <li><a href='https://www.linkedin.com/shareArticle?url=${url}&mini=true' title='Share on LinkedIn'>Add to LinkedIn</a></li>
+        <li><a href='https://www.facebook.com/sharer/sharer.php?u=${url}' title='Share on Facebook'>Share on Facebook</a></li>
+        <li><a href='https://twitter.com/intent/tweet?url=${url}' title='Share on Twitter'>Share on Twitter</a></li>
+      </ul>
+    </div>`
   }
 
   sharingButton () {
-    return html`<button onclick='${this.handleClick}'><label>Share on Social Networks</label></button>`
+    return html`<button onclick='${this.toggleOpen}'><label>Share on Social Networks</label></button>`
   }
 
   _render ({ allowSocialShare, url }) {
