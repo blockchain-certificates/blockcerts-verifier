@@ -44,4 +44,15 @@ class SocialShare extends LitElement {
   }
 }
 
-export default SocialShare;
+window.customElements.define('buv-social-share-raw', SocialShare);
+
+// wrap SocialShare in order to plug into Container
+// necessary trade-off to deal with class component in the store connector
+function SocialShareWrapper (props) {
+  return html`
+  <buv-social-share-raw
+    url='${props.url}'
+  ></buv-social-share-raw>`;
+}
+
+export { SocialShareWrapper as SocialShare };
