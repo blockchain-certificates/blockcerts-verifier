@@ -4,13 +4,13 @@ import FinalVerificationStep from '../../atoms/FinalVerificationStep';
 import CSS from './_components.verification-process-css';
 import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
-export default function VerificationProcess ({ steps, transactionLink }) {
+export default function VerificationProcess ({ steps, transactionLink, chain }) {
   const finalStep = steps.pop();
   const innerHTML = steps
     .map((step, i) => html`
-        ${VerificationStep(step, true, i === 0)}
-        ${step.substeps.map(substep => html`${VerificationStep(substep)}`)}
-      `);
+      ${VerificationStep(step, true, i === 0)}
+      ${step.substeps.map(substep => html`${VerificationStep(substep)}`)}
+    `);
 
   // TODO: this should likely not be determined in the view
   const hasError = steps.some(s => s.status === VERIFICATION_STATUS.FAILURE);
@@ -28,11 +28,8 @@ export default function VerificationProcess ({ steps, transactionLink }) {
       <div class$='${progressBarClasses}'></div>  
       <dl class='buv-c-verification-process__step-list'>
         ${innerHTML}
-        ${FinalVerificationStep({ ...finalStep, transactionLink })}
+        ${FinalVerificationStep({ ...finalStep, transactionLink, chain })}
       </dl>
     </div>
   `;
 }
-
-// last dd is for not breaking accessibility test, since the last dt is the final verified step
-// TODO: we should find a nicer fix, but that may come naturally

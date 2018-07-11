@@ -7,5 +7,10 @@ describe('domain certificates retrieveMetaInformation method test suite', functi
       const expectedOutput = 'https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea';
       expect(domain.certificates.retrieveMetaInformation(certificateFixture).transactionLink).toBe(expectedOutput);
     });
+
+    it('should retrieve the chain information', function () {
+      const expectedOutput = 'testnet';
+      expect(domain.certificates.retrieveMetaInformation(certificateFixture).chain).toBe(expectedOutput);
+    });
   });
 });
