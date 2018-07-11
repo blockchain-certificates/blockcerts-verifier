@@ -29,4 +29,12 @@
   height: 20px;
 }
 
+.buv-c-social-share-modal__list {
+  list-style-type: none;
+}
+
+.buv-c-social-share-modal__link {
+  text-decoration: none;
+}
+
 @import '../../../shared-styles/utils.a11y';

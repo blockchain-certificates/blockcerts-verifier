@@ -25,7 +25,7 @@ class SocialShare extends LitElement {
       <button onclick='${this.toggleOpen}' class='buv-c-social-share-modal__close-button  buv-c-close  buv-c-close--hairline'>
         <label class='buv-u-visually-hidden'>Click to close</label>
       </button>
-      <ul>
+      <ul class='buv-c-social-share-modal__list'>
         <li><a href='https://www.linkedin.com/shareArticle?url=${url}&mini=true' title='Share on LinkedIn'>Add to LinkedIn</a></li>
         <li><a href='https://www.facebook.com/sharer/sharer.php?u=${url}' title='Share on Facebook'>Share on Facebook</a></li>
         <li><a href='https://twitter.com/intent/tweet?url=${url}' title='Share on Twitter'>Share on Twitter</a></li>
