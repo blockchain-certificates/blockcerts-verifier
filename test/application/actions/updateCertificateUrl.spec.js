@@ -5,6 +5,7 @@ import { getCertificateDefinition } from '../../../src/selectors/certificate';
 import validCertificateFixture from '../../fixtures/valid-certificate-example';
 import invalidCertificateFixture from '../../fixtures/invalid-certificate-example';
 import { getErrorMessage } from '../../../src/selectors/error';
+import getInitialState from '../../../src/store/getInitialState';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
@@ -18,7 +19,8 @@ describe('updateCertificateUrl action creator test suite', function () {
     let output;
 
     beforeEach(async function () {
-      store = configureStore();
+      const initialState = getInitialState({ disableAutoVerify: true });
+      store = configureStore(initialState);
       // prepare state the correct way
       output = await store.dispatch(updateCertificateUrl(INVALID_URL));
     });
@@ -42,7 +44,8 @@ describe('updateCertificateUrl action creator test suite', function () {
     let store;
 
     beforeEach(function () {
-      store = configureStore();
+      const initialState = getInitialState({ disableAutoVerify: true });
+      store = configureStore(initialState);
     });
 
     afterEach(function () {
@@ -95,7 +98,8 @@ describe('updateCertificateUrl action creator test suite', function () {
     let store;
 
     beforeEach(async function () {
-      store = configureStore();
+      const initialState = getInitialState({ disableAutoVerify: true });
+      store = configureStore(initialState);
       await store.dispatch(updateCertificateUrl(VALID_LOCAL_PATH));
     });
 
