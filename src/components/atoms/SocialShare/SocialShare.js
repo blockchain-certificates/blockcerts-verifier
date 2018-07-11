@@ -21,8 +21,10 @@ class SocialShare extends LitElement {
   }
 
   sharingTemplate (url) {
-    return html`<div>
-      <button onclick='${this.toggleOpen}'><label>Click to close</label></button>
+    return html`<div class='buv-c-social-share-modal'>
+      <button onclick='${this.toggleOpen}' class='buv-c-social-share-modal__close-button  buv-c-close  buv-c-close--hairline'>
+        <label class='buv-u-visually-hidden'>Click to close</label>
+      </button>
       <ul>
         <li><a href='https://www.linkedin.com/shareArticle?url=${url}&mini=true' title='Share on LinkedIn'>Add to LinkedIn</a></li>
         <li><a href='https://www.facebook.com/sharer/sharer.php?u=${url}' title='Share on Facebook'>Share on Facebook</a></li>
@@ -32,7 +34,7 @@ class SocialShare extends LitElement {
   }
 
   sharingButton () {
-    return html`<button onclick='${this.toggleOpen}' class='buv-social-share-link'>
+    return html`<button onclick='${this.toggleOpen}' class='buv-c-social-share-link'>
       <label class='buv-u-visually-hidden'>Share on Social Networks</label>
     </button>`
   }
@@ -48,7 +50,8 @@ class SocialShare extends LitElement {
 
     return html`
       ${CSS}
-      ${ this.isOpen ? this.sharingTemplate(url) : this.sharingButton() }
+      ${this.sharingButton()}
+      ${ this.isOpen ? this.sharingTemplate(url) : '' }
     `;
   }
 }

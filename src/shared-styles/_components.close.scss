@@ -1,0 +1,99 @@
+// cf https://codepen.io/ndeniche/pen/ljbDL
+.buv-c-close {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #000;
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+
+  &--big {
+    transform: scale(3);
+  }
+
+  &--hairline {
+    &::before,
+    &::after {
+      height: 1px;
+    }
+  }
+
+  &--thick {
+    &::before,
+    &::after {
+      height: 4px;
+      margin-top: -2px;
+    }
+  }
+
+  &--black {
+    &::before,
+    &::after {
+      height: 8px;
+      margin-top: -4px;
+    }
+  }
+
+  &--heavy {
+    &::before,
+    &::after {
+      height: 12px;
+      margin-top: -6px;
+    }
+  }
+
+  &--pointy {
+    &::before,
+    &::after {
+      width: 200%;
+      left: -50%;
+    }
+  }
+
+  &--rounded {
+    &::before,
+    &::after {
+      border-radius: 5px;
+    }
+  }
+
+  &--blades {
+    &::before,
+    &::after {
+      border-radius: 5px 0;
+    }
+  }
+
+  &--warp {
+    &::before,
+    &::after {
+      border-radius: 120% 0;
+    }
+  }
+
+  &--fat {
+    &::before,
+    &::after {
+      border-radius: 100%;
+    }
+  }
+}
