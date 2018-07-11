@@ -11,9 +11,9 @@
 <body>
 <script src="./helpers/redux-hack.js"></script>
 <script src="./helpers/wait.js"></script>
-    <test-fixture id="downloadable">
+    <test-fixture id="non-downloadable">
         <template>
-            <blockcerts-universal-verifier src="../fixtures/valid-certificate-example.json" disable-auto-verify allow-download></blockcerts-universal-verifier>
+            <blockcerts-universal-verifier src="../fixtures/valid-certificate-example.json" disable-auto-verify></blockcerts-universal-verifier>
         </template>
     </test-fixture>
 
@@ -21,12 +21,14 @@
       describe('Blockcerts Universal Verifier test suite', function () {
         describe('allowing the download of a certificate', function () {
           describe('given the src is of a valid blockcerts definition', function () {
-            it('the download link should be available', async function () {
-              let el = fixture('downloadable');
-              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
-              await wait(200);
-              const downloadLinkComponents = el.shadowRoot.querySelectorAll('buv-download-link');
-              expect(downloadLinkComponents.length).to.equal(1);
+            describe('and the allow-download flag is off', function () {
+              it('the download link should not be available', async function () {
+                const el = fixture('non-downloadable').shadowRoot.querySelectorAll('buv-raw')[0];
+                await wait(200);
+                const downloadLinkComponent = el.shadowRoot.querySelectorAll('buv-download-link')[0];
+                const link = downloadLinkComponent.shadowRoot.querySelectorAll('.buv-qa-download-link');
+                expect(link.length).to.equal(0);
+              });
             });
           });
         });
