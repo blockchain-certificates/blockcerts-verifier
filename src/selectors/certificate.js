@@ -82,6 +82,16 @@ export function getRecordLink (state) {
   return '';
 }
 
+export function getDownloadLink (state) {
+  const url = getRecordLink(state);
+
+  if (url) {
+    return domain.certificates.download(url);
+  }
+
+  return '';
+}
+
 export function getTransactionLink (state) {
   const certificateMetaInformation = getCertificateMetaInformation(state);
 

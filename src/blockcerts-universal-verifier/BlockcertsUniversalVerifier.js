@@ -2,6 +2,7 @@ import { html, LitElement } from '@polymer/lit-element';
 import CertificateInput from '../components/organisms/CertificateInput';
 import ErrorMessage from '../components/atoms/ErrorMessage/';
 import '../components/atoms/CardCertificate';
+import '../components/atoms/DownloadLink';
 import '../components/atoms/DragAndDrop';
 import '../components/atoms/FileUpload';
 import '../components/organisms/VerificationProcess';
@@ -36,6 +37,7 @@ class BlockcertsUniversalVerifier extends LitElement {
             ${CertificateInput}
         </buv-drag-and-drop>
         <buv-file-upload></buv-file-upload>
+        <buv-download-link></buv-download-link>
         <buv-card-certificate></buv-card-certificate>
         <buv-verification-process></buv-verification-process>
       </section>
@@ -54,6 +56,7 @@ function BUVWrapper (props) {
           errorMessage='${props.errorMessage}'
           disableAutoVerify='${props['disable-auto-verify']}'
           disableVerify='${props['disable-verify']}'
+          allowDownload='${props['allow-download']}'
         ></buv-raw>`;
 }
 

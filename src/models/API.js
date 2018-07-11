@@ -3,7 +3,8 @@ import { snakeToCamelCase } from '../helpers/toCamelCase';
 const APIKeys = {
   'src': String,
   'disable-auto-verify': Boolean,
-  'disable-verify': Boolean
+  'disable-verify': Boolean,
+  'allow-download': Boolean
 };
 
 const APICamelCase = Object.keys(APIKeys)
