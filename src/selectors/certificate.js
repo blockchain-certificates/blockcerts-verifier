@@ -82,6 +82,10 @@ export function getRecordLink (state) {
   return '';
 }
 
+export function getDownloadLink (state) {
+  return '';
+}
+
 export function getTransactionLink (state) {
   const certificateMetaInformation = getCertificateMetaInformation(state);
 
