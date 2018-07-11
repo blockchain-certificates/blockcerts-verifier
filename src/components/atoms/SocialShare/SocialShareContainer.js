@@ -3,7 +3,7 @@ import { SocialShare } from './SocialShare';
 import { getRecordLink } from '../../../selectors/certificate';
 import { getAllowSocialShare } from '../../../selectors/api';
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   url: getRecordLink(state),
   allowSocialShare: getAllowSocialShare(state)
 });
