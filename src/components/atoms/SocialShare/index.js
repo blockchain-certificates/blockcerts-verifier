@@ -1,3 +1,3 @@
 import SocialShare from './SocialShare';
 
-export default SocialShare;
+window.customElements.define('buv-social-share', SocialShare);
