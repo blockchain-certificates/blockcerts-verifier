@@ -1,4 +1,5 @@
 import { isValidLocalPath, isValidUrl } from '../../../helpers/validations';
+import downloadFlag from '../../../constants/downloadFlag';
 
 export default function retrieve (url) {
   if (!(isValidUrl(url) || isValidLocalPath(url))) {
@@ -6,8 +7,7 @@ export default function retrieve (url) {
     return null;
   }
 
-  const param = '?format=json';
-  const urlWithParam = url + param;
+  const urlWithParam = url + downloadFlag;
 
   return fetch(urlWithParam)
     .then(res => res.text())
