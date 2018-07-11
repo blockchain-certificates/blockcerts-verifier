@@ -55,6 +55,7 @@ function SocialShareWrapper (props) {
   return html`
   <buv-social-share-raw
     url='${props.url}'
+    allowSocialShare='${props.allowSocialShare}'
   ></buv-social-share-raw>`;
 }
 
