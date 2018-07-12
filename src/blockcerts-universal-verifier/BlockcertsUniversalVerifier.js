@@ -2,6 +2,7 @@ import { html, LitElement } from '@polymer/lit-element';
 import CertificateInput from '../components/organisms/CertificateInput';
 import ErrorMessage from '../components/atoms/ErrorMessage/';
 import '../components/atoms/CardCertificate';
+import '../components/atoms/FullCertificate';
 import '../components/atoms/DownloadLink';
 import '../components/atoms/DragAndDrop';
 import '../components/atoms/FileUpload';
@@ -39,6 +40,7 @@ class BlockcertsUniversalVerifier extends LitElement {
         <buv-file-upload></buv-file-upload>
         <buv-download-link></buv-download-link>
         <buv-card-certificate></buv-card-certificate>
+        <buv-full-certificate></buv-full-certificate>
         <buv-verification-process></buv-verification-process>
       </section>
     `;
