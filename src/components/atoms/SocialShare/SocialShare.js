@@ -42,6 +42,7 @@ class SocialShare extends LitElement {
               href='${service.shareUrl}'
               title='Share on ${service.name}'
               class='buv-o-link  buv-c-social-share-modal__link'
+              target='_blank'
             >
               Share on ${service.name}
             </a>
