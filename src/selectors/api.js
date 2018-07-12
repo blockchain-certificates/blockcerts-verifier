@@ -9,3 +9,7 @@ export function getDisableVerify (state) {
 export function getAllowDownload (state) {
   return state.allowDownload;
 }
+
+export function getAllowSocialShare (state) {
+  return state.allowSocialShare;
+}
