@@ -72,6 +72,16 @@ export function getIssuerLogo (state) {
   return '';
 }
 
+export function getDisplayHTML (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.displayHtml;
+  }
+
+  return '';
+}
+
 export function getRecordLink (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
