@@ -37,7 +37,15 @@ class SocialShare extends LitElement {
     ];
 
     const innerHTMLList = socialServices.map(service =>
-      html`<li><a href='${service.shareUrl}' title='Share on ${service.name}'>Share on ${service.name}</a></li>`
+      html`<li class='buv-c-social-share-modal__list-item'>
+            <a
+              href='${service.shareUrl}'
+              title='Share on ${service.name}'
+              class='buv-o-link  buv-c-social-share-modal__link'
+            >
+              Share on ${service.name}
+            </a>
+          </li>`
     );
 
     return html`<div class='buv-c-social-share-modal'>

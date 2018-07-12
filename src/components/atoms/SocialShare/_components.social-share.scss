@@ -1,3 +1,4 @@
+@import '../../../shared-styles/objects.text';
 @import '../../../shared-styles/components.close';
 
 .buv-c-social-share-link {
@@ -31,6 +32,16 @@
 
 .buv-c-social-share-modal__list {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.buv-c-social-share-modal__list-item {
+  margin-bottom: 24px;
+}
+
+.buv-c-social-share-modal__list-item:last-child {
+  margin-bottom: 0;
 }
 
 .buv-c-social-share-modal__link {
