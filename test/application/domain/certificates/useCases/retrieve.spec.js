@@ -1,5 +1,5 @@
 import domain from '../../../../../src/domain';
-import certificateFixture from '../../../../fixtures/valid-certificate-example';
+import validCertificate from '../../../../assertions/validCertificate';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
@@ -11,7 +11,7 @@ describe('domain certificates retrieve method test suite', function () {
     describe('given the url is that of a certificate', function () {
       it('fetches the json format from that url', async function () {
         const result = await domain.certificates.retrieve(MOCK_SERVER_VALID_URL);
-        expect(result).toEqual(certificateFixture);
+        expect(result).toEqual(validCertificate);
       });
     });
 
@@ -37,7 +37,7 @@ describe('domain certificates retrieve method test suite', function () {
   xdescribe('given a valid local path', function () {
     it('fetches the json format from that path', async function () {
       const result = await domain.certificates.retrieve(VALID_LOCAL_PATH);
-      expect(result).toEqual(certificateFixture);
+      expect(result).toEqual(validCertificate);
     });
   });
 });

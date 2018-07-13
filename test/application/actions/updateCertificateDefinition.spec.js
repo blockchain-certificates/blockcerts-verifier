@@ -12,6 +12,7 @@ import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
 import validCertificateSteps from '../../assertions/validCertificateSteps';
 import initialVerifiedSteps from '../../assertions/initialVerifiedSteps';
+import validCertificate from '../../assertions/validCertificate';
 
 describe('updateCertificateDefinition action creator test suite', function () {
   let store;
@@ -29,7 +30,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       await store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
-      expect(getCertificateDefinition(state)).toBe(certificateFixture);
+      expect(getCertificateDefinition(state)).toEqual(validCertificate);
     });
 
     it('should set the error in the state to undefined', async function () {

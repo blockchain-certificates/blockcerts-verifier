@@ -1,5 +1,6 @@
 import * as VERIFICATION_STATUS from '../constants/verificationStatus';
 import domain from '../domain';
+import sanitize from '../../sanitizer/sanitizer';
 
 export function getCertificateDefinition (state) {
   return state.certificateDefinition;
@@ -76,7 +77,7 @@ export function getDisplayHTML (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.displayHtml;
+    return sanitize(certificateDefinition.displayHTML);
   }
 
   return '';

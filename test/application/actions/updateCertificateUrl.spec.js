@@ -2,10 +2,10 @@ import { configureStore } from '../../../src/store';
 import updateCertificateUrl from '../../../src/actions/updateCertificateUrl';
 import { getCertificateUrl, getUrlIsValid } from '../../../src/selectors/input';
 import { getCertificateDefinition } from '../../../src/selectors/certificate';
-import validCertificateFixture from '../../fixtures/valid-certificate-example';
-import invalidCertificateFixture from '../../fixtures/invalid-certificate-example';
 import { getErrorMessage } from '../../../src/selectors/error';
 import getInitialState from '../../../src/store/getInitialState';
+import validCertificate from '../../assertions/validCertificate';
+import invalidCertificate from '../../assertions/invalidCertificate';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
@@ -62,7 +62,7 @@ describe('updateCertificateUrl action creator test suite', function () {
       it('should update the state with the valid certificate definition', async function () {
         await store.dispatch(updateCertificateUrl(MOCK_SERVER_VALID_URL));
         const state = store.getState();
-        expect(getCertificateDefinition(state)).toEqual(validCertificateFixture);
+        expect(getCertificateDefinition(state)).toEqual(validCertificate);
       });
     });
 
@@ -71,7 +71,7 @@ describe('updateCertificateUrl action creator test suite', function () {
         await store.dispatch(updateCertificateUrl(MOCK_SERVER_INVALID_URL));
 
         const state = store.getState();
-        expect(getCertificateDefinition(state)).toEqual(invalidCertificateFixture);
+        expect(getCertificateDefinition(state)).toEqual(invalidCertificate);
       });
     });
 
@@ -114,7 +114,7 @@ describe('updateCertificateUrl action creator test suite', function () {
 
     it('should update the state with the valid certificate definition', function () {
       const state = store.getState();
-      expect(getCertificateDefinition(state)).toEqual(validCertificateFixture);
+      expect(getCertificateDefinition(state)).toEqual(validCertificate);
     });
   });
 });
