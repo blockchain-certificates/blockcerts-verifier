@@ -1,7 +1,7 @@
 # ADR 3: Connecting the store to a component
 
 ## Context
-[pwa-starter-kit](https://github.com/Polymer/pwa-starter-kit) is an example of a Redux application working with Polymer 3. While it serves its purpose, the separation of concerns is not entirely clear between the state and and the views, which means that in the example views have too much knowledge of what provides and modfies the state.
+[pwa-starter-kit](https://github.com/Polymer/pwa-starter-kit) is an example of a Redux application working with Polymer 3. While it serves its purpose, the separation of concerns is not entirely clear between the state and the views, which means that in the example views have too much knowledge of what provides and modfies the state.
 
 This is potentially dangerous for scalability, and bloats the view code with decisions that shouldn't be of its concerns.
 
