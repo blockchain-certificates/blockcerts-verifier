@@ -6,6 +6,7 @@ import '../components/atoms/FullCertificate';
 import '../components/atoms/DownloadLink';
 import '../components/atoms/DragAndDrop';
 import '../components/atoms/FileUpload';
+import '../components/atoms/SocialShare';
 import '../components/organisms/VerificationProcess';
 import CSS from '../components/atoms/GlobalStylesheet';
 import { APICamelCase } from '../models/API';
@@ -39,6 +40,7 @@ class BlockcertsUniversalVerifier extends LitElement {
         </buv-drag-and-drop>
         <buv-file-upload></buv-file-upload>
         <buv-download-link></buv-download-link>
+        <buv-social-share></buv-social-share>
         <buv-card-certificate></buv-card-certificate>
         <buv-full-certificate></buv-full-certificate>
         <buv-verification-process></buv-verification-process>
@@ -59,6 +61,7 @@ function BUVWrapper (props) {
           disableAutoVerify='${props['disable-auto-verify']}'
           disableVerify='${props['disable-verify']}'
           allowDownload='${props['allow-download']}'
+          allowSocialShare='${props['allow-social-share']}'
         ></buv-raw>`;
 }
 

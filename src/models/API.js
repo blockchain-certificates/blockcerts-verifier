@@ -4,7 +4,8 @@ const APIKeys = {
   'src': String,
   'disable-auto-verify': Boolean,
   'disable-verify': Boolean,
-  'allow-download': Boolean
+  'allow-download': Boolean,
+  'allow-social-share': Boolean
 };
 
 const APICamelCase = Object.keys(APIKeys)
