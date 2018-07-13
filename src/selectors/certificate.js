@@ -76,7 +76,7 @@ export function getDisplayHTML (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.displayHtml;
+    return domain.certificates.sanitizeHTML(certificateDefinition).displayHtml;
   }
 
   return '';
