@@ -1,4 +1,5 @@
 import { mainSteps } from '../models/verificationSteps';
+import * as DISPLAY_MODE from '../constants/displayMode';
 import domain from '../domain';
 
 export function initializeVerifiedSteps () {
@@ -9,6 +10,7 @@ export default function getInitialState (apiConfiguration) {
   return {
     input: {},
     verifiedSteps: initializeVerifiedSteps(),
+    displayMode: DISPLAY_MODE.CARD,
     ...apiConfiguration
   };
 }
