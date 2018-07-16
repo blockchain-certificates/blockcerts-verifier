@@ -3,15 +3,15 @@ import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.full-certificate-css';
 
 export default function CardCertificate ({
-    hasCertificateDefinition,
-    displayHTML,
-    recipientName,
-    issuedOn,
-    issueDate,
-    issuerName,
-    transactionLink,
-    transactionId
-  }) {
+  hasCertificateDefinition,
+  displayHTML,
+  recipientName,
+  issuedOn,
+  issueDate,
+  issuerName,
+  transactionLink,
+  transactionId
+}) {
   if (!hasCertificateDefinition) {
     return null;
   }
