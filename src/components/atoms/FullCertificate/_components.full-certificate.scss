@@ -45,14 +45,15 @@
   box-sizing: border-box;
   padding: 10px;
   max-width: 25%;
+  color: rgba(110, 126, 142, 1);
 }
 
 .buv-c-full-certificate-details__title {
-
+  font-weight: 100;
+  margin-bottom: 5px;
 }
 
 .buv-c-full-certificate-details__value {
-  font-weight: bold;
   margin: 0;
 }
 
