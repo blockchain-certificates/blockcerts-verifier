@@ -10,6 +10,7 @@ import '../components/atoms/SocialShare';
 import '../components/organisms/VerificationProcess';
 import CSS from '../components/atoms/GlobalStylesheet';
 import { APICamelCase } from '../models/API';
+import * as DISPLAY_MODE from '../constants/displayMode';
 
 class BlockcertsUniversalVerifier extends LitElement {
   static get properties () {
@@ -41,8 +42,10 @@ class BlockcertsUniversalVerifier extends LitElement {
         <buv-file-upload></buv-file-upload>
         <buv-download-link></buv-download-link>
         <buv-social-share></buv-social-share>
-        <buv-card-certificate></buv-card-certificate>
-        <buv-full-certificate></buv-full-certificate>
+        ${_props.displayMode === DISPLAY_MODE.CARD ? 
+          html`<buv-card-certificate></buv-card-certificate>` :
+          html`<buv-full-certificate></buv-full-certificate>`
+        }
         <buv-verification-process></buv-verification-process>
       </section>
     `;

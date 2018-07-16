@@ -1,2 +1,2 @@
-export const CARD = 'CARD';
-export const FULL = 'FULL';
+export const CARD = 'card';
+export const FULL = 'full';
