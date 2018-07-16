@@ -17,7 +17,7 @@ export default function CardCertificate ({
 
   return html`
     ${CSS}
-    <section class='buv-c-card  buv-qa-card'>
+    <section class='buv-c-card'>
       <img src='${issuerLogo}' alt='${issuerName}' class='buv-c-card__img'/>
       <h1 class='buv-c-card__title'>${certificateTitle}</h1>
       <h2 class='buv-c-card__title  buv-c-card__recipient'>${recipientName}</h2>
