@@ -8,6 +8,7 @@ import {
   getIssuerLogo,
   getIssuerName,
   getRecipientName,
+  getTransactionId,
   getTransactionLink
 } from '../../../selectors/certificate';
 
@@ -20,6 +21,7 @@ const mapStateToProps = (state) => ({
   issuerName: getIssuerName(state),
   issuerLogo: getIssuerLogo(state),
   transactionLink: getTransactionLink(state),
+  transactionId: getTransactionId(state)
 });
 
 const FullCertificateContainer = connector(FullCertificate, { mapStateToProps });

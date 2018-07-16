@@ -9,7 +9,8 @@ export default function CardCertificate ({
     issuedOn,
     issueDate,
     issuerName,
-    transactionLink
+    transactionLink,
+    transactionId
   }) {
   if (!hasCertificateDefinition) {
     return null;
@@ -30,12 +31,12 @@ export default function CardCertificate ({
     },
     {
       title: 'Transaction ID',
-      value: transactionLink
+      value: html`<a href='${transactionLink} target='_blank' class='buv-c-full-certificate-details__link'>${transactionId}</a>`
     }
   ];
 
   const definitionListDetails = details.map(detail => html`
-    <div>
+    <div class='buv-c-full-certificate-details__group'>
         <dt class='buv-c-full-certificate-details__title'>${detail.title}</dt>
         <dd class='buv-c-full-certificate-details__value'>${detail.value}</dd>
     </div>

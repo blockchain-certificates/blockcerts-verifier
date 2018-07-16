@@ -38,6 +38,10 @@
   justify-content: space-between;
 }
 
+.buv-c-full-certificate-details__group {
+  max-width: 25%;
+}
+
 .buv-c-full-certificate-details__title {
   float: left;
 }
@@ -45,6 +49,13 @@
 .buv-c-full-certificate-details__value {
   font-weight: bold;
   margin: 0;
+}
+
+.buv-c-full-certificate-details__link {
+  display: block;
+  max-width: 20%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 // TODO: should we implement?
