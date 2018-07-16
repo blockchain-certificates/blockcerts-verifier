@@ -39,11 +39,13 @@
 }
 
 .buv-c-full-certificate-details__group {
+  box-sizing: border-box;
+  padding: 10px;
   max-width: 25%;
 }
 
 .buv-c-full-certificate-details__title {
-  float: left;
+
 }
 
 .buv-c-full-certificate-details__value {
@@ -53,7 +55,7 @@
 
 .buv-c-full-certificate-details__link {
   display: block;
-  max-width: 20%;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
 }

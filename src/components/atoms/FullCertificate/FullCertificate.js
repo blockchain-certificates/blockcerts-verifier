@@ -31,7 +31,7 @@ export default function CardCertificate ({
     },
     {
       title: 'Transaction ID',
-      value: html`<a href='${transactionLink} target='_blank' class='buv-c-full-certificate-details__link'>${transactionId}</a>`
+      value: html`<a href='${transactionLink}' target='_blank' class='buv-c-full-certificate-details__link'>${transactionId}</a>`
     }
   ];
 
