@@ -62,6 +62,7 @@ function BUVWrapper (props) {
           disableVerify='${props['disable-verify']}'
           allowDownload='${props['allow-download']}'
           allowSocialShare='${props['allow-social-share']}'
+          displayMode='${props['display-mode']}'
         ></buv-raw>`;
 }
 
