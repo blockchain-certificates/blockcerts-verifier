@@ -77,7 +77,7 @@ export function getDisplayHTML (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return sanitize(certificateDefinition.displayHTML);
+    return sanitize(certificateDefinition.displayHtml);
   }
 
   return '';
