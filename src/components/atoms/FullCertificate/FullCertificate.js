@@ -37,7 +37,7 @@ export default function CardCertificate ({
 
   const definitionListDetails = details.map(detail => html`
     <div class='buv-c-full-certificate-details__group'>
-        <dt class='buv-c-full-certificate-details__title'>${detail.title}</dt>
+        <dt class='buv-c-full-certificate-details__title  buv-o-small-text'>${detail.title}</dt>
         <dd class='buv-c-full-certificate-details__value'>${detail.value}</dd>
     </div>
   `);
