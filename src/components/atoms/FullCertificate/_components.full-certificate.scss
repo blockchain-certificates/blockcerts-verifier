@@ -34,7 +34,17 @@
 }
 
 .buv-c-full-certificate-details {
+  display: flex;
+  justify-content: space-between;
+}
 
+.buv-c-full-certificate-details__title {
+  float: left;
+}
+
+.buv-c-full-certificate-details__value {
+  font-weight: bold;
+  margin: 0;
 }
 
 // TODO: should we implement?

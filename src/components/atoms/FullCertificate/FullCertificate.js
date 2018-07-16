@@ -15,18 +15,37 @@ export default function CardCertificate ({
     return null;
   }
 
+  const details = [
+    {
+      title: 'Recipient',
+      value: recipientName
+    },
+    {
+      title: 'Issue Date',
+      value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
+    },
+    {
+      title: 'Issuer',
+      value: issuerName
+    },
+    {
+      title: 'Transaction ID',
+      value: transactionLink
+    }
+  ];
+
+  const definitionListDetails = details.map(detail => html`
+    <div>
+        <dt class='buv-c-full-certificate-details__title'>${detail.title}</dt>
+        <dd class='buv-c-full-certificate-details__value'>${detail.value}</dd>
+    </div>
+  `);
+
   return html`
     ${CSS}
     <div class='buv-c-full-certificate'>${unsafeHTML(displayHTML)}</div>
     <dl class='buv-c-full-certificate-details'>
-        <dt>Recipient</dt>
-        <dd>${recipientName}</dd>
-        <dt>Issue Date</dt>
-        <dd><time datetime$='${issuedOn}'>${issueDate}</time></dd>
-        <dt>Issuer</dt>
-        <dd>${issuerName}</dd>
-        <dt>Transaction Id</dt>
-        <dd>${transactionLink}</dd>
+        ${definitionListDetails}
     </dl>
   `;
 }
