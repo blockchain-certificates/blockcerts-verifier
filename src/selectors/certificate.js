@@ -77,7 +77,7 @@ export function getDisplayHTML (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return sanitize(certificateDefinition.displayHTML);
+    return sanitize(certificateDefinition.displayHtml);
   }
 
   return '';
@@ -108,6 +108,16 @@ export function getTransactionLink (state) {
 
   if (certificateMetaInformation) {
     return certificateMetaInformation.transactionLink;
+  }
+
+  return '';
+}
+
+export function getTransactionId (state) {
+  const certificateMetaInformation = getCertificateMetaInformation(state);
+
+  if (certificateMetaInformation) {
+    return certificateMetaInformation.transactionId;
   }
 
   return '';
