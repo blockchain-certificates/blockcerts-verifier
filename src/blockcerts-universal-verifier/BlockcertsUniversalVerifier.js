@@ -42,10 +42,10 @@ class BlockcertsUniversalVerifier extends LitElement {
         <buv-file-upload></buv-file-upload>
         <buv-download-link></buv-download-link>
         <buv-social-share></buv-social-share>
-        ${_props.displayMode === DISPLAY_MODE.FULL ? 
-          html`<buv-full-certificate></buv-full-certificate>` :
-          html`<buv-card-certificate></buv-card-certificate>`
-        }
+        ${_props.displayMode === DISPLAY_MODE.FULL
+    ? html`<buv-full-certificate></buv-full-certificate>`
+    : html`<buv-card-certificate></buv-card-certificate>`
+}
         <buv-verification-process></buv-verification-process>
       </section>
     `;

@@ -14,7 +14,7 @@ describe('FullCertificateContainer test suite', function () {
 
       const state = store.getState();
 
-      expect(mapStateToProps(state).displayHTML).toBe('<section><div style="background-color:red;">YO!</div></section>')
+      expect(mapStateToProps(state).displayHTML).toBe('<section><div style="background-color:red;">YO!</div></section>');
     });
   });
 });
