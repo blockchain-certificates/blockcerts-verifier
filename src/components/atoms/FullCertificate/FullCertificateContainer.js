@@ -12,7 +12,7 @@ import {
   getTransactionLink
 } from '../../../selectors/certificate';
 
-const mapStateToProps = (state) => ({
+export const mapStateToProps = (state) => ({
   hasCertificateDefinition: !!getCertificateDefinition(state),
   displayHTML: getDisplayHTML(state),
   recipientName: getRecipientName(state),
