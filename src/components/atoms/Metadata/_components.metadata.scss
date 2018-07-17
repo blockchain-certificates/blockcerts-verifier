@@ -14,10 +14,17 @@
 
 .buv-c-metadata-container__close-button {
   position: absolute;
-  top: 30px;
-  right: 30px;
+  top: 52px;
+  right: 47px;
   width: 20px;
   height: 20px;
+}
+
+.buv-c-metadata-container__title {
+  border-bottom: solid 1px #e8e9eb;
+  padding-bottom: 38px;
+  font-weight: 300;
+  margin: 0 0 38px;
 }
 
 .buv-c-metadata-link {

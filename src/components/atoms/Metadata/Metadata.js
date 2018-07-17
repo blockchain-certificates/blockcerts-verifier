@@ -62,6 +62,7 @@ class Metadata extends LitElement {
         <label class='buv-u-visually-hidden'>Open list of metadata</label>
       </button>
       <section class$='${panelClasses}'>
+        <h1 class='buv-c-metadata-container__title'>Certificate Metadata</h1>
         ${CloseButton({
           onClick: this.toggleOpen,
           className: 'buv-c-metadata-container__close-button'
