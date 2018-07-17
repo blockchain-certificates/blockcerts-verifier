@@ -1,5 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.social-share-css';
+import CloseButton from '../CloseButton/CloseButton';
 
 class SocialShare extends LitElement {
   constructor () {
@@ -50,9 +51,10 @@ class SocialShare extends LitElement {
     );
 
     return html`<div class='buv-c-social-share-modal  buv-o-small-text  buv-o-overlay'>
-      <button onclick='${this.toggleOpen}' class='buv-c-social-share-modal__close-button  buv-c-close  buv-c-close--hairline'>
-        <label class='buv-u-visually-hidden'>Click to close</label>
-      </button>
+      ${CloseButton({
+        onClick: this.toggleOpen,
+        className: 'buv-c-social-share-modal__close-button'
+      })}
       <ul class='buv-c-social-share-modal__list'>
         ${innerHTMLList}
       </ul>
