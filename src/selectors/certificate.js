@@ -113,6 +113,16 @@ export function getTransactionLink (state) {
   return '';
 }
 
+export function getTransactionId (state) {
+  const certificateMetaInformation = getCertificateMetaInformation(state);
+
+  if (certificateMetaInformation) {
+    return certificateMetaInformation.transactionId;
+  }
+
+  return '';
+}
+
 export function getChain (state, toReadable = true) {
   const certificateMetaInformation = getCertificateMetaInformation(state);
 
