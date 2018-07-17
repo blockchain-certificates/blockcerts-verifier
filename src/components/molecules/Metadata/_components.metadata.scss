@@ -10,6 +10,8 @@
   position: fixed;
   top: 0;
   right: -400px;
+  display: flex;
+  flex-direction: column;
 }
 
 .buv-c-metadata-container__close-button {
@@ -36,8 +38,8 @@
 
 .buv-c-metadata-list {
   margin: 0;
-  max-height: calc(100% - (38px + 38px + 24px)); // remove title height (including margin + padding)
   overflow: auto;
+  flex: 1;
 }
 
 .buv-c-metadata-list__title {
