@@ -103,6 +103,16 @@ export function getDownloadLink (state) {
   return '';
 }
 
+export function getMetadataJson (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return JSON.parse(certificateDefinition.metadataJson);
+  }
+
+  return null;
+}
+
 export function getTransactionLink (state) {
   const certificateMetaInformation = getCertificateMetaInformation(state);
 
