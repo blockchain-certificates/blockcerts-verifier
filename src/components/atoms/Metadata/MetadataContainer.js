@@ -1,5 +1,5 @@
 import connector from '../../../store/connector';
-import Metadata from './Metadata';
+import { Metadata } from './Metadata';
 import { getMetadataJson } from '../../../selectors/certificate';
 
 const mapStateToProps = (state) => ({

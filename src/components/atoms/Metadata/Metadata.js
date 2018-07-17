@@ -1,4 +1,4 @@
-import { html } from '@polymer/lit-element';
+import { html, LitElement } from '@polymer/lit-element';
 import getValueFrom from '../../../helpers/getValueFrom';
 import CSS from './_components.metadata-css';
 
@@ -6,26 +6,58 @@ function getProperties (metadataList) {
   return metadataList.schema.properties.certificate.properties
 }
 
-export default function Metadata ({ metadataList }) {
-  if (!metadataList) {
-    return null;
+class Metadata extends LitElement {
+  constructor () {
+    super();
+    this.isOpen = false;
+    this.toggleOpen = this.toggleOpen.bind(this);
   }
 
-  const properties = getProperties(metadataList);
+  static get properties () {
+    return {
+      isOpen: Boolean,
+      metadataList: Object
+    }
+  }
 
-  const innerHTML = metadataList.displayOrder.map(entry => {
-    const key = entry.split('.')[1]; // get key name
-    const title = properties[key].title;
-    const value = getValueFrom(metadataList, entry);
+  toggleOpen () {
+    this.isOpen != this.isOpen;
+  }
 
-    return html`
+  _render ({ metadataList }) {
+    if (!metadataList) {
+      return null;
+    }
+
+    const properties = getProperties(metadataList);
+
+    const innerHTML = metadataList.displayOrder.map(entry => {
+      const key = entry.split('.')[1]; // get key name
+      const title = properties[key].title;
+      const value = getValueFrom(metadataList, entry);
+
+      return html`
       <dt class='buv-c-metadata-list__title'>${title}</dt>
       <dd class='buv-c-metadata-list__detail'>${value}</dd>
     `;
-  });
+    });
 
-  return html`
+    return html`
     ${CSS}
     <section><dl class='buv-o-small-text'>${innerHTML}</dl></section>
   `;
+  }
+}
+
+window.customElements.define('buv-metadata-raw', Metadata);
+
+function MetadataWrapper (props) {
+  return html`
+    <buv-metadata-raw
+      metadataList='${props.metadataList}'
+    ></buv-metadata-raw>`;
+}
+
+export {
+  MetadataWrapper as Metadata
 }
