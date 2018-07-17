@@ -42,15 +42,21 @@ class Metadata extends LitElement {
       const value = getValueFrom(metadataList, entry);
 
       return html`
-      <dt class='buv-c-metadata-list__title'>${title}</dt>
-      <dd class='buv-c-metadata-list__detail'>${value}</dd>
-    `;
+        <dt class='buv-c-metadata-list__title'>${title}</dt>
+        <dd class='buv-c-metadata-list__detail'>${value}</dd>
+      `;
     });
 
     return html`
-    ${CSS}
-    <section><dl class='buv-o-small-text'>${innerHTML}</dl></section>
-  `;
+      ${CSS}
+      <button onclick='${this.toggleOpen}' class='buv-c-metadata-link'>
+        <label class='buv-u-visually-hidden'>Open list of metadata</label>
+      </button>
+      ${this.isOpen 
+        ? html`<section><dl class='buv-o-small-text'>${innerHTML}</dl></section>`
+        : ''
+      }
+    `;
   }
 }
 
