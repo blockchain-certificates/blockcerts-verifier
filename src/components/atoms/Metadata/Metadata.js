@@ -49,7 +49,7 @@ class Metadata extends LitElement {
 
     return html`
       ${CSS}
-      <button onclick='${this.toggleOpen}' class='buv-c-metadata-link'>
+      <button onclick='${this.toggleOpen}' class='buv-c-metadata-link  buv-o-button-link'>
         <label class='buv-u-visually-hidden'>Open list of metadata</label>
       </button>
       ${this.isOpen 

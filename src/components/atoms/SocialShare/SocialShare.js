@@ -60,7 +60,7 @@ class SocialShare extends LitElement {
   }
 
   sharingButton () {
-    return html`<button onclick='${this.toggleOpen}' class='buv-c-social-share-link'>
+    return html`<button onclick='${this.toggleOpen}' class='buv-c-social-share-link  buv-o-button-link'>
       <label class='buv-u-visually-hidden'>Share on Social Networks</label>
     </button>`;
   }
