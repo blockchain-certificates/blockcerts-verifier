@@ -34,6 +34,12 @@
   background-size: 22px;
 }
 
+.buv-c-metadata-list {
+  margin: 0;
+  max-height: calc(100% - (38px + 38px + 24px)); // remove title height (including margin + padding)
+  overflow: auto;
+}
+
 .buv-c-metadata-list__title {
   color: #999;
   line-height: 15px;
