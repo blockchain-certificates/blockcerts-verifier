@@ -6,6 +6,7 @@ import '../components/atoms/FullCertificate';
 import '../components/atoms/DownloadLink';
 import '../components/atoms/DragAndDrop';
 import '../components/atoms/FileUpload';
+import '../components/atoms/Metadata';
 import '../components/atoms/SocialShare';
 import '../components/organisms/VerificationProcess';
 import CSS from '../components/atoms/GlobalStylesheet';
@@ -40,6 +41,7 @@ class BlockcertsUniversalVerifier extends LitElement {
             ${CertificateInput}
         </buv-drag-and-drop>
         <buv-file-upload></buv-file-upload>
+        <buv-metadata></buv-metadata>
         <buv-download-link></buv-download-link>
         <buv-social-share></buv-social-share>
         ${_props.displayMode === DISPLAY_MODE.FULL
