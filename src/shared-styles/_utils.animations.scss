@@ -1,0 +1,13 @@
+.buv-u-slide-from-right {
+  opacity: 0;
+  -webkit-transition: right ease .5s, opacity .2s;
+  -moz-transition: right ease .5s, opacity .2s;
+  -ms-transition: right ease .5s, opacity .2s;
+  -o-transition: right ease .5s, opacity .2s;
+  transition: right ease .5s, opacity .2s;
+}
+
+.buv-u-slide-from-right.is-active {
+  right: 0;
+  opacity: 1;
+}

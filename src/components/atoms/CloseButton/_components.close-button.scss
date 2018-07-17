@@ -1,10 +1,9 @@
 // cf https://codepen.io/ndeniche/pen/ljbDL
-.buv-c-close {
-  position: relative;
+.buv-c-close-button {
   display: inline-block;
-  width: 50px;
-  height: 50px;
   overflow: hidden;
+  cursor: pointer;
+  border: 0;
 
   &::before,
   &::after {
@@ -97,3 +96,11 @@
     }
   }
 }
+
+// if you define your own class for the component this will not be applied,
+// make sure to specify the `position` property in your own class
+.buv-c-close-button--position {
+  position: relative;
+}
+
+@import '../../../shared-styles/utils.a11y';

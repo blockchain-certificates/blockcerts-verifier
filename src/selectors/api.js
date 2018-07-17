@@ -13,3 +13,7 @@ export function getAllowDownload (state) {
 export function getAllowSocialShare (state) {
   return state.allowSocialShare;
 }
+
+export function getShowMetadata (state) {
+  return state.showMetadata;
+}
