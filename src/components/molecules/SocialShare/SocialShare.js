@@ -1,6 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.social-share-css';
-import CloseButton from '../CloseButton';
+import CloseButton from '../../atoms/CloseButton';
 
 class SocialShare extends LitElement {
   constructor () {

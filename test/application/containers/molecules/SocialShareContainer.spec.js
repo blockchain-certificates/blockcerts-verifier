@@ -1,6 +1,6 @@
 import getInitialState from '../../../../src/store/getInitialState';
-import { configureStore } from '../../../../src/store';
-import { mapStateToProps } from '../../../../src/components/atoms/SocialShare/SocialShareContainer';
+import { configureStore } from '../../../../src/store/index';
+import { mapStateToProps } from '../../../../src/components/molecules/SocialShare/SocialShareContainer';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
 

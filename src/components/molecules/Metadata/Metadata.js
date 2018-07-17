@@ -1,7 +1,7 @@
 import { html, LitElement } from '@polymer/lit-element';
 import getValueFrom from '../../../helpers/getValueFrom';
 import CSS from './_components.metadata-css';
-import CloseButton from '../CloseButton';
+import CloseButton from '../../atoms/CloseButton';
 
 function getProperties (metadataList) {
   return metadataList.schema.properties.certificate.properties;
