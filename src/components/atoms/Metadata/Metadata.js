@@ -36,6 +36,7 @@ class Metadata extends LitElement {
 
     // TODO: better handle this dynamic class (cf npm classnames)
     const panelClasses = [
+      'buv-o-overlay',
       'buv-c-metadata-container',
       'buv-u-slide-from-right',
       this.isOpen ? 'is-active' : ''

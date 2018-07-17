@@ -1,17 +1,15 @@
 @import '../../../shared-styles/objects.text';
 @import '../../../shared-styles/objects.button-link';
+@import '../../../shared-styles/objects.overlay';
 
 .buv-c-metadata-container {
   box-sizing: border-box;
   padding: 47px;
-  position: fixed;
+  height: 100%;
   width: 400px;
+  position: fixed;
   top: 0;
   right: -400px;
-  height: 100%;
-  z-index: 100;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.25);
-  background-color: #fff;
 }
 
 .buv-c-metadata-link {
