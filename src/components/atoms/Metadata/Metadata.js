@@ -1,6 +1,7 @@
 import { html, LitElement } from '@polymer/lit-element';
 import getValueFrom from '../../../helpers/getValueFrom';
 import CSS from './_components.metadata-css';
+import CloseButton from '../CloseButton';
 
 function getProperties (metadataList) {
   return metadataList.schema.properties.certificate.properties
@@ -60,7 +61,13 @@ class Metadata extends LitElement {
       <button onclick='${this.toggleOpen}' class='buv-c-metadata-link  buv-o-button-link'>
         <label class='buv-u-visually-hidden'>Open list of metadata</label>
       </button>
-      <section class$='${panelClasses}'><dl class='buv-o-small-text'>${innerHTML}</dl></section>
+      <section class$='${panelClasses}'>
+        ${CloseButton({
+          onClick: this.toggleOpen,
+          className: 'buv-c-metadata-container__close-button'
+        })}
+        <dl class='buv-o-small-text'>${innerHTML}</dl>
+      </section>
     `;
   }
 }

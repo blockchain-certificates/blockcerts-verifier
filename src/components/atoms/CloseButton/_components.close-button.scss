@@ -3,6 +3,7 @@
   display: inline-block;
   overflow: hidden;
   cursor: pointer;
+  border: 0;
 
   &::before,
   &::after {
