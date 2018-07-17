@@ -16,15 +16,20 @@ class Metadata extends LitElement {
   static get properties () {
     return {
       isOpen: Boolean,
-      metadataList: Object
+      metadataList: Object,
+      showMetadata: Boolean
     }
   }
 
   toggleOpen () {
-    this.isOpen != this.isOpen;
+    this.isOpen = !this.isOpen;
   }
 
-  _render ({ metadataList }) {
+  _render ({ metadataList, showMetadata }) {
+    if (!showMetadata) {
+      return null;
+    }
+
     if (!metadataList) {
       return null;
     }
@@ -55,6 +60,7 @@ function MetadataWrapper (props) {
   return html`
     <buv-metadata-raw
       metadataList='${props.metadataList}'
+      showMetadata='${props.showMetadata}'
     ></buv-metadata-raw>`;
 }
 
