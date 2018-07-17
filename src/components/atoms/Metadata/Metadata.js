@@ -34,6 +34,13 @@ class Metadata extends LitElement {
       return null;
     }
 
+    // TODO: better handle this dynamic class (cf npm classnames)
+    const panelClasses = [
+      'buv-c-metadata-container',
+      'buv-u-slide-from-right',
+      this.isOpen ? 'is-active' : ''
+    ].join(' ');
+
     const properties = getProperties(metadataList);
 
     const innerHTML = metadataList.displayOrder.map(entry => {
@@ -52,10 +59,7 @@ class Metadata extends LitElement {
       <button onclick='${this.toggleOpen}' class='buv-c-metadata-link  buv-o-button-link'>
         <label class='buv-u-visually-hidden'>Open list of metadata</label>
       </button>
-      ${this.isOpen 
-        ? html`<section><dl class='buv-o-small-text'>${innerHTML}</dl></section>`
-        : ''
-      }
+      <section class$='${panelClasses}'><dl class='buv-o-small-text'>${innerHTML}</dl></section>
     `;
   }
 }
