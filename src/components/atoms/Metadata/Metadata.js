@@ -4,7 +4,7 @@ import CSS from './_components.metadata-css';
 import CloseButton from '../CloseButton';
 
 function getProperties (metadataList) {
-  return metadataList.schema.properties.certificate.properties
+  return metadataList.schema.properties.certificate.properties;
 }
 
 class Metadata extends LitElement {
@@ -19,7 +19,7 @@ class Metadata extends LitElement {
       isOpen: Boolean,
       metadataList: Object,
       showMetadata: Boolean
-    }
+    };
   }
 
   toggleOpen () {
@@ -64,9 +64,9 @@ class Metadata extends LitElement {
       <section class$='${panelClasses}'>
         <h1 class='buv-c-metadata-container__title'>Certificate Metadata</h1>
         ${CloseButton({
-          onClick: this.toggleOpen,
-          className: 'buv-c-metadata-container__close-button'
-        })}
+    onClick: this.toggleOpen,
+    className: 'buv-c-metadata-container__close-button'
+  })}
         <dl class='buv-c-metadata-list  buv-o-small-text'>${innerHTML}</dl>
       </section>
     `;
@@ -85,4 +85,4 @@ function MetadataWrapper (props) {
 
 export {
   MetadataWrapper as Metadata
-}
+};
