@@ -36,6 +36,11 @@
   background-size: 22px;
 }
 
+.buv-c-metadata-link:disabled {
+  cursor: help;
+  opacity: .6;
+}
+
 .buv-c-metadata-list {
   margin: 0;
   overflow: auto;
