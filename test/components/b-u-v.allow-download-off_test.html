@@ -24,8 +24,9 @@
             describe('and the allow-download flag is off', function () {
               it('the download link should not be available', async function () {
                 const el = fixture('non-downloadable').shadowRoot.querySelectorAll('buv-raw')[0];
+                const menu = el.shadowRoot.querySelectorAll('menu')[0];
                 await wait(200);
-                const downloadLinkComponent = el.shadowRoot.querySelectorAll('buv-download-link')[0];
+                const downloadLinkComponent = menu.querySelectorAll('buv-download-link')[0];
                 const link = downloadLinkComponent.shadowRoot.querySelectorAll('.buv-qa-download-link');
                 expect(link.length).to.equal(0);
               });
