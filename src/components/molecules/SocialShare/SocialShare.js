@@ -66,6 +66,7 @@ class SocialShare extends LitElement {
         onclick='${this.toggleOpen}'
         class='buv-c-social-share-link  buv-o-button-link'
         disabled?='${!hasUrl}'
+        aria-disabled?='${!hasUrl}
         title$='${info}'
       >
       <label class='buv-u-visually-hidden'>${info}</label>

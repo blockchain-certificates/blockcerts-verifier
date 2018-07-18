@@ -56,6 +56,7 @@ class Metadata extends LitElement {
       <button onclick='${this.toggleOpen}' 
         class='buv-c-metadata-link  buv-o-button-link' 
         disabled?='${!metadataList}' 
+        aria-disabled?='${!metadataList}'
         title$=${info}>
         <label class='buv-u-visually-hidden'>${info}</label>
       </button>
