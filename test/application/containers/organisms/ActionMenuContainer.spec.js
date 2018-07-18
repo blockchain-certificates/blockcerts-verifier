@@ -35,4 +35,3 @@ describe('SocialShareContainer test suite', function () {
     });
   });
 });
-

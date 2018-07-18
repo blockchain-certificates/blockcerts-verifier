@@ -8,9 +8,9 @@ const ActionMenu = ({ allowDownload, allowSocialShare, showMetadata }) => {
   return html`
     ${CSS}
     <menu class='buv-c-action-menu'>
-      ${ showMetadata ? html`<menuitem class='buv-c-action-menu-item'><buv-metadata></buv-metadata></menuitem>` : ''}
-      ${ allowDownload ? html`<menuitem class='buv-c-action-menu-item'><buv-download-link></buv-download-link></menuitem>` : ''}
-      ${ allowSocialShare ? html`<menuitem class='buv-c-action-menu-item'><buv-social-share></buv-social-share></menuitem>` : ''}
+      ${showMetadata ? html`<menuitem class='buv-c-action-menu-item'><buv-metadata></buv-metadata></menuitem>` : ''}
+      ${allowDownload ? html`<menuitem class='buv-c-action-menu-item'><buv-download-link></buv-download-link></menuitem>` : ''}
+      ${allowSocialShare ? html`<menuitem class='buv-c-action-menu-item'><buv-social-share></buv-social-share></menuitem>` : ''}
     </menu>
   `;
 };
