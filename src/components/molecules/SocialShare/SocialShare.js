@@ -60,22 +60,23 @@ class SocialShare extends LitElement {
     </div>`;
   }
 
-  sharingButton () {
-    return html`<button onclick='${this.toggleOpen}' class='buv-c-social-share-link  buv-o-button-link'>
-      <label class='buv-u-visually-hidden'>Share on Social Networks</label>
+  sharingButton (hasUrl) {
+    const info = hasUrl ? 'Share on Social Networks' : 'No URL to share!';
+    return html`<button 
+        onclick='${this.toggleOpen}'
+        class='buv-c-social-share-link  buv-o-button-link'
+        disabled?='${!hasUrl}'
+        title$='${info}'
+      >
+      <label class='buv-u-visually-hidden'>${info}</label>
     </button>`;
   }
 
   _render ({ url }) {
-    if (!url) {
-      // TODO: disable button instead
-      return null;
-    }
-
     return html`
       ${CSS}
-      ${this.sharingButton()}
-      ${this.isOpen ? this.sharingTemplate(url) : ''}
+      ${this.sharingButton(!!url)}
+      ${this.isOpen && url ? this.sharingTemplate(url) : ''}
     `;
   }
 }

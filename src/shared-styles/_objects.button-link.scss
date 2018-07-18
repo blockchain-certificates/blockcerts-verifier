@@ -4,3 +4,8 @@
   border: 0;
   background-color: transparent;
 }
+
+.buv-o-button-link:disabled {
+  cursor: help;
+  opacity: .6;
+}
