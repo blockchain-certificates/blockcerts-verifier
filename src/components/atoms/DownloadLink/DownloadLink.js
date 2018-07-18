@@ -1,18 +1,19 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.download-link-css';
 
-export default function DownloadLink ({ allowDownload, downloadLink }) {
-  if (!allowDownload) {
-    return null;
-  }
+export default function DownloadLink ({ downloadLink }) {
+  // TODO: better handle this dynamic class (cf npm classnames)
+  const classes = [
+    'buv-c-download-link',
+    'buv-o-button-link',
+    !downloadLink ? 'is-disabled' : ''
+  ].join(' ');
 
-  if (!downloadLink) {
-    return null;
-  }
+  const info = downloadLink ? 'Download Record in JSON format' : 'No link provided for download!';
 
   return html`
     ${CSS}
-    <a class='buv-c-download-link  buv-qa-download-link' href='${downloadLink}' title='Download Record (JSON format)'>
-      <span class='buv-u-visually-hidden'>Download Record in JSON format</span>
+    <a class$='${classes}' href='${downloadLink}' title$='${info}' aria-disabled?='${!downloadLink}'>
+      <span class='buv-u-visually-hidden'>${info}</span>
     </a>`;
 }

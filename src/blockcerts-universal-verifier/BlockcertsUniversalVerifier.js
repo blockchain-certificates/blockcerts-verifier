@@ -1,15 +1,13 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CertificateInput from '../components/organisms/CertificateInput';
+import '../components/organisms/ActionMenu';
+import '../components/organisms/VerificationProcess';
 import ErrorMessage from '../components/atoms/ErrorMessage/';
+import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/atoms/CardCertificate';
 import '../components/atoms/FullCertificate';
-import '../components/atoms/DownloadLink';
 import '../components/atoms/DragAndDrop';
 import '../components/atoms/FileUpload';
-import '../components/molecules/Metadata';
-import '../components/molecules/SocialShare';
-import '../components/organisms/VerificationProcess';
-import CSS from '../components/atoms/GlobalStylesheet';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
 
@@ -41,9 +39,7 @@ class BlockcertsUniversalVerifier extends LitElement {
             ${CertificateInput}
         </buv-drag-and-drop>
         <buv-file-upload></buv-file-upload>
-        <buv-metadata></buv-metadata>
-        <buv-download-link></buv-download-link>
-        <buv-social-share></buv-social-share>
+        <buv-action-menu></buv-action-menu>
         ${_props.displayMode === DISPLAY_MODE.FULL
     ? html`<buv-full-certificate></buv-full-certificate>`
     : html`<buv-card-certificate></buv-card-certificate>`

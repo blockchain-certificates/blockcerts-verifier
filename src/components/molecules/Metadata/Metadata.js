@@ -17,8 +17,7 @@ class Metadata extends LitElement {
   static get properties () {
     return {
       isOpen: Boolean,
-      metadataList: Object,
-      showMetadata: Boolean
+      metadataList: Object
     };
   }
 
@@ -26,15 +25,7 @@ class Metadata extends LitElement {
     this.isOpen = !this.isOpen;
   }
 
-  _render ({ metadataList, showMetadata }) {
-    if (!showMetadata) {
-      return null;
-    }
-
-    if (!metadataList) {
-      return null;
-    }
-
+  _render ({ metadataList }) {
     // TODO: better handle this dynamic class (cf npm classnames)
     const panelClasses = [
       'buv-o-overlay',
@@ -43,23 +34,31 @@ class Metadata extends LitElement {
       this.isOpen ? 'is-active' : ''
     ].join(' ');
 
-    const properties = getProperties(metadataList);
+    let innerHTML = '';
+    if (metadataList) {
+      const properties = getProperties(metadataList);
+      innerHTML = metadataList.displayOrder.map(entry => {
+        const key = entry.split('.')[1]; // get key name
+        const title = properties[key].title;
+        const value = getValueFrom(metadataList, entry);
 
-    const innerHTML = metadataList.displayOrder.map(entry => {
-      const key = entry.split('.')[1]; // get key name
-      const title = properties[key].title;
-      const value = getValueFrom(metadataList, entry);
+        return html`
+          <dt class='buv-c-metadata-list__title'>${title}</dt>
+          <dd class='buv-c-metadata-list__detail'>${value}</dd>
+        `;
+      });
+    }
 
-      return html`
-        <dt class='buv-c-metadata-list__title'>${title}</dt>
-        <dd class='buv-c-metadata-list__detail'>${value}</dd>
-      `;
-    });
+    const info = metadataList ? 'Open list of metadata' : 'No metadata specified for this record';
 
     return html`
       ${CSS}
-      <button onclick='${this.toggleOpen}' class='buv-c-metadata-link  buv-o-button-link'>
-        <label class='buv-u-visually-hidden'>Open list of metadata</label>
+      <button onclick='${this.toggleOpen}' 
+        class='buv-c-metadata-link  buv-o-button-link' 
+        disabled?='${!metadataList}' 
+        aria-disabled?='${!metadataList}'
+        title$=${info}>
+        <label class='buv-u-visually-hidden'>${info}</label>
       </button>
       <section class$='${panelClasses}'>
         <h1 class='buv-c-metadata-container__title'>Certificate Metadata</h1>
