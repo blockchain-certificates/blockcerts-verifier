@@ -6,16 +6,6 @@ import certificateFixture from '../../../fixtures/valid-certificate-example';
 
 describe('SocialShareContainer test suite', function () {
   describe('mapStateToProps method', function () {
-    describe('given the API has the allowSocialShare property set', function () {
-      it('should return its value', function () {
-        const initialState = getInitialState({ allowSocialShare: true });
-        const store = configureStore(initialState);
-        const state = store.getState();
-
-        expect(mapStateToProps(state).allowSocialShare).toBe(true);
-      });
-    });
-
     describe('given there is a certificate definition set in the state', function () {
       it('should return its value', async function () {
         const initialState = getInitialState({ disableAutoVerify: true });

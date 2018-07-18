@@ -17,8 +17,7 @@ class Metadata extends LitElement {
   static get properties () {
     return {
       isOpen: Boolean,
-      metadataList: Object,
-      showMetadata: Boolean
+      metadataList: Object
     };
   }
 
@@ -26,12 +25,9 @@ class Metadata extends LitElement {
     this.isOpen = !this.isOpen;
   }
 
-  _render ({ metadataList, showMetadata }) {
-    if (!showMetadata) {
-      return null;
-    }
-
+  _render ({ metadataList }) {
     if (!metadataList) {
+      // TODO: disable button instead
       return null;
     }
 

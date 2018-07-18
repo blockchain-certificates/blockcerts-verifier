@@ -12,7 +12,6 @@ class SocialShare extends LitElement {
   static get properties () {
     return {
       url: String,
-      allowSocialShare: Boolean,
       isOpen: String
     };
   }
@@ -67,12 +66,9 @@ class SocialShare extends LitElement {
     </button>`;
   }
 
-  _render ({ allowSocialShare, url }) {
-    if (!allowSocialShare) {
-      return null;
-    }
-
+  _render ({ url }) {
     if (!url) {
+      // TODO: disable button instead
       return null;
     }
 

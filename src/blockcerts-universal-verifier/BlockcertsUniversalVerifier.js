@@ -1,6 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CertificateInput from '../components/organisms/CertificateInput';
-import ActionMenu from '../components/organisms/ActionMenu';
+import '../components/organisms/ActionMenu';
 import '../components/organisms/VerificationProcess';
 import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
@@ -39,7 +39,7 @@ class BlockcertsUniversalVerifier extends LitElement {
             ${CertificateInput}
         </buv-drag-and-drop>
         <buv-file-upload></buv-file-upload>
-        ${ActionMenu}
+        <buv-action-menu></buv-action-menu>
         ${_props.displayMode === DISPLAY_MODE.FULL
     ? html`<buv-full-certificate></buv-full-certificate>`
     : html`<buv-card-certificate></buv-card-certificate>`

@@ -1,3 +1,3 @@
-import ActionMenu from './ActionMenu';
+import { ActionMenuContainer as ActionMenu } from './ActionMenuContainer';
 
-export default ActionMenu;
+window.customElements.define('buv-action-menu', ActionMenu);
