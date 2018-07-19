@@ -7,7 +7,6 @@ import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/atoms/CardCertificate';
 import '../components/atoms/FullCertificate';
 import '../components/atoms/DragAndDrop';
-import '../components/atoms/FileUpload';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
 
@@ -38,7 +37,6 @@ class BlockcertsUniversalVerifier extends LitElement {
         <buv-drag-and-drop>
             ${CertificateInput}
         </buv-drag-and-drop>
-        <buv-file-upload></buv-file-upload>
         <buv-action-menu></buv-action-menu>
         ${_props.displayMode === DISPLAY_MODE.FULL
     ? html`<buv-full-certificate></buv-full-certificate>`
