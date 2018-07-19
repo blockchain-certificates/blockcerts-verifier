@@ -13,7 +13,7 @@
     <script src="./helpers/wait.js"></script>
     <test-fixture id="invalid-input">
         <template>
-            <blockcerts-universal-verifier></blockcerts-universal-verifier>
+            <blockcerts-universal-verifier disable-auto-verify></blockcerts-universal-verifier>
         </template>
     </test-fixture>
 
@@ -22,9 +22,9 @@
         describe('input stage testing', function () {
           describe('given nothing was inputted in the input', function () {
             it('the button should be disabled', function () {
-              let el = fixture('invalid-input');
-              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
-              const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
+              const el = fixture('invalid-input').shadowRoot.querySelectorAll('buv-raw')[0];
+              const certificateInputComponent = el.shadowRoot.querySelectorAll('buv-certificate-input')[0];
+              const buttonComponent = certificateInputComponent.shadowRoot.querySelectorAll('buv-button')[0];
               const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
               const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
 
@@ -34,9 +34,9 @@
 
           describe('given an invalid url was inputted in the input', function () {
             it('the input should highlight its invalid state', async function () {
-              let el = fixture('invalid-input');
-              el = el.shadowRoot.querySelectorAll('buv-raw')[0];
-              const inputComponent = el.shadowRoot.querySelectorAll('buv-input')[0];
+              const el = fixture('invalid-input').shadowRoot.querySelectorAll('buv-raw')[0];
+              const certificateInputComponent = el.shadowRoot.querySelectorAll('buv-certificate-input')[0];
+              const inputComponent = certificateInputComponent.shadowRoot.querySelectorAll('buv-input')[0];
               const input = inputComponent.shadowRoot.querySelectorAll('input')[0];
 
               input.value = 'http';
@@ -56,14 +56,11 @@
           });
 
           describe('given a valid url of a certificate definition was inputted in the input', function () {
-            // this test times out in CI
-            xit('the button should not be disabled', async function () {
-              const el = fixture('invalid-input');
-              const inputComponent = el.shadowRoot.querySelectorAll('buv-input')[0];
+            it('the certificate input should be empty', async function () {
+              const el = fixture('invalid-input').shadowRoot.querySelectorAll('buv-raw')[0];
+              const certificateInputComponent = el.shadowRoot.querySelectorAll('buv-certificate-input')[0];
+              const inputComponent = certificateInputComponent.shadowRoot.querySelectorAll('buv-input')[0];
               const input = inputComponent.shadowRoot.querySelectorAll('input')[0];
-              const buttonComponent = el.shadowRoot.querySelectorAll('buv-button')[0];
-              const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
-              const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
 
               input.value = 'https://auto-certificates.learningmachine.io/certificate/ebecbb1552fb5d1f8db5f713db980260';
               const inputEvent = new Event('input', {
@@ -74,9 +71,10 @@
               input.dispatchEvent(inputEvent);
 
               // allow retrieving the certificate. It is a bit weak if network is slow.
-              await wait(1000);
+              await wait(3000);
+              const certificateInputComponentChildren = certificateInputComponent.shadowRoot.children;
 
-              expect(button.disabled).to.equal(false);
+              expect(certificateInputComponentChildren.length).to.equal(0);
             });
           });
 
