@@ -1,3 +1,3 @@
-import CertificateInput from './CertificateInput';
+import { default as CertificateInput } from './CertificateInputContainer';
 
-export default CertificateInput;
+window.customElements.define('buv-certificate-input', CertificateInput);

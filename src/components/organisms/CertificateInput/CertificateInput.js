@@ -5,7 +5,11 @@ import '../../molecules/Button';
 
 import CSS from './_components.certificate-input-css';
 
-const CertificateInput = () => {
+const CertificateInput = ({ showInput = true }) => {
+  if (!showInput) {
+    return null;
+  }
+
   return html`
     ${CSS}
     <section class="buv-c-certificate-input">
