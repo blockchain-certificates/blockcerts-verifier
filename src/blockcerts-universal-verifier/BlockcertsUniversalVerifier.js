@@ -35,7 +35,7 @@ class BlockcertsUniversalVerifier extends LitElement {
         <h1>Blockcerts Universal Verifier</h1>
         ${ErrorMessage(_props.errorMessage)}
         <buv-drag-and-drop>
-            ${CertificateInput}
+            ${CertificateInput()}
         </buv-drag-and-drop>
         <buv-action-menu></buv-action-menu>
         ${_props.displayMode === DISPLAY_MODE.FULL
