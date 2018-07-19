@@ -1,7 +1,6 @@
-$borderSize: 2px;
+@import '../../../shared-styles/objects.text';
 
 .buv-c-drag-and-drop__droparea {
-  padding: $borderSize;
   z-index: 100;
   background-color: rgba(0, 0, 0, .1);
   display: none;
