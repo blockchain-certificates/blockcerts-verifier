@@ -8,6 +8,6 @@ export default function VerifyOtherCertificateLink ({ onClick = () => {}, isVisi
 
   return html`
     ${CSS}
-    <a onclick='${onClick}' class='buv-o-small-text buv-o-link'>Verify another record</a>
+    <a onclick='${onClick}' class='buv-o-small-text  buv-o-link'>Verify another record</a>
   `
 }
