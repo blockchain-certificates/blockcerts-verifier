@@ -1,3 +1,3 @@
-import VerifyOtherCertificateLink from './VerifyOtherCertificateLink';
+import { default as VerifyOtherCertificateLink } from './VerifyOtherCertificateLinkContainer';
 
-export default VerifyOtherCertificateLink;
+window.customElements.define('buv-verify-other-certificate', VerifyOtherCertificateLink);
