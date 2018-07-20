@@ -39,10 +39,10 @@
   "scripts": {
     "build:sanitizer": "rollup -c",
     "test": "npm run test:application && npm run test:components",
-    "test:components": "polymer test",
+    "test:components": "npm run test:components:retrieve && polymer test",
     "test:components:retrieve": "node test/wct-script/retrieveTestFiles",
     "test:components:retrieve:watch": "npm run test:components:retrieve -- --watch",
-    "test:components:persist": "polymer test -p",
+    "test:components:persist": "concurrently 'npm run test:components:retrieve:watch' 'polymer test -p'",
     "test:application": "jest --maxWorkers=4",
     "test:application:watch": "jest --watch",
     "start": "concurrently 'polymer serve' 'npm run styles:compile:watch' 'npm run start:mock-server'",
