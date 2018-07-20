@@ -7,6 +7,7 @@ import updateParentStepStatus from './updateParentStepStatus';
 import clearVerifiedSteps from './clearVerifiedSteps';
 import setErrorMessage from './setErrorMessage';
 import initialize from './initialize';
+import resetCertificateDefinition from './resetCertificateDefinition';
 
 export function app (state, action) {
   switch (action.type) {
@@ -18,6 +19,9 @@ export function app (state, action) {
 
     case ACTIONS.UPDATE_CERTIFICATE_DEFINITION:
       return updateCertificateDefinition(state, action);
+
+    case ACTIONS.RESET_CERTIFICATE_DEFINITION:
+      return resetCertificateDefinition(state, action);
 
     case ACTIONS.UPDATE_CERTIFICATE_URL:
       return updateCertificateUrl(state, action);
