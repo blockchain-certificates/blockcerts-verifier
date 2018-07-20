@@ -85,7 +85,8 @@
       "FileReader"
     ],
     "ignore": [
-      "sanitizer/sanitizer.js"
+      "sanitizer/sanitizer.js",
+      "test/wct-script/getTestFiles.js"
     ]
   }
 }

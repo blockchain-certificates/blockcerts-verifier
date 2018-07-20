@@ -21,7 +21,7 @@ function writeToFile (string) {
 
   const output = template.replace(pattern, string);
 
-  fs.writeFileSync(__dirname + `/getTestFiles.js`, output);
+  fs.writeFileSync(path.join(__dirname, '/getTestFiles.js'), output);
 }
 
 retrieveTestFiles();
