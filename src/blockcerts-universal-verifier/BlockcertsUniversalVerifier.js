@@ -6,7 +6,6 @@ import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/atoms/CardCertificate';
 import '../components/atoms/FullCertificate';
-import '../components/atoms/DragAndDrop';
 import '../components/atoms/VerifyOtherCertificateLink';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
@@ -35,9 +34,7 @@ class BlockcertsUniversalVerifier extends LitElement {
       <section class='buv-c-verifier-main'>
         <h1>Blockcerts Universal Verifier</h1>
         ${ErrorMessage(_props.errorMessage)}
-        <buv-drag-and-drop>
-            <buv-certificate-input></buv-certificate-input>
-        </buv-drag-and-drop>
+        <buv-certificate-input></buv-certificate-input>
         <buv-action-menu></buv-action-menu>
         ${_props.displayMode === DISPLAY_MODE.FULL
     ? html`<buv-full-certificate></buv-full-certificate>`
