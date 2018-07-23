@@ -1,5 +1,6 @@
 import { html } from '@polymer/lit-element';
 import '../../atoms/Input';
+import '../../atoms/DragAndDrop';
 import '../../atoms/FileUpload';
 import '../../molecules/Button';
 
@@ -12,9 +13,11 @@ const CertificateInput = ({ showInput = true }) => {
 
   return html`
     ${CSS}
-    <section class="buv-c-certificate-input">
-        <buv-input class="buv-c-certificate-input__input"></buv-input><buv-button></buv-button>     
-    </section>
+    <buv-drag-and-drop>
+      <section class="buv-c-certificate-input">
+          <buv-input class="buv-c-certificate-input__input"></buv-input><buv-button></buv-button>     
+      </section>
+    </buv-drag-and-drop>
     <buv-file-upload></buv-file-upload>   
 `;
 };
