@@ -6,10 +6,6 @@ export function getCertificateDefinition (state) {
   return state.certificateDefinition;
 }
 
-export function getCertificateMetaInformation (state) {
-  return state.certificateMetaInformation;
-}
-
 export function getIssuedOn (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
@@ -114,30 +110,30 @@ export function getMetadataJson (state) {
 }
 
 export function getTransactionLink (state) {
-  const certificateMetaInformation = getCertificateMetaInformation(state);
+  const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateMetaInformation) {
-    return certificateMetaInformation.transactionLink;
+  if (certificateDefinition) {
+    return certificateDefinition.transactionLink;
   }
 
   return '';
 }
 
 export function getTransactionId (state) {
-  const certificateMetaInformation = getCertificateMetaInformation(state);
+  const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateMetaInformation) {
-    return certificateMetaInformation.transactionId;
+  if (certificateDefinition) {
+    return certificateDefinition.transactionId;
   }
 
   return '';
 }
 
 export function getChain (state, toReadable = true) {
-  const certificateMetaInformation = getCertificateMetaInformation(state);
+  const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateMetaInformation) {
-    const { chain } = certificateMetaInformation;
+  if (certificateDefinition) {
+    const { chain } = certificateDefinition;
     return toReadable ? domain.chain.getReadableName(chain) : chain;
   }
 
