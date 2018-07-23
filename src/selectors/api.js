@@ -17,3 +17,7 @@ export function getAllowSocialShare (state) {
 export function getShowMetadata (state) {
   return state.showMetadata;
 }
+
+export function getDisplayMode (state) {
+  return state.displayMode;
+}
