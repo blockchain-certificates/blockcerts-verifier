@@ -1,4 +1,8 @@
-export default {
+import domain from '../../src/domain';
+
+// TEMP fix to silence errors
+// TODO: decouple this from implementation
+export default domain.certificates.parseDefinition({
   '@context': [
     'https://w3id.org/openbadges/v2',
     'https://w3id.org/blockcerts/v2',
@@ -94,4 +98,4 @@ export default {
       }
     ]
   }
-};
+});

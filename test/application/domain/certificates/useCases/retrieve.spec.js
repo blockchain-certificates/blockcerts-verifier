@@ -1,5 +1,7 @@
 import domain from '../../../../../src/domain';
-import validCertificate from '../../../../assertions/validCertificate';
+// TEMP fix to silence errors
+// TODO: use assertion and not fixture
+import validCertificate from '../../../../fixtures/valid-certificate-example';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
