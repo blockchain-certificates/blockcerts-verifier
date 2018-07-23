@@ -1,6 +1,6 @@
 import download from './download';
 import retrieve from './retrieve';
-import retrieveMetaInformation from './retrieveMetaInformation';
+import parseDefinition from './parseDefinition';
 import read from './read';
 import validate from './validate';
 import verify from './verify';
@@ -8,7 +8,7 @@ import verify from './verify';
 export {
   download,
   retrieve,
-  retrieveMetaInformation,
+  parseDefinition,
   read,
   validate,
   verify

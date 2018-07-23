@@ -16,7 +16,7 @@ export default function updateCertificateDefinition (definition) {
     dispatch(setErrorMessage(validation.errorMessage));
 
     if (validation.isValid) {
-      certificateDefinition = domain.certificates.retrieveMetaInformation(definition);
+      certificateDefinition = domain.certificates.parseDefinition(definition);
     }
 
     dispatch({
