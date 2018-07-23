@@ -4,7 +4,11 @@ import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
 import CSS from './_components.action-menu-css';
 
-const ActionMenu = ({ allowDownload, allowSocialShare, showMetadata }) => {
+const ActionMenu = ({ allowDownload, allowSocialShare, showMetadata, isVisible }) => {
+  if (!isVisible) {
+    return null;
+  }
+
   return html`
     ${CSS}
     <menu class='buv-c-action-menu'>
