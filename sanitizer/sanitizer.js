@@ -1639,6 +1639,16 @@ if (isWorkerEnv()) {
 var lib_1$1 = lib$1.xss;
 var lib_2$1 = lib$1.FilterXSS;
 
+function isBase64 (value) {
+  const test = /^data:image.+;base64,/;
+  return !!value.match(test);
+}
+
+function getBase64Data (value) {
+  const data = value.split('base64,')[1];
+  return data;
+}
+
 function modifyWhiteList () {
   const whiteList = lib$1.getDefaultWhiteList();
   Object.keys(whiteList).forEach(el => {
@@ -1652,6 +1662,18 @@ function modifyWhiteList () {
 function handleTagAttr (tag, name, value, isWhiteAttr) {
   if (name === 'style') {
     return `${name}="${lib(value).replace(/; /g, ';')}"`;
+  }
+
+  if (tag === 'img' && name === 'src') {
+    if (isBase64(value)) {
+      const data = getBase64Data(value);
+      try {
+        atob(data);
+        return `${name}="${value}"`;
+      } catch (e) {
+        return name;
+      }
+    }
   }
 }
 

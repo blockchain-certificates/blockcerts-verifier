@@ -36,6 +36,13 @@ describe('sanitizer test suite', function () {
 
       expect(sanitize(html)).toBe(expectedOutput);
     });
+
+    it('fake base64 encoding from an image src attribute', function () {
+      const html = '<img src="data:image/png;base64,javascript:alert(\'XSS\')" alt="Red dot" />';
+      const expectedOutput = '<img src alt="Red dot" />';
+
+      expect(sanitize(html)).toBe(expectedOutput);
+    });
   });
 
   describe('should keep', function () {
@@ -67,6 +74,14 @@ describe('sanitizer test suite', function () {
       const html = '<section><h1>Testing</h1><div><img src="http://lm.com/yo.jpg" alt="MultiYO" />Yo</div></section>';
 
       const expectedOutput = '<section><h1>Testing</h1><div><img src="http://lm.com/yo.jpg" alt="MultiYO" />Yo</div></section>';
+
+      expect(sanitize((html))).toBe(expectedOutput);
+    });
+
+    it('valid base64 encoding from an image src attribute', function () {
+      const html = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />';
+
+      const expectedOutput = '<img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\" alt=\"Red dot\" />';
 
       expect(sanitize((html))).toBe(expectedOutput);
     });
