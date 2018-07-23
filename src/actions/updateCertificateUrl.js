@@ -15,6 +15,13 @@ export default function updateCertificateUrl (url) {
       return null;
     }
 
+    dispatch({
+      type: ACTIONS.UPDATE_CERTIFICATE_URL,
+      payload: {
+        url
+      }
+    });
+
     const certificateDefinition = await domain.certificates.retrieve(url);
 
     if (certificateDefinition && typeof certificateDefinition !== 'string') {
@@ -22,12 +29,5 @@ export default function updateCertificateUrl (url) {
     } else {
       dispatch(setErrorMessage(certificateDefinition));
     }
-
-    dispatch({
-      type: ACTIONS.UPDATE_CERTIFICATE_URL,
-      payload: {
-        url
-      }
-    });
   };
 }
