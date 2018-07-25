@@ -9,8 +9,16 @@ describe('domain certificates retrieveMetaInformation method test suite', functi
     });
 
     it('should retrieve the chain information', function () {
-      const expectedOutput = 'testnet';
-      expect(domain.certificates.retrieveMetaInformation(certificateFixture).chain).toBe(expectedOutput);
+      const expectedOutput = {
+        'code': 'testnet',
+        'name': 'Mocknet',
+        'signatureValue': 'bitcoinTestnet',
+        'transactionTemplates': {
+          'full': 'https://testnet.blockchain.info/tx/{TRANSACTION_ID}',
+          'raw': 'https://testnet.blockchain.info/rawtx/{TRANSACTION_ID}'
+        }
+      };
+      expect(domain.certificates.retrieveMetaInformation(certificateFixture).chain).toEqual(expectedOutput);
     });
   });
 });
