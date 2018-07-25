@@ -6,7 +6,7 @@ import { getDisableAutoVerify } from '../selectors/api';
 
 export default function updateCertificateDefinition (definition) {
   return async function (dispatch) {
-    const { certificateDefinition, errorMessage } = domain.certificates.validate(definition);
+    const { certificateDefinition, errorMessage } = domain.certificates.parse(definition);
 
     dispatch(setErrorMessage(errorMessage));
 
