@@ -3,7 +3,8 @@ import { Certificate } from 'cert-verifier-js/dist/verifier-es';
 export default function validate (definition) {
   let isValid = false;
   try {
-    const certificate = new Certificate(definition);
+    /* eslint no-new: off */
+    new Certificate(definition);
     isValid = true;
 
     return {
