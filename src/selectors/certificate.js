@@ -138,7 +138,7 @@ export function getChain (state, toReadable = true) {
 
   if (certificateMetaInformation) {
     const { chain } = certificateMetaInformation;
-    return toReadable ? domain.chain.getReadableName(chain) : chain;
+    return toReadable ? chain.name : chain.code;
   }
 
   return '';

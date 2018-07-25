@@ -1,8 +1,7 @@
 import { html } from '@polymer/lit-element';
-import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
-export default function FinalVerificationStep ({ status, chain = '', transactionLink = '' }) {
-  if (status === VERIFICATION_STATUS.FAILURE) {
+export default function FinalVerificationStep ({ hasError = false, chain = '', transactionLink = '' }) {
+  if (hasError) {
     return;
   }
 

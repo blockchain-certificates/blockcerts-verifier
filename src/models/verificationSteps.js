@@ -20,43 +20,43 @@ export const substepMap = [
     parentStep: 'formatValidation'
   },
   {
-    code: 'computingLocalHash',
+    code: 'computeLocalHash',
     parentStep: 'formatValidation'
   },
   {
-    code: 'fetchingRemoteHash',
+    code: 'fetchRemoteHash',
     parentStep: 'formatValidation'
   },
   {
-    code: 'gettingIssuerProfile',
+    code: 'getIssuerProfile',
     parentStep: 'formatValidation'
   },
   {
-    code: 'parsingIssuerKeys',
+    code: 'parseIssuerKeys',
     parentStep: 'formatValidation'
   },
   {
-    code: 'comparingHashes',
+    code: 'compareHashes',
     parentStep: 'hashComparison'
   },
   {
-    code: 'checkingMerkleRoot',
+    code: 'checkMerkleRoot',
     parentStep: 'hashComparison'
   },
   {
-    code: 'checkingReceipt',
+    code: 'checkReceipt',
     parentStep: 'hashComparison'
   },
   {
-    code: 'checkingRevokedStatus',
+    code: 'checkRevokedStatus',
     parentStep: 'statusCheck'
   },
   {
-    code: 'checkingAuthenticity',
+    code: 'checkAuthenticity',
     parentStep: 'statusCheck'
   },
   {
-    code: 'checkingExpiresDate',
+    code: 'checkExpiresDate',
     parentStep: 'statusCheck'
   }
 ];

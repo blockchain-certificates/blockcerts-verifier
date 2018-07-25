@@ -1,9 +1,11 @@
-import { Certificate } from 'cert-verifier-js/verifier-es';
+import { Certificate } from 'cert-verifier-js/dist/verifier-es';
 
 export default function validate (definition) {
   let isValid = false;
   try {
-    isValid = !!Certificate.parseJson(definition);
+    /* eslint no-new: off */
+    new Certificate(definition);
+    isValid = true;
 
     return {
       isValid

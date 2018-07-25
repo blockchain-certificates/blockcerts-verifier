@@ -21,15 +21,21 @@ export default function verifyCertificate () {
     dispatch(clearVerifiedSteps());
     const certificateDefinition = getCertificateDefinition(state);
 
-    function stepVerifyCb (code, name, status, errorMessage) {
-      const stepDefinition = { code, name, status, errorMessage };
-      const step = domain.verification.createStep(stepDefinition);
+    function stepVerifyCb (stepDefinition) {
+      const definition = {
+        code: stepDefinition.step,
+        name: stepDefinition.action,
+        status: stepDefinition.status,
+        errorMessage: stepDefinition.errorMessage
+      };
+
+      const step = domain.verification.createStep(definition);
 
       dispatch(stepVerified(step));
     }
 
     if (certificateDefinition) {
-      await domain.certificates.verify(certificateDefinition, stepVerifyCb, stepVerifyCb);
+      await domain.certificates.verify(certificateDefinition, stepVerifyCb);
     }
   };
 }

@@ -1,12 +1,12 @@
-import { CertificateVerifier } from 'cert-verifier-js/verifier-es';
+import { Certificate } from 'cert-verifier-js/dist/verifier-es';
 
-export default async function verify (certificateDefinition, stepCb, finishCb) {
+export default async function verify (certificateDefinition, stepCb) {
   if (typeof certificateDefinition === 'string') {
     return;
   }
-  const certificateAsString = JSON.stringify(certificateDefinition);
-  const verifier = new CertificateVerifier(certificateAsString, stepCb);
-  const res = await verifier.verify(finishCb);
+
+  const verifier = new Certificate(certificateDefinition);
+  const res = await verifier.verify(stepCb);
 
   return res;
 }

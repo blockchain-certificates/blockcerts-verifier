@@ -10,19 +10,19 @@ export default [
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'computingLocalHash',
-      'name': 'Computing Local Hash',
+      'code': 'computeLocalHash',
+      'name': 'Computing local hash',
       'parentStep': 'formatValidation',
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'fetchingRemoteHash',
+      'code': 'fetchRemoteHash',
       'name': 'Fetching remote hash',
       'parentStep': 'formatValidation',
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'parsingIssuerKeys',
+      'code': 'parseIssuerKeys',
       'name': 'Parsing issuer keys',
       'parentStep': 'formatValidation',
       'status': 'success',
@@ -34,19 +34,19 @@ export default [
     'name': 'Hash comparison',
     'status': 'success',
     'substeps': [{
-      'code': 'comparingHashes',
-      'name': 'Comparing Hashes',
+      'code': 'compareHashes',
+      'name': 'Comparing hashes',
       'parentStep': 'hashComparison',
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'checkingMerkleRoot',
+      'code': 'checkMerkleRoot',
       'name': 'Checking Merkle Root',
       'parentStep': 'hashComparison',
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'checkingReceipt',
+      'code': 'checkReceipt',
       'name': 'Checking Receipt',
       'parentStep': 'hashComparison',
       'status': 'success',
@@ -58,24 +58,23 @@ export default [
     'name': 'Status check',
     'status': 'success',
     'substeps': [{
-      'code': 'checkingRevokedStatus',
+      'code': 'checkRevokedStatus',
       'name': 'Checking Revoked Status',
       'parentStep': 'statusCheck',
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'checkingAuthenticity',
+      'code': 'checkAuthenticity',
       'name': 'Checking Authenticity',
       'parentStep': 'statusCheck',
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'checkingExpiresDate',
+      'code': 'checkExpiresDate',
       'name': 'Checking Expires Date',
       'parentStep': 'statusCheck',
       'status': 'success',
       'substeps': []
     }]
-  },
-  {'code': 'final', 'name': 'Verified', 'status': 'success', 'substeps': []}
+  }
 ];
