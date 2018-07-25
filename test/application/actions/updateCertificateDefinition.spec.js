@@ -18,7 +18,8 @@ describe('updateCertificateDefinition action creator test suite', function () {
   let store;
 
   beforeEach(function () {
-    store = configureStore();
+    const initialState = getInitialState({ disableAutoVerify: true });
+    store = configureStore(initialState);
   });
 
   afterEach(function () {
