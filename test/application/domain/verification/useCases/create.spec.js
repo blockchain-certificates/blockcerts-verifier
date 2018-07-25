@@ -58,7 +58,7 @@ describe('domain verification create use case test suite', function () {
   describe('given the step has a parent', function () {
     it('should set the parentStep property', function () {
       const name = 'Computing local hash';
-      const code = 'computingLocalHash';
+      const code = 'computeLocalHash';
       const definition = {
         name,
         code
