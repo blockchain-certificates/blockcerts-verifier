@@ -10,13 +10,13 @@ export default [
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'computingLocalHash',
-      'name': 'Computing Local Hash',
+      'code': 'computeLocalHash',
+      'name': 'Computing local hash',
       'parentStep': 'formatValidation',
       'status': 'success',
       'substeps': []
     }, {
-      'code': 'fetchingRemoteHash',
+      'code': 'fetchRemoteHash',
       'errorMessage': 'Could not confirm the transaction',
       'name': 'Fetching remote hash',
       'parentStep': 'formatValidation',
@@ -29,5 +29,5 @@ export default [
     'name': 'Status check',
     'status': 'standby',
     'substeps': []
-  },
-  {'code': 'final', 'name': 'Verified', 'status': 'failure', 'substeps': []}];
+  }
+];

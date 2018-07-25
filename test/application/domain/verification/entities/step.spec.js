@@ -60,7 +60,7 @@ describe('verification Step entity test suite', function () {
     it('should retrieve and set the parentStep value', function () {
       const definition = {
         name: 'Fetching Remote Hash',
-        code: 'fetchingRemoteHash'
+        code: 'fetchRemoteHash'
       };
 
       const sut = new Step(definition);

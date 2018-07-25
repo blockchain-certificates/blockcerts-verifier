@@ -82,7 +82,8 @@
       "it",
       "performance",
       "fetch",
-      "FileReader"
+      "FileReader",
+      "atob"
     ],
     "ignore": [
       "sanitizer/sanitizer.js",
