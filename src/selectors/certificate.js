@@ -33,7 +33,7 @@ export function getRecipientName (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.recipientProfile.name;
+    return certificateDefinition.recipientFullName;
   }
 
   return '';
@@ -43,7 +43,7 @@ export function getCertificateTitle (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.badge.name;
+    return certificateDefinition.name;
   }
 
   return '';
@@ -53,7 +53,7 @@ export function getIssuerName (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.badge.issuer.name;
+    return certificateDefinition.issuer.name;
   }
 
   return '';
@@ -63,7 +63,7 @@ export function getIssuerLogo (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.badge.issuer.image;
+    return certificateDefinition.issuer.image;
   }
 
   return '';
@@ -73,7 +73,7 @@ export function getDisplayHTML (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return sanitize(certificateDefinition.displayHtml);
+    return sanitize(certificateDefinition.certificateJson.displayHtml);
   }
 
   return '';

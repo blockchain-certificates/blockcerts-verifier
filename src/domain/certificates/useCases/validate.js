@@ -6,13 +6,15 @@ export default function validate (definition) {
     const certificateDefinition = new Certificate(definition);
 
     return {
-      certificateDefinition
+      certificateDefinition,
+      isValid: true
     }
   } catch (e) {
     // console.error(e);
     return {
       certificateDefinition: null,
-      errorMessage: 'Not a valid Blockcerts definition.'
+      errorMessage: 'Not a valid Blockcerts definition.',
+      isValid: false
     };
   }
 }
