@@ -1,20 +1,25 @@
 import * as VERIFICATION_STATUS from '../constants/verificationStatus';
 import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
+import { isValidUrl } from '../helpers/validations';
 
 export function getCertificateDefinition (state) {
   return state.certificateDefinition;
 }
 
-export function getCertificateMetaInformation (state) {
-  return state.certificateMetaInformation;
+function getV1IssuedOn (definition) {
+  return definition.documentToVerify.assertion.issuedOn;
+}
+
+function getV2IssuedOn (definition) {
+  return definition.documentToVerify.issuedOn;
 }
 
 export function getIssuedOn (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.issuedOn;
+    return getV2IssuedOn(certificateDefinition) || getV1IssuedOn(certificateDefinition);
   }
 
   return '';
@@ -37,7 +42,7 @@ export function getRecipientName (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.recipientProfile.name;
+    return certificateDefinition.recipientFullName;
   }
 
   return '';
@@ -47,7 +52,7 @@ export function getCertificateTitle (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.badge.name;
+    return certificateDefinition.name;
   }
 
   return '';
@@ -57,7 +62,7 @@ export function getIssuerName (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.badge.issuer.name;
+    return certificateDefinition.issuer.name;
   }
 
   return '';
@@ -67,7 +72,7 @@ export function getIssuerLogo (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.badge.issuer.image;
+    return certificateDefinition.issuer.image;
   }
 
   return '';
@@ -77,17 +82,29 @@ export function getDisplayHTML (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return sanitize(certificateDefinition.displayHtml);
+    return sanitize(certificateDefinition.certificateJson.displayHtml);
   }
 
   return '';
+}
+
+function getV1Link (definition) {
+  return definition.documentToVerify.assertion.id;
+}
+
+function getV2Link (definition) {
+  return definition.id;
 }
 
 export function getRecordLink (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.id;
+    if (isValidUrl(getV2Link(certificateDefinition))) {
+      return getV2Link(certificateDefinition);
+    } else {
+      return getV1Link(certificateDefinition);
+    }
   }
 
   return '';
@@ -103,42 +120,62 @@ export function getDownloadLink (state) {
   return '';
 }
 
+function getV1MetadataJson (definition) {
+  return definition.documentToVerify.assertion.metadataJson;
+}
+
+function getV2MetadataJson (definition) {
+  return definition.documentToVerify.metadataJson;
+}
+
 export function getMetadataJson (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return JSON.parse(certificateDefinition.metadataJson);
+    let metadataJSON = null;
+
+    // not super clean, but will fail if property is undefined, ensuring it does not exist.
+    try {
+      metadataJSON = JSON.parse(getV2MetadataJson(certificateDefinition));
+    } catch (e) {
+      try {
+        metadataJSON = JSON.parse(getV1MetadataJson(certificateDefinition));
+      } catch (e) {
+        return null;
+      }
+    }
+    return metadataJSON;
   }
 
   return null;
 }
 
 export function getTransactionLink (state) {
-  const certificateMetaInformation = getCertificateMetaInformation(state);
+  const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateMetaInformation) {
-    return certificateMetaInformation.transactionLink;
+  if (certificateDefinition) {
+    return certificateDefinition.transactionLink;
   }
 
   return '';
 }
 
 export function getTransactionId (state) {
-  const certificateMetaInformation = getCertificateMetaInformation(state);
+  const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateMetaInformation) {
-    return certificateMetaInformation.transactionId;
+  if (certificateDefinition) {
+    return certificateDefinition.transactionId;
   }
 
   return '';
 }
 
-export function getChain (state, toReadable = true) {
-  const certificateMetaInformation = getCertificateMetaInformation(state);
+export function getChain (state) {
+  const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateMetaInformation) {
-    const { chain } = certificateMetaInformation;
-    return toReadable ? chain.name : chain.code;
+  if (certificateDefinition) {
+    const { chain } = certificateDefinition;
+    return chain.name;
   }
 
   return '';
