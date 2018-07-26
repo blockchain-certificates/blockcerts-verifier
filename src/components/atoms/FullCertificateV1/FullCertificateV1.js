@@ -1,6 +1,5 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.full-certificate-css';
-import '../../atoms/CertificateDetails/index';
 
 export default function FullCertificate ({
   hasCertificateDefinition,
@@ -39,6 +38,5 @@ export default function FullCertificate ({
       </ul>
       <img class='buv-c-full-certificate-img--secondary' src='${certificateSeal}' alt='Certified by ${issuerName}'/>
     </section>
-    <buv-certificate-details></buv-certificate-details>
   `;
 }
