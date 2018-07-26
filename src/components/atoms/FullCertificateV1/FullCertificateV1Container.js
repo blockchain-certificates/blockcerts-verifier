@@ -2,19 +2,25 @@ import connector from '../../../store/connector';
 import FullCertificateV1 from './FullCertificateV1';
 import {
   getCertificateDefinition,
+  getCertificateDescription,
   getCertificateImage,
+  getCertificateSubtitle,
+  getCertificateTitle,
   getIssueDate,
   getIssuedOn,
   getIssuerLogo,
   getIssuerName,
   getRecipientName,
   getTransactionId,
-  getTransactionLink
+  getTransactionLink,
 } from '../../../selectors/certificate';
 
 export const mapStateToProps = (state) => ({
   hasCertificateDefinition: !!getCertificateDefinition(state),
   certificateImage: getCertificateImage(state),
+  certificateTitle: getCertificateTitle(state),
+  certificateSubtitle: getCertificateSubtitle(state),
+  certificateDescription: getCertificateDescription(state),
   recipientName: getRecipientName(state),
   issueDate: getIssueDate(state),
   issuedOn: getIssuedOn(state),

@@ -2,15 +2,18 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.full-certificate-css';
 
 export default function FullCertificate ({
-   hasCertificateDefinition,
-   certificateImage,
-   recipientName,
-   issuedOn,
-   issueDate,
-   issuerName,
-   transactionLink,
-   transactionId
-  }) {
+  hasCertificateDefinition,
+  certificateImage,
+  certificateTitle,
+  certificateSubtitle,
+  certificateDescription,
+  recipientName,
+  issuedOn,
+  issueDate,
+  issuerName,
+  transactionLink,
+  transactionId
+}) {
   if (!hasCertificateDefinition) {
     return null;
   }
@@ -48,12 +51,12 @@ export default function FullCertificate ({
         <img src='${certificateImage}'/>
       </section>
       <section class='headers'>
-        <h1 class='recipient'>{{_recipient}}</h1>
-        <h2 class='title'>{{_title}}</h2>
-        <h3 class='subtitle'>{{_subtitle}}</h3>
+        <h1 class='recipient'>${recipientName}</h1>
+        <h2 class='title'>${certificateTitle}</h2>
+        <h3 class='subtitle'>${certificateSubtitle}</h3>
       </section>
       <section class='description'>
-        <p>{{_description}}</p>
+        <p>${certificateDescription}</p>
       </section>
       <section class='signatures'>
         <template is='dom-repeat'

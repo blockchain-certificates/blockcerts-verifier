@@ -205,3 +205,23 @@ export function getCertificateImage (state) {
 
   return '';
 }
+
+export function getCertificateSubtitle (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.subtitle;
+  }
+
+  return '';
+}
+
+export function getCertificateDescription (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.description;
+  }
+
+  return '';
+}
