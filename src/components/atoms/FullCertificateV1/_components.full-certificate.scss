@@ -53,6 +53,27 @@
   height: 2px;
 }
 
+.buv-c-full-certificate__title {
+  font-weight: normal;
+  margin: 0;
+}
+
+.buv-c-full-certificate__title--name {
+  color: #000;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.buv-c-full-certificate__title--main {
+  font-size: 21px;
+  margin-bottom: 10px;
+}
+
+.buv-c-full-certificate__title--sub {
+  font-size: 16px;
+  font-style: italic;
+}
+
 .buv-c-full-certificate__description {
   margin: 0 0 40px;
   line-height: 1.5;
@@ -94,17 +115,6 @@
 //  font-size: 18px;
 //}
 //
-//
-///* Headers section */
-//.buv-c-full-certificate .headers::before,
-//.buv-c-full-certificate .headers::after {
-//  content: ' ';
-//  display: block;
-//  background-color: var(--divider-color);
-//  width: 30%;
-//  text-align: center;
-//  margin: var(--section-spacer-distance) auto;
-//}
 //.buv-c-full-certificate .headers h1,
 //.buv-c-full-certificate .headers h2,
 //.buv-c-full-certificate .headers h3 {

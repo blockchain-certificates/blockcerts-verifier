@@ -36,9 +36,9 @@ export default function FullCertificate ({
     <section class='buv-c-full-certificate'>
       <img class='buv-c-full-certificate-img' src='${certificateImage}'/>
       <div class='buv-c-full-certificate__titles'>
-        <h1 class='recipient'>${recipientName}</h1>
-        <h2 class='title'>${certificateTitle}</h2>
-        <h3 class='subtitle'>${certificateSubtitle}</h3>
+        <h1 class='buv-c-full-certificate__title  buv-c-full-certificate__title--name'>${recipientName}</h1>
+        <h2 class='buv-c-full-certificate__title  buv-c-full-certificate__title--main'>${certificateTitle}</h2>
+        <h3 class='buv-c-full-certificate__title  buv-c-full-certificate__title--sub'>${certificateSubtitle}</h3>
       </div>
       <p class='buv-c-full-certificate__description'>${certificateDescription}</p>
       <ul class='buv-c-full-certificate-signatures'>
