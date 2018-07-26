@@ -40,5 +40,5 @@ export default function CertificateDetails ({
     <dl class='buv-c-certificate-details'>
         ${definitionListDetails}
     </dl>
-  `
+  `;
 }
