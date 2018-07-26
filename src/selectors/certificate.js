@@ -194,3 +194,54 @@ export function getStartedVerificationSteps (state) {
 
   return verifiedSteps.filter(step => step.status !== VERIFICATION_STATUS.DEFAULT);
 }
+
+/* V1 SPECIFIC */
+export function getCertificateImage (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.certificateImage;
+  }
+
+  return '';
+}
+
+export function getCertificateSubtitle (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.subtitle;
+  }
+
+  return '';
+}
+
+export function getCertificateDescription (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.description;
+  }
+
+  return '';
+}
+
+export function getCertificateSignatures (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.signatureImage;
+  }
+
+  return '';
+}
+
+export function getCertificateSeal (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.sealImage;
+  }
+
+  return '';
+}

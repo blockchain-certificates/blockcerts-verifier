@@ -1,8 +1,6 @@
 import connector from '../../../store/connector';
-import FullCertificate from './FullCertificate';
+import CertificateDetails from './CertificateDetails';
 import {
-  getCertificateDefinition,
-  getDisplayHTML,
   getIssueDate,
   getIssuedOn,
   getIssuerLogo,
@@ -13,8 +11,6 @@ import {
 } from '../../../selectors/certificate';
 
 export const mapStateToProps = (state) => ({
-  hasCertificateDefinition: !!getCertificateDefinition(state),
-  displayHTML: getDisplayHTML(state),
   recipientName: getRecipientName(state),
   issueDate: getIssueDate(state),
   issuedOn: getIssuedOn(state),
@@ -24,5 +20,5 @@ export const mapStateToProps = (state) => ({
   transactionId: getTransactionId(state)
 });
 
-const FullCertificateContainer = connector(FullCertificate, { mapStateToProps });
-export { FullCertificateContainer };
+const CertificateDetailsContainer = connector(CertificateDetails, { mapStateToProps });
+export { CertificateDetailsContainer };
