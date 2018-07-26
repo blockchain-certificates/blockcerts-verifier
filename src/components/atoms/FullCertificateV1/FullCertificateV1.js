@@ -5,6 +5,8 @@ export default function FullCertificate ({
   hasCertificateDefinition,
   certificateImage,
   certificateTitle,
+  certificateSeal,
+  certificateSignatures,
   certificateSubtitle,
   certificateDescription,
   recipientName,
@@ -44,6 +46,13 @@ export default function FullCertificate ({
     </div>
   `);
 
+  const signatureList = certificateSignatures.map(signature => html`
+    <li>
+        <img src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
+        <span>${signature.jobTitle}</span>
+    </li>
+  `);
+
   return html`
     ${CSS}
     <section class='buv-c-full-certificate'>
@@ -58,18 +67,11 @@ export default function FullCertificate ({
       <section class='description'>
         <p>${certificateDescription}</p>
       </section>
-      <section class='signatures'>
-        <template is='dom-repeat'
-                  as='signature'
-                  items=''{{_signatures}}'>
-          <section class='signature'>
-            <img src={{signature.image}}/>
-            <span>{{signature.jobTitle}}</span>
-          </section>
-        </template>
-      </section>
+      <ul class='signatures'>
+        ${signatureList}
+      </ul>
     <section class='seal'>
-      <img src={{_sealImage}}/>
+      <img src='${certificateSeal}'/>
     </section>
     </section>
     <dl class='buv-c-full-certificate-details'>

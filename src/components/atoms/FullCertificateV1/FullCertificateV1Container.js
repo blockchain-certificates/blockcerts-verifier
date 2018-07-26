@@ -3,7 +3,8 @@ import FullCertificateV1 from './FullCertificateV1';
 import {
   getCertificateDefinition,
   getCertificateDescription,
-  getCertificateImage,
+  getCertificateImage, getCertificateSeal,
+  getCertificateSignatures,
   getCertificateSubtitle,
   getCertificateTitle,
   getIssueDate,
@@ -12,7 +13,7 @@ import {
   getIssuerName,
   getRecipientName,
   getTransactionId,
-  getTransactionLink,
+  getTransactionLink
 } from '../../../selectors/certificate';
 
 export const mapStateToProps = (state) => ({
@@ -21,6 +22,8 @@ export const mapStateToProps = (state) => ({
   certificateTitle: getCertificateTitle(state),
   certificateSubtitle: getCertificateSubtitle(state),
   certificateDescription: getCertificateDescription(state),
+  certificateSeal: getCertificateSeal(state),
+  certificateSignatures: getCertificateSignatures(state),
   recipientName: getRecipientName(state),
   issueDate: getIssueDate(state),
   issuedOn: getIssuedOn(state),
