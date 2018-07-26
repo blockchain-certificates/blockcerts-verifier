@@ -171,12 +171,12 @@ export function getTransactionId (state) {
   return '';
 }
 
-export function getChain (state, toReadable = true) {
+export function getChain (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
     const { chain } = certificateDefinition;
-    return toReadable ? chain.name : chain.code;
+    return chain.name;
   }
 
   return '';
