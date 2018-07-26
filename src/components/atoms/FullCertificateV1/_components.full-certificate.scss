@@ -35,7 +35,36 @@
   }
 }
 
+.buv-c-full-certificate-signatures {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.buv-c-full-certificate-signatures__signature {
+  margin-right: 30px;
+}
+
+.buv-c-full-certificate-signatures__signature:last-child {
+  margin: 0;
+}
+
+.buv-c-full-certificate-signatures__img {
+  max-width: 150px;
+  margin-bottom: 10px;
+}
+
 // TODO: should we implement?
+//
+//--divider-color: #edf1f4;
+//--max-top-image-dimension: 125px;
+//--max-bottom-image-dimension: 150px;
+//--section-spacer-distance: 20px;
+//--max-width-span-dimension: 250px;
+
 //.buv-c-full-certificate .loading {
 //  font-family: sans-serif;
 //  font-weight: 200;
@@ -89,25 +118,6 @@
 //}
 //
 ///* Signatures section*/
-//.buv-c-full-certificate .signatures {
-//  margin-top: var(--section-spacer-distance);
-//  display: inline-block;
-//  width: 100%;
-//}
-//.buv-c-full-certificate .signatures .signature {
-//  width: 100%;
-//  float: left;
-//  margin-top: calc(var(--section-spacer-distance) / 2);
-//  margin-bottom: calc(var(--section-spacer-distance) * 1.5);
-//  padding-left: calc(var(--section-spacer-distance) / 2);
-//  padding-right: calc(var(--section-spacer-distance) / 2);
-//}
-//.buv-c-full-certificate .signatures .signature.size50 {
-//  width: 50%;
-//}
-//.buv-c-full-certificate .signatures .signature.size33 {
-//  width: 33%;
-//}
 //.buv-c-full-certificate .signatures .signature img,
 //.buv-c-full-certificate .signatures .signature span {
 //  max-width: var(--max-bottom-image-dimension);
