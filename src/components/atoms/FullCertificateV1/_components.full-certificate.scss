@@ -42,6 +42,17 @@
   max-height: 125px;
 }
 
+.buv-c-full-certificate__titles::before,
+.buv-c-full-certificate__titles::after {
+  content: ' ';
+  display: block;
+  background-color: #edf1f4;
+  width: 30%;
+  text-align: center;
+  margin: 20px auto;
+  height: 2px;
+}
+
 .buv-c-full-certificate__description {
   margin: 0 0 40px;
   line-height: 1.5;
@@ -83,11 +94,6 @@
 //  font-size: 18px;
 //}
 //
-///* Image at the top of the document. */
-//.buv-c-full-certificate .certificate-image img {
-//  max-width: var(--max-top-image-dimension);
-//  max-height: var(--max-top-image-dimension);
-//}
 //
 ///* Headers section */
 //.buv-c-full-certificate .headers::before,

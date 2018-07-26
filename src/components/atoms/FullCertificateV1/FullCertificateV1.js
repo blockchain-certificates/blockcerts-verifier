@@ -35,11 +35,11 @@ export default function FullCertificate ({
     ${CSS}
     <section class='buv-c-full-certificate'>
       <img class='buv-c-full-certificate-img' src='${certificateImage}'/>
-      <section class='headers'>
+      <div class='buv-c-full-certificate__titles'>
         <h1 class='recipient'>${recipientName}</h1>
         <h2 class='title'>${certificateTitle}</h2>
         <h3 class='subtitle'>${certificateSubtitle}</h3>
-      </section>
+      </div>
       <p class='buv-c-full-certificate__description'>${certificateDescription}</p>
       <ul class='buv-c-full-certificate-signatures'>
         ${signatureList}
