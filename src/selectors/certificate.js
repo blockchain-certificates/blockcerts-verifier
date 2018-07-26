@@ -6,11 +6,19 @@ export function getCertificateDefinition (state) {
   return state.certificateDefinition;
 }
 
+function getV1IssuedOn (definition) {
+  return definition.documentToVerify.assertion.issuedOn;
+}
+
+function getV2IssuedOn (definition) {
+  return definition.documentToVerify.issuedOn;
+}
+
 export function getIssuedOn (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.issuedOn;
+    return getV2IssuedOn(certificateDefinition) || getV1IssuedOn(certificateDefinition);
   }
 
   return '';
