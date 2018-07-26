@@ -7,7 +7,7 @@ export default function parse (definition) {
 
     return {
       certificateDefinition
-    }
+    };
   } catch (e) {
     // console.error(e);
     return {
