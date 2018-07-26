@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.full-certificate-css';
-import '../CertificateDetails';
+import '../../atoms/CertificateDetails/index';
 
 export default function FullCertificate ({
   hasCertificateDefinition,

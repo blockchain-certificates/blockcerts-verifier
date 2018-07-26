@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.full-certificate-css';
-import '../CertificateDetails';
+import '../../atoms/CertificateDetails/index';
 
 export default function FullCertificate ({
   hasCertificateDefinition,
