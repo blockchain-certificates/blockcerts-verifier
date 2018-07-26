@@ -1,6 +1,4 @@
 import domain from '../../../../../src/domain';
-// TEMP fix to silence errors
-// TODO: use assertion and not fixture
 import validCertificate from '../../../../fixtures/valid-certificate-example';
 
 const INVALID_URL = 'invalid url';
