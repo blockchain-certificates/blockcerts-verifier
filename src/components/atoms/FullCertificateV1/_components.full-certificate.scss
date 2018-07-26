@@ -35,6 +35,18 @@
   }
 }
 
+// specificity war with style for images coming from displayHtml
+// since we can't really control the latter, augment specificity here
+.buv-c-full-certificate .buv-c-full-certificate-img {
+  max-width: 125px;
+  max-height: 125px;
+}
+
+.buv-c-full-certificate__description {
+  margin: 0 0 40px;
+  line-height: 1.5;
+}
+
 .buv-c-full-certificate-signatures {
   list-style-type: none;
   display: flex;
@@ -109,25 +121,6 @@
 //
 //.buv-c-full-certificate h1.recipient {
 //  color: #000;
-//}
-//
-///* Description section */
-//.buv-c-full-certificate .description p {
-//  margin-top: calc(2 * var(--section-spacer-distance));
-//  line-height: 1.5;
-//}
-//
-///* Signatures section*/
-//.buv-c-full-certificate .signatures .signature img,
-//.buv-c-full-certificate .signatures .signature span {
-//  max-width: var(--max-bottom-image-dimension);
-//  display: block;
-//  margin: 0 auto;
-//}
-//.buv-c-full-certificate .signatures .signature span {
-//  margin-top: calc(-1 * var(--section-spacer-distance) / 2);
-//  max-width: var(--max-width-span-dimension);
-//  font-size: 13px;
 //}
 //
 ///* Image at the bottom of the document. */
