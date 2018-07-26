@@ -15,7 +15,7 @@ export default function VerificationStep ({ name, code, status, errorMessage }, 
     innerHTML = html`<dt class$='${parentStepClasses}'>${name}</dt>`;
   } else {
     innerHTML = html`<dd class='buv-c-verification-step  buv-c-verification-substep  buv-o-small-text'>
-      ${name}: ${status}
+      ${name}
       ${ErrorMessage(errorMessage)}
     </dd>`;
   }
