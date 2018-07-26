@@ -93,7 +93,7 @@ function getV1Link (definition) {
 }
 
 function getV2Link (definition) {
-  return definition.id
+  return definition.id;
 }
 
 export function getRecordLink (state) {
@@ -127,7 +127,6 @@ function getV1MetadataJson (definition) {
 function getV2MetadataJson (definition) {
   return definition.documentToVerify.metadataJson;
 }
-
 
 export function getMetadataJson (state) {
   const certificateDefinition = getCertificateDefinition(state);
