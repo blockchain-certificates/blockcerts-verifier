@@ -1,17 +1,16 @@
 import { html } from '@polymer/lit-element';
-import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.full-certificate-css';
 
 export default function FullCertificate ({
-  hasCertificateDefinition,
-  displayHTML,
-  recipientName,
-  issuedOn,
-  issueDate,
-  issuerName,
-  transactionLink,
-  transactionId
-}) {
+   hasCertificateDefinition,
+   certificateImage,
+   recipientName,
+   issuedOn,
+   issueDate,
+   issuerName,
+   transactionLink,
+   transactionId
+  }) {
   if (!hasCertificateDefinition) {
     return null;
   }
@@ -44,7 +43,32 @@ export default function FullCertificate ({
 
   return html`
     ${CSS}
-    <section class='buv-c-full-certificate'>${unsafeHTML(displayHTML)}</section>
+    <section class='buv-c-full-certificate'>
+      <section class='certificate-image'>
+        <img src='${certificateImage}'/>
+      </section>
+      <section class='headers'>
+        <h1 class='recipient'>{{_recipient}}</h1>
+        <h2 class='title'>{{_title}}</h2>
+        <h3 class='subtitle'>{{_subtitle}}</h3>
+      </section>
+      <section class='description'>
+        <p>{{_description}}</p>
+      </section>
+      <section class='signatures'>
+        <template is='dom-repeat'
+                  as='signature'
+                  items=''{{_signatures}}'>
+          <section class='signature'>
+            <img src={{signature.image}}/>
+            <span>{{signature.jobTitle}}</span>
+          </section>
+        </template>
+      </section>
+    <section class='seal'>
+      <img src={{_sealImage}}/>
+    </section>
+    </section>
     <dl class='buv-c-full-certificate-details'>
         ${definitionListDetails}
     </dl>
