@@ -10,7 +10,8 @@ export default function FullCertificate ({
   certificateSignatures,
   certificateSubtitle,
   certificateDescription,
-  recipientName
+  recipientName,
+  issuerName
 }) {
   if (!hasCertificateDefinition) {
     return null;
@@ -21,20 +22,12 @@ export default function FullCertificate ({
         <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
         <span class='buv-o-small-text'>${signature.jobTitle}</span>
     </li>
-    <li class='buv-c-full-certificate-signatures__signature'>
-        <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
-        <span class='buv-o-small-text'>${signature.jobTitle}</span>
-    </li>
-    <li class='buv-c-full-certificate-signatures__signature'>
-        <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
-        <span class='buv-o-small-text'>${signature.jobTitle}</span>
-    </li>
   `);
 
   return html`
     ${CSS}
     <section class='buv-c-full-certificate'>
-      <img class='buv-c-full-certificate-img' src='${certificateImage}'/>
+      <img class='buv-c-full-certificate-img' src='${certificateImage}' alt='${certificateTitle}'/>
       <div class='buv-c-full-certificate__titles'>
         <h1 class='buv-c-full-certificate__title  buv-c-full-certificate__title--name'>${recipientName}</h1>
         <h2 class='buv-c-full-certificate__title  buv-c-full-certificate__title--main'>${certificateTitle}</h2>
@@ -44,7 +37,7 @@ export default function FullCertificate ({
       <ul class='buv-c-full-certificate-signatures'>
         ${signatureList}
       </ul>
-      <img class='buv-c-full-certificate-img--secondary' src='${certificateSeal}'/>
+      <img class='buv-c-full-certificate-img--secondary' src='${certificateSeal}' alt='Certified by ${issuerName}'/>
     </section>
     <buv-certificate-details></buv-certificate-details>
   `;
