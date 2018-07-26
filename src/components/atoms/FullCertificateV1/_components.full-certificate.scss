@@ -96,54 +96,7 @@
   margin: 0;
 }
 
-.buv-c-full-certificate-signatures__img {
+.buv-c-full-certificate-img--secondary {
   max-width: 150px;
-  margin-bottom: 10px;
+  max-height: 150px;
 }
-
-// TODO: should we implement?
-//
-//--divider-color: #edf1f4;
-//--max-top-image-dimension: 125px;
-//--max-bottom-image-dimension: 150px;
-//--section-spacer-distance: 20px;
-//--max-width-span-dimension: 250px;
-
-//.buv-c-full-certificate .loading {
-//  font-family: sans-serif;
-//  font-weight: 200;
-//  font-size: 18px;
-//}
-//
-//.buv-c-full-certificate .headers h1,
-//.buv-c-full-certificate .headers h2,
-//.buv-c-full-certificate .headers h3 {
-//  font-weight: normal;
-//  margin-top: 0;
-//  margin-bottom: 0;
-//}
-//.buv-c-full-certificate .headers h1 {
-//  font-size: 30px;
-//}
-//.buv-c-full-certificate .headers h2 {
-//  font-size: 21px;
-//  margin-top: calc(var(--section-spacer-distance) / 2);
-//}
-//.buv-c-full-certificate .headers h3 {
-//  font-size: 16px;
-//  font-style: italic;
-//  margin-top: calc(var(--section-spacer-distance) / 2);
-//}
-//
-//.buv-c-full-certificate h1.recipient {
-//  color: #000;
-//}
-//
-///* Image at the bottom of the document. */
-//.buv-c-full-certificate .seal {
-//  margin-top: var(--section-spacer-distance);
-//}
-//.buv-c-full-certificate .seal img {
-//  max-width: var(--max-bottom-image-dimension);
-//  max-height: var(--max-bottom-image-dimension);
-//}

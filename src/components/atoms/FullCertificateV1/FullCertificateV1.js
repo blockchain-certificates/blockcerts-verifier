@@ -18,15 +18,15 @@ export default function FullCertificate ({
 
   const signatureList = certificateSignatures.map(signature => html`
     <li class='buv-c-full-certificate-signatures__signature'>
-        <img class='buv-c-full-certificate-signatures__img' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
+        <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
         <span class='buv-o-small-text'>${signature.jobTitle}</span>
     </li>
     <li class='buv-c-full-certificate-signatures__signature'>
-        <img class='buv-c-full-certificate-signatures__img' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
+        <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
         <span class='buv-o-small-text'>${signature.jobTitle}</span>
     </li>
     <li class='buv-c-full-certificate-signatures__signature'>
-        <img class='buv-c-full-certificate-signatures__img' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
+        <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
         <span class='buv-o-small-text'>${signature.jobTitle}</span>
     </li>
   `);
@@ -44,9 +44,7 @@ export default function FullCertificate ({
       <ul class='buv-c-full-certificate-signatures'>
         ${signatureList}
       </ul>
-    <section class='seal'>
-      <img src='${certificateSeal}'/>
-    </section>
+      <img class='buv-c-full-certificate-img--secondary' src='${certificateSeal}'/>
     </section>
     <buv-certificate-details></buv-certificate-details>
   `;
