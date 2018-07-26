@@ -1,6 +1,7 @@
 import * as VERIFICATION_STATUS from '../constants/verificationStatus';
 import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
+import { isValidUrl } from '../helpers/validations';
 
 export function getCertificateDefinition (state) {
   return state.certificateDefinition;
@@ -87,11 +88,23 @@ export function getDisplayHTML (state) {
   return '';
 }
 
+function getV1Link (definition) {
+  return definition.documentToVerify.assertion.id;
+}
+
+function getV2Link (definition) {
+  return definition.id
+}
+
 export function getRecordLink (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.id;
+    if (isValidUrl(getV2Link(certificateDefinition))) {
+      return getV2Link(certificateDefinition);
+    } else {
+      return getV1Link(certificateDefinition);
+    }
   }
 
   return '';
@@ -107,11 +120,32 @@ export function getDownloadLink (state) {
   return '';
 }
 
+function getV1MetadataJson (definition) {
+  return definition.documentToVerify.assertion.metadataJson;
+}
+
+function getV2MetadataJson (definition) {
+  return definition.documentToVerify.metadataJson;
+}
+
+
 export function getMetadataJson (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return JSON.parse(certificateDefinition.metadataJson);
+    let metadataJSON = null;
+
+    // not super clean, but will fail if property is undefined, ensuring it does not exist.
+    try {
+      metadataJSON = JSON.parse(getV2MetadataJson(certificateDefinition));
+    } catch (e) {
+      try {
+        metadataJSON = JSON.parse(getV1MetadataJson(certificateDefinition));
+      } catch (e) {
+        return null;
+      }
+    }
+    return metadataJSON;
   }
 
   return null;
