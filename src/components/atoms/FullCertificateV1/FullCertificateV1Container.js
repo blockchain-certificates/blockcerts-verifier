@@ -3,17 +3,12 @@ import FullCertificateV1 from './FullCertificateV1';
 import {
   getCertificateDefinition,
   getCertificateDescription,
-  getCertificateImage, getCertificateSeal,
+  getCertificateImage,
+  getCertificateSeal,
   getCertificateSignatures,
   getCertificateSubtitle,
   getCertificateTitle,
-  getIssueDate,
-  getIssuedOn,
-  getIssuerLogo,
-  getIssuerName,
-  getRecipientName,
-  getTransactionId,
-  getTransactionLink
+  getRecipientName
 } from '../../../selectors/certificate';
 
 export const mapStateToProps = (state) => ({
@@ -24,13 +19,7 @@ export const mapStateToProps = (state) => ({
   certificateDescription: getCertificateDescription(state),
   certificateSeal: getCertificateSeal(state),
   certificateSignatures: getCertificateSignatures(state),
-  recipientName: getRecipientName(state),
-  issueDate: getIssueDate(state),
-  issuedOn: getIssuedOn(state),
-  issuerName: getIssuerName(state),
-  issuerLogo: getIssuerLogo(state),
-  transactionLink: getTransactionLink(state),
-  transactionId: getTransactionId(state)
+  recipientName: getRecipientName(state)
 });
 
 const FullCertificateV1Container = connector(FullCertificateV1, { mapStateToProps });

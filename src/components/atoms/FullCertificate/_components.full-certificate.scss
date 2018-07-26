@@ -1,4 +1,3 @@
-@import '../../../shared-styles/settings.variables';
 @import '../../../shared-styles/objects.text';
 
 .buv-c-full-certificate {
@@ -34,35 +33,6 @@
     padding: calc(var(--section-spacer-distance) * 2) calc(var(--section-spacer-distance) * 4);
     font-size: 16px;
   }
-}
-
-.buv-c-full-certificate-details {
-  display: flex;
-  justify-content: space-between;
-}
-
-.buv-c-full-certificate-details__group {
-  box-sizing: border-box;
-  padding: 10px;
-  max-width: 25%;
-  color: rgba(110, 126, 142, 1);
-}
-
-.buv-c-full-certificate-details__title {
-  font-weight: 100;
-  margin-bottom: 5px;
-}
-
-.buv-c-full-certificate-details__value {
-  margin: 0;
-}
-
-.buv-c-full-certificate-details__link {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: $successColor;
 }
 
 // TODO: should we implement?
