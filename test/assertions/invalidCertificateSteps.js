@@ -7,21 +7,18 @@ export default [{
     'code': 'getTransactionId',
     'label': 'Getting transaction ID',
     'parentStep': 'formatValidation',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'computeLocalHash',
     'label': 'Computing local hash',
     'parentStep': 'formatValidation',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'fetchRemoteHash',
     'errorMessage': 'Could not confirm the transaction',
     'label': 'Fetching remote hash',
     'parentStep': 'formatValidation',
-    'status': 'failure',
-    'subSteps': []
+    'status': 'failure'
   }, {
     'code': 'parseIssuerKeys',
     'label': 'Parse issuer keys',

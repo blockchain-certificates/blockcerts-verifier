@@ -7,26 +7,22 @@ export default [{
     'code': 'getTransactionId',
     'label': 'Getting transaction ID',
     'parentStep': 'formatValidation',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'computeLocalHash',
     'label': 'Computing local hash',
     'parentStep': 'formatValidation',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'fetchRemoteHash',
     'label': 'Fetching remote hash',
     'parentStep': 'formatValidation',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'parseIssuerKeys',
     'label': 'Parsing issuer keys',
     'parentStep': 'formatValidation',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }]
 }, {
   'code': 'hashComparison',
@@ -37,20 +33,17 @@ export default [{
     'code': 'compareHashes',
     'label': 'Comparing hashes',
     'parentStep': 'hashComparison',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'checkMerkleRoot',
     'label': 'Checking Merkle Root',
     'parentStep': 'hashComparison',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'checkReceipt',
     'label': 'Checking Receipt',
     'parentStep': 'hashComparison',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }]
 }, {
   'code': 'statusCheck',
@@ -61,19 +54,16 @@ export default [{
     'code': 'checkRevokedStatus',
     'label': 'Checking Revoked Status',
     'parentStep': 'statusCheck',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'checkAuthenticity',
     'label': 'Checking Authenticity',
     'parentStep': 'statusCheck',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }, {
     'code': 'checkExpiresDate',
     'label': 'Checking Expires Date',
     'parentStep': 'statusCheck',
-    'status': 'success',
-    'subSteps': []
+    'status': 'success'
   }]
 }]

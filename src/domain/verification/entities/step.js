@@ -6,7 +6,6 @@ export default class Step {
     this.label = label;
     this.code = code;
     this.status = status || VERIFICATION_STATUS.DEFAULT;
-    this.subSteps = [];
     this.setErrorMessage(errorMessage);
     this.findParentStep();
   }
