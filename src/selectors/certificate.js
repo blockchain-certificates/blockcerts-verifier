@@ -8,11 +8,11 @@ export function getCertificateDefinition (state) {
 }
 
 function getV1IssuedOn (definition) {
-  return definition.documentToVerify.assertion.issuedOn;
+  return definition.certificateJson.document.assertion.issuedOn;
 }
 
 function getV2IssuedOn (definition) {
-  return definition.documentToVerify.issuedOn;
+  return definition.certificateJson.issuedOn;
 }
 
 export function getIssuedOn (state) {
@@ -89,7 +89,7 @@ export function getDisplayHTML (state) {
 }
 
 function getV1Link (definition) {
-  return definition.documentToVerify.assertion.id;
+  return definition.certificateJson.assertion.id;
 }
 
 function getV2Link (definition) {
@@ -121,11 +121,11 @@ export function getDownloadLink (state) {
 }
 
 function getV1MetadataJson (definition) {
-  return definition.documentToVerify.assertion.metadataJson;
+  return definition.certificateJson.document.assertion.metadataJson;
 }
 
 function getV2MetadataJson (definition) {
-  return definition.documentToVerify.metadataJson;
+  return definition.certificateJson.metadataJson;
 }
 
 export function getMetadataJson (state) {
