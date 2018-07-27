@@ -5,20 +5,20 @@ export default [{
   'status': 'failure',
   'subSteps': [{
     'code': 'getTransactionId',
-    'name': 'Getting transaction ID',
+    'label': 'Getting transaction ID',
     'parentStep': 'formatValidation',
     'status': 'success',
     'subSteps': []
   }, {
     'code': 'computeLocalHash',
-    'name': 'Computing local hash',
+    'label': 'Computing local hash',
     'parentStep': 'formatValidation',
     'status': 'success',
     'subSteps': []
   }, {
     'code': 'fetchRemoteHash',
     'errorMessage': 'Could not confirm the transaction',
-    'name': 'Fetching remote hash',
+    'label': 'Fetching remote hash',
     'parentStep': 'formatValidation',
     'status': 'failure',
     'subSteps': []

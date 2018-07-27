@@ -1,15 +1,16 @@
 import domain from '../../../../../src/domain';
+import * as VERIFICATION_STATUS from '../../../../../src/constants/verificationStatus';
 
 describe('domain verification create use case test suite', function () {
   describe('given it is called with a step definition', function () {
-    const name = 'Jean Michel';
+    const label = 'Jean Michel';
     const code = 'jeanmimi';
     let definition;
     let sut;
 
     beforeEach(function () {
       definition = {
-        name,
+        label,
         code
       };
 
@@ -21,16 +22,16 @@ describe('domain verification create use case test suite', function () {
       sut = null;
     });
 
-    it('should should set the code of the step', function () {
-      expect(sut.name).toBe(name);
+    it('should set the label of the step', function () {
+      expect(sut.label).toBe(label);
     });
 
-    it('should should set the default status of the step', function () {
+    it('should set the code of the step', function () {
       expect(sut.code).toBe(code);
     });
 
-    it('should should set the subSteps property of the step', function () {
-      expect(sut.subSteps).toEqual([]);
+    it('should set the default status of the step', function () {
+      expect(sut.status).toBe(VERIFICATION_STATUS.DEFAULT);
     });
 
     describe('given the step does not have a parent', function () {
@@ -44,7 +45,7 @@ describe('domain verification create use case test suite', function () {
     it('should set the errorMessage property', function () {
       const errorMessage = 'This is an error message';
       const definition = {
-        name: 'Jean Michel',
+        label: 'Jean Michel',
         code: 'jeanmimi',
         errorMessage
       };
@@ -57,10 +58,10 @@ describe('domain verification create use case test suite', function () {
 
   describe('given the step has a parent', function () {
     it('should set the parentStep property', function () {
-      const name = 'Computing local hash';
+      const label = 'Computing local hash';
       const code = 'computeLocalHash';
       const definition = {
-        name,
+        label,
         code
       };
 

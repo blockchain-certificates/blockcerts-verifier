@@ -3,14 +3,14 @@ import * as VERIFICATION_STATUS from '../../../../../src/constants/verificationS
 
 describe('verification Step entity test suite', function () {
   describe('given it is instantiated with valid data', function () {
-    const name = 'Jean Michel';
+    const label = 'Jean Michel';
     const code = 'jeanmimi';
     let definition;
     let sut;
 
     beforeEach(function () {
       definition = {
-        name,
+        label,
         code
       };
 
@@ -22,8 +22,8 @@ describe('verification Step entity test suite', function () {
       sut = null;
     });
 
-    it('should set the name of the entity object', function () {
-      expect(sut.name).toBe(name);
+    it('should set the label of the entity object', function () {
+      expect(sut.label).toBe(label);
     });
 
     it('should set the code of the entity object', function () {
@@ -45,7 +45,7 @@ describe('verification Step entity test suite', function () {
     it('should set the errorMessage property', function () {
       const errorMessage = 'This is an error message';
       const definition = {
-        name: 'Jean Michel',
+        label: 'Jean Michel',
         code: 'jeanmimi',
         errorMessage
       };
@@ -59,7 +59,7 @@ describe('verification Step entity test suite', function () {
   describe('given it has a parent step', function () {
     it('should retrieve and set the parentStep value', function () {
       const definition = {
-        name: 'Fetching Remote Hash',
+        label: 'Fetching Remote Hash',
         code: 'fetchRemoteHash'
       };
 

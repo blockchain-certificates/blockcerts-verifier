@@ -2,8 +2,8 @@ import { substepMap } from '../../../models/verificationSteps';
 import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 export default class Step {
-  constructor ({ name, code, status, errorMessage }) {
-    this.name = code === 'final' ? 'Verified' : name;
+  constructor ({ label, code, status, errorMessage }) {
+    this.label = label;
     this.code = code;
     this.status = status || VERIFICATION_STATUS.DEFAULT;
     this.subSteps = [];

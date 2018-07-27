@@ -22,16 +22,7 @@ export default function verifyCertificate () {
     const certificateDefinition = getCertificateDefinition(state);
 
     function stepVerifyCb (stepDefinition) {
-      const definition = {
-        // TODO: refactor app to map to these names without having to do this translation here
-        // IE: rename `name` to `label` across the app
-        code: stepDefinition.code,
-        name: stepDefinition.label,
-        status: stepDefinition.status,
-        errorMessage: stepDefinition.errorMessage
-      };
-
-      const step = domain.verification.createStep(definition);
+      const step = domain.verification.createStep(stepDefinition);
 
       dispatch(stepVerified(step));
     }
