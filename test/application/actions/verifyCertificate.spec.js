@@ -7,7 +7,7 @@ import validCertificateFixture from '../../fixtures/valid-certificate-example';
 import invalidCertificateFixture from '../../fixtures/invalid-certificate-example';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
-import initialVerifiedSteps from '../../assertions/initialVerifiedSteps';
+import validCertificate from '../../assertions/validCertificate';
 
 describe('verifyCertificate action creator test suite', function () {
   describe('given the verification of certificates is not disabled', function () {
@@ -69,7 +69,6 @@ describe('verifyCertificate action creator test suite', function () {
   describe('given the verification of certificates is disabled', function () {
     it('should not verify certificates', async function () {
       const apiConfiguration = {
-        disableAutoVerify: true,
         disableVerify: true
       };
       const initialState = getInitialState(apiConfiguration);
@@ -80,7 +79,7 @@ describe('verifyCertificate action creator test suite', function () {
 
       const state = store.getState();
 
-      expect(getVerifiedSteps(state)).toEqual(initialVerifiedSteps);
+      expect(getVerifiedSteps(state)).toEqual(validCertificate.verificationSteps);
     });
   });
 });

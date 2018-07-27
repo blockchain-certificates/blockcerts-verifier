@@ -15,11 +15,13 @@ export default function stepVerified (state, action) {
   const { parentStep } = action.payload;
   const storedParentState = getParentStep(state, parentStep);
 
-  if (parentStep && storedParentState) {
-    saveSubstepIn(storedParentState, action.payload);
-  } else {
-    getVerifiedSteps(state).push(action.payload);
-  }
+  console.log(action.payload);
+
+  // if (parentStep && storedParentState) {
+  //   saveSubstepIn(storedParentState, action.payload);
+  // } else {
+  //   getVerifiedSteps(state).push(action.payload);
+  // }
 
   return state;
 }

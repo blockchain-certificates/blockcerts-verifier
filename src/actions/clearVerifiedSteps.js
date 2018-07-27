@@ -1,13 +1,20 @@
 import * as ACTIONS from '../constants/actionTypes';
-import { initializeVerifiedSteps } from '../store/getInitialState';
+import { getCertificateDefinition } from '../selectors/certificate';
 
 export default function () {
-  const resetSteps = initializeVerifiedSteps();
+  return function (dispatch, getState) {
+    const certificateDefinition = getCertificateDefinition(getState());
+    let resetSteps = [];
 
-  return {
-    type: ACTIONS.CLEAR_VERIFIED_STEPS,
-    payload: {
-      resetSteps
+    if (certificateDefinition) {
+      resetSteps = JSON.parse(JSON.stringify(certificateDefinition.verificationSteps));
     }
+
+    dispatch({
+      type: ACTIONS.CLEAR_VERIFIED_STEPS,
+      payload: {
+        resetSteps
+      }
+    });
   };
 }
