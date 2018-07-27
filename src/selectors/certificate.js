@@ -89,7 +89,7 @@ export function getDisplayHTML (state) {
 }
 
 function getV1Link (definition) {
-  return definition.certificateJson.assertion.id;
+  return definition.certificateJson.document.assertion.id;
 }
 
 function getV2Link (definition) {
