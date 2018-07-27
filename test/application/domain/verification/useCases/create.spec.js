@@ -29,8 +29,8 @@ describe('domain verification create use case test suite', function () {
       expect(sut.code).toBe(code);
     });
 
-    it('should should set the substeps property of the step', function () {
-      expect(sut.substeps).toEqual([]);
+    it('should should set the subSteps property of the step', function () {
+      expect(sut.subSteps).toEqual([]);
     });
 
     describe('given the step does not have a parent', function () {

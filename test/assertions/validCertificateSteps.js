@@ -3,78 +3,78 @@ export default [
     'code': 'formatValidation',
     'name': 'Format validation',
     'status': 'success',
-    'substeps': [{
+    'subSteps': [{
       'code': 'getTransactionId',
       'name': 'Getting transaction ID',
       'parentStep': 'formatValidation',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }, {
       'code': 'computeLocalHash',
       'name': 'Computing local hash',
       'parentStep': 'formatValidation',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }, {
       'code': 'fetchRemoteHash',
       'name': 'Fetching remote hash',
       'parentStep': 'formatValidation',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }, {
       'code': 'parseIssuerKeys',
       'name': 'Parsing issuer keys',
       'parentStep': 'formatValidation',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }]
   },
   {
     'code': 'hashComparison',
     'name': 'Hash comparison',
     'status': 'success',
-    'substeps': [{
+    'subSteps': [{
       'code': 'compareHashes',
       'name': 'Comparing hashes',
       'parentStep': 'hashComparison',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }, {
       'code': 'checkMerkleRoot',
       'name': 'Checking Merkle Root',
       'parentStep': 'hashComparison',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }, {
       'code': 'checkReceipt',
       'name': 'Checking Receipt',
       'parentStep': 'hashComparison',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }]
   },
   {
     'code': 'statusCheck',
     'name': 'Status check',
     'status': 'success',
-    'substeps': [{
+    'subSteps': [{
       'code': 'checkRevokedStatus',
       'name': 'Checking Revoked Status',
       'parentStep': 'statusCheck',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }, {
       'code': 'checkAuthenticity',
       'name': 'Checking Authenticity',
       'parentStep': 'statusCheck',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }, {
       'code': 'checkExpiresDate',
       'name': 'Checking Expires Date',
       'parentStep': 'statusCheck',
       'status': 'success',
-      'substeps': []
+      'subSteps': []
     }]
   }
 ];

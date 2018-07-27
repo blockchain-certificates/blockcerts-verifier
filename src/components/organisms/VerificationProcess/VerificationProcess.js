@@ -8,7 +8,7 @@ export default function VerificationProcess ({ steps, transactionLink, chain }) 
   const innerHTML = steps
     .map((step, i) => html`
       ${VerificationStep(step, true, i === 0)}
-      ${step.substeps.map(substep => html`${VerificationStep(substep)}`)}
+      ${step.subSteps.map(substep => html`${VerificationStep(substep)}`)}
     `);
 
   // TODO: this should likely not be determined in the view

@@ -24,9 +24,9 @@ describe('updateParentStepStatus action creator test suite', function () {
 
   describe('given the child status is success', function () {
     it('should update the parentStep with the started status', function () {
-      // populate substeps
+      // populate subSteps
       const childStep = { status: VERIFICATION_STATUS.SUCCESS };
-      parent.substeps.push(childStep);
+      parent.subSteps.push(childStep);
 
       store.dispatch(updateParentStepStatus(parentCode));
       const state = store.getState();
@@ -37,12 +37,12 @@ describe('updateParentStepStatus action creator test suite', function () {
 
   describe('given all child status is success', function () {
     it('should update the parentStep with the success status', function () {
-      // populate substeps
+      // populate subSteps
       parent.status = VERIFICATION_STATUS.STARTED;
       const childStep1 = { status: VERIFICATION_STATUS.SUCCESS };
       const childStep2 = { status: VERIFICATION_STATUS.SUCCESS };
-      parent.substeps.push(childStep1);
-      parent.substeps.push(childStep2);
+      parent.subSteps.push(childStep1);
+      parent.subSteps.push(childStep2);
 
       store.dispatch(updateParentStepStatus(parentCode));
       const state = store.getState();
@@ -53,9 +53,9 @@ describe('updateParentStepStatus action creator test suite', function () {
 
   describe('given one child status is failure', function () {
     it('should update the parentStep with the failure status', function () {
-      // populate substeps
+      // populate subSteps
       const childStep = { status: VERIFICATION_STATUS.FAILURE };
-      parent.substeps.push(childStep);
+      parent.subSteps.push(childStep);
 
       store.dispatch(updateParentStepStatus(parentCode));
       const state = store.getState();
