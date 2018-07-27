@@ -23,8 +23,10 @@ export default function verifyCertificate () {
 
     function stepVerifyCb (stepDefinition) {
       const definition = {
-        code: stepDefinition.step,
-        name: stepDefinition.action,
+        // TODO: refactor app to map to these names without having to do this translation here
+        // IE: rename `name` to `label` across the app
+        code: stepDefinition.code,
+        name: stepDefinition.label,
         status: stepDefinition.status,
         errorMessage: stepDefinition.errorMessage
       };
