@@ -1,32 +1,33 @@
 import { configureStore } from '../../../src/store';
 import updateParentStepStatus from '../../../src/actions/updateParentStepStatus';
-import { getParentStep } from '../../../src/selectors/certificate';
+import { getParentStep, getVerifiedSteps } from '../../../src/selectors/certificate';
 import * as VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
-import { mainSteps } from '../../../src/models/verificationSteps';
+import getInitialState from '../../../src/store/getInitialState';
+import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
+import certificateFixture from '../../fixtures/valid-certificate-example';
 
 describe('updateParentStepStatus action creator test suite', function () {
   let store;
-  let parentCode;
-  let parent;
 
   beforeEach(function () {
-    store = configureStore();
-    parentCode = mainSteps[0].code;
-    const initialState = store.getState();
-    parent = getParentStep(initialState, parentCode);
+    const initialState = getInitialState({ disableAutoVerify: true });
+    store = configureStore(initialState);
+    // put some verifiedSteps items in the state
+    store.dispatch(updateCertificateDefinition(certificateFixture));
   });
 
   afterEach(function () {
     store = null;
-    parentCode = null;
-    parent = null;
   });
 
   describe('given the child status is success', function () {
     it('should update the parentStep with the started status', function () {
-      // populate subSteps
-      const childStep = { status: VERIFICATION_STATUS.SUCCESS };
-      parent.subSteps.push(childStep);
+      const preState = store.getState();
+      const parentStep = getVerifiedSteps(preState)[0];
+      const parentCode = parentStep.code;
+
+      // prepare substep
+      parentStep.subSteps[0].status = VERIFICATION_STATUS.SUCCESS;
 
       store.dispatch(updateParentStepStatus(parentCode));
       const state = store.getState();
@@ -37,12 +38,14 @@ describe('updateParentStepStatus action creator test suite', function () {
 
   describe('given all child status is success', function () {
     it('should update the parentStep with the success status', function () {
-      // populate subSteps
-      parent.status = VERIFICATION_STATUS.STARTED;
-      const childStep1 = { status: VERIFICATION_STATUS.SUCCESS };
-      const childStep2 = { status: VERIFICATION_STATUS.SUCCESS };
-      parent.subSteps.push(childStep1);
-      parent.subSteps.push(childStep2);
+      const preState = store.getState();
+      const parentStep = getVerifiedSteps(preState)[0];
+      const parentCode = parentStep.code;
+
+      // assume process has started
+      parentStep.status = VERIFICATION_STATUS.STARTED;
+      // prepare substeps
+      parentStep.subSteps.forEach(substep => substep.status = VERIFICATION_STATUS.SUCCESS);
 
       store.dispatch(updateParentStepStatus(parentCode));
       const state = store.getState();
@@ -53,9 +56,12 @@ describe('updateParentStepStatus action creator test suite', function () {
 
   describe('given one child status is failure', function () {
     it('should update the parentStep with the failure status', function () {
-      // populate subSteps
-      const childStep = { status: VERIFICATION_STATUS.FAILURE };
-      parent.subSteps.push(childStep);
+      const preState = store.getState();
+      const parentStep = getVerifiedSteps(preState)[0];
+      const parentCode = parentStep.code;
+
+      // prepare substep
+      parentStep.subSteps[0].status = VERIFICATION_STATUS.FAILURE;
 
       store.dispatch(updateParentStepStatus(parentCode));
       const state = store.getState();
