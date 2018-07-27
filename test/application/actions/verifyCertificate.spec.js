@@ -5,9 +5,9 @@ import { getVerifiedSteps } from '../../../src/selectors/certificate';
 import getInitialState from '../../../src/store/getInitialState';
 import validCertificateFixture from '../../fixtures/valid-certificate-example';
 import invalidCertificateFixture from '../../fixtures/invalid-certificate-example';
+import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
-import validCertificate from '../../assertions/validCertificate';
 
 describe('verifyCertificate action creator test suite', function () {
   describe('given the verification of certificates is not disabled', function () {
@@ -79,7 +79,7 @@ describe('verifyCertificate action creator test suite', function () {
 
       const state = store.getState();
 
-      expect(getVerifiedSteps(state)).toEqual(validCertificate.verificationSteps);
+      expect(getVerifiedSteps(state)).toEqual(initialValidCertificateStepsAssertions);
     });
   });
 });

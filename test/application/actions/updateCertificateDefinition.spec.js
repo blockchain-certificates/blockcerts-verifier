@@ -10,6 +10,7 @@ import {
 import { getErrorMessage } from '../../../src/selectors/error';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
+import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
 import validCertificateSteps from '../../assertions/validCertificateSteps';
 import validCertificate from '../../assertions/validCertificate';
 
@@ -81,7 +82,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
         await store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
 
-        expect(getVerifiedSteps(state)).toEqual(validCertificate.verificationSteps);
+        expect(getVerifiedSteps(state)).toEqual(initialValidCertificateStepsAssertions);
       });
     });
 
