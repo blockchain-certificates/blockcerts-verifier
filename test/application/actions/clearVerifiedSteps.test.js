@@ -1,10 +1,10 @@
 import clearVerifiedSteps from '../../../src/actions/clearVerifiedSteps';
 import { configureStore } from '../../../src/store';
 import { getVerifiedSteps } from '../../../src/selectors/certificate';
-import certificateFixture from '../../fixtures/valid-certificate-example';
-import certificateAssertion from '../../assertions/validCertificate';
 import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
+import certificateFixture from '../../fixtures/valid-certificate-example';
+import initialValidCertificateSteps from '../../assertions/initialValidCertificateSteps';
 
 describe('clearVerifiedSteps action creator test suite', function () {
   describe('given there is no certificate definition in the state', function () {
@@ -42,7 +42,7 @@ describe('clearVerifiedSteps action creator test suite', function () {
 
       const state = store.getState();
 
-      expect(getVerifiedSteps(state)).toEqual(certificateAssertion.verificationSteps);
+      expect(getVerifiedSteps(state)).toEqual(initialValidCertificateSteps);
     });
   });
 });

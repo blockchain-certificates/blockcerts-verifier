@@ -1,5 +1,6 @@
 import * as ACTIONS from '../constants/actionTypes';
 import { getCertificateDefinition } from '../selectors/certificate';
+import domain from '../domain';
 
 export default function () {
   return function (dispatch, getState) {
@@ -7,7 +8,7 @@ export default function () {
     let resetSteps = [];
 
     if (certificateDefinition) {
-      resetSteps = JSON.parse(JSON.stringify(certificateDefinition.verificationSteps));
+      resetSteps = domain.certificates.initializeVerificationSteps(certificateDefinition);
     }
 
     dispatch({

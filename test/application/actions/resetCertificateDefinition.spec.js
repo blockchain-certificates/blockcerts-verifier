@@ -1,11 +1,10 @@
 import { configureStore } from '../../../src/store';
 import { getCertificateDefinition, getVerifiedSteps } from '../../../src/selectors/certificate';
 import resetCertificateDefinition from '../../../src/actions/resetCertificateDefinition';
-import validCertificateFixture from '../../fixtures/valid-certificate-example';
-import validCertificateAssertion from '../../assertions/validCertificate';
-
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import getInitialState from '../../../src/store/getInitialState';
+import validCertificateFixture from '../../fixtures/valid-certificate-example';
+import initialValidCertificateSteps from '../../assertions/initialValidCertificateSteps';
 
 describe('resetCertificateDefinition action creator test suite', function () {
   let store;
@@ -25,7 +24,7 @@ describe('resetCertificateDefinition action creator test suite', function () {
     store.dispatch(resetCertificateDefinition());
     const state = store.getState();
 
-    expect(getVerifiedSteps(state)).toEqual(validCertificateAssertion.verificationSteps);
+    expect(getVerifiedSteps(state)).toEqual(initialValidCertificateSteps);
   });
 
   it('should reset the certificate definition to null', function () {

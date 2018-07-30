@@ -29,6 +29,7 @@ export default [{
   'code': 'hashComparison',
   'label': 'Hash comparison',
   'labelPending': 'Comparing hash',
+  'status': 'standby',
   'subSteps': [{
     'code': 'compareHashes',
     'label': 'Compare hashes',
@@ -49,6 +50,7 @@ export default [{
   'code': 'statusCheck',
   'label': 'Status check',
   'labelPending': 'Checking record status',
+  'status': 'standby',
   'subSteps': [{
     'code': 'checkRevokedStatus',
     'label': 'Check Revoked Status',
