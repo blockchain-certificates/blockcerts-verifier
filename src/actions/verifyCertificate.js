@@ -1,4 +1,3 @@
-import domain from '../domain';
 import * as ACTIONS from '../constants/actionTypes';
 import stepVerified from './stepVerified';
 import clearVerifiedSteps from './clearVerifiedSteps';

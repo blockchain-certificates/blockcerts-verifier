@@ -72,7 +72,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
     });
 
     describe('given the disableAutoVerify flag is true', function () {
-      it('should set the verifiedSteps property according to the certificate\'s verificationSteps' , async function () {
+      it('should set the verifiedSteps property according to the certificate\'s verificationSteps', async function () {
         const apiConfiguration = {
           disableAutoVerify: true
         };

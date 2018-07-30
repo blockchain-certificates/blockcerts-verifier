@@ -66,4 +66,4 @@ export default [{
     'parentStep': 'statusCheck',
     'status': 'success'
   }]
-}]
+}];

@@ -65,4 +65,4 @@ export default [{
     'labelPending': 'Checking Expires Date',
     'parentStep': 'statusCheck'
   }]
-}]
+}];

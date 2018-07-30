@@ -5,7 +5,7 @@ function initializeVerifiedSteps (definition) {
   return steps.map(step => ({
     ...step,
     status: VERIFICATION_STATUS.DEFAULT
-  }))
+  }));
 }
 
 export default function updateCertificateDefinition (state, action) {

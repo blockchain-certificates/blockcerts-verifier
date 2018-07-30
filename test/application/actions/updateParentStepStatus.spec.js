@@ -45,7 +45,9 @@ describe('updateParentStepStatus action creator test suite', function () {
       // assume process has started
       parentStep.status = VERIFICATION_STATUS.STARTED;
       // prepare substeps
-      parentStep.subSteps.forEach(substep => substep.status = VERIFICATION_STATUS.SUCCESS);
+      parentStep.subSteps.forEach(substep => {
+        substep.status = VERIFICATION_STATUS.SUCCESS;
+      });
 
       store.dispatch(updateParentStepStatus(parentCode));
       const state = store.getState();
