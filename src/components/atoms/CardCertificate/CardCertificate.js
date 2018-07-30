@@ -18,7 +18,7 @@ export default function CardCertificate ({
 
   const titleClass = [
     'buv-c-card__title',
-    hideRecordLink ? 'buv-c-card__title--no-padding': ''
+    hideRecordLink ? 'buv-c-card__title--no-padding' : ''
   ].join(' ');
 
   return html`
@@ -29,9 +29,9 @@ export default function CardCertificate ({
       <h2 class$='${titleClass}  buv-c-card__recipient'>${recipientName}</h2>
       <span class='buv-c-card__issue-summary  buv-o-small-text'>Issued on <time datetime$='${issuedOn}'>${issueDate}</time> by ${issuerName}</span>
       ${
-        hideRecordLink ? 
-          '' :
-          html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>`
-      }
+  hideRecordLink
+    ? ''
+    : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>`
+}
     </section>`;
 }

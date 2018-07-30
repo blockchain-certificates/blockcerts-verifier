@@ -30,13 +30,13 @@ class Modal extends LitElement {
       ${CSS}
       <div class$=${classes}>
         ${CloseButton({
-      className: 'buv-c-modal__close-button',
-      onClick: this.toggleOpen
-    })}
+    className: 'buv-c-modal__close-button',
+    onClick: this.toggleOpen
+  })}
         <slot></slot>
       </div>
     `;
   }
 }
 
-export default Modal
+export default Modal;
