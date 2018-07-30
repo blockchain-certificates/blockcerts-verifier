@@ -1,6 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.verification-modal-css';
-import '../../atoms/Modal';
+import '../../molecules/Modal';
 import '../VerificationProcess';
 
 class VerificationModal extends LitElement {
