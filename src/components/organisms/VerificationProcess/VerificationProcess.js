@@ -8,9 +8,9 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
     .map((step, i) => html`
       ${VerificationStep(step, true, i === 0)}
       ${step.subSteps
-        .filter(substep => !!substep.status)
-        .map(substep => html`${VerificationStep(substep)}`)
-      }
+    .filter(substep => !!substep.status)
+    .map(substep => html`${VerificationStep(substep)}`)
+}
     `);
 
   // TODO: better handle this dynamic class (cf npm classnames)
