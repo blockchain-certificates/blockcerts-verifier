@@ -22,7 +22,8 @@ export default function verifyCertificate () {
     const certificateDefinition = getCertificateDefinition(state);
 
     function stepVerifyCb (stepDefinition) {
-      const step = domain.verification.createStep(stepDefinition);
+      const parentStepCode = state.verifiedSteps.find(step => step.subSteps.some(substep => substep.code === stepDefinition.code)).code;
+      const step = domain.verification.createStep({ ...stepDefinition, parentStep: parentStepCode });
 
       dispatch(stepVerified(step));
     }

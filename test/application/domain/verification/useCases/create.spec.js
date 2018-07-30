@@ -62,7 +62,8 @@ describe('domain verification create use case test suite', function () {
       const code = 'computeLocalHash';
       const definition = {
         label,
-        code
+        code,
+        parentStep: 'formatValidation'
       };
 
       const sut = domain.verification.createStep(definition);
