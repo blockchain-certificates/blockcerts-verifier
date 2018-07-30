@@ -1,25 +1,16 @@
 import * as VERIFICATION_STATUS from '../constants/verificationStatus';
 import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
-import { isValidUrl } from '../helpers/validations';
 
 export function getCertificateDefinition (state) {
   return state.certificateDefinition;
-}
-
-function getV1IssuedOn (definition) {
-  return definition.certificateJson.document.assertion.issuedOn;
-}
-
-function getV2IssuedOn (definition) {
-  return definition.certificateJson.issuedOn;
 }
 
 export function getIssuedOn (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return getV2IssuedOn(certificateDefinition) || getV1IssuedOn(certificateDefinition);
+    return certificateDefinition.issuedOn;
   }
 
   return '';
@@ -88,23 +79,11 @@ export function getDisplayHTML (state) {
   return '';
 }
 
-function getV1Link (definition) {
-  return definition.certificateJson.document.assertion.id;
-}
-
-function getV2Link (definition) {
-  return definition.id;
-}
-
 export function getRecordLink (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    if (isValidUrl(getV2Link(certificateDefinition))) {
-      return getV2Link(certificateDefinition);
-    } else {
-      return getV1Link(certificateDefinition);
-    }
+    return certificateDefinition.recordLink;
   }
 
   return '';
@@ -120,31 +99,15 @@ export function getDownloadLink (state) {
   return '';
 }
 
-function getV1MetadataJson (definition) {
-  return definition.certificateJson.document.assertion.metadataJson;
-}
-
-function getV2MetadataJson (definition) {
-  return definition.certificateJson.metadataJson;
-}
-
 export function getMetadataJson (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    let metadataJSON = null;
-
-    // not super clean, but will fail if property is undefined, ensuring it does not exist.
     try {
-      metadataJSON = JSON.parse(getV2MetadataJson(certificateDefinition));
+      return JSON.parse(certificateDefinition.metadataJson);
     } catch (e) {
-      try {
-        metadataJSON = JSON.parse(getV1MetadataJson(certificateDefinition));
-      } catch (e) {
-        return null;
-      }
+      return null;
     }
-    return metadataJSON;
   }
 
   return null;

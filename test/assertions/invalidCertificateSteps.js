@@ -20,6 +20,11 @@ export default [{
     'parentStep': 'formatValidation',
     'status': 'failure'
   }, {
+    'code': 'getIssuerProfile',
+    'label': 'Get issuer profile',
+    'labelPending': 'Getting issuer profile',
+    'parentStep': 'formatValidation'
+  }, {
     'code': 'parseIssuerKeys',
     'label': 'Parse issuer keys',
     'labelPending': 'Parsing issuer keys',
