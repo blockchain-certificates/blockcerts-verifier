@@ -9,6 +9,10 @@
   box-sizing: border-box;
 }
 
+.buv-c-modal.is-hidden {
+  display: none;
+}
+
 .buv-c-modal__close-button {
   top: 20px;
   right: 20px;

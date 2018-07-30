@@ -3,12 +3,35 @@ import CSS from './_components.modal-css';
 import CloseButton from '../CloseButton/';
 
 class Modal extends LitElement {
+  constructor () {
+    super();
+    this.isOpen = true;
+    this.toggleOpen = this.toggleOpen.bind(this);
+  }
+
+  static get properties () {
+    return {
+      isOpen: Boolean
+    };
+  }
+
+  toggleOpen () {
+    this.isOpen = !this.isOpen;
+  }
+
   _render () {
+    const classes = [
+      'buv-c-modal',
+      'buv-o-overlay',
+      this.isOpen ? '' : 'is-hidden'
+    ].join(' ');
+
     return html`
       ${CSS}
-      <div class='buv-c-modal  buv-o-overlay'>
+      <div class$=${classes}>
         ${CloseButton({
-       className: 'buv-c-modal__close-button'
+      className: 'buv-c-modal__close-button',
+      onClick: this.toggleOpen
     })}
         <slot></slot>
       </div>
