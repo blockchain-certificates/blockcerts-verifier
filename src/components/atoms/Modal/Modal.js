@@ -5,7 +5,7 @@ import CloseButton from '../CloseButton/';
 class Modal extends LitElement {
   constructor () {
     super();
-    this.isOpen = true;
+    this.isOpen = false;
     this.toggleOpen = this.toggleOpen.bind(this);
   }
 
