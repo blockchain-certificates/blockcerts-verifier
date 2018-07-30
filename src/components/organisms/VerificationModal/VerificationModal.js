@@ -14,5 +14,4 @@ function VerificationModal ({ isOpen }) {
   `;
 }
 
-
 export default VerificationModal;
