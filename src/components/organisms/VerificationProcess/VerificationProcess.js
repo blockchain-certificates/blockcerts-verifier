@@ -7,7 +7,10 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
   const innerHTML = steps
     .map((step, i) => html`
       ${VerificationStep(step, true, i === 0)}
-      ${step.subSteps.map(substep => html`${VerificationStep(substep)}`)}
+      ${step.subSteps
+        .filter(substep => !!substep.status)
+        .map(substep => html`${VerificationStep(substep)}`)
+      }
     `);
 
   // TODO: better handle this dynamic class (cf npm classnames)
