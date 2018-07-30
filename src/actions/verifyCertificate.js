@@ -21,22 +21,10 @@ export default function verifyCertificate () {
     dispatch(clearVerifiedSteps());
     const certificateDefinition = getCertificateDefinition(state);
 
-    function stepVerifyCb (stepDefinition) {
-      const parentStepCode = state.verifiedSteps.find(step => step.subSteps.some(substep => substep.code === stepDefinition.code)).code;
-
-      const step = {
-        ...stepDefinition,
-        ...stepDefinition.errorMessage && {
-          errorMessage: stepDefinition.errorMessage
-        },
-        parentStep: parentStepCode
-      };
-
-      dispatch(stepVerified(step));
-    }
-
     if (certificateDefinition) {
-      await certificateDefinition.verify(stepVerifyCb);
+      await certificateDefinition.verify(stepDefinition => {
+        dispatch(stepVerified(stepDefinition));
+      });
     }
   };
 }
