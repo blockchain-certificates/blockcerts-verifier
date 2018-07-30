@@ -1,7 +1,6 @@
 import { html } from '@polymer/lit-element';
 import VerificationStep from '../../molecules/VerificationStep';
 import FinalVerificationStep from '../../atoms/FinalVerificationStep';
-import '../../atoms/Modal';
 import CSS from './_components.verification-process-css';
 import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
@@ -24,14 +23,12 @@ export default function VerificationProcess ({ steps, transactionLink, chain }) 
 
   return html`
     ${CSS}
-    <buv-modal>
-      <section class='buv-c-verification-process'>
-        <div class$='${progressBarClasses}'></div>  
-        <dl class='buv-c-verification-process__step-list'>
-          ${innerHTML}
-          ${FinalVerificationStep({ hasError, transactionLink, chain })}
-        </dl>
-      </section>
-    </buv-modal>
+    <section class='buv-c-verification-process'>
+      <div class$='${progressBarClasses}'></div>  
+      <dl class='buv-c-verification-process__step-list'>
+        ${innerHTML}
+        ${FinalVerificationStep({ hasError, transactionLink, chain })}
+      </dl>
+    </section>
   `;
 }

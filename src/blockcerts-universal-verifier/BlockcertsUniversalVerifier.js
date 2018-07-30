@@ -1,7 +1,7 @@
 import { html, LitElement } from '@polymer/lit-element';
 import '../components/organisms/CertificateInput';
 import '../components/organisms/ActionMenu';
-import '../components/organisms/VerificationProcess';
+import '../components/organisms/VerificationModal';
 import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/atoms/CardCertificate';
@@ -41,7 +41,7 @@ class BlockcertsUniversalVerifier extends LitElement {
     : html`<buv-card-certificate></buv-card-certificate>`
 }
         <buv-verify-other-certificate></buv-verify-other-certificate>
-        <buv-verification-process></buv-verification-process>
+        <buv-verification-modal></buv-verification-modal>
       </section>
     `;
   }
