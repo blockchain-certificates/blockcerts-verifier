@@ -1,13 +1,15 @@
 import { html, LitElement } from '@polymer/lit-element';
+import CSS from './_components.verification-modal-css';
 import '../../atoms/Modal';
 import '../VerificationProcess';
 
 class VerificationModal extends LitElement {
   _render () {
     return html`
+      ${CSS}
       <buv-modal>
-        <buv-card-certificate></buv-card-certificate>
-        <buv-verification-process></buv-verification-process>
+        <buv-card-certificate class='buv-c-verification-modal__certificate'></buv-card-certificate>
+        <buv-verification-process class='buv-c-verification-modal__process'></buv-verification-process>
       </buv-modal>
     `;
   }
