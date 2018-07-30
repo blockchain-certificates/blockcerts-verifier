@@ -38,9 +38,10 @@ describe('certificate selectors test suite', function () {
 
   describe('getStartedVerificationSteps selector', function () {
     it('should return only the steps which have a started verification', function () {
-      const state = getInitialState();
+      store.dispatch(updateCertificateDefinition(v2Fixture));
+      const state = store.getState();
       const verifiedSteps = getVerifiedSteps(state);
-      getVerifiedSteps(state)[0].status = VERIFICATION_STATUS.STARTED;
+      verifiedSteps[0].status = VERIFICATION_STATUS.STARTED;
 
       expect(getStartedVerificationSteps(state)).toEqual([verifiedSteps[0]]);
     });

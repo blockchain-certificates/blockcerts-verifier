@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import ErrorMessage from '../../atoms/ErrorMessage';
 
-export default function VerificationStep ({ name, code, status, errorMessage }, parent, isFirst) {
+export default function VerificationStep ({ label, code, status, errorMessage }, parent, isFirst) {
   // TODO: better handle this dynamic class (cf npm classnames)
   let parentStepClasses = [
     'buv-o-large-text',
@@ -12,10 +12,10 @@ export default function VerificationStep ({ name, code, status, errorMessage }, 
 
   let innerHTML;
   if (parent) {
-    innerHTML = html`<dt class$='${parentStepClasses}'>${name}</dt>`;
+    innerHTML = html`<dt class$='${parentStepClasses}'>${label}</dt>`;
   } else {
     innerHTML = html`<dd class='buv-c-verification-step  buv-c-verification-substep  buv-o-small-text'>
-      ${name}
+      ${label}
       ${ErrorMessage(errorMessage)}
     </dd>`;
   }
