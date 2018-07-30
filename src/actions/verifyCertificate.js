@@ -1,4 +1,3 @@
-import domain from '../domain';
 import * as ACTIONS from '../constants/actionTypes';
 import stepVerified from './stepVerified';
 import clearVerifiedSteps from './clearVerifiedSteps';
@@ -21,23 +20,10 @@ export default function verifyCertificate () {
     dispatch(clearVerifiedSteps());
     const certificateDefinition = getCertificateDefinition(state);
 
-    function stepVerifyCb (stepDefinition) {
-      const definition = {
-        // TODO: refactor app to map to these names without having to do this translation here
-        // IE: rename `name` to `label` across the app
-        code: stepDefinition.code,
-        name: stepDefinition.label,
-        status: stepDefinition.status,
-        errorMessage: stepDefinition.errorMessage
-      };
-
-      const step = domain.verification.createStep(definition);
-
-      dispatch(stepVerified(step));
-    }
-
     if (certificateDefinition) {
-      await certificateDefinition.verify(stepVerifyCb);
+      await certificateDefinition.verify(stepDefinition => {
+        dispatch(stepVerified(stepDefinition));
+      });
     }
   };
 }

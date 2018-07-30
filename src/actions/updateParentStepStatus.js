@@ -3,15 +3,15 @@ import { getParentStep } from '../selectors/certificate';
 import * as VERIFICATION_STATUS from '../constants/verificationStatus';
 
 function oneChildIsSuccess (parent) {
-  return parent.substeps.some(s => s.status === VERIFICATION_STATUS.SUCCESS);
+  return parent.subSteps.some(s => s.status === VERIFICATION_STATUS.SUCCESS);
 }
 
 function allChildrenAreSuccess (parent) {
-  return parent.substeps.every(s => s.status === VERIFICATION_STATUS.SUCCESS);
+  return parent.subSteps.every(s => s.status === VERIFICATION_STATUS.SUCCESS);
 }
 
 function oneChildIsFailure (parent) {
-  return parent.substeps.some(s => s.status === VERIFICATION_STATUS.FAILURE);
+  return parent.subSteps.some(s => s.status === VERIFICATION_STATUS.FAILURE);
 }
 
 export default function updateParentStepStatus (parentStepCode) {

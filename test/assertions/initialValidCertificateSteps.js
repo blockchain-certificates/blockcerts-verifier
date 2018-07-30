@@ -2,23 +2,22 @@ export default [{
   'code': 'formatValidation',
   'label': 'Format validation',
   'labelPending': 'Validating format',
-  'status': 'failure',
+  'status': 'standby',
   'subSteps': [{
     'code': 'getTransactionId',
-    'label': 'Getting transaction ID',
-    'parentStep': 'formatValidation',
-    'status': 'success'
+    'label': 'Get transaction ID',
+    'labelPending': 'Getting transaction ID',
+    'parentStep': 'formatValidation'
   }, {
     'code': 'computeLocalHash',
-    'label': 'Computing local hash',
-    'parentStep': 'formatValidation',
-    'status': 'success'
+    'label': 'Compute local hash',
+    'labelPending': 'Computing local hash',
+    'parentStep': 'formatValidation'
   }, {
     'code': 'fetchRemoteHash',
-    'errorMessage': 'Could not confirm the transaction',
-    'label': 'Fetching remote hash',
-    'parentStep': 'formatValidation',
-    'status': 'failure'
+    'label': 'Fetch remote hash',
+    'labelPending': 'Fetching remote hash',
+    'parentStep': 'formatValidation'
   }, {
     'code': 'parseIssuerKeys',
     'label': 'Parse issuer keys',
