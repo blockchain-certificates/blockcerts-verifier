@@ -9,6 +9,7 @@ class VerificationModal extends LitElement {
       ${CSS}
       <buv-modal>
         <buv-card-certificate class='buv-c-verification-modal__certificate' hideRecordLink></buv-card-certificate>
+        <hr class='buv-c-verification-modal__separator'/>
         <buv-verification-process class='buv-c-verification-modal__process'></buv-verification-process>
       </buv-modal>
     `;
