@@ -23,12 +23,12 @@ export default function VerificationProcess ({ steps, transactionLink, chain }) 
 
   return html`
     ${CSS}
-    <div class='buv-c-verification-process'>
+    <section class='buv-c-verification-process'>
       <div class$='${progressBarClasses}'></div>  
       <dl class='buv-c-verification-process__step-list'>
         ${innerHTML}
         ${FinalVerificationStep({ hasError, transactionLink, chain })}
       </dl>
-    </div>
+    </section>
   `;
 }

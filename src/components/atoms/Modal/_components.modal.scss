@@ -1,0 +1,19 @@
+@import '../../../shared-styles/_objects.overlay';
+
+.buv-c-modal {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 38px;
+  box-sizing: border-box;
+}
+
+.buv-c-modal.is-hidden {
+  display: none;
+}
+
+.buv-c-modal__close-button {
+  top: 20px;
+  right: 20px;
+}

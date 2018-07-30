@@ -22,5 +22,9 @@ const mapStateToProps = (state) => ({
   recordLink: getRecordLink(state)
 });
 
-const CardCertificateContainer = connector(CardCertificate, { mapStateToProps });
+const ownProps = {
+  hideRecordLink: Boolean
+};
+
+const CardCertificateContainer = connector(CardCertificate, { mapStateToProps, ownProps });
 export { CardCertificateContainer };
