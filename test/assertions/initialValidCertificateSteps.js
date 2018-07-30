@@ -19,6 +19,11 @@ export default [{
     'labelPending': 'Fetching remote hash',
     'parentStep': 'formatValidation'
   }, {
+    'code': 'getIssuerProfile',
+    'label': 'Get issuer profile',
+    'labelPending': 'Getting issuer profile',
+    'parentStep': 'formatValidation'
+  }, {
     'code': 'parseIssuerKeys',
     'label': 'Parse issuer keys',
     'labelPending': 'Parsing issuer keys',

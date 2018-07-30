@@ -19,11 +19,11 @@ export default [{
     'parentStep': 'formatValidation',
     'status': 'success'
   }, {
-    'code': 'parseIssuerKeys',
-    'label': 'Parsing issuer keys',
+    'code': 'getIssuerProfile',
+    'label': 'Getting issuer profile',
     'parentStep': 'formatValidation',
     'status': 'success'
-  }]
+  }, {'code': 'parseIssuerKeys', 'label': 'Parsing issuer keys', 'parentStep': 'formatValidation', 'status': 'success'}]
 }, {
   'code': 'hashComparison',
   'label': 'Hash comparison',
@@ -39,12 +39,7 @@ export default [{
     'label': 'Checking Merkle Root',
     'parentStep': 'hashComparison',
     'status': 'success'
-  }, {
-    'code': 'checkReceipt',
-    'label': 'Checking Receipt',
-    'parentStep': 'hashComparison',
-    'status': 'success'
-  }]
+  }, {'code': 'checkReceipt', 'label': 'Checking Receipt', 'parentStep': 'hashComparison', 'status': 'success'}]
 }, {
   'code': 'statusCheck',
   'label': 'Status check',
@@ -60,10 +55,5 @@ export default [{
     'label': 'Checking Authenticity',
     'parentStep': 'statusCheck',
     'status': 'success'
-  }, {
-    'code': 'checkExpiresDate',
-    'label': 'Checking Expires Date',
-    'parentStep': 'statusCheck',
-    'status': 'success'
-  }]
+  }, {'code': 'checkExpiresDate', 'label': 'Checking Expires Date', 'parentStep': 'statusCheck', 'status': 'success'}]
 }];
