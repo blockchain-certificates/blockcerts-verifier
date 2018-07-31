@@ -23,14 +23,13 @@ export default function updateParentStepStatus (parentStepCode) {
     const state = getState();
 
     const parent = getParentStep(state, parentStepCode);
-    const parentStatus = parent.status;
-    let status = parentStatus;
+    let status = parent.status;
 
-    if (parentStatus === VERIFICATION_STATUS.DEFAULT && oneChildIsSuccess(parent)) {
+    if (status === VERIFICATION_STATUS.DEFAULT && oneChildIsSuccess(parent)) {
       status = VERIFICATION_STATUS.STARTED;
     }
 
-    if (parentStatus !== VERIFICATION_STATUS.DEFAULT && allChildrenAreSuccess(parent)) {
+    if (status !== VERIFICATION_STATUS.DEFAULT && allChildrenAreSuccess(parent)) {
       status = VERIFICATION_STATUS.SUCCESS;
     }
 
