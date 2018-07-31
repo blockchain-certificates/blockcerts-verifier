@@ -22,6 +22,7 @@ class Modal extends LitElement {
   _render () {
     const classes = [
       'buv-c-modal',
+      'buv-qa-modal',
       'buv-o-overlay',
       this.isOpen ? '' : 'is-hidden'
     ].join(' ');

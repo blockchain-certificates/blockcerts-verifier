@@ -3,6 +3,7 @@ import stepVerified from './stepVerified';
 import clearVerifiedSteps from './clearVerifiedSteps';
 import { getCertificateDefinition } from '../selectors/certificate';
 import { getDisableVerify } from '../selectors/api';
+import * as VERIFICATION_STATUS from '../constants/verificationStatus';
 
 export default function verifyCertificate () {
   return async function (dispatch, getState) {
@@ -14,7 +15,10 @@ export default function verifyCertificate () {
     }
 
     dispatch({
-      type: ACTIONS.VERIFY_CERTIFICATE
+      type: ACTIONS.VERIFY_CERTIFICATE,
+      payload: {
+        status: VERIFICATION_STATUS.STARTED
+      }
     });
 
     dispatch(clearVerifiedSteps());

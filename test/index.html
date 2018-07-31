@@ -11,6 +11,9 @@
     <script>
       // Load and run all tests (.html, .js):
       const files = getTestFiles();
+      // TODO: fix detection script to include recursion
+      files.push('components/verification/manual-verification-modal.test.html');
+      files.push('components/verification/auto-verification-modal.test.html');
       WCT.loadSuites(files);
     </script>
   </body>
