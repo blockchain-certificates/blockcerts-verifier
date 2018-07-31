@@ -5,7 +5,7 @@ import '../components/organisms/VerificationModal';
 import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/atoms/CardCertificate';
-import '../components/molecules/FullCertificate';
+import '../components/organisms/FullCertificate';
 import '../components/atoms/VerifyOtherCertificateLink';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
