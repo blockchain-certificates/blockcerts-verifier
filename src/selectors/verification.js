@@ -13,7 +13,7 @@ export function getVerificationHasStarted (state) {
 export function getVerificationIsFinished (state) {
   const status = getVerificationStatus(state);
 
-  return status === VERIFICATION_STATUS.SUCCESS
-    || status === VERIFICATION_STATUS.FAILURE
-    || status === VERIFICATION_STATUS.MOCK_SUCCESS;
+  return status === VERIFICATION_STATUS.SUCCESS ||
+    status === VERIFICATION_STATUS.FAILURE ||
+    status === VERIFICATION_STATUS.MOCK_SUCCESS;
 }

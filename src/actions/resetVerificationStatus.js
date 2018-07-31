@@ -9,5 +9,5 @@ export default function resetVerificationStatus () {
     });
 
     dispatch(updateVerificationStatus(VERIFICATION_STATUS.DEFAULT));
-  }
+  };
 }
