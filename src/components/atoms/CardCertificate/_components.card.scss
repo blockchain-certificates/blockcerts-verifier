@@ -3,6 +3,7 @@
 .buv-c-card {
   position: relative;
   height: 112px;
+  margin-bottom: 20px;
 }
 
 .buv-c-card__img {
@@ -50,4 +51,8 @@
   font-weight: bold;
   display: inline-block;
   margin-left: 5px;
+}
+
+.buv-c-card__verify-button {
+  float: right;
 }
