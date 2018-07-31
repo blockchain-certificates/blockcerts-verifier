@@ -37,9 +37,9 @@ export default function CardCertificate ({
 }
     </section>
     ${
-      hideVerifyButton
+  hideVerifyButton
     ? ''
-     : html`<buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`
-    }
+    : html`<buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`
+}
     `;
 }
