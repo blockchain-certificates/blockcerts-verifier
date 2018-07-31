@@ -13,6 +13,10 @@ $secondaryColor: #fff;
   border: 1px solid $mainColor;
 }
 
+.buv-c-verify-button__label {
+  cursor: pointer;
+}
+
 .buv-c-verify-button--hollow {
   background: $secondaryColor;
   color: $mainColor;
