@@ -20,7 +20,8 @@ class VerifyButton extends LitElement {
       showSpinner: Boolean,
       cancelSpinner: Boolean,
       onClick: Function,
-      isDisabled: Boolean
+      isDisabled: Boolean,
+      isHollow: Boolean
     };
   }
 
@@ -47,6 +48,7 @@ class VerifyButton extends LitElement {
 
     const buttonClass = [
       'buv-c-verify-button',
+      this.isHollow ? 'buv-c-verify-button--hollow' : '',
       this.isDisabled ? 'is-disabled' : '',
       showSpinner ? 'has-spinner' : ''
     ].join(' ');
@@ -64,13 +66,14 @@ window.customElements.define('buv-verify-button-raw', VerifyButton);
 
 // wrap VerifyButton in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
-function ButtonWrapper (props) {
+function VerifyButtonWrapper (props) {
   return html`
   <buv-verify-button-raw
     onClick='${props.onClick}'
     cancelSpinner='${props.cancelSpinner}'
     isDisabled='${props.isDisabled}'
+    isHollow='${props.isHollow}'
   ></buv-verify-button-raw>`;
 }
 
-export { ButtonWrapper as Button };
+export { VerifyButtonWrapper as VerifyButton };
