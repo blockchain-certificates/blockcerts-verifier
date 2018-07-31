@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockcerts Universal Verifier component test suite - Verification Modal</title>
+
+    <script src="../../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../../node_modules/web-component-tester/browser.js"></script>
+
+    <script type="module" src="../../../src/blockcerts-universal-verifier/index.js"></script>
+    <script src="../helpers/redux-hack.js"></script>
+    <script src="../helpers/wait.js"></script>
+</head>
+<body>
+<test-fixture id="manualVerification">
+    <template>
+        <blockcerts-universal-verifier src="../../fixtures/valid-certificate-example.json" disable-auto-verify></blockcerts-universal-verifier>
+    </template>
+</test-fixture>
+
+<script type="module">
+  describe('Blockcerts Universal Verifier test suite', function () {
+    describe('Verification Modal usage', function () {
+      describe('given a certificate was loaded', function () {
+        describe('and the disable-auto-verify flag has been set', function () {
+          it('should not show the verification modal', async function () {
+            const el = fixture('manualVerification').shadowRoot.querySelectorAll('buv-raw')[0];
+            const modalWrapper = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
+            const modalComponent = modalWrapper.shadowRoot.querySelectorAll('buv-modal')[0];
+            const modalElement = modalComponent.shadowRoot.querySelectorAll('.buv-qa-modal')[0];
+
+            await wait(300);
+            expect(modalElement.classList.contains('is-hidden')).to.equal(true);
+          });
+
+          describe('when a verification is manually started', function () {
+            it('should show the verification modal', async function () {
+              const el = fixture('manualVerification').shadowRoot.querySelectorAll('buv-raw')[0];
+              const modalWrapper = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
+              const modalComponent = modalWrapper.shadowRoot.querySelectorAll('buv-modal')[0];
+              const modalElement = modalComponent.shadowRoot.querySelectorAll('.buv-qa-modal')[0];
+              await wait(300);
+
+              const certificateComponent = el.shadowRoot.querySelectorAll('buv-card-certificate')[0];
+              const verifyButtonComponent = certificateComponent.shadowRoot.querySelectorAll('buv-verify-button')[0];
+              const verifyButtonRawComponent = verifyButtonComponent.shadowRoot.querySelectorAll('buv-verify-button-raw')[0];
+              const button = verifyButtonRawComponent.shadowRoot.querySelectorAll('button')[0];
+
+              button.click();
+
+              await wait(50);
+
+              expect(modalElement.classList.contains('is-hidden')).to.equal(false);
+            });
+          });
+        });
+      });
+    });
+  });
+</script>
+</body>
+</html>
