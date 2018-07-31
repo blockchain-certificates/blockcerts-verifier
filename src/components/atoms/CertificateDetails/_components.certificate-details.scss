@@ -3,11 +3,12 @@
 .buv-c-certificate-details {
   display: flex;
   justify-content: space-between;
+  margin: 0;
 }
 
 .buv-c-certificate-details__group {
   box-sizing: border-box;
-  padding: 10px;
+  padding: 0 10px;
   max-width: 25%;
   color: rgba(110, 126, 142, 1);
 }
