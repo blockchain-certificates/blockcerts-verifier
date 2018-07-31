@@ -16,11 +16,13 @@
   word-wrap: break-word;
 }
 
+// No direct access available
 .buv-c-full-certificate section {
   max-width: 100%;
   padding: 0;
 }
 
+// No direct access available
 .buv-c-full-certificate img {
   max-width: 100%;
   height: auto;
@@ -33,4 +35,10 @@
     padding: calc(var(--section-spacer-distance) * 2) calc(var(--section-spacer-distance) * 4);
     font-size: 16px;
   }
+}
+
+.buv-c-full-certificate__details {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
 }

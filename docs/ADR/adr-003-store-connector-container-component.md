@@ -83,12 +83,12 @@ class Button extends LitElement {
   }
 }
 
-window.customElements.define('buv-button-raw', Button);
+window.customElements.define('buv-verify-button-raw', Button);
 
-// wrap Button in order to plug into Container
+// wrap VerifyButton in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function ButtonWrapper (props) {
-  return html`<buv-button-raw onClick='${props.onClick}'></buv-button-raw>`;
+  return html`<buv-verify-button-raw onClick='${props.onClick}'></buv-verify-button-raw>`;
 }
 
 export { ButtonWrapper as Button };
@@ -106,8 +106,8 @@ const mapDispatchToProps = {
   onClick: bar
 };
 
-const ButtonContainer = connector(Button, { mapDispatchToProps });
-export { ButtonContainer };
+const VerifyButtonContainer = connector(Button, { mapDispatchToProps });
+export { VerifyButtonContainer };
 ```
 Encapsulating the wrapping function inside the component allows for containers to always follow the same pattern and improves expectability.
 

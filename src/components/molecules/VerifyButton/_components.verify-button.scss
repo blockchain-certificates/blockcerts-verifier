@@ -1,0 +1,41 @@
+$mainColor: rgba(31, 132, 92, 1);
+$secondaryColor: #fff;
+
+.buv-c-verify-button {
+  background-color: $mainColor;
+  border-radius: 0 2px 2px 0;
+  color: $secondaryColor;
+  cursor: pointer;
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 38px;
+  border: 1px solid $mainColor;
+}
+
+.buv-c-verify-button__label {
+  cursor: pointer;
+}
+
+.buv-c-verify-button--hollow {
+  background: $secondaryColor;
+  color: $mainColor;
+  font-weight: 100;
+  text-transform: uppercase;
+  padding: 12px 30px;
+  font-size: 13px;
+}
+
+.buv-c-verify-button.has-spinner {
+  padding: 0 39px;
+}
+
+.buv-c-verify-button--hollow.has-spinner {
+  padding: 0 32px;
+  height: 42px;
+}
+
+.buv-c-verify-button.is-disabled {
+  cursor: default;
+  filter: grayscale(100%);
+}

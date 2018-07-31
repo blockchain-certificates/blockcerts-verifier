@@ -1,11 +1,11 @@
-import { mapStateToProps } from '../../../../src/components/molecules/Button/ButtonContainer';
+import { mapStateToProps } from '../../../../src/components/molecules/VerifyButton/VerifyButtonContainer';
 import getInitialState from '../../../../src/store/getInitialState';
 import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import validateUrlInput from '../../../../src/actions/validateUrlInput';
 import validCertificateDefinition from '../../../fixtures/valid-certificate-example';
 
-describe('ButtonContainer test suite', function () {
+describe('VerifyButtonContainer test suite', function () {
   describe('mapStateToProps method', function () {
     describe('cancelSpinner property', function () {
       let store;

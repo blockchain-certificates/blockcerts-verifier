@@ -1,4 +1,4 @@
-import { mapStateToProps } from '../../../../src/components/molecules/FullCertificate/FullCertificateContainer';
+import { mapStateToProps } from '../../../../src/components/organisms/FullCertificate/FullCertificateContainer';
 import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import { configureStore } from '../../../../src/store';

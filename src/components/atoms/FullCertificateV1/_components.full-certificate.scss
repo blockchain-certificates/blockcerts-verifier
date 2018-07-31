@@ -1,5 +1,5 @@
 @import '../../../shared-styles/objects.text';
-@import '../../molecules/FullCertificate/_components.full-certificate';
+@import '../../organisms/FullCertificate/_components.full-certificate';
 
 // specificity war with style for images coming from displayHtml
 // since we can't really control the latter, augment specificity here
