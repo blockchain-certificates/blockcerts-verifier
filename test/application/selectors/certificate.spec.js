@@ -21,7 +21,7 @@ import {
   getTransactionLink,
   getVerifiedSteps
 } from '../../../src/selectors/certificate';
-import * as VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
+import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import v1Fixture from '../../fixtures/valid-v1-certificate';
 import v2Fixture from '../../fixtures/valid-certificate-example';
 import { configureStore } from '../../../src/store';

@@ -1,7 +1,7 @@
 import { configureStore } from '../../../src/store';
 import updateParentStepStatus from '../../../src/actions/updateParentStepStatus';
 import { getParentStep, getVerifiedSteps } from '../../../src/selectors/certificate';
-import * as VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
+import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../fixtures/valid-certificate-example';

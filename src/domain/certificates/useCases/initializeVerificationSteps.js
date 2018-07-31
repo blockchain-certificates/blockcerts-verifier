@@ -1,4 +1,4 @@
-import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
+import VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 export default function initializeVerificationSteps (definition) {
   const steps = JSON.parse(JSON.stringify(definition.verificationSteps));

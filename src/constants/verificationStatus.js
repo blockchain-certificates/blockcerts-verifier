@@ -1,4 +1,11 @@
-export const DEFAULT = 'standby';
-export const SUCCESS = 'success';
-export const FAILURE = 'failure';
-export const STARTED = 'started';
+import { VERIFICATION_STATUSES } from 'cert-verifier-js/dist/verifier-es';
+
+const DEFAULT = 'standby';
+// TODO: refactor to use VERIFICATION_STATUSES.STARTING
+const STARTED = 'started';
+
+export default {
+  ...VERIFICATION_STATUSES,
+  DEFAULT,
+  STARTED
+};

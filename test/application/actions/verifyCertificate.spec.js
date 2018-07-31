@@ -9,7 +9,7 @@ import initialValidCertificateStepsAssertions from '../../assertions/initialVali
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
-import * as VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
+import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 
 describe('verifyCertificate action creator test suite', function () {
   describe('given the verification of certificates is not disabled', function () {
