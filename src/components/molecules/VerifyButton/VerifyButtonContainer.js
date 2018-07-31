@@ -1,6 +1,6 @@
 import verifyCertificate from '../../../actions/verifyCertificate';
 import connector from '../../../store/connector';
-import { Button } from './Button';
+import { Button } from './VerifyButton';
 import { getUrlIsValid } from '../../../selectors/input';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 import { getDisableVerify } from '../../../selectors/api';
@@ -14,5 +14,5 @@ export const mapStateToProps = (state) => ({
   isDisabled: getDisableVerify(state) || !getCertificateDefinition(state)
 });
 
-const ButtonContainer = connector(Button, { mapDispatchToProps, mapStateToProps });
-export default ButtonContainer;
+const VerifyButtonContainer = connector(Button, { mapDispatchToProps, mapStateToProps });
+export default VerifyButtonContainer;

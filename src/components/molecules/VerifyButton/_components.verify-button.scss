@@ -1,4 +1,4 @@
-.buv-c-button {
+.buv-c-verify-button {
   background-color: rgba(31, 132, 92, 1);
   border-radius: 0 2px 2px 0;
   color: #fff;
@@ -11,11 +11,11 @@
   height: 100%;
 }
 
-.buv-c-button.has-spinner {
+.buv-c-verify-button.has-spinner {
   padding: 0 39px;
 }
 
-.buv-c-button.is-disabled {
+.buv-c-verify-button.is-disabled {
   cursor: default;
   filter: grayscale(100%);
 }

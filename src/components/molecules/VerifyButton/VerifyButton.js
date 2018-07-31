@@ -1,8 +1,8 @@
 import { html, LitElement } from '@polymer/lit-element';
-import CSS from './_components.button-css';
+import CSS from './_components.verify-button-css';
 import Spinner from '../../atoms/Spinner';
 
-class Button extends LitElement {
+class VerifyButton extends LitElement {
   constructor () {
     super();
     this.defaultProps();
@@ -46,7 +46,7 @@ class Button extends LitElement {
     const showSpinner = this.showSpinner && !this.cancelSpinner;
 
     const buttonClass = [
-      'buv-c-button',
+      'buv-c-verify-button',
       this.isDisabled ? 'is-disabled' : '',
       showSpinner ? 'has-spinner' : ''
     ].join(' ');
@@ -60,17 +60,17 @@ class Button extends LitElement {
   }
 }
 
-window.customElements.define('buv-button-raw', Button);
+window.customElements.define('buv-verify-button-raw', VerifyButton);
 
-// wrap Button in order to plug into Container
+// wrap VerifyButton in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function ButtonWrapper (props) {
   return html`
-  <buv-button-raw
+  <buv-verify-button-raw
     onClick='${props.onClick}'
     cancelSpinner='${props.cancelSpinner}'
     isDisabled='${props.isDisabled}'
-  ></buv-button-raw>`;
+  ></buv-verify-button-raw>`;
 }
 
 export { ButtonWrapper as Button };
