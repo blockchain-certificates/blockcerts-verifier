@@ -19,8 +19,10 @@ export default function FullCertificate ({
 
   return html`
     ${CSS}
-    <buv-verify-button></buv-verify-button>
     ${displayHTML ? renderDisplayHTML(displayHTML) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
-    <buv-certificate-details></buv-certificate-details>
+    <div class='buv-c-full-certificate__details'>
+      <buv-certificate-details></buv-certificate-details>
+      <buv-verify-button></buv-verify-button>
+    </div>
   `;
 }
