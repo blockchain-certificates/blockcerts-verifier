@@ -35,7 +35,7 @@ class VerifyButton extends LitElement {
   }
 
   getSpinner () {
-    return html`${Spinner}`;
+    return html`${Spinner(this.isHollow)}`;
   }
 
   _propertiesChanged (props, changedProps, prevProps) {
