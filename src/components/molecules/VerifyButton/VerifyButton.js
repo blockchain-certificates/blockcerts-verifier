@@ -41,22 +41,24 @@ class VerifyButton extends LitElement {
   _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
     super._propertiesChanged(props, changedProps, prevProps);
+    if (props.cancelSpinner) {
+      // to hell with the warning. Polymer should provide a nicer way to mutate a local variable from an external prop.
+      this.showSpinner = false;
+    }
   }
 
   _render () {
-    const showSpinner = this.showSpinner && !this.cancelSpinner;
-
     const buttonClass = [
       'buv-c-verify-button',
       this.isHollow ? 'buv-c-verify-button--hollow' : '',
       this.isDisabled ? 'is-disabled' : '',
-      showSpinner ? 'has-spinner' : ''
+      this.showSpinner ? 'has-spinner' : ''
     ].join(' ');
 
     return html`
       ${CSS}
       <button class$='${buttonClass}' on-click='${this.handleClick}' disabled?='${this.isDisabled}'>
-       ${showSpinner ? this.getSpinner() : this.getButtonText()}
+       ${this.showSpinner ? this.getSpinner() : this.getButtonText()}
       </button>
     `;
   }
