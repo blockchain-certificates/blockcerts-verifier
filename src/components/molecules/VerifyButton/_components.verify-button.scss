@@ -30,6 +30,11 @@ $secondaryColor: #fff;
   padding: 0 39px;
 }
 
+.buv-c-verify-button--hollow.has-spinner {
+  padding: 0 32px;
+  height: 42px;
+}
+
 .buv-c-verify-button.is-disabled {
   cursor: default;
   filter: grayscale(100%);
