@@ -23,7 +23,8 @@ const mapStateToProps = (state) => ({
 });
 
 const ownProps = {
-  hideRecordLink: Boolean
+  hideRecordLink: Boolean,
+  hideVerifyButton: Boolean
 };
 
 const CardCertificateContainer = connector(CardCertificate, { mapStateToProps, ownProps });

@@ -11,7 +11,8 @@ export default function CardCertificate ({
   issuerName,
   issuerLogo,
   recordLink,
-  hideRecordLink
+  hideRecordLink,
+  hideVerifyButton
 }) {
   if (!hasCertificateDefinition) {
     return null;
@@ -35,5 +36,10 @@ export default function CardCertificate ({
     : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>`
 }
     </section>
-    <buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`;
+    ${
+      hideVerifyButton
+    ? ''
+     : html`<buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`
+    }
+    `;
 }
