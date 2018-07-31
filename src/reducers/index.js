@@ -8,7 +8,7 @@ import clearVerifiedSteps from './clearVerifiedSteps';
 import setErrorMessage from './setErrorMessage';
 import initialize from './initialize';
 import resetCertificateDefinition from './resetCertificateDefinition';
-import verifyCertificate from './verifyCertificate';
+import updateVerificationStatus from './updateVerificationStatus';
 
 export function app (state, action) {
   switch (action.type) {
@@ -40,7 +40,8 @@ export function app (state, action) {
       return stepVerified(state, action);
 
     case ACTIONS.VERIFY_CERTIFICATE:
-      return verifyCertificate(state, action);
+    case ACTIONS.END_VERIFICATION_PROCESS:
+      return updateVerificationStatus(state, action);
 
     default:
       return state;

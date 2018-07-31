@@ -25,9 +25,16 @@ export default function verifyCertificate () {
     const certificateDefinition = getCertificateDefinition(state);
 
     if (certificateDefinition) {
-      await certificateDefinition.verify(stepDefinition => {
+      const finalStatus = await certificateDefinition.verify(stepDefinition => {
         dispatch(stepVerified(stepDefinition));
       });
+
+      dispatch({
+        type: ACTIONS.END_VERIFICATION_PROCESS,
+        payload: {
+          status: finalStatus.status
+        }
+      })
     }
   };
 }
