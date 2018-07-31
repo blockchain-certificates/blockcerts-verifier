@@ -39,8 +39,7 @@ export function app (state, action) {
     case ACTIONS.STEP_VERIFIED:
       return stepVerified(state, action);
 
-    case ACTIONS.VERIFY_CERTIFICATE:
-    case ACTIONS.END_VERIFICATION_PROCESS:
+    case ACTIONS.UPDATE_VERIFICATION_STATUS:
       return updateVerificationStatus(state, action);
 
     default:
