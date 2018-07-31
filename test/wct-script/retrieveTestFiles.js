@@ -5,12 +5,25 @@ const watcher = require('./watcher');
 const testRegex = /(_|\.)test.html/gi;
 
 const testSuiteDir = 'components';
-const testSuitePath = path.join(__dirname, '..', testSuiteDir);
+
+function findTestFilesIn (directoryName, filesList = []) {
+  const directoryPath = path.join(__dirname, '..', directoryName);
+  return fs.readdirSync(directoryPath)
+    .reduce((list, fileName) => {
+      const stat = fs.statSync(path.join(directoryPath, fileName));
+      const fileNameInRelativePath = `${directoryName}/${fileName}`;
+      if (stat.isDirectory()) {
+        return findTestFilesIn(fileNameInRelativePath, filesList);
+      } else {
+        list.push(fileNameInRelativePath);
+        return list;
+      }
+    }, filesList)
+    .filter(fileName => fileName.match(testRegex));
+}
 
 function retrieveTestFiles () {
-  const filesList = fs.readdirSync(testSuitePath)
-    .filter(fileName => fileName.match(testRegex))
-    .map(fileName => `${testSuiteDir}/${fileName}`);
+  const filesList = findTestFilesIn(testSuiteDir);
 
   writeToFile(JSON.stringify(filesList));
 }
@@ -31,5 +44,6 @@ function shouldWatch () {
 }
 
 if (shouldWatch()) {
+  const testSuitePath = path.join(__dirname, '..', testSuiteDir);
   watcher(testSuitePath, { cb: retrieveTestFiles });
 }
