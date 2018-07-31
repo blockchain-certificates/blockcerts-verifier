@@ -1,5 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.card-css';
+import '../../molecules/VerifyButton';
 
 export default function CardCertificate ({
   hasCertificateDefinition,
@@ -33,5 +34,6 @@ export default function CardCertificate ({
     ? ''
     : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>`
 }
-    </section>`;
+    </section>
+    <buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`;
 }
