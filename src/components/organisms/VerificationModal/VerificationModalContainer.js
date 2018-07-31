@@ -1,10 +1,9 @@
 import connector from '../../../store/connector';
 import VerificationModal from './VerificationModal';
-import { getVerificationStatus } from '../../../selectors/verification';
-import VERIFICATION_STATUS from '../../../constants/verificationStatus';
+import { getVerificationHasStarted } from '../../../selectors/verification';
 
 export const mapStateToProps = (state) => ({
-  isOpen: getVerificationStatus(state) === VERIFICATION_STATUS.STARTED
+  isOpen: getVerificationHasStarted(state)
 });
 
 const VerificationModalContainer = connector(VerificationModal, { mapStateToProps });
