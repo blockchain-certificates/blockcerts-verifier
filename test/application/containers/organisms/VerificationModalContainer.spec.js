@@ -3,6 +3,7 @@ import { configureStore } from '../../../../src/store';
 import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import validCertificateFixture from '../../../fixtures/valid-certificate-example';
+import verifyCertificate from '../../../../src/actions/verifyCertificate';
 
 describe('VerificationModalContainer test suite', function () {
   describe('mapStateToProps function', function () {
@@ -15,19 +16,18 @@ describe('VerificationModalContainer test suite', function () {
       });
     });
 
-    describe('given there is a certificate in the state', function () {
-      describe('and the disable verify flag has been set', function () {
-        it('it should set the property isOpen to false', function () {
-          const initialState = getInitialState({ disableVerify: true });
-          const store = configureStore(initialState);
+    describe('given a certificate was loaded in the state', function () {
+      describe('and the verification process is automatic', function () {
+        it('it should set the property isOpen to true', function () {
+          const store = configureStore();
           store.dispatch(updateCertificateDefinition(validCertificateFixture));
           const state = store.getState();
 
-          expect(mapStateToProps(state).isOpen).toBe(false);
+          expect(mapStateToProps(state).isOpen).toBe(true);
         });
       });
 
-      describe('and the disable verify flag has been set', function () {
+      describe('and the disableAutoVerify flag has been set', function () {
         it('it should set the property isOpen to false', function () {
           const initialState = getInitialState({ disableAutoVerify: true });
           const store = configureStore(initialState);
@@ -36,15 +36,17 @@ describe('VerificationModalContainer test suite', function () {
 
           expect(mapStateToProps(state).isOpen).toBe(false);
         });
-      });
 
-      describe('and the application should auto verify', function () {
-        it('it should set the property isOpen to true', function () {
-          const store = configureStore();
-          store.dispatch(updateCertificateDefinition(validCertificateFixture));
-          const state = store.getState();
+        describe('and a verification process has started', function () {
+          it('should set the property isOpen to true', function () {
+            const initialState = getInitialState({ disableAutoVerify: true });
+            const store = configureStore(initialState);
+            store.dispatch(updateCertificateDefinition(validCertificateFixture));
+            store.dispatch(verifyCertificate());
+            const state = store.getState();
 
-          expect(mapStateToProps(state).isOpen).toBe(true);
+            expect(mapStateToProps(state).isOpen).toBe(true);
+          });
         });
       });
     });

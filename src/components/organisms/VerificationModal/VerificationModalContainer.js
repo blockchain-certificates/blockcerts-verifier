@@ -1,10 +1,10 @@
 import connector from '../../../store/connector';
 import VerificationModal from './VerificationModal';
-import { getCertificateDefinition } from '../../../selectors/certificate';
-import { getDisableAutoVerify, getDisableVerify } from '../../../selectors/api';
+import { getVerificationStatus } from '../../../selectors/verification';
+import * as VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 export const mapStateToProps = (state) => ({
-  isOpen: !!getCertificateDefinition(state) && !getDisableVerify(state) && !getDisableAutoVerify(state)
+  isOpen: getVerificationStatus(state) === VERIFICATION_STATUS.STARTED
 });
 
 const VerificationModalContainer = connector(VerificationModal, { mapStateToProps });
