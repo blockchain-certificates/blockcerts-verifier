@@ -10,7 +10,7 @@ const mapDispatchToProps = {
 };
 
 export const mapStateToProps = (state) => ({
-  cancelSpinner: typeof getUrlIsValid(state) === 'undefined' ? false : !getUrlIsValid(state),
+  cancelSpinner: !getUrlIsValid(state),
   isDisabled: getDisableVerify(state) || !getCertificateDefinition(state)
 });
 
