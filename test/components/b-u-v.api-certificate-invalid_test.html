@@ -26,8 +26,8 @@
             it('the button should not be enabled', async function () {
               const el = fixture('api-certificate-invalid').shadowRoot.querySelectorAll('buv-raw')[0];
               const certificateInputComponent = el.shadowRoot.querySelectorAll('buv-certificate-input')[0];
-              const buttonComponent = certificateInputComponent.shadowRoot.querySelectorAll('buv-button')[0];
-              const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-button-raw')[0];
+              const buttonComponent = certificateInputComponent.shadowRoot.querySelectorAll('buv-verify-button')[0];
+              const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-verify-button-raw')[0];
               const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
               // allow time to process
               await wait(200);

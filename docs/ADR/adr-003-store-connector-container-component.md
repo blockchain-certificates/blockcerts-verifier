@@ -83,12 +83,12 @@ class Button extends LitElement {
   }
 }
 
-window.customElements.define('buv-button-raw', Button);
+window.customElements.define('buv-verify-button-raw', Button);
 
 VerifyButton
 // necessary trade-off to deal with class component in the store connector
 function ButtonWrapper (props) {
-  return html`<buv-button-raw onClick='${props.onClick}'></buv-button-raw>`;
+  return html`<buv-verify-button-raw onClick='${props.onClick}'></buv-verify-button-raw>`;
 }
 
 export { ButtonWrapper as Button };
