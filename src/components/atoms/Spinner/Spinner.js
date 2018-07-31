@@ -1,9 +1,12 @@
 import { html } from '@polymer/lit-element';
+import CSS from './_components.spinner-css';
 
 function Spinner ({ isInverted = false }) {
   const classes = isInverted ? 'buv-c-spinner__flap--inverted' : 'buv-c-spinner__flap';
 
-  return html`<svg class="buv-qa-spinner" width="39px" height="100%" xmlns="http://www.w3.org/2000/svg"
+  return html`
+    ${CSS}
+    <svg class="buv-qa-spinner" width="39px" height="100%" xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: none;">
     <g transform="rotate(0 50 50)">
       <rect x="47" y="24" rx="9.4" ry="4.8" width="6" height="12" class$='${classes}'>
