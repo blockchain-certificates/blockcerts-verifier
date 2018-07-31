@@ -8,6 +8,8 @@ import invalidCertificateFixture from '../../fixtures/invalid-certificate-exampl
 import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
+import { getVerificationStatus } from '../../../src/selectors/verification';
+import * as VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 
 describe('verifyCertificate action creator test suite', function () {
   describe('given the verification of certificates is not disabled', function () {
@@ -23,6 +25,18 @@ describe('verifyCertificate action creator test suite', function () {
 
     afterEach(function () {
       store = null;
+    });
+
+    describe('given the action is triggered', function () {
+      it('should set the verificationStatus in the state to started', async function () {
+        // add a certificate definition to be verified
+        await store.dispatch(updateCertificateDefinition(validCertificateFixture));
+        await store.dispatch(verifyCertificate());
+
+        const state = store.getState();
+
+        expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.STARTED);
+      });
     });
 
     describe('given there is a valid certificate in the state', function () {
