@@ -44,18 +44,3 @@
   display: table-cell;
   min-width: 200px;
 }
-
-// TODO: below should be deleted once all implemented
-:host .step .loading-txt,
-:host .step.starting > a,
-:host .step.starting .sub-steps {
-  display: none;
-}
-
-:host .step.starting .loading-txt {
-  display: block;
-}
-
-:host .step.opened .sub-steps {
-  height: auto;
-}

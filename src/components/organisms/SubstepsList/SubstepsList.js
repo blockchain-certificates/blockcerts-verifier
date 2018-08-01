@@ -23,12 +23,12 @@ class SubStepsList extends LitElement {
     return html`${subSteps.map(subStep => html`${VerificationStep(subStep)}`)}`;
   }
 
-  _render (props) {
-    if (!props.subSteps) {
+  _render ({ subSteps }) {
+    if (!subSteps) {
       return null;
     }
 
-    const itemsLength = props.subSteps.length;
+    const itemsLength = subSteps.length;
     const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
     // TODO: better handle this dynamic class (cf npm classnames)
     const linkClasses = [
@@ -38,12 +38,19 @@ class SubStepsList extends LitElement {
       this.isOpen ? 'is-open' : ''
     ].join(' ');
 
+    const listClasses = [
+      'buv-c-substeps-list__list',
+      this.isOpen ? 'is-open' : ''
+    ].join(' ');
+
     return html`
     ${CSS}
     <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class$='${linkClasses}'>
       ${this.isOpen ? 'Hide' : itemString}
     </a>
-    ${this.isOpen ? this.showList(props.subSteps) : null}
+    <div class$='${listClasses}' style='max-height: ${this.isOpen ? itemsLength * 25 : 0}px'>
+      ${subSteps.map(subStep => html`${VerificationStep(subStep)}`)}
+    </div>
     `;
   }
 }
