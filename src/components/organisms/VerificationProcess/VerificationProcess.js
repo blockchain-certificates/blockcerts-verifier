@@ -1,6 +1,7 @@
 import { html } from '@polymer/lit-element';
 import VerificationStep from '../../molecules/VerificationStep';
 import FinalVerificationStep from '../../atoms/FinalVerificationStep';
+import '../SubstepsList';
 import CSS from './_components.verification-process-css';
 
 export default function VerificationProcess ({ steps, transactionLink, chain, hasError, isTestChain }) {
@@ -12,10 +13,7 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
     isFirst: i === 0,
     isTestChain
   })}
-      ${step.subSteps
-    .filter(substep => !!substep.status)
-    .map(substep => html`${VerificationStep(substep)}`)
-}
+      <buv-substeps-list subSteps='${step.subSteps}'></buv-substeps-list>
     `);
 
   // TODO: better handle this dynamic class (cf npm classnames)
