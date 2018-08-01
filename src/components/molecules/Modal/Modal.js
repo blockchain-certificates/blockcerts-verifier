@@ -16,12 +16,12 @@ class Modal extends LitElement {
     };
   }
 
-  toggleOpen () {
-    this.isOpen = !this.isOpen;
+  close () {
+    this.isOpen = false;
   }
 
   handleClick () {
-    this.toggleOpen();
+    this.close();
     this._props.onClose();
   }
 
