@@ -3,10 +3,15 @@ import VerificationStep from '../../molecules/VerificationStep';
 import FinalVerificationStep from '../../atoms/FinalVerificationStep';
 import CSS from './_components.verification-process-css';
 
-export default function VerificationProcess ({ steps, transactionLink, chain, hasError }) {
+export default function VerificationProcess ({ steps, transactionLink, chain, hasError, isTestChain }) {
   const innerHTML = steps
     .map((step, i) => html`
-      ${VerificationStep(step, true, i === 0)}
+      ${VerificationStep({
+    ...step,
+    isParent: true,
+    isFirst: i === 0,
+    isTestChain
+  })}
       ${step.subSteps
     .filter(substep => !!substep.status)
     .map(substep => html`${VerificationStep(substep)}`)
@@ -14,7 +19,11 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
     `);
 
   // TODO: better handle this dynamic class (cf npm classnames)
-  const progressBarClasses = `buv-c-verification-progress-bar ${hasError ? 'has-errored' : ''}`;
+  const progressBarClasses = [
+    'buv-c-verification-progress-bar',
+    hasError ? 'has-errored' : '',
+    isTestChain ? 'is-test' : ''
+  ].join(' ');
 
   if (!innerHTML.length) {
     return;
@@ -26,7 +35,7 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
       <div class$='${progressBarClasses}'></div>  
       <dl class='buv-c-verification-process__step-list'>
         ${innerHTML}
-        ${FinalVerificationStep({ hasError, transactionLink, chain })}
+        ${FinalVerificationStep({ hasError, transactionLink, chain, isTestChain })}
       </dl>
     </section>
   `;
