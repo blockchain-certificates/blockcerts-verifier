@@ -1,6 +1,6 @@
 import connector from '../../../store/connector';
 import VerificationProcess from './VerificationProcess';
-import { getChain, getStartedVerificationSteps, getTransactionLink } from '../../../selectors/certificate';
+import { getChain, getStartedVerificationSteps, getTransactionLink, isTestChain } from '../../../selectors/certificate';
 import VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 export const mapStateToProps = (state) => {
@@ -10,6 +10,7 @@ export const mapStateToProps = (state) => {
     steps,
     transactionLink: getTransactionLink(state),
     chain: getChain(state),
+    isTestChain: isTestChain(state),
     hasError
   };
 };

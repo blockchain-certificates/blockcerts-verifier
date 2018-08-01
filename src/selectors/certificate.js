@@ -144,6 +144,12 @@ export function getChain (state) {
   return '';
 }
 
+export function isTestChain (state) {
+  const chain = getChain(state);
+
+  return chain === 'Mocknet';
+}
+
 export function getVerifiedSteps (state) {
   return state.verifiedSteps || [];
 }

@@ -3,7 +3,7 @@ import VerificationStep from '../../molecules/VerificationStep';
 import FinalVerificationStep from '../../atoms/FinalVerificationStep';
 import CSS from './_components.verification-process-css';
 
-export default function VerificationProcess ({ steps, transactionLink, chain, hasError }) {
+export default function VerificationProcess ({ steps, transactionLink, chain, hasError, isTestChain }) {
   const innerHTML = steps
     .map((step, i) => html`
       ${VerificationStep(step, true, i === 0)}
@@ -16,7 +16,8 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
   // TODO: better handle this dynamic class (cf npm classnames)
   const progressBarClasses = [
     'buv-c-verification-progress-bar',
-    hasError ? 'has-errored' : ''
+    hasError ? 'has-errored' : '',
+    isTestChain ? 'is-test' : ''
   ].join(' ');
 
   if (!innerHTML.length) {

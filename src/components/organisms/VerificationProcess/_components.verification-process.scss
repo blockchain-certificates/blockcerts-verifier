@@ -29,6 +29,10 @@
   background-color: $errorColor;
 }
 
+.buv-c-verification-progress-bar.is-test {
+  background-color: #d8d8d8;
+}
+
 .buv-c-verification-progress-bar.no-transition {
   -webkit-transition: none;
   -moz-transition: none;
