@@ -6,12 +6,12 @@ import CSS from './_components.verification-process-css';
 export default function VerificationProcess ({ steps, transactionLink, chain, hasError, isTestChain }) {
   const innerHTML = steps
     .map((step, i) => html`
-      ${VerificationStep({ 
-        ...step, 
-        isParent: true, 
-        isFirst: i === 0,
-        isTestChain
-      })}
+      ${VerificationStep({
+    ...step,
+    isParent: true,
+    isFirst: i === 0,
+    isTestChain
+  })}
       ${step.subSteps
     .filter(substep => !!substep.status)
     .map(substep => html`${VerificationStep(substep)}`)
