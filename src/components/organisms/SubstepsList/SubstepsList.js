@@ -2,7 +2,7 @@ import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.substeps-list-css';
 import VerificationStep from '../../molecules/VerificationStep';
 
-class SubStepsList extends LitElement {
+class SubstepsList extends LitElement {
   constructor () {
     super();
     this.isOpen = false;
@@ -48,4 +48,4 @@ class SubStepsList extends LitElement {
   }
 }
 
-export default SubStepsList;
+export default SubstepsList;

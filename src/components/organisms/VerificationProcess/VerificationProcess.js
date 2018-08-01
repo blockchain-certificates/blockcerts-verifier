@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import VerificationStep from '../../molecules/VerificationStep';
 import FinalVerificationStep from '../../atoms/FinalVerificationStep';
-import '../SubStepsList';
+import '../SubstepsList';
 import CSS from './_components.verification-process-css';
 
 export default function VerificationProcess ({ steps, transactionLink, chain, hasError, isTestChain }) {

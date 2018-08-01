@@ -1,3 +1,3 @@
-import SubStepsList from './SubStepsList';
+import SubstepsList from './SubstepsList';
 
-window.customElements.define('buv-substeps-list', SubStepsList);
+window.customElements.define('buv-substeps-list', SubstepsList);
