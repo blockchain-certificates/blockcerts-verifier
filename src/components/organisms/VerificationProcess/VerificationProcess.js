@@ -35,7 +35,7 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
       <div class$='${progressBarClasses}'></div>  
       <dl class='buv-c-verification-process__step-list'>
         ${innerHTML}
-        ${FinalVerificationStep({ hasError, transactionLink, chain })}
+        ${FinalVerificationStep({ hasError, transactionLink, chain, isTestChain })}
       </dl>
     </section>
   `;
