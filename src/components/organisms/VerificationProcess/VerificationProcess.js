@@ -9,8 +9,9 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
       ${VerificationStep({ 
         ...step, 
         isParent: true, 
-        isFirst: i === 0}
-      )}
+        isFirst: i === 0,
+        isTestChain
+      })}
       ${step.subSteps
     .filter(substep => !!substep.status)
     .map(substep => html`${VerificationStep(substep)}`)

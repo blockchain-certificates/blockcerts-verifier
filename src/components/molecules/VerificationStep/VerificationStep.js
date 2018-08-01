@@ -1,13 +1,14 @@
 import { html } from '@polymer/lit-element';
 import ErrorMessage from '../../atoms/ErrorMessage';
 
-export default function VerificationStep ({ label, code, status, errorMessage , isParent, isFirst }) {
+export default function VerificationStep ({ label, code, status, errorMessage , isParent, isFirst, isTestChain }) {
   // TODO: better handle this dynamic class (cf npm classnames)
   let parentStepClasses = [
     'buv-o-large-text',
     'buv-c-verification-step',
     isFirst ? 'is-first' : '',
-    `is-${status}`
+    `is-${status}`,
+    isTestChain ? 'is-test' : ''
   ].join(' ');
 
   let innerHTML;
