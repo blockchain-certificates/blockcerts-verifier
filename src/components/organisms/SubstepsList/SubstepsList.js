@@ -4,7 +4,7 @@ import VerificationStep from '../../molecules/VerificationStep';
 
 class SubStepsList extends LitElement {
   constructor () {
-    super ();
+    super();
     this.isOpen = false;
     this.toggleOpen = this.toggleOpen.bind(this);
   }
@@ -12,7 +12,7 @@ class SubStepsList extends LitElement {
     return {
       subSteps: [],
       isOpen: Boolean
-    }
+    };
   }
 
   toggleOpen () {
@@ -20,7 +20,7 @@ class SubStepsList extends LitElement {
   }
 
   showList (subSteps) {
-    return html`${ subSteps.map(subStep => html`${VerificationStep(subStep)}`) }`;
+    return html`${subSteps.map(subStep => html`${VerificationStep(subStep)}`)}`;
   }
 
   _render (props) {
@@ -48,4 +48,4 @@ class SubStepsList extends LitElement {
   }
 }
 
-export default SubStepsList
+export default SubStepsList;
