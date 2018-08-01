@@ -14,7 +14,10 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
     `);
 
   // TODO: better handle this dynamic class (cf npm classnames)
-  const progressBarClasses = `buv-c-verification-progress-bar ${hasError ? 'has-errored' : ''}`;
+  const progressBarClasses = [
+    'buv-c-verification-progress-bar',
+    hasError ? 'has-errored' : ''
+  ].join(' ');
 
   if (!innerHTML.length) {
     return;
