@@ -45,11 +45,6 @@
   min-width: 200px;
 }
 
-// TODO: not implemented in HTML
-.buv-c-verification-step__toggle-link {
-  display: block;
-}
-
 // TODO: below should be deleted once all implemented
 :host .step .loading-txt,
 :host .step.starting > a,
@@ -63,22 +58,4 @@
 
 :host .step.opened .sub-steps {
   height: auto;
-}
-
-:host .step.opened .step-arrow {
-  transform: rotate(180deg);
-}
-
-:host .step-arrow {
-  width: 0;
-  height: 0;
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 4px solid rgba(118, 128, 135, 1);
-  display: inline-block;
-  vertical-align: 2px;
-  margin: 0 6px;
-  -webkit-transition: -webkit-transform .3s ease-in;
-  -o-transition: transform .3s ease-in;
-  transition: transform .3s ease-in;
 }

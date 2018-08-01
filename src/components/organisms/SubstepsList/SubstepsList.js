@@ -26,9 +26,17 @@ class SubStepsList extends LitElement {
   _render (props) {
     const itemsLength = props.subSteps.length;
     const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
+    // TODO: better handle this dynamic class (cf npm classnames)
+    const linkClasses = [
+      'buv-o-small-text',
+      'buv-o-link',
+      'buv-c-substeps-list__link',
+      this.isOpen ? 'is-open' : ''
+    ].join(' ');
+
     return html`
     ${CSS}
-    <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class='buv-o-small-text  buv-o-link'>
+    <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class$='${linkClasses}'>
       ${this.isOpen ? 'Hide' : itemString}
     </a>
     ${this.isOpen ? this.showList(props.subSteps) : null}

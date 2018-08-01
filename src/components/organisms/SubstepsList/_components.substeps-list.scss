@@ -1,2 +1,21 @@
 @import '../../../shared-styles/objects.text';
 @import '../../../shared-styles/objects.link';
+
+.buv-c-substeps-list__link::after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid rgba(118, 128, 135, 1);
+  display: inline-block;
+  vertical-align: 2px;
+  margin: 0 6px;
+  -webkit-transition: -webkit-transform .3s ease-in;
+  -o-transition: transform .3s ease-in;
+  transition: transform .3s ease-in;
+}
+
+.buv-c-substeps-list__link.is-open::after {
+  transform: rotate(180deg);
+}

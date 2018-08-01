@@ -1,3 +1,3 @@
 import {html} from '@polymer/lit-element';
-export default html`<style>.buv-o-link{color:#031532}.buv-o-small-text{font-size:12px}.buv-o-large-text{font-size:15px}.buv-o-link{cursor:pointer;text-decoration:underline}
+export default html`<style>.buv-o-link{color:#031532}.buv-o-small-text{font-size:12px}.buv-o-large-text{font-size:15px}.buv-o-link{cursor:pointer;text-decoration:underline}.buv-c-substeps-list__link::after{content:'';width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-bottom:4px solid #768087;display:inline-block;vertical-align:2px;margin:0 6px;-webkit-transition:-webkit-transform .3s ease-in;-o-transition:transform .3s ease-in;transition:transform .3s ease-in}.buv-c-substeps-list__link.is-open::after{transform:rotate(180deg)}
 </style>`;
