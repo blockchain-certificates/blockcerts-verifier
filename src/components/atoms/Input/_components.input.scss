@@ -1,6 +1,8 @@
+@import '../../../shared-styles/settings.variables';
+
 .buv-c-input {
   font-size: 15px;
-  color: rgba(3, 21, 50, 1);
+  color: $fontColor;
   border-radius: 2px;
   padding: 12px 15px;
   background-color: rgba(243, 244, 245, 6);

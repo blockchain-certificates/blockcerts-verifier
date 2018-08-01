@@ -1,5 +1,7 @@
+@import './settings.variables';
+
 .buv-o-link {
-  color: rgba(3, 21, 50, 1);
+  color: $fontColor;
 }
 
 .buv-o-small-text {

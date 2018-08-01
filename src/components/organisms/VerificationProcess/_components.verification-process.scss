@@ -103,6 +103,10 @@
   transform: rotate(45deg);
 }
 
+.buv-c-verification-step.is-test.is-success::after {
+  border: solid $fontColor;
+}
+
 .buv-c-verification-step.is-failure::after {
   content: '\\274C'; // double escape needed for JS
   left: -31px;
