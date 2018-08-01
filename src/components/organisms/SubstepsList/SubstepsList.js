@@ -1,5 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
-import VerificationStep from '../../molecules/VerificationStep/index';
+import CSS from './_components.substeps-list-css';
+import VerificationStep from '../../molecules/VerificationStep';
 
 class SubStepsList extends LitElement {
   constructor () {
@@ -23,9 +24,12 @@ class SubStepsList extends LitElement {
   }
 
   _render (props) {
+    const itemsLength = props.subSteps.length;
+    const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
     return html`
-    <a title='Toggle open list of substeps' onclick='${this.toggleOpen}'>
-      ${this.isOpen ? 'hide' : `${props.subSteps.length} items`}
+    ${CSS}
+    <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class='buv-o-small-text  buv-o-link'>
+      ${this.isOpen ? 'Hide' : itemString}
     </a>
     ${this.isOpen ? this.showList(props.subSteps) : null}
     `;
