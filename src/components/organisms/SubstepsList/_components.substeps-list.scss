@@ -23,18 +23,14 @@
 .buv-c-substeps-list__list {
   max-height: 0;
   overflow: hidden;
-  animation: slide-close .3s forwards;
+  -webkit-transition: max-height .3s ease-in;
+  -o-transition: max-height .3s ease-in;
+  transition: max-height .3s ease-in;
+  // allow for substeps dots to appear (hidden by overflow)
+  padding-left: 50px;
+  margin-left: -50px;
 }
 
 .buv-c-substeps-list__list.is-open {
-  animation: slide-open .3s forwards;
-}
-
-@keyframes slide-open {
-  0%   { max-height: 0; overflow: hidden }
-  100% { max-height: auto; overflow: visible }
-}
-@keyframes slide-close {
-  0%   { max-height: auto; overflow: hidden }
-  100% { max-height: 0; overflow: hidden }
+  height: auto;
 }

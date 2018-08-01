@@ -44,7 +44,7 @@ class SubStepsList extends LitElement {
     <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class$='${linkClasses}'>
       ${this.isOpen ? 'Hide' : itemString}
     </a>
-    <div class$='${listClasses}' style='max-height: ${itemsLength * 25}px'>
+    <div class$='${listClasses}' style='max-height: ${this.isOpen ? itemsLength * 25 : 0}px'>
       ${subSteps.map(subStep => html`${VerificationStep(subStep)}`)}
     </div>
     `;
