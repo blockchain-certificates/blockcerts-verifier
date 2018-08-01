@@ -24,6 +24,10 @@ class SubStepsList extends LitElement {
   }
 
   _render (props) {
+    if (!props.subSteps) {
+      return null;
+    }
+
     const itemsLength = props.subSteps.length;
     const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
     // TODO: better handle this dynamic class (cf npm classnames)
