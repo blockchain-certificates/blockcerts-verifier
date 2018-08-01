@@ -6,7 +6,7 @@ export default function FinalVerificationStep ({ hasError = false, chain = '', t
   }
 
   // TODO: better handle this dynamic class (cf npm classnames)
-  const classes = [
+  const titleClasses = [
     'buv-c-verification-step',
     'is-final',
     isTestChain ? 'is-test' : ''
@@ -20,7 +20,7 @@ export default function FinalVerificationStep ({ hasError = false, chain = '', t
       <a class='buv-o-link' href='${transactionLink}' hidden?='${!transactionLink}'>View transaction link</a>`;
 
   return html`
-    <dt class$='${classes}'>${title}</dt>
+    <dt class$='${titleClasses}'>${title}</dt>
     <dd class='buv-c-verification-substep  buv-u-excluded-from-flow  buv-o-small-text'>
       ${details}
     </dd>
