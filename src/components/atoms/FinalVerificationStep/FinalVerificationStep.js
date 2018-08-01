@@ -1,4 +1,5 @@
 import { html } from '@polymer/lit-element';
+import CSS from './_components.final-verification-step-css';
 
 export default function FinalVerificationStep ({ hasError = false, chain = '', transactionLink = '', isTestChain }) {
   if (hasError) {
@@ -20,6 +21,7 @@ export default function FinalVerificationStep ({ hasError = false, chain = '', t
       <a class='buv-o-link' href='${transactionLink}' hidden?='${!transactionLink}'>View transaction link</a>`;
 
   return html`
+    ${CSS}
     <dt class$='${titleClasses}'>${title}</dt>
     <dd class='buv-c-verification-substep  buv-u-excluded-from-flow  buv-o-small-text'>
       ${details}
