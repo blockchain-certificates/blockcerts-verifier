@@ -1,4 +1,5 @@
 import { html } from '@polymer/lit-element';
+import CSS from './_components.verification-step-css';
 import ErrorMessage from '../../atoms/ErrorMessage';
 
 export default function VerificationStep ({ label, code, status, errorMessage, isParent, isFirst, isTestChain }) {
@@ -13,9 +14,9 @@ export default function VerificationStep ({ label, code, status, errorMessage, i
 
   let innerHTML;
   if (isParent) {
-    innerHTML = html`<dt class$='${parentStepClasses}'>${label}</dt>`;
+    innerHTML = html`${CSS}<dt class$='${parentStepClasses}'>${label}</dt>`;
   } else {
-    innerHTML = html`<dd class='buv-c-verification-step  buv-c-verification-substep  buv-o-small-text'>
+    innerHTML = html`${CSS}<dd class='buv-c-verification-step  buv-c-verification-substep  buv-o-small-text'>
       ${label}
       ${ErrorMessage(errorMessage)}
     </dd>`;
