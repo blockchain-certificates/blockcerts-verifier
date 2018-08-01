@@ -19,3 +19,18 @@
 .buv-c-substeps-list__link.is-open::after {
   transform: rotate(180deg);
 }
+
+.buv-c-substeps-list__list {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height .3s ease-in;
+  -o-transition: max-height .3s ease-in;
+  transition: max-height .3s ease-in;
+  // allow for substeps dots to appear (hidden by overflow)
+  padding-left: 50px;
+  margin-left: -50px;
+}
+
+.buv-c-substeps-list__list.is-open {
+  height: auto;
+}

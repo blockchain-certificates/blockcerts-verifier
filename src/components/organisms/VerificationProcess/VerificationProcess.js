@@ -13,7 +13,7 @@ export default function VerificationProcess ({ steps, transactionLink, chain, ha
     isFirst: i === 0,
     isTestChain
   })}
-      <buv-substeps-list subSteps='${step.subSteps.filter(subStep => !!subStep.status)}'></buv-substeps-list>
+      <buv-substeps-list subSteps='${step.subSteps}'></buv-substeps-list>
     `);
 
   // TODO: better handle this dynamic class (cf npm classnames)
