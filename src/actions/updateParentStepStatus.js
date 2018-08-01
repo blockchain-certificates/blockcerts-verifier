@@ -1,6 +1,6 @@
 import * as ACTIONS from '../constants/actionTypes';
 import { getParentStep } from '../selectors/certificate';
-import * as VERIFICATION_STATUS from '../constants/verificationStatus';
+import VERIFICATION_STATUS from '../constants/verificationStatus';
 
 function oneChildIsSuccess (parent) {
   return parent.subSteps.some(s => s.status === VERIFICATION_STATUS.SUCCESS);

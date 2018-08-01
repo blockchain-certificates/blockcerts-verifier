@@ -4,6 +4,7 @@ import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import validateUrlInput from '../../../../src/actions/validateUrlInput';
 import validCertificateDefinition from '../../../fixtures/valid-certificate-example';
+import verifyCertificate from '../../../../src/actions/verifyCertificate';
 
 describe('VerifyButtonContainer test suite', function () {
   describe('mapStateToProps method', function () {
@@ -11,7 +12,7 @@ describe('VerifyButtonContainer test suite', function () {
       let store;
 
       beforeEach(function () {
-        const initialState = getInitialState();
+        const initialState = getInitialState({ disableAutoVerify: true });
         store = configureStore(initialState);
       });
 
@@ -42,6 +43,16 @@ describe('VerifyButtonContainer test suite', function () {
           const state = store.getState();
 
           expect(mapStateToProps(state).cancelSpinner).toBe(false);
+        });
+      });
+
+      describe('when the verification has finished', function () {
+        it('should be false', async function () {
+          store.dispatch(updateCertificateDefinition(validCertificateDefinition));
+          await store.dispatch(verifyCertificate());
+          const state = store.getState();
+
+          expect(mapStateToProps(state).cancelSpinner).toBe(true);
         });
       });
     });

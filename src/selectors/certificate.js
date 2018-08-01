@@ -1,4 +1,4 @@
-import * as VERIFICATION_STATUS from '../constants/verificationStatus';
+import VERIFICATION_STATUS from '../constants/verificationStatus';
 import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
 

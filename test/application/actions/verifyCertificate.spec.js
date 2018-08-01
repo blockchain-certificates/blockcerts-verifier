@@ -9,7 +9,7 @@ import initialValidCertificateStepsAssertions from '../../assertions/initialVali
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
-import * as VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
+import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 
 describe('verifyCertificate action creator test suite', function () {
   describe('given the verification of certificates is not disabled', function () {
@@ -28,14 +28,28 @@ describe('verifyCertificate action creator test suite', function () {
     });
 
     describe('given the action is triggered', function () {
-      it('should set the verificationStatus in the state to started', async function () {
+      it('should set the verificationStatus in the state to started', function () {
         // add a certificate definition to be verified
-        await store.dispatch(updateCertificateDefinition(validCertificateFixture));
-        await store.dispatch(verifyCertificate());
+        store.dispatch(updateCertificateDefinition(validCertificateFixture));
+        store.dispatch(verifyCertificate());
 
         const state = store.getState();
 
         expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.STARTED);
+      });
+    });
+
+    describe('given the verification is ended', function () {
+      describe('and the verification was of a valid certificate', function () {
+        it('should set the verificationStatus in the state to success', async function () {
+          // add a certificate definition to be verified
+          store.dispatch(updateCertificateDefinition(validCertificateFixture));
+          await store.dispatch(verifyCertificate());
+
+          const state = store.getState();
+
+          expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.SUCCESS);
+        });
       });
     });
 

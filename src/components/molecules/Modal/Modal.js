@@ -6,17 +6,28 @@ class Modal extends LitElement {
   constructor () {
     super();
     this.isOpen = false;
-    this.toggleOpen = this.toggleOpen.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
 
   static get properties () {
     return {
-      isOpen: Boolean
+      isOpen: Boolean,
+      onClose: Function
     };
   }
 
-  toggleOpen () {
-    this.isOpen = !this.isOpen;
+  close () {
+    this.isOpen = false;
+  }
+
+  handleClick () {
+    this.close();
+    this._props.onClose();
+  }
+
+  _propertiesChanged (props, changedProps, prevProps) {
+    this._props = props;
+    super._propertiesChanged(props, changedProps, prevProps);
   }
 
   _render () {
@@ -32,7 +43,7 @@ class Modal extends LitElement {
       <div class$=${classes}>
         ${CloseButton({
     className: 'buv-c-modal__close-button',
-    onClick: this.toggleOpen
+    onClick: this.handleClick
   })}
         <slot></slot>
       </div>

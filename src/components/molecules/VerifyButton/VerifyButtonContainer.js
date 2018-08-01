@@ -4,13 +4,14 @@ import { VerifyButton } from './VerifyButton';
 import { getUrlIsValid } from '../../../selectors/input';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 import { getDisableVerify } from '../../../selectors/api';
+import { getVerificationIsFinished } from '../../../selectors/verification';
 
 const mapDispatchToProps = {
   onClick: verifyCertificate
 };
 
 export const mapStateToProps = (state) => ({
-  cancelSpinner: typeof getUrlIsValid(state) === 'undefined' ? false : !getUrlIsValid(state),
+  cancelSpinner: !getUrlIsValid(state) || getVerificationIsFinished(state),
   isDisabled: getDisableVerify(state) || !getCertificateDefinition(state)
 });
 

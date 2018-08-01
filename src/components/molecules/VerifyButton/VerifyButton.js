@@ -11,6 +11,9 @@ class VerifyButton extends LitElement {
 
   defaultProps () {
     this.showSpinner = false;
+    // this is a trick to manage the display of the spinner without triggering contempt from LitElement
+    // not having it as a property allows us to reset it without warning.
+    this.activateSpinner = this.showSpinner;
     this.cancelSpinner = false;
     this.onClick = () => {};
   }
@@ -28,6 +31,7 @@ class VerifyButton extends LitElement {
   handleClick () {
     this._props.onClick();
     this.showSpinner = true;
+    this.activateSpinner = this.showSpinner;
   }
 
   getButtonText () {
@@ -40,23 +44,24 @@ class VerifyButton extends LitElement {
 
   _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
+    if (props.cancelSpinner) {
+      this.activateSpinner = false;
+    }
     super._propertiesChanged(props, changedProps, prevProps);
   }
 
   _render () {
-    const showSpinner = this.showSpinner && !this.cancelSpinner;
-
     const buttonClass = [
       'buv-c-verify-button',
       this.isHollow ? 'buv-c-verify-button--hollow' : '',
       this.isDisabled ? 'is-disabled' : '',
-      showSpinner ? 'has-spinner' : ''
+      this.activateSpinner ? 'has-spinner' : ''
     ].join(' ');
 
     return html`
       ${CSS}
       <button class$='${buttonClass}' on-click='${this.handleClick}' disabled?='${this.isDisabled}'>
-       ${showSpinner ? this.getSpinner() : this.getButtonText()}
+       ${this.activateSpinner ? this.getSpinner() : this.getButtonText()}
       </button>
     `;
   }
