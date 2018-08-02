@@ -5,14 +5,23 @@ import '../SubstepsList';
 import CSS from './_components.verification-process-css';
 
 class VerificationProcess extends LitElement {
+  constructor () {
+    super();
+    this.listElement = null;
+  }
+
   static get properties () {
     return {
-      steps: Object,
+      steps: [],
       transactionLink: String,
       chain: String,
       hasError: Boolean,
       isTestChain: Boolean
     }
+  }
+
+  _didRender () {
+    this.listElement = this.shadowRoot.querySelectorAll('.buv-js-verification-process__step-list')[0];
   }
 
   _render({ steps, transactionLink, chain, hasError, isTestChain }) {
@@ -30,6 +39,7 @@ class VerificationProcess extends LitElement {
     // TODO: better handle this dynamic class (cf npm classnames)
     const progressBarClasses = [
       'buv-c-verification-progress-bar',
+      'buv-js-verification-progress-bar',
       hasError ? 'has-errored' : '',
       isTestChain ? 'is-test' : ''
     ].join(' ');
@@ -38,11 +48,13 @@ class VerificationProcess extends LitElement {
       return;
     }
 
+    const height = this.listElement ? this.listElement.getBoundingClientRect().height : 0;
+
     return html`
     ${CSS}
     <section class='buv-c-verification-process'>
-      <div class$='${progressBarClasses}'></div>  
-      <dl class='buv-c-verification-process__step-list'>
+      <div class$='${progressBarClasses}' style='height: ${height}px'></div>  
+      <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
         ${FinalVerificationStep({ hasError, transactionLink, chain, isTestChain })}
       </dl>

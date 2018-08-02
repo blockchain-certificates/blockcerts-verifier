@@ -15,12 +15,10 @@
   border-radius: 7px;
   margin: 2px 0;
   box-sizing: content-box;
-  // TODO: not animating at this point
   -webkit-transition: height .4s ease-in-out, padding-top .4s ease-in;
   -moz-transition: height .4s ease-in-out, padding-top .4s ease-in;
   -o-transition: height .4s ease-in-out, padding-top .4s ease-in;
   transition: height .4s ease-in-out, padding-top .4s ease-in;
-  height: 100%;
   display: table-cell;
 }
 
