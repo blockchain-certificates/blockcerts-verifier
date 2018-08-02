@@ -15,9 +15,6 @@
 }
 
 .buv-c-verification-progress-bar__tube {
-  //-webkit-transition: flex .4s ease-in-out, padding-top .4s ease-in;
-  //-moz-transition: flex .4s ease-in-out, padding-top .4s ease-in;
-  //-o-transition: flex .4s ease-in-out, padding-top .4s ease-in;
   transition: flex .4s ease-in-out, padding-top .4s ease-in;
   background-color: $successColor;
   border-radius: 7px;
