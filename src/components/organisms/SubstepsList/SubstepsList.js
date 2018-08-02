@@ -44,8 +44,11 @@ class SubstepsList extends LitElement {
       this.wasForcedOpen = true;
     }
 
-    const itemsLength = subSteps.length;
+    const renderedSubSteps = subSteps.filter(subStep => subStep.status);
+    const itemsLength = renderedSubSteps.length;
     const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
+    const maxHeight = hasError ? itemsLength * 25 + 65 : itemsLength * 25;
+
     // TODO: better handle this dynamic class (cf npm classnames)
     const linkClasses = [
       'buv-o-small-text',
@@ -64,8 +67,8 @@ class SubstepsList extends LitElement {
     <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class$='${linkClasses}'>
       ${isOpen ? 'Hide' : itemString}
     </a>
-    <div class$='${listClasses}' style='max-height: ${isOpen ? itemsLength * 25 : 0}px'>
-      ${subSteps.map(subStep => html`${VerificationStep(subStep)}`)}
+    <div class$='${listClasses}' style='max-height: ${isOpen ? maxHeight : 0}px'>
+      ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)}
     </div>
     `;
   }
