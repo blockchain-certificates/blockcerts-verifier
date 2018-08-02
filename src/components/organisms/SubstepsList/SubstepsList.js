@@ -6,12 +6,15 @@ class SubstepsList extends LitElement {
   constructor () {
     super();
     this.isOpen = false;
+    this.wasForcedOpen = false;
     this.toggleOpen = this.toggleOpen.bind(this);
   }
+
   static get properties () {
     return {
       subSteps: [],
-      isOpen: Boolean
+      isOpen: Boolean,
+      hasError: Boolean
     };
   }
 
@@ -19,9 +22,16 @@ class SubstepsList extends LitElement {
     this.isOpen = !this.isOpen;
   }
 
-  _render ({ subSteps }) {
+  _render ({ subSteps, hasError }) {
     if (!subSteps) {
       return null;
+    }
+
+    let isOpen = this.isOpen;
+
+    if (!this.wasForcedOpen && hasError) {
+      isOpen = true;
+      this.wasForcedOpen = true;
     }
 
     const itemsLength = subSteps.length;
@@ -31,20 +41,20 @@ class SubstepsList extends LitElement {
       'buv-o-small-text',
       'buv-o-link',
       'buv-c-substeps-list__link',
-      this.isOpen ? 'is-open' : ''
+      isOpen ? 'is-open' : ''
     ].join(' ');
 
     const listClasses = [
       'buv-c-substeps-list__list',
-      this.isOpen ? 'is-open' : ''
+      isOpen ? 'is-open' : ''
     ].join(' ');
 
     return html`
     ${CSS}
     <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class$='${linkClasses}'>
-      ${this.isOpen ? 'Hide' : itemString}
+      ${isOpen ? 'Hide' : itemString}
     </a>
-    <div class$='${listClasses}' style='max-height: ${this.isOpen ? itemsLength * 25 : 0}px'>
+    <div class$='${listClasses}' style='max-height: ${isOpen ? itemsLength * 25 : 0}px'>
       ${subSteps.map(subStep => html`${VerificationStep(subStep)}`)}
     </div>
     `;
