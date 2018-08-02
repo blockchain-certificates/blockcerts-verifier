@@ -49,16 +49,12 @@ class VerificationProcess extends LitElement {
       isTestChain ? 'is-test' : ''
     ].join(' ');
 
-    if (!innerHTML.length) {
-      return;
-    }
-
-    const height = this.listElement ? this.listElement.getBoundingClientRect().height : 0;
-
     return html`
     ${CSS}
     <section class='buv-c-verification-process'>
-      <div class$='${progressBarClasses}' style='height: ${height}px'></div>  
+      <div class$='${progressBarClasses}' >
+        <div class$='buv-c-verification-progress-bar__tube ${innerHTML.length ? 'has-started' : ''}'></div>
+      </div>  
       <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
       </dl>

@@ -10,23 +10,33 @@
   position: absolute;
   left: 0;
   top: 0;
-  background-color: $successColor;
   width: 14px;
-  border-radius: 7px;
   margin: 2px 0;
   box-sizing: content-box;
-  -webkit-transition: height .4s ease-in-out, padding-top .4s ease-in;
-  -moz-transition: height .4s ease-in-out, padding-top .4s ease-in;
-  -o-transition: height .4s ease-in-out, padding-top .4s ease-in;
-  transition: height .4s ease-in-out, padding-top .4s ease-in;
-  display: table-cell;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
-.buv-c-verification-progress-bar.has-errored {
+.buv-c-verification-progress-bar__tube {
+  //-webkit-transition: flex .4s ease-in-out, padding-top .4s ease-in;
+  //-moz-transition: flex .4s ease-in-out, padding-top .4s ease-in;
+  //-o-transition: flex .4s ease-in-out, padding-top .4s ease-in;
+  transition: flex .4s ease-in-out, padding-top .4s ease-in;
+  background-color: $successColor;
+  border-radius: 7px;
+  flex-grow: 0;
+}
+
+.buv-c-verification-progress-bar__tube.has-started {
+  flex-grow: 1;
+}
+
+.buv-c-verification-progress-bar__tube.has-errored {
   background-color: $errorColor;
 }
 
-.buv-c-verification-progress-bar.is-test {
+.buv-c-verification-progress-bar__tube.is-test {
   background-color: #d8d8d8;
 }
 
