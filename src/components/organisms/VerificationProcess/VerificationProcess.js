@@ -34,16 +34,17 @@ class VerificationProcess extends LitElement {
 
     // TODO: better handle this dynamic class (cf npm classnames)
     const progressBarClasses = [
-      'buv-c-verification-progress-bar',
+      'buv-c-verification-progress-bar__tube',
       hasError ? 'has-errored' : '',
-      isTestChain ? 'is-test' : ''
+      isTestChain ? 'is-test' : '',
+      innerHTML.length ? 'has-started' : ''
     ].join(' ');
 
     return html`
     ${CSS}
     <section class='buv-c-verification-process'>
-      <div class$='${progressBarClasses}' >
-        <div class$='buv-c-verification-progress-bar__tube ${innerHTML.length ? 'has-started' : ''}'></div>
+      <div class='buv-c-verification-progress-bar' >
+        <div class$='${progressBarClasses}'></div>
       </div>  
       <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
