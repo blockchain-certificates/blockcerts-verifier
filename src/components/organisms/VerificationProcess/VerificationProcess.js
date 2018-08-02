@@ -1,4 +1,4 @@
-import { html, LitElement} from '@polymer/lit-element';
+import { html, LitElement } from '@polymer/lit-element';
 import VerificationStep from '../../molecules/VerificationStep';
 import FinalVerificationStep from '../../atoms/FinalVerificationStep';
 import '../SubstepsList';
@@ -13,23 +13,23 @@ class VerificationProcess extends LitElement {
       chain: String,
       hasError: Boolean,
       isTestChain: Boolean
-    }
+    };
   }
 
-  _render({ steps, transactionLink, chain, hasError, isTestChain }) {
+  _render ({ steps, transactionLink, chain, hasError, isTestChain }) {
     const innerHTML = steps
       .map((step, i) => html`
       ${VerificationStep({
-        ...step,
-        isParent: true,
-        isFirst: i === 0,
-        isTestChain
-      })}
+    ...step,
+    isParent: true,
+    isFirst: i === 0,
+    isTestChain
+  })}
       <buv-substeps-list subSteps='${step.subSteps}' hasError?='${hasError}'></buv-substeps-list>
-       ${i === steps.length - 1 && step.status === VERIFICATION_STATUS.SUCCESS ? 
-          FinalVerificationStep({ transactionLink, chain, isTestChain }) : 
-          ''
-        }
+       ${i === steps.length - 1 && step.status === VERIFICATION_STATUS.SUCCESS
+    ? FinalVerificationStep({ transactionLink, chain, isTestChain })
+    : ''
+}
     `);
 
     // TODO: better handle this dynamic class (cf npm classnames)
@@ -65,7 +65,7 @@ function VerificationProcessWrapper ({ steps, transactionLink, chain, hasError, 
     chain='${chain}'
     hasError?='${hasError}'
     isTestChain?='${isTestChain}'
-    ></buv-verification-process-raw>`
+    ></buv-verification-process-raw>`;
 }
 
 export default VerificationProcessWrapper;
