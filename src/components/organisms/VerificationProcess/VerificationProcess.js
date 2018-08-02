@@ -3,6 +3,7 @@ import VerificationStep from '../../molecules/VerificationStep';
 import FinalVerificationStep from '../../atoms/FinalVerificationStep';
 import '../SubstepsList';
 import CSS from './_components.verification-process-css';
+import VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 class VerificationProcess extends LitElement {
   constructor () {
@@ -34,6 +35,10 @@ class VerificationProcess extends LitElement {
         isTestChain
       })}
       <buv-substeps-list subSteps='${step.subSteps}'></buv-substeps-list>
+       ${i === steps.length - 1 && step.status === VERIFICATION_STATUS.SUCCESS ? 
+          FinalVerificationStep({ transactionLink, chain, isTestChain }) : 
+          ''
+        }
     `);
 
     // TODO: better handle this dynamic class (cf npm classnames)
@@ -56,7 +61,6 @@ class VerificationProcess extends LitElement {
       <div class$='${progressBarClasses}' style='height: ${height}px'></div>  
       <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
-        ${FinalVerificationStep({ hasError, transactionLink, chain, isTestChain })}
       </dl>
     </section>
   `;

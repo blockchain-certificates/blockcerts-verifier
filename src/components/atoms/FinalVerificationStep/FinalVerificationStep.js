@@ -1,11 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.final-verification-step-css';
 
-export default function FinalVerificationStep ({ hasError = false, chain = '', transactionLink = '', isTestChain }) {
-  if (hasError) {
-    return;
-  }
-
+export default function FinalVerificationStep ({ chain = '', transactionLink = '', isTestChain }) {
   // TODO: better handle this dynamic class (cf npm classnames)
   const titleClasses = [
     'buv-c-verification-step',
