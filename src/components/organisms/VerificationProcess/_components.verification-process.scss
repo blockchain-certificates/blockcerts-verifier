@@ -25,12 +25,12 @@
   flex-grow: 1;
 }
 
-.buv-c-verification-progress-bar__tube.has-errored {
-  background-color: $errorColor;
-}
-
 .buv-c-verification-progress-bar__tube.is-test {
   background-color: #d8d8d8;
+}
+
+.buv-c-verification-progress-bar__tube.has-errored {
+  background-color: $errorColor;
 }
 
 .buv-c-verification-progress-bar.no-transition {
