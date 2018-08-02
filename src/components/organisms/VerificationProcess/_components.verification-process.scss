@@ -2,17 +2,13 @@
 
 .buv-c-verification-process {
   position: relative;
-  display: table;
 }
 
 .buv-c-verification-progress-bar {
-  padding-top: 0;
   position: absolute;
   left: 0;
   top: 0;
   width: 14px;
-  margin: 2px 0;
-  box-sizing: content-box;
   display: flex;
   flex-direction: column;
   height: 100%;

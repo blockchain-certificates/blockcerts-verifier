@@ -6,11 +6,6 @@ import CSS from './_components.verification-process-css';
 import VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 class VerificationProcess extends LitElement {
-  constructor () {
-    super();
-    this.listElement = null;
-  }
-
   static get properties () {
     return {
       steps: [],
@@ -19,10 +14,6 @@ class VerificationProcess extends LitElement {
       hasError: Boolean,
       isTestChain: Boolean
     }
-  }
-
-  _didRender () {
-    this.listElement = this.shadowRoot.querySelectorAll('.buv-js-verification-process__step-list')[0];
   }
 
   _render({ steps, transactionLink, chain, hasError, isTestChain }) {
@@ -44,7 +35,6 @@ class VerificationProcess extends LitElement {
     // TODO: better handle this dynamic class (cf npm classnames)
     const progressBarClasses = [
       'buv-c-verification-progress-bar',
-      'buv-js-verification-progress-bar',
       hasError ? 'has-errored' : '',
       isTestChain ? 'is-test' : ''
     ].join(' ');
