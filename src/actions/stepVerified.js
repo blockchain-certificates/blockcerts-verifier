@@ -5,9 +5,9 @@ import { getVerifiedSteps } from '../selectors/certificate';
 let stepQueue = null;
 
 class StepQueue {
-  constructor (dispatch) {
+  constructor (dispatchCb) {
     this.queue = [];
-    this.dispatch = dispatch;
+    this.dispatchCb = dispatchCb;
     this.isExecuting = false;
     this.intervalId = null;
     this.dispatchNext = this.dispatchNext.bind(this);
@@ -20,12 +20,7 @@ class StepQueue {
   dispatchNext () {
     const step = this.queue.shift();
     if (step) {
-      this.dispatch({
-        type: ACTIONS.STEP_VERIFIED,
-        payload: step
-      });
-
-      this.dispatch(updateParentStepStatus(step.parentStep));
+      this.dispatchCb(step);
     } else if (this.intervalId) {
       this.isExecuting = false;
       clearInterval(this.intervalId);
@@ -40,13 +35,20 @@ class StepQueue {
   }
 }
 
+function dispatchActionsFactory (dispatch) {
+  return function dispatchActions (step) {
+    dispatch({
+      type: ACTIONS.STEP_VERIFIED,
+      payload: step
+    });
+
+    dispatch(updateParentStepStatus(step.parentStep));
+  }
+}
+
 export default function stepVerified (stepDefinition) {
   return function (dispatch, getState) {
     const state = getState();
-
-    if (!stepQueue) {
-      stepQueue = new StepQueue(dispatch);
-    }
 
     const parentStepCode = state.verifiedSteps.find(step => step.subSteps.some(substep => substep.code === stepDefinition.code)).code;
 
@@ -57,6 +59,10 @@ export default function stepVerified (stepDefinition) {
       },
       parentStep: parentStepCode
     };
+
+    if (!stepQueue) {
+      stepQueue = new StepQueue(dispatchActionsFactory(dispatch));
+    }
 
     stepQueue.push(step);
     stepQueue.execute();
