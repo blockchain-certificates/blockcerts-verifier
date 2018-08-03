@@ -15,7 +15,7 @@
 }
 
 .buv-c-verification-progress-bar__tube {
-  transition: flex .4s ease-in-out, padding-top .4s ease-in;
+  transition: flex .4s ease-in-out, max-height .4s ease-in;
   background-color: $successColor;
   border-radius: 7px;
   flex-grow: 0;

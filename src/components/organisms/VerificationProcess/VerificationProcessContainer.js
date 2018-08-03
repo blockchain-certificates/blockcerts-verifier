@@ -1,10 +1,15 @@
 import connector from '../../../store/connector';
 import VerificationProcess from './VerificationProcess';
-import { getChain, getStartedVerificationSteps, getTransactionLink, isTestChain } from '../../../selectors/certificate';
+import {
+  getChain,
+  getTransactionLink,
+  getVerifiedSteps,
+  isTestChain
+} from '../../../selectors/certificate';
 import VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 export const mapStateToProps = (state) => {
-  const steps = JSON.parse(JSON.stringify(getStartedVerificationSteps(state)));
+  const steps = JSON.parse(JSON.stringify(getVerifiedSteps(state)));
   const hasError = steps.some(s => s.status === VERIFICATION_STATUS.FAILURE);
   return {
     steps,

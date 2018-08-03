@@ -16,8 +16,15 @@ class VerificationProcess extends LitElement {
     };
   }
 
+  _didRender () {
+    if (!this.listElement) {
+      this.listElement = this.shadowRoot.querySelectorAll('.buv-js-verification-process__step-list')[0];
+    }
+  }
+
   _render ({ steps, transactionLink, chain, hasError, isTestChain }) {
     const innerHTML = steps
+      .filter(step => step.status !== VERIFICATION_STATUS.DEFAULT)
       .map((step, i) => html`
       ${VerificationStep({
     ...step,
@@ -35,6 +42,8 @@ class VerificationProcess extends LitElement {
 }
     `);
 
+    const allStepsAreRendered = steps.every(step => step.status === VERIFICATION_STATUS.SUCCESS || step.status === VERIFICATION_STATUS.FAILURE);
+
     // TODO: better handle this dynamic class (cf npm classnames)
     const progressBarClasses = [
       'buv-c-verification-progress-bar__tube',
@@ -43,11 +52,16 @@ class VerificationProcess extends LitElement {
       innerHTML.length ? 'has-started' : ''
     ].join(' ');
 
+    let maxHeight = `${this.listElement ? this.listElement.getBoundingClientRect().height : 0}px`;
+    if (allStepsAreRendered) {
+      maxHeight = '100%';
+    }
+
     return html`
     ${CSS}
     <section class='buv-c-verification-process'>
       <div class='buv-c-verification-progress-bar' >
-        <div class$='${progressBarClasses}'></div>
+        <div class$='${progressBarClasses}' style='max-height: ${maxHeight}'></div>
       </div>  
       <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
