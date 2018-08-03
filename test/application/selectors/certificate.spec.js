@@ -264,6 +264,7 @@ describe('certificate selectors test suite', function () {
           'label': 'Status check',
           'labelPending': 'Checking record status',
           'status': 'standby',
+          'isLast': true,
           'subSteps': [
             {
               'code': 'checkRevokedStatus',
