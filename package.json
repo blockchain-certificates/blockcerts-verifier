@@ -4,7 +4,7 @@
   "main": "blockcerts-universal-verifier.js",
   "dependencies": {
     "@polymer/lit-element": "^0.5.1",
-    "cert-verifier-js": "git+https://github.com/blockchain-certificates/cert-verifier-js.git#v2-wip",
+    "cert-verifier-js": "^2.0.0",
     "cssfilter": "0.0.10",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
