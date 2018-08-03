@@ -20,7 +20,6 @@ class StepQueue {
   dispatchNext () {
     const step = this.queue.shift();
     if (step) {
-      console.log('dispatch next', step.status);
       this.dispatch({
         type: ACTIONS.STEP_VERIFIED,
         payload: step
@@ -45,8 +44,6 @@ export default function stepVerified (stepDefinition) {
   return function (dispatch, getState) {
     const state = getState();
 
-    // console.log(JSON.parse(JSON.stringify(getVerifiedSteps(state).)));
-
     if (!stepQueue) {
       stepQueue = new StepQueue(dispatch);
     }
@@ -60,13 +57,6 @@ export default function stepVerified (stepDefinition) {
       },
       parentStep: parentStepCode
     };
-
-    // dispatch({
-    //   type: ACTIONS.STEP_VERIFIED,
-    //   payload: step
-    // });
-    //
-    // dispatch(updateParentStepStatus(parentStepCode));
 
     stepQueue.push(step);
     stepQueue.execute();
