@@ -25,8 +25,11 @@ class VerificationProcess extends LitElement {
     isFirst: i === 0,
     isTestChain
   })}
-      <buv-substeps-list subSteps='${step.subSteps}' hasError?='${hasError}'></buv-substeps-list>
-       ${i === steps.length - 1 && step.status === VERIFICATION_STATUS.SUCCESS
+      ${step.status === VERIFICATION_STATUS.STARTED 
+        ? '...' 
+        : html`<buv-substeps-list subSteps='${step.subSteps}' hasError?='${hasError}'></buv-substeps-list>`
+      }
+       ${step.isLast && step.status === VERIFICATION_STATUS.SUCCESS
     ? FinalVerificationStep({ transactionLink, chain, isTestChain })
     : ''
 }

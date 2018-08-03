@@ -4,7 +4,7 @@ import { getChain, getStartedVerificationSteps, getTransactionLink, isTestChain 
 import VERIFICATION_STATUS from '../../../constants/verificationStatus';
 
 export const mapStateToProps = (state) => {
-  const steps = getStartedVerificationSteps(state);
+  const steps = JSON.parse(JSON.stringify(getStartedVerificationSteps(state)));
   const hasError = steps.some(s => s.status === VERIFICATION_STATUS.FAILURE);
   return {
     steps,
