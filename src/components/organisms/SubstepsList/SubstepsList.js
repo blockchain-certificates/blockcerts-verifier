@@ -47,6 +47,7 @@ class SubstepsList extends LitElement {
     const renderedSubSteps = subSteps.filter(subStep => subStep.status);
     const itemsLength = renderedSubSteps.length;
     const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
+    // TODO: make this calculation less magically set
     const maxHeight = hasError ? itemsLength * 25 + 65 : itemsLength * 25;
 
     // TODO: better handle this dynamic class (cf npm classnames)
