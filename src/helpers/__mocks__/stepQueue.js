@@ -6,12 +6,12 @@ const stepQueueFactory = () => {
       dispatchCb = cb;
     },
     push: stepDefinition => {
-      step = stepDefinition
+      step = stepDefinition;
     },
     execute: () => {
-      dispatchCb(step)
+      dispatchCb(step);
     }
-  }
-}
+  };
+};
 
 export default stepQueueFactory;

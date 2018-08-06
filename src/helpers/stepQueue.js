@@ -28,7 +28,7 @@ class StepQueue {
   execute () {
     if (!this.isExecuting && this.queue.length) {
       this.isExecuting = true;
-      this.intervalId = setInterval(this.dispatchNext, 200)
+      this.intervalId = setInterval(this.dispatchNext, 200);
     }
   }
 }

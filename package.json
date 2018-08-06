@@ -79,6 +79,7 @@
       "describe",
       "xdescribe",
       "expect",
+      "jest",
       "it",
       "performance",
       "fetch",

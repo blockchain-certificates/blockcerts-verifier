@@ -12,7 +12,7 @@ function dispatchActionsFactory (dispatch) {
     });
 
     dispatch(updateParentStepStatus(step.parentStep));
-  }
+  };
 }
 
 export default function stepVerified (stepDefinition) {
@@ -30,7 +30,6 @@ export default function stepVerified (stepDefinition) {
     };
 
     const dispatchActions = dispatchActionsFactory(dispatch);
-
 
     if (!stepQueue.dispatchCb) {
       // register only once
