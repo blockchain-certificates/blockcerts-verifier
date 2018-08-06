@@ -14,6 +14,10 @@ class SubstepsList extends LitElement {
     this.wasForcedOpen = false;
     this.resetOpen = false;
     this.toggleOpen = this.toggleOpen.bind(this);
+    // when we force open, we don't have access to the initial height, so we are forcing it onto the list after
+    // its first render. We only want to do this once in the lifecycle. See ADR-005.
+    this.totalHeight = 0;
+    this.heightWasReset = false;
   }
 
   static get properties () {
@@ -32,6 +36,25 @@ class SubstepsList extends LitElement {
     this.isOpen = !this.isOpen;
   }
 
+  _didRender () {
+    const listParent = this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list')[0];
+    const listElements = listParent ? Array.from(listParent.childNodes) : [];
+    if (!this.totalHeight) {
+      this.totalHeight = listElements.reduce((acc, element) => {
+        if (element.getBoundingClientRect) {
+          return acc + element.getBoundingClientRect().height;
+        }
+        return acc;
+      }, 0);
+    }
+
+    if (this.wasForcedOpen && !this.heightWasReset) {
+      // only do it once.
+      listParent.style.maxHeight = this.totalHeight + 'px';
+      this.heightWasReset = true;
+    }
+  }
+
   _render ({ subSteps, hasError }) {
     if (!subSteps) {
       return null;
@@ -47,8 +70,8 @@ class SubstepsList extends LitElement {
     const renderedSubSteps = subSteps.filter(subStep => subStep.status);
     const itemsLength = renderedSubSteps.length;
     const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
-    // TODO: make this calculation less magically set
-    const maxHeight = hasError ? itemsLength * 25 + 65 : itemsLength * 25;
+    // we are setting the closing height to 1px so that we can trigger a closing action on the first click on hide button.
+    const maxHeight = isOpen ? this.totalHeight : 1;
 
     // TODO: better handle this dynamic class (cf npm classnames)
     const linkClasses = [
@@ -60,6 +83,7 @@ class SubstepsList extends LitElement {
 
     const listClasses = [
       'buv-c-substeps-list__list',
+      'buv-js-substeps-list__list',
       isOpen ? 'is-open' : ''
     ].join(' ');
 
@@ -68,7 +92,7 @@ class SubstepsList extends LitElement {
     <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class$='${linkClasses}'>
       ${isOpen ? 'Hide' : itemString}
     </a>
-    <div class$='${listClasses}' style='max-height: ${isOpen ? maxHeight : 0}px'>
+    <div class$='${listClasses}' style$='max-height: ${maxHeight}px'>
       ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)}
     </div>
     `;
