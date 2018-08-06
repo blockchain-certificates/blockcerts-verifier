@@ -1,10 +1,14 @@
 class StepQueue {
-  constructor (dispatchCb) {
+  constructor () {
     this.queue = [];
-    this.dispatchCb = dispatchCb;
+    this.dispatchCb = null;
     this.isExecuting = false;
     this.intervalId = null;
     this.dispatchNext = this.dispatchNext.bind(this);
+  }
+
+  registerCb (dispatchCb) {
+    this.dispatchCb = dispatchCb;
   }
 
   push (step) {
@@ -29,4 +33,8 @@ class StepQueue {
   }
 }
 
-export default StepQueue;
+const stepQueueFactory = () => {
+  return new StepQueue();
+};
+
+export default stepQueueFactory;

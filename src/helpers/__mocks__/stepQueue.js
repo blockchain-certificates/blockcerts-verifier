@@ -1,15 +1,17 @@
-class StepQueue {
-  constructor (dispatchCb) {
-    this.dispatchCb = dispatchCb;
-  }
-
-  push (step) {
-    this.step = step;
-  }
-
-  execute () {
-    this.dispatchCb(this.step);
+const stepQueueFactory = () => {
+  let dispatchCb = null;
+  let step = null;
+  return {
+    registerCb: (cb) => {
+      dispatchCb = cb;
+    },
+    push: stepDefinition => {
+      step = stepDefinition
+    },
+    execute: () => {
+      dispatchCb(step)
+    }
   }
 }
 
-export default StepQueue;
+export default stepQueueFactory;

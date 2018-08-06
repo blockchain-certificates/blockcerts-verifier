@@ -1,8 +1,8 @@
 import * as ACTIONS from '../constants/actionTypes';
 import updateParentStepStatus from './updateParentStepStatus';
-import StepQueue from '../helpers/stepQueue';
+import stepQueueFactory from '../helpers/stepQueue';
 
-let stepQueue = null;
+let stepQueue = stepQueueFactory();
 
 function dispatchActionsFactory (dispatch) {
   return function dispatchActions (step) {
@@ -31,11 +31,11 @@ export default function stepVerified (stepDefinition) {
 
     const dispatchActions = dispatchActionsFactory(dispatch);
 
-    if (!stepQueue) {
-      // init only once
-      stepQueue = new StepQueue(dispatchActions);
-    }
 
+    if (!stepQueue.dispatchCb) {
+      // register only once
+      stepQueue.registerCb(dispatchActions);
+    }
     stepQueue.push(step);
     stepQueue.execute();
   };
