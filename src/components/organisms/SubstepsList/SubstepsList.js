@@ -37,21 +37,21 @@ class SubstepsList extends LitElement {
   }
 
   _didRender () {
-    const listParent = this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list')[0];
-    const listElements = listParent ? Array.from(listParent.childNodes) : [];
     if (!this.totalHeight) {
+      const listParent = this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list')[0];
+      const listElements = listParent ? Array.from(listParent.childNodes) : [];
       this.totalHeight = listElements.reduce((acc, element) => {
         if (element.getBoundingClientRect) {
           return acc + element.getBoundingClientRect().height;
         }
         return acc;
       }, 0);
-    }
 
-    if (this.wasForcedOpen && !this.heightWasReset) {
-      // only do it once.
-      listParent.style.maxHeight = this.totalHeight + 'px';
-      this.heightWasReset = true;
+      if (this.wasForcedOpen && !this.heightWasReset) {
+        // only do it once.
+        listParent.style.maxHeight = this.totalHeight + 'px';
+        this.heightWasReset = true;
+      }
     }
   }
 
