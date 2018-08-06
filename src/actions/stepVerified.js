@@ -1,5 +1,19 @@
 import * as ACTIONS from '../constants/actionTypes';
 import updateParentStepStatus from './updateParentStepStatus';
+import stepQueueFactory from '../helpers/stepQueue';
+
+let stepQueue = stepQueueFactory();
+
+function dispatchActionsFactory (dispatch) {
+  return function dispatchActions (step) {
+    dispatch({
+      type: ACTIONS.STEP_VERIFIED,
+      payload: step
+    });
+
+    dispatch(updateParentStepStatus(step.parentStep));
+  };
+}
 
 export default function stepVerified (stepDefinition) {
   return function (dispatch, getState) {
@@ -15,11 +29,13 @@ export default function stepVerified (stepDefinition) {
       parentStep: parentStepCode
     };
 
-    dispatch({
-      type: ACTIONS.STEP_VERIFIED,
-      payload: step
-    });
+    const dispatchActions = dispatchActionsFactory(dispatch);
 
-    dispatch(updateParentStepStatus(parentStepCode));
+    if (!stepQueue.dispatchCb) {
+      // register only once
+      stepQueue.registerCb(dispatchActions);
+    }
+    stepQueue.push(step);
+    stepQueue.execute();
   };
 }

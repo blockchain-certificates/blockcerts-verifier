@@ -14,6 +14,8 @@ import initialValidCertificateStepsAssertions from '../../assertions/initialVali
 import validCertificateSteps from '../../assertions/validCertificateSteps';
 import validCertificate from '../../assertions/validCertificate';
 
+jest.mock('../../../src/helpers/stepQueue');
+
 describe('updateCertificateDefinition action creator test suite', function () {
   let store;
 

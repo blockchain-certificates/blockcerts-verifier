@@ -11,6 +11,8 @@ import invalidCertificateStepsAssertions from '../../assertions/invalidCertifica
 import { getVerificationStatus } from '../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 
+jest.mock('../../../src/helpers/stepQueue');
+
 describe('verifyCertificate action creator test suite', function () {
   describe('given the verification of certificates is not disabled', function () {
     let store;

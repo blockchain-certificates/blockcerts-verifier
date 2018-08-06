@@ -3,6 +3,7 @@ export default [{
   'label': 'Format validation',
   'labelPending': 'Validating format',
   'status': 'standby',
+  'isLast': false,
   'subSteps': [{
     'code': 'getTransactionId',
     'label': 'Get transaction ID',
@@ -34,6 +35,7 @@ export default [{
   'label': 'Hash comparison',
   'labelPending': 'Comparing hash',
   'status': 'standby',
+  'isLast': false,
   'subSteps': [{
     'code': 'compareHashes',
     'label': 'Compare hashes',
@@ -55,6 +57,7 @@ export default [{
   'label': 'Status check',
   'labelPending': 'Checking record status',
   'status': 'standby',
+  'isLast': true,
   'subSteps': [{
     'code': 'checkRevokedStatus',
     'label': 'Check Revoked Status',
