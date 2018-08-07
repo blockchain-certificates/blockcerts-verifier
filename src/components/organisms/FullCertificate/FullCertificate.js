@@ -21,7 +21,7 @@ export default function FullCertificate ({
     ${CSS}
     ${displayHTML ? renderDisplayHTML(displayHTML) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
     <div class='buv-c-full-certificate__details'>
-      <buv-certificate-details></buv-certificate-details>
+      <buv-certificate-details class='buv-c-full-certificate__details-list'></buv-certificate-details>
       <buv-verify-button isHollow></buv-verify-button>
     </div>
   `;
