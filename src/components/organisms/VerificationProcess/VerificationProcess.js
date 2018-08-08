@@ -49,8 +49,6 @@ class VerificationProcess extends LitElement {
 }
     `);
 
-    const allStepsAreRendered = steps.every(step => step.status === VERIFICATION_STATUS.SUCCESS || step.status === VERIFICATION_STATUS.FAILURE);
-
     // TODO: better handle this dynamic class (cf npm classnames)
     const progressBarClasses = [
       'buv-c-verification-progress-bar__tube',
@@ -60,6 +58,9 @@ class VerificationProcess extends LitElement {
     ].join(' ');
 
     let maxHeight = `${this.listElement ? this.listElement.getBoundingClientRect().height : 0}px`;
+
+    const allStepsAreRendered = steps.every(step => step.status === VERIFICATION_STATUS.SUCCESS) ||
+      steps.some(step => step.status === VERIFICATION_STATUS.FAILURE);
     if (allStepsAreRendered) {
       maxHeight = '100%';
     }
