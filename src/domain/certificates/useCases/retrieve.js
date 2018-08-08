@@ -13,10 +13,15 @@ export default function retrieve (url) {
     .then(res => res.text())
     .then(text => {
       try {
-        return JSON.parse(text);
+        return {
+          certificateDefinition: JSON.parse(text)
+        };
       } catch (err) {
         console.warn(err);
-        return 'Not a valid certificate URL.';
+        return {
+          errorMessage: 'Not a valid certificate URL.',
+          certificateDefinition: null
+        };
       }
     });
 }
