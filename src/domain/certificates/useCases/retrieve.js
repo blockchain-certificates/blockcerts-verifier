@@ -1,6 +1,15 @@
 import { isValidLocalPath, isValidUrl } from '../../../helpers/validations';
 import downloadFlag from '../../../constants/downloadFlag';
 
+function handleError (error) {
+  const errorMessage = 'Not a valid certificate URL.';
+  console.error(error);
+  return {
+    certificateDefinition: null,
+    errorMessage
+  };
+}
+
 export default function retrieve (url) {
   if (!(isValidUrl(url) || isValidLocalPath(url))) {
     console.error('Invalid url to retrieve:', url);
@@ -13,10 +22,12 @@ export default function retrieve (url) {
     .then(res => res.text())
     .then(text => {
       try {
-        return JSON.parse(text);
+        return {
+          certificateDefinition: JSON.parse(text)
+        };
       } catch (err) {
-        console.warn(err);
-        return 'Not a valid certificate URL.';
+        return handleError(err);
       }
-    });
+    })
+    .catch(handleError);
 }

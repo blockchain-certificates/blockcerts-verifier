@@ -22,12 +22,12 @@ export default function updateCertificateUrl (url) {
       }
     });
 
-    const certificateDefinition = await domain.certificates.retrieve(url);
+    const retrievedData = await domain.certificates.retrieve(url);
 
-    if (certificateDefinition && typeof certificateDefinition !== 'string') {
-      dispatch(updateCertificateDefinition(certificateDefinition));
+    if (retrievedData.certificateDefinition) {
+      dispatch(updateCertificateDefinition(retrievedData.certificateDefinition));
     } else {
-      dispatch(setErrorMessage(certificateDefinition));
+      dispatch(setErrorMessage(retrievedData.errorMessage));
     }
   };
 }

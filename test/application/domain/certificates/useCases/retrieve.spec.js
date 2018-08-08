@@ -3,6 +3,7 @@ import validCertificate from '../../../../fixtures/valid-certificate-example';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
+const INEXISTENT_URL = 'http://localhost:3000/to/certificate';
 const NOT_CERTIFICATE_URL = 'http://www.learningmachine.com';
 const VALID_LOCAL_PATH = '../../fixtures/valid-certificate-example.json';
 
@@ -11,17 +12,33 @@ describe('domain certificates retrieve method test suite', function () {
     describe('given the url is that of a certificate', function () {
       it('fetches the json format from that url', async function () {
         const result = await domain.certificates.retrieve(MOCK_SERVER_VALID_URL);
-        expect(result).toEqual(validCertificate);
+        expect(result.certificateDefinition).toEqual(validCertificate);
       });
     });
 
     describe('given the url is not of a certificate', function () {
-      it('does not do something', async function () {
+      it('returns an error message', async function () {
         const result = await domain.certificates.retrieve(NOT_CERTIFICATE_URL);
-        expect(result).toEqual('Not a valid certificate URL.');
+        expect(result.errorMessage).toBe('Not a valid certificate URL.');
+      });
+
+      it('returns a null definition', async function () {
+        const result = await domain.certificates.retrieve(NOT_CERTIFICATE_URL);
+        expect(result.certificateDefinition).toBe(null);
       });
     });
-    // TODO: handle failing case (no JSON answer)
+
+    describe('given the url does not point to a live server', function () {
+      it('returns an error message', async function () {
+        const result = await domain.certificates.retrieve(INEXISTENT_URL);
+        expect(result.errorMessage).toBe('Not a valid certificate URL.');
+      });
+
+      it('returns a null definition', async function () {
+        const result = await domain.certificates.retrieve(INEXISTENT_URL);
+        expect(result.certificateDefinition).toBe(null);
+      });
+    });
   });
 
   describe('given an invalid url', function () {
