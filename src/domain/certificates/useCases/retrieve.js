@@ -7,7 +7,7 @@ function handleError (error) {
   return {
     certificateDefinition: null,
     errorMessage
-  }
+  };
 }
 
 export default function retrieve (url) {

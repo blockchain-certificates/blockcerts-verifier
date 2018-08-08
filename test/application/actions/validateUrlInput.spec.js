@@ -24,7 +24,7 @@ describe('validateUrlInput action creator test suite', function () {
     it('should set an empty error message in the state', function () {
       const state = store.getState();
       expect(getErrorMessage(state)).toBe(null);
-    })
+    });
   });
 
   describe('given it is dispatched with false', function () {
