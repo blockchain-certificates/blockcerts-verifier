@@ -7,6 +7,7 @@ import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/atoms/CardCertificate';
 import '../components/organisms/FullCertificate';
 import '../components/atoms/VerifyOtherCertificateLink';
+import Footer from '../components/atoms/Footer/Footer';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
 
@@ -42,6 +43,7 @@ class BlockcertsUniversalVerifier extends LitElement {
 }
         <buv-verify-other-certificate></buv-verify-other-certificate>
         <buv-verification-modal></buv-verification-modal>
+        ${Footer}
       </section>
     `;
   }
