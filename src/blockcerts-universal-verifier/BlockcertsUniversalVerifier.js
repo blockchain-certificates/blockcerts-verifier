@@ -43,7 +43,7 @@ class BlockcertsUniversalVerifier extends LitElement {
 }
         <buv-verify-other-certificate></buv-verify-other-certificate>
         <buv-verification-modal></buv-verification-modal>
-        ${Footer}
+        ${Footer()}
       </section>
     `;
   }
