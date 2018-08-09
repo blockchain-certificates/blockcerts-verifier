@@ -34,18 +34,19 @@ class Modal extends LitElement {
     const classes = [
       'buv-c-modal',
       'buv-qa-modal',
-      'buv-o-overlay',
       this.isOpen ? '' : 'is-hidden'
     ].join(' ');
 
     return html`
       ${CSS}
-      <div class$=${classes}>
-        ${CloseButton({
-    className: 'buv-c-modal__close-button',
-    onClick: this.handleClick
-  })}
-        <slot></slot>
+      <div class$='${classes}'>
+        <div class='buv-c-modal__content  buv-o-overlay'>
+          ${CloseButton({
+      className: 'buv-c-modal__close-button',
+      onClick: this.handleClick
+    })}
+          <slot></slot>
+        </div>  
       </div>
     `;
   }
