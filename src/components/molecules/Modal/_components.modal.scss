@@ -1,11 +1,13 @@
 @import '../../../shared-styles/objects.overlay';
 
 .buv-c-modal {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  min-height: 100%;
-  padding: 38px 38px 76px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 600px;
+  min-height: 500px;
+  padding: 38px 38px 136px;
   box-sizing: border-box;
 }
 
