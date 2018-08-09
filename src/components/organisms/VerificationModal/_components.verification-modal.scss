@@ -12,3 +12,12 @@
   margin-bottom: 30px;
   border-color: rgba(3, 21, 50, .05);
 }
+
+.buv-c-verification-modal__content {
+  // since child of fixed element, use vh as max-height property, 100% not working
+  // deduct then vertical padding of buv-c-modal and height of buv-c-footer
+  max-height: calc(100vh - 38px - 76px - 60px);
+  padding-bottom: 50px;
+  box-sizing: border-box;
+  overflow: auto;
+}
