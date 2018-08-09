@@ -1,9 +1,15 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.footer-css';
 
-const Footer = html`
+const Footer = ({ forceInPlace = false } = {}) => {
+  const classes = [
+    'buv-c-footer',
+    forceInPlace ? 'buv-c-footer--forced' : ''
+  ].join(' ');
+
+  return html`
   ${CSS}
-  <footer class='buv-c-footer'>
+  <footer class$='${classes}'>
     <a href='https://www.blockcerts.org' title='Visit Blockcerts website'>
       <svg width="113px" height="16px" viewBox="0 0 113 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs></defs>
@@ -30,5 +36,6 @@ const Footer = html`
     </a>
   </footer>
 `;
+}
 
 export default Footer;
