@@ -42,9 +42,9 @@ class Modal extends LitElement {
       <div class$='${classes}'>
         <div class='buv-c-modal__content  buv-o-overlay'>
           ${CloseButton({
-      className: 'buv-c-modal__close-button',
-      onClick: this.handleClick
-    })}
+    className: 'buv-c-modal__close-button',
+    onClick: this.handleClick
+  })}
           <slot></slot>
         </div>  
       </div>

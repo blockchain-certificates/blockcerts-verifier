@@ -36,6 +36,6 @@ const Footer = ({ forceInPlace = false } = {}) => {
     </a>
   </footer>
 `;
-}
+};
 
 export default Footer;
