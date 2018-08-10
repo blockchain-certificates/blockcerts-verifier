@@ -12,7 +12,7 @@
 }
 
 .buv-c-verification-substep {
-  margin: 0 0 0 15px;
+  margin: 0;
   font-weight: 400;
   color: rgba(3, 21, 50, .7);
   padding: 5px 0;
@@ -36,7 +36,7 @@
 }
 
 .buv-c-verification-substep::before {
-  left: -43px;
+  left: -28px;
   top: 11px;
   width: 4px;
   height: 4px;

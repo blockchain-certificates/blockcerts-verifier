@@ -26,10 +26,14 @@ export default function CardCertificate ({
   return html`
     ${CSS}
     <section class='buv-c-card'>
-      <img src='${issuerLogo}' alt='${issuerName}' class='buv-c-card__img'/>
-      <h1 class$=${titleClass}>${certificateTitle}</h1>
-      <h2 class$='${titleClass}  buv-c-card__recipient'>${recipientName}</h2>
-      <span class='buv-c-card__issue-summary  buv-o-small-text'>Issued on <time datetime$='${issuedOn}'>${issueDate}</time> by ${issuerName}</span>
+      <div class='buv-c-card__img-wrapper'>
+        <img src='${issuerLogo}' alt='${issuerName}' class='buv-c-card__img'/>
+      </div>
+      <div>
+        <h1 class$=${titleClass}>${certificateTitle}</h1>
+        <h2 class$='${titleClass}  buv-c-card__recipient'>${recipientName}</h2>
+        <span class='buv-o-small-text'>Issued on <time datetime$='${issuedOn}'>${issueDate}</time> by ${issuerName}</span>
+      </div>
       ${
   hideRecordLink
     ? ''

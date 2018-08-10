@@ -1,7 +1,4 @@
-.buv-c-verification-modal__certificate {
-  margin-bottom: 30px;
-  display: block;
-}
+@import  '../../../shared-styles/settings.variables';
 
 .buv-c-verification-modal__process {
   display: flex;
@@ -14,10 +11,14 @@
 }
 
 .buv-c-verification-modal__content {
-  // since child of fixed element, use vh as max-height property, 100% not working
-  // deduct then vertical padding of buv-c-modal and height of buv-c-footer
-  max-height: calc(100vh - 38px - 76px - 60px);
-  padding-bottom: 50px;
+  // deduct footer from modal min-height
+  max-height: calc(#{$modalMaxDimension} - 60px);
+  padding-bottom: 60px;
   box-sizing: border-box;
   overflow: auto;
+
+  @media only screen and (max-width: $modalMaxDimension) {
+    // vh does not work with border-box?
+    max-height: calc(100vh - 120px);
+  }
 }

@@ -90,6 +90,7 @@ function VerificationProcessWrapper ({ steps, transactionLink, chain, hasError, 
     chain='${chain}'
     hasError?='${hasError}'
     isTestChain?='${isTestChain}'
+    style='max-width: 100%;'
     ></buv-verification-process-raw>`;
 }
 

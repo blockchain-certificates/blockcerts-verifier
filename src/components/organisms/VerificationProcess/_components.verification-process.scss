@@ -6,7 +6,7 @@
 
 .buv-c-verification-progress-bar {
   position: absolute;
-  left: 0;
+  left: 13px;
   top: 0;
   width: 14px;
   display: flex;
@@ -41,9 +41,8 @@
 }
 
 .buv-c-verification-process__step-list {
-  padding-left: 33px;
-  display: table-cell;
-  min-width: 200px;
+  padding-left: 46px;
+  margin-top: 0;
 }
 
 @import '../../../shared-styles/utils.a11y';
