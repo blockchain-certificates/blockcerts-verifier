@@ -1,4 +1,5 @@
 @import '../../../shared-styles/objects.overlay';
+$modalMaxWidth: 600px;
 
 .buv-c-modal {
   position: fixed;
@@ -18,11 +19,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 600px;
-  min-height: 500px;
-  max-height: 100%;
+  width: 100vw;
+  min-width: 300px;
+  max-width: $modalMaxWidth;
+  max-height: 500px;
   padding: 38px 38px 76px;
   box-sizing: border-box;
+
+  @media only screen and (max-width: $modalMaxWidth) {
+    height: 100vh;
+    max-height: 100vh;
+  }
 }
 
 .buv-c-modal__close-button {
