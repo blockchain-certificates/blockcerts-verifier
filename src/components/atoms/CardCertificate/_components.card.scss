@@ -2,9 +2,8 @@
 
 .buv-c-card {
   position: relative;
-  height: 112px;
-  margin-bottom: 20px;
   display: flex;
+  margin-bottom: 30px;
 }
 
 .buv-c-card__img-wrapper {
@@ -33,10 +32,6 @@
 .buv-c-card__recipient {
   font-weight: 600;
   margin-bottom: 22px;
-}
-
-.buv-c-card__issue-summary {
-  margin-bottom: 18px;
 }
 
 .buv-c-card__record-link {
