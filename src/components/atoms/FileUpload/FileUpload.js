@@ -4,7 +4,7 @@ import CSS from './_components.file-upload-css';
 export default function FileUpload ({ onChange = () => {} }) {
   return html`
     ${CSS}
-    <label for='buv-json-file-upload' class='buv-o-link  buv-o-small-text'>
+    <label for='buv-json-file-upload' class='buv-c-file-upload  buv-o-link  buv-o-small-text'>
         Or choose JSON file
         <input
           type='file'
