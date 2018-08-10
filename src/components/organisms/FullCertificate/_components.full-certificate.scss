@@ -8,7 +8,6 @@
   display: block;
   font-family: serif;
   text-align: center;
-
   color: #49555f;
   font-size: 12px;
   line-height: 1.5;
@@ -37,10 +36,13 @@
   }
 }
 
+.buv-c-full-certificate__button {
+  margin-top: 15px;
+}
+
 .buv-c-full-certificate__details {
   display: flex;
   justify-content: space-between;
-  margin: 15px 0;
 }
 
 .buv-c-full-certificate__details-list {

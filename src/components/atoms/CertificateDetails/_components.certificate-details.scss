@@ -4,6 +4,10 @@
 .buv-c-certificate-details {
   display: flex;
   margin: 0;
+
+  @media only screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 }
 
 .buv-c-certificate-details__group {
@@ -11,6 +15,7 @@
   padding: 0 10px;
   max-width: 25%;
   color: rgba(110, 126, 142, 1);
+  margin-top: 15px;
 }
 
 .buv-c-certificate-details__title {
