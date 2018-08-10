@@ -44,5 +44,5 @@
 }
 
 .buv-c-full-certificate__details-list {
-  max-width: 80%;
+  max-width: calc(100% - 105px); // 105 px is Button width
 }
