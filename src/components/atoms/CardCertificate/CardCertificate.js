@@ -35,15 +35,15 @@ export default function CardCertificate ({
         <span class='buv-o-small-text'>Issued on <time datetime$='${issuedOn}'>${issueDate}</time> by ${issuerName}</span>
       </div>
       ${
-    hideRecordLink
-      ? ''
-      : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>`
-    }
+  hideRecordLink
+    ? ''
+    : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>`
+}
     </section>
     ${
-    hideVerifyButton
-      ? ''
-      : html`<buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`
-    }
+  hideVerifyButton
+    ? ''
+    : html`<buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`
+}
     `;
 }
