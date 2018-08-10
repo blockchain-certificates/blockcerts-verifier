@@ -5,14 +5,14 @@
   display: flex;
   margin: 0;
 
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 520px) {
     flex-direction: column;
   }
 }
 
 .buv-c-certificate-details__group {
   box-sizing: border-box;
-  padding: 0 10px;
+  padding-right: 15px;
   max-width: 25%;
   color: rgba(110, 126, 142, 1);
   margin-top: 15px;
