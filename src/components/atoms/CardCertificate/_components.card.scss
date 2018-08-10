@@ -4,12 +4,17 @@
   position: relative;
   height: 112px;
   margin-bottom: 20px;
+  display: flex;
+}
+
+.buv-c-card__img-wrapper {
+  margin-right: 1.5vw;
+  min-width: 50px;
+  width: 30%;
 }
 
 .buv-c-card__img {
-  float: left;
-  margin-right: 18px;
-  max-width: 35%;
+  max-width: 100%;
   max-height: 100%;
 }
 
