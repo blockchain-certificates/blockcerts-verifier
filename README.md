@@ -91,6 +91,11 @@ Supported Events:
    Triggered when a certificate has been loaded into the component.
    Returns the `uid` of the certificate as a string.
    
+- `certificate-verify`
+   
+   Triggered when the verification process of a certificate is started.
+   Returns the `uid` of the certificate as a string.
+   
 
 # Development
 ## Viewing Your Element
