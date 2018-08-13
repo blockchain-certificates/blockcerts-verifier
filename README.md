@@ -91,6 +91,18 @@ Supported Events:
    Triggered when a certificate has been loaded into the component.
    Returns the `uid` of the certificate as a string.
    
+- `certificate-verify`
+   
+   Triggered when the verification process of a certificate is started.
+   Returns the `uid` of the certificate as a string.
+   
+- `certificate-share`
+   
+   Triggered when a social network link is clicked.
+   Returns the `uid` of the certificate as a string.
+   Returns the name of the `socialNetwork` as a string.
+   
+   
 
 # Development
 ## Viewing Your Element

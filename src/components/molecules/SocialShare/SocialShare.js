@@ -12,7 +12,8 @@ class SocialShare extends LitElement {
   static get properties () {
     return {
       url: String,
-      isOpen: String
+      isOpen: String,
+      onShare: Function
     };
   }
 
@@ -20,7 +21,7 @@ class SocialShare extends LitElement {
     this.isOpen = !this.isOpen;
   }
 
-  sharingTemplate (url) {
+  sharingTemplate ({ url, onShare }) {
     const socialServices = [
       {
         name: 'LinkedIn',
@@ -43,6 +44,7 @@ class SocialShare extends LitElement {
               title='Share on ${service.name}'
               class='buv-o-link  buv-c-social-share-modal__link'
               target='_blank'
+              onclick='${() => { onShare(service.name); }}'
             >
               Share on ${service.name}
             </a>
@@ -73,11 +75,12 @@ class SocialShare extends LitElement {
     </button>`;
   }
 
-  _render ({ url }) {
+  _render (props) {
+    const { url } = props;
     return html`
       ${CSS}
       ${this.sharingButton(!!url)}
-      ${this.isOpen && url ? this.sharingTemplate(url) : ''}
+      ${this.isOpen && url ? this.sharingTemplate(props) : ''}
     `;
   }
 }
@@ -91,6 +94,7 @@ function SocialShareWrapper (props) {
   <buv-social-share-raw
     url='${props.url}'
     allowSocialShare='${props.allowSocialShare}'
+    onShare='${props.onShare}'
   ></buv-social-share-raw>`;
 }
 

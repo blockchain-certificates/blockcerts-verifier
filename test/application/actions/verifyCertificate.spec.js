@@ -10,6 +10,7 @@ import validCertificateStepsAssertions from '../../assertions/validCertificateSt
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
+import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 
 jest.mock('../../../src/helpers/stepQueue');
 
@@ -38,6 +39,23 @@ describe('verifyCertificate action creator test suite', function () {
         const state = store.getState();
 
         expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.STARTED);
+      });
+
+      it('should emit the certificate-verify event with the certificate id', function () {
+        let wasCalled = false;
+        function assertFunction (e) {
+          wasCalled = true;
+          expect(e.detail.uid).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
+        }
+        window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, assertFunction);
+
+        store.dispatch(updateCertificateDefinition(validCertificateFixture));
+        store.dispatch(verifyCertificate());
+
+        // add failsafe, if no expect is called test is false positive
+        expect(wasCalled).toBe(true);
+        // only expect once
+        window.removeEventListener(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, assertFunction);
       });
     });
 

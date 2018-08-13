@@ -48,15 +48,17 @@ describe('updateCertificateDefinition action creator test suite', function () {
 
     it('should emit the certificate-load event with the certificate id', function () {
       let wasCalled = false;
-      window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, function (e) {
+      function assertFunction (e) {
         wasCalled = true;
         expect(e.detail.uid).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
-      });
+      }
+      window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, assertFunction);
 
       store.dispatch(updateCertificateDefinition(certificateFixture));
 
       // add failsafe, if no expect is called test is false positive
       expect(wasCalled).toBe(true);
+      window.removeEventListener(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, assertFunction);
     });
 
     it('should set the transactionLink in the state', async function () {
