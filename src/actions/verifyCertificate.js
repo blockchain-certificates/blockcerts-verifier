@@ -1,10 +1,12 @@
+import domain from '../domain';
 import * as ACTIONS from '../constants/actionTypes';
+import * as CERTIFICATE_EVENTS from '../constants/certificateEvents';
+import VERIFICATION_STATUS from '../constants/verificationStatus';
 import stepVerified from './stepVerified';
 import clearVerifiedSteps from './clearVerifiedSteps';
+import updateVerificationStatus from './updateVerificationStatus';
 import { getCertificateDefinition } from '../selectors/certificate';
 import { getDisableVerify } from '../selectors/api';
-import VERIFICATION_STATUS from '../constants/verificationStatus';
-import updateVerificationStatus from './updateVerificationStatus';
 
 export default function verifyCertificate () {
   return async function (dispatch, getState) {
@@ -25,6 +27,7 @@ export default function verifyCertificate () {
     const certificateDefinition = getCertificateDefinition(state);
 
     if (certificateDefinition) {
+      domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, certificateDefinition);
       const finalStatus = await certificateDefinition.verify(stepDefinition => {
         dispatch(stepVerified(stepDefinition));
       });
