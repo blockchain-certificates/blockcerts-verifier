@@ -21,7 +21,7 @@
       };
 
       function handleLoad (e) {
-        console.log(e);
+        console.log(e.type, e.detail);
       }
 
       window.addEventListener('certificate-load', handleLoad);
@@ -37,7 +37,7 @@
       <h3>Basic blockcerts-universal-verifier demo</h3>
       <demo-snippet>
         <template>
-          <blockcerts-universal-verifier disable-auto-verify id='buv'></blockcerts-universal-verifier>
+          <blockcerts-universal-verifier disable-auto-verify></blockcerts-universal-verifier>
         </template>
       </demo-snippet>
     </div>
