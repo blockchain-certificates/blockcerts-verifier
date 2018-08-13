@@ -32,16 +32,18 @@ describe('domain events dispatch method test suite', function () {
       const eventType = 'test-event';
       const { certificateDefinition } = domain.certificates.parse(certificateFixture);
       let wasCalled = false;
-
-      window.addEventListener(eventType, function (e) {
+      function assertFunction (e) {
         wasCalled = true;
         expect(e.detail.uid).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
-      });
+      }
+      window.addEventListener(eventType, assertFunction);
 
       domain.events.dispatch(eventType, certificateDefinition);
 
       // add failsafe, if no expect is called test is false positive
       expect(wasCalled).toBe(true);
+
+      window.removeEventListener(eventType, assertFunction);
     });
 
     describe('and there are some extra details provided', function () {
