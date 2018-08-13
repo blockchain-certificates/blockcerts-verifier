@@ -1,6 +1,7 @@
 import sinon from 'sinon';
 import domain from '../../../../../src/domain';
 import certificateFixture from '../../../../fixtures/valid-certificate-example';
+import validCertificate from '../../../../assertions/validCertificate';
 
 describe('domain events dispatch method test suite', function () {
   describe('given it is not called with a type', function () {
@@ -34,7 +35,7 @@ describe('domain events dispatch method test suite', function () {
       let wasCalled = false;
       function assertFunction (e) {
         wasCalled = true;
-        expect(e.detail.uid).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
+        expect(e.detail.certificateDefinition).toEqual(validCertificate);
       }
       window.addEventListener(eventType, assertFunction);
 

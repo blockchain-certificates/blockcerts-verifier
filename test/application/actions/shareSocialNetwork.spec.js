@@ -4,6 +4,7 @@ import certificateFixture from '../../fixtures/valid-certificate-example';
 import { configureStore } from '../../../src/store';
 import getInitialState from '../../../src/store/getInitialState';
 import shareSocialNetwork from '../../../src/actions/shareSocialNetwork';
+import validCertificate from '../../assertions/validCertificate';
 
 describe('shareSocialNetwork action creator test suite', function () {
   describe('given it is dispatched', function () {
@@ -25,7 +26,7 @@ describe('shareSocialNetwork action creator test suite', function () {
       let wasCalled = false;
       function assertFunction (e) {
         wasCalled = true;
-        expect(e.detail.uid).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
+        expect(e.detail.certificateDefinition).toEqual(validCertificate);
       }
       window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
 
