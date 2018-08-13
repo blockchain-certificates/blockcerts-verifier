@@ -64,6 +64,7 @@ function BUVWrapper (props) {
           allowSocialShare='${props['allow-social-share']}'
           displayMode='${props['display-mode']}'
           showMetadata='${props['show-metadata']}'
+          onLoad='${props['on-load']}'
         ></buv-raw>`;
 }
 
