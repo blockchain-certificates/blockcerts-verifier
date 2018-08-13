@@ -37,5 +37,23 @@ describe('shareSocialNetwork action creator test suite', function () {
       // only expect once
       window.removeEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
     });
+
+    it('should emit the certificate-share event with the network on which it was shared', function () {
+      let wasCalled = false;
+      const testSocialNetwork = 'MySpace';
+      function assertFunction (e) {
+        wasCalled = true;
+        expect(e.detail.socialNetwork).toBe(testSocialNetwork);
+      }
+      window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
+
+      store.dispatch(updateCertificateDefinition(certificateFixture));
+      store.dispatch(shareSocialNetwork(testSocialNetwork));
+
+      // add failsafe, if no expect is called test is false positive
+      expect(wasCalled).toBe(true);
+      // only expect once
+      window.removeEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
+    });
   });
 });

@@ -3,10 +3,12 @@ import * as CERTIFICATE_EVENTS from '../constants/certificateEvents';
 import domain from '../domain';
 import { getCertificateDefinition } from '../selectors/certificate';
 
-export default function (network) {
+export default function (socialNetwork) {
   return function (dispatch, getState) {
     const certificateDefinition = getCertificateDefinition(getState());
-    domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, certificateDefinition);
+
+    domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, certificateDefinition, { socialNetwork });
+
     dispatch({
       type: ACTIONS.SHARE_SOCIAL_NETWORK
     });
