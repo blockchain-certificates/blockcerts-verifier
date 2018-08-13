@@ -84,7 +84,8 @@
       "performance",
       "fetch",
       "FileReader",
-      "atob"
+      "atob",
+      "CustomEvent"
     ],
     "ignore": [
       "sanitizer/sanitizer.js",
