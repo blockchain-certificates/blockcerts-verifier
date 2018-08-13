@@ -12,5 +12,5 @@ export default function (socialNetwork) {
     dispatch({
       type: ACTIONS.SHARE_SOCIAL_NETWORK
     });
-  }
+  };
 }
