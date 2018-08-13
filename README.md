@@ -76,6 +76,21 @@ The component will understand the following options:
   ```html
   <blockcerts-universal-verifier src='../fixtures/valid-certificate-example.json'></blockcerts-universal-verifier>
   ```
+  
+## Event Tracking API
+The component will emit events on different moment of the certificate life cycle.
+To subscribe and track these events you should add on your consumer page event listeners on the `window` object.
+
+See the [event demo page](https://github.com/learningmachine/blockcerts-universal-verifier/blob/master/demo/on-load-event.html) for a working example.
+
+The information is communicated via the `detail` key of the event.
+
+Supported Events:
+- `certificate-load`
+   
+   Triggered when a certificate has been loaded into the component.
+   Returns the `uid` of the certificate as a string.
+   
 
 # Development
 ## Viewing Your Element

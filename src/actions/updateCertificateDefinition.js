@@ -1,4 +1,5 @@
 import * as ACTIONS from '../constants/actionTypes';
+import * as CERTIFICATE_EVENTS from '../constants/certificateEvents';
 import domain from '../domain';
 import setErrorMessage from './setErrorMessage';
 import verifyCertificate from './verifyCertificate';
@@ -16,6 +17,8 @@ export default function updateCertificateDefinition (definition) {
         certificateDefinition
       }
     });
+
+    domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, certificateDefinition);
 
     await dispatch(autoVerify());
   };
