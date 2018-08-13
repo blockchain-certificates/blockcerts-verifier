@@ -96,6 +96,13 @@ Supported Events:
    Triggered when the verification process of a certificate is started.
    Returns the `uid` of the certificate as a string.
    
+- `certificate-share`
+   
+   Triggered when a social network link is clicked.
+   Returns the `uid` of the certificate as a string.
+   Returns the name of the `socialNetwork` as a string.
+   
+   
 
 # Development
 ## Viewing Your Element
