@@ -1,12 +1,9 @@
 import * as ACTIONS from '../constants/actionTypes';
+import * as CERTIFICATE_EVENTS from '../constants/certificateEvents';
 import domain from '../domain';
 import setErrorMessage from './setErrorMessage';
 import verifyCertificate from './verifyCertificate';
 import { getDisableAutoVerify } from '../selectors/api';
-
-function getCertificateId (certificateDefinition) {
-  return certificateDefinition.id;
-}
 
 export default function updateCertificateDefinition (definition) {
   return async function (dispatch) {
@@ -21,12 +18,7 @@ export default function updateCertificateDefinition (definition) {
       }
     });
 
-    const loadEvent = new CustomEvent('certificate-load', { detail: {
-      uid: getCertificateId(certificateDefinition),
-      eventType: 'load'
-    }});
-
-    window.dispatchEvent(loadEvent);
+    domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, certificateDefinition);
 
     await dispatch(autoVerify());
   };

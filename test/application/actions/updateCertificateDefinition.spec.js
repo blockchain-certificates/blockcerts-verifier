@@ -8,6 +8,7 @@ import {
   getChain
 } from '../../../src/selectors/certificate';
 import { getErrorMessage } from '../../../src/selectors/error';
+import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
 import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
@@ -43,6 +44,19 @@ describe('updateCertificateDefinition action creator test suite', function () {
       const state = store.getState();
 
       expect(getErrorMessage(state)).toBe(undefined);
+    });
+
+    it('should emit the certificate-load event with the certificate id', function () {
+      let wasCalled = false;
+      window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, function (e) {
+        wasCalled = true;
+        expect(e.detail.uid).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
+      });
+
+      store.dispatch(updateCertificateDefinition(certificateFixture));
+
+      // add failsafe, if no expect is called test is false positive
+      expect(wasCalled).toBe(true);
     });
 
     it('should set the transactionLink in the state', async function () {

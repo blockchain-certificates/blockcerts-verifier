@@ -31,12 +31,17 @@ describe('domain events dispatch method test suite', function () {
     it('should emit an event with the certificate id', function () {
       const eventType = 'test-event';
       const { certificateDefinition } = domain.certificates.parse(certificateFixture);
+      let wasCalled = false;
 
       window.addEventListener(eventType, function (e) {
+        wasCalled = true;
         expect(e.detail.uid).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
       });
 
       domain.events.dispatch(eventType, certificateDefinition);
+
+      // add failsafe, if no expect is called test is false positive
+      expect(wasCalled).toBe(true);
     });
 
     describe('and there are some extra details provided', function () {
@@ -47,12 +52,16 @@ describe('domain events dispatch method test suite', function () {
         const extraDetails = {
           testKey
         };
-
+        let wasCalled = false;
         window.addEventListener(eventType, function (e) {
+          wasCalled = true;
           expect(e.detail.testKey).toBe(testKey);
         });
 
         domain.events.dispatch(eventType, certificateDefinition, extraDetails);
+
+        // add failsafe, if no expect is called test is false positive
+        expect(wasCalled).toBe(true);
       });
     });
   });
