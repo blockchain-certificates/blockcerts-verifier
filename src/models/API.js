@@ -7,8 +7,7 @@ const APIKeys = {
   'allow-download': Boolean,
   'allow-social-share': Boolean,
   'display-mode': String,
-  'show-metadata': Boolean,
-  'on-load': Function
+  'show-metadata': Boolean
 };
 
 const APICamelCase = Object.keys(APIKeys)
