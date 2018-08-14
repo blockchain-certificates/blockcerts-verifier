@@ -89,18 +89,21 @@ Supported Events:
 - `certificate-load`
    
    Triggered when a certificate has been loaded into the component.
-   Returns the `uid` of the certificate as a string.
+   Returns:
+    - the `certificateDefinition` (object) on which the action was called.
    
 - `certificate-verify`
    
    Triggered when the verification process of a certificate is started.
-   Returns the `uid` of the certificate as a string.
+   Returns:
+    - the `certificateDefinition` (object) on which the action was called.
    
 - `certificate-share`
    
    Triggered when a social network link is clicked.
-   Returns the `uid` of the certificate as a string.
-   Returns the name of the `socialNetwork` as a string.
+   Returns:
+    - the `certificateDefinition` (object) on which the action was called.
+    - the `socialNetwork` (string) to which the record was shared.
    
    
 
