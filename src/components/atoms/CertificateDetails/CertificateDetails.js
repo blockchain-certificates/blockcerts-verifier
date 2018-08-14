@@ -1,6 +1,8 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.certificate-details-css';
 
+const isValidLink = (link) => link.indexOf(' ') === -1;
+
 export default function CertificateDetails ({
   recipientName,
   issuedOn,
@@ -24,7 +26,9 @@ export default function CertificateDetails ({
     },
     {
       title: 'Transaction ID',
-      value: html`<a href='${transactionLink}' target='_blank' class='buv-c-certificate-details__link'>${transactionId}</a>`
+      value: isValidLink(transactionLink)
+        ? html`<a href='${transactionLink}' target='_blank' class='buv-c-certificate-details__link'>${transactionId}</a>`
+        : html`<span>No transaction ID</span>`
     }
   ];
 
