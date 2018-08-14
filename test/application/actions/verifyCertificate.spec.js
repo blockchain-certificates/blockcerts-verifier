@@ -11,6 +11,7 @@ import invalidCertificateStepsAssertions from '../../assertions/invalidCertifica
 import { getVerificationStatus } from '../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
+import validCertificate from '../../assertions/validCertificate';
 
 jest.mock('../../../src/helpers/stepQueue');
 
@@ -45,7 +46,7 @@ describe('verifyCertificate action creator test suite', function () {
         let wasCalled = false;
         function assertFunction (e) {
           wasCalled = true;
-          expect(e.detail.uid).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
+          expect(e.detail.certificateDefinition).toEqual(validCertificate);
         }
         window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, assertFunction);
 
