@@ -14,12 +14,12 @@ export default function FinalVerificationStep ({ chain = '', transactionLink = '
     ? 'Mocknet credentials are used for test purposes only. They are not recorded on a blockchain, ' +
     'and they should not be considered verified Blockcerts.'
     : html`This is a valid ${chain} certificate.<br/>
-      <a class='buv-o-link' href='${transactionLink}' hidden?='${!transactionLink}'>View transaction link</a>`;
+      <a class='buv-o-link' href='${transactionLink}' hidden?='${!transactionLink}'><span>View transaction link</span></a>`;
 
   return html`
     ${CSS}
     <dt class$='${titleClasses}'>${title}</dt>
-    <dd class='buv-c-verification-substep  buv-u-excluded-from-flow  buv-o-small-text'>
+    <dd class='buv-c-verification-substep buv-u-excluded-from-flow buv-u-full-width buv-o-small-text'>
       ${details}
     </dd>
   `;

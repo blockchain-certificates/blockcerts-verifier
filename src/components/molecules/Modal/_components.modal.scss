@@ -22,8 +22,8 @@
   width: 100vw;
   min-width: 300px;
   max-width: $modalMaxDimension;
-  min-height: $modalMaxDimension;
-  padding: 38px 38px 76px;
+  min-height: calc(#{$modalMaxDimension} - 50px);
+  padding: 38px 38px 98px;
   box-sizing: border-box;
 
   @media only screen and (max-width: $modalMaxDimension) {
