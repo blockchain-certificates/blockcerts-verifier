@@ -5,7 +5,7 @@ export default function FileUpload ({ onChange = () => {} }) {
   return html`
     ${CSS}
     <label for='buv-json-file-upload' class='buv-c-file-upload  buv-o-link  buv-o-small-text'>
-        Or choose JSON file
+        <span>Or choose JSON file</span>
         <input
           type='file'
           accept='application/json'

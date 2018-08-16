@@ -1,11 +1,12 @@
 @import '../../../shared-styles/settings.variables';
+@import '../../../shared-styles/objects.link';
 @import '../../../shared-styles/objects.text';
 @import '../../molecules/VerificationStep/components.verification-step';
 
 .buv-c-verification-step.is-final {
   font-size: 21px;
   color: $successColor;
-  font-weight: bold;
+  font-weight: 600;
   line-height: 19px;
   white-space: nowrap;
 }
@@ -36,3 +37,4 @@
 }
 
 @import '../../../shared-styles/utils.flow';
+@import '../../../shared-styles/utils.width';
