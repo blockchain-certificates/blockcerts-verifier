@@ -3,13 +3,13 @@
 .buv-c-card {
   position: relative;
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .buv-c-card__img-wrapper {
   margin-right: 1.5vw;
   min-width: 50px;
-  width: 30%;
+  width: 20%;
 }
 
 .buv-c-card__img {
@@ -17,10 +17,16 @@
   max-height: 100%;
 }
 
+.buv-c-card__title-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .buv-c-card__title {
   font-size: calc(16px + 0.5vw);
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 0;
   font-weight: 400;
   padding-right: 100px;
 }
@@ -31,7 +37,7 @@
 
 .buv-c-card__recipient {
   font-weight: 600;
-  margin-bottom: 22px;
+  margin: 6px 0 12px;
 }
 
 .buv-c-card__record-link {
@@ -55,4 +61,16 @@
 
 .buv-c-card__verify-button {
   float: right;
+}
+
+@media only screen and (max-width: $modalMaxDimension) {
+  .buv-c-card__title {
+    font-size: 16px;
+  }
+  .buv-c-card__recipient {
+    margin: 6px 0;
+  }
+  .buv-c-card__img-wrapper {
+    margin-right: 18px;
+  }
 }

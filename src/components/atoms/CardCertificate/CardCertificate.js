@@ -29,7 +29,7 @@ export default function CardCertificate ({
       <div class='buv-c-card__img-wrapper'>
         <img src='${issuerLogo}' alt='${issuerName}' class='buv-c-card__img'/>
       </div>
-      <div>
+      <div class='buv-c-card__title-wrapper'>
         <h1 class$=${titleClass}>${certificateTitle}</h1>
         <h2 class$='${titleClass}  buv-c-card__recipient'>${recipientName}</h2>
         <span class='buv-o-small-text'>Issued on <time datetime$='${issuedOn}'>${issueDate}</time> by ${issuerName}</span>
@@ -37,7 +37,7 @@ export default function CardCertificate ({
       ${
   hideRecordLink
     ? ''
-    : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>View Record</a>`
+    : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'><span>View Record</span></a>`
 }
     </section>
     ${
