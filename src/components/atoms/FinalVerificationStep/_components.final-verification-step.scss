@@ -1,4 +1,5 @@
 @import '../../../shared-styles/settings.variables';
+@import '../../../shared-styles/objects.link';
 @import '../../../shared-styles/objects.text';
 @import '../../molecules/VerificationStep/components.verification-step';
 
@@ -36,3 +37,4 @@
 }
 
 @import '../../../shared-styles/utils.flow';
+@import '../../../shared-styles/utils.width';
