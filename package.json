@@ -61,7 +61,8 @@
     "lint:js": "semistandard \"**/*.js\" | snazzy",
     "lint:polymer": "polymer lint",
     "lint:styles": "sass-lint --verbose",
-    "prepush": "npm run test && npm run lint"
+    "prepush": "npm run test && npm run lint",
+    "postinstall": "npm run build"
   },
   "jest": {
     "modulePaths": [
