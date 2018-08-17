@@ -2,6 +2,7 @@ import { html, LitElement } from '@polymer/lit-element';
 import '../components/organisms/CertificateInput';
 import '../components/organisms/ActionMenu';
 import '../components/organisms/VerificationModal';
+import '../components/atoms/DragAndDrop';
 import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/atoms/CardCertificate';
@@ -33,18 +34,20 @@ class BlockcertsUniversalVerifier extends LitElement {
     return html`
       ${CSS}
       <section class='buv-c-verifier-main'>
-        <section class='buv-c-verifier-body'>
-          ${ErrorMessage(_props.errorMessage)}
-          <buv-certificate-input></buv-certificate-input>
-          <buv-action-menu></buv-action-menu>
-          ${_props.displayMode === DISPLAY_MODE.FULL
-    ? html`<buv-full-certificate></buv-full-certificate>`
-    : html`<buv-card-certificate></buv-card-certificate>`
-}
-          <buv-verify-other-certificate></buv-verify-other-certificate>
-          <buv-verification-modal></buv-verification-modal>
-        </section>
-        ${Footer()}
+        <buv-drag-and-drop>
+          <section class='buv-c-verifier-body'>
+            ${ErrorMessage(_props.errorMessage)}
+            <buv-certificate-input></buv-certificate-input>
+            <buv-action-menu></buv-action-menu>
+            ${_props.displayMode === DISPLAY_MODE.FULL
+      ? html`<buv-full-certificate></buv-full-certificate>`
+      : html`<buv-card-certificate></buv-card-certificate>`
+  }
+            <buv-verify-other-certificate></buv-verify-other-certificate>
+            <buv-verification-modal></buv-verification-modal>
+          </section>
+          ${Footer()}
+        </buv-drag-and-drop>
       </section>
     `;
   }
