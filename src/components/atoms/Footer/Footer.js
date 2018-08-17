@@ -1,3 +1,4 @@
+import '../../atoms/FileUpload';
 import { html } from '@polymer/lit-element';
 import CSS from './_components.footer-css';
 
@@ -10,6 +11,9 @@ const Footer = ({ forceInPlace = false } = {}) => {
   return html`
   ${CSS}
   <footer class$='${classes}'>
+    <section>
+      <buv-file-upload></buv-file-upload> <span class="buv-o-small-text">(you can also drag & drop your file).</span>
+    </section>
     <a href='https://www.blockcerts.org' title='Visit Blockcerts website'>
       <svg width="113px" height="16px" viewBox="0 0 113 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
         <defs></defs>
