@@ -72,7 +72,6 @@ class DragAndDrop extends LitElement {
         ondragleave='${this.handleDragLeave}'
         ondrop='${this.handleDrop}'
       ></div>
-      <p class='buv-o-small-text'>You can also drag and drop a certificate file (accepted format: JSON)</p>
       <span>${denyText}</span>
       <slot></slot>
     </div>`;
