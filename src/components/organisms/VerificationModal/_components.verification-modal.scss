@@ -7,7 +7,9 @@
 
 .buv-c-verification-modal__separator {
   margin-bottom: 30px;
-  border-color: rgba(3, 21, 50, .05);
+  background-color: rgba(3, 21, 50, .05);
+  height: 1px;
+  border: 0 none;
 }
 
 .buv-c-verification-modal__content {

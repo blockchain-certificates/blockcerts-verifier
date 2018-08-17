@@ -33,16 +33,17 @@ class BlockcertsUniversalVerifier extends LitElement {
     return html`
       ${CSS}
       <section class='buv-c-verifier-main'>
-        <h1>Blockcerts Universal Verifier</h1>
-        ${ErrorMessage(_props.errorMessage)}
-        <buv-certificate-input></buv-certificate-input>
-        <buv-action-menu></buv-action-menu>
-        ${_props.displayMode === DISPLAY_MODE.FULL
+        <section class='buv-c-verifier-body'>
+          ${ErrorMessage(_props.errorMessage)}
+          <buv-certificate-input></buv-certificate-input>
+          <buv-action-menu></buv-action-menu>
+          ${_props.displayMode === DISPLAY_MODE.FULL
     ? html`<buv-full-certificate></buv-full-certificate>`
     : html`<buv-card-certificate></buv-card-certificate>`
 }
-        <buv-verify-other-certificate></buv-verify-other-certificate>
-        <buv-verification-modal></buv-verification-modal>
+          <buv-verify-other-certificate></buv-verify-other-certificate>
+          <buv-verification-modal></buv-verification-modal>
+        </section>
         ${Footer()}
       </section>
     `;
