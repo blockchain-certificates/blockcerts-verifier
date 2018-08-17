@@ -8,7 +8,7 @@ $secondaryColor: #fff;
   cursor: pointer;
   display: block;
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
   padding: 12px 38px;
   border: 1px solid $mainColor;
 }
@@ -37,5 +37,8 @@ $secondaryColor: #fff;
 
 .buv-c-verify-button.is-disabled {
   cursor: default;
-  filter: grayscale(100%);
+
+  .buv-c-verify-button__label {
+    cursor: default;
+  }
 }
