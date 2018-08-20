@@ -3,7 +3,7 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.footer-css';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo/BlockcertsLogo';
 
-const Footer = ({forceInPlace = false}) => {
+const Footer = (forceInPlace = false) => {
   const classes = [
     'buv-c-footer',
     forceInPlace ? 'buv-c-footer--forced' : ''
