@@ -1,7 +1,11 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.file-upload-css';
 
-export default function FileUpload ({ onChange = () => {} }) {
+export default function FileUpload ({ onChange = () => {}, hideFileUpload = false }) {
+  if (hideFileUpload) {
+    return null;
+  }
+
   return html`
     ${CSS}
     <label for='buv-json-file-upload' class='buv-c-file-upload  buv-o-link  buv-o-small-text'>
@@ -13,5 +17,6 @@ export default function FileUpload ({ onChange = () => {} }) {
           class='buv-u-visually-hidden'
           onchange='${(e) => { onChange(e.target.files[0]); }}'
         />
-    </label>`;
+    </label>
+    <span class="buv-o-small-text">(you can also drag & drop your file).</span>`;
 }
