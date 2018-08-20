@@ -5,7 +5,7 @@ import * as DISPLAY_MODE from '../../../../src/constants/displayMode';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 
-describe('SocialShareContainer test suite', function () {
+describe('ActionMenuContainer test suite', function () {
   describe('mapStateToProps method', function () {
     describe('given the API has the allowSocialShare property set', function () {
       it('should return its value', function () {
