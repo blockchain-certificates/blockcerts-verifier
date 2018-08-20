@@ -2,8 +2,9 @@
 @import '../../../shared-styles/objects.text';
 
 .buv-c-file-upload {
-  margin-top: 13px;
-  display: block;
+  span {
+    color: #fff;
+  }
 }
 
 @import '../../../shared-styles/utils.a11y';
