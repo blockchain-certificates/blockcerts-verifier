@@ -1,5 +1,5 @@
-import mockValidCertificate from '../fixtures/valid-certificate-example';
-import mockInvalidCertificate from '../fixtures/invalid-certificate-example';
+const mockValidCertificate = require('../fixtures/valid-certificate-example.json');
+const mockInvalidCertificate = require('../fixtures/invalid-certificate-example.json');
 const express = require('express');
 const app = express();
 
