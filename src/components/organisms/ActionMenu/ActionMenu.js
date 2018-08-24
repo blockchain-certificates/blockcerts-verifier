@@ -5,6 +5,10 @@ import '../../molecules/SocialShare';
 import CSS from './_components.action-menu-css';
 
 const ActionMenu = ({ allowDownload, allowSocialShare, showMetadata, isVisible }) => {
+  if (!allowDownload && !allowSocialShare && !showMetadata) {
+    isVisible = false;
+  }
+
   if (!isVisible) {
     return null;
   }
