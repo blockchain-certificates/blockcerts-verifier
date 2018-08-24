@@ -17,7 +17,8 @@ export default {
       babelrc: false,
       exclude: 'node_modules/**',
       presets: [['env', {
-        modules: false, 'targets': {
+        modules: false,
+        'targets': {
           'node': 'current'
         }
       }]],
@@ -29,7 +30,7 @@ export default {
     resolve({
       browser: true,
       preferBuiltins: true
-    }) ,
+    }),
     terser()
   ]
 };

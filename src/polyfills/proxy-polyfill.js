@@ -14,7 +14,7 @@
  * the License.
  */
 
-export default function proxyPolyfill() {
+export default function proxyPolyfill () {
   let lastRevokeFn = null;
   let ProxyPolyfill;
 
@@ -22,7 +22,7 @@ export default function proxyPolyfill() {
    * @param {*} o
    * @return {boolean} whether this is probably a (non-null) Object
    */
-  function isObject(o) {
+  function isObject (o) {
     return o ? (typeof o === 'object' || typeof o === 'function') : false;
   }
 
@@ -31,7 +31,7 @@ export default function proxyPolyfill() {
    * @param {!Object} target
    * @param {{apply, construct, get, set}} handler
    */
-  ProxyPolyfill = function(target, handler) {
+  ProxyPolyfill = function (target, handler) {
     if (!isObject(target) || !isObject(handler)) {
       throw new TypeError('Cannot create proxy with a non-object as target or handler');
     }
@@ -39,9 +39,9 @@ export default function proxyPolyfill() {
     // Construct revoke function, and set lastRevokeFn so that Proxy.revocable can steal it.
     // The caller might get the wrong revoke function if a user replaces or wraps scope.Proxy
     // to call itself, but that seems unlikely especially when using the polyfill.
-    let throwRevoked = function() {};
-    lastRevokeFn = function() {
-      throwRevoked = function(trap) {
+    let throwRevoked = function () {};
+    lastRevokeFn = function () {
+      throwRevoked = function (trap) {
         throw new TypeError(`Cannot perform '${trap}' on a proxy that has been revoked`);
       };
     };
@@ -49,10 +49,10 @@ export default function proxyPolyfill() {
     // Fail on unsupported traps: Chrome doesn't do this, but ensure that users of the polyfill
     // are a bit more careful. Copy the internal parts of handler to prevent user changes.
     const unsafeHandler = handler;
-    handler = { 'get': null, 'set': null, 'apply': null, 'construct': null };
+    handler = {'get': null, 'set': null, 'apply': null, 'construct': null};
     for (let k in unsafeHandler) {
       if (!(k in handler)) {
-        //throw new TypeError(`Proxy polyfill does not support trap '${k}'`);
+        // throw new TypeError(`Proxy polyfill does not support trap '${k}'`);
       } else {
         handler[k] = unsafeHandler[k];
       }
@@ -69,7 +69,7 @@ export default function proxyPolyfill() {
     let isMethod = false;
     let isArray = false;
     if (typeof target === 'function') {
-      proxy = function ProxyPolyfill() {
+      proxy = function ProxyPolyfill () {
         const usingNew = (this && this.constructor === proxy);
         const args = Array.prototype.slice.call(arguments);
         throwRevoked(usingNew ? 'construct' : 'apply');
@@ -83,9 +83,10 @@ export default function proxyPolyfill() {
         // since the target was a function, fallback to calling it directly.
         if (usingNew) {
           // inspired by answers to https://stackoverflow.com/q/1606797
-          args.unshift(target);  // pass class as first arg to constructor, although irrelevant
+          args.unshift(target); // pass class as first arg to constructor, although irrelevant
           // nb. cast to convince Closure compiler that this is a constructor
           const f = /** @type {!Function} */ (target.bind.apply(target, args));
+          /* eslint new-cap: "off" */
           return new f();
         }
         return target.apply(this, args);
@@ -98,17 +99,17 @@ export default function proxyPolyfill() {
 
     // Create default getters/setters. Create different code paths as handler.get/handler.set can't
     // change after creation.
-    const getter = handler.get ? function(prop) {
+    const getter = handler.get ? function (prop) {
       throwRevoked('get');
       return handler.get(this, prop, proxy);
-    } : function(prop) {
+    } : function (prop) {
       throwRevoked('get');
       return this[prop];
     };
-    const setter = handler.set ? function(prop, value) {
+    const setter = handler.set ? function (prop, value) {
       throwRevoked('set');
       handler.set(this, prop, value, proxy);
-    } : function(prop, value) {
+    } : function (prop, value) {
       throwRevoked('set');
       this[prop] = value;
     };
@@ -116,15 +117,15 @@ export default function proxyPolyfill() {
     // Clone direct properties (i.e., not part of a prototype).
     const propertyNames = Object.getOwnPropertyNames(target);
     const propertyMap = {};
-    propertyNames.forEach(function(prop) {
+    propertyNames.forEach(function (prop) {
       if ((isMethod || isArray) && prop in proxy) {
-        return;  // ignore properties already here, e.g. 'bind', 'prototype' etc
+        return; // ignore properties already here, e.g. 'bind', 'prototype' etc
       }
       const real = Object.getOwnPropertyDescriptor(target, prop);
       const desc = {
         enumerable: !!real.enumerable,
         get: getter.bind(target, prop),
-        set: setter.bind(target, prop),
+        set: setter.bind(target, prop)
       };
       Object.defineProperty(proxy, prop, desc);
       propertyMap[prop] = true;
@@ -136,6 +137,7 @@ export default function proxyPolyfill() {
     let prototypeOk = true;
     if (Object.setPrototypeOf) {
       Object.setPrototypeOf(proxy, Object.getPrototypeOf(target));
+      /* eslint no-proto: "off" */
     } else if (proxy.__proto__) {
       proxy.__proto__ = target.__proto__;
     } else {
@@ -146,7 +148,7 @@ export default function proxyPolyfill() {
         if (propertyMap[k]) {
           continue;
         }
-        Object.defineProperty(proxy, k, { get: getter.bind(target, k) });
+        Object.defineProperty(proxy, k, {get: getter.bind(target, k)});
       }
     }
 
@@ -154,12 +156,12 @@ export default function proxyPolyfill() {
     Object.seal(target);
     Object.seal(proxy);
 
-    return proxy;  // nb. if isMethod is true, proxy != this
+    return proxy; // nb. if isMethod is true, proxy != this
   };
 
-  ProxyPolyfill.revocable = function(target, handler) {
+  ProxyPolyfill.revocable = function (target, handler) {
     const p = new ProxyPolyfill(target, handler);
-    return { 'proxy': p, 'revoke': lastRevokeFn };
+    return {'proxy': p, 'revoke': lastRevokeFn};
   };
 
   return ProxyPolyfill;
