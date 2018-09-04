@@ -46,7 +46,7 @@ class SocialShare extends LitElement {
               target='_blank'
               onclick='${() => { onShare(service.name); }}'
             >
-              Share on ${service.name}
+              <span class='buv-o-link__text--underline'>Share on ${service.name}</span>
             </a>
           </li>`
     );

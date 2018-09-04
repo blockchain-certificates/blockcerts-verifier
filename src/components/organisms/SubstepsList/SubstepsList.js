@@ -90,7 +90,7 @@ class SubstepsList extends LitElement {
     return html`
     ${CSS}
     <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class$='${linkClasses}'>
-      <span>${isOpen ? 'Hide' : itemString}</span>
+      <span class='buv-o-link__text--underline'>${isOpen ? 'Hide' : itemString}</span>
     </a>
     <div class$='${listClasses}' style$='max-height: ${maxHeight}px'>
       ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)}

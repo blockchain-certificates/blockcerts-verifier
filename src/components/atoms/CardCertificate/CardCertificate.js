@@ -37,7 +37,9 @@ export default function CardCertificate ({
       ${
   hideRecordLink
     ? ''
-    : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'><span>View Record</span></a>`
+    : html`<a class='buv-o-small-text  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>
+        <span class='buv-o-link__text--underline'>View Record</span>
+    </a>`
 }
     </section>
     ${
