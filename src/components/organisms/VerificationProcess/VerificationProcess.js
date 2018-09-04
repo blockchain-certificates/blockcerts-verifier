@@ -69,7 +69,7 @@ class VerificationProcess extends LitElement {
     ${CSS}
     <section class='buv-c-verification-process'>
       <div class='buv-c-verification-progress-bar' >
-        <div class$='${progressBarClasses}' style='max-height: ${maxHeight}'></div>
+        <div class$='${progressBarClasses}' style$='max-height: ${maxHeight}'></div>
       </div>  
       <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
