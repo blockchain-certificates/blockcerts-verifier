@@ -9,7 +9,7 @@ export default function FileUpload ({ onChange = () => {}, hideFileUpload = fals
   return html`
     ${CSS}
     <label for='buv-json-file-upload' class='buv-c-file-upload  buv-o-link  buv-o-small-text'>
-        <span>Choose JSON file</span>
+        <span class='buv-o-link__text--underline'>Choose JSON file</span>
         <input
           type='file'
           accept='application/json'

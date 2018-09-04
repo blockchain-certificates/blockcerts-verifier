@@ -1,8 +1,8 @@
 .buv-o-link {
   cursor: pointer;
   text-decoration: none;
+}
 
-  span {
-    border-bottom: 1px solid;
-  }
+.buv-o-link__text--underline {
+  border-bottom: 1px solid;
 }
