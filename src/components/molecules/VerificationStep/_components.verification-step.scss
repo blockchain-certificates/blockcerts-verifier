@@ -72,3 +72,10 @@
   font-size: 11px;
   color: $errorColor;
 }
+
+@supports (-ms-ime-align: auto) {
+  // ms edge seems to be considering a different width for the cross character, so fix it the hammer way
+  .buv-c-verification-step.is-failure::after {
+    left: -34px;
+  }
+}
