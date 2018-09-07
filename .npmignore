@@ -1,0 +1,12 @@
+test/
+src/
+sanitizer/
+
+index.html
+*.yml
+*.json
+*.config.js
+.babelrc
+.nvmrc
+
+.idea
