@@ -1,6 +1,6 @@
 {
   "name": "blockcerts-universal-verifier",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "A standalone universal viewer &amp; verifier for blockcerts credentials",
   "main": "dist/buv.js",
   "dependencies": {
