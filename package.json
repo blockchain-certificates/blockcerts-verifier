@@ -1,6 +1,6 @@
 {
   "name": "blockcerts-universal-verifier",
-  "version": "0.0.2",
+  "version": "0.0.0-dev",
   "description": "A standalone universal viewer &amp; verifier for blockcerts credentials",
   "main": "dist/buv.js",
   "dependencies": {
@@ -12,6 +12,7 @@
     "proxy-polyfill": "^0.3.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
+    "semantic-release": "^15.9.12",
     "whatwg-fetch": "^2.0.4",
     "xss": "^1.0.3"
   },
@@ -65,7 +66,8 @@
     "lint:js": "semistandard \"**/*.js\" | snazzy",
     "lint:polymer": "polymer lint",
     "lint:styles": "sass-lint --verbose",
-    "prepush": "npm run test && npm run lint"
+    "prepush": "npm run test && npm run lint",
+    "semantic-release": "semantic-release"
   },
   "jest": {
     "modulePaths": [
