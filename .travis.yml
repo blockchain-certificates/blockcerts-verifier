@@ -8,8 +8,6 @@ branches:
 addons:
   firefox: latest
   chrome: stable
-before_install:
-  - npm i -g npm@6
 before_script:
   - npm run start:mock-server &
   - npm run lint
