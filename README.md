@@ -1,4 +1,4 @@
-# \<blockcerts-universal-verifier\>
+# \<blockcerts-verifier\>
 
 A standalone universal viewer &amp; verifier for blockcerts credentials
 
@@ -11,7 +11,7 @@ To use the component in your project, install it via:
 Then just add it into your project with:
 
 ```html
-  <blockcerts-universal-verifier></blockcerts-universal-verifier>
+  <blockcerts-verifier></blockcerts-verifier>
 ```
 
 Have a look at the [Demo Pages](/demo) to see examples of the usage
@@ -32,56 +32,56 @@ The component will understand the following options:
    Example:
    
    ```html
-   <blockcerts-universal-verifier allow-download></blockcerts-universal-verifier>
+   <blockcerts-verifier allow-download></blockcerts-verifier>
    ```
 - `allow-social-share`: (Boolean. default: `false`). Allows sharing the record on the social networks (LinkedIn, Facebook and Twitter). 
    
    Example:
    
    ```html
-   <blockcerts-universal-verifier allow-social-share></blockcerts-universal-verifier>
+   <blockcerts-verifier allow-social-share></blockcerts-verifier>
    ```
 - `disable-auto-verify`: (Boolean. default: `false`). Disables starting automatically the verification sequence as the record is loaded. 
    
    Example:
    
    ```html
-   <blockcerts-universal-verifier disable-auto-verify></blockcerts-universal-verifier>
+   <blockcerts-verifier disable-auto-verify></blockcerts-verifier>
    ```
 - `disable-verify`: (Boolean. default: `false`). Disables verification of the record altogether. 
   
   Example:
   
   ```html
-  <blockcerts-universal-verifier disable-auto-verify></blockcerts-universal-verifier>
+  <blockcerts-verifier disable-auto-verify></blockcerts-verifier>
   ```
 - `display-mode`: (String, oneOf('card', 'full'). default: `card`). Changes the display of a record. `card` will be a concise summary of the record with a link to the full record, while `full` will show the actual record as designed by the emitter.  
   
   Example:
   
   ```html
-  <blockcerts-universal-verifier display-mode="full"></blockcerts-universal-verifier>
+  <blockcerts-verifier display-mode="full"></blockcerts-verifier>
   ```
 - `show-metadata`: (Boolean. default: `false`). Enables showing the metadata of a record.  
   
   Example:
   
   ```html
-  <blockcerts-universal-verifier show-metadata></blockcerts-universal-verifier>
+  <blockcerts-verifier show-metadata></blockcerts-verifier>
   ```
 - `src`: (String. default: `''`). Allows loading an initial record with no further actions required. `src` can be either an absolute URL, or a relative path.  
   
   Example:
   
   ```html
-  <blockcerts-universal-verifier src='../fixtures/valid-certificate-example.json'></blockcerts-universal-verifier>
+  <blockcerts-verifier src='../fixtures/valid-certificate-example.json'></blockcerts-verifier>
   ```
   
 ## Event Tracking API
 The component will emit events on different moment of the certificate life cycle.
 To subscribe and track these events you should add on your consumer page event listeners on the `window` object.
 
-See the [event demo page](https://github.com/learningmachine/blockcerts-universal-verifier/blob/master/demo/on-load-event.html) for a working example.
+See the [event demo page](https://github.com/learningmachine/blockcerts-verifier/blob/master/demo/on-load-event.html) for a working example.
 
 The information is communicated via the `detail` key of the event.
 
@@ -141,7 +141,7 @@ npm run test:components
 ```
 npm run test:components:persist
 ```
-Will allow refreshing the test page: http://localhost:8000/components/blockcerts-universal-verifier/generated-index.html?cli_browser_id=0
+Will allow refreshing the test page: http://localhost:8000/components/blockcerts-verifier/generated-index.html?cli_browser_id=0
 
 ## Dealing with CSS
 The `npm run start` command will also start a SASS compiler watcher, which means that any stylesheet within the `components` folder will be transpiled to a polymer component that can be reused within another component. ie:

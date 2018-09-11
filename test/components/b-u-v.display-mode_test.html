@@ -6,19 +6,19 @@
     <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <script src="../../node_modules/web-component-tester/browser.js"></script>
 
-    <script type="module" src="../../src/blockcerts-universal-verifier/index.js"></script>
+    <script type="module" src="../../src/blockcerts-verifier/index.js"></script>
 </head>
 <body>
     <script src="./helpers/redux-hack.js"></script>
     <script src="./helpers/wait.js"></script>
     <test-fixture id="default">
         <template>
-            <blockcerts-universal-verifier src="../fixtures/valid-certificate-example.json"></blockcerts-universal-verifier>
+            <blockcerts-verifier src="../fixtures/valid-certificate-example.json"></blockcerts-verifier>
         </template>
     </test-fixture>
     <test-fixture id="full">
         <template>
-            <blockcerts-universal-verifier src="../fixtures/valid-certificate-example.json" display-mode="full"></blockcerts-universal-verifier>
+            <blockcerts-verifier src="../fixtures/valid-certificate-example.json" display-mode="full"></blockcerts-verifier>
         </template>
     </test-fixture>
 
