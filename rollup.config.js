@@ -7,7 +7,7 @@ export default {
   input: 'src/blockcerts-verifier/index.js',
   output: [
     {
-      file: 'dist/buv.js',
+      file: 'dist/main.js',
       format: 'iife',
       name: 'BlockcertsVerifier'
     }
