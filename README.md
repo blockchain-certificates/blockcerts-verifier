@@ -6,12 +6,22 @@ A standalone universal viewer &amp; verifier for blockcerts credentials
 The component is developed with Polymer 3.
 To use the component in your project, install it via:
 
-- TBD
+```
+  npm i blockcerts-verifier
+```
 
 Then just add it into your project with:
 
 ```html
+  <script type="module" src="node_modules/blockcerts-verifier/dist/main.js"></script>
+
   <blockcerts-verifier></blockcerts-verifier>
+```
+
+You might need to add the webcomponent loader depending on the browsers you are targeting.
+
+```html
+    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 ```
 
 Have a look at the [Demo Pages](/demo) to see examples of the usage
