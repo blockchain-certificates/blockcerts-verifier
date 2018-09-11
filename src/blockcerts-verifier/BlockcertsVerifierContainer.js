@@ -1,6 +1,6 @@
 import connector from '../store/connector';
 import initialize from '../actions/initialize';
-import { BlockcertsUniversalVerifier, SourceComponent } from './BlockcertsUniversalVerifier';
+import { BlockcertsVerifier, SourceComponent } from './BlockcertsVerifier';
 import { getErrorMessage } from '../selectors/error';
 import { APIKeys } from '../models/API';
 
@@ -20,5 +20,5 @@ const ownProps = {
   ...APIKeys
 };
 
-const BlockcertsUniversalVerifierContainer = connector(BlockcertsUniversalVerifier, { mapDispatchToProps, mapStateToProps, ownProps });
-export { BlockcertsUniversalVerifierContainer };
+const BlockcertsVerifierContainer = connector(BlockcertsVerifier, { mapDispatchToProps, mapStateToProps, ownProps });
+export { BlockcertsVerifierContainer };

@@ -144,8 +144,8 @@ In practice, this means exposing your component as `SourceComponent`, and matchi
 ie:
 ```javascript
 export {
-  BlockcertsUniversalVerifier as SourceComponent,
-  BUVWrapper as BlockcertsUniversalVerifier
+  BlockcertsVerifier as SourceComponent,
+  BUVWrapper as BlockcertsVerifier
 };
 ```
 
@@ -153,12 +153,12 @@ and in the container:
 
 ```javascript
 import connector from '../store/connector';
-import { BlockcertsUniversalVerifier, SourceComponent } from './BlockcertsUniversalVerifier';
+import { BlockcertsVerifier, SourceComponent } from './BlockcertsVerifier';
 
 const ownProps = SourceComponent.properties;
 
-const BlockcertsUniversalVerifierContainer = connector(BlockcertsUniversalVerifier, { ownProps });
-export { BlockcertsUniversalVerifierContainer };
+const BlockcertsVerifierContainer = connector(BlockcertsVerifier, { ownProps });
+export { BlockcertsVerifierContainer };
 
 ```
 

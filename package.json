@@ -1,10 +1,10 @@
 {
-  "name": "blockcerts-universal-verifier",
+  "name": "blockcerts-verifier",
   "version": "0.0.0-dev",
   "description": "A standalone universal viewer and verifier for blockcerts credentials",
   "repository": {
     "type": "git",
-    "url": "https://github.com/learningmachine/blockcerts-universal-verifier.git"
+    "url": "https://github.com/blockchain-certificates/blockcerts-verifier.git"
   },
   "main": "dist/buv.js",
   "dependencies": {

@@ -12,7 +12,7 @@ import Footer from '../components/molecules/Footer/Footer';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
 
-class BlockcertsUniversalVerifier extends LitElement {
+class BlockcertsVerifier extends LitElement {
   static get properties () {
     return {
       onLoad: Function,
@@ -53,7 +53,7 @@ class BlockcertsUniversalVerifier extends LitElement {
   }
 }
 
-window.customElements.define('buv-raw', BlockcertsUniversalVerifier);
+window.customElements.define('buv-raw', BlockcertsVerifier);
 
 // wrap Button in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
@@ -72,6 +72,6 @@ function BUVWrapper (props) {
 }
 
 export {
-  BlockcertsUniversalVerifier as SourceComponent,
-  BUVWrapper as BlockcertsUniversalVerifier
+  BlockcertsVerifier as SourceComponent,
+  BUVWrapper as BlockcertsVerifier
 };

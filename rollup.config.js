@@ -4,12 +4,12 @@ import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 
 export default {
-  input: 'src/blockcerts-universal-verifier/index.js',
+  input: 'src/blockcerts-verifier/index.js',
   output: [
     {
       file: 'dist/buv.js',
       format: 'iife',
-      name: 'BlockcertsUniversalVerifier'
+      name: 'BlockcertsVerifier'
     }
   ],
   plugins: [
