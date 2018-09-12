@@ -7,7 +7,7 @@ The component is developed with Polymer 3.
 To use the component in your project, install it via:
 
 ```
-  npm i blockcerts-verifier
+  npm i @blockcerts/blockcerts-verifier
 ```
 
 Then just add it into your project with:
