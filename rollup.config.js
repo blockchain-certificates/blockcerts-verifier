@@ -16,13 +16,13 @@ export default {
     babel({
       babelrc: false,
       exclude: 'node_modules/**',
-      presets: [['env', {
+      presets: [['@babel/env', {
         modules: false,
         'targets': {
           'node': 'current'
         }
       }]],
-      plugins: ['transform-object-rest-spread', 'external-helpers']
+      plugins: ['@babel/plugin-proposal-object-rest-spread']
     }),
     replace({
       'process.env.NODE_ENV': JSON.stringify('production')
