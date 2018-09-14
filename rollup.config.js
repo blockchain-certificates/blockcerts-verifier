@@ -15,7 +15,6 @@ export default {
   plugins: [
     babel({
       babelrc: false,
-      exclude: 'node_modules/**',
       presets: [['env', {
         modules: false,
         'targets': {
