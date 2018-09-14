@@ -20,14 +20,14 @@
     "xss": "^1.0.3"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.1",
     "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "axe-core": "^3.0.2",
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
-    "babel-jest": "^23.0.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "babel-loader": "7.1.5",
     "concurrently": "^3.5.1",
     "express": "^4.16.3",
@@ -54,7 +54,7 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:sanitizer": "rollup -c rollup-sanitizer.config.js",
-    "test": "npm run test:application && npm run test:components",
+    "test": " run test:application && npm run test:components",
     "test:components": "npm run test:components:retrieve && polymer test",
     "test:components:retrieve": "node test/wct-script/retrieveTestFiles",
     "test:components:retrieve:watch": "npm run test:components:retrieve -- --watch",
@@ -89,7 +89,7 @@
       "./test/setupJest.js"
     ],
     "transformIgnorePatterns": [
-      "node_modules/(?!(@polymer|lit-html|pwa-helpers|cert-verifier-js)/)"
+      "node_modules/(?!(@polymer|lit-html|pwa-helpers|cert-verifier-js)/).+\\.js$"
     ]
   },
   "semistandard": {
