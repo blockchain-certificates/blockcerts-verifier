@@ -10,19 +10,26 @@ To use the component in your project, install it via:
   npm i @blockcerts/blockcerts-verifier
 ```
 
-Then just add it into your project with:
+If your project **does not require support for IE11**, you can use the following build:
 
 ```html
-  <script type="module" src="node_modules/@blockcerts/blockcerts-verifier/dist/main.js"></script>
+  <script src="node_modules/@blockcerts/blockcerts-verifier/dist/main.js"></script>
 
   <blockcerts-verifier></blockcerts-verifier>
 ```
-
-You might need to add the webcomponent loader depending on the browsers you are targeting.
+Chrome will support natively the code, but for Firefox, Safari, MS Edge (Opera and Brave), you will need to add the webcomponent loader before:
 
 ```html
     <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 ```
+
+If your project **requires support for IE11**, you will need to use the ie11 build:
+```html
+  <script src="node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+  <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="node_modules/@blockcerts/blockcerts-verifier/dist/ie11.js"></script>
+```
+Please note that because this is transpiled to ES5, the custom-elements-es5-adapter code is required for it to work properly in more modern browsers.
 
 Have a look at the [Demo Pages](/demo) to see examples of the usage
 
