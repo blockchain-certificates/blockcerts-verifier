@@ -46,7 +46,7 @@ export default [
     ],
     plugins: [
       cjs({
-        include: "node_modules/**"
+        include: 'node_modules/**'
       }),
       babel({
         babelrc: false,
@@ -56,9 +56,9 @@ export default [
             'browser': 'IE 11'
           }
         }]],
-        plugins: ['transform-object-rest-spread', 'external-helpers', ["transform-runtime", {
-          "helpers": false,
-          "polyfill": false
+        plugins: ['transform-object-rest-spread', 'external-helpers', ['transform-runtime', {
+          'helpers': false,
+          'polyfill': false
         }]]
       }),
       replace({
