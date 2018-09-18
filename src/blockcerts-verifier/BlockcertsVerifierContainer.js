@@ -3,6 +3,7 @@ import initialize from '../actions/initialize';
 import { BlockcertsVerifier, SourceComponent } from './BlockcertsVerifier';
 import { getErrorMessage } from '../selectors/error';
 import { APIKeys } from '../models/API';
+import { getCertificateDefinition } from '../selectors/certificate';
 
 const mapDispatchToProps = {
   onLoad: initialize
@@ -10,7 +11,8 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => {
   return {
-    errorMessage: getErrorMessage(state)
+    errorMessage: getErrorMessage(state),
+    hasCertificate: !!getCertificateDefinition(state)
   };
 };
 
