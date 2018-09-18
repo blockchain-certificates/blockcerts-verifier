@@ -40,7 +40,7 @@ class BlockcertsVerifier extends LitElement {
         <buv-drag-and-drop>
           <div class='buv-c-verifier-layout'>
             <section class$='${bodyClass}'>
-              ${ErrorMessage(_props.errorMessage)}
+              ${ErrorMessage(_props.errorMessage, true)}
               <buv-certificate-input></buv-certificate-input>
               <buv-action-menu></buv-action-menu>
               ${_props.displayMode === DISPLAY_MODE.FULL
