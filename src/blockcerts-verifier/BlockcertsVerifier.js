@@ -17,6 +17,7 @@ class BlockcertsVerifier extends LitElement {
     return {
       onLoad: Function,
       errorMessage: String,
+      hasCertificate: Boolean,
       ...APICamelCase
     };
   }
@@ -31,11 +32,13 @@ class BlockcertsVerifier extends LitElement {
   }
 
   _render (_props) {
+    const bodyClass = _props.hasCertificate ? 'buv-c-verifier-body--padded' : '';
+
     return html`
       ${CSS}
       <section class='buv-c-verifier-main'>
         <buv-drag-and-drop>
-          <section class='buv-c-verifier-body'>
+          <section class$='${bodyClass}'>
             ${ErrorMessage(_props.errorMessage)}
             <buv-certificate-input></buv-certificate-input>
             <buv-action-menu></buv-action-menu>
@@ -62,6 +65,7 @@ function BUVWrapper (props) {
           src='${props.src}'
           onLoad='${props.onLoad}'
           errorMessage='${props.errorMessage}'
+          hasCertificate='${props.hasCertificate}'
           disableAutoVerify='${props['disable-auto-verify']}'
           disableVerify='${props['disable-verify']}'
           allowDownload='${props['allow-download']}'
