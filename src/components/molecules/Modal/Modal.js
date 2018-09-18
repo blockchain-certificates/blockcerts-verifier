@@ -39,8 +39,8 @@ class Modal extends LitElement {
 
     return html`
       ${CSS}
-      <div class$='${classes}'>
-        <div class='buv-c-modal__content  buv-o-overlay'>
+      <div class$='${classes}' onclick='${this.handleClick}'>
+        <div class='buv-c-modal__content  buv-o-overlay' onclick='${e => { e.stopPropagation() }}'>
           ${CloseButton({
     className: 'buv-c-modal__close-button',
     onClick: this.handleClick
