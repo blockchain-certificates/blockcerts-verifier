@@ -2,9 +2,10 @@
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   color: rgb(3, 21, 50);
   position: relative;
-  background-color: #fff;
 }
 
 .buv-c-verifier-body--padded {
+  // TODO: the background color should technically not be the concern of this class
+  background-color: #fff;
   padding: 20px;
 }
