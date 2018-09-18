@@ -36,9 +36,5 @@ $secondaryColor: #fff;
 }
 
 .buv-c-verify-button.is-disabled {
-  cursor: default;
-
-  .buv-c-verify-button__label {
-    cursor: default;
-  }
+  pointer-events: none;
 }
