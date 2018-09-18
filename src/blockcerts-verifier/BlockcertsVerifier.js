@@ -32,24 +32,26 @@ class BlockcertsVerifier extends LitElement {
   }
 
   _render (_props) {
-    const bodyClass = _props.hasCertificate ? 'buv-c-verifier-body--padded' : '';
+    const bodyClass = _props.hasCertificate ? 'buv-c-verifier-body  buv-c-verifier-body--padded' : '';
 
     return html`
       ${CSS}
       <section class='buv-c-verifier-main'>
         <buv-drag-and-drop>
-          <section class$='${bodyClass}'>
-            ${ErrorMessage(_props.errorMessage)}
-            <buv-certificate-input></buv-certificate-input>
-            <buv-action-menu></buv-action-menu>
-            ${_props.displayMode === DISPLAY_MODE.FULL
+          <div class='buv-c-verifier-layout'>
+            <section class$='${bodyClass}'>
+              ${ErrorMessage(_props.errorMessage, true)}
+              <buv-certificate-input></buv-certificate-input>
+              <buv-action-menu></buv-action-menu>
+              ${_props.displayMode === DISPLAY_MODE.FULL
     ? html`<buv-full-certificate></buv-full-certificate>`
     : html`<buv-card-certificate></buv-card-certificate>`
 }
-            <buv-verify-other-certificate></buv-verify-other-certificate>
-            <buv-verification-modal></buv-verification-modal>
-          </section>
-          ${Footer()}
+              <buv-verify-other-certificate></buv-verify-other-certificate>
+              <buv-verification-modal></buv-verification-modal>
+            </section>
+            ${Footer()}
+          </div>
         </buv-drag-and-drop>
       </section>
     `;
