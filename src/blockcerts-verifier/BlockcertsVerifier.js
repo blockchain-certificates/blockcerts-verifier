@@ -44,9 +44,9 @@ class BlockcertsVerifier extends LitElement {
               <buv-certificate-input></buv-certificate-input>
               <buv-action-menu></buv-action-menu>
               ${_props.displayMode === DISPLAY_MODE.FULL
-      ? html`<buv-full-certificate></buv-full-certificate>`
-      : html`<buv-card-certificate></buv-card-certificate>`
-  }
+    ? html`<buv-full-certificate></buv-full-certificate>`
+    : html`<buv-card-certificate></buv-card-certificate>`
+}
               <buv-verify-other-certificate></buv-verify-other-certificate>
               <buv-verification-modal></buv-verification-modal>
             </section>
