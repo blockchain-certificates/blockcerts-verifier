@@ -7,7 +7,6 @@ import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/atoms/CardCertificate';
 import '../components/organisms/FullCertificate';
-import '../components/atoms/VerifyOtherCertificateLink';
 import Footer from '../components/molecules/Footer/Footer';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
@@ -47,7 +46,6 @@ class BlockcertsVerifier extends LitElement {
     ? html`<buv-full-certificate></buv-full-certificate>`
     : html`<buv-card-certificate></buv-card-certificate>`
 }
-              <buv-verify-other-certificate></buv-verify-other-certificate>
               <buv-verification-modal></buv-verification-modal>
             </section>
             ${Footer()}

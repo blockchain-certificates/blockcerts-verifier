@@ -1,6 +1,13 @@
+@import './settings.variables';
+
 .buv-o-link {
   cursor: pointer;
   text-decoration: none;
+  color: $fontColor;
+}
+
+.buv-o-link--contrast {
+  color: #fff;
 }
 
 .buv-o-link__text--underline {
