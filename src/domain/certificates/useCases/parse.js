@@ -1,4 +1,4 @@
-import { Certificate } from 'cert-verifier-js/dist/verifier-es';
+import { Certificate } from '@blockcerts/cert-verifier-js/dist/verifier-es';
 
 export default function parse (definition) {
   try {

@@ -1,4 +1,4 @@
-import { VERIFICATION_STATUSES } from 'cert-verifier-js/dist/verifier-es';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js/dist/verifier-es';
 
 const DEFAULT = 'standby';
 // TODO: refactor to use VERIFICATION_STATUSES.STARTING
