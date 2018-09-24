@@ -4,18 +4,25 @@
 .buv-c-certificate-details {
   display: flex;
   margin: 0;
+  position: relative;
+  padding-bottom: 60px;
+  color: rgba(110, 126, 142, 1);
 
   @media only screen and (max-width: 520px) {
     flex-direction: column;
+    padding-bottom: 0;
   }
 }
 
 .buv-c-certificate-details__group {
   box-sizing: border-box;
   padding-right: 15px;
-  max-width: 25%;
-  color: rgba(110, 126, 142, 1);
+  max-width: 33%;
   margin-top: 15px;
+
+  @media only screen and (max-width: 520px) {
+    max-width: 100%;
+  }
 }
 
 .buv-c-certificate-details__title {
@@ -27,10 +34,19 @@
   margin: 0;
 }
 
-.buv-c-certificate-details__link {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: $successColor;
+.buv-c-certificate-details__standalone {
+  position: absolute;
+  top: 80px;
+  width: 125%;
+
+  @media only screen and (max-width: 520px) {
+    position: initial;
+    margin-top: 15px;
+  }
+}
+
+.buv-c-certificate-details--inline {
+  display: inline-block;
+  margin: 0 0 5px;
+  word-break: break-word;
 }

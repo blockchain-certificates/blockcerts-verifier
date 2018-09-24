@@ -23,26 +23,28 @@ export default function CertificateDetails ({
     {
       title: 'Issuer',
       value: issuerName
-    },
-    {
-      title: 'Transaction ID',
-      value: isValidLink(transactionLink)
-        ? html`<a href='${transactionLink}' target='_blank' class='buv-c-certificate-details__link'>${transactionId}</a>`
-        : html`<span>No transaction ID</span>`
     }
   ];
 
   const definitionListDetails = details.map(detail => html`
-    <div class='buv-c-certificate-details__group  buv-o-small-text'>
-        <dt class='buv-c-certificate-details__title'>${detail.title}</dt>
+    <div class='buv-c-certificate-details__group'>
+        <dt class='buv-c-certificate-details__title  buv-o-text-11'>${detail.title}</dt>
         <dd class='buv-c-certificate-details__value'>${detail.value}</dd>
     </div>
   `);
 
   return html`
     ${CSS}
-    <dl class='buv-c-certificate-details'>
+    <dl class='buv-c-certificate-details  buv-o-text-12'>
         ${definitionListDetails}
+        <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
+          ${
+  isValidLink(transactionLink)
+    ? html`<dt class='buv-c-certificate-details--inline'>Transaction ID:</dt>
+                  <dd class='buv-c-certificate-details--inline'>${transactionId}</dd>`
+    : html`<span>No transaction ID</span>`
+}
+        </div>
     </dl>
   `;
 }

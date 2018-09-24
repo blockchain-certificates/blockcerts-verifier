@@ -51,7 +51,7 @@ class SocialShare extends LitElement {
           </li>`
     );
 
-    return html`<div class='buv-c-social-share-modal  buv-o-small-text  buv-o-overlay'>
+    return html`<div class='buv-c-social-share-modal  buv-o-text-12  buv-o-overlay'>
       ${CloseButton({
     onClick: this.toggleOpen,
     className: 'buv-c-social-share-modal__close-button'

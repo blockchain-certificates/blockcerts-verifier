@@ -8,7 +8,7 @@ export default function FileUpload ({ onChange = () => {}, hideFileUpload = fals
 
   return html`
     ${CSS}
-    <label for='buv-json-file-upload' class='buv-o-link  buv-o-link--contrast  buv-o-small-text'>
+    <label for='buv-json-file-upload' class='buv-o-link  buv-o-link--contrast  buv-o-text-12'>
         <span class='buv-o-link__text--underline'>Choose JSON file</span>
         <input
           type='file'
@@ -18,5 +18,5 @@ export default function FileUpload ({ onChange = () => {}, hideFileUpload = fals
           onchange='${(e) => { onChange(e.target.files[0]); }}'
         />
     </label>
-    <span class="buv-o-small-text">(you can also drag & drop your file).</span>`;
+    <span class="buv-o-text-12">(you can also drag & drop your file).</span>`;
 }

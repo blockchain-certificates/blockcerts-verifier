@@ -5,7 +5,7 @@ import ErrorMessage from '../../atoms/ErrorMessage';
 export default function VerificationStep ({ label, code, status, errorMessage, isParent, isFirst, isTestChain }) {
   // TODO: better handle this dynamic class (cf npm classnames)
   let parentStepClasses = [
-    'buv-o-large-text',
+    'buv-o-text-15',
     'buv-c-verification-step',
     isFirst ? 'is-first' : '',
     `is-${status}`,
@@ -16,7 +16,7 @@ export default function VerificationStep ({ label, code, status, errorMessage, i
   if (isParent) {
     innerHTML = html`${CSS}<dt class$='${parentStepClasses}'>${label}</dt>`;
   } else {
-    innerHTML = html`${CSS}<dd class='buv-c-verification-step  buv-c-verification-substep  buv-o-small-text'>
+    innerHTML = html`${CSS}<dd class='buv-c-verification-step  buv-c-verification-substep  buv-o-text-12'>
       ${label}
       ${ErrorMessage(errorMessage)}
     </dd>`;
