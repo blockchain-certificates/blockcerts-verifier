@@ -10,13 +10,14 @@
 
   @media only screen and (max-width: 520px) {
     flex-direction: column;
+    padding-bottom: 0;
   }
 }
 
 .buv-c-certificate-details__group {
   box-sizing: border-box;
   padding-right: 15px;
-  max-width: 25%;
+  max-width: 33%;
   margin-top: 15px;
 }
 
@@ -31,11 +32,17 @@
 
 .buv-c-certificate-details__standalone {
   position: absolute;
-  bottom: 10px;
+  top: 80px;
   width: 125%;
+
+  @media only screen and (max-width: 520px) {
+    position: initial;
+    margin-top: 15px;
+  }
 }
 
 .buv-c-certificate-details--inline {
   display: inline-block;
-  margin: 0;
+  margin: 0 0 5px;
+  word-break: break-word;
 }
