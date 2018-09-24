@@ -66,7 +66,7 @@ class Metadata extends LitElement {
     onClick: this.toggleOpen,
     className: 'buv-c-metadata-container__close-button'
   })}
-        <dl class='buv-c-metadata-list  buv-o-small-text'>${innerHTML}</dl>
+        <dl class='buv-c-metadata-list  buv-o-text-12'>${innerHTML}</dl>
       </section>
     `;
   }

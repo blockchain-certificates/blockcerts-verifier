@@ -35,7 +35,7 @@ export default function CertificateDetails ({
 
   return html`
     ${CSS}
-    <dl class='buv-c-certificate-details  buv-o-small-text'>
+    <dl class='buv-c-certificate-details  buv-o-text-12'>
         ${definitionListDetails}
         <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
           ${

@@ -21,7 +21,7 @@ export default function FinalVerificationStep ({ chain = '', transactionLink = '
   return html`
     ${CSS}
     <dt class$='${titleClasses}'>${title}</dt>
-    <dd class='buv-c-verification-substep buv-u-excluded-from-flow buv-u-full-width buv-o-small-text'>
+    <dd class='buv-c-verification-substep buv-u-excluded-from-flow buv-u-full-width buv-o-text-12'>
       ${details}
     </dd>
   `;

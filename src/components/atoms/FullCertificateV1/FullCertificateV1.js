@@ -19,7 +19,7 @@ export default function FullCertificate ({
   const signatureList = certificateSignatures.map(signature => html`
     <li class='buv-c-full-certificate-signatures__signature'>
         <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
-        <span class='buv-o-small-text'>${signature.jobTitle}</span>
+        <span class='buv-o-text-12'>${signature.jobTitle}</span>
     </li>
   `);
 

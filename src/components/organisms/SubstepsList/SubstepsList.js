@@ -75,7 +75,7 @@ class SubstepsList extends LitElement {
 
     // TODO: better handle this dynamic class (cf npm classnames)
     const linkClasses = [
-      'buv-o-small-text',
+      'buv-o-text-12',
       'buv-o-link',
       'buv-c-substeps-list__link',
       isOpen ? 'is-open' : ''
