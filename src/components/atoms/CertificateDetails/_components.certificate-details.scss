@@ -19,6 +19,10 @@
   padding-right: 15px;
   max-width: 33%;
   margin-top: 15px;
+
+  @media only screen and (max-width: 520px) {
+    max-width: 100%;
+  }
 }
 
 .buv-c-certificate-details__title {
