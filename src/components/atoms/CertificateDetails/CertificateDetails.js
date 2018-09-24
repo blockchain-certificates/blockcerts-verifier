@@ -27,7 +27,7 @@ export default function CertificateDetails ({
   ];
 
   const definitionListDetails = details.map(detail => html`
-    <div class='buv-c-certificate-details__group  buv-o-small-text'>
+    <div class='buv-c-certificate-details__group'>
         <dt class='buv-c-certificate-details__title'>${detail.title}</dt>
         <dd class='buv-c-certificate-details__value'>${detail.value}</dd>
     </div>
@@ -35,13 +35,13 @@ export default function CertificateDetails ({
 
   return html`
     ${CSS}
-    <dl class='buv-c-certificate-details'>
+    <dl class='buv-c-certificate-details  buv-o-small-text'>
         ${definitionListDetails}
-        <div class='buv-c-certificate-details__standalone'>
+        <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
           ${
             isValidLink(transactionLink) ?
-              html`<dt>Transaction ID</dt>
-                  <dd>${transactionId}</dd>` :
+              html`<dt class='buv-c-certificate-details--inline'>Transaction ID:</dt>
+                  <dd class='buv-c-certificate-details--inline'>${transactionId}</dd>` :
               html`<span>No transaction ID</span>`
           }
         </div>

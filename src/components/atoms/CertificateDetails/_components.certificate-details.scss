@@ -4,6 +4,9 @@
 .buv-c-certificate-details {
   display: flex;
   margin: 0;
+  position: relative;
+  padding-bottom: 60px;
+  color: rgba(110, 126, 142, 1);
 
   @media only screen and (max-width: 520px) {
     flex-direction: column;
@@ -14,7 +17,6 @@
   box-sizing: border-box;
   padding-right: 15px;
   max-width: 25%;
-  color: rgba(110, 126, 142, 1);
   margin-top: 15px;
 }
 
@@ -27,10 +29,13 @@
   margin: 0;
 }
 
-.buv-c-certificate-details__link {
-  display: block;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: $successColor;
+.buv-c-certificate-details__standalone {
+  position: absolute;
+  bottom: 10px;
+  width: 125%;
+}
+
+.buv-c-certificate-details--inline {
+  display: inline-block;
+  margin: 0;
 }
