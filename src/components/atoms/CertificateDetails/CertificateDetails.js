@@ -28,7 +28,7 @@ export default function CertificateDetails ({
 
   const definitionListDetails = details.map(detail => html`
     <div class='buv-c-certificate-details__group'>
-        <dt class='buv-c-certificate-details__title'>${detail.title}</dt>
+        <dt class='buv-c-certificate-details__title  buv-o-text-11'>${detail.title}</dt>
         <dd class='buv-c-certificate-details__value'>${detail.value}</dd>
     </div>
   `);
