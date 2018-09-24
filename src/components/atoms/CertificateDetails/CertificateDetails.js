@@ -23,12 +23,6 @@ export default function CertificateDetails ({
     {
       title: 'Issuer',
       value: issuerName
-    },
-    {
-      title: 'Transaction ID',
-      value: isValidLink(transactionLink)
-        ? html`<a href='${transactionLink}' target='_blank' class='buv-c-certificate-details__link'>${transactionId}</a>`
-        : html`<span>No transaction ID</span>`
     }
   ];
 
@@ -43,6 +37,14 @@ export default function CertificateDetails ({
     ${CSS}
     <dl class='buv-c-certificate-details'>
         ${definitionListDetails}
+        <div class='buv-c-certificate-details__standalone'>
+          ${
+            isValidLink(transactionLink) ?
+              html`<dt>Transaction ID</dt>
+                  <dd>${transactionId}</dd>` :
+              html`<span>No transaction ID</span>`
+          }
+        </div>
     </dl>
   `;
 }
