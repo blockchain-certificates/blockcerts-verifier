@@ -39,11 +39,11 @@ export default function CertificateDetails ({
         ${definitionListDetails}
         <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
           ${
-            isValidLink(transactionLink) ?
-              html`<dt class='buv-c-certificate-details--inline'>Transaction ID:</dt>
-                  <dd class='buv-c-certificate-details--inline'>${transactionId}</dd>` :
-              html`<span>No transaction ID</span>`
-          }
+  isValidLink(transactionLink)
+    ? html`<dt class='buv-c-certificate-details--inline'>Transaction ID:</dt>
+                  <dd class='buv-c-certificate-details--inline'>${transactionId}</dd>`
+    : html`<span>No transaction ID</span>`
+}
         </div>
     </dl>
   `;
