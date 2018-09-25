@@ -98,7 +98,7 @@ The component will understand the following options:
 The component will emit events on different moment of the certificate life cycle.
 To subscribe and track these events you should add on your consumer page event listeners on the `window` object.
 
-See the [event demo page](https://github.com/learningmachine/blockcerts-verifier/blob/master/demo/on-load-event.html) for a working example.
+See the [event demo page](https://github.com/learningmachine/blockcerts-verifier/blob/master/demo/events.html) for a working example.
 
 The information is communicated via the `detail` key of the event.
 
