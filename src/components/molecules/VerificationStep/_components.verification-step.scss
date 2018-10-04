@@ -53,12 +53,21 @@
 }
 
 .buv-c-verification-step::after {
+  content: '';
   position: absolute;
   z-index: 3;
+  -webkit-transition: opacity .3s ease-out .2s;
+  -o-transition: opacity .3s ease-out .2s;
+  transition: opacity .3s ease-out .2s;
+  opacity: 0;
+}
+
+.buv-c-verification-step.is-success::after,
+.buv-c-verification-step.is-failure::after {
+  opacity: 1;
 }
 
 .buv-c-verification-step.is-success::after {
-  content: '';
   border: solid $successColor;
   border-width: 0 2px 2px 0;
   left: -29px;
