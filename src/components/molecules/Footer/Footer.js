@@ -13,13 +13,13 @@ const Footer = ({forceInPlace = false, interactive = true} = {}) => {
   return html`
   ${CSS}
   <footer class$='${classes}'>
-    ${interactive ?
-      html`<section>
+    ${interactive
+    ? html`<section>
       <buv-file-upload></buv-file-upload>
       <buv-verify-other-certificate></buv-verify-other-certificate>
-    </section>` :
-    ''
-    }
+    </section>`
+    : ''
+}
     ${BlockcertsLogo()}
   </footer>`;
 };
