@@ -77,8 +77,7 @@
 }
 
 .buv-c-verification-step.is-success.is-test::after {
-  border: solid $fontColor;
-  border-width: 0 2px 2px 0;
+  border-color: $fontColor;
 }
 
 .buv-c-verification-step.is-failure::after {
