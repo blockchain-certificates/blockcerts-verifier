@@ -13,7 +13,7 @@ function VerificationModal ({ isOpen, onClose }) {
         <hr class='buv-c-verification-modal__separator'/>
         <buv-verification-process class='buv-c-verification-modal__process'></buv-verification-process>
       </div>
-    ${Footer({ forceInPlace: true })}
+    ${Footer({ forceInPlace: true, interactive: false })}
     </buv-modal>
   `;
 }
