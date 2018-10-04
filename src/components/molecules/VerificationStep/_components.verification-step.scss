@@ -22,10 +22,10 @@
 .buv-c-verification-step::before {
   content: '';
   position: absolute;
-  left: -38px;
-  top: -4px;
-  width: 24px;
-  height: 24px;
+  left: -32px;
+  top: 0;
+  width: 12px;
+  height: 12px;
   background-color: #fff;
   border-radius: 50%;
   -webkit-transition: all .2s ease-out;
@@ -34,6 +34,14 @@
   z-index: 2;
   box-sizing: content-box;
   box-shadow: 0 2px 4px 0 rgba(22, 40, 55, .21);
+}
+
+.buv-c-verification-step.is-success::before,
+.buv-c-verification-step.is-failure::before {
+  left: -38px;
+  top: -4px;
+  width: 24px;
+  height: 24px;
 }
 
 .buv-c-verification-substep::before {
