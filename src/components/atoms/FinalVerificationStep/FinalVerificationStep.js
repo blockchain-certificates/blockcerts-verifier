@@ -5,6 +5,7 @@ export default function FinalVerificationStep ({ chain = '', transactionLink = '
   // TODO: better handle this dynamic class (cf npm classnames)
   const titleClasses = [
     'buv-c-verification-step',
+    'buv-qa-verification-step',
     'is-final',
     isVisible ? 'is-visible' : '',
     isTestChain ? 'is-test' : ''

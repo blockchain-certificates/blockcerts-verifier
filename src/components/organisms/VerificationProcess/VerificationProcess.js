@@ -48,6 +48,7 @@ class VerificationProcess extends LitElement {
     // TODO: better handle this dynamic class (cf npm classnames)
     const progressBarClasses = [
       'buv-c-verification-progress-bar__tube',
+      'buv-qa-verification-progress-bar__tube',
       hasError ? 'has-errored' : '',
       isTestChain ? 'is-test' : '',
       innerHTML.length ? 'has-started' : ''
@@ -69,7 +70,7 @@ class VerificationProcess extends LitElement {
       </div>  
       <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
-        ${FinalVerificationStep({ transactionLink, chain, isTestChain, isVisible: allStepsAreRendered })}
+        ${FinalVerificationStep({ transactionLink, chain, isTestChain, isVisible: allStepsAreRendered && !hasError })}
       </dl>
     </section>
   `;
