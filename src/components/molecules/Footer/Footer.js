@@ -4,7 +4,7 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.footer-css';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo/BlockcertsLogo';
 
-const Footer = (forceInPlace = false) => {
+const Footer = ({forceInPlace = false, interactive = true} = {}) => {
   const classes = [
     'buv-c-footer',
     forceInPlace ? 'buv-c-footer--forced' : ''
@@ -13,10 +13,13 @@ const Footer = (forceInPlace = false) => {
   return html`
   ${CSS}
   <footer class$='${classes}'>
-    <section>
+    ${interactive
+    ? html`<section>
       <buv-file-upload></buv-file-upload>
       <buv-verify-other-certificate></buv-verify-other-certificate>
-    </section>
+    </section>`
+    : ''
+}
     ${BlockcertsLogo()}
   </footer>`;
 };

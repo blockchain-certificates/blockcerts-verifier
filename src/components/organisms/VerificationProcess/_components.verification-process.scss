@@ -15,14 +15,17 @@
 }
 
 .buv-c-verification-progress-bar__tube {
+  min-height: 14px;
   transition: flex .4s ease-in-out, max-height .4s ease-in;
   background-color: $successColor;
   border-radius: 7px;
   flex-grow: 0;
+  opacity: 0;
 }
 
 .buv-c-verification-progress-bar__tube.has-started {
   flex-grow: 1;
+  opacity: 1;
 }
 
 .buv-c-verification-progress-bar__tube.is-test {
