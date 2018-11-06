@@ -26,7 +26,7 @@ describe('shareSocialNetwork action creator test suite', function () {
       let wasCalled = false;
       function assertFunction (e) {
         wasCalled = true;
-        expect(e.detail.certificateDefinition).toEqual(validCertificate);
+        expect(e.detail.certificateDefinition.id).toEqual(validCertificate.id);
       }
       window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
 

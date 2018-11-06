@@ -62,7 +62,7 @@ describe('updateCertificateUrl action creator test suite', function () {
       it('should update the state with the valid certificate definition', async function () {
         await store.dispatch(updateCertificateUrl(MOCK_SERVER_VALID_URL));
         const state = store.getState();
-        expect(getCertificateDefinition(state)).toEqual(validCertificate);
+        expect(getCertificateDefinition(state).id).toEqual(validCertificate.id);
       });
     });
 
@@ -71,7 +71,7 @@ describe('updateCertificateUrl action creator test suite', function () {
         await store.dispatch(updateCertificateUrl(MOCK_SERVER_INVALID_URL));
 
         const state = store.getState();
-        expect(getCertificateDefinition(state)).toEqual(invalidCertificate);
+        expect(getCertificateDefinition(state).id).toEqual(invalidCertificate.id);
       });
     });
 

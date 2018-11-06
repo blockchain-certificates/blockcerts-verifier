@@ -35,7 +35,7 @@ describe('domain events dispatch method test suite', function () {
       let wasCalled = false;
       function assertFunction (e) {
         wasCalled = true;
-        expect(e.detail.certificateDefinition).toEqual(validCertificate);
+        expect(e.detail.certificateDefinition.id).toEqual(validCertificate.id);
       }
       window.addEventListener(eventType, assertFunction);
 
