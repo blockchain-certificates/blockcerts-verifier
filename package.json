@@ -8,7 +8,7 @@
   },
   "main": "dist/main.js",
   "dependencies": {
-    "@blockcerts/cert-verifier-js": "^2.0.2",
+    "@blockcerts/cert-verifier-js": "^2.1.1",
     "@polymer/lit-element": "^0.5.1",
     "@polymer/polymer": "3.0.3",
     "@webcomponents/webcomponentsjs": "2.1.0",
@@ -36,7 +36,7 @@
     "husky": "^0.14.3",
     "jest": "^23.1.0",
     "jest-fetch-mock": "^1.6.4",
-    "polymer-cli": "^1.7.7",
+    "polymer-cli": "^1.8.1",
     "pwa-helpers": "^0.8.2",
     "rollup": "^0.62.0",
     "rollup-plugin-babel": "^3.0.7",
@@ -50,8 +50,8 @@
     "snazzy": "^7.1.1",
     "watch": "^1.0.2",
     "wc-sass-render": "^1.0.0",
-    "wct-browser-legacy": "^1.0.1",
-    "web-component-tester": "^6.7.1"
+    "wct-browser-legacy": "^1.0.2",
+    "web-component-tester": "^6.9.0"
   },
   "scripts": {
     "build": "rollup -c rollup.config.js",
