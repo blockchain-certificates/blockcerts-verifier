@@ -34,7 +34,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       await store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
-      expect(getCertificateDefinition(state).transactionId).toEqual(validCertificate.transactionId);
+      expect(getCertificateDefinition(state).id).toEqual(validCertificate.id);
     });
 
     it('should set the error in the state to undefined', async function () {
@@ -50,7 +50,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       let wasCalled = false;
       function assertFunction (e) {
         wasCalled = true;
-        expect(e.detail.certificateDefinition.transactionId).toEqual(validCertificate.transactionId);
+        expect(e.detail.certificateDefinition.id).toEqual(validCertificate.id);
       }
       window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, assertFunction);
 

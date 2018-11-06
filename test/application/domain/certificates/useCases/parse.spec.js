@@ -6,7 +6,7 @@ import validCertificate from '../../../../assertions/validCertificate';
 describe('domain certificates parse method test suite', function () {
   describe('given a valid definition of a certificate', function () {
     it('should return an object with a certificate definition', function () {
-      expect(domain.certificates.parse(certificateFixture).certificateDefinition.transactionId).toEqual(validCertificate.transactionId);
+      expect(domain.certificates.parse(certificateFixture).certificateDefinition.id).toEqual(validCertificate.id);
     });
 
     it('should return an object with errorMessage property undefined', function () {
