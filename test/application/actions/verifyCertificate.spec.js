@@ -46,7 +46,7 @@ describe('verifyCertificate action creator test suite', function () {
         let wasCalled = false;
         function assertFunction (e) {
           wasCalled = true;
-          expect(e.detail.certificateDefinition).toEqual(validCertificate);
+          expect(e.detail.certificateDefinition.transactionId).toEqual(validCertificate.transactionId);
         }
         window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, assertFunction);
 
