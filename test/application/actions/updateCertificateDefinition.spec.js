@@ -14,22 +14,27 @@ import notACertificateDefinition from '../../fixtures/not-a-certificate-definiti
 import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
 import validCertificateSteps from '../../assertions/validCertificateSteps';
 import validCertificate from '../../assertions/validCertificate';
+import { getVerificationHasStarted } from '../../../src/selectors/verification';
 
 jest.mock('../../../src/helpers/stepQueue');
 
 describe('updateCertificateDefinition action creator test suite', function () {
-  let store;
-
-  beforeEach(function () {
-    const initialState = getInitialState({ disableAutoVerify: true });
-    store = configureStore(initialState);
-  });
-
-  afterEach(function () {
-    store = null;
-  });
-
   describe('given it is dispatched with a certificate definition', function () {
+    let store;
+
+    beforeEach(function () {
+      // for convenience we avoid triggering to whole verification process automatically
+      const apiConfiguration = {
+        disableAutoVerify: true
+      };
+      const initialState = getInitialState(apiConfiguration);
+      store = configureStore(initialState);
+    });
+
+    afterEach(function () {
+      store = null;
+    });
+
     it('should set the certificate definition in the state', async function () {
       await store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
@@ -62,12 +67,6 @@ describe('updateCertificateDefinition action creator test suite', function () {
     });
 
     it('should set the transactionLink in the state', async function () {
-      const apiConfiguration = {
-        disableAutoVerify: true
-      };
-      const initialState = getInitialState(apiConfiguration);
-      const store = configureStore(initialState);
-
       await store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
@@ -76,12 +75,6 @@ describe('updateCertificateDefinition action creator test suite', function () {
     });
 
     it('should set the chain of the certificate in the state', async function () {
-      const apiConfiguration = {
-        disableAutoVerify: true
-      };
-      const initialState = getInitialState(apiConfiguration);
-      const store = configureStore(initialState);
-
       await store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
@@ -121,6 +114,17 @@ describe('updateCertificateDefinition action creator test suite', function () {
   });
 
   describe('given it is dispatched with a non-valid certificate definition', function () {
+    let store;
+
+    beforeEach(function () {
+      const initialState = getInitialState();
+      store = configureStore(initialState);
+    });
+
+    afterEach(function () {
+      store = null;
+    });
+
     it('should not set the definition in the state', async function () {
       await store.dispatch(updateCertificateDefinition(notACertificateDefinition));
       const state = store.getState();
@@ -133,6 +137,13 @@ describe('updateCertificateDefinition action creator test suite', function () {
       const state = store.getState();
 
       expect(getErrorMessage(state)).toBe('Not a valid Blockcerts definition.');
+    });
+
+    it('should not start the verification process', async function () {
+      await store.dispatch(updateCertificateDefinition(notACertificateDefinition));
+      const state = store.getState();
+
+      expect(getVerificationHasStarted(state)).toBe(false);
     });
   });
 });
