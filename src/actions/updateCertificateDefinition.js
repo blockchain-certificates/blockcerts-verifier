@@ -20,7 +20,9 @@ export default function updateCertificateDefinition (definition) {
 
     domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, certificateDefinition);
 
-    await dispatch(autoVerify());
+    if (certificateDefinition != null) {
+      await dispatch(autoVerify());
+    }
   };
 }
 
@@ -28,7 +30,7 @@ function autoVerify () {
   return async function (dispatch, getState) {
     if (!getDisableAutoVerify(getState())) {
       dispatch({
-        type: 'AUTO_VERIFY'
+        type: ACTIONS.AUTO_VERIFY
       });
       await dispatch(verifyCertificate());
     }
