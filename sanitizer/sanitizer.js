@@ -1640,7 +1640,7 @@ var lib_1$1 = lib$1.xss;
 var lib_2$1 = lib$1.FilterXSS;
 
 function isBase64 (value) {
-  const test = /^data:image.+;base64,/;
+  const test = /^data:.+;base64,/;
   return !!value.match(test);
 }
 

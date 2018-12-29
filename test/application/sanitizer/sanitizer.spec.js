@@ -78,12 +78,20 @@ describe('sanitizer test suite', function () {
       expect(sanitize((html))).toBe(expectedOutput);
     });
 
-    it('valid base64 encoding from an image src attribute', function () {
+    it('valid base64 image png encoding from an image src attribute', function () {
       const html = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />';
 
       const expectedOutput = '<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==" alt="Red dot" />';
 
       expect(sanitize((html))).toBe(expectedOutput);
+    });
+
+    it('valid base64 octet-stream encoding from an image src attribute', function () {
+        const html = '<img src="data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg==" alt="Blue square" />';
+
+        const expectedOutput = '<img src="data:application/octet-stream;base64,iVBORw0KGgoAAAANSUhEUgAAAQAAAAEAAQMAAABmvDolAAAAA1BMVEW10NBjBBbqAAAAH0lEQVRoge3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAvg0hAAABmmDh1QAAAABJRU5ErkJggg==" alt="Blue square" />';
+
+        expect(sanitize((html))).toBe(expectedOutput);
     });
   });
 });
