@@ -80,7 +80,7 @@ describe('certificate selectors test suite', function () {
       store.dispatch(updateCertificateDefinition(v2Fixture));
       const state = store.getState();
 
-      expect(getIssueDate(state)).toBe('Jan 23, 2018');
+      expect(getIssueDate(state)).toBe('Jan 22, 2018');
     });
   });
 
