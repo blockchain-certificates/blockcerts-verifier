@@ -713,7 +713,7 @@ var getDefaultCSSWhiteList = lib.getDefaultWhiteList;
 
 function getDefaultWhiteList$1() {
   return {
-    a: ["target", "href", "title"],
+    a: ["target", "href", "title", "download"],
     abbr: ["title"],
     address: [],
     area: ["shape", "coords", "href", "alt"],
@@ -853,7 +853,7 @@ function safeAttrValue$1(tag, name, value, cssFilter) {
 
   if (name === "href" || name === "src") {
     // filter `href` and `src` attribute
-    // only allow the value that starts with `http://` | `https://` | `mailto:` | `/` | `#`
+    // only allow the value that starts with `http://` | `https://` | `mailto:` | `data:` | `/` | `#`
     value = util$1.trim(value);
     if (value === "#") return "#";
     if (
@@ -862,6 +862,7 @@ function safeAttrValue$1(tag, name, value, cssFilter) {
         value.substr(0, 8) === "https://" ||
         value.substr(0, 7) === "mailto:" ||
         value.substr(0, 4) === "tel:" ||
+        value.substr(0, 5) === "data:" ||
         value[0] === "#" ||
         value[0] === "/"
       )
