@@ -2,7 +2,7 @@ import xss from 'xss';
 import cssfilter from 'cssfilter';
 
 function isBase64 (value) {
-  const test = /^data:image.+;base64,/;
+  const test = /^data:.+;base64,/;
   return !!value.match(test);
 }
 
