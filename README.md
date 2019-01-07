@@ -131,7 +131,26 @@ Supported Events:
 npm run start
 ```
 
-Will make the demo page available on http://localhost:8081/demo/. 
+Will make the demo page available on http://localhost:8081/demo/.
+
+## Modifying the Sanitizer
+
+The `sanitizer` is used in order to protect against malicious certificates that could hold XSS attacks.
+It is an overlay of the [xss](https://www.npmjs.com/package/xss) library, since at times, you might want to be able to configure or adapt the whitelist to your own needs.
+
+To modify it, you should modify the index.js file. Then run:
+
+```
+  npm run build:sanitizer
+```
+
+This will generate the `sanitizer.js` file, which is then used by the application and the tests.
+
+If you want to work on the sanitizer in watch mode (and auto-generate your changes), use the following command:
+
+```
+  npm run build:sanitizer -- -w
+```
 
 ## Running Tests
 
