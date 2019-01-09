@@ -44,7 +44,7 @@ class Metadata extends LitElement {
 
         return html`
           <dt class='buv-c-metadata-list__title'>${title}</dt>
-          <dd class='buv-c-metadata-list__detail'>${value}</dd>
+          <dd class='buv-c-metadata-list__detail'><pre class='buv-c-metadata-list__detail-text'>${value}</pre></dd>
         `;
       });
     }

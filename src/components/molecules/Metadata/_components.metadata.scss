@@ -48,5 +48,12 @@
   margin: 0 0 20px;
 }
 
+.buv-c-metadata-list__detail-text {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font: inherit;
+  margin: 0;
+}
+
 @import '../../../shared-styles/utils.a11y';
 @import '../../../shared-styles/utils.animations';
