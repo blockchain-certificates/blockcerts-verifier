@@ -58,5 +58,5 @@ export default [{
     'label': 'Checking Authenticity',
     'parentStep': 'statusCheck',
     'status': 'success'
-  }, {'code': 'checkExpiresDate', 'label': 'Checking Expires Date', 'parentStep': 'statusCheck', 'status': 'success'}]
+  }, {'code': 'checkExpiresDate', 'label': 'Checking Expiration Date', 'parentStep': 'statusCheck', 'status': 'success'}]
 }];
