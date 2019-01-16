@@ -71,8 +71,8 @@ export default [{
     'parentStep': 'statusCheck'
   }, {
     'code': 'checkExpiresDate',
-    'label': 'Check Expires Date',
-    'labelPending': 'Checking Expires Date',
+    'label': 'Check Expiration Date',
+    'labelPending': 'Checking Expiration Date',
     'parentStep': 'statusCheck'
   }]
 }];
