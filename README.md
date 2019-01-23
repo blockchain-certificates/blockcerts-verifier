@@ -70,7 +70,7 @@ The component will understand the following options:
   Example:
   
   ```html
-  <blockcerts-verifier disable-auto-verify></blockcerts-verifier>
+  <blockcerts-verifier disable-verify></blockcerts-verifier>
   ```
 - `display-mode`: (String, oneOf('card', 'full'). default: `card`). Changes the display of a record. `card` will be a concise summary of the record with a link to the full record, while `full` will show the actual record as designed by the emitter.  
   
