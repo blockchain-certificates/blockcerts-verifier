@@ -44,9 +44,23 @@ describe('sanitizer test suite', function () {
       expect(sanitize(html)).toBe(expectedOutput);
     });
 
-    it('dangerous instructions in the href attribute', function () {
+    it('dangerous javascript instructions in the href attribute', function () {
       const html = '<section><h1>Testing</h1><div><a href="javascript:alert(\'XSS\');">Yo</a></div></section>';
       const expectedOutput = '<section><h1>Testing</h1><div><a href>Yo</a></div></section>';
+
+      expect(sanitize(html)).toBe(expectedOutput);
+    });
+
+    it('dangerous css ref instructions in the link attribute', function () {
+      const html = '<section><h1>Testing</h1><div><LINK REL="stylesheet" HREF="http://xss.rocks/xss.css"></div></section>';
+      const expectedOutput = '<section><h1>Testing</h1><div>[removed]</div></section>';
+
+      expect(sanitize(html)).toBe(expectedOutput);
+    });
+
+    it('dangerous xss html quote encapsulation', function () {
+      const html = '<section><h1>Testing</h1><div><SCRIPT a=">" SRC="httx://xss.rocks/xss.js"></SCRIPT></div></section>';
+      const expectedOutput = '<section><h1>Testing</h1><div></div></section>';
 
       expect(sanitize(html)).toBe(expectedOutput);
     });

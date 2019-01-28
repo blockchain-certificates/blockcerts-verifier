@@ -44,43 +44,33 @@ function handleAttrValue(tag, name, value, cssFilter) {
   // unescape attribute value firstly
   value = xss.friendlyAttrValue(value);
 
-  if (name === "href" || name === "src") {
+  if (name === 'href' || name === 'src') {
     // filter `href` and `src` attribute
     // only allow the value that starts with `http://` | `https://` | `mailto:` | `data:` | `/` | `#`
     value = utilTrim(value);
-    if (value === "#") return "#";
-    if (
-      !(
-        value.substr(0, 7) === "http://" ||
-        value.substr(0, 8) === "https://" ||
-        value.substr(0, 7) === "mailto:" ||
-        value.substr(0, 4) === "tel:" ||
-        value.substr(0, 5) === "data:" ||
-        value[0] === "#" ||
-        value[0] === "/"
-      )
-    ) {
-      return "";
+    if (value === '#') return '#';
+    if (!isWhiteListedHref(value)) {
+      return '';
     }
-  } else if (name === "background") {
+  } else if (name === 'background') {
     // filter `background` attribute (maybe no use)
     // `javascript:`
     REGEXP_DEFAULT_ON_TAG_ATTR_4.lastIndex = 0;
     if (REGEXP_DEFAULT_ON_TAG_ATTR_4.test(value)) {
-      return "";
+      return '';
     }
-  } else if (name === "style") {
+  } else if (name === 'style') {
     // `expression()`
     REGEXP_DEFAULT_ON_TAG_ATTR_7.lastIndex = 0;
     if (REGEXP_DEFAULT_ON_TAG_ATTR_7.test(value)) {
-      return "";
+      return '';
     }
     // `url()`
     REGEXP_DEFAULT_ON_TAG_ATTR_8.lastIndex = 0;
     if (REGEXP_DEFAULT_ON_TAG_ATTR_8.test(value)) {
       REGEXP_DEFAULT_ON_TAG_ATTR_4.lastIndex = 0;
       if (REGEXP_DEFAULT_ON_TAG_ATTR_4.test(value)) {
-        return "";
+        return '';
       }
     }
     if (cssFilter !== false) {
@@ -92,6 +82,11 @@ function handleAttrValue(tag, name, value, cssFilter) {
   // escape `<>"` before returns
   value = xss.escapeAttrValue(value);
   return value;
+}
+
+function isWhiteListedHref(value) {
+  const whiteList = ['http://', 'https://', 'mailto:', 'tel:', 'data:', '#', '/'];
+  return whiteList.some(item => value.substr(0, item.length) === item);
 }
 
 // utility trim from xss

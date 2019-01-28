@@ -1682,43 +1682,33 @@ function handleAttrValue(tag, name, value, cssFilter) {
   // unescape attribute value firstly
   value = lib$1.friendlyAttrValue(value);
 
-  if (name === "href" || name === "src") {
+  if (name === 'href' || name === 'src') {
     // filter `href` and `src` attribute
     // only allow the value that starts with `http://` | `https://` | `mailto:` | `data:` | `/` | `#`
     value = utilTrim(value);
-    if (value === "#") return "#";
-    if (
-      !(
-        value.substr(0, 7) === "http://" ||
-        value.substr(0, 8) === "https://" ||
-        value.substr(0, 7) === "mailto:" ||
-        value.substr(0, 4) === "tel:" ||
-        value.substr(0, 5) === "data:" ||
-        value[0] === "#" ||
-        value[0] === "/"
-      )
-    ) {
-      return "";
+    if (value === '#') return '#';
+    if (!isWhiteListedHref(value)) {
+      return '';
     }
-  } else if (name === "background") {
+  } else if (name === 'background') {
     // filter `background` attribute (maybe no use)
     // `javascript:`
     REGEXP_DEFAULT_ON_TAG_ATTR_4$1.lastIndex = 0;
     if (REGEXP_DEFAULT_ON_TAG_ATTR_4$1.test(value)) {
-      return "";
+      return '';
     }
-  } else if (name === "style") {
+  } else if (name === 'style') {
     // `expression()`
     REGEXP_DEFAULT_ON_TAG_ATTR_7$1.lastIndex = 0;
     if (REGEXP_DEFAULT_ON_TAG_ATTR_7$1.test(value)) {
-      return "";
+      return '';
     }
     // `url()`
     REGEXP_DEFAULT_ON_TAG_ATTR_8$1.lastIndex = 0;
     if (REGEXP_DEFAULT_ON_TAG_ATTR_8$1.test(value)) {
       REGEXP_DEFAULT_ON_TAG_ATTR_4$1.lastIndex = 0;
       if (REGEXP_DEFAULT_ON_TAG_ATTR_4$1.test(value)) {
-        return "";
+        return '';
       }
     }
     if (cssFilter !== false) {
@@ -1732,12 +1722,12 @@ function handleAttrValue(tag, name, value, cssFilter) {
   return value;
 }
 
-/**
- * escape doube quote
- *
- * @param {String} str
- * @return {String} str
- */
+function isWhiteListedHref(value) {
+  const whiteList = ['http://', 'https://', 'mailto:', 'tel:', 'data:', '#', '/'];
+  return whiteList.some(item => value.substr(0, item.length) === item);
+}
+
+// utility trim from xss
 function utilTrim(str) {
   if (String.prototype.trim) {
     return str.trim();
@@ -1745,7 +1735,7 @@ function utilTrim(str) {
   return str.replace(/(^\s*)|(\s*$)/g, '');
 }
 
-// RegExp list
+// RegExp list from xss
 var REGEXP_DEFAULT_ON_TAG_ATTR_4$1 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a)\:/gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_7$1 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_8$1 = /u\s*r\s*l\s*\(.*/gi;
