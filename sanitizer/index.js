@@ -40,7 +40,7 @@ function handleTagAttr (tag, name, value, isWhiteAttr) {
   }
 }
 
-function handleAttrValue(tag, name, value, cssFilter) {
+function handleAttrValue (tag, name, value, cssFilter) {
   // unescape attribute value firstly
   value = xss.friendlyAttrValue(value);
 
@@ -84,13 +84,13 @@ function handleAttrValue(tag, name, value, cssFilter) {
   return value;
 }
 
-function isWhiteListedHref(value) {
+function isWhiteListedHref (value) {
   const whiteList = ['http://', 'https://', 'mailto:', 'tel:', 'data:', '#', '/'];
   return whiteList.some(item => value.substr(0, item.length) === item);
 }
 
 // utility trim from xss
-function utilTrim(str) {
+function utilTrim (str) {
   if (String.prototype.trim) {
     return str.trim();
   }
@@ -98,7 +98,7 @@ function utilTrim(str) {
 }
 
 // RegExp list from xss
-var REGEXP_DEFAULT_ON_TAG_ATTR_4 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a)\:/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_4 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a):/gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_7 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_8 = /u\s*r\s*l\s*\(.*/gi;
 
