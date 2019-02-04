@@ -69,7 +69,27 @@ describe('certificate selectors test suite', function () {
   });
 
   describe('getIssueDate selector', function () {
+    const RealDate = Date;
+
+    function mockDate (isoDate) {
+      global.Date = class extends RealDate {
+        constructor () {
+          super(isoDate);
+          return new RealDate(isoDate)
+        }
+        getDate () {
+          return '23';
+        }
+      }
+    }
+
+    afterEach(function () {
+      global.Date = RealDate;
+    });
+
     it('should return a readable date for a v1 certificate', function () {
+      mockDate('May 5, 2017');
+
       store.dispatch(updateCertificateDefinition(v1Fixture));
       const state = store.getState();
 
@@ -77,6 +97,8 @@ describe('certificate selectors test suite', function () {
     });
 
     it('should return a readable date for a v2 certificate', function () {
+      mockDate('Jan 23, 2018');
+
       store.dispatch(updateCertificateDefinition(v2Fixture));
       const state = store.getState();
 
