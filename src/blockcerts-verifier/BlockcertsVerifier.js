@@ -5,7 +5,7 @@ import '../components/organisms/VerificationModal';
 import '../components/atoms/DragAndDrop';
 import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
-import '../components/atoms/CardCertificate';
+import '../components/organisms/CardCertificate';
 import '../components/organisms/FullCertificate';
 import Footer from '../components/molecules/Footer/Footer';
 import { APICamelCase } from '../models/API';

@@ -2,6 +2,7 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.verification-modal-css';
 import Footer from '../../molecules/Footer/Footer';
 import '../../molecules/Modal';
+import '../CardCertificate';
 import '../VerificationProcess';
 
 function VerificationModal ({ isOpen, onClose }) {
