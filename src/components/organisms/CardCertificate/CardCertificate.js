@@ -5,7 +5,7 @@ import '../../molecules/VerifyButton';
 class CardCertificate extends LitElement {
   constructor () {
     super();
-    this.logoIsErroring = false;
+    this.logoHasError = false;
     this.onImageLoadError = this.onImageLoadError.bind(this);
   }
 
@@ -21,12 +21,12 @@ class CardCertificate extends LitElement {
       recordLink: String,
       hideRecordLink: Boolean,
       hideVerifyButton: Boolean,
-      logoIsErroring: Boolean
+      logoHasError: Boolean
     };
   }
 
   onImageLoadError () {
-    this.logoIsErroring = true;
+    this.logoHasError = true;
   }
 
   organizationName (props) {
@@ -62,7 +62,7 @@ class CardCertificate extends LitElement {
       ${CSS}
       <section class='buv-c-card'>
         <div class='buv-c-card__img-wrapper'>
-          ${!this.logoIsErroring ? this.organizationLogo(props) : this.organizationName(props)}
+          ${!this.logoHasError ? this.organizationLogo(props) : this.organizationName(props)}
         </div>
         <div class='buv-c-card__title-wrapper'>
           <h1 class$=${titleClass}>${certificateTitle}</h1>
