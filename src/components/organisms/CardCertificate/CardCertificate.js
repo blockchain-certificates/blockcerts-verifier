@@ -69,19 +69,18 @@ class CardCertificate extends LitElement {
           <h2 class$='${titleClass}  buv-c-card__recipient'>${recipientName}</h2>
           <span class='buv-o-text-12'>Issued on <time datetime$='${issuedOn}'>${issueDate}</time> by ${issuerName}</span>
         </div>
-        ${
-        hideRecordLink
-          ? ''
-          : html`<a class='buv-o-text-12  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>
-          <span class='buv-o-link__text--underline'>View Record</span>
-      </a>`
-        }
-      </section>
       ${
-        hideVerifyButton
-          ? ''
-          : html`<buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`
-        }
+  hideRecordLink
+    ? ''
+    : html`<a class='buv-o-text-12  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>
+    <span class='buv-o-link__text--underline'>View Record</span>
+    </a>`
+}
+      </section>
+      ${hideVerifyButton
+    ? ''
+    : html`<buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`
+}
     `;
   }
 }
