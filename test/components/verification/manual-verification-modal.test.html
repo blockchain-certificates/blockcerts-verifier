@@ -36,13 +36,14 @@
           describe('when a verification is manually started', function () {
             it('should show the verification modal', async function () {
               const el = fixture('manualVerification').shadowRoot.querySelectorAll('buv-raw')[0];
+              await wait(300);
               const modalWrapper = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
               const modalComponent = modalWrapper.shadowRoot.querySelectorAll('buv-modal')[0];
               const modalElement = modalComponent.shadowRoot.querySelectorAll('.buv-qa-modal')[0];
-              await wait(300);
 
-              const certificateComponent = el.shadowRoot.querySelectorAll('buv-card-certificate')[0];
-              const verifyButtonComponent = certificateComponent.shadowRoot.querySelectorAll('buv-verify-button')[0];
+              const cardCertificateWrapper = el.shadowRoot.querySelectorAll('buv-card-certificate')[0];
+              const cardCertificateComponent = cardCertificateWrapper.shadowRoot.querySelectorAll('buv-card-certificate-raw')[0];
+              const verifyButtonComponent = cardCertificateComponent.shadowRoot.querySelectorAll('buv-verify-button')[0];
               const verifyButtonRawComponent = verifyButtonComponent.shadowRoot.querySelectorAll('buv-verify-button-raw')[0];
               const button = verifyButtonRawComponent.shadowRoot.querySelectorAll('button')[0];
 
