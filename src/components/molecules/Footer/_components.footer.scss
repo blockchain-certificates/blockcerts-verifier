@@ -6,7 +6,7 @@
   height: 60px;
   background-color: $footerBackground;
   color: $fontColor;
-  fill: #fff;
+  fill: #111;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -20,7 +20,7 @@
 
 .buv-c-footer--dark {
   color: #fff;
-  fill: #111;
+  fill: #fff;
 }
 
 .buv-c-footer--forced {
