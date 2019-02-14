@@ -97,6 +97,13 @@ The component will understand the following options:
   ```html
   <blockcerts-verifier src='../fixtures/valid-certificate-example.json'></blockcerts-verifier>
   ```
+- `theme`: (String. default: `'bright'`). Adapts to the background of the page that hosts the component. If the component is displayed on a dark background, you should use the `dark` option. If it's bright, then use the `bright` option.  
+  
+  Example:
+  
+  ```html
+  <blockcerts-verifier theme='dark'></blockcerts-verifier>
+  ```
   
 ## Event Tracking API
 The component will emit events on different moment of the certificate life cycle.

@@ -75,7 +75,8 @@
     "lint:js": "semistandard \"**/*.js\" | snazzy",
     "lint:polymer": "polymer lint",
     "lint:styles": "sass-lint --verbose",
-    "prepush": "npm run test && npm run lint",
+    "prepush": "npm run lint && npm run test",
+    "precommit": "npm run lint",
     "semantic-release": "semantic-release"
   },
   "publishConfig": {
