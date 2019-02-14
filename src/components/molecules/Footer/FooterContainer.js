@@ -9,7 +9,7 @@ const mapStateToProps = (state) => ({
 const ownProps = {
   forceInPlace: Boolean,
   interactive: Boolean
-}
+};
 
 const FooterContainer = connector(Footer, { mapStateToProps, ownProps });
 export default FooterContainer;
