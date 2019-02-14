@@ -72,6 +72,7 @@ function BUVWrapper (props) {
           allowSocialShare='${props['allow-social-share']}'
           displayMode='${props['display-mode']}'
           showMetadata='${props['show-metadata']}'
+          theme='${props.theme}'
         ></buv-raw>`;
 }
 

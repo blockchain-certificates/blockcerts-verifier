@@ -1,4 +1,5 @@
 import { snakeToCamelCase } from '../helpers/toCamelCase';
+import * as THEME from '../constants/theme';
 
 const APIKeys = {
   'src': String,
@@ -7,7 +8,8 @@ const APIKeys = {
   'allow-download': Boolean,
   'allow-social-share': Boolean,
   'display-mode': String,
-  'show-metadata': Boolean
+  'show-metadata': Boolean,
+  'theme': THEME.DARK | THEME.BRIGHT
 };
 
 const APICamelCase = Object.keys(APIKeys)

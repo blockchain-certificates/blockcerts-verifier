@@ -21,3 +21,7 @@ export function getShowMetadata (state) {
 export function getDisplayMode (state) {
   return state.displayMode;
 }
+
+export function getTheme (state) {
+  return state.theme;
+}
