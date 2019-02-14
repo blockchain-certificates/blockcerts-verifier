@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.verification-modal-css';
-import Footer from '../../molecules/Footer/Footer';
+import '../../molecules/Footer';
 import '../../molecules/Modal';
 import '../CardCertificate';
 import '../VerificationProcess';
@@ -14,7 +14,7 @@ function VerificationModal ({ isOpen, onClose }) {
         <hr class='buv-c-verification-modal__separator'/>
         <buv-verification-process class='buv-c-verification-modal__process'></buv-verification-process>
       </div>
-    ${Footer({ forceInPlace: true, interactive: false })}
+      <buv-footer forceInPlace></buv-footer>
     </buv-modal>
   `;
 }

@@ -3,11 +3,13 @@ import '../../atoms/VerifyOtherCertificateLink';
 import { html } from '@polymer/lit-element';
 import CSS from './_components.footer-css';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo/BlockcertsLogo';
+import * as THEME from '../../../constants/theme';
 
-const Footer = ({forceInPlace = false, interactive = true} = {}) => {
+const Footer = ({forceInPlace = false, interactive = false, theme} = {}) => {
   const classes = [
     'buv-c-footer',
-    forceInPlace ? 'buv-c-footer--forced' : ''
+    forceInPlace ? 'buv-c-footer--forced' : '',
+    theme === THEME.DARK ? 'buv-c-footer--dark' : ''
   ].join(' ');
 
   return html`
