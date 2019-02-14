@@ -1,8 +1,11 @@
+@import '../../../shared-styles/settings.variables';
+
 .buv-c-certificate-input {
   display: flex;
   width: 100%;
   padding: 40px 30px;
   background-color: rgba(255, 255, 255, .1);
+  border: 1px solid $footerBackground;
   box-sizing: border-box;
 }
 
