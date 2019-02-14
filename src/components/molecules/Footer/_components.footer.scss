@@ -1,14 +1,15 @@
+@import '../../../shared-styles/settings.variables';
 @import '../../../shared-styles/objects.text';
 
 .buv-c-footer {
   width: 100%;
   height: 60px;
-  background-color: #08172e;
-  color: #fff;
+  background-color: #f7f8fa;
+  color: $fontColor;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 30px;
   box-sizing: border-box;
 
   a {
