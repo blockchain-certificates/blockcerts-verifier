@@ -6,6 +6,7 @@
   height: 60px;
   background-color: rgba(0, 0, 0, .1);
   color: $fontColor;
+  fill: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,6 +20,7 @@
 
 .buv-c-footer--dark {
   color: #fff;
+  fill: #111;
 }
 
 .buv-c-footer--forced {
