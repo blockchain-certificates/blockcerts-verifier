@@ -21,6 +21,8 @@
     "xss": "^1.0.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^7.5.2",
+    "@commitlint/config-conventional": "^7.5.0",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "axe-core": "^3.0.2",
     "babel-cli": "^6.26.0",
@@ -77,6 +79,7 @@
     "lint:styles": "sass-lint --verbose",
     "prepush": "npm run lint && npm run test",
     "precommit": "npm run lint",
+    "commitmsg": "commitlint -E GIT_PARAMS",
     "semantic-release": "semantic-release"
   },
   "publishConfig": {
@@ -111,7 +114,8 @@
       "fetch",
       "FileReader",
       "atob",
-      "CustomEvent"
+      "CustomEvent",
+      "Image"
     ],
     "ignore": [
       "sanitizer/sanitizer.js",
