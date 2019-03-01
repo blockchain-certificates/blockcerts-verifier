@@ -114,7 +114,8 @@
       "fetch",
       "FileReader",
       "atob",
-      "CustomEvent"
+      "CustomEvent",
+      "Image"
     ],
     "ignore": [
       "sanitizer/sanitizer.js",
