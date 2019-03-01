@@ -1,5 +1,5 @@
 import connector from '../../../store/connector';
-import { CardCertificate } from './CardCertificate';
+import { default as CardCertificate } from './CardCertificate';
 import {
   getCertificateDefinition,
   getCertificateTitle,

@@ -30,7 +30,7 @@ class CardCertificate extends LitElement {
   }
 
   organizationName (props) {
-    return html`<p class="buv-o-text-15">${props.issuerName}</p>`;
+    return html`<p class='buv-o-text-15'>${props.issuerName}</p>`;
   }
 
   organizationLogo (props) {
@@ -105,4 +105,4 @@ function CardCertificateWrapper (props) {
   ></buv-card-certificate-raw>`;
 }
 
-export { CardCertificateWrapper as CardCertificate };
+export default CardCertificateWrapper;
