@@ -14,7 +14,7 @@
 <body>
 <test-fixture id="failing">
     <template>
-        <blockcerts-verifier src="https://certificates.learningmachine.com/certificate/34299968e25f5c9985a2f7de988c4bd0"></blockcerts-verifier>
+        <blockcerts-verifier src="../../fixtures/invalid-certificate-example.json"></blockcerts-verifier>
     </template>
 </test-fixture>
 
@@ -27,9 +27,8 @@
         const verificationProcessModalElement = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
         await wait(1000);
         const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
-        await wait(1000);
+        await wait(500);
         const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
-        await wait(1000);
         const progressBarElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-progress-bar__tube')[0];
         expect(progressBarElement.classList.contains('has-errored')).to.equal(true);
       });
@@ -40,9 +39,8 @@
         const verificationProcessModalElement = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
         await wait(1000);
         const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
-        await wait(1000);
+        await wait(500);
         const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
-        await wait(1000);
         const finalStepElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-step.is-final')[0];
         expect(finalStepElement.classList.contains('is-visible')).to.equal(false);
       })

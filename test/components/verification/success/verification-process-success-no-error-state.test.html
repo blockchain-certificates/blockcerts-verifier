@@ -14,14 +14,14 @@
 <body>
 <test-fixture id="success">
     <template>
-        <blockcerts-verifier src="https://auto-certificates.learningmachine.io/certificate/0cc5fb04900856b4aeb3733af2e019df"></blockcerts-verifier>
+        <blockcerts-verifier src="../../fixtures/valid-certificate-example.json"></blockcerts-verifier>
     </template>
 </test-fixture>
 
 <script type="module">
   describe('VerificationProcess test suite', function () {
     describe('given the certificate verification has succeeded', function () {
-      xit('should not show the error state', async function () {
+      it('should not show the error state', async function () {
         const el = fixture('success').shadowRoot.querySelectorAll('buv-raw')[0];
         await wait(1000);
         const verificationProcessModalElement = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
@@ -29,7 +29,7 @@
         const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
         await wait(1000);
         const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
-        await wait(3000);
+        await wait(5000);
         const progressBarElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-progress-bar__tube')[0];
         expect(progressBarElement.classList.contains('has-errored')).to.equal(false);
       });
