@@ -3,7 +3,6 @@ import resolve from 'rollup-plugin-node-resolve';
 import cjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import { terser } from 'rollup-plugin-terser';
-import typescript from 'rollup-plugin-typescript';
 
 export default [
   {
@@ -26,7 +25,6 @@ export default [
         }]],
         plugins: ['transform-object-rest-spread', 'external-helpers']
       }),
-      typescript(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
