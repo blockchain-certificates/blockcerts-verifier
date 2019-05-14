@@ -29,8 +29,9 @@
         const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
         await wait(500);
         const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
-        const finalStepElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-step.is-final')[0];
-        expect(finalStepElement.classList.contains('is-visible')).to.equal(false);
+        const finalStepElement = verificationProcessRawElement.shadowRoot.querySelectorAll('buv-final-verification-step')[0];
+        const finalStepCheckElement = finalStepElement.shadowRoot.querySelectorAll('.buv-qa-verification-step.is-final')[0];
+        expect(finalStepCheckElement.classList.contains('is-visible')).to.equal(false);
       });
     });
   });

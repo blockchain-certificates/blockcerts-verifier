@@ -27,7 +27,7 @@
         const verificationProcessModalElement = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
         await wait(1000);
         const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
-        await wait(500);
+        await wait(2000);
         const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
         const progressBarElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-progress-bar__tube')[0];
         expect(progressBarElement.classList.contains('has-errored')).to.equal(true);
@@ -41,8 +41,9 @@
         const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
         await wait(500);
         const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
-        const finalStepElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-step.is-final')[0];
-        expect(finalStepElement.classList.contains('is-visible')).to.equal(false);
+        const finalStepElement = verificationProcessRawElement.shadowRoot.querySelectorAll('buv-final-verification-step')[0];
+        const finalStepCheckElement = finalStepElement.shadowRoot.querySelectorAll('.buv-qa-verification-step.is-final')[0];
+        expect(finalStepCheckElement.classList.contains('is-visible')).to.equal(false);
       })
     });
   });

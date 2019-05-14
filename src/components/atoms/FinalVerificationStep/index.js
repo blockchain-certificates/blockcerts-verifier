@@ -1,3 +1,3 @@
-import FinalVerificationStep from './FinalVerificationStep';
+import { default as FinalVerificationStep } from './FinalVerificationStepContainer';
 
-export default FinalVerificationStep;
+window.customElements.define('buv-final-verification-step', FinalVerificationStep);

@@ -1,6 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import VerificationStep from '../../molecules/VerificationStep';
-import FinalVerificationStep from '../../atoms/FinalVerificationStep';
+import '../../atoms/FinalVerificationStep';
 import '../SubstepsList';
 import CSS from './_components.verification-process-css';
 import VERIFICATION_STATUS from '../../../constants/verificationStatus';
@@ -70,7 +70,12 @@ class VerificationProcess extends LitElement {
       </div>  
       <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
-        ${FinalVerificationStep({ transactionLink, chain, isTestChain, isVisible: allStepsAreRendered && !hasError })}
+        <buv-final-verification-step 
+          transactionLink='${transactionLink}'
+          chain='${chain}'
+          isTestChain='${isTestChain}'
+          isVisible='${allStepsAreRendered && !hasError}'
+        ></buv-final-verification-step>
       </dl>
     </section>
   `;

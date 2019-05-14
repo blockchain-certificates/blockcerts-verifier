@@ -29,9 +29,11 @@
         const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
         await wait(1000);
         const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
+        await wait(1000);
+        const finalStepElement = verificationProcessRawElement.shadowRoot.querySelectorAll('buv-final-verification-step')[0];
         await wait(5000);
-        const finalStepElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-step.is-final')[0];
-        expect(finalStepElement.classList.contains('is-visible')).to.equal(true);
+        const innerFinalStepElement = finalStepElement.shadowRoot.querySelectorAll('.buv-qa-verification-step.is-final')[0];
+        expect(innerFinalStepElement.classList.contains('is-visible')).to.equal(true);
       });
     });
   });
