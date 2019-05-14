@@ -1,7 +1,7 @@
 import { configureStore } from '../../../src/store';
 import verifyCertificate from '../../../src/actions/verifyCertificate';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import { getVerifiedSteps } from '../../../src/selectors/certificate';
+import { getFinalStep, getVerifiedSteps } from '../../../src/selectors/certificate';
 import getInitialState from '../../../src/store/getInitialState';
 import validCertificateFixture from '../../fixtures/valid-certificate-example';
 import invalidCertificateFixture from '../../fixtures/invalid-certificate-example';
@@ -25,6 +25,8 @@ describe('verifyCertificate action creator test suite', function () {
       };
       const initialState = getInitialState(apiConfiguration);
       store = configureStore(initialState);
+      // add a certificate definition to be verified
+      store.dispatch(updateCertificateDefinition(validCertificateFixture));
     });
 
     afterEach(function () {
@@ -33,8 +35,6 @@ describe('verifyCertificate action creator test suite', function () {
 
     describe('given the action is triggered', function () {
       it('should set the verificationStatus in the state to started', function () {
-        // add a certificate definition to be verified
-        store.dispatch(updateCertificateDefinition(validCertificateFixture));
         store.dispatch(verifyCertificate());
 
         const state = store.getState();
@@ -49,8 +49,6 @@ describe('verifyCertificate action creator test suite', function () {
           expect(e.detail.certificateDefinition.id).toEqual(validCertificate.id);
         }
         window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, assertFunction);
-
-        store.dispatch(updateCertificateDefinition(validCertificateFixture));
         store.dispatch(verifyCertificate());
 
         // add failsafe, if no expect is called test is false positive
@@ -60,24 +58,32 @@ describe('verifyCertificate action creator test suite', function () {
       });
     });
 
-    describe('given the verification is ended', function () {
+    describe('given the verification has ended', function () {
       describe('and the verification was of a valid certificate', function () {
         it('should set the verificationStatus in the state to success', async function () {
-          // add a certificate definition to be verified
-          store.dispatch(updateCertificateDefinition(validCertificateFixture));
           await store.dispatch(verifyCertificate());
 
           const state = store.getState();
 
           expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.SUCCESS);
         });
+
+        it('should set the finalStep property in the state', async function () {
+          await store.dispatch(verifyCertificate());
+
+          const state = store.getState();
+          expect(getFinalStep(state)).toEqual({
+            label: 'Verified',
+            // eslint-disable-next-line no-template-curly-in-string
+            description: 'This is a valid ${chain} certificate.',
+            linkText: 'View transaction link'
+          });
+        });
       });
     });
 
     describe('given there is a valid certificate in the state', function () {
       it('should store the different steps in the state', async function () {
-        // add a certificate definition to be verified
-        await store.dispatch(updateCertificateDefinition(validCertificateFixture));
         await store.dispatch(verifyCertificate());
 
         const state = store.getState();
@@ -88,8 +94,7 @@ describe('verifyCertificate action creator test suite', function () {
 
     describe('given there is an invalid certificate in the state', function () {
       it('should store the different steps in the state', async function () {
-        // add a certificate definition to be verified
-        await store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
+        store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
         await store.dispatch(verifyCertificate());
 
         const state = store.getState();
@@ -101,8 +106,6 @@ describe('verifyCertificate action creator test suite', function () {
     describe('verifying a second certificate', function () {
       describe('given the certificates definitions valid definitions', function () {
         it('should only maintain the verifiedSteps of the latest certificate verified', async function () {
-          // trigger initial verification
-          await store.dispatch(updateCertificateDefinition(validCertificateFixture));
           await store.dispatch(verifyCertificate());
 
           await store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
