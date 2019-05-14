@@ -32,6 +32,8 @@ export default function verifyCertificate () {
         dispatch(stepVerified(stepDefinition));
       });
 
+      console.log(finalStatus);
+
       dispatch(updateVerificationStatus(finalStatus.status));
     }
   };
