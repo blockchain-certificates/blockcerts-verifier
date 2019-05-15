@@ -12,6 +12,10 @@
   opacity: 0;
 }
 
+.buv-c-verification-step__description {
+  margin: 0;
+}
+
 .buv-c-verification-step.is-final.is-visible {
   opacity: 1;
 }

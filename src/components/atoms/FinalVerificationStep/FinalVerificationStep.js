@@ -1,7 +1,14 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.final-verification-step-css';
 
-export default function FinalVerificationStep ({ chain = '', transactionLink = '', isTestChain, isVisible = false }) {
+function getDetails (finalStep, chain) {
+  return finalStep.description
+    // eslint-disable-next-line no-template-curly-in-string
+    ? html`<p class='buv-c-verification-step__description  buv-qa-final-step-description'>${finalStep.description.replace('${chain}', chain)}</p>`
+    : '';
+}
+
+export default function FinalVerificationStep ({ chain = '', transactionLink = '', isTestChain, isVisible = false, finalStep = {} } = {}) {
   // TODO: better handle this dynamic class (cf npm classnames)
   const titleClasses = [
     'buv-c-verification-step',
@@ -20,20 +27,20 @@ export default function FinalVerificationStep ({ chain = '', transactionLink = '
     isVisible ? 'is-visible' : ''
   ].join(' ');
 
-  const title = isTestChain ? 'This Mocknet credential passed all checks' : 'Verified';
-  const details = isTestChain
-    ? 'Mocknet credentials are used for test purposes only. They are not recorded on a blockchain, ' +
-    'and they should not be considered verified Blockcerts.'
-    : html`This is a valid ${chain} certificate.<br/>
-      <a class='buv-o-link' href='${transactionLink}' hidden?='${!transactionLink}'>
-        <span class='buv-o-link__text--underline'>View transaction link</span>
-      </a>`;
+  const title = finalStep.label;
+  const details = getDetails(finalStep, chain);
+  const link = finalStep.linkText
+    ? html`<a class='buv-o-link' href='${transactionLink}' hidden?='${!transactionLink}'>
+        <span class='buv-o-link__text--underline  buv-qa-transaction-link'>${finalStep.linkText}</span>
+      </a>`
+    : '';
 
   return html`
     ${CSS}
     <dt class$='${titleClasses}'>${title}</dt>
     <dd class$='${detailsClasses}'>
       ${details}
+      ${link}
     </dd>
   `;
 }

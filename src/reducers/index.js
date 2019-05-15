@@ -9,6 +9,7 @@ import setErrorMessage from './setErrorMessage';
 import initialize from './initialize';
 import resetCertificateDefinition from './resetCertificateDefinition';
 import updateVerificationStatus from './updateVerificationStatus';
+import updateFinalStep from './updateFinalStep';
 
 export function app (state, action) {
   switch (action.type) {
@@ -41,6 +42,9 @@ export function app (state, action) {
 
     case ACTIONS.UPDATE_VERIFICATION_STATUS:
       return updateVerificationStatus(state, action);
+
+    case ACTIONS.UPDATE_FINAL_STEP:
+      return updateFinalStep(state, action);
 
     default:
       return state;

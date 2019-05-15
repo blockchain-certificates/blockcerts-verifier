@@ -7,6 +7,7 @@ import clearVerifiedSteps from './clearVerifiedSteps';
 import updateVerificationStatus from './updateVerificationStatus';
 import { getCertificateDefinition } from '../selectors/certificate';
 import { getDisableVerify } from '../selectors/api';
+import updateFinalStep from './updateFinalStep';
 
 export default function verifyCertificate () {
   return async function (dispatch, getState) {
@@ -28,11 +29,12 @@ export default function verifyCertificate () {
 
     if (certificateDefinition) {
       domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, certificateDefinition);
-      const finalStatus = await certificateDefinition.verify(stepDefinition => {
+      const finalStep = await certificateDefinition.verify(stepDefinition => {
         dispatch(stepVerified(stepDefinition));
       });
 
-      dispatch(updateVerificationStatus(finalStatus.status));
+      dispatch(updateFinalStep(finalStep.message));
+      dispatch(updateVerificationStatus(finalStep.status));
     }
   };
 }

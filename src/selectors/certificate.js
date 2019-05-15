@@ -214,3 +214,7 @@ export function getCertificateSeal (state) {
 
   return '';
 }
+
+export function getFinalStep (state) {
+  return state.finalStep;
+}
