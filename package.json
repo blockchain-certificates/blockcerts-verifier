@@ -8,7 +8,7 @@
   },
   "main": "dist/main.js",
   "dependencies": {
-    "@blockcerts/cert-verifier-js": "^3.0.0",
+    "@blockcerts/cert-verifier-js": "^3.1.0",
     "@polymer/lit-element": "^0.5.1",
     "@polymer/polymer": "3.0.3",
     "@webcomponents/webcomponentsjs": "2.1.0",
