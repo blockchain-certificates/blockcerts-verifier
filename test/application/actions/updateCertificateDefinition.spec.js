@@ -78,7 +78,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       await store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
-      const expectedOutput = 'Mocknet';
+      const expectedOutput = 'Bitcoin Testnet';
       expect(getChain(state)).toBe(expectedOutput);
     });
 

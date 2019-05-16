@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VerificationProcess component test suite</title>
+
+    <script src="../../../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../../../../node_modules/web-component-tester/browser.js"></script>
+
+    <script src="../../helpers/redux-hack.js"></script>
+    <script src="../../helpers/wait.js"></script>
+    <script type="module" src="../../../../src/blockcerts-verifier/index.js"></script>
+</head>
+<body>
+<test-fixture id="started">
+    <template>
+        <blockcerts-verifier src="https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97"></blockcerts-verifier>
+    </template>
+</test-fixture>
+
+<script type="module">
+  describe('VerificationProcess test suite', function () {
+    describe('given the certificate verification has started', function () {
+      describe('and the certificate chain is Bitcoin Testnet', function () {
+          it('should appear as test', async function () {
+            const el = fixture('started').shadowRoot.querySelectorAll('buv-raw')[0];
+            await wait(500);
+            const verificationProcessModalElement = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
+            await wait(500);
+            const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
+            await wait(2000);
+            const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
+            const progressBarElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-progress-bar__tube')[0];
+            expect(progressBarElement.classList.contains('is-test')).to.equal(true);
+          });
+      });
+    });
+  });
+</script>
+</body>
+</html>

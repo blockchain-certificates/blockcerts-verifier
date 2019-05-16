@@ -40,7 +40,7 @@ describe('VerificationProcessContainer test suite', function () {
         store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
 
-        const expectedOutput = 'Mocknet';
+        const expectedOutput = 'Bitcoin Testnet';
         expect(mapStateToProps(state).chain).toBe(expectedOutput);
       });
     });
