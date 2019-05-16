@@ -19,11 +19,15 @@ import {
   getStartedVerificationSteps,
   getTransactionId,
   getTransactionLink,
-  getVerifiedSteps
+  getVerifiedSteps, isTestChain
 } from '../../../src/selectors/certificate';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import v1Fixture from '../../fixtures/valid-v1-certificate';
 import v2Fixture from '../../fixtures/valid-certificate-example';
+import mocknetFixture from '../../fixtures/mocknet-valid-2.0';
+import mainnetFixture from '../../fixtures/mainnet-valid-2.0';
+import ethereumRopstenFixture from '../../fixtures/ethereum-ropsten-valid-2.0';
+import ethereumMainFixture from '../../fixtures/ethereum-main-valid-2.0';
 import { configureStore } from '../../../src/store';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 
@@ -261,18 +265,70 @@ describe('certificate selectors test suite', function () {
   });
 
   describe('getChain selector', function () {
-    it('should return the transaction\'s id link for a v1 certificate', function () {
+    it('should return the chain name for a v1 certificate', function () {
       store.dispatch(updateCertificateDefinition(v1Fixture));
       const state = store.getState();
 
-      expect(getChain(state)).toEqual('Mocknet');
+      expect(getChain(state)).toBe('Bitcoin Testnet');
     });
 
-    it('should return the transaction\'s id link for a v2 certificate', function () {
+    it('should return the chain name for a v2 certificate', function () {
       store.dispatch(updateCertificateDefinition(v2Fixture));
       const state = store.getState();
 
-      expect(getChain(state)).toEqual('Mocknet');
+      expect(getChain(state)).toBe('Bitcoin Testnet');
+    });
+  });
+
+  describe('isTestChain selector', function () {
+    describe('given the certificate chain is Mocknet', function () {
+      it('should return true', function () {
+        store.dispatch(updateCertificateDefinition(mocknetFixture));
+
+        const state = store.getState();
+
+        expect(isTestChain(state)).toBe(true);
+      });
+    });
+
+    describe('given the certificate chain is Bitcoin Testnet', function () {
+      it('should return true', function () {
+        store.dispatch(updateCertificateDefinition(v2Fixture));
+
+        const state = store.getState();
+
+        expect(isTestChain(state)).toBe(true);
+      });
+    });
+
+    describe('given the certificate chain is Ethereum Ropsten', function () {
+      it('should return true', function () {
+        store.dispatch(updateCertificateDefinition(ethereumRopstenFixture));
+
+        const state = store.getState();
+
+        expect(isTestChain(state)).toBe(true);
+      });
+    });
+
+    describe('given the certificate chain is Bitcoin Mainnet', function () {
+      it('should return false', function () {
+        store.dispatch(updateCertificateDefinition(mainnetFixture));
+
+        const state = store.getState();
+
+        expect(isTestChain(state)).toBe(false);
+      });
+    });
+
+    describe('given the certificate chain is Ethereum Main', function () {
+      it('should return false', function () {
+        store.dispatch(updateCertificateDefinition(ethereumMainFixture));
+
+        const state = store.getState();
+
+        expect(isTestChain(state)).toBe(false);
+      });
     });
   });
 
