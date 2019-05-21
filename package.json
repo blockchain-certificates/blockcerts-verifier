@@ -64,7 +64,7 @@
     "test:components:retrieve": "node test/wct-script/retrieveTestFiles",
     "test:components:retrieve:watch": "npm run test:components:retrieve -- --watch",
     "test:components:persist": "concurrently 'npm run test:components:retrieve:watch' 'polymer test -p'",
-    "test:application": "jest --maxWorkers=4",
+    "test:application": "jest --runInBand",
     "test:application:watch": "jest --watch",
     "test:coverage": "jest --maxWorkers=4 --silent --noStackTrace --coverage",
     "test:coverage:report": "codecov",
