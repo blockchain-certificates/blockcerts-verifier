@@ -9,7 +9,7 @@
   "main": "dist/main.js",
   "dependencies": {
     "@blockcerts/cert-verifier-js": "^3.1.0",
-    "@polymer/lit-element": "^0.5.1",
+    "@polymer/lit-element": "0.5.1",
     "@polymer/polymer": "3.0.3",
     "@webcomponents/webcomponentsjs": "2.1.0",
     "babel-runtime": "^6.26.0",
@@ -79,7 +79,7 @@
     "lint:styles": "sass-lint --verbose",
     "prepush": "npm run lint && npm run test",
     "precommit": "npm run lint",
-    "commitmsg": "commitlint -E GIT_PARAMS",
+    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
     "semantic-release": "semantic-release"
   },
   "publishConfig": {
