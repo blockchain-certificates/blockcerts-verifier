@@ -26,7 +26,9 @@
               const certificateInputComponent = el.shadowRoot.querySelectorAll('buv-certificate-input')[0];
               // allow time to process
               await wait(500);
-              expect(certificateInputComponent.shadowRoot.children.length).to.equal(0);
+              const children = [].slice.call(certificateInputComponent.shadowRoot.children);
+              const hasCertificateInput = children.some(el => el.classList.contains('buv-qa-certificate-input'));
+              expect(hasCertificateInput).to.equal(false);
             });
           });
         });

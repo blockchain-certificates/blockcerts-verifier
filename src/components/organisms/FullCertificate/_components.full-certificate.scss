@@ -14,6 +14,7 @@ $sectionSpacer: 20px;
   line-height: 1.5;
   overflow: auto;
   word-wrap: break-word;
+  max-height: calc(100vh - 150px);
 }
 
 // No direct access available
@@ -32,7 +33,6 @@ $sectionSpacer: 20px;
 @media only screen and (min-width: 640px) {
   .buv-c-full-certificate {
     min-height: 550px;
-    padding: calc(#{$sectionSpacer} * 2) calc(#{$sectionSpacer} * 4);
     font-size: 16px;
   }
 }

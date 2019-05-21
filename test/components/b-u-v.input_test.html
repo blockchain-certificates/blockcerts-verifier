@@ -72,9 +72,9 @@
 
               // allow retrieving the certificate. It is a bit weak if network is slow.
               await wait(3000);
-              const certificateInputComponentChildren = certificateInputComponent.shadowRoot.children;
-
-              expect(certificateInputComponentChildren.length).to.equal(0);
+              const children = [].slice.call(certificateInputComponent.shadowRoot.children);
+              const hasCertificateInput = children.some(el => el.classList.contains('buv-qa-certificate-input'));
+              expect(hasCertificateInput).to.equal(false);
             });
           });
 
