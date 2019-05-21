@@ -32,7 +32,6 @@ $sectionSpacer: 20px;
 @media only screen and (min-width: 640px) {
   .buv-c-full-certificate {
     min-height: 550px;
-    padding: calc(#{$sectionSpacer} * 2) calc(#{$sectionSpacer} * 4);
     font-size: 16px;
   }
 }
