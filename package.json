@@ -17,7 +17,7 @@
     "proxy-polyfill": "^0.3.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
-    "whatwg-fetch": "^2.0.4",
+    "whatwg-fetch": "^3.0.0",
     "xss": "^1.0.3"
   },
   "devDependencies": {
