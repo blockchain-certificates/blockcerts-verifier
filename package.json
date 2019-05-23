@@ -38,7 +38,7 @@
     "express": "^4.16.3",
     "husky": "^2.2.0",
     "jest": "^23.1.0",
-    "jest-fetch-mock": "^1.6.4",
+    "jest-fetch-mock": "^2.1.2",
     "polymer-cli": "^1.8.1",
     "pwa-helpers": "^0.8.2",
     "rollup": "^1.11.3",
