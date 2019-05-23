@@ -40,7 +40,7 @@
     "jest": "^23.1.0",
     "jest-fetch-mock": "^2.1.2",
     "polymer-cli": "^1.8.1",
-    "pwa-helpers": "^0.8.2",
+    "pwa-helpers": "^0.9.1",
     "rollup": "^1.11.3",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-commonjs": "^9.1.6",
