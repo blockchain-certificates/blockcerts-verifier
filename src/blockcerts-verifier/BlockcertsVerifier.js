@@ -28,6 +28,12 @@ class BlockcertsVerifier extends LitElement {
   _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
     super._propertiesChanged(props, changedProps, prevProps);
+
+    if (changedProps.src !== prevProps.src) {
+      this.onLoad({
+        src: changedProps.src
+      });
+    }
   }
 
   _render (_props) {
