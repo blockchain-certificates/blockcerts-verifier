@@ -22,7 +22,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^7.5.2",
-    "@commitlint/config-conventional": "^7.5.0",
+    "@commitlint/config-conventional": "^8.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "axe-core": "^3.0.2",
     "babel-cli": "^6.26.0",
