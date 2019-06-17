@@ -70,5 +70,71 @@ export default [
       }),
       terser()
     ]
+  },
+  {
+    input: 'src/blockcerts-certificate/index.js',
+    output: [
+      {
+        file: 'dist/certificate.js',
+        format: 'iife',
+        name: 'BlockcertsCertificate'
+      }
+    ],
+    plugins: [
+      babel({
+        babelrc: false,
+        presets: [['env', {
+          modules: false,
+          'targets': {
+            'node': 'current'
+          }
+        }]],
+        plugins: ['transform-object-rest-spread', 'external-helpers']
+      }),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      }),
+      resolve({
+        browser: true,
+        preferBuiltins: true
+      }),
+      terser()
+    ]
+  },
+  {
+    input: 'src/blockcerts-certificate/index.js',
+    output: [
+      {
+        file: 'dist/certificate-ie11.js',
+        format: 'iife',
+        name: 'BlockcertsCertificate'
+      }
+    ],
+    plugins: [
+      cjs({
+        include: 'node_modules/**'
+      }),
+      babel({
+        babelrc: false,
+        presets: [['env', {
+          modules: false,
+          'targets': {
+            'browser': 'IE 11'
+          }
+        }]],
+        plugins: ['transform-object-rest-spread', 'external-helpers', ['transform-runtime', {
+          'helpers': false,
+          'polyfill': false
+        }]]
+      }),
+      replace({
+        'process.env.NODE_ENV': JSON.stringify('production')
+      }),
+      resolve({
+        browser: true,
+        preferBuiltins: true
+      }),
+      terser()
+    ]
   }
 ];

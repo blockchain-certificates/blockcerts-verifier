@@ -3,6 +3,7 @@ import * as THEME from '../constants/theme';
 
 const APIKeys = {
   'src': String,
+  'certificate': String,
   'disable-auto-verify': Boolean,
   'disable-verify': Boolean,
   'allow-download': Boolean,
