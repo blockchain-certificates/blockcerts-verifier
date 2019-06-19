@@ -3,12 +3,14 @@ import * as THEME from '../constants/theme';
 
 const APIKeys = {
   'src': String,
+  'certificate': String,
   'disable-auto-verify': Boolean,
   'disable-verify': Boolean,
   'allow-download': Boolean,
   'allow-social-share': Boolean,
   'display-mode': String,
   'show-metadata': Boolean,
+  'hide-footer': Boolean,
   'theme': THEME.DARK | THEME.BRIGHT
 };
 
