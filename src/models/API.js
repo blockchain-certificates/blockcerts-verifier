@@ -3,8 +3,10 @@ import * as THEME from '../constants/theme';
 
 const APIKeys = {
   'src': String,
+  'certificate': String,
   'disable-auto-verify': Boolean,
   'disable-verify': Boolean,
+  'disable-other-verification': Boolean,
   'allow-download': Boolean,
   'allow-social-share': Boolean,
   'display-mode': String,

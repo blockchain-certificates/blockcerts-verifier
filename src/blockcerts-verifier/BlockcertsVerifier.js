@@ -54,7 +54,7 @@ class BlockcertsVerifier extends LitElement {
 }
               <buv-verification-modal></buv-verification-modal>
             </section>
-            <buv-footer interactive></buv-footer>
+            <buv-footer ${_props.disableOtherVerification ? '' : 'interactive'}></buv-footer>
           </div>
         </buv-drag-and-drop>
       </section>
@@ -69,11 +69,13 @@ window.customElements.define('buv-raw', BlockcertsVerifier);
 function BUVWrapper (props) {
   return html`<buv-raw
           src='${props.src}'
+          certificate='${props.certificate}'
           onLoad='${props.onLoad}'
           errorMessage='${props.errorMessage}'
           hasCertificate='${props.hasCertificate}'
           disableAutoVerify='${props['disable-auto-verify']}'
           disableVerify='${props['disable-verify']}'
+          disableOtherVerification='${props['disable-other-verification']}'
           allowDownload='${props['allow-download']}'
           allowSocialShare='${props['allow-social-share']}'
           displayMode='${props['display-mode']}'

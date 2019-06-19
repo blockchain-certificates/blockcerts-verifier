@@ -15,16 +15,14 @@
 
     <test-fixture id="api-certificate-invalid">
         <template>
-          <blockcerts-verifier
-            certificate="{&quot;code&quot;:&quot;formatValidation&quot;,&quot;name&quot;:&quot;Formatvalidation&quot;,&quot;status&quot;:&quot;failure&quot;,&quot;substeps&quot;:[{&quot;code&quot;:&quot;getTransactionId&quot;,&quot;name&quot;:&quot;GettingtransactionID&quot;,&quot;parentStep&quot;:&quot;formatValidation&quot;,&quot;status&quot;:&quot;success&quot;,&quot;substeps&quot;:[]},{&quot;code&quot;:&quot;computingLocalHash&quot;,&quot;name&quot;:&quot;ComputingLocalHash&quot;,&quot;parentStep&quot;:&quot;formatValidation&quot;,&quot;status&quot;:&quot;success&quot;,&quot;substeps&quot;:[]},{&quot;code&quot;:&quot;fetchingRemoteHash&quot;,&quot;errorMessage&quot;:&quot;Couldnotconfirmthetransaction&quot;,&quot;name&quot;:&quot;Fetchingremotehash&quot;,&quot;parentStep&quot;:&quot;formatValidation&quot;,&quot;status&quot;:&quot;failure&quot;,&quot;substeps&quot;:[]}]}"
-          ></blockcerts-verifier>
+            <blockcerts-verifier src="../fixtures/not-a-certificate-definition.json"></blockcerts-verifier>
         </template>
     </test-fixture>
 
     <script type="module">
       describe('Blockcerts Universal Verifier test suite', function () {
         describe('specifying a certificate via the component API', function () {
-          describe('given the certificate is of not a blockcerts definition', function () {
+          describe('given the src is of not a blockcerts definition', function () {
             it('the button should not be enabled', async function () {
               const el = fixture('api-certificate-invalid').shadowRoot.querySelectorAll('buv-raw')[0];
               const certificateInputComponent = el.shadowRoot.querySelectorAll('buv-certificate-input')[0];

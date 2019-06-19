@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Blockcerts Universal Verifier - API certificate test</title>
+  <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../../node_modules/web-component-tester/browser.js"></script>
+
+  <script type="module" src="../../src/blockcerts-verifier/index.js"></script>
+</head>
+
+<body>
+  <script src="./helpers/redux-hack.js"></script>
+  <script src="./helpers/wait.js"></script>
+  <test-fixture id="non-actionable">
+    <template>
+      <blockcerts-verifier src="../fixtures/valid-certificate-example.json" disable-other-verification></blockcerts-verifier>
+    </template>
+  </test-fixture>
+
+  <script type="module">
+    describe('Blockcerts Universal Verifier test suite', function () {
+      describe('hiding the footer of a certificate', function () {
+        describe('given the src is of a valid blockcerts definition', function () {
+          describe('and the disable-other-verification flag is on', function () {
+            it('the verify another record link should not be available', async function () {
+              const el = fixture('non-actionable').shadowRoot.querySelectorAll('buv-raw')[0];
+              const menu = el.shadowRoot.querySelectorAll('buv-action-menu')[0];
+              await wait(200);
+              const verifyAnotherLinkComponent = menu.shadowRoot.querySelectorAll('buv-verify-other-certificate');
+              expect(verifyAnotherLinkComponent.length).to.equal(0);
+            });
+          });
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
