@@ -82,7 +82,7 @@ function getDefaultWhiteList () {
   whiteList['border-top-style'] = true; // default: none
   whiteList['border-top-width'] = true; // default: medium
   whiteList['border-width'] = true; // default: depending on individual properties
-  whiteList['bottom'] = false; // default: auto
+  whiteList['bottom'] = true; // default: auto
   whiteList['box-decoration-break'] = true; // default: slice
   whiteList['box-shadow'] = true; // default: none
   whiteList['box-sizing'] = true; // default: content-box
@@ -186,7 +186,7 @@ function getDefaultWhiteList () {
   whiteList['justify-content'] = false; // default: auto
   whiteList['justify-items'] = false; // default: auto
   whiteList['justify-self'] = false; // default: auto
-  whiteList['left'] = false; // default: auto
+  whiteList['left'] = true; // default: auto
   whiteList['letter-spacing'] = true; // default: normal
   whiteList['lighting-color'] = true; // default: white
   whiteList['line-box-contain'] = false; // default: block inline replaced
@@ -246,7 +246,7 @@ function getDefaultWhiteList () {
   whiteList['outline-offset'] = false; // default: 0
   whiteList['outline-style'] = false; // default: none
   whiteList['outline-width'] = false; // default: medium
-  whiteList['overflow'] = false; // default: depending on individual properties
+  whiteList['overflow'] = true; // default: depending on individual properties
   whiteList['overflow-wrap'] = false; // default: normal
   whiteList['overflow-x'] = false; // default: visible
   whiteList['overflow-y'] = false; // default: visible
@@ -268,7 +268,7 @@ function getDefaultWhiteList () {
   whiteList['pitch'] = false; // default: medium
   whiteList['pitch-range'] = false; // default: 50
   whiteList['play-during'] = false; // default: auto
-  whiteList['position'] = false; // default: static
+  whiteList['position'] = true; // default: static
   whiteList['presentation-level'] = false; // default: 0
   whiteList['quotes'] = false; // default: text
   whiteList['region-fragment'] = false; // default: auto
@@ -277,7 +277,7 @@ function getDefaultWhiteList () {
   whiteList['rest-after'] = false; // default: none
   whiteList['rest-before'] = false; // default: none
   whiteList['richness'] = false; // default: 50
-  whiteList['right'] = false; // default: auto
+  whiteList['right'] = true; // default: auto
   whiteList['rotation'] = false; // default: 0
   whiteList['rotation-point'] = false; // default: 50% 50%
   whiteList['ruby-align'] = false; // default: auto
@@ -319,9 +319,9 @@ function getDefaultWhiteList () {
   whiteList['text-transform'] = true; // default: none
   whiteList['text-underline-position'] = true; // default: auto
   whiteList['text-wrap'] = true; // default: normal
-  whiteList['top'] = false; // default: auto
-  whiteList['transform'] = false; // default: none
-  whiteList['transform-origin'] = false; // default: 50% 50% 0
+  whiteList['top'] = true; // default: auto
+  whiteList['transform'] = true; // default: none
+  whiteList['transform-origin'] = true; // default: 50% 50% 0
   whiteList['transform-style'] = false; // default: flat
   whiteList['transition'] = false; // default: depending on individual properties
   whiteList['transition-delay'] = false; // default: 0s
