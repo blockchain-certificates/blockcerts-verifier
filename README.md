@@ -48,63 +48,77 @@ By the default, the component will:
 ### API
 The component will understand the following options:
 
-- `allow-download`: (Boolean. default: `false`). Enables the download of the record. At this moment only records provided by Learning Machine are downloadable. 
-   
+- `allow-download`: (Boolean. default: `false`). Enables the download of the record. At this moment only records provided by Learning Machine are downloadable.
+
    Example:
-   
+
    ```html
    <blockcerts-verifier allow-download></blockcerts-verifier>
    ```
-- `allow-social-share`: (Boolean. default: `false`). Allows sharing the record on the social networks (LinkedIn, Facebook and Twitter). 
-   
+- `allow-social-share`: (Boolean. default: `false`). Allows sharing the record on the social networks (LinkedIn, Facebook and Twitter).
+
    Example:
-   
+
    ```html
    <blockcerts-verifier allow-social-share></blockcerts-verifier>
    ```
-- `disable-auto-verify`: (Boolean. default: `false`). Disables starting automatically the verification sequence as the record is loaded. 
-   
+- `certificate`: (String. default: `''`). As `src` allows loading an initial record with no further actions required. `certificate` needs to be a string of the JSON certificate scaped for HTML.
+
+  Example:
+
+  ```html
+  <blockcerts-verifier certificate='{&quot;@context&quot;:[&quot;https://w3id.org/openbadges/v2&quot;,&quot;https://w3id.org/blockcerts/v2&quot;...}'></blockcerts-verifier>
+  ```
+- `disable-auto-verify`: (Boolean. default: `false`). Disables starting automatically the verification sequence as the record is loaded.
+
    Example:
-   
+
    ```html
    <blockcerts-verifier disable-auto-verify></blockcerts-verifier>
    ```
-- `disable-verify`: (Boolean. default: `false`). Disables verification of the record altogether. 
-  
+- `disable-other-verification`: (Boolean. default: `false`). Disables the `Verify another record` link in the footer.
+
   Example:
-  
+
+  ```html
+  <blockcerts-verifier disable-other-verification></blockcerts-verifier>
+  ```
+- `disable-verify`: (Boolean. default: `false`). Disables verification of the record altogether.
+
+  Example:
+
   ```html
   <blockcerts-verifier disable-verify></blockcerts-verifier>
   ```
-- `display-mode`: (String, oneOf('card', 'full'). default: `card`). Changes the display of a record. `card` will be a concise summary of the record with a link to the full record, while `full` will show the actual record as designed by the emitter.  
-  
+- `display-mode`: (String, oneOf('card', 'full'). default: `card`). Changes the display of a record. `card` will be a concise summary of the record with a link to the full record, while `full` will show the actual record as designed by the emitter.
+
   Example:
-  
+
   ```html
   <blockcerts-verifier display-mode="full"></blockcerts-verifier>
   ```
-- `show-metadata`: (Boolean. default: `false`). Enables showing the metadata of a record.  
-  
+- `show-metadata`: (Boolean. default: `false`). Enables showing the metadata of a record.
+
   Example:
-  
+
   ```html
   <blockcerts-verifier show-metadata></blockcerts-verifier>
   ```
-- `src`: (String. default: `''`). Allows loading an initial record with no further actions required. `src` can be either an absolute URL, or a relative path.  
-  
+- `src`: (String. default: `''`). Allows loading an initial record with no further actions required. `src` can be either an absolute URL, or a relative path.
+
   Example:
-  
+
   ```html
   <blockcerts-verifier src='../fixtures/valid-certificate-example.json'></blockcerts-verifier>
   ```
-- `theme`: (String. default: `'bright'`). Adapts to the background of the page that hosts the component. If the component is displayed on a dark background, you should use the `dark` option. If it's bright, then use the `bright` option.  
-  
+- `theme`: (String. default: `'bright'`). Adapts to the background of the page that hosts the component. If the component is displayed on a dark background, you should use the `dark` option. If it's bright, then use the `bright` option.
+
   Example:
-  
+
   ```html
   <blockcerts-verifier theme='dark'></blockcerts-verifier>
   ```
-  
+
 ## Event Tracking API
 The component will emit events on different moment of the certificate life cycle.
 To subscribe and track these events you should add on your consumer page event listeners on the `window` object.
@@ -115,25 +129,25 @@ The information is communicated via the `detail` key of the event.
 
 Supported Events:
 - `certificate-load`
-   
+
    Triggered when a certificate has been loaded into the component.
    Returns:
     - the `certificateDefinition` (object) on which the action was called.
-   
+
 - `certificate-verify`
-   
+
    Triggered when the verification process of a certificate is started.
    Returns:
     - the `certificateDefinition` (object) on which the action was called.
-   
+
 - `certificate-share`
-   
+
    Triggered when a social network link is clicked.
    Returns:
     - the `certificateDefinition` (object) on which the action was called.
     - the `socialNetwork` (string) to which the record was shared.
-   
-   
+
+
 
 # Development
 ## Viewing Your Element
