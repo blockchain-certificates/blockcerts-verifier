@@ -10,7 +10,7 @@ export default function dispatch (eventType = '', certificateDefinition = null, 
   const event = new CustomEvent(eventType, { detail: {
     certificateDefinition,
     ...details
-  }});
+  } });
 
   window.dispatchEvent(event);
 }

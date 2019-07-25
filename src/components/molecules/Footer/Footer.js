@@ -5,7 +5,7 @@ import CSS from './_components.footer-css';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo/BlockcertsLogo';
 import * as THEME from '../../../constants/theme';
 
-const Footer = ({forceInPlace = false, interactive = false, theme} = {}) => {
+const Footer = ({ forceInPlace = false, interactive = false, theme } = {}) => {
   const classes = [
     'buv-c-footer',
     forceInPlace ? 'buv-c-footer--forced' : '',

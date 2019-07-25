@@ -49,7 +49,7 @@ export default function proxyPolyfill () {
     // Fail on unsupported traps: Chrome doesn't do this, but ensure that users of the polyfill
     // are a bit more careful. Copy the internal parts of handler to prevent user changes.
     const unsafeHandler = handler;
-    handler = {'get': null, 'set': null, 'apply': null, 'construct': null};
+    handler = { 'get': null, 'set': null, 'apply': null, 'construct': null };
     for (let k in unsafeHandler) {
       if (!(k in handler)) {
         // throw new TypeError(`Proxy polyfill does not support trap '${k}'`);
@@ -148,7 +148,7 @@ export default function proxyPolyfill () {
         if (propertyMap[k]) {
           continue;
         }
-        Object.defineProperty(proxy, k, {get: getter.bind(target, k)});
+        Object.defineProperty(proxy, k, { get: getter.bind(target, k) });
       }
     }
 
@@ -161,7 +161,7 @@ export default function proxyPolyfill () {
 
   ProxyPolyfill.revocable = function (target, handler) {
     const p = new ProxyPolyfill(target, handler);
-    return {'proxy': p, 'revoke': lastRevokeFn};
+    return { 'proxy': p, 'revoke': lastRevokeFn };
   };
 
   return ProxyPolyfill;

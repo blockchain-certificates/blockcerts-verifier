@@ -13,5 +13,5 @@ const ownProps = {
   isVisible: Boolean
 };
 
-const FinalVerificationStepContainer = connector(FinalVerificationStep, {mapStateToProps, ownProps});
+const FinalVerificationStepContainer = connector(FinalVerificationStep, { mapStateToProps, ownProps });
 export default FinalVerificationStepContainer;
