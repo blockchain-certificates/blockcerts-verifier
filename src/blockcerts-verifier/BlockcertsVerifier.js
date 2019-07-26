@@ -36,6 +36,17 @@ class BlockcertsVerifier extends LitElement {
     }
   }
 
+  renderCertificate (_props) {
+    switch (_props.displayMode) {
+      case DISPLAY_MODE.FULL:
+        return html`<buv-full-certificate></buv-full-certificate>`;
+      case DISPLAY_MODE.FULLSCREEN:
+        return html`<div>FullScreen certificate</div>`;
+      default:
+        return html`<buv-card-certificate></buv-card-certificate>`;
+    }
+  }
+
   _render (_props) {
     const bodyClass = _props.hasCertificate ? 'buv-c-verifier-body  buv-c-verifier-body--padded' : '';
 
@@ -48,10 +59,7 @@ class BlockcertsVerifier extends LitElement {
               ${ErrorMessage(_props.errorMessage, true)}
               <buv-certificate-input></buv-certificate-input>
               <buv-action-menu></buv-action-menu>
-              ${_props.displayMode === DISPLAY_MODE.FULL
-    ? html`<buv-full-certificate></buv-full-certificate>`
-    : html`<buv-card-certificate></buv-card-certificate>`
-}
+              ${this.renderCertificate(_props)}
               <buv-verification-modal></buv-verification-modal>
             </section>
             <buv-footer interactive></buv-footer>
