@@ -1,4 +1,5 @@
 import { html } from '@polymer/lit-element';
+import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.fullscreen-certificate-css';
 import '../../atoms/CertificateDetails/index';
 import '../../atoms/FullCertificateV1';
@@ -26,7 +27,7 @@ export default function FullScreenCertificate ({
           <buv-certificate-details class='buv-c-fullscreen-certificate__details-list'></buv-certificate-details>
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>
-          <buv-full-certificate></buv-full-certificate>
+          ${unsafeHTML(displayHTML)}
         </div>
       </section>
     </section>
