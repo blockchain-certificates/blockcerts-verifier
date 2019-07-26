@@ -7,6 +7,7 @@ import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/organisms/CardCertificate';
 import '../components/organisms/FullCertificate';
+import '../components/organisms/FullScreenCertificate';
 import '../components/molecules/Footer/';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
@@ -41,7 +42,7 @@ class BlockcertsVerifier extends LitElement {
       case DISPLAY_MODE.FULL:
         return html`<buv-full-certificate></buv-full-certificate>`;
       case DISPLAY_MODE.FULLSCREEN:
-        return html`<div>FullScreen certificate</div>`;
+        return html`<buv-fullscreen-certificate></buv-fullscreen-certificate>`;
       default:
         return html`<buv-card-certificate></buv-card-certificate>`;
     }

@@ -78,10 +78,10 @@ The component will understand the following options:
   ```
 - `display-mode`: (String, oneOf('card', 'full', 'fullscreen'). default: `card`). 
 Changes the display of a record. 
-- `card` will be a concise summary of the record with a link to the full record. 
-- `full` will show the actual record as designed by the emitter.
-- `fullscreen` will display a two-column overlay (in desktop) that takes the window dimensions.
-The certificate displays similar as `full`.
+    - `card` will be a concise summary of the record with a link to the full record. 
+    - `full` will show the actual record as designed by the emitter.
+    - `fullscreen` will display a two-column overlay (in desktop) that takes the window dimensions.
+The certificate displays similar as `full`. NOTA: only works for certificates that have a `displayHTML` property.
   
   Example:
   
