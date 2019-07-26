@@ -14,11 +14,18 @@
   }
 }
 
+.buv-c-certificate-details--column {
+  flex-direction: column;
+}
+
 .buv-c-certificate-details__group {
   box-sizing: border-box;
   padding-right: 15px;
-  max-width: 33%;
   margin-top: 15px;
+}
+
+.buv-c-certificate-details__group--row {
+  max-width: 33%;
 
   @media only screen and (max-width: 520px) {
     max-width: 100%;

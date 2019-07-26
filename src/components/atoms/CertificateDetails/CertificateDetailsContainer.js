@@ -20,5 +20,9 @@ export const mapStateToProps = (state) => ({
   transactionId: getTransactionId(state)
 });
 
-const CertificateDetailsContainer = connector(CertificateDetails, { mapStateToProps });
+const ownProps = {
+  direction: String
+};
+
+const CertificateDetailsContainer = connector(CertificateDetails, { mapStateToProps, ownProps });
 export { CertificateDetailsContainer };
