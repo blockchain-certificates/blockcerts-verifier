@@ -12,4 +12,4 @@ const mapStateToProps = (state) => ({
 });
 
 const InputContainer = connector(Input, { mapDispatchToProps, mapStateToProps });
-export { InputContainer };
+export default InputContainer;

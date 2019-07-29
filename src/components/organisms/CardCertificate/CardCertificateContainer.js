@@ -1,5 +1,5 @@
 import connector from '../../../store/connector';
-import { default as CardCertificate } from './CardCertificate';
+import CardCertificate from './CardCertificate';
 import {
   getCertificateDefinition,
   getCertificateTitle,
@@ -28,4 +28,4 @@ const ownProps = {
 };
 
 const CardCertificateContainer = connector(CardCertificate, { mapStateToProps, ownProps });
-export { CardCertificateContainer };
+export default CardCertificateContainer;
