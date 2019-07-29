@@ -1,10 +1,9 @@
 import { html } from '@polymer/lit-element';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.fullscreen-certificate-css';
-import '../../atoms/CertificateDetails/index';
-import '../../atoms/FullCertificateV1';
+import '../../atoms/CertificateDetails';
+import BlockcertsLogo from '../../atoms/BlockcertsLogo/index';
 import '../../molecules/VerifyButton';
-import '../FullCertificate';
 
 export default function FullScreenCertificate ({
   hasCertificateDefinition,
@@ -27,6 +26,7 @@ export default function FullScreenCertificate ({
       <section class="buv-c-fullscreen-certificate__content">
         <div class='buv-c-fullscreen-certificate__details'>
           <buv-certificate-details class='buv-c-fullscreen-certificate__details-list' direction="column"></buv-certificate-details>
+          ${BlockcertsLogo()}
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>
           ${unsafeHTML(displayHTML)}

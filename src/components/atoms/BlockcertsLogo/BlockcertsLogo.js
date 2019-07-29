@@ -1,7 +1,9 @@
 import { html } from '@polymer/lit-element';
+import CSS from './_components.blockcerts-logo-css';
 
 const BlockcertsLogo = () => {
   return html`
+  ${CSS}
   <a href='https://www.blockcerts.org' title='Visit Blockcerts website'>
     <svg width="113px" height="16px" viewBox="0 0 113 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs></defs>

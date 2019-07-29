@@ -25,6 +25,7 @@
 .buv-c-fullscreen-certificate__details {
   display: flex;
   flex-grow: 1;
+  flex-direction: column;
   max-width: 33vw;
   margin-right: 20px;
 }
