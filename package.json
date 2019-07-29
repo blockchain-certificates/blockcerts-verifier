@@ -116,7 +116,6 @@
       "test/assertions/*",
       "*-css.js"
     ],
-    "env": "jest",
-    "excludedFiles": "test/assertions/**/*"
+    "env": "jest"
   }
 }
