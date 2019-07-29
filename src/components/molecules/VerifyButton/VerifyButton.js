@@ -24,7 +24,8 @@ class VerifyButton extends LitElement {
       cancelSpinner: Boolean,
       onClick: Function,
       isDisabled: Boolean,
-      isHollow: Boolean
+      isHollow: Boolean,
+      isStandAlone: Boolean
     };
   }
 
@@ -54,6 +55,7 @@ class VerifyButton extends LitElement {
     const buttonClass = [
       'buv-c-verify-button',
       this.isHollow ? 'buv-c-verify-button--hollow' : '',
+      this.isStandAlone ? 'buv-c-verify-button--standalone' : '',
       this.isDisabled ? 'is-disabled' : '',
       this.activateSpinner ? 'has-spinner' : ''
     ].join(' ');
@@ -78,6 +80,7 @@ function VerifyButtonWrapper (props) {
     cancelSpinner='${props.cancelSpinner}'
     isDisabled='${props.isDisabled}'
     isHollow='${props.isHollow}'
+    isStandAlone='${props.isStandAlone}'
   ></buv-verify-button-raw>`;
 }
 

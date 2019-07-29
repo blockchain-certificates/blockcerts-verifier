@@ -23,7 +23,7 @@ export default function FullScreenCertificate ({
     <section class='buv-c-fullscreen-certificate'>
       <header class='buv-c-fullscreen-certificate__header'>
         <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
-        <buv-verify-button></buv-verify-button>
+        <buv-verify-button isStandAlone></buv-verify-button>
       </header>
       <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
