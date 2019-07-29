@@ -7,6 +7,7 @@ import '../../molecules/VerifyButton';
 
 export default function FullScreenCertificate ({
   hasCertificateDefinition,
+  recipientName,
   displayHTML
 }) {
   if (!hasCertificateDefinition) {
@@ -20,12 +21,13 @@ export default function FullScreenCertificate ({
   return html`
     ${CSS}
     <section class='buv-c-fullscreen-certificate'>
-      <header class="buv-c-fullscreen-certificate__header">
-        <buv-verify-button class='buv-c-fullscreen-certificate__button'></buv-verify-button>
+      <header class='buv-c-fullscreen-certificate__header'>
+        <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
+        <buv-verify-button></buv-verify-button>
       </header>
-      <section class="buv-c-fullscreen-certificate__content">
+      <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
-          <buv-certificate-details class='buv-c-fullscreen-certificate__details-list' direction="column"></buv-certificate-details>
+          <buv-certificate-details class='buv-c-fullscreen-certificate__details-list' direction='column'></buv-certificate-details>
           ${BlockcertsLogo()}
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>
