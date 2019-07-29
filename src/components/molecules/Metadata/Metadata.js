@@ -17,7 +17,8 @@ class Metadata extends LitElement {
   static get properties () {
     return {
       isOpen: Boolean,
-      metadataList: Object
+      metadataList: Object,
+      display: String
     };
   }
 
@@ -25,7 +26,7 @@ class Metadata extends LitElement {
     this.isOpen = !this.isOpen;
   }
 
-  _render ({ metadataList }) {
+  _render ({ metadataList, display }) {
     // TODO: better handle this dynamic class (cf npm classnames)
     const panelClasses = [
       'buv-o-overlay',
@@ -49,16 +50,23 @@ class Metadata extends LitElement {
       });
     }
 
-    const info = metadataList ? 'Open list of metadata' : 'No metadata specified for this record';
+    const isPlainText = display === 'plaintext';
+
+    const info = metadataList ? 'View Metadata' : 'No metadata specified for this record';
+    const buttonClasses = [
+      'buv-c-metadata-link',
+      'buv-o-button-link',
+      isPlainText ? '' : 'buv-c-metadata-link--icon'
+    ].join(' ');
 
     return html`
       ${CSS}
       <button onclick='${this.toggleOpen}' 
-        class='buv-c-metadata-link  buv-o-button-link' 
+        class$='${buttonClasses}' 
         disabled?='${!metadataList}' 
         aria-disabled?='${!metadataList}'
         title$=${info}>
-        <label class='buv-u-visually-hidden'>${info}</label>
+        <label class$='${isPlainText ? 'buv-o-button-link__label' : 'buv-u-visually-hidden'}'>${info}</label>
       </button>
       <section class$='${panelClasses}'>
         <h1 class='buv-c-metadata-container__title'>Certificate Metadata</h1>
@@ -78,7 +86,7 @@ function MetadataWrapper (props) {
   return html`
     <buv-metadata-raw
       metadataList='${props.metadataList}'
-      showMetadata='${props.showMetadata}'
+      display='${props.display}'
     ></buv-metadata-raw>`;
 }
 
