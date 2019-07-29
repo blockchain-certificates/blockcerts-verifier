@@ -21,7 +21,9 @@ export default function FullScreenCertificate ({
   return html`
     ${CSS}
     <section class='buv-c-fullscreen-certificate'>
-      <header><buv-verify-button class='buv-c-fullscreen-certificate__button'></buv-verify-button></header>
+      <header class="buv-c-fullscreen-certificate__header">
+        <buv-verify-button class='buv-c-fullscreen-certificate__button'></buv-verify-button>
+      </header>
       <section class="buv-c-fullscreen-certificate__content">
         <div class='buv-c-fullscreen-certificate__details'>
           <buv-certificate-details class='buv-c-fullscreen-certificate__details-list' direction="column"></buv-certificate-details>
