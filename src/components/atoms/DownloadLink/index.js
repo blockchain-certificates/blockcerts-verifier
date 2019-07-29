@@ -1,3 +1,3 @@
-import { DownloadLinkContainer as DownloadLink } from './DownloadLinkContainer';
+import DownloadLink from './DownloadLinkContainer';
 
 window.customElements.define('buv-download-link', DownloadLink);

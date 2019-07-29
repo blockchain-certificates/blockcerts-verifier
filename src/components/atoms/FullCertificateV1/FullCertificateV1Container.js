@@ -25,4 +25,4 @@ export const mapStateToProps = (state) => ({
 });
 
 const FullCertificateV1Container = connector(FullCertificateV1, { mapStateToProps });
-export { FullCertificateV1Container };
+export default FullCertificateV1Container;

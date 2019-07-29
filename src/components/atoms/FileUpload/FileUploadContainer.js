@@ -12,4 +12,4 @@ const mapStateToProps = state => ({
 });
 
 const FileUploadContainer = connector(FileUpload, { mapDispatchToProps, mapStateToProps });
-export { FileUploadContainer };
+export default FileUploadContainer;

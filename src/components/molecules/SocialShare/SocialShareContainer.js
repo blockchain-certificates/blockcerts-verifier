@@ -12,4 +12,4 @@ export const mapStateToProps = (state) => ({
 });
 
 const SocialShareContainer = connector(SocialShare, { mapDispatchToProps, mapStateToProps });
-export { SocialShareContainer };
+export default SocialShareContainer;

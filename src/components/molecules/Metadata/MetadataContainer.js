@@ -7,4 +7,4 @@ const mapStateToProps = (state) => ({
 });
 
 const MetadataContainer = connector(Metadata, { mapStateToProps });
-export { MetadataContainer };
+export default MetadataContainer;

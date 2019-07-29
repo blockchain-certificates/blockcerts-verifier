@@ -1,3 +1,3 @@
-import { SocialShareContainer as SocialShare } from './SocialShareContainer';
+import SocialShare from './SocialShareContainer';
 
 window.customElements.define('buv-social-share', SocialShare);
