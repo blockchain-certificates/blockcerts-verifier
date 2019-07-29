@@ -7,4 +7,4 @@ export const mapStateToProps = (state) => ({
 });
 
 const DownloadLinkContainer = connector(DownloadLink, { mapStateToProps });
-export { DownloadLinkContainer };
+export default DownloadLinkContainer;

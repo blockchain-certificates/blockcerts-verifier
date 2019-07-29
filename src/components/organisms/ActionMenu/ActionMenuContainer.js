@@ -12,4 +12,4 @@ export const mapStateToProps = (state) => ({
 });
 
 const ActionMenuContainer = connector(ActionMenu, { mapStateToProps });
-export { ActionMenuContainer };
+export default ActionMenuContainer;

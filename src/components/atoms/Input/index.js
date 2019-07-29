@@ -1,3 +1,3 @@
-import { InputContainer as Input } from './InputContainer';
+import Input from './InputContainer';
 
 window.customElements.define('buv-input', Input);

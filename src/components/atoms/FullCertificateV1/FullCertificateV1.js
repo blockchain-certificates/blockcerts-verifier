@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.full-certificate-css';
 
-export default function FullCertificate ({
+export default function FullCertificateV1 ({
   hasCertificateDefinition,
   certificateImage,
   certificateTitle,

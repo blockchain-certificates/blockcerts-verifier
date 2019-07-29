@@ -1,3 +1,3 @@
-import { default as Footer } from './FooterContainer';
+import Footer from './FooterContainer';
 
 window.customElements.define('buv-footer', Footer);

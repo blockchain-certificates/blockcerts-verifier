@@ -25,4 +25,4 @@ const ownProps = {
 };
 
 const CertificateDetailsContainer = connector(CertificateDetails, { mapStateToProps, ownProps });
-export { CertificateDetailsContainer };
+export default CertificateDetailsContainer;

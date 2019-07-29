@@ -7,4 +7,4 @@ const mapDispatchToProps = {
 };
 
 const DragAndDropContainer = connector(DragAndDrop, { mapDispatchToProps });
-export { DragAndDropContainer };
+export default DragAndDropContainer;
