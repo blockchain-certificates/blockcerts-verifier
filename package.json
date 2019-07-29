@@ -113,7 +113,8 @@
     "ignore": [
       "sanitizer/sanitizer.js",
       "test/wct-script/getTestFiles.js",
-      "test/assertions/*"
+      "test/assertions/*",
+      "*-css.js"
     ],
     "env": "jest",
     "excludedFiles": "test/assertions/**/*"
