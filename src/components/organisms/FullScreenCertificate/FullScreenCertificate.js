@@ -5,6 +5,7 @@ import '../../atoms/CertificateDetails';
 import '../../atoms/DownloadLink';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo';
 import '../../molecules/Metadata';
+import '../../molecules/SocialShare';
 import '../../molecules/VerifyButton';
 
 export default function FullScreenCertificate ({
@@ -32,6 +33,7 @@ export default function FullScreenCertificate ({
           <buv-certificate-details class='buv-c-fullscreen-certificate__details-list' direction='column'></buv-certificate-details>
           <buv-metadata display='plaintext'></buv-metadata>
           <buv-download-link display='plaintext'></buv-download-link>
+          <buv-social-share display='plaintext'></buv-social-share>
           ${BlockcertsLogo()}
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>

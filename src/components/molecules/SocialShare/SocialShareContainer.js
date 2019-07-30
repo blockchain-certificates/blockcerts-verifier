@@ -11,5 +11,9 @@ export const mapStateToProps = (state) => ({
   url: getRecordLink(state)
 });
 
-const SocialShareContainer = connector(SocialShare, { mapDispatchToProps, mapStateToProps });
+const ownProps = {
+  display: String
+};
+
+const SocialShareContainer = connector(SocialShare, { mapDispatchToProps, mapStateToProps, ownProps });
 export default SocialShareContainer;
