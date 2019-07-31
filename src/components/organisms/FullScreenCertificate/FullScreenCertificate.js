@@ -34,7 +34,7 @@ export default function FullScreenCertificate ({
           <buv-metadata class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-metadata>
           <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>
           <buv-social-share class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-social-share>
-          ${BlockcertsLogo()}
+          ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__logo' })}
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>
           ${unsafeHTML(displayHTML)}

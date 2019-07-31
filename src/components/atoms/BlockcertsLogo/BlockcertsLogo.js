@@ -1,10 +1,10 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.blockcerts-logo-css';
 
-const BlockcertsLogo = () => {
+const BlockcertsLogo = ({ className } = {}) => {
   return html`
   ${CSS}
-  <a href='https://www.blockcerts.org' title='Visit Blockcerts website'>
+  <a href='https://www.blockcerts.org' title='Visit Blockcerts website' class$='${className}'>
     <svg width="113px" height="16px" viewBox="0 0 113 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs></defs>
         <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" fill-opacity="0.37">
