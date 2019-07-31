@@ -34,6 +34,7 @@
   flex-direction: column;
   max-width: 33vw;
   margin-right: 20px;
+  position: relative;
 }
 
 .buv-c-fullscreen-certificate__details-item {
@@ -60,4 +61,10 @@
   flex-grow: 5;
   height: calc(100vh - 125px);
   box-sizing: border-box;
+}
+
+.buv-c-fullscreen-certificate__verify-other {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
 }

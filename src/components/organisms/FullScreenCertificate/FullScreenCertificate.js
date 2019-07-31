@@ -3,6 +3,7 @@ import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.fullscreen-certificate-css';
 import '../../atoms/CertificateDetails';
 import '../../atoms/DownloadLink';
+import '../../atoms/VerifyOtherCertificateLink';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
@@ -35,6 +36,7 @@ export default function FullScreenCertificate ({
           <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>
           <buv-social-share class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-social-share>
           ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__logo', showMotto: true, logoSize: 'medium' })}
+          <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>
           ${unsafeHTML(displayHTML)}
