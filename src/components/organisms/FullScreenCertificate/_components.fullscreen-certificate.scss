@@ -16,10 +16,16 @@
   padding: 20px;
   display: flex;
   align-items: center;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .buv-c-fullscreen-certificate__title {
   margin: 0 30px 0 0;
+}
+
+.buv-c-fullscreen-certificate__close {
+  right: 20px;
 }
 
 .buv-c-fullscreen-certificate__content {

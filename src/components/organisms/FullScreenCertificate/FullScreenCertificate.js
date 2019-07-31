@@ -2,6 +2,7 @@ import { html } from '@polymer/lit-element';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.fullscreen-certificate-css';
 import '../../atoms/CertificateDetails';
+import CloseButton from '../../atoms/CloseButton';
 import '../../atoms/DownloadLink';
 import '../../atoms/VerifyOtherCertificateLink';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo';
@@ -12,7 +13,8 @@ import '../../molecules/VerifyButton';
 export default function FullScreenCertificate ({
   hasCertificateDefinition,
   recipientName,
-  displayHTML
+  displayHTML,
+  onClose
 }) {
   if (!hasCertificateDefinition) {
     return null;
@@ -28,6 +30,7 @@ export default function FullScreenCertificate ({
       <header class='buv-c-fullscreen-certificate__header'>
         <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
         <buv-verify-button isStandAlone></buv-verify-button>
+        ${CloseButton({ onClick: onClose, className: 'buv-c-fullscreen-certificate__close' })}
       </header>
       <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
