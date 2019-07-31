@@ -42,11 +42,29 @@ class Metadata extends LitElement {
         const key = entry.split('.')[1]; // get key name
         const title = properties[key].title;
         const value = getValueFrom(metadataList, entry);
+        const type = properties[key].type[0];
+        const format = properties[key].format;
+        const titleHtml = html`<dt class='buv-c-metadata-list__title'>${title}</dt>`;
+        let valueHtml = html`<dd class='buv-c-metadata-list__detail'>
+            <pre class='buv-c-metadata-list__detail-text'>${value}</pre></dd>`; // Standard html formatting
+        if (type === 'string') {
+          switch (format) {
+            case 'uri':
+              valueHtml = html`<dd class='buv-c-metadata-list__detail'><pre><a class='buv-c-metadata-list__detail-text'
+              href="${value}" target=”_blank”>${value}</a></pre></dd>`;
+              break;
+            case 'email':
+              valueHtml = html`<dd class='buv-c-metadata-list__detail'><pre><a class='buv-c-metadata-list__detail-text'
+                href="mailto:${value}">${value}</a></pre></dd>`;
+              break;
+            case 'phoneNumber':
+              valueHtml = html`<dd class='buv-c-metadata-list__detail'><pre><a class='buv-c-metadata-list__detail-text'
+                href="tel:${value}">${value}</a></pre></dd>`;
+              break;
+          }
+        }
 
-        return html`
-          <dt class='buv-c-metadata-list__title'>${title}</dt>
-          <dd class='buv-c-metadata-list__detail'><pre class='buv-c-metadata-list__detail-text'>${value}</pre></dd>
-        `;
+        return html`${titleHtml}${valueHtml}`;
       });
     }
 
