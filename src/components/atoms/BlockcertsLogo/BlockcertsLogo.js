@@ -1,10 +1,10 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.blockcerts-logo-css';
 
-const BlockcertsLogo = ({ className } = {}) => {
+const BlockcertsLogo = ({ className, showMotto = false } = {}) => {
   return html`
   ${CSS}
-  <a href='https://www.blockcerts.org' title='Visit Blockcerts website' class$='${className}'>
+  <a href='https://www.blockcerts.org' title='Visit Blockcerts website' class$='buv-c-logo  ${className}'>
     <svg width="113px" height="16px" viewBox="0 0 113 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs></defs>
         <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" fill-opacity="0.37">
@@ -27,6 +27,7 @@ const BlockcertsLogo = ({ className } = {}) => {
       </g> 
     </svg>
     <span class='buv-u-visually-hidden'>Blockcerts</span>
+    <div class$='${showMotto ? 'buv-c-logo__motto' : 'buv-u-visually-hidden'}'>The Open Standard for Blockchain Credentials</div>
   </a>`;
 };
 
