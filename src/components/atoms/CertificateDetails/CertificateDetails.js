@@ -44,22 +44,25 @@ export default function CertificateDetails ({
   issuerName,
   transactionLink,
   transactionId,
-  direction
+  direction,
+  hideRecipientName
 }) {
-  const details = [
-    {
+  const details = [];
+  if (!hideRecipientName) {
+    details.push({
       title: 'Recipient',
       value: recipientName
-    },
-    {
-      title: 'Issue Date',
-      value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
-    },
-    {
-      title: 'Issuer',
-      value: issuerName
-    }
-  ];
+    });
+  }
+
+  details.push({
+    title: 'Issue Date',
+    value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
+  });
+  details.push({
+    title: 'Issuer',
+    value: issuerName
+  });
 
   const isDisplayColumn = direction === 'column';
   const definitionListDetails = details.map((detail, i) => renderListDetail({ ...detail, isDisplayColumn, isFirst: i === 0 }));

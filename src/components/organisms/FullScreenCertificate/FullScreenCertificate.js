@@ -30,7 +30,7 @@ export default function FullScreenCertificate ({
       </header>
       <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
-          <buv-certificate-details direction='column'></buv-certificate-details>
+          <buv-certificate-details direction='column' hideRecipientName></buv-certificate-details>
           <buv-metadata class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-metadata>
           <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>
           <buv-social-share class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-social-share>

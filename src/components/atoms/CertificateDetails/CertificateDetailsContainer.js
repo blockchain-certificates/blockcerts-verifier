@@ -21,7 +21,8 @@ export const mapStateToProps = (state) => ({
 });
 
 const ownProps = {
-  direction: String
+  direction: String,
+  hideRecipientName: Boolean
 };
 
 const CertificateDetailsContainer = connector(CertificateDetails, { mapStateToProps, ownProps });
