@@ -1,11 +1,13 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.blockcerts-logo-css';
 
-const BlockcertsLogo = ({ className, showMotto = false } = {}) => {
+const BlockcertsLogo = ({ className, showMotto = false, logoSize = 'small' } = {}) => {
+  const logoClass = `buv-c-logo--${logoSize}`;
+
   return html`
   ${CSS}
   <a href='https://www.blockcerts.org' title='Visit Blockcerts website' class$='buv-c-logo  ${className}'>
-    <svg width="113px" height="16px" viewBox="0 0 113 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg class$='${logoClass}' viewBox="0 0 113 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs></defs>
         <g id="Page-1" stroke="none" stroke-width="1" fill-rule="evenodd" fill-opacity="0.37">
           <g id="blockcerts-logo" transform="translate(0.000000, -2.000000)" fill-rule="nonzero" fill="inherit">
