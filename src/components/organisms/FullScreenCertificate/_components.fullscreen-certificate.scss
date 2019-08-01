@@ -49,9 +49,10 @@
 }
 
 .buv-c-fullscreen-certificate__content {
-  margin-top: 20px;
   padding: 20px;
   display: flex;
+  max-width: 1440px;
+  margin: 20px auto 0;
 
   @media only screen and (max-width: 520px) {
     flex-direction: column-reverse;
