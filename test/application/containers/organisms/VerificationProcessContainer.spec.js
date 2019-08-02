@@ -3,6 +3,7 @@ import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import getInitialState from '../../../../src/store/getInitialState';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
+import invalidCertificateFixture from '../../../fixtures/invalid-certificate-example';
 import mainnetCertificateFixture from '../../../fixtures/ethereum-main-valid-2.0';
 import validCertificateStepsAssertions from '../../../assertions/validCertificateSteps';
 import verifyCertificate from '../../../../src/actions/verifyCertificate';
@@ -33,6 +34,23 @@ describe('VerificationProcessContainer test suite', function () {
         const state = store.getState();
 
         expect(mapStateToProps(state).steps).toEqual(validCertificateStepsAssertions);
+      });
+
+      it('should set the hasError property to false', async function () {
+        await store.dispatch(verifyCertificate());
+        const state = store.getState();
+
+        expect(mapStateToProps(state).hasError).toBe(false);
+      });
+
+      describe('and one is a failure', function () {
+        it('should set the hasError property to true', async function () {
+          store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
+          await store.dispatch(verifyCertificate());
+          const state = store.getState();
+
+          expect(mapStateToProps(state).hasError).toBe(true);
+        });
       });
     });
 
