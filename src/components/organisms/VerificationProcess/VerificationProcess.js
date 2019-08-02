@@ -10,7 +10,6 @@ class VerificationProcess extends LitElement {
     return {
       steps: [],
       transactionLink: String,
-      chain: String,
       hasError: Boolean,
       isTestChain: Boolean
     };
@@ -29,7 +28,7 @@ class VerificationProcess extends LitElement {
     }
   }
 
-  _render ({ steps, transactionLink, chain, hasError, isTestChain }) {
+  _render ({ steps, transactionLink, hasError, isTestChain }) {
     const innerHTML = steps
       .filter(step => step.status !== VERIFICATION_STATUS.DEFAULT)
       .map((step, i) => html`
@@ -70,12 +69,7 @@ class VerificationProcess extends LitElement {
       </div>  
       <dl class='buv-c-verification-process__step-list  buv-js-verification-process__step-list'>
         ${innerHTML}
-        <buv-final-verification-step 
-          transactionLink='${transactionLink}'
-          chain='${chain}'
-          isTestChain='${isTestChain}'
-          isVisible='${allStepsAreRendered && !hasError}'
-        ></buv-final-verification-step>
+        <buv-final-verification-step isVisible='${allStepsAreRendered && !hasError}'></buv-final-verification-step>
       </dl>
     </section>
   `;
@@ -86,11 +80,9 @@ window.customElements.define('buv-verification-process-raw', VerificationProcess
 
 // wrap VerificationProcess in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
-function VerificationProcessWrapper ({ steps, transactionLink, chain, hasError, isTestChain }) {
+function VerificationProcessWrapper ({ steps, transactionLink, hasError, isTestChain }) {
   return html`<buv-verification-process-raw
     steps='${steps}'
-    transactionLink='${transactionLink}'
-    chain='${chain}'
     hasError?='${hasError}'
     isTestChain?='${isTestChain}'
     style='max-width: 100%;'
