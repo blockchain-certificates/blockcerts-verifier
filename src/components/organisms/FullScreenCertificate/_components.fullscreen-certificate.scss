@@ -16,23 +16,31 @@
   }
 }
 
-.buv-c-fullscreen-certificate__header {
+.buv-c-fullscreen-certificate-header {
   box-shadow: 0 1px 5px rgba(0, 0, 0, .15);
   width: 100%;
+  background-color: #fff;
+
+  @media only screen and (max-width: 520px) {
+    position: fixed;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+.buv-c-fullscreen-certificate-header__content {
+  max-width: 1440px;
+  margin: 0 auto;
   padding: 20px;
   display: flex;
   align-items: center;
   position: relative;
   box-sizing: border-box;
-  background-color: #fff;
 
   @media only screen and (max-width: 520px) {
     flex-direction: column;
     justify-content: left;
     align-items: unset;
-    position: fixed;
-    top: 0;
-    z-index: 10;
   }
 }
 

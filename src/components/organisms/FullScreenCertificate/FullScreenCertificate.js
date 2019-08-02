@@ -27,10 +27,12 @@ export default function FullScreenCertificate ({
   return html`
     ${CSS}
     <section class='buv-c-fullscreen-certificate'>
-      <header class='buv-c-fullscreen-certificate__header'>
-        <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
-        <buv-verify-button isStandAlone></buv-verify-button>
-        ${CloseButton({ onClick: onClose, className: 'buv-c-fullscreen-certificate__close' })}
+      <header class='buv-c-fullscreen-certificate-header'>
+        <div class='buv-c-fullscreen-certificate-header__content'>
+          <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
+          <buv-verify-button isStandAlone></buv-verify-button>
+          ${CloseButton({ onClick: onClose, className: 'buv-c-fullscreen-certificate__close' })}
+        </div>  
       </header>
       <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
