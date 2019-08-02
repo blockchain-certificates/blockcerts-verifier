@@ -72,7 +72,7 @@
   display: flex;
   flex-grow: 1;
   flex-direction: column;
-  max-width: 33vw;
+  max-width: 220px;
   margin-right: 20px;
   position: relative;
 
@@ -100,10 +100,10 @@
   color: #49555f;
   font-size: 12px;
   word-wrap: break-word;
-  display: flex;
-  flex-grow: 5;
   min-height: calc(100vh - 145px);
   box-sizing: border-box;
+  margin: 0 auto;
+  min-width: 600px;
 
   @media only screen and (max-width: 520px) {
     max-height: 60vh;
