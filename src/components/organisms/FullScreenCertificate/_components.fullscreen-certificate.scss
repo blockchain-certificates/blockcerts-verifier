@@ -99,11 +99,10 @@
   text-align: center;
   color: #49555f;
   font-size: 12px;
-  overflow: auto;
   word-wrap: break-word;
   display: flex;
   flex-grow: 5;
-  height: calc(100vh - 125px);
+  min-height: calc(100vh - 145px);
   box-sizing: border-box;
 
   @media only screen and (max-width: 520px) {
@@ -114,7 +113,7 @@
 
 .buv-c-fullscreen-certificate__verify-other {
   position: absolute;
-  bottom: 20px;
+  bottom: 0;
   left: 0;
 
   @media only screen and (max-width: 520px) {
