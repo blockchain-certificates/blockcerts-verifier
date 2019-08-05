@@ -1,24 +1,39 @@
 import { configureStore } from '../../../../src/store';
-import { mapStateToProps } from '../../../../src/components/organisms/FullScreenCertificate/FullScreenCertificateContainer';
+import { mapStateToProps, mapDispatchToProps } from '../../../../src/components/organisms/FullScreenCertificate/FullScreenCertificateContainer';
 import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import XSSCertificateFixture from '../../../fixtures/xss-certificate-example';
+import certificateFixture from '../../../fixtures/valid-certificate-example';
+import { getCertificateDefinition, getVerifiedSteps } from '../../../../src/selectors/certificate';
+import initialValidCertificateSteps from '../../../assertions/initialValidCertificateSteps';
+import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
+import { getVerificationStatus } from '../../../../src/selectors/verification';
+import stepVerified from '../../../../src/actions/stepVerified';
+import updateVerificationStatus from '../../../../src/actions/updateVerificationStatus';
 
 describe('FullScreenCertificateContainer test suite', function () {
+  let store;
+
+  beforeEach(function () {
+    const initialState = getInitialState({ disableAutoVerify: true });
+    store = configureStore(initialState);
+  });
+
+  afterEach(function () {
+    store = null;
+  });
+
   describe('mapStateToProps property', function () {
     describe('given there is a certificate definition in the state', function () {
-      let store;
       let state;
 
       beforeEach(async function () {
-        const initialState = getInitialState({ disableAutoVerify: true });
-        store = configureStore(initialState);
         await store.dispatch(updateCertificateDefinition(XSSCertificateFixture));
         state = store.getState();
       });
 
       afterEach(function () {
-        store = null;
+        state = null;
       });
 
       it('should retrieve the recipient name', function () {
@@ -36,10 +51,40 @@ describe('FullScreenCertificateContainer test suite', function () {
 
     describe('given there is no certificate definition in the state', function () {
       it('should set the hasCertificateDefinition property to false', function () {
-        const initialState = getInitialState({ disableAutoVerify: true });
-        const store = configureStore(initialState);
         const state = store.getState();
         expect(mapStateToProps(state).hasCertificateDefinition).toBe(false);
+      });
+    });
+  });
+
+  describe('mapDispatchToProps object', function () {
+    describe('onClick method', function () {
+      describe('when called', function () {
+        beforeEach(function () {
+          store.dispatch(updateCertificateDefinition(certificateFixture));
+          store.dispatch(updateVerificationStatus(VERIFICATION_STATUS.SUCCESS));
+          store.dispatch(stepVerified({
+            code: 'getTransactionId',
+            label: 'Getting transaction ID',
+            status: 'success'
+          }));
+          store.dispatch(mapDispatchToProps.onClose());
+        });
+
+        it('should reset the certificate definition', function () {
+          const state = store.getState();
+          expect(getCertificateDefinition(state)).toBe(null);
+        });
+
+        it('should reset the verification status', function () {
+          const state = store.getState();
+          expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.DEFAULT);
+        });
+
+        it('should reset the verified steps', function () {
+          const state = store.getState();
+          expect(getVerifiedSteps(state)).toEqual(initialValidCertificateSteps);
+        });
       });
     });
   });
