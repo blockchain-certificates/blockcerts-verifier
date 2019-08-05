@@ -10,6 +10,7 @@ import initialize from './initialize';
 import resetCertificateDefinition from './resetCertificateDefinition';
 import updateVerificationStatus from './updateVerificationStatus';
 import updateFinalStep from './updateFinalStep';
+import showVerificationModal from './showVerificationModal';
 
 export function app (state, action) {
   switch (action.type) {
@@ -36,6 +37,9 @@ export function app (state, action) {
 
     case ACTIONS.SET_ERROR_MESSAGE:
       return setErrorMessage(state, action);
+
+    case ACTIONS.SHOW_VERIFICATION_MODAL:
+      return showVerificationModal(state, action);
 
     case ACTIONS.STEP_VERIFIED:
       return stepVerified(state, action);

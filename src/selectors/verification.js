@@ -16,3 +16,7 @@ export function getVerificationIsFinished (state) {
   return status === VERIFICATION_STATUS.SUCCESS ||
     status === VERIFICATION_STATUS.FAILURE;
 }
+
+export function getShowVerificationModal (state) {
+  return state.showVerificationModal;
+}
