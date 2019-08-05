@@ -3,12 +3,12 @@ import resetCertificateDefinition from '../../../actions/resetCertificateDefinit
 import VerifyOtherCertificateLink from './VerifyOtherCertificateLink';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 
-const mapDispatchToProps = {
+export const mapDispatchToProps = {
   onClick: resetCertificateDefinition
 };
 
-const mapStateToProps = (state) => ({
-  isVisible: getCertificateDefinition(state)
+export const mapStateToProps = (state) => ({
+  isVisible: !!getCertificateDefinition(state)
 });
 
 const VerifyOtherCertificateLinkContainer = connector(VerifyOtherCertificateLink, { mapDispatchToProps, mapStateToProps });

@@ -4,23 +4,28 @@ import resetCertificateDefinition from '../../../src/actions/resetCertificateDef
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import getInitialState from '../../../src/store/getInitialState';
 import validCertificateFixture from '../../fixtures/valid-certificate-example';
-import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import initialValidCertificateSteps from '../../assertions/initialValidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import updateVerificationStatus from '../../../src/actions/updateVerificationStatus';
+import stepVerified from '../../../src/actions/stepVerified';
+
+jest.mock('../../../src/helpers/stepQueue');
 
 describe('resetCertificateDefinition action creator test suite', function () {
   let store;
 
   beforeEach(function () {
     const initialStateConfiguration = getInitialState({ disableAutoVerify: true });
-    // mock verified steps
-    initialStateConfiguration.verifiedSteps = validCertificateStepsAssertions;
     store = configureStore(initialStateConfiguration);
     // initially set a certificate definition in the state
     store.dispatch(updateCertificateDefinition(validCertificateFixture));
     store.dispatch(updateVerificationStatus(VERIFICATION_STATUS.SUCCESS));
+    store.dispatch(stepVerified({
+      code: 'getTransactionId',
+      label: 'Getting transaction ID',
+      status: 'success'
+    }));
   });
 
   afterEach(function () {
