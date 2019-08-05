@@ -1,13 +1,13 @@
-import verifyCertificate from '../../../actions/verifyCertificate';
 import connector from '../../../store/connector';
 import { VerifyButton } from './VerifyButton';
 import { getUrlIsValid } from '../../../selectors/input';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 import { getDisableVerify } from '../../../selectors/api';
 import { getVerificationIsFinished } from '../../../selectors/verification';
+import startVerificationProcess from '../../../actions/startVerificationProcess';
 
-const mapDispatchToProps = {
-  onClick: verifyCertificate
+export const mapDispatchToProps = {
+  onClick: startVerificationProcess
 };
 
 export const mapStateToProps = (state) => ({
