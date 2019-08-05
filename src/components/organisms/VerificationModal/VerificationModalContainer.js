@@ -1,10 +1,10 @@
 import connector from '../../../store/connector';
 import VerificationModal from './VerificationModal';
-import { getVerificationHasStarted } from '../../../selectors/verification';
+import { getShowVerificationModal } from '../../../selectors/verification';
 import resetVerificationStatus from '../../../actions/resetVerificationStatus';
 
 export const mapStateToProps = (state) => ({
-  isOpen: getVerificationHasStarted(state)
+  isOpen: getShowVerificationModal(state)
 });
 
 export const mapDispatchToProps = {
