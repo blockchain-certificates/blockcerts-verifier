@@ -50,6 +50,7 @@
     "sass-lint": "^1.12.1",
     "semantic-release": "^15.9.14",
     "semistandard": "^13.0.1",
+    "sinon": "^7.4.1",
     "snazzy": "^8.0.0",
     "watch": "^1.0.2",
     "wc-sass-render": "1.0.0",

@@ -10,13 +10,14 @@ import validCertificateDefinition from '../../../fixtures/valid-certificate-exam
 import verifyCertificate from '../../../../src/actions/verifyCertificate';
 import { getShowVerificationModal, getVerificationStatus } from '../../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
+import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
 describe('VerifyButtonContainer test suite', function () {
+  stubCertificateVerify(validCertificateDefinition);
   let store;
 
   beforeEach(function () {
-    const initialState = getInitialState({ disableAutoVerify: true });
-    store = configureStore(initialState);
+    store = configureStore();
   });
 
   afterEach(function () {
@@ -46,7 +47,6 @@ describe('VerifyButtonContainer test suite', function () {
       describe('when no value was inputted', function () {
         it('should be false', function () {
           const state = store.getState();
-
           expect(mapStateToProps(state).cancelSpinner).toBe(false);
         });
       });
@@ -89,9 +89,6 @@ describe('VerifyButtonContainer test suite', function () {
 
       describe('when there is a certificateDefinition to verify', function () {
         it('should be false', async function () {
-          const initialState = getInitialState({ disableAutoVerify: true });
-          const store = configureStore(initialState);
-
           await store.dispatch(updateCertificateDefinition(validCertificateDefinition));
           const state = store.getState();
 

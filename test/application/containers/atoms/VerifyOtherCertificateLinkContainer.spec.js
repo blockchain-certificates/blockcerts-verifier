@@ -1,17 +1,16 @@
 import { configureStore } from '../../../../src/store';
-import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
 import {
   mapDispatchToProps,
   mapStateToProps
 } from '../../../../src/components/atoms/VerifyOtherCertificateLink/VerifyOtherCertificateLinkContainer';
-import updateVerificationStatus from '../../../../src/actions/updateVerificationStatus';
 import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import initialValidCertificateSteps from '../../../assertions/initialValidCertificateSteps';
 import { getCertificateDefinition, getVerifiedSteps } from '../../../../src/selectors/certificate';
 import { getVerificationStatus } from '../../../../src/selectors/verification';
 import stepVerified from '../../../../src/actions/stepVerified';
+import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
 jest.mock('../../../../src/helpers/stepQueue');
 
@@ -19,8 +18,7 @@ describe('VerifyOtherCertificateLinkContainer test suite', function () {
   let store;
 
   beforeEach(function () {
-    const initialState = getInitialState({ disableAutoVerify: true });
-    store = configureStore(initialState);
+    store = configureStore();
   });
 
   afterEach(function () {
@@ -28,6 +26,8 @@ describe('VerifyOtherCertificateLinkContainer test suite', function () {
   });
 
   describe('mapStateToProps function', function () {
+    stubCertificateVerify(certificateFixture);
+
     describe('given there is a certificate definition in the state', function () {
       it('should set the isVisible property to true', function () {
         store.dispatch(updateCertificateDefinition(certificateFixture));
@@ -47,9 +47,10 @@ describe('VerifyOtherCertificateLinkContainer test suite', function () {
   describe('mapDispatchToProps object', function () {
     describe('onClick method', function () {
       describe('when called', function () {
-        beforeEach(function () {
-          store.dispatch(updateCertificateDefinition(certificateFixture));
-          store.dispatch(updateVerificationStatus(VERIFICATION_STATUS.SUCCESS));
+        stubCertificateVerify(certificateFixture);
+
+        beforeEach(async function () {
+          await store.dispatch(updateCertificateDefinition(certificateFixture));
           store.dispatch(stepVerified({
             code: 'getTransactionId',
             label: 'Getting transaction ID',

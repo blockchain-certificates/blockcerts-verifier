@@ -1,6 +1,5 @@
 import { configureStore } from '../../../../src/store';
 import { mapStateToProps, mapDispatchToProps } from '../../../../src/components/organisms/FullScreenCertificate/FullScreenCertificateContainer';
-import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import XSSCertificateFixture from '../../../fixtures/xss-certificate-example';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
@@ -9,14 +8,13 @@ import initialValidCertificateSteps from '../../../assertions/initialValidCertif
 import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import { getVerificationStatus } from '../../../../src/selectors/verification';
 import stepVerified from '../../../../src/actions/stepVerified';
-import updateVerificationStatus from '../../../../src/actions/updateVerificationStatus';
+import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
 describe('FullScreenCertificateContainer test suite', function () {
   let store;
 
   beforeEach(function () {
-    const initialState = getInitialState({ disableAutoVerify: true });
-    store = configureStore(initialState);
+    store = configureStore();
   });
 
   afterEach(function () {
@@ -24,6 +22,7 @@ describe('FullScreenCertificateContainer test suite', function () {
   });
 
   describe('mapStateToProps property', function () {
+    stubCertificateVerify(XSSCertificateFixture);
     describe('given there is a certificate definition in the state', function () {
       let state;
 
@@ -58,11 +57,12 @@ describe('FullScreenCertificateContainer test suite', function () {
   });
 
   describe('mapDispatchToProps object', function () {
+    stubCertificateVerify(certificateFixture);
+
     describe('onClick method', function () {
       describe('when called', function () {
-        beforeEach(function () {
-          store.dispatch(updateCertificateDefinition(certificateFixture));
-          store.dispatch(updateVerificationStatus(VERIFICATION_STATUS.SUCCESS));
+        beforeEach(async function () {
+          await store.dispatch(updateCertificateDefinition(certificateFixture));
           store.dispatch(stepVerified({
             code: 'getTransactionId',
             label: 'Getting transaction ID',

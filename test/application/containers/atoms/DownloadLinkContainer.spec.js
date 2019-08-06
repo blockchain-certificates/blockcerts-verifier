@@ -1,17 +1,17 @@
 import { mapStateToProps } from '../../../../src/components/atoms/DownloadLink/DownloadLinkContainer';
-import getInitialState from '../../../../src/store/getInitialState';
 import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
+import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
 describe('DownloadLinkContainer test suite', function () {
   describe('mapStateToProps method', function () {
     describe('given there is a certificate definition in the state', function () {
       describe('and it is hosted on learning machine\'s system', function () {
-        it('should provide the correct download url as downloadLink', async function () {
-          const initialState = getInitialState({ disableAutoVerify: true });
-          const store = configureStore(initialState);
+        stubCertificateVerify(certificateFixture);
 
+        it('should provide the correct download url as downloadLink', async function () {
+          const store = configureStore();
           await store.dispatch(updateCertificateDefinition(certificateFixture));
 
           const state = store.getState();

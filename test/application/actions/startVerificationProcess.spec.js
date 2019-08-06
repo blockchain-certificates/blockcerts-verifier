@@ -1,21 +1,13 @@
 import { configureStore } from '../../../src/store';
-import getInitialState from '../../../src/store/getInitialState';
 import { getShowVerificationModal, getVerificationStatus } from '../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import startVerificationProcess from '../../../src/actions/startVerificationProcess';
-import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-
-const fixtureDefinition = {
-  verify: () => {}
-};
 
 describe('startVerificationProcess test suite', function () {
   let store;
 
-  beforeEach(function () {
-    const initialState = getInitialState({ disableAutoVerify: true });
-    store = configureStore(initialState);
-    store.dispatch(updateCertificateDefinition(fixtureDefinition));
+  beforeEach(async function () {
+    store = configureStore();
     store.dispatch(startVerificationProcess());
   });
 

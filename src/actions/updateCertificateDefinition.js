@@ -4,6 +4,7 @@ import domain from '../domain';
 import setErrorMessage from './setErrorMessage';
 import verifyCertificate from './verifyCertificate';
 import { getDisableAutoVerify } from '../selectors/api';
+import showVerificationModal from './showVerificationModal';
 
 export default function updateCertificateDefinition (definition) {
   return async function (dispatch) {
@@ -32,6 +33,7 @@ function autoVerify () {
       dispatch({
         type: ACTIONS.AUTO_VERIFY
       });
+      dispatch(showVerificationModal(true));
       await dispatch(verifyCertificate());
     }
   };
