@@ -4,7 +4,7 @@ describe('linkRender method', function () {
   const link = '<a href=';
   const mailLink = '<a href=\\"mailto:';
   const phoneLink = '<a href=\\"tel:';
-  const targetBlank = '"target=”_blank”';
+  const targetBlank = '_blank';
   const title = 'title';
   const value = 'http://a.dummy.link';
   describe('when type is string', function () {
@@ -62,7 +62,7 @@ describe('linkRender method', function () {
       const output = JSON.stringify(linkRender(type, format, title, value));
       expect(output)
         .toEqual(expect.not.stringContaining(link));
-      expect(output)  
+      expect(output)
         .toEqual(expect.not.stringContaining(targetBlank));
     });
   }));

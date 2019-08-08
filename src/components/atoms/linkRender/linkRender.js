@@ -16,8 +16,8 @@ export default function linkRender (type, format, title, value, targetBlank = tr
   if (type === 'string') {
     switch (format) {
       case 'uri':
-        let blank = targetBlank ? `target=”_blank”` : '';
-        linkWrap = html`<a href="${value} ${blank}">${value}</a> `;
+        let blank = targetBlank ? `_blank` : '';
+        linkWrap = html`<a href="${value}" target="${blank}" >${value}</a> `;
         break;
       case 'email':
         linkWrap = html`<a href="mailto:${value}">${value}</a> `;
