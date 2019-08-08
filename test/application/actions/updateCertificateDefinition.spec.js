@@ -12,7 +12,6 @@ import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
 import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
-import validCertificateSteps from '../../assertions/validCertificateSteps';
 import validCertificate from '../../assertions/validCertificate';
 import { getShowVerificationModal, getVerificationHasStarted } from '../../../src/selectors/verification';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
@@ -86,6 +85,12 @@ describe('updateCertificateDefinition action creator test suite', function () {
       expect(getVerifiedSteps(state)).toEqual(initialValidCertificateStepsAssertions);
     });
 
+    it('should automatically start the verification process', async function () {
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
+      const state = store.getState();
+      expect(getVerificationHasStarted(state)).toBe(true);
+    });
+
     describe('given the disableAutoVerify flag is true', function () {
       it('should not open the verification modal', async function () {
         const apiConfiguration = {
@@ -101,28 +106,15 @@ describe('updateCertificateDefinition action creator test suite', function () {
     });
 
     describe('given the disableAutoVerify flag is false', function () {
-      let store;
-
-      beforeAll(async function () {
+      it('should open the verification modal', async function () {
         const apiConfiguration = {
           disableAutoVerify: false
         };
         const initialState = getInitialState(apiConfiguration);
-        store = configureStore(initialState);
+        const store = configureStore(initialState);
         await store.dispatch(updateCertificateDefinition(certificateFixture));
-      });
-
-      it('should open the verification modal', async function () {
         const state = store.getState();
         expect(getShowVerificationModal(state)).toBe(true);
-      });
-
-      it('should automatically start the verification process', async function () {
-        // go through regular verification process
-        global.domainParseStub.restore();
-        const state = store.getState();
-
-        expect(getVerifiedSteps(state)).toEqual(validCertificateSteps);
       });
     });
   });

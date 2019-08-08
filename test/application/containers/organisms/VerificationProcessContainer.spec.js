@@ -2,10 +2,12 @@ import { mapStateToProps } from '../../../../src/components/organisms/Verificati
 import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
-import invalidCertificateFixture from '../../../fixtures/invalid-certificate-example';
 import mainnetCertificateFixture from '../../../fixtures/ethereum-main-valid-2.0';
 import validCertificateStepsAssertions from '../../../assertions/validCertificateSteps';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
+import { getVerifiedSteps } from '../../../../src/selectors/certificate';
+import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
+import updateParentStepStatus from '../../../../src/actions/updateParentStepStatus';
 
 jest.mock('../../../../src/helpers/stepQueue');
 
@@ -42,12 +44,30 @@ describe('VerificationProcessContainer test suite', function () {
     });
 
     describe('given there are verifiedSteps set in the state', function () {
-      describe('and the certificate is valid', function () {
-        let store;
+      stubCertificateVerify(certificateFixture);
 
-        beforeAll(async function () {
-          store = configureStore();
-          await store.dispatch(updateCertificateDefinition(certificateFixture));
+      beforeEach(function () {
+        // put some verifiedSteps items in the state
+        store.dispatch(updateCertificateDefinition(certificateFixture));
+      });
+
+      describe('and the certificate is valid', function () {
+        beforeEach(async function () {
+          const preState = store.getState();
+          const parentSteps = getVerifiedSteps(preState);
+          parentSteps.forEach(parentStep => {
+            const parentCode = parentStep.code;
+            // assume process has started
+            parentStep.status = VERIFICATION_STATUS.STARTED;
+            // prepare substeps
+            parentStep.subSteps.forEach(substep => {
+              substep.status = VERIFICATION_STATUS.SUCCESS;
+              substep.label = substep.labelPending;
+              delete substep.labelPending;
+            });
+
+            store.dispatch(updateParentStepStatus(parentCode));
+          });
         });
 
         it('should retrieve the correct value', async function () {
@@ -63,7 +83,17 @@ describe('VerificationProcessContainer test suite', function () {
 
       describe('and one is a failure', function () {
         it('should set the hasError property to true', async function () {
-          await store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
+          const preState = store.getState();
+          const parentStep = getVerifiedSteps(preState)[0];
+          const parentCode = parentStep.code;
+
+          // assume process has started
+          parentStep.status = VERIFICATION_STATUS.STARTED;
+          // prepare substeps
+          parentStep.subSteps[0].status = VERIFICATION_STATUS.FAILURE;
+
+          store.dispatch(updateParentStepStatus(parentCode));
+
           const state = store.getState();
 
           expect(mapStateToProps(state).hasError).toBe(true);

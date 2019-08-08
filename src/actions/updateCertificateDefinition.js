@@ -34,7 +34,7 @@ function autoVerify () {
         type: ACTIONS.AUTO_VERIFY
       });
       dispatch(showVerificationModal(true));
-      await dispatch(verifyCertificate());
     }
+    await dispatch(verifyCertificate());
   };
 }
