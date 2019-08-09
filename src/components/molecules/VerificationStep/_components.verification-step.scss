@@ -67,7 +67,7 @@
   opacity: 1;
 }
 
-.buv-c-verification-step.is-success::after {
+.buv-c-verification-step.is-success:not(.is-final)::after {
   border: solid $successColor;
   border-width: 0 2px 2px 0;
   left: -29px;

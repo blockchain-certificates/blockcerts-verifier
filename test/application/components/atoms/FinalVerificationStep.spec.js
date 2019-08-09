@@ -16,6 +16,20 @@ describe('FinalVerificationStep component test suite', function () {
     });
   });
 
+  describe('given the status is failure', function () {
+    it('should add the is-failure class', function () {
+      const instance = FinalVerificationStep({ status: 'failure', finalStep: {} });
+      expect(assertClassInStringBits(instance, 'is-failure')).toBe(true);
+    });
+  });
+
+  describe('given the status is not failure', function () {
+    it('should not add the is-failure class', function () {
+      const instance = FinalVerificationStep({ status: 'success', finalStep: {} });
+      expect(assertClassInStringBits(instance, 'is-failure')).toBe(false);
+    });
+  });
+
   describe('given the isTestChain flag is set to true', function () {
     it('should add the is-test class', function () {
       const instance = FinalVerificationStep({ isTestChain: true, finalStep: {} });

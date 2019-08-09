@@ -8,7 +8,7 @@ function getDetails (finalStep, chain) {
     : '';
 }
 
-export default function FinalVerificationStep ({ chain = '', transactionLink = '', isTestChain, isVisible = false, finalStep = null, hideLink = false } = {}) {
+export default function FinalVerificationStep ({ chain = '', transactionLink = '', isTestChain, isVisible = false, finalStep = null, hideLink = false, status = false } = {}) {
   if (!finalStep) {
     return;
   }
@@ -19,7 +19,8 @@ export default function FinalVerificationStep ({ chain = '', transactionLink = '
     'buv-qa-verification-step',
     'is-final',
     isVisible ? 'is-visible' : '',
-    isTestChain ? 'is-test' : ''
+    isTestChain ? 'is-test' : '',
+    `is-${status}`
   ].join(' ');
 
   const detailsClasses = [

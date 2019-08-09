@@ -12,6 +12,10 @@
   opacity: 0;
 }
 
+.buv-c-verification-step.is-final.is-failure {
+  color: $errorColor;
+}
+
 .buv-c-verification-step__description {
   margin: 0;
 }
@@ -37,7 +41,7 @@
   height: 38px;
 }
 
-.buv-c-verification-step.is-final::after {
+.buv-c-verification-step.is-final:not(.is-failure)::after {
   content: '';
   height: 26px;
   width: 23px;
@@ -49,8 +53,13 @@
   background-size: contain;
 }
 
-.buv-c-verification-step.is-final.is-test::after {
+.buv-c-verification-step.is-final.is-test:not(.is-failure)::after {
   background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4IiBmaWxsPSIjRjVBNjIzIj48cGF0aCBkPSJNLjUgMTZoMTdMOSAxIC41IDE2em05LjUtMkg4di0yaDJ2MnptMC0zSDhWN2gydjR6Ii8+PC9zdmc+IA==');
+}
+
+.buv-c-verification-step.is-final.is-failure::after {
+  font-size: 17px;
+  left: -34px;
 }
 
 .buv-c-verification-step.is-final.is-visible::after {

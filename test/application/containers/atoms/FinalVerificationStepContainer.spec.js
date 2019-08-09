@@ -5,6 +5,8 @@ import updateCertificateDefinition from '../../../../src/actions/updateCertifica
 import certificateFixture from '../../../fixtures/valid-certificate-example';
 import mainnetCertificateFixture from '../../../fixtures/ethereum-main-valid-2.0';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
+import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
+import updateVerificationStatus from '../../../../src/actions/updateVerificationStatus';
 
 describe('FinalVerificationStepContainer test suite', function () {
   describe('mapStateToProps function', function () {
@@ -66,6 +68,24 @@ describe('FinalVerificationStepContainer test suite', function () {
         store.dispatch(updateCertificateDefinition(mainnetCertificateFixture));
         const state = store.getState();
         expect(mapStateToProps(state).isTestChain).toBe(false);
+      });
+    });
+
+    describe('given the verification is a success', function () {
+      it('should get the status property', async function () {
+        store.dispatch(updateVerificationStatus(VERIFICATION_STATUS.SUCCESS));
+
+        const state = store.getState();
+        expect(mapStateToProps(state).status).toBe(VERIFICATION_STATUS.SUCCESS);
+      });
+    });
+
+    describe('given the verification is a failure', function () {
+      it('should get the status property', async function () {
+        store.dispatch(updateVerificationStatus(VERIFICATION_STATUS.FAILURE));
+
+        const state = store.getState();
+        expect(mapStateToProps(state).status).toBe(VERIFICATION_STATUS.FAILURE);
       });
     });
   });
