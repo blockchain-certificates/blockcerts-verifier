@@ -3,7 +3,7 @@ import { mapStateToProps, mapDispatchToProps } from '../../../../src/components/
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import XSSCertificateFixture from '../../../fixtures/xss-certificate-example';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
-import { getCertificateDefinition, getVerifiedSteps } from '../../../../src/selectors/certificate';
+import { getCertificateDefinition, getFinalStep, getVerifiedSteps } from '../../../../src/selectors/certificate';
 import initialValidCertificateSteps from '../../../assertions/initialValidCertificateSteps';
 import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import { getVerificationStatus } from '../../../../src/selectors/verification';
@@ -84,6 +84,11 @@ describe('FullScreenCertificateContainer test suite', function () {
         it('should reset the verified steps', function () {
           const state = store.getState();
           expect(getVerifiedSteps(state)).toEqual(initialValidCertificateSteps);
+        });
+
+        it('should reset the final step', function () {
+          const state = store.getState();
+          expect(getFinalStep(state)).toBe(null);
         });
       });
     });

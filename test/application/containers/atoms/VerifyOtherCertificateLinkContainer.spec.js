@@ -7,7 +7,7 @@ import {
 } from '../../../../src/components/atoms/VerifyOtherCertificateLink/VerifyOtherCertificateLinkContainer';
 import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import initialValidCertificateSteps from '../../../assertions/initialValidCertificateSteps';
-import { getCertificateDefinition, getVerifiedSteps } from '../../../../src/selectors/certificate';
+import { getCertificateDefinition, getFinalStep, getVerifiedSteps } from '../../../../src/selectors/certificate';
 import { getVerificationStatus } from '../../../../src/selectors/verification';
 import stepVerified from '../../../../src/actions/stepVerified';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
@@ -72,6 +72,11 @@ describe('VerifyOtherCertificateLinkContainer test suite', function () {
         it('should reset the verified steps', function () {
           const state = store.getState();
           expect(getVerifiedSteps(state)).toEqual(initialValidCertificateSteps);
+        });
+
+        it('should reset the final step', function () {
+          const state = store.getState();
+          expect(getFinalStep(state)).toBe(null);
         });
       });
     });
