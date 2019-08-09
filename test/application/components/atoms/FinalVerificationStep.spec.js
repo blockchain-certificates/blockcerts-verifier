@@ -43,22 +43,37 @@ describe('FinalVerificationStep component test suite', function () {
   });
 
   describe('given there is a link text', function () {
-    it('should use the transaction link', function () {
-      const fixtureFinalStep = {
-        linkText: 'Check transaction'
-      };
+    describe('given the hideLink property is false', function () {
+      let instance;
 
-      const instance = FinalVerificationStep({ transactionLink: 'http://test.com', finalStep: fixtureFinalStep });
-      expect(assertStringInValues(instance, 'http://test.com')).toBe(true);
+      beforeEach(function () {
+        const fixtureFinalStep = {
+          linkText: 'Check transaction'
+        };
+        instance = FinalVerificationStep({ transactionLink: 'http://test.com', finalStep: fixtureFinalStep });
+      });
+
+      afterEach(function () {
+        instance = null;
+      });
+
+      it('should use the transaction link', function () {
+        expect(assertStringInValues(instance, 'http://test.com')).toBe(true);
+      });
+
+      it('should use the linkText', function () {
+        expect(assertStringInValues(instance, 'Check transaction')).toBe(true);
+      });
     });
 
-    it('should use the linkText', function () {
-      const fixtureFinalStep = {
-        linkText: 'Check transaction'
-      };
-
-      const instance = FinalVerificationStep({ transactionLink: 'http://test.com', finalStep: fixtureFinalStep });
-      expect(assertStringInValues(instance, 'Check transaction')).toBe(true);
+    describe('given the hideLink property is true', function () {
+      it('should not show the link', function () {
+        const fixtureFinalStep = {
+          linkText: 'Check transaction'
+        };
+        const instance = FinalVerificationStep({ transactionLink: 'http://test.com', finalStep: fixtureFinalStep, hideLink: true });
+        expect(assertClassInStringBits(instance, 'buv-qa-transaction-link')).toBe(false);
+      });
     });
   });
 });

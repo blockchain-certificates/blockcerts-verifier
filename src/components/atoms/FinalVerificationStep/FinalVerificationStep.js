@@ -8,7 +8,7 @@ function getDetails (finalStep, chain) {
     : '';
 }
 
-export default function FinalVerificationStep ({ chain = '', transactionLink = '', isTestChain, isVisible = false, finalStep = null } = {}) {
+export default function FinalVerificationStep ({ chain = '', transactionLink = '', isTestChain, isVisible = false, finalStep = null, hideLink = false } = {}) {
   if (!finalStep) {
     return;
   }
@@ -33,7 +33,7 @@ export default function FinalVerificationStep ({ chain = '', transactionLink = '
 
   const title = finalStep.label;
   const details = getDetails(finalStep, chain);
-  const link = finalStep.linkText
+  const link = !hideLink && finalStep.linkText
     ? html`<a class='buv-o-link' href='${transactionLink}' hidden?='${!transactionLink}'>
         <span class='buv-o-link__text--underline  buv-qa-transaction-link'>${finalStep.linkText}</span>
       </a>`
