@@ -4,28 +4,28 @@ import { assertClassInStringBits, assertStringInValues } from '../helpers/assert
 describe('FinalVerificationStep component test suite', function () {
   describe('given the isVisible flag is set to true', function () {
     it('should add the is-visible class', function () {
-      const instance = FinalVerificationStep({ isVisible: true });
+      const instance = FinalVerificationStep({ isVisible: true, finalStep: {} });
       expect(assertClassInStringBits(instance, 'is-visible')).toBe(true);
     });
   });
 
   describe('given the isVisible flag is set to false', function () {
     it('should not add the is-visible class', function () {
-      const instance = FinalVerificationStep({ isVisible: false });
+      const instance = FinalVerificationStep({ isVisible: false, finalStep: {} });
       expect(assertClassInStringBits(instance, 'is-visible')).toBe(false);
     });
   });
 
   describe('given the isTestChain flag is set to true', function () {
     it('should add the is-test class', function () {
-      const instance = FinalVerificationStep({ isTestChain: true });
+      const instance = FinalVerificationStep({ isTestChain: true, finalStep: {} });
       expect(assertClassInStringBits(instance, 'is-test')).toBe(true);
     });
   });
 
   describe('given the isTestChain flag is set to false', function () {
     it('should not add the is-test class', function () {
-      const instance = FinalVerificationStep({ isTestChain: false });
+      const instance = FinalVerificationStep({ isTestChain: false, finalStep: {} });
       expect(assertClassInStringBits(instance, 'is-test')).toBe(false);
     });
   });

@@ -30,9 +30,9 @@ export default function FullScreenCertificate ({
     <section class='buv-c-fullscreen-certificate'>
       <header class='buv-c-fullscreen-certificate-header'>
         <div class='buv-c-fullscreen-certificate-header__content'>
-          <div>
+          <div class='buv-c-fullscreen-certificate__title-wrapper'>
             <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
-            <buv-final-verification-step isVisible></buv-final-verification-step>
+            <buv-final-verification-step isVisible class='buv-c-fullscreen-certificate__status'></buv-final-verification-step>
           </div>
             <buv-verify-button isStandAlone></buv-verify-button>
           ${CloseButton({ onClick: onClose, className: 'buv-c-fullscreen-certificate__close' })}
