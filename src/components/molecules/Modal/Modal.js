@@ -1,6 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.modal-css';
-import CloseButton from '../../atoms/CloseButton/index';
+import CloseButton from '../../atoms/CloseButton';
 
 class Modal extends LitElement {
   constructor () {

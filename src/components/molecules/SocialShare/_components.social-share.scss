@@ -1,5 +1,6 @@
 @import '../../../shared-styles/objects.text';
 @import '../../../shared-styles/objects.button-link';
+@import '../../../shared-styles/objects.link';
 @import '../../../shared-styles/objects.overlay';
 
 .buv-c-social-share-link {
@@ -28,6 +29,11 @@
 
 .buv-c-social-share-modal__list-item {
   margin-bottom: 24px;
+}
+
+.buv-c-social-share-modal__list-item--plaintext {
+  margin-bottom: 5px;
+  font-size: 13px;
 }
 
 .buv-c-social-share-modal__list-item:last-child {

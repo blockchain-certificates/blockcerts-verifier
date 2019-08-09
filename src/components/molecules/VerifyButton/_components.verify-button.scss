@@ -13,6 +13,10 @@ $secondaryColor: #fff;
   border: 1px solid $mainColor;
 }
 
+.buv-c-verify-button--standalone {
+  border-radius: 2px;
+}
+
 .buv-c-verify-button__label {
   cursor: pointer;
 }

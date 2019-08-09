@@ -30,5 +30,3 @@
   margin-top: 0;
   justify-content: flex-end; // TODO: this is a bit too much consequential: this rule shouldn't know about the layout of its children.
 }
-
-@import '../../../shared-styles/utils.a11y';

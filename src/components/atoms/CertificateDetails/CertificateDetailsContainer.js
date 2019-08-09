@@ -20,5 +20,10 @@ export const mapStateToProps = (state) => ({
   transactionId: getTransactionId(state)
 });
 
-const CertificateDetailsContainer = connector(CertificateDetails, { mapStateToProps });
+const ownProps = {
+  direction: String,
+  hideRecipientName: Boolean
+};
+
+const CertificateDetailsContainer = connector(CertificateDetails, { mapStateToProps, ownProps });
 export default CertificateDetailsContainer;

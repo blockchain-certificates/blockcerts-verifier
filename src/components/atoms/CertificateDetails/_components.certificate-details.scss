@@ -6,7 +6,6 @@
   margin: 0;
   position: relative;
   padding-bottom: 60px;
-  color: rgba(110, 126, 142, 1);
 
   @media only screen and (max-width: 520px) {
     flex-direction: column;
@@ -14,11 +13,23 @@
   }
 }
 
+.buv-c-certificate-details--column {
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
 .buv-c-certificate-details__group {
   box-sizing: border-box;
   padding-right: 15px;
-  max-width: 33%;
   margin-top: 15px;
+}
+
+.buv-c-certificate-details__group.is-first {
+  margin-top: 0;
+}
+
+.buv-c-certificate-details__group--row {
+  max-width: 33%;
 
   @media only screen and (max-width: 520px) {
     max-width: 100%;
@@ -26,8 +37,8 @@
 }
 
 .buv-c-certificate-details__title {
-  font-weight: 100;
   margin-bottom: 5px;
+  text-transform: uppercase;
 }
 
 .buv-c-certificate-details__value {

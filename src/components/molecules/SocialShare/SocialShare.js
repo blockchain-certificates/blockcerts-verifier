@@ -13,7 +13,8 @@ class SocialShare extends LitElement {
     return {
       url: String,
       isOpen: String,
-      onShare: Function
+      onShare: Function,
+      display: String
     };
   }
 
@@ -21,7 +22,15 @@ class SocialShare extends LitElement {
     this.isOpen = !this.isOpen;
   }
 
-  sharingTemplate ({ url, onShare }) {
+  sharingTemplate ({ url, onShare, display }) {
+    if (!this.isOpen) {
+      return;
+    }
+
+    if (!url) {
+      return;
+    }
+    const isPlainText = display === 'plaintext';
     const socialServices = [
       {
         name: 'LinkedIn',
@@ -38,7 +47,7 @@ class SocialShare extends LitElement {
     ];
 
     const innerHTMLList = socialServices.map(service =>
-      html`<li class='buv-c-social-share-modal__list-item'>
+      html`<li class$='buv-c-social-share-modal__list-item  ${isPlainText ? 'buv-c-social-share-modal__list-item--plaintext' : ''}'>
             <a
               href='${service.shareUrl}'
               title='Share on ${service.name}'
@@ -46,23 +55,36 @@ class SocialShare extends LitElement {
               target='_blank'
               onclick='${() => { onShare(service.name); }}'
             >
-              <span class='buv-o-link__text--underline'>Share on ${service.name}</span>
+              <span>Share on ${service.name}</span>
             </a>
           </li>`
     );
+
+    const list = html`<ul class='buv-c-social-share-modal__list'>
+        ${innerHTMLList}
+      </ul>`;
+
+    if (isPlainText) {
+      return list;
+    }
 
     return html`<div class='buv-c-social-share-modal  buv-o-text-12  buv-o-overlay'>
       ${CloseButton({
     onClick: this.toggleOpen,
     className: 'buv-c-social-share-modal__close-button'
   })}
-      <ul class='buv-c-social-share-modal__list'>
-        ${innerHTMLList}
-      </ul>
+      ${list}
     </div>`;
   }
 
-  sharingButton (hasUrl) {
+  sharingButton ({ url, display }) {
+    const isPlainText = display === 'plaintext';
+    if (isPlainText) {
+      this.isOpen = true;
+      return;
+    }
+
+    const hasUrl = !!url;
     const info = hasUrl ? 'Share on Social Networks' : 'No URL to share!';
     return html`<button 
         onclick='${this.toggleOpen}'
@@ -76,11 +98,10 @@ class SocialShare extends LitElement {
   }
 
   _render (props) {
-    const { url } = props;
     return html`
       ${CSS}
-      ${this.sharingButton(!!url)}
-      ${this.isOpen && url ? this.sharingTemplate(props) : ''}
+      ${this.sharingButton(props)}
+      ${this.sharingTemplate(props)}
     `;
   }
 }
@@ -93,9 +114,10 @@ function SocialShareWrapper (props) {
   return html`
   <buv-social-share-raw
     url='${props.url}'
-    allowSocialShare='${props.allowSocialShare}'
     onShare='${props.onShare}'
+    display='${props.display}'
   ></buv-social-share-raw>`;
 }
 
+export default SocialShare; // component export for testing
 export { SocialShareWrapper as SocialShare };

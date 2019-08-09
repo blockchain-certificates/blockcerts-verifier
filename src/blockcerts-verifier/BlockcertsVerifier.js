@@ -7,6 +7,7 @@ import ErrorMessage from '../components/atoms/ErrorMessage/';
 import CSS from '../components/atoms/GlobalStylesheet';
 import '../components/organisms/CardCertificate';
 import '../components/organisms/FullCertificate';
+import '../components/organisms/FullScreenCertificate';
 import '../components/molecules/Footer/';
 import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
@@ -36,6 +37,17 @@ class BlockcertsVerifier extends LitElement {
     }
   }
 
+  renderCertificate (_props) {
+    switch (_props.displayMode) {
+      case DISPLAY_MODE.FULL:
+        return html`<buv-full-certificate></buv-full-certificate>`;
+      case DISPLAY_MODE.FULLSCREEN:
+        return html`<buv-fullscreen-certificate></buv-fullscreen-certificate>`;
+      default:
+        return html`<buv-card-certificate></buv-card-certificate>`;
+    }
+  }
+
   _render (_props) {
     const bodyClass = _props.hasCertificate ? 'buv-c-verifier-body  buv-c-verifier-body--padded' : '';
 
@@ -48,10 +60,7 @@ class BlockcertsVerifier extends LitElement {
               ${ErrorMessage(_props.errorMessage, true)}
               <buv-certificate-input></buv-certificate-input>
               <buv-action-menu></buv-action-menu>
-              ${_props.displayMode === DISPLAY_MODE.FULL
-    ? html`<buv-full-certificate></buv-full-certificate>`
-    : html`<buv-card-certificate></buv-card-certificate>`
-}
+              ${this.renderCertificate(_props)}
               <buv-verification-modal></buv-verification-modal>
             </section>
             <buv-footer interactive></buv-footer>
