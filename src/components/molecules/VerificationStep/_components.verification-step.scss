@@ -67,7 +67,7 @@
   opacity: 1;
 }
 
-.buv-c-verification-step.is-success:not(.is-final)::after {
+.buv-c-verification-step.is-success::after {
   border: solid $successColor;
   border-width: 0 2px 2px 0;
   left: -29px;
@@ -82,7 +82,7 @@
 
 .buv-c-verification-step.is-failure::after {
   content: '\\274C'; // double escape needed for JS
-  left: -31px;
+  left: -32px;
   top: -1px;
   font-size: 11px;
   color: $errorColor;

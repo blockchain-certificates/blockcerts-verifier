@@ -8,16 +8,23 @@ function getDetails (finalStep, chain) {
     : '';
 }
 
-export default function FinalVerificationStep ({ chain = '', transactionLink = '', isTestChain, isVisible = false, finalStep = null, hideLink = false, status = false } = {}) {
+export default function FinalVerificationStep ({
+  chain = '',
+  transactionLink = '',
+  isTestChain,
+  isVisible = false,
+  finalStep = null,
+  hideLink = false,
+  status = false
+} = {}) {
   if (!finalStep) {
     return;
   }
 
   // TODO: better handle this dynamic class (cf npm classnames)
   const titleClasses = [
-    'buv-c-verification-step',
+    'buv-c-final-verification-step',
     'buv-qa-verification-step',
-    'is-final',
     isVisible ? 'is-visible' : '',
     isTestChain ? 'is-test' : '',
     `is-${status}`
