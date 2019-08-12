@@ -13,7 +13,9 @@
 }
 
 .buv-c-verification-step.is-final.is-failure {
-  color: $errorColor;
+  color: $fontColor;
+  font-size: 13px;
+  font-weight: 400;
 }
 
 .buv-c-verification-step__description {
