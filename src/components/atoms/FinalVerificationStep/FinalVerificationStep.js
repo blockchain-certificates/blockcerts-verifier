@@ -27,7 +27,8 @@ export default function FinalVerificationStep ({
     'buv-qa-verification-step',
     isVisible ? 'is-visible' : '',
     isTestChain ? 'is-test' : '',
-    `is-${status}`
+    `is-${status}`,
+    status ? 'buv-c-badge  buv-c-badge--large' : ''
   ].join(' ');
 
   const detailsClasses = [

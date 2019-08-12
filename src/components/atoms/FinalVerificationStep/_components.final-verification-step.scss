@@ -32,31 +32,6 @@
   color: $fontColor;
 }
 
-.buv-c-final-verification-step::before {
-  content: '';
-  width: 38px;
-  height: 24px;
-  top: -12px;
-  left: -45px;
-}
-
-.buv-c-final-verification-step::before {
-  content: '';
-  position: absolute;
-  left: -45px;
-  top: -9px;
-  width: 38px;
-  height: 38px;
-  background-color: #fff;
-  border-radius: 50%;
-  -webkit-transition: all .2s ease-out;
-  -o-transition: all .2s ease-out;
-  transition: all .2s ease-out;
-  z-index: 2;
-  box-sizing: content-box;
-  box-shadow: 0 2px 4px 0 rgba(22, 40, 55, .21);
-}
-
 .buv-c-final-verification-step::after {
   position: absolute;
   content: '';
