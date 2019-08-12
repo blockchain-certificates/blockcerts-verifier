@@ -15,7 +15,8 @@ export default function FinalVerificationStep ({
   isVisible = false,
   finalStep = null,
   hideLink = false,
-  status = false
+  status = false,
+  standalone = false
 } = {}) {
   if (!finalStep) {
     return;
@@ -24,16 +25,17 @@ export default function FinalVerificationStep ({
   // TODO: better handle this dynamic class (cf npm classnames)
   const titleClasses = [
     'buv-c-final-verification-step',
+    standalone ? 'buv-c-final-verification-step--standalone' : '',
     'buv-qa-verification-step',
     isVisible ? 'is-visible' : '',
     isTestChain ? 'is-test' : '',
     `is-${status}`,
-    status ? 'buv-c-badge  buv-c-badge--large' : ''
+    status && !standalone ? 'buv-c-badge  buv-c-badge--large' : ''
   ].join(' ');
 
   const detailsClasses = [
     'buv-c-verification-substep',
-    'buv-u-excluded-from-flow',
+    !standalone ? 'buv-u-excluded-from-flow' : '',
     'buv-u-full-width',
     'buv-o-text-12',
     'is-final',

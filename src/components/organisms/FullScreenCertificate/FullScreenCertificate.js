@@ -32,7 +32,7 @@ export default function FullScreenCertificate ({
         <div class='buv-c-fullscreen-certificate-header__content'>
           <div class='buv-c-fullscreen-certificate__title-wrapper'>
             <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
-            <buv-final-verification-step class='buv-c-fullscreen-certificate__status' isVisible hideLink></buv-final-verification-step>
+            <buv-final-verification-step isVisible hideLink standalone></buv-final-verification-step>
           </div>
             <buv-verify-button isStandAlone></buv-verify-button>
           ${CloseButton({ onClick: onClose, className: 'buv-c-fullscreen-certificate__close' })}

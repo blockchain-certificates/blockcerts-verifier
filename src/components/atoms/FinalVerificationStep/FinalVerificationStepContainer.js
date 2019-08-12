@@ -13,7 +13,8 @@ export const mapStateToProps = (state) => ({
 
 const ownProps = {
   isVisible: Boolean,
-  hideLink: Boolean
+  hideLink: Boolean,
+  standalone: Boolean
 };
 
 const FinalVerificationStepContainer = connector(FinalVerificationStep, { mapStateToProps, ownProps });

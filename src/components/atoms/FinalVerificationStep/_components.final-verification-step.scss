@@ -27,6 +27,10 @@
   opacity: 1;
 }
 
+.buv-c-final-verification-step.is-visible::after {
+  opacity: 1;
+}
+
 .buv-c-final-verification-step.is-test {
   font-size: 15px;
   color: $fontColor;
@@ -46,7 +50,7 @@
   z-index: 3;
 }
 
-.buv-c-final-verification-step.is-test:not(.is-failure)::after {
+.buv-c-final-verification-step.is-test::after {
   background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4IiBmaWxsPSIjRjVBNjIzIj48cGF0aCBkPSJNLjUgMTZoMTdMOSAxIC41IDE2em05LjUtMkg4di0yaDJ2MnptMC0zSDhWN2gydjR6Ii8+PC9zdmc+IA==');
 }
 
@@ -59,8 +63,32 @@
   background: none;
 }
 
-.buv-c-final-verification-step.is-visible::after {
-  opacity: 1;
+.buv-c-final-verification-step--standalone {
+  padding: 10px 10px 10px 40px;
+  height: 50px;
+  box-sizing: border-box;
+  border-left: 3px solid;
+  color: $fontColor;
+}
+
+.buv-c-final-verification-step--standalone.is-success {
+  background-color: $successColorBackground;
+  border-color: $successColor;
+}
+
+.buv-c-final-verification-step--standalone.is-failure {
+  background-color: $errorColorBackground;
+  border-color: $errorColor;
+}
+
+.buv-c-final-verification-step--standalone.is-test {
+  background-color: #d8d8d8;
+  border-color: $fontColor;
+}
+
+.buv-c-final-verification-step--standalone::after {
+  left: 10px;
+  top: 7px;
 }
 
 .buv-c-verification-substep.is-final {
