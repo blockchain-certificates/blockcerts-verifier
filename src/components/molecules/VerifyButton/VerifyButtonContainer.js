@@ -16,8 +16,7 @@ export const mapStateToProps = (state) => ({
 });
 
 const ownProps = {
-  isHollow: Boolean,
-  isStandAlone: Boolean
+  isHollow: Boolean
 };
 
 const VerifyButtonContainer = connector(VerifyButton, { mapDispatchToProps, mapStateToProps, ownProps });
