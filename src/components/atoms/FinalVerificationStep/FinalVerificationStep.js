@@ -31,6 +31,7 @@ export default function FinalVerificationStep ({
   // TODO: better handle this dynamic class (cf npm classnames)
   const titleClasses = [
     'buv-c-final-verification-step',
+    'buv-qa-final-verification-step',
     standalone ? 'buv-c-final-verification-step--standalone' : '',
     'buv-qa-verification-step',
     isVisible ? 'is-visible' : '',
