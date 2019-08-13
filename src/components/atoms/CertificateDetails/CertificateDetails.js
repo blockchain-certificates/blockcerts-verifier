@@ -3,10 +3,9 @@ import CSS from './_components.certificate-details-css';
 
 const isValidLink = (link) => link.indexOf(' ') === -1;
 
-function renderListDetail ({ title, value, isDisplayColumn, renderInline = false, isFirst = false }) {
+function renderListDetail ({ title, value, isDisplayColumn, renderInline = false }) {
   const classes = [
     'buv-c-certificate-details__group',
-    isFirst && isDisplayColumn ? 'is-first' : '',
     isDisplayColumn ? '' : 'buv-c-certificate-details__group--row'
   ].join(' ');
 
@@ -65,7 +64,7 @@ export default function CertificateDetails ({
   });
 
   const isDisplayColumn = direction === 'column';
-  const definitionListDetails = details.map((detail, i) => renderListDetail({ ...detail, isDisplayColumn, isFirst: i === 0 }));
+  const definitionListDetails = details.map(detail => renderListDetail({ ...detail, isDisplayColumn }));
 
   const classes = [
     'buv-c-certificate-details',
