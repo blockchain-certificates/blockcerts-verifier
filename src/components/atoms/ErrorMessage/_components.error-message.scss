@@ -1,14 +1,13 @@
 @import '../../../shared-styles/settings.variables';
 
 .buv-c-error-message {
-  background: rgba(208, 2, 27, 0.05);
+  background: $errorColorBackground;
   border-radius: 2px;
   letter-spacing: .05px;
   padding: 10px;
 }
 
 .buv-c-error-message--solid {
-  // TODO: this class does a little bit too much
   background: #fff;
   border-radius: 2px 2px 0 0;
   margin: 0;
