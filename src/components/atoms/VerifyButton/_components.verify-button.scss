@@ -1,3 +1,5 @@
+@import '../../../shared-styles/settings.variables';
+
 $mainColor: #2ab27b;
 $secondaryColor: #fff;
 
@@ -23,6 +25,16 @@ $secondaryColor: #fff;
   font-weight: 100;
   text-transform: uppercase;
   padding: 12px 30px;
+  font-size: 13px;
+}
+
+.buv-c-verify-button--link {
+  background: none;
+  color: $fontColor;
+  border: 0;
+  text-decoration: underline;
+  padding: 0;
+  margin-top: 5px;
   font-size: 13px;
 }
 

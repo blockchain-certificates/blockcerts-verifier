@@ -13,7 +13,8 @@ export const mapStateToProps = (state) => ({
 });
 
 const ownProps = {
-  isHollow: Boolean
+  isHollow: Boolean,
+  type: String
 };
 
 const VerifyButtonContainer = connector(VerifyButton, { mapDispatchToProps, mapStateToProps, ownProps });
