@@ -57,38 +57,39 @@
 .buv-c-final-verification-step.is-failure::after {
   content: '\\274C'; // double escape needed for JS
   font-size: 17px;
-  left: -34px;
   top: 1px;
   color: $errorColor;
   background: none;
 }
 
-.buv-c-final-verification-step--standalone {
-  padding: 10px 10px 10px 40px;
-  height: 50px;
+.buv-c-final-verification-step--standalone-wrapper {
+  padding: 10px;
   box-sizing: border-box;
   border-left: 3px solid;
   color: $fontColor;
 }
 
-.buv-c-final-verification-step--standalone.is-success {
+.buv-c-final-verification-step--standalone-wrapper.is-success {
   background-color: $successColorBackground;
   border-color: $successColor;
 }
 
-.buv-c-final-verification-step--standalone.is-failure {
+.buv-c-final-verification-step--standalone-wrapper.is-failure {
   background-color: $errorColorBackground;
   border-color: $errorColor;
 }
 
-.buv-c-final-verification-step--standalone.is-test {
+.buv-c-final-verification-step--standalone-wrapper.is-test {
   background-color: #d8d8d8;
   border-color: $fontColor;
 }
 
+.buv-c-final-verification-step--standalone {
+  margin-left: 30px;
+}
+
 .buv-c-final-verification-step--standalone::after {
-  left: 10px;
-  top: 7px;
+  left: -30px;
 }
 
 .buv-c-verification-substep.is-final {

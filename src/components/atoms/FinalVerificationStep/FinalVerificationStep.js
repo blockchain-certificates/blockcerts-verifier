@@ -22,6 +22,12 @@ export default function FinalVerificationStep ({
     return;
   }
 
+  const wrapperClasses = [
+    standalone ? 'buv-c-final-verification-step--standalone-wrapper' : '',
+    `is-${status}`,
+    isTestChain ? 'is-test' : ''
+  ].join(' ');
+
   // TODO: better handle this dynamic class (cf npm classnames)
   const titleClasses = [
     'buv-c-final-verification-step',
@@ -52,10 +58,12 @@ export default function FinalVerificationStep ({
 
   return html`
     ${CSS}
-    <dt class$='${titleClasses}'>${title}</dt>
-    <dd class$='${detailsClasses}'>
-      ${details}
-      ${link}
-    </dd>
+    <div class$='${wrapperClasses}'>
+      <dt class$='${titleClasses}'>${title}</dt>
+      <dd class$='${detailsClasses}'>
+        ${details}
+        ${link}
+      </dd>
+    </div>
   `;
 }
