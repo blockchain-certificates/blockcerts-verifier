@@ -9,7 +9,7 @@ import '../../atoms/VerifyOtherCertificateLink';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
-import '../../molecules/VerifyButton';
+import '../../atoms/VerifyButton';
 
 export default function FullScreenCertificate ({
   hasCertificateDefinition,

@@ -1,13 +1,11 @@
 import {
   mapDispatchToProps,
   mapStateToProps
-} from '../../../../src/components/molecules/VerifyButton/VerifyButtonContainer';
+} from '../../../../src/components/atoms/VerifyButton/VerifyButtonContainer';
 import getInitialState from '../../../../src/store/getInitialState';
-import { configureStore } from '../../../../src/store';
+import { configureStore } from '../../../../src/store/index';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
-import validateUrlInput from '../../../../src/actions/validateUrlInput';
 import validCertificateDefinition from '../../../fixtures/valid-certificate-example';
-import verifyCertificate from '../../../../src/actions/verifyCertificate';
 import { getShowVerificationModal, getVerificationStatus } from '../../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
@@ -25,53 +23,6 @@ describe('VerifyButtonContainer test suite', function () {
   });
 
   describe('mapStateToProps method', function () {
-    describe('cancelSpinner property', function () {
-      describe('when the value inputted is invalid', function () {
-        it('should be true', function () {
-          store.dispatch(validateUrlInput(false));
-          const state = store.getState();
-
-          expect(mapStateToProps(state).cancelSpinner).toBe(true);
-        });
-      });
-
-      describe('when the value inputted is valid', function () {
-        it('should be false', function () {
-          store.dispatch(validateUrlInput(true));
-          const state = store.getState();
-
-          expect(mapStateToProps(state).cancelSpinner).toBe(false);
-        });
-      });
-
-      describe('when no value was inputted', function () {
-        it('should be false', function () {
-          const state = store.getState();
-          expect(mapStateToProps(state).cancelSpinner).toBe(false);
-        });
-      });
-
-      describe('when the verification has started', function () {
-        it('should be false', function () {
-          store.dispatch(updateCertificateDefinition(validCertificateDefinition));
-          store.dispatch(verifyCertificate());
-          const state = store.getState();
-
-          expect(mapStateToProps(state).cancelSpinner).toBe(false);
-        });
-      });
-
-      describe('when the verification has finished', function () {
-        it('should be true', async function () {
-          store.dispatch(updateCertificateDefinition(validCertificateDefinition));
-          await store.dispatch(verifyCertificate());
-          const state = store.getState();
-
-          expect(mapStateToProps(state).cancelSpinner).toBe(true);
-        });
-      });
-    });
-
     describe('isDisabled property', function () {
       describe('when the disableVerify flag is set in the state', function () {
         it('should be true', function () {

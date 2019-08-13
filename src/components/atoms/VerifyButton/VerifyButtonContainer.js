@@ -1,9 +1,7 @@
 import connector from '../../../store/connector';
-import { VerifyButton } from './VerifyButton';
-import { getUrlIsValid } from '../../../selectors/input';
+import VerifyButton from './VerifyButton';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 import { getDisableVerify } from '../../../selectors/api';
-import { getVerificationIsFinished } from '../../../selectors/verification';
 import startVerificationProcess from '../../../actions/startVerificationProcess';
 
 export const mapDispatchToProps = {
@@ -11,7 +9,6 @@ export const mapDispatchToProps = {
 };
 
 export const mapStateToProps = (state) => ({
-  cancelSpinner: !getUrlIsValid(state) || getVerificationIsFinished(state),
   isDisabled: getDisableVerify(state) || !getCertificateDefinition(state)
 });
 

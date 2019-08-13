@@ -25,8 +25,7 @@
               const el = fixture('invalid-input').shadowRoot.querySelectorAll('buv-raw')[0];
               const certificateInputComponent = el.shadowRoot.querySelectorAll('buv-certificate-input')[0];
               const buttonComponent = certificateInputComponent.shadowRoot.querySelectorAll('buv-verify-button')[0];
-              const rawButtonComponent = buttonComponent.shadowRoot.querySelectorAll('buv-verify-button-raw')[0];
-              const button = rawButtonComponent.shadowRoot.querySelectorAll('button')[0];
+              const button = buttonComponent.shadowRoot.querySelectorAll('button')[0];
 
               expect(button.disabled).to.equal(true);
             });

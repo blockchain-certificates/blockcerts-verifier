@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.card-css';
-import '../../molecules/VerifyButton';
+import '../../atoms/VerifyButton';
 
 function loadImage (props) {
   return new Promise((resolve) => {
