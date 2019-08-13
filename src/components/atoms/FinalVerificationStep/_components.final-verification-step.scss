@@ -4,19 +4,23 @@
 @import '../../molecules/VerificationStep/components.verification-step';
 
 .buv-c-final-verification-step {
+  white-space: nowrap;
+  opacity: 0;
+  position: relative;
+}
+
+.buv-c-final-verification-step.is-success {
   font-size: 21px;
   color: $successColor;
   font-weight: 600;
   line-height: 19px;
-  white-space: nowrap;
-  opacity: 0;
-  position: relative;
 }
 
 .buv-c-final-verification-step.is-failure {
   color: $fontColor;
   font-size: 13px;
   font-weight: 400;
+  margin-bottom: 0;
 }
 
 .buv-c-verification-step__description {
@@ -57,7 +61,7 @@
 .buv-c-final-verification-step.is-failure::after {
   content: '\\274C'; // double escape needed for JS
   font-size: 17px;
-  top: 1px;
+  top: -1px;
   color: $errorColor;
   background: none;
 }
@@ -85,7 +89,9 @@
 }
 
 .buv-c-final-verification-step--standalone {
-  margin-left: 30px;
+  margin: 0 0 5px 30px;
+  color: $fontColor;
+  font-size: 15px;
 }
 
 .buv-c-final-verification-step--standalone::after {
