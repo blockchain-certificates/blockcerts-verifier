@@ -31,13 +31,14 @@ export default function FullScreenCertificate ({
       <header class='buv-c-fullscreen-certificate-header'>
         <div class='buv-c-fullscreen-certificate-header__content'>
           <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
-          <buv-verify-button isStandAlone></buv-verify-button>
           ${CloseButton({ onClick: onClose, className: 'buv-c-fullscreen-certificate__close' })}
         </div>  
       </header>
       <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
-          <buv-final-verification-step isVisible hideLink standalone></buv-final-verification-step>
+          <buv-final-verification-step isVisible hideLink standalone>
+            <buv-verify-button isStandAlone></buv-verify-button>
+          </buv-final-verification-step>
           <buv-certificate-details direction='column' hideRecipientName></buv-certificate-details>
           <buv-metadata class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-metadata>
           <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>

@@ -64,6 +64,7 @@ export default function FinalVerificationStep ({
         ${details}
         ${link}
       </dd>
+      <slot></slot>
     </div>
   `;
 }
