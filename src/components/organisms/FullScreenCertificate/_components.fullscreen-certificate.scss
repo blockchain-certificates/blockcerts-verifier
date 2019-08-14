@@ -114,7 +114,9 @@
   min-width: 600px;
 
   @media only screen and (max-width: 750px) {
-    min-width: 100%;
+    min-width: unset;
+    width: 100%;
+    overflow: auto;
   }
 }
 
