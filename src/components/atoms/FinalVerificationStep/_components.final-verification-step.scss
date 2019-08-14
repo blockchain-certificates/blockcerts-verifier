@@ -7,20 +7,26 @@
   white-space: nowrap;
   opacity: 0;
   position: relative;
+  font-weight: 600;
+  font-size: 15px;
+  color: $fontColor;
 }
 
 .buv-c-final-verification-step.is-success {
   font-size: 21px;
   color: $successColor;
-  font-weight: 600;
   line-height: 19px;
 }
 
-.buv-c-final-verification-step.is-failure {
+.buv-c-final-verification-step.is-test,
+.buv-c-final-verification-step--standalone.is-success {
+  font-size: 15px;
   color: $fontColor;
+}
+
+.buv-c-final-verification-step.is-failure {
   font-size: 13px;
   font-weight: 400;
-  margin-bottom: 0;
 }
 
 .buv-c-verification-step__description {
@@ -33,11 +39,6 @@
 
 .buv-c-final-verification-step.is-visible::after {
   opacity: 1;
-}
-
-.buv-c-final-verification-step.is-test {
-  font-size: 15px;
-  color: $fontColor;
 }
 
 .buv-c-final-verification-step::after {
@@ -70,7 +71,6 @@
   padding: 10px;
   box-sizing: border-box;
   border-left: 3px solid;
-  color: $fontColor;
 }
 
 .buv-c-final-verification-step--standalone-wrapper.is-success {
@@ -90,9 +90,11 @@
 
 .buv-c-final-verification-step--standalone {
   margin: 0 0 5px 30px;
-  color: $fontColor;
-  font-size: 15px;
   white-space: unset;
+}
+
+.buv-c-final-verification-step--standalone.is-failure {
+  margin-bottom: 0;
 }
 
 .buv-c-final-verification-step--standalone::after {
