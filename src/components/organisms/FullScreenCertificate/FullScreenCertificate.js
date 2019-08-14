@@ -36,7 +36,7 @@ export default function FullScreenCertificate ({
       </header>
       <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
-          <buv-final-verification-step isVisible hideLink standalone>
+          <buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
             <buv-verify-button type='link'>Verify again</buv-verify-button>
           </buv-final-verification-step>
           <buv-certificate-details direction='column' hideRecipientName></buv-certificate-details>
