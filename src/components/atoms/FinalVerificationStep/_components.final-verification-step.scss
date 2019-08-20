@@ -74,18 +74,18 @@
 }
 
 .buv-c-final-verification-step--standalone-wrapper.is-success {
-  background-color: $successColorBackground;
+  background-color: $successBackgroundColor;
   border-color: $successColor;
 }
 
 .buv-c-final-verification-step--standalone-wrapper.is-failure {
-  background-color: $errorColorBackground;
+  background-color: $errorBackgroundColor;
   border-color: $errorColor;
 }
 
 .buv-c-final-verification-step--standalone-wrapper.is-test {
-  background-color: #d8d8d8;
-  border-color: $fontColor;
+  background-color: $testBackgroundColor;
+  border-color: $testColor;
 }
 
 .buv-c-final-verification-step--standalone {

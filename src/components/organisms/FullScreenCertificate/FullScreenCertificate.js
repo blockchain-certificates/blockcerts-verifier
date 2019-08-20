@@ -40,10 +40,10 @@ export default function FullScreenCertificate ({
             <buv-verify-button type='link'>Verify again</buv-verify-button>
           </buv-final-verification-step>
           <buv-certificate-details direction='column' hideRecipientName></buv-certificate-details>
-          <buv-metadata class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-metadata>
+          <buv-metadata class='buv-c-fullscreen-certificate__details-item  buv-c-fullscreen-certificate__separator' display='plaintext'></buv-metadata>
           <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>
           <buv-social-share class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-social-share>
-          ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__logo', showMotto: true, logoSize: 'medium' })}
+          ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__separator', showMotto: true, logoSize: 'medium' })}
           <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>

@@ -68,7 +68,7 @@ export default function CertificateDetails ({
 
   const classes = [
     'buv-c-certificate-details',
-    'buv-o-text-12',
+    'buv-o-text-13',
     isDisplayColumn ? 'buv-c-certificate-details--column' : ''
   ].join(' ');
 
