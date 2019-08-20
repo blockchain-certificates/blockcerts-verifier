@@ -1,6 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.card-css';
 import '../../atoms/VerifyButton';
+import '../../atoms/FinalVerificationStep';
 
 function loadImage (props) {
   return new Promise((resolve) => {
@@ -57,7 +58,9 @@ export default function CardCertificate (props) {
       </section>
       ${hideVerifyButton
     ? ''
-    : html`<buv-verify-button isHollow class='buv-c-card__verify-button'></buv-verify-button>`
+    : html`<buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
+      <buv-verify-button type='link'>Verify again</buv-verify-button>
+    </buv-final-verification-step>`
 }
     `;
 }

@@ -26,6 +26,7 @@
 
 .buv-c-certificate-details__group--row {
   max-width: 33%;
+  margin-top: 0;
 
   @media only screen and (max-width: $breakpoint) {
     max-width: 100%;
@@ -45,7 +46,7 @@
 .buv-c-certificate-details__standalone {
   position: absolute;
   top: 80px;
-  width: 125%;
+  width: 97%;
 
   @media only screen and (max-width: $breakpoint) {
     position: initial;
