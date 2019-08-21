@@ -2,7 +2,7 @@ import { html, LitElement } from '@polymer/lit-element';
 import getValueFrom from '../../../helpers/getValueFrom';
 import CSS from './_components.metadata-css';
 import CloseButton from '../../atoms/CloseButton';
-import linkRender from '../../atoms/linkRender/linkRender';
+import FormattedMetadataItem from '../../atoms/FormattedMetadataItem';
 
 function getProperties (metadataList) {
   return metadataList.schema.properties.certificate.properties;
@@ -41,11 +41,8 @@ class Metadata extends LitElement {
       const properties = getProperties(metadataList);
       innerHTML = metadataList.displayOrder.map(entry => {
         const key = entry.split('.')[1]; // get key name
-        const title = properties[key].title;
         const value = getValueFrom(metadataList, entry);
-        const type = properties[key].type[0];
-        const format = properties[key].format;
-        return linkRender(type, format, title, value);
+        return FormattedMetadataItem(properties[key], value);
       });
     }
 
