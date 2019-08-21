@@ -9,13 +9,18 @@ function renderListDetail ({ title, value, isDisplayColumn, renderInline = false
     isDisplayColumn ? '' : 'buv-c-certificate-details__group--row'
   ].join(' ');
 
+  const titleClasses = [
+    'buv-c-certificate-details__title',
+    isDisplayColumn ? '' : 'buv-o-text-11'
+  ].join(' ');
+
   const ddClasses = [
     'buv-c-certificate-details__value',
     renderInline ? 'buv-c-certificate-details--inline' : ''
   ].join(' ');
 
   return html`<div class$='${classes}'>
-      <dt class='buv-c-certificate-details__title  buv-o-text-11'>${title}</dt>
+      <dt class$='${titleClasses}'>${title}</dt>
       <dd class$='${ddClasses}'>${value}</dd>
     </div>`;
 }
@@ -28,7 +33,7 @@ function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }
 
     return html`
       <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
-        <dt class='buv-c-certificate-details--inline'>${title}</dt>
+        <dt class='buv-c-certificate-details__title  buv-c-certificate-details--inline'>${title}</dt>
         <dd class='buv-c-certificate-details--inline'>${value}</dd>
       </div>`;
   } else {
