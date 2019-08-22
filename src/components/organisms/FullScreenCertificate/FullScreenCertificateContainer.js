@@ -7,7 +7,7 @@ import {
 } from '../../../selectors/certificate';
 import resetCertificateDefinition from '../../../actions/resetCertificateDefinition';
 
-const mapDispatchToProps = {
+export const mapDispatchToProps = {
   onClose: resetCertificateDefinition
 };
 

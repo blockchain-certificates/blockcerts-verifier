@@ -10,9 +10,6 @@ export function getVerificationHasStarted (state) {
   return status !== VERIFICATION_STATUS.DEFAULT;
 }
 
-export function getVerificationIsFinished (state) {
-  const status = getVerificationStatus(state);
-
-  return status === VERIFICATION_STATUS.SUCCESS ||
-    status === VERIFICATION_STATUS.FAILURE;
+export function getShowVerificationModal (state) {
+  return state.showVerificationModal;
 }

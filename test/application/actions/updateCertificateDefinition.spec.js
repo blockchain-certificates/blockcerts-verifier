@@ -12,23 +12,19 @@ import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
 import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
-import validCertificateSteps from '../../assertions/validCertificateSteps';
 import validCertificate from '../../assertions/validCertificate';
-import { getVerificationHasStarted } from '../../../src/selectors/verification';
+import { getShowVerificationModal, getVerificationHasStarted } from '../../../src/selectors/verification';
+import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 
 jest.mock('../../../src/helpers/stepQueue');
 
 describe('updateCertificateDefinition action creator test suite', function () {
   describe('given it is dispatched with a certificate definition', function () {
     let store;
+    stubCertificateVerify(certificateFixture);
 
     beforeEach(function () {
-      // for convenience we avoid triggering to whole verification process automatically
-      const apiConfiguration = {
-        disableAutoVerify: true
-      };
-      const initialState = getInitialState(apiConfiguration);
-      store = configureStore(initialState);
+      store = configureStore();
     });
 
     afterEach(function () {
@@ -82,33 +78,43 @@ describe('updateCertificateDefinition action creator test suite', function () {
       expect(getChain(state)).toBe(expectedOutput);
     });
 
+    it('should initially set the verifiedSteps property according to the certificate\'s verificationSteps', function () {
+      store.dispatch(updateCertificateDefinition(certificateFixture));
+      const state = store.getState();
+
+      expect(getVerifiedSteps(state)).toEqual(initialValidCertificateStepsAssertions);
+    });
+
+    it('should automatically start the verification process', async function () {
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
+      const state = store.getState();
+      expect(getVerificationHasStarted(state)).toBe(true);
+    });
+
     describe('given the disableAutoVerify flag is true', function () {
-      it('should set the verifiedSteps property according to the certificate\'s verificationSteps', async function () {
+      it('should not open the verification modal', async function () {
         const apiConfiguration = {
           disableAutoVerify: true
         };
         const initialState = getInitialState(apiConfiguration);
         const store = configureStore(initialState);
-
         await store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
 
-        expect(getVerifiedSteps(state)).toEqual(initialValidCertificateStepsAssertions);
+        expect(getShowVerificationModal(state)).toBe(false);
       });
     });
 
     describe('given the disableAutoVerify flag is false', function () {
-      it('should automatically start the verification process', async function () {
+      it('should open the verification modal', async function () {
         const apiConfiguration = {
           disableAutoVerify: false
         };
         const initialState = getInitialState(apiConfiguration);
         const store = configureStore(initialState);
-
         await store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
-
-        expect(getVerifiedSteps(state)).toEqual(validCertificateSteps);
+        expect(getShowVerificationModal(state)).toBe(true);
       });
     });
   });

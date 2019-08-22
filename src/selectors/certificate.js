@@ -164,6 +164,10 @@ export function getStartedVerificationSteps (state) {
   return verifiedSteps.filter(step => step.status !== VERIFICATION_STATUS.DEFAULT);
 }
 
+export function getHasError (state) {
+  return getVerifiedSteps(state).some(s => s.status === VERIFICATION_STATUS.FAILURE);
+}
+
 /* V1 SPECIFIC */
 export function getCertificateImage (state) {
   const certificateDefinition = getCertificateDefinition(state);

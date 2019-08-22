@@ -3,11 +3,15 @@ import CSS from './_components.certificate-details-css';
 
 const isValidLink = (link) => link.indexOf(' ') === -1;
 
-function renderListDetail ({ title, value, isDisplayColumn, renderInline = false, isFirst = false }) {
+function renderListDetail ({ title, value, isDisplayColumn, renderInline = false }) {
   const classes = [
     'buv-c-certificate-details__group',
-    isFirst && isDisplayColumn ? 'is-first' : '',
     isDisplayColumn ? '' : 'buv-c-certificate-details__group--row'
+  ].join(' ');
+
+  const titleClasses = [
+    'buv-c-certificate-details__title',
+    isDisplayColumn ? '' : 'buv-o-text-11'
   ].join(' ');
 
   const ddClasses = [
@@ -16,7 +20,7 @@ function renderListDetail ({ title, value, isDisplayColumn, renderInline = false
   ].join(' ');
 
   return html`<div class$='${classes}'>
-      <dt class='buv-c-certificate-details__title  buv-o-text-11'>${title}</dt>
+      <dt class$='${titleClasses}'>${title}</dt>
       <dd class$='${ddClasses}'>${value}</dd>
     </div>`;
 }
@@ -29,7 +33,7 @@ function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }
 
     return html`
       <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
-        <dt class='buv-c-certificate-details--inline'>${title}</dt>
+        <dt class='buv-c-certificate-details__title  buv-c-certificate-details--inline'>${title}</dt>
         <dd class='buv-c-certificate-details--inline'>${value}</dd>
       </div>`;
   } else {
@@ -65,11 +69,11 @@ export default function CertificateDetails ({
   });
 
   const isDisplayColumn = direction === 'column';
-  const definitionListDetails = details.map((detail, i) => renderListDetail({ ...detail, isDisplayColumn, isFirst: i === 0 }));
+  const definitionListDetails = details.map(detail => renderListDetail({ ...detail, isDisplayColumn }));
 
   const classes = [
     'buv-c-certificate-details',
-    'buv-o-text-12',
+    'buv-o-text-13',
     isDisplayColumn ? 'buv-c-certificate-details--column' : ''
   ].join(' ');
 
