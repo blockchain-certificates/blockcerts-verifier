@@ -8,6 +8,7 @@ const FIXTURE_ISSUE_DATE = 'Jan 28, 2020';
 const FIXTURE_ISSUED_ON = '2020-01-28T00:43:15.978+00:00';
 const FIXTURE_ISSUER_NAME = 'Multinational Organization';
 const FIXTURE_TRANSACTION_ID = 'transaction-id';
+const FIXTURE_PUBLIC_KEY = 'public-key';
 
 describe('CertificateDetails test suite', function () {
   describe('given the hideRecipientName is false', function () {
@@ -39,10 +40,16 @@ describe('CertificateDetails test suite', function () {
     expect(instanceAsString).toContain(FIXTURE_ISSUED_ON);
   });
 
-  it('should render the issuedName', function () {
+  it('should render the issuer\'s name', function () {
     const instance = CertificateDetails({ issuerName: FIXTURE_ISSUER_NAME, transactionLink: FIXTURE_LINK });
     const instanceAsString = JSON.stringify(instance);
     expect(instanceAsString).toContain(FIXTURE_ISSUER_NAME);
+  });
+
+  it('should render the issuer\'s public key', function () {
+    const instance = CertificateDetails({ issuerPublicKey: FIXTURE_PUBLIC_KEY, transactionLink: FIXTURE_LINK });
+    const instanceAsString = JSON.stringify(instance);
+    expect(instanceAsString).toContain(FIXTURE_PUBLIC_KEY);
   });
 
   describe('given the transactionLink is valid', function () {
