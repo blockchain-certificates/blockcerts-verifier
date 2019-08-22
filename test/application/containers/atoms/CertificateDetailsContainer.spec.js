@@ -53,6 +53,11 @@ describe('CertificateDetailsContainer test suite', function () {
         const state = store.getState();
         expect(mapStateToProps(state).transactionId).toBe('62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea');
       });
+
+      it('should retrieve the issuer\'s public key', async function () {
+        const state = store.getState();
+        expect(mapStateToProps(state).issuerPublicKey).toBe('ecdsa-koblitz-pubkey:msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8');
+      });
     });
   });
 });
