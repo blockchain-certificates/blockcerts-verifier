@@ -1,10 +1,13 @@
 import { mapStateToProps } from '../../../../src/components/organisms/VerificationProcess/VerificationProcessContainer';
 import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
-import getInitialState from '../../../../src/store/getInitialState';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
+import mainnetCertificateFixture from '../../../fixtures/ethereum-main-valid-2.0';
 import validCertificateStepsAssertions from '../../../assertions/validCertificateSteps';
-import verifyCertificate from '../../../../src/actions/verifyCertificate';
+import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
+import { getVerifiedSteps } from '../../../../src/selectors/certificate';
+import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
+import updateParentStepStatus from '../../../../src/actions/updateParentStepStatus';
 
 jest.mock('../../../../src/helpers/stepQueue');
 
@@ -13,45 +16,88 @@ describe('VerificationProcessContainer test suite', function () {
     let store;
 
     beforeEach(function () {
-      const apiConfiguration = {
-        disableAutoVerify: true
-      };
-      const initialState = getInitialState(apiConfiguration);
-
-      store = configureStore(initialState);
+      store = configureStore();
     });
 
     afterEach(function () {
       store = null;
     });
 
-    describe('given there is a transactionLink set in the state', function () {
-      it('should retrieve the correct value', function () {
+    describe('given the certificate is issued on a test chain', function () {
+      stubCertificateVerify(certificateFixture);
+
+      it('should set the isTestChain property to true', function () {
         store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
-
-        const expectedOutput = 'https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea';
-        expect(mapStateToProps(state).transactionLink).toBe(expectedOutput);
+        expect(mapStateToProps(state).isTestChain).toBe(true);
       });
     });
 
-    describe('given there is a chain of the certificate set in the state', function () {
-      it('should retrieve the correct value', function () {
-        store.dispatch(updateCertificateDefinition(certificateFixture));
-        const state = store.getState();
+    describe('given the certificate is issued on a normal chain', function () {
+      stubCertificateVerify(mainnetCertificateFixture);
 
-        const expectedOutput = 'Bitcoin Testnet';
-        expect(mapStateToProps(state).chain).toBe(expectedOutput);
+      it('should set the isTestChain property to false', function () {
+        store.dispatch(updateCertificateDefinition(mainnetCertificateFixture));
+        const state = store.getState();
+        expect(mapStateToProps(state).isTestChain).toBe(false);
       });
     });
 
     describe('given there are verifiedSteps set in the state', function () {
-      it('should retrieve the correct value', async function () {
-        store.dispatch(updateCertificateDefinition(certificateFixture));
-        await store.dispatch(verifyCertificate());
-        const state = store.getState();
+      stubCertificateVerify(certificateFixture);
 
-        expect(mapStateToProps(state).steps).toEqual(validCertificateStepsAssertions);
+      beforeEach(function () {
+        // put some verifiedSteps items in the state
+        store.dispatch(updateCertificateDefinition(certificateFixture));
+      });
+
+      describe('and the certificate is valid', function () {
+        beforeEach(async function () {
+          const preState = store.getState();
+          const parentSteps = getVerifiedSteps(preState);
+          parentSteps.forEach(parentStep => {
+            const parentCode = parentStep.code;
+            // assume process has started
+            parentStep.status = VERIFICATION_STATUS.STARTED;
+            // prepare substeps
+            parentStep.subSteps.forEach(substep => {
+              substep.status = VERIFICATION_STATUS.SUCCESS;
+              substep.label = substep.labelPending;
+              delete substep.labelPending;
+            });
+
+            store.dispatch(updateParentStepStatus(parentCode));
+          });
+        });
+
+        it('should retrieve the correct value', async function () {
+          const state = store.getState();
+          expect(mapStateToProps(state).steps).toEqual(validCertificateStepsAssertions);
+        });
+
+        it('should set the hasError property to false', async function () {
+          const state = store.getState();
+          expect(mapStateToProps(state).hasError).toBe(false);
+        });
+      });
+
+      describe('and one is a failure', function () {
+        it('should set the hasError property to true', async function () {
+          const preState = store.getState();
+          const parentStep = getVerifiedSteps(preState)[0];
+          const parentCode = parentStep.code;
+
+          // assume process has started
+          parentStep.status = VERIFICATION_STATUS.STARTED;
+          // prepare substeps
+          parentStep.subSteps[0].status = VERIFICATION_STATUS.FAILURE;
+
+          store.dispatch(updateParentStepStatus(parentCode));
+
+          const state = store.getState();
+
+          expect(mapStateToProps(state).hasError).toBe(true);
+        });
       });
     });
   });

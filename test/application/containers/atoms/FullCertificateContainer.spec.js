@@ -1,15 +1,15 @@
 import { mapStateToProps } from '../../../../src/components/organisms/FullCertificate/FullCertificateContainer';
-import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import { configureStore } from '../../../../src/store';
 import XSSCertificateFixture from '../../../fixtures/xss-certificate-example';
+import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
 describe('FullCertificateContainer test suite', function () {
   describe('mapStateToProps method', function () {
-    it('should retrieve the sanitized displayHtml property', async function () {
-      const initialState = getInitialState({ disableAutoVerify: true });
-      const store = configureStore(initialState);
+    stubCertificateVerify(XSSCertificateFixture);
 
+    it('should retrieve the sanitized displayHtml property', async function () {
+      const store = configureStore();
       await store.dispatch(updateCertificateDefinition(XSSCertificateFixture));
 
       const state = store.getState();

@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
 import '../../atoms/Input';
-import '../../molecules/VerifyButton';
+import '../../atoms/VerifyButton';
 
 import CSS from './_components.certificate-input-css';
 

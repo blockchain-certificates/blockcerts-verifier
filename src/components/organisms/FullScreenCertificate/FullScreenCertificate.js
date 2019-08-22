@@ -4,11 +4,12 @@ import CSS from './_components.fullscreen-certificate-css';
 import '../../atoms/CertificateDetails';
 import CloseButton from '../../atoms/CloseButton';
 import '../../atoms/DownloadLink';
+import '../../atoms/FinalVerificationStep';
 import '../../atoms/VerifyOtherCertificateLink';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
-import '../../molecules/VerifyButton';
+import '../../atoms/VerifyButton';
 
 export default function FullScreenCertificate ({
   hasCertificateDefinition,
@@ -30,17 +31,19 @@ export default function FullScreenCertificate ({
       <header class='buv-c-fullscreen-certificate-header'>
         <div class='buv-c-fullscreen-certificate-header__content'>
           <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
-          <buv-verify-button isStandAlone></buv-verify-button>
           ${CloseButton({ onClick: onClose, className: 'buv-c-fullscreen-certificate__close' })}
         </div>  
       </header>
       <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
+          <buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
+            <buv-verify-button type='link'>Verify again</buv-verify-button>
+          </buv-final-verification-step>
           <buv-certificate-details direction='column' hideRecipientName></buv-certificate-details>
-          <buv-metadata class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-metadata>
+          <buv-metadata class='buv-c-fullscreen-certificate__details-item  buv-c-fullscreen-certificate__separator' display='plaintext'></buv-metadata>
           <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>
           <buv-social-share class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-social-share>
-          ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__logo', showMotto: true, logoSize: 'medium' })}
+          ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__separator', showMotto: true, logoSize: 'medium' })}
           <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>

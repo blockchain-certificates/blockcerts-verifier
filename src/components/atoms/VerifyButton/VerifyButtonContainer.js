@@ -1,23 +1,20 @@
-import verifyCertificate from '../../../actions/verifyCertificate';
 import connector from '../../../store/connector';
-import { VerifyButton } from './VerifyButton';
-import { getUrlIsValid } from '../../../selectors/input';
+import VerifyButton from './VerifyButton';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 import { getDisableVerify } from '../../../selectors/api';
-import { getVerificationIsFinished } from '../../../selectors/verification';
+import startVerificationProcess from '../../../actions/startVerificationProcess';
 
-const mapDispatchToProps = {
-  onClick: verifyCertificate
+export const mapDispatchToProps = {
+  onClick: startVerificationProcess
 };
 
 export const mapStateToProps = (state) => ({
-  cancelSpinner: !getUrlIsValid(state) || getVerificationIsFinished(state),
   isDisabled: getDisableVerify(state) || !getCertificateDefinition(state)
 });
 
 const ownProps = {
   isHollow: Boolean,
-  isStandAlone: Boolean
+  type: String
 };
 
 const VerifyButtonContainer = connector(VerifyButton, { mapDispatchToProps, mapStateToProps, ownProps });

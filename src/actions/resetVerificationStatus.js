@@ -1,6 +1,7 @@
 import * as ACTIONS from '../constants/actionTypes';
 import updateVerificationStatus from './updateVerificationStatus';
 import VERIFICATION_STATUS from '../constants/verificationStatus';
+import updateFinalStep from './updateFinalStep';
 
 export default function resetVerificationStatus () {
   return function (dispatch) {
@@ -9,5 +10,6 @@ export default function resetVerificationStatus () {
     });
 
     dispatch(updateVerificationStatus(VERIFICATION_STATUS.DEFAULT));
+    dispatch(updateFinalStep(null));
   };
 }

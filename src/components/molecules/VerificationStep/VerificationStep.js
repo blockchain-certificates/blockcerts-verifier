@@ -7,6 +7,7 @@ export default function VerificationStep ({ label, code, status, errorMessage, i
   let parentStepClasses = [
     'buv-o-text-15',
     'buv-c-verification-step',
+    'buv-c-badge',
     isFirst ? 'is-first' : '',
     `is-${status}`,
     isTestChain ? 'is-test' : ''

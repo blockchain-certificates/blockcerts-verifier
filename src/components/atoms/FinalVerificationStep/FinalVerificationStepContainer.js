@@ -1,16 +1,20 @@
 import connector from '../../../store/connector';
 import FinalVerificationStep from './FinalVerificationStep';
-import { getFinalStep } from '../../../selectors/certificate';
+import { getChain, getFinalStep, getTransactionLink, isTestChain } from '../../../selectors/certificate';
+import { getVerificationStatus } from '../../../selectors/verification';
 
-const mapStateToProps = (state) => ({
-  finalStep: getFinalStep(state)
+export const mapStateToProps = (state) => ({
+  finalStep: getFinalStep(state),
+  chain: getChain(state),
+  transactionLink: getTransactionLink(state),
+  isTestChain: isTestChain(state),
+  status: getVerificationStatus(state)
 });
 
 const ownProps = {
-  chain: String,
-  transactionLink: String,
-  isTestChain: Boolean,
-  isVisible: Boolean
+  isVisible: Boolean,
+  hideLink: Boolean,
+  standalone: Boolean
 };
 
 const FinalVerificationStepContainer = connector(FinalVerificationStep, { mapStateToProps, ownProps });

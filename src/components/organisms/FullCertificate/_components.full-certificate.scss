@@ -43,8 +43,10 @@ $sectionSpacer: 20px;
 .buv-c-full-certificate__details {
   display: flex;
   justify-content: space-between;
+  margin-top: 15px;
 }
 
 .buv-c-full-certificate__details-list {
-  width: calc(100% - 105px); // 105 px is Button width
+  min-width: calc(100% - 190px);
+  width: calc(100% - 105px);
 }

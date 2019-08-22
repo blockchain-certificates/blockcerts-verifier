@@ -2,20 +2,17 @@ import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../fixtures/valid-certificate-example';
 import { configureStore } from '../../../src/store';
-import getInitialState from '../../../src/store/getInitialState';
 import shareSocialNetwork from '../../../src/actions/shareSocialNetwork';
 import validCertificate from '../../assertions/validCertificate';
+import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 
 describe('shareSocialNetwork action creator test suite', function () {
   describe('given it is dispatched', function () {
+    stubCertificateVerify(certificateFixture);
     let store;
 
     beforeEach(function () {
-      const apiConfiguration = {
-        disableAutoVerify: true
-      };
-      const initialState = getInitialState(apiConfiguration);
-      store = configureStore(initialState);
+      store = configureStore();
     });
 
     afterEach(function () {

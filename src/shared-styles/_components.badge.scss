@@ -1,0 +1,34 @@
+.buv-c-badge {
+  position: relative;
+}
+
+.buv-c-badge::before {
+  content: '';
+  position: absolute;
+  left: -32px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background-color: #fff;
+  border-radius: 50%;
+  -webkit-transition: all .2s ease-out;
+  -o-transition: all .2s ease-out;
+  transition: all .2s ease-out;
+  z-index: 2;
+  box-sizing: content-box;
+  box-shadow: 0 2px 4px 0 rgba(22, 40, 55, .21);
+}
+
+.buv-c-badge--medium::before {
+  left: -38px;
+  top: -4px;
+  width: 24px;
+  height: 24px;
+}
+
+.buv-c-badge--large::before {
+  width: 38px;
+  height: 38px;
+  left: -45px;
+  top: -9px;
+}

@@ -1,7 +1,16 @@
 $successColor: rgba(42, 178, 123, 1);
-$errorColor: #d0021b;
+$successBackgroundColor: rgba(42, 178, 123, .1);
+
+$errorColor: rgba(208, 2, 27, 1);
+$errorBackgroundColor: rgba(208, 2, 27, .1);
+
+$testColor: rgb(245, 166, 35);
+$testBackgroundColor: rgba(245, 166, 35, .1);
+
 $fontColor: rgba(3, 21, 50, 1);
 
 $modalMaxDimension: 600px;
 
 $footerBackground: rgba(0, 0, 0, .1);
+
+$breakpoint: 750px;

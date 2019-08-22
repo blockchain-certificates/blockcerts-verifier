@@ -7,7 +7,7 @@
   position: relative;
   padding-bottom: 60px;
 
-  @media only screen and (max-width: 520px) {
+  @media only screen and (max-width: $breakpoint) {
     flex-direction: column;
     padding-bottom: 0;
   }
@@ -24,14 +24,11 @@
   margin-top: 15px;
 }
 
-.buv-c-certificate-details__group.is-first {
-  margin-top: 0;
-}
-
 .buv-c-certificate-details__group--row {
   max-width: 33%;
+  margin-top: 0;
 
-  @media only screen and (max-width: 520px) {
+  @media only screen and (max-width: $breakpoint) {
     max-width: 100%;
   }
 }
@@ -39,6 +36,7 @@
 .buv-c-certificate-details__title {
   margin-bottom: 5px;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .buv-c-certificate-details__value {
@@ -48,9 +46,9 @@
 .buv-c-certificate-details__standalone {
   position: absolute;
   top: 80px;
-  width: 125%;
+  width: 97%;
 
-  @media only screen and (max-width: 520px) {
+  @media only screen and (max-width: $breakpoint) {
     position: initial;
     margin-top: 15px;
   }

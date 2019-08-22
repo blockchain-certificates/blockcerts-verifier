@@ -14,8 +14,9 @@ export default function getInitialState (apiConfiguration = {}) {
   return {
     input: {},
     verifiedSteps: [],
-    finalStep: {},
+    finalStep: null,
     verificationStatus: VERIFICATION_STATUS.DEFAULT,
+    showVerificationModal: false,
     displayMode: DISPLAY_MODE.CARD,
     theme: THEME.BRIGHT,
     ...apiConfiguration

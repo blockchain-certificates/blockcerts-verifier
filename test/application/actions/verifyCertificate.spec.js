@@ -12,6 +12,7 @@ import { getVerificationStatus } from '../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import validCertificate from '../../assertions/validCertificate';
+import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 
 jest.mock('../../../src/helpers/stepQueue');
 
@@ -25,8 +26,6 @@ describe('verifyCertificate action creator test suite', function () {
       };
       const initialState = getInitialState(apiConfiguration);
       store = configureStore(initialState);
-      // add a certificate definition to be verified
-      store.dispatch(updateCertificateDefinition(validCertificateFixture));
     });
 
     afterEach(function () {
@@ -34,6 +33,12 @@ describe('verifyCertificate action creator test suite', function () {
     });
 
     describe('given the action is triggered', function () {
+      stubCertificateVerify(validCertificateFixture);
+
+      beforeEach(function () {
+        store.dispatch(updateCertificateDefinition(validCertificateFixture));
+      });
+
       it('should set the verificationStatus in the state to started', function () {
         store.dispatch(verifyCertificate());
 
@@ -60,17 +65,20 @@ describe('verifyCertificate action creator test suite', function () {
 
     describe('given the verification has ended', function () {
       describe('and the verification was of a valid certificate', function () {
-        it('should set the verificationStatus in the state to success', async function () {
+        let store;
+
+        beforeAll(async function () {
+          store = configureStore();
+          store.dispatch(updateCertificateDefinition(validCertificateFixture));
           await store.dispatch(verifyCertificate());
+        });
 
+        it('should set the verificationStatus in the state to success', async function () {
           const state = store.getState();
-
           expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.SUCCESS);
         });
 
         it('should set the finalStep property in the state', async function () {
-          await store.dispatch(verifyCertificate());
-
           const state = store.getState();
           expect(getFinalStep(state)).toEqual({
             label: 'Verified',
@@ -79,16 +87,11 @@ describe('verifyCertificate action creator test suite', function () {
             linkText: 'View transaction link'
           });
         });
-      });
-    });
 
-    describe('given there is a valid certificate in the state', function () {
-      it('should store the different steps in the state', async function () {
-        await store.dispatch(verifyCertificate());
-
-        const state = store.getState();
-
-        expect(getVerifiedSteps(state)).toEqual(validCertificateStepsAssertions);
+        it('should store the different steps in the state', async function () {
+          const state = store.getState();
+          expect(getVerifiedSteps(state)).toEqual(validCertificateStepsAssertions);
+        });
       });
     });
 
