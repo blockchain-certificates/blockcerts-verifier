@@ -222,3 +222,13 @@ export function getCertificateSeal (state) {
 export function getFinalStep (state) {
   return state.finalStep;
 }
+
+export function getIssuerPublicKey (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.certificateJson.verification.publicKey;
+  }
+
+  return '';
+}

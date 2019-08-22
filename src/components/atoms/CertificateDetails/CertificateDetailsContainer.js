@@ -5,6 +5,7 @@ import {
   getIssuedOn,
   getIssuerLogo,
   getIssuerName,
+  getIssuerPublicKey,
   getRecipientName,
   getTransactionId,
   getTransactionLink
@@ -17,7 +18,8 @@ export const mapStateToProps = (state) => ({
   issuerName: getIssuerName(state),
   issuerLogo: getIssuerLogo(state),
   transactionLink: getTransactionLink(state),
-  transactionId: getTransactionId(state)
+  transactionId: getTransactionId(state),
+  issuerPublicKey: getIssuerPublicKey(state)
 });
 
 const ownProps = {

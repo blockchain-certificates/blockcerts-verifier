@@ -41,12 +41,12 @@
 
 .buv-c-certificate-details__value {
   margin: 0;
+  word-break: break-word;
 }
 
 .buv-c-certificate-details__standalone {
   position: absolute;
-  top: 80px;
-  width: 97%;
+  bottom: 0;
 
   @media only screen and (max-width: $breakpoint) {
     position: initial;
@@ -57,5 +57,4 @@
 .buv-c-certificate-details--inline {
   display: inline-block;
   margin: 0 0 5px;
-  word-break: break-word;
 }

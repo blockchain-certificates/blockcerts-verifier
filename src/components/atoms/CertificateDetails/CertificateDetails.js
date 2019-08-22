@@ -20,9 +20,9 @@ function renderListDetail ({ title, value, isDisplayColumn, renderInline = false
   ].join(' ');
 
   return html`<div class$='${classes}'>
-      <dt class$='${titleClasses}'>${title}</dt>
-      <dd class$='${ddClasses}'>${value}</dd>
-    </div>`;
+    <dt class$='${titleClasses}'>${title}</dt>
+    <dd class$='${ddClasses}'>${value}</dd>
+  </div>`;
 }
 
 function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }) {
@@ -46,6 +46,7 @@ export default function CertificateDetails ({
   issuedOn,
   issueDate,
   issuerName,
+  issuerPublicKey,
   transactionLink,
   transactionId,
   direction,
@@ -59,14 +60,20 @@ export default function CertificateDetails ({
     });
   }
 
-  details.push({
-    title: 'Issue Date',
-    value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
-  });
-  details.push({
-    title: 'Issuer',
-    value: issuerName
-  });
+  details.push(
+    {
+      title: 'Issue Date',
+      value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
+    },
+    {
+      title: 'Issuer',
+      value: issuerName
+    },
+    {
+      title: 'Issuer\'s public key',
+      value: issuerPublicKey
+    }
+  );
 
   const isDisplayColumn = direction === 'column';
   const definitionListDetails = details.map(detail => renderListDetail({ ...detail, isDisplayColumn }));
