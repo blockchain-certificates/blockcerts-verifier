@@ -59,14 +59,15 @@ export default function CertificateDetails ({
     });
   }
 
-  details.push({
-    title: 'Issue Date',
-    value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
-  });
-  details.push({
-    title: 'Issuer',
-    value: issuerName
-  });
+  details.push(
+    {
+      title: 'Issue Date',
+      value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
+    },
+    {
+      title: 'Issuer',
+      value: issuerName
+    });
 
   const isDisplayColumn = direction === 'column';
   const definitionListDetails = details.map(detail => renderListDetail({ ...detail, isDisplayColumn }));
