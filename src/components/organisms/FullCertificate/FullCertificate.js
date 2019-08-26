@@ -7,7 +7,7 @@ import '../../atoms/VerifyButton';
 import '../../atoms/FinalVerificationStep';
 
 function renderDisplayHTML (displayHTML) {
-  return html`<section class='buv-c-full-certificate'>${unsafeHTML(displayHTML)}</section>`;
+  return html`<section class='buv-c-full-certificate qa-full-certificate'>${unsafeHTML(displayHTML)}</section>`;
 }
 
 export default function FullCertificate ({

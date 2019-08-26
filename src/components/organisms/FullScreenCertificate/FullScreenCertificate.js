@@ -7,9 +7,14 @@ import '../../atoms/DownloadLink';
 import '../../atoms/FinalVerificationStep';
 import '../../atoms/VerifyOtherCertificateLink';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo';
+import '../../atoms/VerifyButton';
+import '../../atoms/FullCertificateV1';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
-import '../../atoms/VerifyButton';
+
+function renderDisplayHTML (displayHTML) {
+  return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(displayHTML)}</div>`;
+}
 
 export default function FullScreenCertificate ({
   hasCertificateDefinition,
@@ -18,10 +23,6 @@ export default function FullScreenCertificate ({
   onClose
 }) {
   if (!hasCertificateDefinition) {
-    return null;
-  }
-
-  if (!displayHTML) {
     return null;
   }
 
@@ -47,7 +48,7 @@ export default function FullScreenCertificate ({
           <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>
-          ${unsafeHTML(displayHTML)}
+          ${displayHTML ? renderDisplayHTML(displayHTML) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
         </div>
       </section>
     </section>
