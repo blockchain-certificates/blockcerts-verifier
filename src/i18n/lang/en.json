@@ -1,0 +1,38 @@
+{
+  "errors": {
+    "invalidUrl": "This does not seem to be a valid URL.",
+    "invalidBlockcertsUrl": "Not a valid certificate URL.",
+    "noDownloadLink": "No link provided for download!",
+    "invalidFormatDragAndDrop": "Only JSON files are accepted",
+    "errorLabel": "Error",
+    "noMetadata": "No metadata specified for this record",
+    "noTransactionId": "No transaction ID",
+    "noShareUrl": "No URL to share!",
+    "invalidBlockcerts": "Not a valid Blockcerts definition."
+  },
+  "text": {
+    "brandName": "Blockcerts",
+    "issueDate": "Issue Date",
+    "issuerName": "Issuer",
+    "issuerPublicKey": "Issuer's public key",
+    "motto": "Blockcerts, The Open Standard for Blockchain Credentials",
+    "transactionId": "Transaction ID",
+    "closeButton": "Click to close",
+    "downloadLink": "Download Record in JSON format",
+    "fileUpload": "Choose JSON file",
+    "dragAndDropHint": "(you can also drag & drop your file).",
+    "signed": "Signed by",
+    "certified": "Certified by",
+    "urlInput": "Enter the certificate URL",
+    "urlInputPlaceholder": "Certificate URL",
+    "verifyOther": "Verify another record",
+    "metadataButton": "View Metadata",
+    "metadataTitle": "Certificate Metadata",
+    "share": "Share on",
+    "shareButton": "Share on Social Networks",
+    "issued": "Issued on",
+    "by": "by",
+    "viewRecord": "View Record",
+    "verifyAgain": "Verify again"
+  }
+}
