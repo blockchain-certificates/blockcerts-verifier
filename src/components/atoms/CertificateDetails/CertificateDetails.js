@@ -42,7 +42,7 @@ export default function CertificateDetails ({
   isValidLink(transactionLink)
     ? html`<dt class='buv-c-certificate-details--inline'>identifiant de transaction:</dt>
                   <dd class='buv-c-certificate-details--inline'>${transactionId}</dd>`
-    : html`<span>No transaction ID</span>`
+    : html`<span>Aucun identifiant de transaction</span>`
 }
         </div>
     </dl>
