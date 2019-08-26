@@ -35,7 +35,7 @@ class VerifyButton extends LitElement {
   }
 
   getButtonText () {
-    return html`<label class='buv-c-verify-button__label'>Verify</label>`;
+    return html`<label class='buv-c-verify-button__label'>Vérifier</label>`;
   }
 
   getSpinner () {

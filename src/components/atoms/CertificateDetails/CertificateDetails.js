@@ -13,15 +13,15 @@ export default function CertificateDetails ({
 }) {
   const details = [
     {
-      title: 'Recipient',
+      title: 'Bénéficiaire',
       value: recipientName
     },
     {
-      title: 'Issue Date',
+      title: "Date d'émission",
       value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
     },
     {
-      title: 'Issuer',
+      title: 'Emetteur',
       value: issuerName
     }
   ];
@@ -40,7 +40,7 @@ export default function CertificateDetails ({
         <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
           ${
   isValidLink(transactionLink)
-    ? html`<dt class='buv-c-certificate-details--inline'>Transaction ID:</dt>
+    ? html`<dt class='buv-c-certificate-details--inline'>identifiant de transaction:</dt>
                   <dd class='buv-c-certificate-details--inline'>${transactionId}</dd>`
     : html`<span>No transaction ID</span>`
 }
