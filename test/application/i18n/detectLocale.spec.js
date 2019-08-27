@@ -1,4 +1,4 @@
-import domain from '../../../../../src/domain';
+import detectLocale from '../../../src/i18n/detectLocale';
 
 describe('domain i18n detectLocale use case test suite', function () {
   describe('given it detected the navigator locale', function () {
@@ -6,7 +6,7 @@ describe('domain i18n detectLocale use case test suite', function () {
       navigator.__defineGetter__('language', function () {
         return 'fr-FR';
       });
-      const locale = domain.i18n.detectLocale();
+      const locale = detectLocale();
       expect(locale).toBe('fr-FR');
     });
   });
@@ -19,7 +19,7 @@ describe('domain i18n detectLocale use case test suite', function () {
       navigator.__defineGetter__('userLanguage', function () {
         return 'fr-FR';
       });
-      const locale = domain.i18n.detectLocale();
+      const locale = detectLocale();
       expect(locale).toBe('fr-FR');
     });
   });
@@ -36,7 +36,7 @@ describe('domain i18n detectLocale use case test suite', function () {
         return 'fr-FR';
       });
 
-      const locale = domain.i18n.detectLocale();
+      const locale = detectLocale();
       expect(locale).toBe('fr-FR');
     });
   });
@@ -53,7 +53,7 @@ describe('domain i18n detectLocale use case test suite', function () {
         return null;
       });
 
-      const locale = domain.i18n.detectLocale();
+      const locale = detectLocale();
       expect(locale).toBe('en');
     });
   });

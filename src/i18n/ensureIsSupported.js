@@ -1,5 +1,5 @@
-import domain from '../../../domain';
 import { defaultLocale } from './detectLocale';
+import * as i18n from './index';
 
 export function setLocaleValidCase (locale) {
   const localeParts = locale.split('-');
@@ -11,7 +11,7 @@ export function setLocaleValidCase (locale) {
 export default function ensureIsSupported (locale) {
   let isSupported;
 
-  const supportedLanguages = domain.i18n.getSupportedLanguages().map(language => language.toLowerCase());
+  const supportedLanguages = i18n.getSupportedLanguages().map(language => language.toLowerCase());
 
   // Test RFC 3066 language
   isSupported = supportedLanguages.indexOf(locale.toLowerCase()) > -1;

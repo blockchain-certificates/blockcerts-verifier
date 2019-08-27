@@ -1,4 +1,4 @@
-import currentLocale from '../valueObjects/currentLocale';
+import currentLocale from './valueObjects/currentLocale';
 import { getLanguagesTexts } from './getSupportedLanguages';
 import ensureIsSupported from './ensureIsSupported';
 
