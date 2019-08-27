@@ -28,9 +28,12 @@
     "share": "Partager sur",
     "shareButton": "Partager sur les réseaux sociaux",
     "signed": "Signé par",
+    "substepsListClose": "Fermer",
+    "substepsListHint": "Afficher les sous-étapes",
     "transactionId": "Identifiant de transaction",
     "urlInput": "Entrez l'URL du certificat",
     "urlInputPlaceholder": "URL du certificat",
+    "verificationStepProgress": "Vérification en cours...",
     "verifyAgain": "Vérifier de nouveau",
     "verifyOther": "Vérifier un autre certificat",
     "viewRecord": "Voir le certificat"
