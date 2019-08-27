@@ -16,6 +16,13 @@ describe('domain i18n getText use case test suite', function () {
     });
   });
 
+  describe('given it is called with a merged group item string', function () {
+    it('should return the correct value', function () {
+      const res = getText('errors.errorLabel');
+      expect(res).toBe('Error');
+    });
+  });
+
   describe('given the current locale does not exist in the i18n data', function () {
     // TODO: is test relevant if we ensure the locale exists?
     xit('should return an error', function () {
@@ -37,6 +44,13 @@ describe('domain i18n getText use case test suite', function () {
     it('should return an error', function () {
       const res = getText('errors', 'invalid-item');
       expect(res).toBe('[missing locale item data]');
+    });
+  });
+
+  describe('given the item exists in the i18n data', function () {
+    it('should return the correct value', function () {
+      const res = getText('errors', 'errorLabel');
+      expect(res).toBe('Error');
     });
   });
 });

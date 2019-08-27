@@ -3,7 +3,17 @@ import { getLanguagesTexts } from './getSupportedLanguages';
 import ensureIsSupported from './ensureIsSupported';
 
 export default function getText (group, item) {
-  if (!group || !item) {
+  if (!group) {
+    return '';
+  }
+
+  if (group.indexOf('.') > -1) {
+    const splittedGroup = group.split('.');
+    group = splittedGroup[0];
+    item = splittedGroup[1];
+  }
+
+  if (!item) {
     return '';
   }
 
