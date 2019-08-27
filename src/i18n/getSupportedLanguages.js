@@ -1,5 +1,5 @@
-import en from './lang/en.json';
-import fr from './lang/fr.json';
+import en from './lang/en.js';
+import fr from './lang/fr.js';
 
 const i18n = {
   en,
