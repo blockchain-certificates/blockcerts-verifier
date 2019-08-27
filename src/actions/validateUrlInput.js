@@ -10,7 +10,7 @@ export default function validateUrlInput (isValid) {
       }
     });
 
-    const errorMessage = isValid ? null : 'This does not seem to be a valid URL.';
+    const errorMessage = isValid ? null : 'errors.invalidUrl';
     dispatch(setErrorMessage(errorMessage));
   };
 }

@@ -86,7 +86,7 @@ describe('updateCertificateUrl action creator test suite', function () {
       it('should update the state with the error message', async function () {
         await store.dispatch(updateCertificateUrl(NOT_CERTIFICATE_URL));
         const state = store.getState();
-        expect(getErrorMessage(state)).toBe('Not a valid certificate URL.');
+        expect(getErrorMessage(state)).toBe('errors.invalidBlockcertsUrl');
       });
     });
   });

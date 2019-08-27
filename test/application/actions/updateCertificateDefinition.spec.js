@@ -142,7 +142,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       await store.dispatch(updateCertificateDefinition(notACertificateDefinition));
       const state = store.getState();
 
-      expect(getErrorMessage(state)).toBe('Not a valid Blockcerts definition.');
+      expect(getErrorMessage(state)).toBe('errors.invalidBlockcerts');
     });
 
     it('should not start the verification process', async function () {

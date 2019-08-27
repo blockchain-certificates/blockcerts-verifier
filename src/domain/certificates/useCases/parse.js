@@ -15,7 +15,7 @@ export default function parse (definition) {
     // console.error(e);
     return {
       certificateDefinition: null,
-      errorMessage: 'Not a valid Blockcerts definition.'
+      errorMessage: 'errors.invalidBlockcerts'
     };
   }
 }

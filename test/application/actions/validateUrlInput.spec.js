@@ -46,7 +46,7 @@ describe('validateUrlInput action creator test suite', function () {
 
     it('should update the error message in the state', function () {
       const state = store.getState();
-      expect(getErrorMessage(state)).toBe('This does not seem to be a valid URL.');
+      expect(getErrorMessage(state)).toBe('errors.invalidUrl');
     });
   });
 });

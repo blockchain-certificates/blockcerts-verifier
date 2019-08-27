@@ -20,7 +20,7 @@ describe('domain certificates parse method test suite', function () {
     });
 
     it('should return an object with errorMessage property describing the error', function () {
-      expect(domain.certificates.parse(notACertificateDefinition).errorMessage).toBe('Not a valid Blockcerts definition.');
+      expect(domain.certificates.parse(notACertificateDefinition).errorMessage).toBe('errors.invalidBlockcerts');
     });
   });
 });

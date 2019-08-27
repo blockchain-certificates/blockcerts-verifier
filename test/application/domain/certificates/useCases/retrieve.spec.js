@@ -19,7 +19,7 @@ describe('domain certificates retrieve method test suite', function () {
     describe('given the url is not of a certificate', function () {
       it('returns an error message', async function () {
         const result = await domain.certificates.retrieve(NOT_CERTIFICATE_URL);
-        expect(result.errorMessage).toBe('Not a valid certificate URL.');
+        expect(result.errorMessage).toBe('errors.invalidBlockcertsUrl');
       });
 
       it('returns a null definition', async function () {
@@ -31,7 +31,7 @@ describe('domain certificates retrieve method test suite', function () {
     describe('given the url does not point to a live server', function () {
       it('returns an error message', async function () {
         const result = await domain.certificates.retrieve(INEXISTENT_URL);
-        expect(result.errorMessage).toBe('Not a valid certificate URL.');
+        expect(result.errorMessage).toBe('errors.invalidBlockcertsUrl');
       });
 
       it('returns a null definition', async function () {
