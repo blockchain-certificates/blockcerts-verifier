@@ -1,5 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.certificate-details-css';
+import getText from '../../../i18n/getText';
 
 const isValidLink = (link) => link.indexOf(' ') === -1;
 
@@ -37,7 +38,7 @@ function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }
         <dd class='buv-c-certificate-details--inline'>${value}</dd>
       </div>`;
   } else {
-    return html`<span>No transaction ID</span>`;
+    return html`<span>${getText('errors.noTransactionId')}</span>`;
   }
 }
 
@@ -55,22 +56,22 @@ export default function CertificateDetails ({
   const details = [];
   if (!hideRecipientName) {
     details.push({
-      title: 'Recipient',
+      title: getText('text.recipient'),
       value: recipientName
     });
   }
 
   details.push(
     {
-      title: 'Issue Date',
+      title: getText('text.issueDate'),
       value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
     },
     {
-      title: 'Issuer',
+      title: getText('text.issuerName'),
       value: issuerName
     },
     {
-      title: 'Issuer\'s public key',
+      title: getText('text.issuerPublicKey'),
       value: issuerPublicKey
     }
   );
@@ -88,7 +89,7 @@ export default function CertificateDetails ({
     ${CSS}
     <dl class$='${classes}'>
         ${definitionListDetails}
-        ${renderTransactionId({ transactionLink, title: 'Transaction ID:', value: transactionId, isDisplayColumn })}
+        ${renderTransactionId({ transactionLink, title: `${getText('text.transactionId')}:`, value: transactionId, isDisplayColumn })}
     </dl>
   `;
 }

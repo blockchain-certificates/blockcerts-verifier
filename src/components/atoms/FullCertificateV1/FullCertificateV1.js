@@ -1,5 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.full-certificate-css';
+import getText from '../../../i18n/getText';
 
 export default function FullCertificateV1 ({
   hasCertificateDefinition,
@@ -18,7 +19,7 @@ export default function FullCertificateV1 ({
 
   const signatureList = certificateSignatures.map(signature => html`
     <li class='buv-c-full-certificate-signatures__signature'>
-        <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='Signed by ${signature.jobTitle}'/>
+        <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='${getText('text.signed')} ${signature.jobTitle}'/>
         <span class='buv-o-text-12'>${signature.jobTitle}</span>
     </li>
   `);
@@ -36,7 +37,7 @@ export default function FullCertificateV1 ({
       <ul class='buv-c-full-certificate-signatures'>
         ${signatureList}
       </ul>
-      <img class='buv-c-full-certificate-img--secondary' src='${certificateSeal}' alt='Certified by ${issuerName}'/>
+      <img class='buv-c-full-certificate-img--secondary' src='${certificateSeal}' alt='${getText('text.certified')} ${issuerName}'/>
     </section>
   `;
 }

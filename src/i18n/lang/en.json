@@ -12,6 +12,7 @@
   },
   "text": {
     "brandName": "Blockcerts",
+    "blockcertsHint": "Visit Blockcerts website",
     "by": "by",
     "certified": "Certified by",
     "closeButton": "Click to close",
@@ -25,6 +26,7 @@
     "metadataButton": "View Metadata",
     "metadataTitle": "Certificate Metadata",
     "motto": "Blockcerts, The Open Standard for Blockchain Credentials",
+    "recipient": "Recipient",
     "share": "Share on",
     "shareButton": "Share on Social Networks",
     "signed": "Signed by",
@@ -34,6 +36,7 @@
     "urlInput": "Enter the certificate URL",
     "urlInputPlaceholder": "Certificate URL",
     "verificationStepProgress": "Verifying step...",
+    "verify": "Verify",
     "verifyAgain": "Verify again",
     "verifyOther": "Verify another record",
     "viewRecord": "View Record"

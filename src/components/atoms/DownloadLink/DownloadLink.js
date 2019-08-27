@@ -1,9 +1,10 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.download-link-css';
+import getText from '../../../i18n/getText';
 
 export default function DownloadLink ({ downloadLink, display = '' }) {
   const isPlainText = display === 'plaintext';
-  const info = downloadLink ? 'Download Record in JSON format' : 'No link provided for download!';
+  const info = downloadLink ? getText('text.downloadLink') : getText('errors.noDownloadLink');
 
   // TODO: better handle this dynamic class (cf npm classnames)
   const classes = [

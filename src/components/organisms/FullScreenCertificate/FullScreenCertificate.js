@@ -11,6 +11,7 @@ import '../../atoms/VerifyButton';
 import '../../atoms/FullCertificateV1';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
+import getText from '../../../i18n/getText';
 
 function renderDisplayHTML (displayHTML) {
   return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(displayHTML)}</div>`;
@@ -38,7 +39,7 @@ export default function FullScreenCertificate ({
       <section class='buv-c-fullscreen-certificate__content'>
         <div class='buv-c-fullscreen-certificate__details'>
           <buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
-            <buv-verify-button type='link'>Verify again</buv-verify-button>
+            <buv-verify-button type='link'>${getText('text.verifyAgain')}</buv-verify-button>
           </buv-final-verification-step>
           <buv-certificate-details direction='column' hideRecipientName></buv-certificate-details>
           <buv-metadata class='buv-c-fullscreen-certificate__details-item  buv-c-fullscreen-certificate__separator' display='plaintext'></buv-metadata>

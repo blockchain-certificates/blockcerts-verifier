@@ -1,5 +1,6 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.drag-and-drop-css';
+import getText from '../../../i18n/getText';
 
 function isJson (file) {
   const { name } = file;
@@ -62,7 +63,7 @@ class DragAndDrop extends LitElement {
       this.isDraggedOver ? 'is-active' : ''
     ].join(' ');
 
-    const denyText = this.denyDrop ? 'Only JSON files are accepted' : '';
+    const denyText = this.denyDrop ? getText('errors.invalidFormatDragAndDrop') : '';
 
     return html`
     ${CSS}

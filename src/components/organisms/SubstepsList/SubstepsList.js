@@ -1,6 +1,7 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.substeps-list-css';
 import VerificationStep from '../../molecules/VerificationStep';
+import getText from '../../../i18n/getText';
 
 class SubstepsList extends LitElement {
   constructor () {
@@ -69,6 +70,7 @@ class SubstepsList extends LitElement {
 
     const renderedSubSteps = subSteps.filter(subStep => subStep.status);
     const itemsLength = renderedSubSteps.length;
+    // TODO: translate with plural Item
     const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
     // we are setting the closing height to 1px so that we can trigger a closing action on the first click on hide button.
     const maxHeight = isOpen ? this.totalHeight : 1;
@@ -89,8 +91,8 @@ class SubstepsList extends LitElement {
 
     return html`
     ${CSS}
-    <a title='Toggle open list of substeps' onclick='${this.toggleOpen}' class$='${linkClasses}'>
-      <span class='buv-o-link__text--underline'>${isOpen ? 'Hide' : itemString}</span>
+    <a title='${getText('text.substepsListHint')}' onclick='${this.toggleOpen}' class$='${linkClasses}'>
+      <span class='buv-o-link__text--underline'>${isOpen ? getText('text.substepsListClose') : itemString}</span>
     </a>
     <div class$='${listClasses}' style$='max-height: ${maxHeight}px'>
       ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)}
