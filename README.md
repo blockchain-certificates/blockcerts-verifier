@@ -110,6 +110,14 @@ The certificate displays similar as `full`. NOTA: only works for certificates th
   <blockcerts-verifier theme='dark'></blockcerts-verifier>
   ```
   
+- locale: (String. defaults to: `'auto'`, if language code not recognized will default to English (`en`)). View `src/i18n/lang` to see the list of supported languages. Contributions welcome.
+
+  Example:
+  
+  ```html
+  <blockcerts-verifier locale='fr'></blockcerts-verifier>
+  ``` 
+  
 ## Event Tracking API
 The component will emit events on different moment of the certificate life cycle.
 To subscribe and track these events you should add on your consumer page event listeners on the `window` object.
