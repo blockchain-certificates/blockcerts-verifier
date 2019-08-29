@@ -2,6 +2,7 @@ import { html, LitElement } from '@polymer/lit-element';
 import getValueFrom from '../../../helpers/getValueFrom';
 import CSS from './_components.metadata-css';
 import CloseButton from '../../atoms/CloseButton';
+import FormattedMetadataItem from '../../atoms/FormattedMetadataItem';
 
 function getProperties (metadataList) {
   return metadataList.schema.properties.certificate.properties;
@@ -40,13 +41,8 @@ class Metadata extends LitElement {
       const properties = getProperties(metadataList);
       innerHTML = metadataList.displayOrder.map(entry => {
         const key = entry.split('.')[1]; // get key name
-        const title = properties[key].title;
         const value = getValueFrom(metadataList, entry);
-
-        return html`
-          <dt class='buv-c-metadata-list__title'>${title}</dt>
-          <dd class='buv-c-metadata-list__detail'><pre class='buv-c-metadata-list__detail-text'>${value}</pre></dd>
-        `;
+        return FormattedMetadataItem(properties[key], value);
       });
     }
 
