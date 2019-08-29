@@ -458,5 +458,13 @@ describe('certificate selectors test suite', function () {
         expect(getIssueDate(state)).toBe('Feb 8, 2018');
       });
     });
+
+    describe('given the current locale is set to "fr"', function () {
+      it('should return the data in the French format', function () {
+        currentLocale.locale = 'fr';
+        const state = store.getState();
+        expect(getIssueDate(state)).toBe('8 Fév 2018');
+      });
+    });
   });
 });

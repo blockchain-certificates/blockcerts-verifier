@@ -42,5 +42,9 @@ export default {
     'verifyAgain': 'Vérifier de nouveau',
     'verifyOther': 'Vérifier un autre certificat',
     'viewRecord': 'Voir le certificat'
+  },
+  'date': {
+    'months': ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aout', 'Sept', 'Oct', 'Nov', 'Déc'],
+    'pattern': 'DD MM YYYY'
   }
 };
