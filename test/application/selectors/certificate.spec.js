@@ -30,6 +30,7 @@ import ethereumMainFixture from '../../fixtures/ethereum-main-valid-2.0';
 import { configureStore } from '../../../src/store';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
+import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 
 const RealDate = Date;
 
@@ -439,6 +440,22 @@ describe('certificate selectors test suite', function () {
         const state = store.getState();
 
         expect(isTestChain(state)).toBe(false);
+      });
+    });
+  });
+
+  describe('getIssueDate selector', function () {
+    stubCertificateVerify(mainnetFixture);
+
+    beforeEach(function () {
+      store.dispatch(updateCertificateDefinition(mainnetFixture));
+    });
+
+    describe('given the current locale is set to "en"', function () {
+      it('should return the data in the English format', function () {
+        currentLocale.locale = 'en';
+        const state = store.getState();
+        expect(getIssueDate(state)).toBe('Feb 8, 2018');
       });
     });
   });

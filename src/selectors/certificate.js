@@ -1,6 +1,7 @@
 import VERIFICATION_STATUS from '../constants/verificationStatus';
 import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
+import getDateFormat from '../i18n/getDateFormat';
 
 export function getCertificateDefinition (state) {
   return state.certificateDefinition;
@@ -17,13 +18,10 @@ export function getIssuedOn (state) {
 }
 
 export function getIssueDate (state) {
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
-
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    const objDate = new Date(getIssuedOn(state));
-    return months[objDate.getMonth()] + ' ' + objDate.getDate() + ', ' + objDate.getFullYear();
+    return getDateFormat(getIssuedOn(state));
   }
 
   return '';
