@@ -1,5 +1,24 @@
+import getText from './getText';
+
+function replaceMonth (pattern, monthIndex) {
+  const months = getText('date', 'months');
+  return pattern.replace('MM', months[monthIndex]);
+}
+
+function replaceDay (pattern, day) {
+  return pattern.replace('DD', day);
+}
+
+function replaceYear (pattern, year) {
+  return pattern.replace('YYYY', year);
+}
+
 export default function getDateFormat (date) {
-  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
+  const pattern = getText('date', 'pattern');
   const objDate = new Date(date);
-  return months[objDate.getMonth()] + ' ' + objDate.getDate() + ', ' + objDate.getFullYear();
+
+  let formattedDate = replaceMonth(pattern, objDate.getMonth());
+  formattedDate = replaceDay(formattedDate, objDate.getDate());
+  formattedDate = replaceYear(formattedDate, objDate.getFullYear());
+  return formattedDate;
 }

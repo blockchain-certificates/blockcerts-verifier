@@ -42,5 +42,9 @@ export default {
     'verifyAgain': 'Verify again',
     'verifyOther': 'Verify another record',
     'viewRecord': 'View Record'
+  },
+  'date': {
+    'months': ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+    'pattern': 'MM DD, YYYY'
   }
 };
