@@ -15,6 +15,7 @@ import initialValidCertificateStepsAssertions from '../../assertions/initialVali
 import validCertificate from '../../assertions/validCertificate';
 import { getShowVerificationModal, getVerificationHasStarted } from '../../../src/selectors/verification';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
+import initialize from '../../../src/actions/initialize';
 
 jest.mock('../../../src/helpers/stepQueue');
 
@@ -115,6 +116,31 @@ describe('updateCertificateDefinition action creator test suite', function () {
         await store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
         expect(getShowVerificationModal(state)).toBe(true);
+      });
+    });
+
+    describe('handling locale', function () {
+      describe('given no locale has been set as an option', function () {
+        it('should call the Certificate constructor with the locale set to auto', async function () {
+          await store.dispatch(updateCertificateDefinition(certificateFixture));
+          expect(domainParseStub.firstCall.args[1].locale).toBe(undefined);
+        });
+      });
+
+      describe('given the locale has been set to auto as an option', function () {
+        it('should call the Certificate constructor with the locale set to auto', async function () {
+          store.dispatch(initialize({ locale: 'auto' }));
+          await store.dispatch(updateCertificateDefinition(certificateFixture));
+          expect(domainParseStub.firstCall.args[1].locale).toBe('auto');
+        });
+      });
+
+      describe('given the locale has been set to a specific language as an option', function () {
+        it('should call the Certificate constructor with the locale set accordingly', async function () {
+          store.dispatch(initialize({ locale: 'fr' }));
+          await store.dispatch(updateCertificateDefinition(certificateFixture));
+          expect(domainParseStub.firstCall.args[1].locale).toBe('fr');
+        });
       });
     });
   });

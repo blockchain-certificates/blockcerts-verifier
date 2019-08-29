@@ -3,12 +3,13 @@ import * as CERTIFICATE_EVENTS from '../constants/certificateEvents';
 import domain from '../domain';
 import setErrorMessage from './setErrorMessage';
 import verifyCertificate from './verifyCertificate';
-import { getDisableAutoVerify } from '../selectors/api';
+import { getDisableAutoVerify, getLocale } from '../selectors/api';
 import showVerificationModal from './showVerificationModal';
 
 export default function updateCertificateDefinition (definition) {
-  return async function (dispatch) {
-    const { certificateDefinition, errorMessage } = domain.certificates.parse(definition);
+  return async function (dispatch, getState) {
+    const locale = getLocale(getState());
+    const { certificateDefinition, errorMessage } = domain.certificates.parse(definition, { locale });
 
     dispatch(setErrorMessage(errorMessage));
 
