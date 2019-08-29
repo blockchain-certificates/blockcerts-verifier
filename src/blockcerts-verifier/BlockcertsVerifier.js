@@ -88,6 +88,7 @@ function BUVWrapper (props) {
           displayMode='${props['display-mode']}'
           showMetadata='${props['show-metadata']}'
           theme='${props.theme}'
+          locale='${props.locale}'
         ></buv-raw>`;
 }
 
