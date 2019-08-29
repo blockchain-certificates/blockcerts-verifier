@@ -10,12 +10,17 @@
   font-weight: 600;
   font-size: 15px;
   color: $fontColor;
+  margin-top: 15px;
 }
 
 .buv-c-final-verification-step.is-success {
   font-size: 21px;
   color: $successColor;
   line-height: 19px;
+}
+
+.buv-c-final-verification-step--standalone {
+  margin-top: 0;
 }
 
 .buv-c-final-verification-step.is-test,
