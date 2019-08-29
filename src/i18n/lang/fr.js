@@ -23,6 +23,8 @@ export default {
     'issueDate': 'Date d\'émission',
     'issuerName': 'Émetteur',
     'issuerPublicKey': 'Clé publique de l\'émetteur',
+    'item': 'point contrôlé',
+    'itemPlural': 'points contrôlés',
     'metadataButton': 'Voir les métadata',
     'metadataTitle': 'Métadata du certificat',
     'motto': 'Blockcerts, The Open Standard for Blockchain Credentials',

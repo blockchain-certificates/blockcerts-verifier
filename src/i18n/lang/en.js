@@ -23,6 +23,8 @@ export default {
     'issueDate': 'Issue Date',
     'issuerName': 'Issuer',
     'issuerPublicKey': 'Issuer\'s public key',
+    'item': 'Item',
+    'itemPlural': 'Items',
     'metadataButton': 'View Metadata',
     'metadataTitle': 'Certificate Metadata',
     'motto': 'Blockcerts, The Open Standard for Blockchain Credentials',

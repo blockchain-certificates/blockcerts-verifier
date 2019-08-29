@@ -1,7 +1,7 @@
 import currentLocale from './valueObjects/currentLocale';
 import { getLanguagesTexts } from './getSupportedLanguages';
 
-export default function getText (group, item) {
+export default function getText (group, item = '', usePlural = false, count = 0) {
   if (!group) {
     return '';
   }
@@ -14,6 +14,10 @@ export default function getText (group, item) {
 
   if (!item) {
     return '';
+  }
+
+  if (usePlural && count > 1) {
+    item += 'Plural';
   }
 
   const i18n = getLanguagesTexts();

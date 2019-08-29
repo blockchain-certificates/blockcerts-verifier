@@ -71,7 +71,7 @@ class SubstepsList extends LitElement {
     const renderedSubSteps = subSteps.filter(subStep => subStep.status);
     const itemsLength = renderedSubSteps.length;
     // TODO: translate with plural Item
-    const itemString = `${itemsLength} Item${itemsLength > 1 ? 's' : ''}`;
+    const itemString = `${itemsLength} ${getText('text', 'item', true, itemsLength)}`;
     // we are setting the closing height to 1px so that we can trigger a closing action on the first click on hide button.
     const maxHeight = isOpen ? this.totalHeight : 1;
 

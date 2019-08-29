@@ -23,6 +23,22 @@ describe('domain i18n getText use case test suite', function () {
     });
   });
 
+  describe('given the usePlural flag is set to true', function () {
+    describe('and the count is lower or equal to 1', function () {
+      it('should return the singular version', function () {
+        const res = getText('text', 'item', true, 1);
+        expect(res).toBe('Item');
+      });
+    });
+
+    describe('and the count is greater or equal to 1', function () {
+      it('should return the plural version', function () {
+        const res = getText('text', 'item', true, 2);
+        expect(res).toBe('Items');
+      });
+    });
+  });
+
   describe('given the current locale does not exist in the i18n data', function () {
     // TODO: is test relevant if we ensure the locale exists?
     xit('should return an error', function () {
