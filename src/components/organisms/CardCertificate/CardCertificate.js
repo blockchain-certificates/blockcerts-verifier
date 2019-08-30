@@ -2,6 +2,7 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.card-css';
 import '../../atoms/VerifyButton';
 import '../../atoms/FinalVerificationStep';
+import getText from '../../../i18n/getText';
 
 function loadImage (props) {
   return new Promise((resolve) => {
@@ -46,20 +47,20 @@ export default function CardCertificate (props) {
         <div class='buv-c-card__title-wrapper'>
           <h1 class$=${titleClass}>${certificateTitle}</h1>
           <h2 class$='${titleClass}  buv-c-card__recipient'>${recipientName}</h2>
-          <span class='buv-o-text-12'>Issued on <time datetime$='${issuedOn}'>${issueDate}</time> by ${issuerName}</span>
+          <span class='buv-o-text-12'>${getText('text.issued')} <time datetime$='${issuedOn}'>${issueDate}</time> ${getText('text.by')} ${issuerName}</span>
         </div>
       ${
   hideRecordLink
     ? ''
     : html`<a class='buv-o-text-12  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>
-    <span class='buv-o-link__text--underline'>View Record</span>
+    <span class='buv-o-link__text--underline'>${getText('text.viewRecord')}</span>
     </a>`
 }
       </section>
       ${hideVerifyButton
     ? ''
     : html`<buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
-      <buv-verify-button type='link'>Verify again</buv-verify-button>
+      <buv-verify-button type='link'>${getText('text.verifyAgain')}</buv-verify-button>
     </buv-final-verification-step>`
 }
     `;

@@ -109,7 +109,8 @@
       "FileReader",
       "atob",
       "CustomEvent",
-      "Image"
+      "Image",
+      "domainParseStub"
     ],
     "ignore": [
       "sanitizer/sanitizer.js",

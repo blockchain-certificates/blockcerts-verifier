@@ -1,6 +1,7 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.social-share-css';
 import CloseButton from '../../atoms/CloseButton';
+import getText from '../../../i18n/getText';
 
 class SocialShare extends LitElement {
   constructor () {
@@ -55,7 +56,7 @@ class SocialShare extends LitElement {
               target='_blank'
               onclick='${() => { onShare(service.name); }}'
             >
-              <span>Share on ${service.name}</span>
+              <span>${getText('text.share')} ${service.name}</span>
             </a>
           </li>`
     );
@@ -85,7 +86,7 @@ class SocialShare extends LitElement {
     }
 
     const hasUrl = !!url;
-    const info = hasUrl ? 'Share on Social Networks' : 'No URL to share!';
+    const info = hasUrl ? getText('text.shareButton') : getText('text.noShareUrl');
     return html`<button 
         onclick='${this.toggleOpen}'
         class='buv-c-social-share-link  buv-o-button-link'

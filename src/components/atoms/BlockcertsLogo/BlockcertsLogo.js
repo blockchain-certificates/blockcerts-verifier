@@ -1,5 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.blockcerts-logo-css';
+import getText from '../../../i18n/getText';
 
 function simpleLogo () {
   return html`
@@ -24,7 +25,7 @@ function simpleLogo () {
           </g>
       </g> 
     </svg>
-    <span class='buv-u-visually-hidden'>Blockcerts</span>
+    <span class='buv-u-visually-hidden'>${getText('text.brandname')}</span>
   `;
 }
 
@@ -54,14 +55,14 @@ function logoWithBranding () {
         </g>
       </g>
     </svg>
-    <span class='buv-u-visually-hidden'>Blockcerts, The Open Standard for Blockchain Credentials</span>
+    <span class='buv-u-visually-hidden'>${getText('text.motto')}</span>
   `;
 }
 
 const BlockcertsLogo = ({ className, showMotto = false } = {}) => {
   return html`
   ${CSS}
-  <a href='https://www.blockcerts.org' title='Visit Blockcerts website' class$='buv-c-logo  ${className}'>
+  <a href='https://www.blockcerts.org' title='${getText('text.blockcertsHint')}' class$='buv-c-logo  ${className}'>
     ${
   showMotto
     ? logoWithBranding()

@@ -2,7 +2,7 @@ import { isValidLocalPath, isValidUrl } from '../../../helpers/validations';
 import downloadFlag from '../../../constants/downloadFlag';
 
 function handleError (error) {
-  const errorMessage = 'Not a valid certificate URL.';
+  const errorMessage = 'errors.invalidBlockcertsUrl';
   console.error(error);
   return {
     certificateDefinition: null,

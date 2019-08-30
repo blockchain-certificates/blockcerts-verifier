@@ -25,3 +25,7 @@ export function getDisplayMode (state) {
 export function getTheme (state) {
   return state.theme;
 }
+
+export function getLocale (state) {
+  return state.locale;
+}

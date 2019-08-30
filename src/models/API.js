@@ -9,7 +9,8 @@ const APIKeys = {
   'allow-social-share': Boolean,
   'display-mode': String,
   'show-metadata': Boolean,
-  'theme': THEME.DARK | THEME.BRIGHT
+  'theme': THEME.DARK | THEME.BRIGHT,
+  'locale': String
 };
 
 const APICamelCase = Object.keys(APIKeys)

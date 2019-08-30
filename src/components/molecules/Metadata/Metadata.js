@@ -2,6 +2,7 @@ import { html, LitElement } from '@polymer/lit-element';
 import getValueFrom from '../../../helpers/getValueFrom';
 import CSS from './_components.metadata-css';
 import CloseButton from '../../atoms/CloseButton';
+import getText from '../../../i18n/getText';
 import FormattedMetadataItem from '../../atoms/FormattedMetadataItem';
 
 function getProperties (metadataList) {
@@ -48,7 +49,7 @@ class Metadata extends LitElement {
 
     const isPlainText = display === 'plaintext';
 
-    const info = metadataList ? 'View Metadata' : 'No metadata specified for this record';
+    const info = metadataList ? getText('text.metadataButton') : getText('errors.noMetadata');
     const buttonClasses = [
       'buv-c-metadata-link',
       'buv-o-button-link',
@@ -65,7 +66,7 @@ class Metadata extends LitElement {
         <label class$='${isPlainText ? 'buv-o-button-link__label' : 'buv-u-visually-hidden'}'>${info}</label>
       </button>
       <section class$='${panelClasses}'>
-        <h1 class='buv-c-metadata-container__title'>Certificate Metadata</h1>
+        <h1 class='buv-c-metadata-container__title'>${getText('text.metadataTitle')}</h1>
         ${CloseButton({
     onClick: this.toggleOpen,
     className: 'buv-c-metadata-container__close-button'
