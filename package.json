@@ -78,9 +78,6 @@
     "lint:js": "semistandard \"**/*.js\" | snazzy",
     "lint:polymer": "polymer lint",
     "lint:styles": "sass-lint --verbose",
-    "prepush": "npm run lint && npm run test",
-    "precommit": "npm run lint",
-    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
     "semantic-release": "semantic-release"
   },
   "publishConfig": {
@@ -119,5 +116,12 @@
       "*-css.js"
     ],
     "env": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint && npm run test"
+    }
   }
 }
