@@ -27,7 +27,8 @@ export default function CardCertificate (props) {
     issuerName,
     recordLink,
     hideRecordLink,
-    hideVerifyButton } = props;
+    hideVerifyButton
+  } = props;
 
   if (!hasCertificateDefinition) {
     return null;

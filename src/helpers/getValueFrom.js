@@ -20,7 +20,7 @@ export default function getValueFrom (list, entry) {
       return list[key];
     }
 
-    if (list[key].hasOwnProperty(nextKey)) {
+    if (Object.prototype.hasOwnProperty.call(list[key], nextKey)) {
       return getListSubkey(list[key], nextKey, path);
     }
   }

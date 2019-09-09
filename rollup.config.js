@@ -19,8 +19,8 @@ export default [
         babelrc: false,
         presets: [['env', {
           modules: false,
-          'targets': {
-            'node': 'current'
+          targets: {
+            node: 'current'
           }
         }]],
         plugins: ['transform-object-rest-spread', 'external-helpers']
@@ -52,13 +52,13 @@ export default [
         babelrc: false,
         presets: [['env', {
           modules: false,
-          'targets': {
-            'browser': 'IE 11'
+          targets: {
+            browser: 'IE 11'
           }
         }]],
         plugins: ['transform-object-rest-spread', 'external-helpers', ['transform-runtime', {
-          'helpers': false,
-          'polyfill': false
+          helpers: false,
+          polyfill: false
         }]]
       }),
       replace({

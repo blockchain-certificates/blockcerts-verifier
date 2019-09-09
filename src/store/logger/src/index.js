@@ -37,7 +37,7 @@ function createLogger (options = {}) {
   } = loggerOptions;
 
   // Return if 'console' object is not defined
-  if (typeof logger === `undefined`) {
+  if (typeof logger === 'undefined') {
     return () => next => action => next(action);
   }
 
@@ -69,7 +69,7 @@ const store = createStore(
 
   return ({ getState }) => (next) => (action) => {
     // Exit early if predicate function returns 'false'
-    if (typeof predicate === `function` && !predicate(getState, action)) {
+    if (typeof predicate === 'function' && !predicate(getState, action)) {
       return next(action);
     }
 
@@ -96,7 +96,7 @@ const store = createStore(
     logEntry.took = timer.now() - logEntry.started;
     logEntry.nextState = stateTransformer(getState());
 
-    const diff = loggerOptions.diff && typeof diffPredicate === `function` ? diffPredicate(getState, action) : loggerOptions.diff;
+    const diff = loggerOptions.diff && typeof diffPredicate === 'function' ? diffPredicate(getState, action) : loggerOptions.diff;
 
     printBuffer(logBuffer, { ...loggerOptions, diff });
     logBuffer.length = 0;
@@ -107,7 +107,7 @@ const store = createStore(
 }
 
 const defaultLogger = ({ dispatch, getState } = {}) => {
-  if (typeof dispatch === `function` || typeof getState === `function`) {
+  if (typeof dispatch === 'function' || typeof getState === 'function') {
     return createLogger()({ dispatch, getState });
   } else {
     // eslint-disable-next-line no-console

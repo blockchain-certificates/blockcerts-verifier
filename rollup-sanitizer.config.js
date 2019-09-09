@@ -17,8 +17,8 @@ export default {
     }),
     commonjs({
       namedExports: {
-        'xss': ['xss'],
-        'cssfilter': ['cssfilter']
+        xss: ['xss'],
+        cssfilter: ['cssfilter']
       }
     })
   ]

@@ -16,7 +16,6 @@
 
 export default function proxyPolyfill () {
   let lastRevokeFn = null;
-  let ProxyPolyfill;
 
   /**
    * @param {*} o
@@ -31,7 +30,7 @@ export default function proxyPolyfill () {
    * @param {!Object} target
    * @param {{apply, construct, get, set}} handler
    */
-  ProxyPolyfill = function (target, handler) {
+  const ProxyPolyfill = function (target, handler) {
     if (!isObject(target) || !isObject(handler)) {
       throw new TypeError('Cannot create proxy with a non-object as target or handler');
     }
@@ -49,8 +48,8 @@ export default function proxyPolyfill () {
     // Fail on unsupported traps: Chrome doesn't do this, but ensure that users of the polyfill
     // are a bit more careful. Copy the internal parts of handler to prevent user changes.
     const unsafeHandler = handler;
-    handler = { 'get': null, 'set': null, 'apply': null, 'construct': null };
-    for (let k in unsafeHandler) {
+    handler = { get: null, set: null, apply: null, construct: null };
+    for (const k in unsafeHandler) {
       if (!(k in handler)) {
         // throw new TypeError(`Proxy polyfill does not support trap '${k}'`);
       } else {
@@ -74,8 +73,8 @@ export default function proxyPolyfill () {
         const args = Array.prototype.slice.call(arguments);
         throwRevoked(usingNew ? 'construct' : 'apply');
 
-        if (usingNew && handler['construct']) {
-          return handler['construct'].call(this, target, args);
+        if (usingNew && handler.construct) {
+          return handler.construct.call(this, target, args);
         } else if (!usingNew && handler.apply) {
           return handler.apply(target, this, args);
         }
@@ -144,7 +143,7 @@ export default function proxyPolyfill () {
       prototypeOk = false;
     }
     if (handler.get || !prototypeOk) {
-      for (let k in target) {
+      for (const k in target) {
         if (propertyMap[k]) {
           continue;
         }
@@ -161,7 +160,7 @@ export default function proxyPolyfill () {
 
   ProxyPolyfill.revocable = function (target, handler) {
     const p = new ProxyPolyfill(target, handler);
-    return { 'proxy': p, 'revoke': lastRevokeFn };
+    return { proxy: p, revoke: lastRevokeFn };
   };
 
   return ProxyPolyfill;
