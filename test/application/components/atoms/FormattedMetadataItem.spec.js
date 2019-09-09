@@ -1,7 +1,7 @@
 import FormattedMetadataItem from '../../../../src/components/atoms/FormattedMetadataItem/FormattedMetadataItem';
 
 const FIXTURE_VALUE = 'http://a.dummy.link';
-const REGULAR_LINK = `<a href=`;
+const REGULAR_LINK = '<a href=';
 const TARGET_BLANK = '_blank';
 const MAIL_LINK = `"mailto:${FIXTURE_VALUE}`;
 const PHONE_LINK = `"tel:${FIXTURE_VALUE}`;

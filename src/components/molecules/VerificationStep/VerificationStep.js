@@ -4,7 +4,7 @@ import ErrorMessage from '../../atoms/ErrorMessage';
 
 export default function VerificationStep ({ label, code, status, errorMessage, isParent, isFirst, isTestChain }) {
   // TODO: better handle this dynamic class (cf npm classnames)
-  let parentStepClasses = [
+  const parentStepClasses = [
     'buv-o-text-15',
     'buv-c-verification-step',
     'buv-c-badge',

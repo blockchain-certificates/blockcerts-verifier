@@ -188,29 +188,29 @@ describe('certificate selectors test suite', function () {
           const state = store.getState();
 
           const expectedOutput = {
-            'code': 'statusCheck',
-            'label': 'Status check',
-            'labelPending': 'Checking record status',
-            'status': 'standby',
-            'isLast': true,
-            'subSteps': [
+            code: 'statusCheck',
+            label: 'Status check',
+            labelPending: 'Checking record status',
+            status: 'standby',
+            isLast: true,
+            subSteps: [
               {
-                'code': 'checkRevokedStatus',
-                'label': 'Check Revoked Status',
-                'labelPending': 'Checking Revoked Status',
-                'parentStep': 'statusCheck'
+                code: 'checkRevokedStatus',
+                label: 'Check Revoked Status',
+                labelPending: 'Checking Revoked Status',
+                parentStep: 'statusCheck'
               },
               {
-                'code': 'checkAuthenticity',
-                'label': 'Check Authenticity',
-                'labelPending': 'Checking Authenticity',
-                'parentStep': 'statusCheck'
+                code: 'checkAuthenticity',
+                label: 'Check Authenticity',
+                labelPending: 'Checking Authenticity',
+                parentStep: 'statusCheck'
               },
               {
-                'code': 'checkExpiresDate',
-                'label': 'Check Expiration Date',
-                'labelPending': 'Checking Expiration Date',
-                'parentStep': 'statusCheck'
+                code: 'checkExpiresDate',
+                label: 'Check Expiration Date',
+                labelPending: 'Checking Expiration Date',
+                parentStep: 'statusCheck'
               }
             ]
           };
