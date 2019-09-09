@@ -37,7 +37,7 @@
     "concurrently": "^4.1.0",
     "express": "^4.16.3",
     "husky": "^3.0.1",
-    "jest": "^23.1.0",
+    "jest": "^24.9.0",
     "jest-fetch-mock": "^2.1.2",
     "polymer-cli": "^1.8.1",
     "pwa-helpers": "^0.8.2",
