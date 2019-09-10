@@ -1,8 +1,10 @@
 import en from './lang/en.js';
+import es from './lang/es.js';
 import fr from './lang/fr.js';
 
 const i18n = {
   en,
+  es,
   fr
 };
 
