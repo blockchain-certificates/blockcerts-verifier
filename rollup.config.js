@@ -15,16 +15,6 @@ export default [
       }
     ],
     plugins: [
-      babel({
-        babelrc: false,
-        presets: [['env', {
-          modules: false,
-          targets: {
-            node: 'current'
-          }
-        }]],
-        plugins: ['transform-object-rest-spread', 'external-helpers']
-      }),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
@@ -50,15 +40,14 @@ export default [
       }),
       babel({
         babelrc: false,
-        presets: [['env', {
+        presets: [['@babel/env', {
           modules: false,
           targets: {
-            browser: 'IE 11'
+            browsers: 'IE 11'
           }
         }]],
-        plugins: ['transform-object-rest-spread', 'external-helpers', ['transform-runtime', {
-          helpers: false,
-          polyfill: false
+        plugins: [['@babel/transform-runtime', {
+          helpers: false
         }]]
       }),
       replace({
