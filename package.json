@@ -66,7 +66,7 @@
     "test:coverage": "jest --maxWorkers=4 --silent --noStackTrace --coverage",
     "test:coverage:report": "codecov",
     "start": "concurrently 'polymer serve' 'npm run styles:compile:watch' 'npm run start:mock-server'",
-    "start:mock-server": "babel-node test/mock-server",
+    "start:mock-server": "node test/mock-server",
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
     "lint": "npm run lint:js && npm run lint:polymer && npm run lint:styles",
