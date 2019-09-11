@@ -41,10 +41,10 @@ export default [
       babel({
         babelrc: false,
         presets: [['@babel/env', {
-          modules: false,
           targets: {
-            browsers: 'IE 11'
-          }
+            ie: '11'
+          },
+          debug: true
         }]],
         plugins: [['@babel/transform-runtime', {
           helpers: false
