@@ -44,7 +44,7 @@ export default [
           targets: {
             ie: '11'
           },
-          debug: true
+          debug: false
         }]],
         plugins: [['@babel/transform-runtime', {
           helpers: false
