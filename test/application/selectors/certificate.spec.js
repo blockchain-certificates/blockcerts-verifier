@@ -135,10 +135,21 @@ describe('certificate selectors test suite', function () {
     });
 
     describe('getRecordLink selector', function () {
-      it('should return the record\'s link', function () {
-        const state = store.getState();
+      describe('given the record link is a valid URL', function () {
+        it('should return the record\'s link', function () {
+          const state = store.getState();
 
-        expect(getRecordLink(state)).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
+          expect(getRecordLink(state)).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97');
+        });
+      });
+
+      describe('given the record link is not a valid URL', function () {
+        it('should return an empty string', function () {
+          const state = store.getState();
+          state.certificateDefinition.recordLink = 'not-a-valid-url';
+
+          expect(getRecordLink(state)).toBe('');
+        });
       });
     });
 
