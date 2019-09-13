@@ -2,7 +2,7 @@ import FullScreenCertificate from '../../../../src/components/organisms/FullScre
 import { assertClassInStringBits } from '../helpers/assertClass';
 
 describe('FullScreenCertificate component test suite', function () {
-  describe('given there is not certificate definition', function () {
+  describe('given there is no certificate definition', function () {
     it('should return null', function () {
       const instance = FullScreenCertificate({ hasCertificateDefinition: false });
       expect(instance).toBeNull();
