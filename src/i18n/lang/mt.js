@@ -1,8 +1,8 @@
 export default {
   errors: {
-    errorLabel: 'Error',
-    invalidBlockcerts: 'Not a valid Blockcerts definition.',
-    invalidBlockcertsUrl: 'Not a valid certificate URL.',
+    errorLabel: 'Żball',
+    invalidBlockcerts: 'Mhux definizzjoni valida ta \'Blockcerts\'.',
+    invalidBlockcertsUrl: 'Il-URL taċ-ċertifikat mhuwiex validu',
     invalidFormatDragAndDrop: 'Only JSON files are accepted',
     invalidUrl: 'This does not seem to be a valid URL.',
     noDownloadLink: 'No link provided for download!',

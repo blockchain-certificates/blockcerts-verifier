@@ -8,11 +8,11 @@
   },
   "main": "dist/main.js",
   "dependencies": {
+    "@babel/runtime": "^7.6.0",
     "@blockcerts/cert-verifier-js": "^3.1.3",
     "@polymer/lit-element": "0.5.1",
     "@polymer/polymer": "3.3.0",
     "@webcomponents/webcomponentsjs": "2.2.10",
-    "babel-runtime": "^6.26.0",
     "cssfilter": "0.0.10",
     "proxy-polyfill": "^0.3.0",
     "redux": "^4.0.0",
@@ -21,35 +21,31 @@
     "xss": "^1.0.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "axe-core": "^3.0.2",
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-jest": "^24.8.0",
-    "babel-loader": "8.0.6",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "1.7.0",
+    "babel-jest": "^24.9.0",
     "codecov": "^3.1.0",
     "concurrently": "^4.1.0",
     "express": "^4.16.3",
     "husky": "^3.0.1",
-    "jest": "^23.1.0",
+    "jest": "^24.9.0",
     "jest-fetch-mock": "^2.1.2",
     "polymer-cli": "^1.8.1",
     "pwa-helpers": "^0.8.2",
     "rollup": "^1.12.4",
-    "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-terser": "^5.0.0",
     "sass-lint": "^1.12.1",
     "semantic-release": "^15.9.14",
-    "semistandard": "^13.0.1",
+    "semistandard": "^14.1.0",
     "sinon": "^7.4.1",
     "snazzy": "^8.0.0",
     "watch": "^1.0.2",
@@ -70,7 +66,7 @@
     "test:coverage": "jest --maxWorkers=4 --silent --noStackTrace --coverage",
     "test:coverage:report": "codecov",
     "start": "concurrently 'polymer serve' 'npm run styles:compile:watch' 'npm run start:mock-server'",
-    "start:mock-server": "babel-node test/mock-server",
+    "start:mock-server": "node test/mock-server",
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
     "lint": "npm run lint:js && npm run lint:polymer && npm run lint:styles",
@@ -78,9 +74,6 @@
     "lint:js": "semistandard \"**/*.js\" | snazzy",
     "lint:polymer": "polymer lint",
     "lint:styles": "sass-lint --verbose",
-    "prepush": "npm run lint && npm run test",
-    "precommit": "npm run lint",
-    "commitmsg": "commitlint -E HUSKY_GIT_PARAMS",
     "semantic-release": "semantic-release"
   },
   "publishConfig": {
@@ -119,5 +112,12 @@
       "*-css.js"
     ],
     "env": "jest"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run lint",
+      "pre-push": "npm run lint && npm run test"
+    }
   }
 }

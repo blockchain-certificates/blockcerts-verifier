@@ -2,7 +2,7 @@ import * as ACTIONS from '../constants/actionTypes';
 import updateParentStepStatus from './updateParentStepStatus';
 import stepQueueFactory from '../helpers/stepQueue';
 
-let stepQueue = stepQueueFactory();
+const stepQueue = stepQueueFactory();
 
 function dispatchActionsFactory (dispatch) {
   return function dispatchActions (step) {

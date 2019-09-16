@@ -2,6 +2,7 @@ import VERIFICATION_STATUS from '../constants/verificationStatus';
 import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
 import getDateFormat from '../i18n/getDateFormat';
+import { isValidUrl } from '../helpers/validations';
 
 export function getCertificateDefinition (state) {
   return state.certificateDefinition;
@@ -80,7 +81,7 @@ export function getDisplayHTML (state) {
 export function getRecordLink (state) {
   const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateDefinition) {
+  if (certificateDefinition && isValidUrl(certificateDefinition.recordLink)) {
     return certificateDefinition.recordLink;
   }
 

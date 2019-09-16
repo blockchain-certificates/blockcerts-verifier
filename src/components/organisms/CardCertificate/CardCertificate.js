@@ -26,11 +26,17 @@ export default function CardCertificate (props) {
     issueDate,
     issuerName,
     recordLink,
-    hideRecordLink,
-    hideVerifyButton } = props;
+    hideVerifyButton
+  } = props;
+
+  let { hideRecordLink } = props;
 
   if (!hasCertificateDefinition) {
     return null;
+  }
+
+  if (!recordLink && !hideRecordLink) {
+    hideRecordLink = true;
   }
 
   const titleClass = [
@@ -52,7 +58,7 @@ export default function CardCertificate (props) {
       ${
   hideRecordLink
     ? ''
-    : html`<a class='buv-o-text-12  buv-o-link  buv-c-card__record-link' href='${recordLink}' target='_blank'>
+    : html`<a class='buv-o-text-12  buv-o-link  buv-c-card__record-link  qa-card-record-link' href='${recordLink}' target='_blank'>
     <span class='buv-o-link__text--underline'>${getText('text.viewRecord')}</span>
     </a>`
 }

@@ -13,9 +13,9 @@ import diffLogger from './diff';
  */
 function getLogLevel (level, action, payload, type) {
   switch (typeof level) {
-    case `object`:
-      return typeof level[type] === `function` ? level[type](...payload) : level[type];
-    case `function`:
+    case 'object':
+      return typeof level[type] === 'function' ? level[type](...payload) : level[type];
+    case 'function':
       return level(action);
     default:
       return level;
@@ -29,13 +29,13 @@ function defaultTitleFormatter (options) {
   } = options;
 
   return (action, time, took) => {
-    const parts = [`action`];
+    const parts = ['action'];
 
     parts.push(`%c${String(action.type)}`);
     if (timestamp) parts.push(`%c@ ${time}`);
     if (duration) parts.push(`%c(in ${took.toFixed(2)} ms)`);
 
-    return parts.join(` `);
+    return parts.join(' ');
   };
 }
 
@@ -62,14 +62,14 @@ export function printBuffer (buffer, options) {
 
     // Message
     const formattedAction = actionTransformer(action);
-    const isCollapsed = (typeof collapsed === `function`) ? collapsed(() => nextState, action, logEntry) : collapsed;
+    const isCollapsed = (typeof collapsed === 'function') ? collapsed(() => nextState, action, logEntry) : collapsed;
 
     const formattedTime = formatTime(startedTime);
-    const titleCSS = colors.title ? `color: ${colors.title(formattedAction)};` : ``;
-    const headerCSS = [`color: gray; font-weight: lighter;`];
+    const titleCSS = colors.title ? `color: ${colors.title(formattedAction)};` : '';
+    const headerCSS = ['color: gray; font-weight: lighter;'];
     headerCSS.push(titleCSS);
-    if (options.timestamp) headerCSS.push(`color: gray; font-weight: lighter;`);
-    if (options.duration) headerCSS.push(`color: gray; font-weight: lighter;`);
+    if (options.timestamp) headerCSS.push('color: gray; font-weight: lighter;');
+    if (options.duration) headerCSS.push('color: gray; font-weight: lighter;');
     const title = titleFormatter(formattedAction, formattedTime, took);
 
     // Render
@@ -85,29 +85,29 @@ export function printBuffer (buffer, options) {
       logger.log(title);
     }
 
-    const prevStateLevel = getLogLevel(level, formattedAction, [prevState], `prevState`);
-    const actionLevel = getLogLevel(level, formattedAction, [formattedAction], `action`);
-    const errorLevel = getLogLevel(level, formattedAction, [error, prevState], `error`);
-    const nextStateLevel = getLogLevel(level, formattedAction, [nextState], `nextState`);
+    const prevStateLevel = getLogLevel(level, formattedAction, [prevState], 'prevState');
+    const actionLevel = getLogLevel(level, formattedAction, [formattedAction], 'action');
+    const errorLevel = getLogLevel(level, formattedAction, [error, prevState], 'error');
+    const nextStateLevel = getLogLevel(level, formattedAction, [nextState], 'nextState');
 
     if (prevStateLevel) {
-      if (colors.prevState) logger[prevStateLevel](`%c prev state`, `color: ${colors.prevState(prevState)}; font-weight: bold`, prevState);
-      else logger[prevStateLevel](`prev state`, prevState);
+      if (colors.prevState) logger[prevStateLevel]('%c prev state', `color: ${colors.prevState(prevState)}; font-weight: bold`, prevState);
+      else logger[prevStateLevel]('prev state', prevState);
     }
 
     if (actionLevel) {
-      if (colors.action) logger[actionLevel](`%c action    `, `color: ${colors.action(formattedAction)}; font-weight: bold`, formattedAction);
-      else logger[actionLevel](`action    `, formattedAction);
+      if (colors.action) logger[actionLevel]('%c action    ', `color: ${colors.action(formattedAction)}; font-weight: bold`, formattedAction);
+      else logger[actionLevel]('action    ', formattedAction);
     }
 
     if (error && errorLevel) {
-      if (colors.error) logger[errorLevel](`%c error     `, `color: ${colors.error(error, prevState)}; font-weight: bold;`, error);
-      else logger[errorLevel](`error     `, error);
+      if (colors.error) logger[errorLevel]('%c error     ', `color: ${colors.error(error, prevState)}; font-weight: bold;`, error);
+      else logger[errorLevel]('error     ', error);
     }
 
     if (nextStateLevel) {
-      if (colors.nextState) logger[nextStateLevel](`%c next state`, `color: ${colors.nextState(nextState)}; font-weight: bold`, nextState);
-      else logger[nextStateLevel](`next state`, nextState);
+      if (colors.nextState) logger[nextStateLevel]('%c next state', `color: ${colors.nextState(nextState)}; font-weight: bold`, nextState);
+      else logger[nextStateLevel]('next state', nextState);
     }
 
     if (diff) {
@@ -117,7 +117,7 @@ export function printBuffer (buffer, options) {
     try {
       logger.groupEnd();
     } catch (e) {
-      logger.log(`—— log end ——`);
+      logger.log('—— log end ——');
     }
   });
 }

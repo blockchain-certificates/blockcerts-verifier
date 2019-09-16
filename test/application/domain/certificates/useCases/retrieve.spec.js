@@ -17,25 +17,33 @@ describe('domain certificates retrieve method test suite', function () {
     });
 
     describe('given the url is not of a certificate', function () {
-      it('returns an error message', async function () {
-        const result = await domain.certificates.retrieve(NOT_CERTIFICATE_URL);
+      let result;
+
+      beforeAll(async function () {
+        result = await domain.certificates.retrieve(NOT_CERTIFICATE_URL);
+      });
+
+      it('returns an error message', function () {
         expect(result.errorMessage).toBe('errors.invalidBlockcertsUrl');
       });
 
-      it('returns a null definition', async function () {
-        const result = await domain.certificates.retrieve(NOT_CERTIFICATE_URL);
+      it('returns a null definition', function () {
         expect(result.certificateDefinition).toBe(null);
       });
     });
 
     describe('given the url does not point to a live server', function () {
+      let result;
+
+      beforeAll(async function () {
+        result = await domain.certificates.retrieve(INEXISTENT_URL);
+      });
+
       it('returns an error message', async function () {
-        const result = await domain.certificates.retrieve(INEXISTENT_URL);
         expect(result.errorMessage).toBe('errors.invalidBlockcertsUrl');
       });
 
       it('returns a null definition', async function () {
-        const result = await domain.certificates.retrieve(INEXISTENT_URL);
         expect(result.certificateDefinition).toBe(null);
       });
     });

@@ -13,6 +13,11 @@ import { APICamelCase } from '../models/API';
 import * as DISPLAY_MODE from '../constants/displayMode';
 
 class BlockcertsVerifier extends LitElement {
+  constructor () {
+    super();
+    this.hasRenderedOnce = false;
+  }
+
   static get properties () {
     return {
       onLoad: Function,
@@ -24,13 +29,14 @@ class BlockcertsVerifier extends LitElement {
 
   _firstRendered () {
     this.onLoad(this._props);
+    this.hasRenderedOnce = true;
   }
 
   _propertiesChanged (props, changedProps, prevProps) {
     this._props = props;
     super._propertiesChanged(props, changedProps, prevProps);
 
-    if (changedProps.src !== prevProps.src) {
+    if (changedProps.src !== prevProps.src && this.hasRenderedOnce) {
       this.onLoad({
         src: changedProps.src
       });
@@ -75,7 +81,7 @@ window.customElements.define('buv-raw', BlockcertsVerifier);
 
 // wrap Button in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
-function BUVWrapper (props) {
+function BUVWrapper (props = {}) {
   return html`<buv-raw
           src='${props.src}'
           onLoad='${props.onLoad}'
