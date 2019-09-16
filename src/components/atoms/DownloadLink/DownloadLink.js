@@ -11,7 +11,7 @@ export default function DownloadLink ({ downloadLink, display = '' }) {
     'buv-c-download-link',
     'buv-o-button-link',
     !downloadLink ? 'is-disabled' : '',
-    isPlainText ? '' : 'buv-c-metadata-link--icon'
+    isPlainText ? '' : 'buv-c-download-link--icon'
   ].join(' ');
 
   return html`
