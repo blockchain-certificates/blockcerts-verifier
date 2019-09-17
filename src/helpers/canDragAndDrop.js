@@ -8,8 +8,7 @@ export default function canDragAndDrop () {
   testedOnce = true;
 
   const testDiv = document.createElement('div');
-  if ('ondragenter' in testDiv) {
-    console.log('yeah yeah drag me over');
+  if (!('ontouchstart' in testDiv)) { // check if most likely mobile device.
     canDragAndDropCache = true;
     return canDragAndDropCache;
   }
