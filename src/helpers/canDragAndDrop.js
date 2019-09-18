@@ -8,8 +8,11 @@ export default function canDragAndDrop () {
   testedOnce = true;
 
   const testDiv = document.createElement('div');
+
   if (!('ontouchstart' in testDiv)) { // check if most likely mobile device.
     canDragAndDropCache = true;
     return canDragAndDropCache;
   }
+
+  return false;
 }

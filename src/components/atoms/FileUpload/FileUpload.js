@@ -20,5 +20,5 @@ export default function FileUpload ({ onChange = () => {}, hideFileUpload = fals
         onchange='${(e) => { onChange(e.target.files[0]); }}'
       />
     </label>
-    ${canDragAndDrop() ? html`<span class="buv-o-text-12">${getText('text.dragAndDropHint')}</span>` : ''}`;
+    ${canDragAndDrop() ? html`<span class="buv-o-text-12  qa-drag-and-drop-hint">${getText('text.dragAndDropHint')}</span>` : ''}`;
 }
