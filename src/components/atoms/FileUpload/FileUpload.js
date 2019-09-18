@@ -1,6 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.file-upload-css';
 import getText from '../../../i18n/getText';
+import canDragAndDrop from '../../../helpers/canDragAndDrop';
 
 export default function FileUpload ({ onChange = () => {}, hideFileUpload = false }) {
   if (hideFileUpload) {
@@ -19,5 +20,5 @@ export default function FileUpload ({ onChange = () => {}, hideFileUpload = fals
         onchange='${(e) => { onChange(e.target.files[0]); }}'
       />
     </label>
-    <span class="buv-o-text-12">${getText('text.dragAndDropHint')}</span>`;
+    ${canDragAndDrop() ? html`<span class="buv-o-text-12  qa-drag-and-drop-hint">${getText('text.dragAndDropHint')}</span>` : ''}`;
 }

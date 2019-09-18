@@ -65,7 +65,7 @@
     "test:application:watch": "jest --watch",
     "test:coverage": "jest --maxWorkers=4 --silent --noStackTrace --coverage",
     "test:coverage:report": "codecov",
-    "start": "concurrently 'polymer serve' 'npm run styles:compile:watch' 'npm run start:mock-server'",
+    "start": "concurrently 'polymer serve --hostname 0.0.0.0' 'npm run styles:compile:watch' 'npm run start:mock-server'",
     "start:mock-server": "node test/mock-server",
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
