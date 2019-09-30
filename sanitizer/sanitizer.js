@@ -17,7 +17,7 @@ function getDefaultWhiteList () {
   var whiteList = {};
 
   whiteList['align-content'] = false; // default: auto
-  whiteList['align-items'] = false; // default: auto
+  whiteList['align-items'] = true; // default: auto
   whiteList['align-self'] = false; // default: auto
   whiteList['alignment-adjust'] = false; // default: auto
   whiteList['alignment-baseline'] = false; // default: baseline
@@ -130,7 +130,7 @@ function getDefaultWhiteList () {
   whiteList['filter'] = false; // default: none
   whiteList['flex'] = false; // default: depending on individual properties
   whiteList['flex-basis'] = false; // default: auto
-  whiteList['flex-direction'] = false; // default: row
+  whiteList['flex-direction'] = true; // default: row
   whiteList['flex-flow'] = false; // default: depending on individual properties
   whiteList['flex-grow'] = false; // default: 0
   whiteList['flex-shrink'] = false; // default: 1
