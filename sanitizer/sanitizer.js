@@ -17,7 +17,7 @@ function getDefaultWhiteList () {
   var whiteList = {};
 
   whiteList['align-content'] = false; // default: auto
-  whiteList['align-items'] = true; // default: auto
+  whiteList['align-items'] = false; // default: auto
   whiteList['align-self'] = false; // default: auto
   whiteList['alignment-adjust'] = false; // default: auto
   whiteList['alignment-baseline'] = false; // default: baseline
@@ -82,7 +82,7 @@ function getDefaultWhiteList () {
   whiteList['border-top-style'] = true; // default: none
   whiteList['border-top-width'] = true; // default: medium
   whiteList['border-width'] = true; // default: depending on individual properties
-  whiteList['bottom'] = true; // default: auto
+  whiteList['bottom'] = false; // default: auto
   whiteList['box-decoration-break'] = true; // default: slice
   whiteList['box-shadow'] = true; // default: none
   whiteList['box-sizing'] = true; // default: content-box
@@ -130,7 +130,7 @@ function getDefaultWhiteList () {
   whiteList['filter'] = false; // default: none
   whiteList['flex'] = false; // default: depending on individual properties
   whiteList['flex-basis'] = false; // default: auto
-  whiteList['flex-direction'] = true; // default: row
+  whiteList['flex-direction'] = false; // default: row
   whiteList['flex-flow'] = false; // default: depending on individual properties
   whiteList['flex-grow'] = false; // default: 0
   whiteList['flex-shrink'] = false; // default: 1
@@ -186,7 +186,7 @@ function getDefaultWhiteList () {
   whiteList['justify-content'] = false; // default: auto
   whiteList['justify-items'] = false; // default: auto
   whiteList['justify-self'] = false; // default: auto
-  whiteList['left'] = true; // default: auto
+  whiteList['left'] = false; // default: auto
   whiteList['letter-spacing'] = true; // default: normal
   whiteList['lighting-color'] = true; // default: white
   whiteList['line-box-contain'] = false; // default: block inline replaced
@@ -246,7 +246,7 @@ function getDefaultWhiteList () {
   whiteList['outline-offset'] = false; // default: 0
   whiteList['outline-style'] = false; // default: none
   whiteList['outline-width'] = false; // default: medium
-  whiteList['overflow'] = true; // default: depending on individual properties
+  whiteList['overflow'] = false; // default: depending on individual properties
   whiteList['overflow-wrap'] = false; // default: normal
   whiteList['overflow-x'] = false; // default: visible
   whiteList['overflow-y'] = false; // default: visible
@@ -268,7 +268,7 @@ function getDefaultWhiteList () {
   whiteList['pitch'] = false; // default: medium
   whiteList['pitch-range'] = false; // default: 50
   whiteList['play-during'] = false; // default: auto
-  whiteList['position'] = true; // default: static
+  whiteList['position'] = false; // default: static
   whiteList['presentation-level'] = false; // default: 0
   whiteList['quotes'] = false; // default: text
   whiteList['region-fragment'] = false; // default: auto
@@ -277,7 +277,7 @@ function getDefaultWhiteList () {
   whiteList['rest-after'] = false; // default: none
   whiteList['rest-before'] = false; // default: none
   whiteList['richness'] = false; // default: 50
-  whiteList['right'] = true; // default: auto
+  whiteList['right'] = false; // default: auto
   whiteList['rotation'] = false; // default: 0
   whiteList['rotation-point'] = false; // default: 50% 50%
   whiteList['ruby-align'] = false; // default: auto
@@ -319,9 +319,9 @@ function getDefaultWhiteList () {
   whiteList['text-transform'] = true; // default: none
   whiteList['text-underline-position'] = true; // default: auto
   whiteList['text-wrap'] = true; // default: normal
-  whiteList['top'] = true; // default: auto
-  whiteList['transform'] = true; // default: none
-  whiteList['transform-origin'] = true; // default: 50% 50% 0
+  whiteList['top'] = false; // default: auto
+  whiteList['transform'] = false; // default: none
+  whiteList['transform-origin'] = false; // default: 50% 50% 0
   whiteList['transform-style'] = false; // default: flat
   whiteList['transition'] = false; // default: depending on individual properties
   whiteList['transition-delay'] = false; // default: 0s
@@ -1614,11 +1614,12 @@ var lib$1 = createCommonjsModule(function (module, exports) {
  * @return {String}
  */
 function filterXSS(html, options) {
-  var xss$$1 = new xss(options);
-  return xss$$1.process(html);
+  var xss$1 = new xss(options);
+  return xss$1.process(html);
 }
 
 exports = module.exports = filterXSS;
+exports.filterXSS = filterXSS;
 exports.FilterXSS = xss;
 for (var i in _default$1) exports[i] = _default$1[i];
 for (var i in parser$1) exports[i] = parser$1[i];
@@ -1637,32 +1638,47 @@ if (isWorkerEnv()) {
 }
 });
 var lib_1$1 = lib$1.xss;
-var lib_2$1 = lib$1.FilterXSS;
+var lib_2$1 = lib$1.filterXSS;
+var lib_3 = lib$1.FilterXSS;
 
-function isBase64 (value) {
+function isBase64(value) {
   const test = /^data:.+;base64,/;
   return !!value.match(test);
 }
 
-function getBase64Data (value) {
+function getBase64Data(value) {
   const data = value.split('base64,')[1];
   return data;
 }
 
-function modifyWhiteList () {
+const whiteListedCSSProperties = {
+  ...lib.getDefaultWhiteList(),
+  bottom: true,
+  left: true,
+  overflow: true,
+  position: true,
+  right: true,
+  top: true,
+  transform: true,
+  'transform-origin': true,
+  'flex-direction': true
+};
+
+function modifyWhiteList() {
   const whiteList = lib$1.getDefaultWhiteList();
   Object.keys(whiteList).forEach(el => {
     whiteList[el].push('style');
     whiteList[el].push('class');
     whiteList[el].push('download');
   });
-
   return whiteList;
 }
 
-function handleTagAttr (tag, name, value, isWhiteAttr) {
+function handleTagAttr(tag, name, value, isWhiteAttr) {
   if (name === 'style') {
-    return `${name}="${lib(value).replace(/; /g, ';')}"`;
+    return `${name}="${lib(value, {
+      whiteList: whiteListedCSSProperties
+    }).replace(/; /g, ';')}"`;
   }
 
   if (tag === 'img' && name === 'src') {
@@ -1678,7 +1694,7 @@ function handleTagAttr (tag, name, value, isWhiteAttr) {
   }
 }
 
-function handleAttrValue (tag, name, value, cssFilter) {
+function handleAttrValue(tag, name, value, cssFilter) {
   // unescape attribute value firstly
   value = lib$1.friendlyAttrValue(value);
 
@@ -1722,13 +1738,13 @@ function handleAttrValue (tag, name, value, cssFilter) {
   return value;
 }
 
-function isWhiteListedHref (value) {
+function isWhiteListedHref(value) {
   const whiteList = ['http://', 'https://', 'mailto:', 'tel:', 'data:', '#', '/'];
   return whiteList.some(item => value.substr(0, item.length) === item);
 }
 
 // utility trim from xss
-function utilTrim (str) {
+function utilTrim(str) {
   if (String.prototype.trim) {
     return str.trim();
   }
@@ -1749,7 +1765,7 @@ const options = {
 };
 const sanitizer = new lib$1.FilterXSS(options);
 
-function sanitize (html) {
+function sanitize(html) {
   return sanitizer.process(html);
 }
 
