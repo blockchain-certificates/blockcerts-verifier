@@ -1,3 +1,9 @@
+/**
+ * THIS IS AN AUTO GENERATED FILE. IF YOU WISH TO WHITELIST PROPERTIES / TAGS, PLEASE DO IT SO IN sanitizer/index.js 
+ *
+ * More Information: https://github.com/blockchain-certificates/blockcerts-verifier#modifying-the-sanitizer
+ **/
+
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
