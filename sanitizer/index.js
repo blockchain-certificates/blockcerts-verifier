@@ -11,7 +11,7 @@ function getBase64Data (value) {
   return data;
 }
 
-const whiteListedCSSProperties = {
+const whiteListedCssProperties = {
   ...cssfilter.getDefaultWhiteList(),
   bottom: true,
   left: true,
@@ -21,7 +21,8 @@ const whiteListedCSSProperties = {
   top: true,
   transform: true,
   'transform-origin': true,
-  'flex-direction': true
+  'flex-direction': true,
+  'align-items': true
 };
 
 function modifyWhiteList () {
@@ -37,7 +38,7 @@ function modifyWhiteList () {
 function handleTagAttr (tag, name, value, isWhiteAttr) {
   if (name === 'style') {
     return `${name}="${cssfilter(value, {
-      whiteList: whiteListedCSSProperties
+      whiteList: whiteListedCssProperties
     }).replace(/; /g, ';')}"`;
   }
 

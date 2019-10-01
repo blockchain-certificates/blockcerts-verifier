@@ -1641,17 +1641,17 @@ var lib_1$1 = lib$1.xss;
 var lib_2$1 = lib$1.filterXSS;
 var lib_3 = lib$1.FilterXSS;
 
-function isBase64(value) {
+function isBase64 (value) {
   const test = /^data:.+;base64,/;
   return !!value.match(test);
 }
 
-function getBase64Data(value) {
+function getBase64Data (value) {
   const data = value.split('base64,')[1];
   return data;
 }
 
-const whiteListedCSSProperties = {
+const whiteListedCssProperties = {
   ...lib.getDefaultWhiteList(),
   bottom: true,
   left: true,
@@ -1661,10 +1661,11 @@ const whiteListedCSSProperties = {
   top: true,
   transform: true,
   'transform-origin': true,
-  'flex-direction': true
+  'flex-direction': true,
+  'align-items': true
 };
 
-function modifyWhiteList() {
+function modifyWhiteList () {
   const whiteList = lib$1.getDefaultWhiteList();
   Object.keys(whiteList).forEach(el => {
     whiteList[el].push('style');
@@ -1674,10 +1675,10 @@ function modifyWhiteList() {
   return whiteList;
 }
 
-function handleTagAttr(tag, name, value, isWhiteAttr) {
+function handleTagAttr (tag, name, value, isWhiteAttr) {
   if (name === 'style') {
     return `${name}="${lib(value, {
-      whiteList: whiteListedCSSProperties
+      whiteList: whiteListedCssProperties
     }).replace(/; /g, ';')}"`;
   }
 
@@ -1694,7 +1695,7 @@ function handleTagAttr(tag, name, value, isWhiteAttr) {
   }
 }
 
-function handleAttrValue(tag, name, value, cssFilter) {
+function handleAttrValue (tag, name, value, cssFilter) {
   // unescape attribute value firstly
   value = lib$1.friendlyAttrValue(value);
 
@@ -1738,13 +1739,13 @@ function handleAttrValue(tag, name, value, cssFilter) {
   return value;
 }
 
-function isWhiteListedHref(value) {
+function isWhiteListedHref (value) {
   const whiteList = ['http://', 'https://', 'mailto:', 'tel:', 'data:', '#', '/'];
   return whiteList.some(item => value.substr(0, item.length) === item);
 }
 
 // utility trim from xss
-function utilTrim(str) {
+function utilTrim (str) {
   if (String.prototype.trim) {
     return str.trim();
   }
@@ -1765,7 +1766,7 @@ const options = {
 };
 const sanitizer = new lib$1.FilterXSS(options);
 
-function sanitize(html) {
+function sanitize (html) {
   return sanitizer.process(html);
 }
 
