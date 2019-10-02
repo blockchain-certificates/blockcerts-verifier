@@ -162,8 +162,12 @@ Will make the demo page available on http://localhost:8081/demo/.
 The `sanitizer` is used in order to protect against malicious certificates that could hold XSS attacks.
 It is an overlay of the [xss](https://www.npmjs.com/package/xss) library, since at times, you might want to be able to configure or adapt the whitelist to your own needs.
 
-To modify it, you should modify the index.js file. Then run:
+To modify it, you should edit the `sanitizer/index.js` file. 
 
+#### Whitelist CSS properties
+More specifically if you wish to whitelist some CSS properties, add them to the object `whiteListedCssProperties`.
+
+#### Generate the updated sanitizer
 ```
   npm run build:sanitizer
 ```

@@ -11,6 +11,20 @@ function getBase64Data (value) {
   return data;
 }
 
+const whiteListedCssProperties = {
+  ...cssfilter.getDefaultWhiteList(),
+  bottom: true,
+  left: true,
+  overflow: true,
+  position: true,
+  right: true,
+  top: true,
+  transform: true,
+  'transform-origin': true,
+  'flex-direction': true,
+  'align-items': true
+};
+
 function modifyWhiteList () {
   const whiteList = xss.getDefaultWhiteList();
   Object.keys(whiteList).forEach(el => {
@@ -18,13 +32,14 @@ function modifyWhiteList () {
     whiteList[el].push('class');
     whiteList[el].push('download');
   });
-
   return whiteList;
 }
 
 function handleTagAttr (tag, name, value, isWhiteAttr) {
   if (name === 'style') {
-    return `${name}="${cssfilter(value).replace(/; /g, ';')}"`;
+    return `${name}="${cssfilter(value, {
+      whiteList: whiteListedCssProperties
+    }).replace(/; /g, ';')}"`;
   }
 
   if (tag === 'img' && name === 'src') {
