@@ -1,6 +1,5 @@
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import { terser } from 'rollup-plugin-terser';
 
 export default {
   input: 'sanitizer/index.js',
@@ -21,15 +20,6 @@ export default {
       namedExports: {
         xss: ['xss'],
         cssfilter: ['cssfilter']
-      }
-    }),
-    terser({
-      output: {
-        comments: function (node, comment) {
-          if (comment.type === 'comment2') {
-            return /@warning/i.test(comment.value);
-          }
-        }
       }
     })
   ]
