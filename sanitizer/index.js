@@ -33,6 +33,7 @@ function modifyWhiteList () {
     whiteList[el].push('class');
     whiteList[el].push('download');
   });
+  whiteList.style = [];
   return whiteList;
 }
 
