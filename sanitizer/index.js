@@ -22,7 +22,8 @@ const whiteListedCssProperties = {
   transform: true,
   'transform-origin': true,
   'flex-direction': true,
-  'align-items': true
+  'align-items': true,
+  'white-space': true
 };
 
 function modifyWhiteList () {
@@ -32,6 +33,7 @@ function modifyWhiteList () {
     whiteList[el].push('class');
     whiteList[el].push('download');
   });
+  whiteList.style = [];
   return whiteList;
 }
 

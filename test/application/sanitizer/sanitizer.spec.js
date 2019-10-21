@@ -13,14 +13,6 @@ describe('sanitizer test suite', function () {
       expect(sanitize(html)).toBe(expectedOutput);
     });
 
-    it('style tags', function () {
-      const html = '<section><h1>Testing</h1><style>alert("XSS")</style></section>';
-
-      const expectedOutput = '<section><h1>Testing</h1></section>';
-
-      expect(sanitize(html)).toBe(expectedOutput);
-    });
-
     it('event attributes', function () {
       const html = '<section><h1>Testing</h1><div onclick="javascript:alert(\'yo\')">Yo</div></section>';
 
