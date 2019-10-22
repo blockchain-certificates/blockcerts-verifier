@@ -71,7 +71,7 @@
   },
   "issuedOn": "2018-01-23T00:43:15.978+00:00",
   "metadataJson": "{\"schema\":{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"displayOrder\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}},\"certificate\":{\"order\":[],\"type\":\"object\",\"properties\":{\"testVariable\":{\"title\":\"Test variable\",\"isVar\":true,\"originalValue\":\"\",\"type\":\"string\",\"default\":\"\"}}},\"recipient\":{\"properties\":{\"city\":{\"title\":\"city\",\"type\":\"string\"}}}}},\"certificate\":{\"testVariable\":\"\"},\"recipient\":{\"city\":\"Cleurie\"},\"displayOrder\":[\"certificate.testVariable\"]}",
-  "displayHtml": "<section><script>alert('yo');</script><div style=\"background-color:red;background:url(java/**/script:alert(1);\" onclick=\"javascript:alert('yo')\">YO!</div></section>",
+  "displayHtml": "<section><script>alert('yo');</script><style>alert('XSS')</style><div style=\"background-color:red;background:url(java/**/script:alert(1);\" onclick=\"javascript:alert('yo')\">YO!</div></section>",
   "nonce": "34991f83-f4fb-494f-99fe-660ef315d443",
   "universalIdentifier": "54ae740e-31aa-571a-8c71-8fa84924da97",
   "signature": {
