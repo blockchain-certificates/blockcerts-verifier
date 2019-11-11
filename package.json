@@ -11,7 +11,7 @@
     "@babel/runtime": "^7.6.0",
     "@blockcerts/cert-verifier-js": "^3.1.3",
     "@polymer/lit-element": "0.5.1",
-    "@polymer/polymer": "3.3.0",
+    "@polymer/polymer": "3.3.1",
     "@webcomponents/webcomponentsjs": "2.2.10",
     "cssfilter": "0.0.10",
     "proxy-polyfill": "^0.3.0",
