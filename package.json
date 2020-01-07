@@ -30,7 +30,7 @@
     "axe-core": "^3.0.2",
     "babel-jest": "^24.9.0",
     "codecov": "^3.1.0",
-    "concurrently": "^4.1.0",
+    "concurrently": "^5.0.2",
     "express": "^4.16.3",
     "husky": "^4.0.0",
     "jest": "^24.9.0",
