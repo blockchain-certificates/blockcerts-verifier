@@ -1,8 +1,8 @@
 export default {
   errors: {
     errorLabel: 'Error',
-    invalidBlockcerts: 'Not a valid Blockcerts definition.',
-    invalidBlockcertsUrl: 'Not a valid certificate URL.',
+    invalidBlockcerts: 'Not a valid Blockcerts credential. Please check with the issuer or recipient that has provided this credential.',
+    invalidBlockcertsUrl: 'Not a valid credential URL.',
     invalidFormatDragAndDrop: 'Only JSON files are accepted',
     invalidUrl: 'This does not seem to be a valid URL.',
     noDownloadLink: 'No link provided for download!',
