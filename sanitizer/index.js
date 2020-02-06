@@ -20,10 +20,14 @@ const whiteListedCssProperties = {
   right: true,
   top: true,
   transform: true,
+  opacity: true,
   'transform-origin': true,
   'flex-direction': true,
+  'flex-wrap': true,
+  'justify-content': true,
   'align-items': true,
-  'white-space': true
+  'white-space': true,
+  'line-height': true
 };
 
 function modifyWhiteList () {
