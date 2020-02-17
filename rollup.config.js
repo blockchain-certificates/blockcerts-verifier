@@ -21,8 +21,8 @@ export default [
       resolve({
         browser: true,
         preferBuiltins: true
-      }),
-      terser()
+      })// ,
+      // terser()
     ]
   },
   {
