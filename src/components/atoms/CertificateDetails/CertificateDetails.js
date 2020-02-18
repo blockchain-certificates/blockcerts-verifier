@@ -51,7 +51,9 @@ export default function CertificateDetails ({
   transactionLink,
   transactionId,
   direction,
-  hideRecipientName
+  hideRecipientName,
+  issuerURL,
+  recordLink
 }) {
   const details = [];
   if (!hideRecipientName) {
@@ -67,13 +69,21 @@ export default function CertificateDetails ({
       value: html`<time datetime$='${issuedOn}'>${issueDate}</time>`
     },
     {
+      title: getText('text.certIdURL'),
+      value: recordLink
+    },
+    {
       title: getText('text.issuerName'),
       value: issuerName
     },
     {
+      title: getText('text.issuerURL'),
+      value: issuerURL
+    },
+    {
       title: getText('text.issuerPublicKey'),
       value: issuerPublicKey
-    }
+    },
   );
 
   const isDisplayColumn = direction === 'column';

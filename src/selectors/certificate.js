@@ -58,6 +58,16 @@ export function getIssuerName (state) {
   return '';
 }
 
+export function getIssuerURL (state) {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.issuer.id;
+  }
+
+  return '';
+}
+
 export function getIssuerLogo (state) {
   const certificateDefinition = getCertificateDefinition(state);
 

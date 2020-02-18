@@ -8,7 +8,9 @@ import {
   getIssuerPublicKey,
   getRecipientName,
   getTransactionId,
-  getTransactionLink
+  getTransactionLink,
+  getIssuerURL,
+  getRecordLink
 } from '../../../selectors/certificate';
 
 export const mapStateToProps = (state) => ({
@@ -19,7 +21,9 @@ export const mapStateToProps = (state) => ({
   issuerLogo: getIssuerLogo(state),
   transactionLink: getTransactionLink(state),
   transactionId: getTransactionId(state),
-  issuerPublicKey: getIssuerPublicKey(state)
+  issuerPublicKey: getIssuerPublicKey(state),
+  issuerURL: getIssuerURL(state),
+  recordLink: getRecordLink(state)
 });
 
 const ownProps = {
