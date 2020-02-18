@@ -83,7 +83,7 @@ export default function CertificateDetails ({
     {
       title: getText('text.issuerPublicKey'),
       value: issuerPublicKey
-    },
+    }
   );
 
   const isDisplayColumn = direction === 'column';
