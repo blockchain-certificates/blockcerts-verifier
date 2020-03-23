@@ -107,7 +107,7 @@ describe('verifyCertificate action creator test suite', function () {
     });
 
     describe('verifying a second certificate', function () {
-      describe('given the certificates definitions valid definitions', function () {
+      describe('given the certificates definition is a valid definition', function () {
         it('should only maintain the verifiedSteps of the latest certificate verified', async function () {
           await store.dispatch(verifyCertificate());
 
