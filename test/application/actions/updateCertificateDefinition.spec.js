@@ -80,6 +80,11 @@ describe('updateCertificateDefinition action creator test suite', function () {
     });
 
     it('should initially set the verifiedSteps property according to the certificate\'s verificationSteps', function () {
+      // check the case without automatic background verification polluting the data
+      const initialState = getInitialState({
+        disableVerify: true
+      });
+      const store = configureStore(initialState);
       store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
