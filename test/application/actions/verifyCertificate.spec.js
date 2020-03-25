@@ -65,9 +65,10 @@ describe('verifyCertificate action creator test suite', function () {
 
     describe('given the verification has ended', function () {
       describe('and the verification was of a valid certificate', function () {
+        stubCertificateVerify(validCertificateFixture);
         let store;
 
-        beforeAll(async function () {
+        beforeEach(async function () {
           store = configureStore();
           store.dispatch(updateCertificateDefinition(validCertificateFixture));
           await store.dispatch(verifyCertificate());
@@ -96,6 +97,8 @@ describe('verifyCertificate action creator test suite', function () {
     });
 
     describe('given there is an invalid certificate in the state', function () {
+      stubCertificateVerify(invalidCertificateFixture, false);
+
       it('should store the different steps in the state', async function () {
         store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
         await store.dispatch(verifyCertificate());
@@ -108,6 +111,8 @@ describe('verifyCertificate action creator test suite', function () {
 
     describe('verifying a second certificate', function () {
       describe('given the certificates definition is a valid definition', function () {
+        stubCertificateVerify(invalidCertificateFixture, false);
+
         it('should only maintain the verifiedSteps of the latest certificate verified', async function () {
           await store.dispatch(verifyCertificate());
 

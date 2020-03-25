@@ -5,10 +5,7 @@ module.exports = api => {
   if (isJestTestEnv) {
     config = {
       presets: [['@babel/env', {
-        targets: {
-          ie: '11'
-        },
-        debug: false
+        loose: true
       }]],
       plugins: [['@babel/transform-runtime', {
         helpers: false
