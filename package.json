@@ -12,7 +12,7 @@
     "@blockcerts/cert-verifier-js": "^3.6.2",
     "@polymer/lit-element": "0.5.1",
     "@polymer/polymer": "3.3.1",
-    "@webcomponents/webcomponentsjs": "2.4.1",
+    "@webcomponents/webcomponentsjs": "2.4.3",
     "cssfilter": "0.0.10",
     "proxy-polyfill": "^0.3.0",
     "redux": "^4.0.0",
