@@ -4,15 +4,12 @@ module.exports = api => {
 
   if (isJestTestEnv) {
     config = {
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            loose: true
-          }
-        ]
-      ],
-      plugins: ['@babel/transform-runtime']
+      presets: [['@babel/env', {
+        loose: true
+      }]],
+      plugins: [['@babel/transform-runtime', {
+        helpers: false
+      }]]
     };
   }
 

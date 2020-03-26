@@ -1,5 +1,6 @@
 import { mapStateToProps } from '../../../../src/components/organisms/VerificationProcess/VerificationProcessContainer';
 import { configureStore } from '../../../../src/store';
+import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../../fixtures/valid-certificate-example';
 import mainnetCertificateFixture from '../../../fixtures/ethereum-main-valid-2.0';
@@ -16,7 +17,10 @@ describe('VerificationProcessContainer test suite', function () {
     let store;
 
     beforeEach(function () {
-      store = configureStore();
+      const initialState = getInitialState({
+        disableVerify: true
+      });
+      store = configureStore(initialState);
     });
 
     afterEach(function () {

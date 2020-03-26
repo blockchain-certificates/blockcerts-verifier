@@ -5,7 +5,7 @@ import { getCertificateDefinition } from '../../../src/selectors/certificate';
 import { getErrorMessage } from '../../../src/selectors/error';
 import getInitialState from '../../../src/store/getInitialState';
 import validCertificate from '../../assertions/validCertificate';
-import invalidCertificate from '../../assertions/invalidCertificate';
+import invalidCertificate from '../../fixtures/invalid-certificate-example';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
