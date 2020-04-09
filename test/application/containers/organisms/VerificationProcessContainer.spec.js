@@ -30,8 +30,8 @@ describe('VerificationProcessContainer test suite', function () {
     describe('given the certificate is issued on a test chain', function () {
       stubCertificateVerify(certificateFixture);
 
-      it('should set the isTestChain property to true', function () {
-        store.dispatch(updateCertificateDefinition(certificateFixture));
+      it('should set the isTestChain property to true', async function () {
+        await store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
         expect(mapStateToProps(state).isTestChain).toBe(true);
       });
@@ -40,8 +40,8 @@ describe('VerificationProcessContainer test suite', function () {
     describe('given the certificate is issued on a normal chain', function () {
       stubCertificateVerify(mainnetCertificateFixture);
 
-      it('should set the isTestChain property to false', function () {
-        store.dispatch(updateCertificateDefinition(mainnetCertificateFixture));
+      it('should set the isTestChain property to false', async function () {
+        await store.dispatch(updateCertificateDefinition(mainnetCertificateFixture));
         const state = store.getState();
         expect(mapStateToProps(state).isTestChain).toBe(false);
       });
@@ -50,9 +50,9 @@ describe('VerificationProcessContainer test suite', function () {
     describe('given there are verifiedSteps set in the state', function () {
       stubCertificateVerify(certificateFixture);
 
-      beforeEach(function () {
+      beforeEach(async function () {
         // put some verifiedSteps items in the state
-        store.dispatch(updateCertificateDefinition(certificateFixture));
+        await store.dispatch(updateCertificateDefinition(certificateFixture));
       });
 
       describe('and the certificate is valid', function () {

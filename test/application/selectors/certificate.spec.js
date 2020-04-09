@@ -28,6 +28,7 @@ import mainnetFixture from '../../fixtures/mainnet-valid-2.0';
 import ethereumRopstenFixture from '../../fixtures/ethereum-ropsten-valid-2.0';
 import ethereumMainFixture from '../../fixtures/ethereum-main-valid-2.0';
 import { configureStore } from '../../../src/store';
+import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
@@ -51,7 +52,8 @@ describe('certificate selectors test suite', function () {
   let store;
 
   beforeEach(function () {
-    store = configureStore();
+    const initialState = getInitialState({ disableVerify: true });
+    store = configureStore(initialState);
   });
 
   afterEach(function () {
@@ -61,8 +63,8 @@ describe('certificate selectors test suite', function () {
   describe('given the certificate is a V2 version', function () {
     stubCertificateVerify(v2Fixture);
 
-    beforeEach(function () {
-      store.dispatch(updateCertificateDefinition(v2Fixture));
+    beforeEach(async function () {
+      await store.dispatch(updateCertificateDefinition(v2Fixture));
     });
 
     describe('getStartedVerificationSteps selector', function () {
@@ -397,8 +399,8 @@ describe('certificate selectors test suite', function () {
     describe('given the certificate chain is Mocknet', function () {
       stubCertificateVerify(mocknetFixture);
 
-      it('should return true', function () {
-        store.dispatch(updateCertificateDefinition(mocknetFixture));
+      it('should return true', async function () {
+        await store.dispatch(updateCertificateDefinition(mocknetFixture));
 
         const state = store.getState();
 
@@ -409,8 +411,8 @@ describe('certificate selectors test suite', function () {
     describe('given the certificate chain is Bitcoin Testnet', function () {
       stubCertificateVerify(v2Fixture);
 
-      it('should return true', function () {
-        store.dispatch(updateCertificateDefinition(v2Fixture));
+      it('should return true', async function () {
+        await store.dispatch(updateCertificateDefinition(v2Fixture));
 
         const state = store.getState();
 
@@ -421,8 +423,8 @@ describe('certificate selectors test suite', function () {
     describe('given the certificate chain is Ethereum Ropsten', function () {
       stubCertificateVerify(ethereumRopstenFixture);
 
-      it('should return true', function () {
-        store.dispatch(updateCertificateDefinition(ethereumRopstenFixture));
+      it('should return true', async function () {
+        await store.dispatch(updateCertificateDefinition(ethereumRopstenFixture));
 
         const state = store.getState();
 
@@ -433,8 +435,8 @@ describe('certificate selectors test suite', function () {
     describe('given the certificate chain is Bitcoin Mainnet', function () {
       stubCertificateVerify(mainnetFixture);
 
-      it('should return false', function () {
-        store.dispatch(updateCertificateDefinition(mainnetFixture));
+      it('should return false', async function () {
+        await store.dispatch(updateCertificateDefinition(mainnetFixture));
 
         const state = store.getState();
 
@@ -458,8 +460,8 @@ describe('certificate selectors test suite', function () {
   describe('getIssueDate selector', function () {
     stubCertificateVerify(mainnetFixture);
 
-    beforeEach(function () {
-      store.dispatch(updateCertificateDefinition(mainnetFixture));
+    beforeEach(async function () {
+      await store.dispatch(updateCertificateDefinition(mainnetFixture));
       mockDate('2018-02-07');
     });
 

@@ -19,7 +19,7 @@ describe('shareSocialNetwork action creator test suite', function () {
       store = null;
     });
 
-    it('should emit the certificate-share event with the certificate id', function () {
+    it('should emit the certificate-share event with the certificate id', async function () {
       let wasCalled = false;
       function assertFunction (e) {
         wasCalled = true;
@@ -27,7 +27,7 @@ describe('shareSocialNetwork action creator test suite', function () {
       }
       window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
 
-      store.dispatch(updateCertificateDefinition(certificateFixture));
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
       store.dispatch(shareSocialNetwork());
 
       // add failsafe, if no expect is called test is false positive
@@ -36,7 +36,7 @@ describe('shareSocialNetwork action creator test suite', function () {
       window.removeEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
     });
 
-    it('should emit the certificate-share event with the network on which it was shared', function () {
+    it('should emit the certificate-share event with the network on which it was shared', async function () {
       let wasCalled = false;
       const testSocialNetwork = 'MySpace';
       function assertFunction (e) {
@@ -45,7 +45,7 @@ describe('shareSocialNetwork action creator test suite', function () {
       }
       window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
 
-      store.dispatch(updateCertificateDefinition(certificateFixture));
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
       store.dispatch(shareSocialNetwork(testSocialNetwork));
 
       // add failsafe, if no expect is called test is false positive

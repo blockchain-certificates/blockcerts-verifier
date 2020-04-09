@@ -42,10 +42,10 @@ describe('ActionMenuContainer test suite', function () {
       describe('and there is a certificate definition in the state', function () {
         stubCertificateVerify(certificateFixture);
 
-        it('should set the isVisible property to true', function () {
+        it('should set the isVisible property to true', async function () {
           const initialState = getInitialState({ displayMode: DISPLAY_MODE.FULL, disableAutoVerify: true });
           const store = configureStore(initialState);
-          store.dispatch(updateCertificateDefinition(certificateFixture));
+          await store.dispatch(updateCertificateDefinition(certificateFixture));
           const state = store.getState();
 
           expect(mapStateToProps(state).isVisible).toBe(true);

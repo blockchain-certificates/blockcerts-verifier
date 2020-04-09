@@ -9,7 +9,7 @@ import showVerificationModal from './showVerificationModal';
 export default function updateCertificateDefinition (definition) {
   return async function (dispatch, getState) {
     const locale = getLocale(getState());
-    const { certificateDefinition, errorMessage } = domain.certificates.parse(definition, { locale });
+    const { certificateDefinition, errorMessage } = await domain.certificates.parse(definition, { locale });
 
     dispatch(setErrorMessage(errorMessage));
 

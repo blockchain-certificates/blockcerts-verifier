@@ -38,8 +38,9 @@ export default function stubCertificateVerify (certificateFixture, valid = true)
 
   let domainParseStub;
 
-  beforeEach(function () {
+  beforeEach(async function () {
     const parsedCertificate = new Certificate(certificateFixture);
+    await parsedCertificate.init();
     domainParseStub = sinon.stub(domain.certificates, 'parse').returns({
       certificateDefinition: {
         ...parsedCertificate,

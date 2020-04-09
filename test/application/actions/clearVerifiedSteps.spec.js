@@ -37,8 +37,8 @@ describe('clearVerifiedSteps action creator test suite', function () {
   describe('given there is a certificate definition in the state', function () {
     stubCertificateVerify(certificateFixture);
 
-    it('should return the verificationSteps as defined by the parsed certificate', function () {
-      store.dispatch(updateCertificateDefinition(certificateFixture));
+    it('should return the verificationSteps as defined by the parsed certificate', async function () {
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
 
       const preparedState = store.getState();
       // populate step

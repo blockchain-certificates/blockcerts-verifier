@@ -7,22 +7,34 @@ import * as verifier from '@blockcerts/cert-verifier-js/dist/verifier-es';
 
 describe('domain certificates parse method test suite', function () {
   describe('given a valid definition of a certificate', function () {
+    let certificate;
+
+    beforeEach(async function () {
+      certificate = await domain.certificates.parse(certificateFixture);
+    });
+
     it('should return an object with a certificate definition', function () {
-      expect(domain.certificates.parse(certificateFixture).certificateDefinition.id).toEqual(validCertificate.id);
+      expect(certificate.certificateDefinition.id).toEqual(validCertificate.id);
     });
 
     it('should return an object with errorMessage property undefined', function () {
-      expect(domain.certificates.parse(certificateFixture).errorMessage).toBe(undefined);
+      expect(certificate.errorMessage).toBe(undefined);
     });
   });
 
   describe('given an invalid definition of a certificate', function () {
+    let certificate;
+
+    beforeEach(async function () {
+      certificate = await domain.certificates.parse(notACertificateDefinition);
+    });
+
     it('should return an object with a null certificate definition', function () {
-      expect(domain.certificates.parse(notACertificateDefinition).certificateDefinition).toBe(null);
+      expect(certificate.certificateDefinition).toBe(null);
     });
 
     it('should return an object with errorMessage property describing the error', function () {
-      expect(domain.certificates.parse(notACertificateDefinition).errorMessage).toBe('errors.invalidBlockcerts');
+      expect(certificate.errorMessage).toBe('errors.invalidBlockcerts');
     });
   });
 
@@ -38,22 +50,22 @@ describe('domain certificates parse method test suite', function () {
     });
 
     describe('given no locale has been set as an option', function () {
-      it('should call the Certificate constructor with the locale set to auto', function () {
-        domain.certificates.parse(certificateFixture);
+      it('should call the Certificate constructor with the locale set to auto', async function () {
+        await domain.certificates.parse(certificateFixture);
         expect(certificateConstructorStub.firstCall.args[1].locale).toBe('auto');
       });
     });
 
     describe('given the locale has been set to auto as an option', function () {
-      it('should call the Certificate constructor with the locale set to auto', function () {
-        domain.certificates.parse(certificateFixture, { locale: 'auto' });
+      it('should call the Certificate constructor with the locale set to auto', async function () {
+        await domain.certificates.parse(certificateFixture, { locale: 'auto' });
         expect(certificateConstructorStub.firstCall.args[1].locale).toBe('auto');
       });
     });
 
     describe('given the locale has been set to a specific language as an option', function () {
-      it('should call the Certificate constructor with the locale set accordingly', function () {
-        domain.certificates.parse(certificateFixture, { locale: 'fr' });
+      it('should call the Certificate constructor with the locale set accordingly', async function () {
+        await domain.certificates.parse(certificateFixture, { locale: 'fr' });
         expect(certificateConstructorStub.firstCall.args[1].locale).toBe('fr');
       });
     });

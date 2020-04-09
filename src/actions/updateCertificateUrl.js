@@ -25,7 +25,7 @@ export default function updateCertificateUrl (url) {
     const retrievedData = await domain.certificates.retrieve(url);
 
     if (retrievedData.certificateDefinition) {
-      dispatch(updateCertificateDefinition(retrievedData.certificateDefinition));
+      await dispatch(updateCertificateDefinition(retrievedData.certificateDefinition));
     } else {
       dispatch(setErrorMessage(retrievedData.errorMessage));
     }
