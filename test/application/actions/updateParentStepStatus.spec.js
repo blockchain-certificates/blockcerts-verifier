@@ -1,4 +1,5 @@
 import { configureStore } from '../../../src/store';
+import getInitialState from '../../../src/store/getInitialState';
 import updateParentStepStatus from '../../../src/actions/updateParentStepStatus';
 import { getParentStep, getVerifiedSteps } from '../../../src/selectors/certificate';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
@@ -11,7 +12,8 @@ describe('updateParentStepStatus action creator test suite', function () {
   let store;
 
   beforeEach(function () {
-    store = configureStore();
+    const initialState = getInitialState({ disableVerify: true });
+    store = configureStore(initialState);
   });
 
   afterEach(function () {
@@ -21,9 +23,9 @@ describe('updateParentStepStatus action creator test suite', function () {
   describe('given there are various substeps for a parent step', function () {
     stubCertificateVerify(certificateFixture);
 
-    beforeEach(function () {
+    beforeEach(async function () {
       // put some verifiedSteps items in the state
-      store.dispatch(updateCertificateDefinition(certificateFixture));
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
     });
 
     describe('given the child status is success', function () {
@@ -83,8 +85,8 @@ describe('updateParentStepStatus action creator test suite', function () {
     describe('and the status is success', function () {
       stubCertificateVerify(oneChildCertificateFixture);
 
-      it('should update the parentStep with the success status', function () {
-        store.dispatch(updateCertificateDefinition(oneChildCertificateFixture));
+      it('should update the parentStep with the success status', async function () {
+        await store.dispatch(updateCertificateDefinition(oneChildCertificateFixture));
         const preState = store.getState();
         const parentStep = getVerifiedSteps(preState)[0];
         const parentCode = parentStep.code;

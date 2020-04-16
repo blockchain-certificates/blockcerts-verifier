@@ -29,8 +29,8 @@ describe('VerifyOtherCertificateLinkContainer test suite', function () {
     stubCertificateVerify(certificateFixture);
 
     describe('given there is a certificate definition in the state', function () {
-      it('should set the isVisible property to true', function () {
-        store.dispatch(updateCertificateDefinition(certificateFixture));
+      it('should set the isVisible property to true', async function () {
+        await store.dispatch(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
         expect(mapStateToProps(state).isVisible).toBe(true);
       });

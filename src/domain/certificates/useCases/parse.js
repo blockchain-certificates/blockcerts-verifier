@@ -1,6 +1,6 @@
 import { Certificate } from '@blockcerts/cert-verifier-js/dist/verifier-es';
 
-export default function parse (definition, options = {}) {
+export default async function parse (definition, options = {}) {
   if (!options.locale) {
     options.locale = 'auto';
   }
@@ -8,6 +8,7 @@ export default function parse (definition, options = {}) {
   try {
     /* eslint no-new: off */
     const certificateDefinition = new Certificate(definition, options);
+    await certificateDefinition.init();
 
     return {
       certificateDefinition

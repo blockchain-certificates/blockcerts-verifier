@@ -48,7 +48,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       expect(getErrorMessage(state)).toBe(undefined);
     });
 
-    it('should emit the certificate-load event with the certificate id', function () {
+    it('should emit the certificate-load event with the certificate id', async function () {
       let wasCalled = false;
       function assertFunction (e) {
         wasCalled = true;
@@ -56,7 +56,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       }
       window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_LOAD, assertFunction);
 
-      store.dispatch(updateCertificateDefinition(certificateFixture));
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
 
       // add failsafe, if no expect is called test is false positive
       expect(wasCalled).toBe(true);
@@ -79,13 +79,13 @@ describe('updateCertificateDefinition action creator test suite', function () {
       expect(getChain(state)).toBe(expectedOutput);
     });
 
-    it('should initially set the verifiedSteps property according to the certificate\'s verificationSteps', function () {
+    it('should initially set the verifiedSteps property according to the certificate\'s verificationSteps', async function () {
       // check the case without automatic background verification polluting the data
       const initialState = getInitialState({
         disableVerify: true
       });
       const store = configureStore(initialState);
-      store.dispatch(updateCertificateDefinition(certificateFixture));
+      await store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
       expect(getVerifiedSteps(state)).toEqual(initialValidCertificateStepsAssertions);

@@ -5,8 +5,8 @@ import validCertificate from '../../../../assertions/validCertificate';
 
 describe('domain events dispatch method test suite', function () {
   describe('given it is not called with a type', function () {
-    it('should not emit an event', function () {
-      const { certificateDefinition } = domain.certificates.parse(certificateFixture);
+    it('should not emit an event', async function () {
+      const { certificateDefinition } = await domain.certificates.parse(certificateFixture);
       const dispatchEventSpy = sinon.spy(window, 'dispatchEvent');
 
       domain.events.dispatch('', certificateDefinition);
@@ -29,9 +29,9 @@ describe('domain events dispatch method test suite', function () {
   });
 
   describe('given it is called with a type and a certificate definition', function () {
-    it('should emit an event with the certificate id', function () {
+    it('should emit an event with the certificate id', async function () {
       const eventType = 'test-event';
-      const { certificateDefinition } = domain.certificates.parse(certificateFixture);
+      const { certificateDefinition } = await domain.certificates.parse(certificateFixture);
       let wasCalled = false;
       function assertFunction (e) {
         wasCalled = true;
@@ -48,9 +48,9 @@ describe('domain events dispatch method test suite', function () {
     });
 
     describe('and there are some extra details provided', function () {
-      it('should pass the extra details to the event', function () {
+      it('should pass the extra details to the event', async function () {
         const eventType = 'test-event';
-        const { certificateDefinition } = domain.certificates.parse(certificateFixture);
+        const { certificateDefinition } = await domain.certificates.parse(certificateFixture);
         const testKey = 'Hello!';
         const extraDetails = {
           testKey

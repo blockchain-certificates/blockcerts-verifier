@@ -16,10 +16,10 @@ describe('resetCertificateDefinition action creator test suite', function () {
   stubCertificateVerify(validCertificateFixture);
   let store;
 
-  beforeEach(function () {
+  beforeEach(async function () {
     store = configureStore();
     // initially set a certificate definition in the state
-    store.dispatch(updateCertificateDefinition(validCertificateFixture));
+    await store.dispatch(updateCertificateDefinition(validCertificateFixture));
     store.dispatch(updateVerificationStatus(VERIFICATION_STATUS.SUCCESS));
     store.dispatch(stepVerified({
       code: 'getTransactionId',
