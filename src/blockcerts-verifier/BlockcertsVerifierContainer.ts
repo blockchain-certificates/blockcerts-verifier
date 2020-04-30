@@ -5,11 +5,11 @@ import { getErrorMessage } from '../selectors/error';
 import { APIKeys } from '../models/API';
 import { getCertificateDefinition } from '../selectors/certificate';
 
-const mapDispatchToProps = {
+export const mapDispatchToProps = {
   onLoad: initialize
 };
 
-const mapStateToProps = (state) => {
+export const mapStateToProps = (state) => {
   return {
     errorMessage: getErrorMessage(state),
     hasCertificate: !!getCertificateDefinition(state)
