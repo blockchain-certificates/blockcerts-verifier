@@ -4,7 +4,7 @@ const watcher = require('./watcher');
 
 const testRegex = /(_|\.)test.html/gi;
 
-const testSuiteDir = 'components';
+const testSuiteDir = 'e2e';
 
 function findTestFilesIn (directoryName, filesList = []) {
   const directoryPath = path.join(__dirname, '..', directoryName);

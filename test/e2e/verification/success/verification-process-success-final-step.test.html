@@ -9,19 +9,19 @@
 
     <script src="../../helpers/redux-hack.js"></script>
     <script src="../../helpers/wait.js"></script>
-    <script type="module" src="../../../../src/blockcerts-verifier/index.js"></script>
+    <script type="module" src="../../../../dist/ie11.js"></script>
 </head>
 <body>
 <test-fixture id="success">
     <template>
-        <blockcerts-verifier src="../../fixtures/valid-certificate-example.json"></blockcerts-verifier>
+        <blockcerts-verifier src="https://blockcerts.learningmachine.com/certificate/fe53b323df845641b74e8d3f6d175ea0"></blockcerts-verifier>
     </template>
 </test-fixture>
 
 <script type="module">
   describe('VerificationProcess test suite', function () {
     describe('given the certificate verification has succeeded', function () {
-      it('should not show the error state', async function () {
+      it('should show the final verification step', async function () {
         const el = fixture('success').shadowRoot.querySelectorAll('buv-raw')[0];
         await wait(1000);
         const verificationProcessModalElement = el.shadowRoot.querySelectorAll('buv-verification-modal')[0];
@@ -29,9 +29,11 @@
         const verificationProcessElement = verificationProcessModalElement.shadowRoot.querySelectorAll('buv-verification-process')[0];
         await wait(1000);
         const verificationProcessRawElement = verificationProcessElement.shadowRoot.querySelectorAll('buv-verification-process-raw')[0];
+        await wait(1000);
+        const finalStepElement = verificationProcessRawElement.shadowRoot.querySelectorAll('buv-final-verification-step')[0];
         await wait(5000);
-        const progressBarElement = verificationProcessRawElement.shadowRoot.querySelectorAll('.buv-qa-verification-progress-bar__tube')[0];
-        expect(progressBarElement.classList.contains('has-errored')).to.equal(false);
+        const innerFinalStepElement = finalStepElement.shadowRoot.querySelectorAll('.buv-qa-final-verification-step')[0];
+        expect(innerFinalStepElement.classList.contains('is-visible')).to.equal(true);
       });
     });
   });

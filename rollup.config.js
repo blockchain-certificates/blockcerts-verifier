@@ -2,6 +2,7 @@ import replace from 'rollup-plugin-replace';
 import resolve from 'rollup-plugin-node-resolve';
 import cjs from 'rollup-plugin-commonjs';
 import babel from 'rollup-plugin-babel';
+import typescript from 'rollup-plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
 
 export default [
@@ -18,6 +19,7 @@ export default [
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
+      typescript(),
       resolve({
         browser: true,
         preferBuiltins: true
@@ -38,6 +40,7 @@ export default [
       cjs({
         include: 'node_modules/**'
       }),
+      typescript(),
       babel({
         babelrc: false,
         presets: [['@babel/env', {

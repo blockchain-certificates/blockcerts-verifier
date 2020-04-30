@@ -3,7 +3,7 @@ import domain from '../../../../../src/domain';
 import certificateFixture from '../../../../fixtures/valid-certificate-example';
 import notACertificateDefinition from '../../../../fixtures/not-a-certificate-definition';
 import validCertificate from '../../../../assertions/validCertificate';
-import * as verifier from '@blockcerts/cert-verifier-js/dist/verifier-es';
+import * as verifier from '@blockcerts/cert-verifier-js';
 
 describe('domain certificates parse method test suite', function () {
   describe('given a valid definition of a certificate', function () {

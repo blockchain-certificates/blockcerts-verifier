@@ -5,7 +5,7 @@ const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
 const INEXISTENT_URL = 'http://localhost:3000/to/certificate';
 const NOT_CERTIFICATE_URL = 'http://www.learningmachine.com';
-const VALID_LOCAL_PATH = '../../fixtures/valid-certificate-example.json';
+const VALID_LOCAL_PATH = '../../fixtures/mainnet-valid-2.0.json';
 
 describe('domain certificates retrieve method test suite', function () {
   describe('given a valid url', function () {
