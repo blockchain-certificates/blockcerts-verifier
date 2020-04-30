@@ -1,9 +1,10 @@
 import sinon from 'sinon';
 import domain from '../../../../../src/domain';
-import certificateFixture from '../../../../fixtures/valid-certificate-example';
-import notACertificateDefinition from '../../../../fixtures/not-a-certificate-definition';
+import certificateFixture from '../../../../fixtures/valid-certificate-example.json';
+import notACertificateDefinition from '../../../../fixtures/not-a-certificate-definition.json';
 import validCertificate from '../../../../assertions/validCertificate';
 import * as verifier from '@blockcerts/cert-verifier-js';
+import { CertificateOptions } from '@blockcerts/cert-verifier-js';
 
 describe('domain certificates parse method test suite', function () {
   describe('given a valid definition of a certificate', function () {
@@ -67,6 +68,24 @@ describe('domain certificates parse method test suite', function () {
       it('should call the Certificate constructor with the locale set accordingly', async function () {
         await domain.certificates.parse(certificateFixture, { locale: 'fr' });
         expect(certificateConstructorStub.firstCall.args[1].locale).toBe('fr');
+      });
+    });
+  });
+
+  describe('handling custom blockchain explorers', function () {
+    describe('given it is set as an option', function () {
+      it('should pass it as an option to the Certificate constructor', async function () {
+        const certificateConstructorStub = sinon.stub(verifier, 'Certificate');
+        const fixtureOptions: CertificateOptions = {
+          explorerAPIs: [{
+            priority: 0,
+            parsingFunction: () => {},
+            serviceURL: 'test.com'
+          }]
+        };
+        await domain.certificates.parse(certificateFixture, fixtureOptions);
+        expect(certificateConstructorStub.firstCall.args[1].explorerAPIs).toEqual(fixtureOptions.explorerAPIs);
+        certificateConstructorStub.restore();
       });
     });
   });
