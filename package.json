@@ -71,7 +71,7 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:sanitizer": "rollup -c rollup-sanitizer.config.js",
-    "test": "npm run test:application && npm run test:components",
+    "test": "npm run test:application",
     "test:components": "npm run test:components:retrieve && polymer test",
     "test:components:retrieve": "node test/wct-script/retrieveTestFiles",
     "test:components:retrieve:watch": "npm run test:components:retrieve -- --watch",

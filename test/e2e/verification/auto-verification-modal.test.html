@@ -7,14 +7,14 @@
     <script src="../../../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../../node_modules/web-component-tester/browser.js"></script>
 
-    <script type="module" src="../../../src/blockcerts-verifier/index.js"></script>
+    <script type="module" src="../../../dist/ie11.js"></script>
     <script src="../helpers/redux-hack.js"></script>
     <script src="../helpers/wait.js"></script>
 </head>
 <body>
 <test-fixture id="autoVerification">
     <template>
-        <blockcerts-verifier src="../../fixtures/valid-certificate-example.json"></blockcerts-verifier>
+        <blockcerts-verifier src="../../fixtures/mainnet-valid-2.0.json"></blockcerts-verifier>
     </template>
 </test-fixture>
 
