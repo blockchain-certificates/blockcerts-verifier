@@ -118,6 +118,26 @@ The certificate displays similar as `full`. NOTA: only works for certificates th
   <blockcerts-verifier locale='fr'></blockcerts-verifier>
   ``` 
   
+## Custom Blockchain explorers - `explorerAPIs`
+Since v4.1.0 of [cert-verifier-js](https://github.com/blockchain-certificates/cert-verifier-js) accepts custom blockchain explorers, Blockcerts Verifier facilitates communicating such service for the verification process.
+
+As the object would be quite complicated, the option cannot be passed as attribute, but rather via property, as follows:
+
+```javascript
+const explorer = {
+  parsingFunction: function (): TransactionData {},
+  serviceURL: 'your-explorer-service.url',
+  priority: 0 | 1
+}
+    
+document.addEventListener('DOMContentLoaded', function () {
+  const bv = document.querySelector('blockcerts-verifier');
+  bv.explorerAPIs = [explorer];
+});
+```
+
+See this section: https://github.com/blockchain-certificates/cert-verifier-js#explorerapis to get more information. 
+  
 ## Event Tracking API
 The component will emit events on different moment of the certificate life cycle.
 To subscribe and track these events you should add on your consumer page event listeners on the `window` object.
