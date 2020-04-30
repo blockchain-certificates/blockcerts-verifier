@@ -9,19 +9,19 @@
 
     <script src="../../helpers/redux-hack.js"></script>
     <script src="../../helpers/wait.js"></script>
-    <script type="module" src="../../../../src/blockcerts-verifier/index.js"></script>
+    <script type="module" src="../../../../dist/ie11.js"></script>
 </head>
 <body>
 <test-fixture id="started">
     <template>
-        <blockcerts-verifier src="https://auto-certificates.learningmachine.io/certificate/84ce9bf7e0b45dfbab9b970167dba716"></blockcerts-verifier>
+        <blockcerts-verifier src="https://blockcerts.learningmachine.com/certificate/d33386de004c5520aa1f6e2d3926785f"></blockcerts-verifier>
     </template>
 </test-fixture>
 
 <script type="module">
   describe('VerificationProcess test suite', function () {
     describe('given the certificate verification has started', function () {
-      describe('and the certificate chain is Mocknet', function () {
+      describe('and the certificate chain is Bitcoin Testnet', function () {
           it('should appear as test', async function () {
             const el = fixture('started').shadowRoot.querySelectorAll('buv-raw')[0];
             await wait(500);

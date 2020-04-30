@@ -24,15 +24,28 @@
     "@babel/core": "^7.6.0",
     "@babel/plugin-transform-runtime": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
+    "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^8.0.0",
     "@commitlint/config-conventional": "^8.0.0",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
+    "@types/jest": "^25.2.1",
+    "@types/sinon": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "@typescript-eslint/parser": "^2.30.0",
     "axe-core": "^3.0.2",
+    "babel-jest": "^25.5.1",
     "codecov": "^3.1.0",
     "concurrently": "^5.0.2",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-config-standard-with-typescript": "^16.0.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "express": "^4.16.3",
     "husky": "^4.0.0",
-    "jest": "^25.1.0",
+    "jest": "^25.5.1",
     "jest-fetch-mock": "^3.0.0",
     "polymer-cli": "^1.8.1",
     "pwa-helpers": "^0.8.2",
@@ -42,11 +55,14 @@
     "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-replace": "^2.0.0",
     "rollup-plugin-terser": "^5.2.0",
+    "rollup-plugin-typescript": "^1.0.1",
     "sass-lint": "^1.12.1",
     "semantic-release": "^17.0.2",
     "semistandard": "^14.1.0",
     "sinon": "^9.0.0",
     "snazzy": "^8.0.0",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3",
     "watch": "^1.0.2",
     "wc-sass-render": "1.0.0",
     "wct-browser-legacy": "^1.0.2",
@@ -55,12 +71,12 @@
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:sanitizer": "rollup -c rollup-sanitizer.config.js",
-    "test": "npm run test:application && npm run test:components",
+    "test": "npm run test:application",
     "test:components": "npm run test:components:retrieve && polymer test",
     "test:components:retrieve": "node test/wct-script/retrieveTestFiles",
     "test:components:retrieve:watch": "npm run test:components:retrieve -- --watch",
     "test:components:persist": "concurrently 'npm run test:components:retrieve:watch' 'polymer test -p'",
-    "test:application": "jest --runInBand",
+    "test:application": "jest --runInBand --silent",
     "test:application:watch": "jest --watch",
     "test:coverage": "jest --maxWorkers=4 --silent --noStackTrace --coverage",
     "test:coverage:report": "codecov",
@@ -68,31 +84,15 @@
     "start:mock-server": "node test/mock-server",
     "styles:compile": "sass-render ./src/components/**/*.scss",
     "styles:compile:watch": "sass-render ./src/components/**/*.scss -w",
-    "lint": "npm run lint:js && npm run lint:polymer && npm run lint:styles",
+    "lint": "npm run lint:js && npm run lint:ts && npm run lint:styles",
     "lint:fix": "semistandard --fix",
     "lint:js": "semistandard \"**/*.js\" | snazzy",
-    "lint:polymer": "polymer lint",
+    "lint:ts": "eslint . --ext .ts",
     "lint:styles": "sass-lint --verbose",
     "semantic-release": "semantic-release"
   },
   "publishConfig": {
     "access": "public"
-  },
-  "jest": {
-    "modulePaths": [
-      "<rootDir>/src/",
-      "<rootDir>/node_modules"
-    ],
-    "moduleFileExtensions": [
-      "js",
-      "json"
-    ],
-    "setupFiles": [
-      "./test/setupJest.js"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(@polymer|lit-html|pwa-helpers|@blockcerts/cert-verifier-js)/)"
-    ]
   },
   "semistandard": {
     "globals": [

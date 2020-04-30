@@ -6,20 +6,19 @@
     <script src="../../node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
     <script src="../../node_modules/web-component-tester/browser.js"></script>
 
-    <script type="module" src="../../src/blockcerts-verifier/index.js"></script>
+    <script type="module" src="../../dist/ie11.js"></script>
 </head>
 <body>
 <script src="./helpers/redux-hack.js"></script>
 <script src="./helpers/wait.js"></script>
     <test-fixture id="card">
         <template>
-            <blockcerts-verifier src="../fixtures/valid-certificate-example.json" display-mode="card" disable-auto-verify show-metadata></blockcerts-verifier>
+            <blockcerts-verifier src="../fixtures/mainnet-valid-2.0.json" display-mode="card" disable-auto-verify allow-social-share></blockcerts-verifier>
         </template>
     </test-fixture>
-
     <test-fixture id="full">
         <template>
-            <blockcerts-verifier src="../fixtures/valid-certificate-example.json" display-mode="full" disable-auto-verify show-metadata></blockcerts-verifier>
+            <blockcerts-verifier src="../fixtures/mainnet-valid-2.0.json" display-mode="full" disable-auto-verify allow-social-share></blockcerts-verifier>
         </template>
     </test-fixture>
 
@@ -27,26 +26,26 @@
       describe('Blockcerts Universal Verifier test suite', function () {
         describe('allowing the download of a certificate', function () {
           describe('given the src is of a valid blockcerts definition', function () {
-            describe('and the display is in full mode', function () {
-                describe('and the show-metadata flag is on', function () {
+            describe('and the display mode is full', function () {
+                describe('and the allow-social-share flag is on', function () {
                   it('the social share link should be available', async function () {
                     const el = fixture('full').shadowRoot.querySelectorAll('buv-raw')[0];
                     const menu = el.shadowRoot.querySelectorAll('buv-action-menu')[0];
                     await wait(200);
-                    const metadataComponent = menu.shadowRoot.querySelectorAll('buv-metadata');
-                    expect(metadataComponent.length).to.equal(1);
+                    const socialShareComponent = menu.shadowRoot.querySelectorAll('buv-social-share');
+                    expect(socialShareComponent.length).to.equal(1);
                   });
                 });
             });
 
-            describe('and the display is in card mode', function () {
-                describe('and the show-metadata flag is on', function () {
+            describe('and the display mode is card', function () {
+                describe('and the allow-social-share flag is on', function () {
                   it('the social share link should not be available', async function () {
                     const el = fixture('card').shadowRoot.querySelectorAll('buv-raw')[0];
                     const menu = el.shadowRoot.querySelectorAll('buv-action-menu')[0];
                     await wait(200);
-                    const metadataComponent = menu.shadowRoot.querySelectorAll('buv-metadata');
-                    expect(metadataComponent.length).to.equal(0);
+                    const socialShareComponent = menu.shadowRoot.querySelectorAll('buv-social-share');
+                    expect(socialShareComponent.length).to.equal(0);
                   });
                 });
             });
