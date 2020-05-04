@@ -29,3 +29,7 @@ export function getTheme (state) {
 export function getLocale (state) {
   return state.locale;
 }
+
+export function getExplorerAPIs (state) {
+  return state.explorerAPIs;
+}

@@ -9,13 +9,14 @@ import {
 } from '../../../src/selectors/certificate';
 import { getErrorMessage } from '../../../src/selectors/error';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
-import certificateFixture from '../../fixtures/valid-certificate-example';
-import notACertificateDefinition from '../../fixtures/not-a-certificate-definition';
+import certificateFixture from '../../fixtures/valid-certificate-example.json';
+import notACertificateDefinition from '../../fixtures/not-a-certificate-definition.json';
 import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
 import validCertificate from '../../assertions/validCertificate';
 import { getShowVerificationModal, getVerificationHasStarted } from '../../../src/selectors/verification';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import initialize from '../../../src/actions/initialize';
+import { CertificateOptions } from '@blockcerts/cert-verifier-js';
 
 jest.mock('../../../src/helpers/stepQueue');
 
@@ -126,26 +127,41 @@ describe('updateCertificateDefinition action creator test suite', function () {
 
     describe('handling locale', function () {
       describe('given no locale has been set as an option', function () {
-        it('should call the Certificate constructor with the locale set to auto', async function () {
+        it('should pass the locale set to auto', async function () {
           await store.dispatch(updateCertificateDefinition(certificateFixture));
-          expect(domainParseStub.firstCall.args[1].locale).toBe(undefined);
+          expect((global as any).domainParseStub.firstCall.args[1].locale).toBe(undefined);
         });
       });
 
       describe('given the locale has been set to auto as an option', function () {
-        it('should call the Certificate constructor with the locale set to auto', async function () {
+        it('should pass the locale set to auto', async function () {
           store.dispatch(initialize({ locale: 'auto' }));
           await store.dispatch(updateCertificateDefinition(certificateFixture));
-          expect(domainParseStub.firstCall.args[1].locale).toBe('auto');
+          expect((global as any).domainParseStub.firstCall.args[1].locale).toBe('auto');
         });
       });
 
       describe('given the locale has been set to a specific language as an option', function () {
-        it('should call the Certificate constructor with the locale set accordingly', async function () {
+        it('should pass the locale set accordingly', async function () {
           store.dispatch(initialize({ locale: 'fr' }));
           await store.dispatch(updateCertificateDefinition(certificateFixture));
-          expect(domainParseStub.firstCall.args[1].locale).toBe('fr');
+          expect((global as any).domainParseStub.firstCall.args[1].locale).toBe('fr');
         });
+      });
+    });
+
+    describe('given some explorerAPIs were set', function () {
+      it('should pass the explorerAPIs', async function () {
+        const fixtureOptions: CertificateOptions = {
+          explorerAPIs: [{
+            priority: 0,
+            parsingFunction: () => {},
+            serviceURL: 'test.com'
+          }]
+        };
+        store.dispatch(initialize(fixtureOptions));
+        await store.dispatch(updateCertificateDefinition(certificateFixture));
+        expect((global as any).domainParseStub.firstCall.args[1].explorerAPIs).toEqual(fixtureOptions.explorerAPIs);
       });
     });
   });

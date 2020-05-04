@@ -41,6 +41,12 @@ class BlockcertsVerifier extends LitElement {
         src: changedProps.src
       });
     }
+
+    if (!!changedProps.explorerAPIs && !prevProps.explorerAPIs) {
+      this.onLoad({
+        explorerAPIs: changedProps.explorerAPIs
+      });
+    }
   }
 
   renderCertificate (_props) {
@@ -95,6 +101,7 @@ function BUVWrapper (props = {}) {
           showMetadata='${props['show-metadata']}'
           theme='${props.theme}'
           locale='${props.locale}'
+          explorerAPIs='${props.explorerAPIs}'
         ></buv-raw>`;
 }
 

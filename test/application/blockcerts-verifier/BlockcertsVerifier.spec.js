@@ -13,7 +13,7 @@ describe('BlockcertsVerifier test suite', function () {
 
   afterEach(function () {
     instance = null;
-    onLoadSpy = null;
+    onLoadSpy.resetHistory();
   });
 
   describe('_firstRendered method', function () {
@@ -47,11 +47,27 @@ describe('BlockcertsVerifier test suite', function () {
 
     describe('given it has rendered', function () {
       describe('and the src property changed', function () {
-        it('should call the onLoad method', function () {
+        it('should call the onLoad method with the new src value', function () {
           instance._firstRendered();
+          const fixtureSRC = 'new-certificate-url';
 
-          instance._propertiesChanged({}, { src: 'new-certificate-url' }, {});
-          expect(onLoadSpy.calledOnce).toBe(false);
+          instance._propertiesChanged({}, { src: fixtureSRC }, {});
+          // is called once in _firstRendered
+          expect(onLoadSpy.secondCall.args[0].src).toBe(fixtureSRC);
+        });
+      });
+    });
+
+    describe('given the explorerAPIs was not initially set', function () {
+      describe('and is set later on', function () {
+        it('should call the onLoad method with the explorerAPIs set', function () {
+          const fixtureExplorerAPIs = [{
+            priority: 0,
+            parsingFunction: () => {},
+            serviceURL: 'test.com'
+          }];
+          instance._propertiesChanged({}, { explorerAPIs: fixtureExplorerAPIs }, {});
+          expect(onLoadSpy.firstCall.args[0].explorerAPIs).toEqual(fixtureExplorerAPIs);
         });
       });
     });

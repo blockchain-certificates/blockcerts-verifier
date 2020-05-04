@@ -10,7 +10,8 @@ const APIKeys = {
   'display-mode': String,
   'show-metadata': Boolean,
   theme: THEME.DARK | THEME.BRIGHT,
-  locale: String
+  locale: String,
+  explorerAPIs: {}
 };
 
 const APICamelCase = Object.keys(APIKeys)

@@ -1,6 +1,11 @@
 import { Certificate, CertificateOptions } from '@blockcerts/cert-verifier-js';
 
-export default async function parse (definition, options: CertificateOptions = {}) {
+export interface ICertificateObject {
+  certificateDefinition: Certificate | null;
+  errorMessage?: string;
+}
+
+export default async function parse (definition, options: CertificateOptions = {}): Promise<ICertificateObject> {
   if (!options.locale) {
     options.locale = 'auto';
   }
