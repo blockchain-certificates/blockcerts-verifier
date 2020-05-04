@@ -13,6 +13,7 @@
     "@polymer/lit-element": "0.5.1",
     "@polymer/polymer": "3.4.0",
     "@webcomponents/webcomponentsjs": "2.4.3",
+    "autolinker": "^3.14.1",
     "cssfilter": "0.0.10",
     "proxy-polyfill": "^0.3.0",
     "redux": "^4.0.0",
