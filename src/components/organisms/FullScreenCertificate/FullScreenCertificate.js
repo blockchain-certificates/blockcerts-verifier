@@ -12,9 +12,10 @@ import '../../atoms/FullCertificateV1';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
 import getText from '../../../i18n/getText';
+import urlToLink from '../../../helpers/urlToLink';
 
 function renderDisplayHTML (displayHTML) {
-  return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(displayHTML)}</div>`;
+  return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(urlToLink(displayHTML))}</div>`;
 }
 
 export default function FullScreenCertificate ({

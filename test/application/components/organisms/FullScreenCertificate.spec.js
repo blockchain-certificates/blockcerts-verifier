@@ -26,6 +26,14 @@ describe('FullScreenCertificate component test suite', function () {
       const instance = FullScreenCertificate({ displayHTML: fixtureDisplayHTML, hasCertificateDefinition: true });
       expect(assertStringInValues(instance, fixtureDisplayHTML)).toBe(true);
     });
+
+    describe('and the displayHTML property contains a URL', function () {
+      it('should transform it to a clickable link', function () {
+        const fixtureDisplayHTML = '<div>This is a test, click on www.blockcerts.org</div>';
+        const instance = FullScreenCertificate({ displayHTML: fixtureDisplayHTML, hasCertificateDefinition: true });
+        expect(assertStringInValues(instance, '<a href="http://www.blockcerts.org" target="_blank" rel="noopener noreferrer">www.blockcerts.org</a>')).toBe(true);
+      });
+    });
   });
 
   describe('given the certificate does not have a displayHTML property', function () {
