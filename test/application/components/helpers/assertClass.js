@@ -32,6 +32,7 @@ export function assertStringInValues (instance, string) {
       return false;
     }
 
-    return value.values.indexOf(string) > -1;
+    // search full string or part of the string
+    return value.values.indexOf(string) > -1 || value.values.some(htmlStr => htmlStr.indexOf(string) > -1);
   });
 }

@@ -6,9 +6,10 @@ import '../../atoms/FullCertificateV1';
 import '../../atoms/VerifyButton';
 import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
+import urlToLink from '../../../helpers/urlToLink';
 
 function renderDisplayHTML (displayHTML) {
-  return html`<section class='buv-c-full-certificate qa-full-certificate'>${unsafeHTML(displayHTML)}</section>`;
+  return html`<section class='buv-c-full-certificate qa-full-certificate'>${unsafeHTML(urlToLink(displayHTML))}</section>`;
 }
 
 export default function FullCertificate ({
