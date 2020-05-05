@@ -110,13 +110,15 @@ The certificate displays similar as `full`. NOTA: only works for certificates th
   <blockcerts-verifier theme='dark'></blockcerts-verifier>
   ```
   
-- locale: (String. defaults to: `'auto'`, if language code not recognized will default to English (`en`)). View `src/i18n/lang` to see the list of supported languages. Contributions welcome.
+- `locale`: (String. default: `'auto'`, if language code not recognized will default to English (`en`)). View `src/i18n/lang` to see the list of supported languages. Contributions welcome.
 
   Example:
   
   ```html
   <blockcerts-verifier locale='fr'></blockcerts-verifier>
   ``` 
+  
+- `clickable-urls`: (Boolean, default: `true`). When set to true, the certificate view will identify and convert to clickable links (`<a href=...) any url ([http(s)://(www.)]blockcerts.org/[params]) contained in the `displayHTML` property of the certificate. 
   
 ## Custom Blockchain explorers - `explorerAPIs`
 Since v4.1.0 of [cert-verifier-js](https://github.com/blockchain-certificates/cert-verifier-js) accepts custom blockchain explorers, Blockcerts Verifier facilitates communicating such service for the verification process.
