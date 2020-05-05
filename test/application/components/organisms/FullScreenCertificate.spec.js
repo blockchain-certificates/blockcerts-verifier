@@ -1,5 +1,7 @@
+import sinon from 'sinon';
+import * as litUnsafeHTML from 'lit-html/lib/unsafe-html.js';
 import FullScreenCertificate from '../../../../src/components/organisms/FullScreenCertificate/FullScreenCertificate';
-import { assertClassInStringBits } from '../helpers/assertClass';
+import { assertStringInValues } from '../helpers/assertStringValues';
 
 describe('FullScreenCertificate component test suite', function () {
   describe('given there is no certificate definition', function () {
@@ -10,11 +12,19 @@ describe('FullScreenCertificate component test suite', function () {
   });
 
   describe('given the certificate has a displayHTML property', function () {
+    beforeEach(function () {
+      // call through unsafeHTML directive
+      sinon.stub(litUnsafeHTML, 'unsafeHTML').callsFake(str => str);
+    });
+
+    afterEach(function () {
+      sinon.restore();
+    });
+
     it('should render the displayHTML property', function () {
       const fixtureDisplayHTML = '<div>This is a test</div>';
       const instance = FullScreenCertificate({ displayHTML: fixtureDisplayHTML, hasCertificateDefinition: true });
-      // ideally we would test that the displayHTML is rendered, but lit does not return the unsafeHTML result
-      expect(assertClassInStringBits(instance, 'qa-fullscreen-certificate')).toBe(true);
+      expect(assertStringInValues(instance, fixtureDisplayHTML)).toBe(true);
     });
   });
 

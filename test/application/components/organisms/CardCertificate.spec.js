@@ -1,5 +1,5 @@
 import CardCertificate from '../../../../src/components/organisms/CardCertificate/CardCertificate';
-import { assertClassInStringBits, assertStringInValues } from '../helpers/assertClass';
+import { assertClassInStringBits, assertStringInValues } from '../helpers/assertStringValues';
 
 describe('CardCertificate component test suite', function () {
   describe('given there is no certificate definition', function () {

@@ -1,4 +1,6 @@
-export function assertClassInStringBits (instance, className) {
+import { TemplateResult } from 'lit-html';
+
+export function assertClassInStringBits (instance: TemplateResult, className: string): boolean {
   return instance.values.some(value => {
     if (typeof value === 'string') {
       return value.indexOf(className) > -1;
@@ -22,8 +24,8 @@ export function assertClassInStringBits (instance, className) {
   });
 }
 
-export function assertStringInValues (instance, string) {
-  return instance.values.some(value => {
+export function assertStringInValues (instance: TemplateResult, string: string): boolean {
+  return instance?.values.some(value => {
     if (value == null) {
       return false;
     }
@@ -32,7 +34,15 @@ export function assertStringInValues (instance, string) {
       return false;
     }
 
-    // search full string or part of the string
-    return value.values.indexOf(string) > -1 || value.values.some(htmlStr => htmlStr.indexOf(string) > -1);
+    if (Array.isArray(value.values)) {
+      return value.values.some(value => {
+        if (typeof value === 'string') {
+          return value.indexOf(string) > -1;
+        }
+        return false;
+      });
+    }
+
+    return assertStringInValues(value, string);
   });
 }

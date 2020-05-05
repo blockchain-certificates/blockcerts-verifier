@@ -1,5 +1,5 @@
 import FileUpload from '../../../../src/components/atoms/FileUpload/FileUpload';
-import { assertClassInStringBits } from '../helpers/assertClass';
+import { assertClassInStringBits } from '../helpers/assertStringValues';
 
 describe('FileUpload component test suite', function () {
   describe('given the hideFileUpload option is true', function () {
