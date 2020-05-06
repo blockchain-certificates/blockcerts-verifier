@@ -118,7 +118,7 @@ The certificate displays similar as `full`. NOTA: only works for certificates th
   <blockcerts-verifier locale='fr'></blockcerts-verifier>
   ``` 
   
-- `clickable-urls`: (Boolean, default: `true`). When set to true, the certificate view will identify and convert to clickable links (`<a href=...) any url ([http(s)://(www.)]blockcerts.org/[params]) contained in the `displayHTML` property of the certificate. 
+- `clickable-urls`: (Boolean, default: `false`). When set to true, the certificate view will identify and convert to clickable links (`<a href=...) any url ([http(s)://(www.)]blockcerts.org/[params]) contained in the `displayHTML` property of the certificate. 
   
 ## Custom Blockchain explorers - `explorerAPIs`
 Since v4.1.0 of [cert-verifier-js](https://github.com/blockchain-certificates/cert-verifier-js) accepts custom blockchain explorers, Blockcerts Verifier facilitates communicating such service for the verification process.
