@@ -9,6 +9,7 @@ const APIKeys = {
   'allow-social-share': Boolean,
   'display-mode': String,
   'show-metadata': Boolean,
+  'clickable-urls': Boolean,
   theme: THEME.DARK | THEME.BRIGHT,
   locale: String,
   explorerAPIs: {}

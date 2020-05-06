@@ -1,5 +1,5 @@
 import BlockcertsLogo from '../../../../src/components/atoms/BlockcertsLogo/BlockcertsLogo';
-import { assertClassInStringBits } from '../helpers/assertClass';
+import { assertClassInStringBits } from '../helpers/assertStringValues';
 
 describe('BlockcertsLogo test suite', function () {
   let instance;

@@ -1,5 +1,5 @@
 import CertificateDetails from '../../../../src/components/atoms/CertificateDetails/CertificateDetails';
-import { assertClassInStringBits } from '../helpers/assertClass';
+import { assertClassInStringBits } from '../helpers/assertStringValues';
 
 const FIXTURE_LINK = 'http://test.com';
 const FIXTURE_INVALID_LINK = 'not a link';

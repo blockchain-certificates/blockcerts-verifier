@@ -1,4 +1,5 @@
 import { html } from '@polymer/lit-element';
+import { TemplateResult } from 'lit-html';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.fullscreen-certificate-css';
 import '../../atoms/CertificateDetails';
@@ -12,17 +13,28 @@ import '../../atoms/FullCertificateV1';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
 import getText from '../../../i18n/getText';
+import urlToLink from '../../../helpers/urlToLink';
 
-function renderDisplayHTML (displayHTML) {
-  return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(displayHTML)}</div>`;
+function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
+  const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
+  return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(htmlToDisplay)}</div>`;
+}
+
+export interface IFullScreenCertificateAPI {
+  clickableUrls?: boolean;
+  hasCertificateDefinition: boolean;
+  recipientName?: string;
+  displayHTML?: string;
+  onClose?(): any;
 }
 
 export default function FullScreenCertificate ({
+  clickableUrls,
   hasCertificateDefinition,
   recipientName,
   displayHTML,
   onClose
-}) {
+}: IFullScreenCertificateAPI): TemplateResult {
   if (!hasCertificateDefinition) {
     return null;
   }
@@ -49,7 +61,7 @@ export default function FullScreenCertificate ({
           <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>
-          ${displayHTML ? renderDisplayHTML(displayHTML) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
+          ${displayHTML ? renderDisplayHTML(displayHTML, clickableUrls) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
         </div>
       </section>
     </section>

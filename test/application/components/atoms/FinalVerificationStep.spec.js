@@ -1,5 +1,5 @@
 import FinalVerificationStep from '../../../../src/components/atoms/FinalVerificationStep/FinalVerificationStep';
-import { assertClassInStringBits, assertStringInValues } from '../helpers/assertClass';
+import { assertClassInStringBits, assertStringInValues } from '../helpers/assertStringValues';
 
 describe('FinalVerificationStep component test suite', function () {
   describe('given the isVisible flag is set to true', function () {
