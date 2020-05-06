@@ -22,7 +22,7 @@ export default [
         preferBuiltins: true
       }),
       serve({
-        contentBase: [BUILD_OUTPUT_FOLDER, 'demo', 'node_modules', 'dist'],
+        contentBase: [BUILD_OUTPUT_FOLDER, 'demo', 'node_modules', 'dist', 'test/fixtures'],
         port: 8081,
         open: true
       }),
