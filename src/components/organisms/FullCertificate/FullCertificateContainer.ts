@@ -1,11 +1,11 @@
 import connector from '../../../store/connector';
-import FullCertificate from './FullCertificate';
+import FullCertificate, { IFullCertificate } from './FullCertificate';
 import {
   getCertificateDefinition,
   getDisplayHTML
 } from '../../../selectors/certificate';
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = (state): Partial<IFullCertificate> => ({
   hasCertificateDefinition: !!getCertificateDefinition(state),
   displayHTML: getDisplayHTML(state)
 });

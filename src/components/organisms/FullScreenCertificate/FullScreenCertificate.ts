@@ -1,4 +1,5 @@
 import { html } from '@polymer/lit-element';
+import { TemplateResult } from 'lit-html';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.fullscreen-certificate-css';
 import '../../atoms/CertificateDetails';
@@ -14,8 +15,15 @@ import '../../molecules/SocialShare';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 
-function renderDisplayHTML (displayHTML) {
+function renderDisplayHTML (displayHTML): TemplateResult {
   return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(urlToLink(displayHTML))}</div>`;
+}
+
+export interface IFullScreenCertificateAPI {
+  hasCertificateDefinition: boolean;
+  recipientName?: string;
+  displayHTML?: string;
+  onClose?(): any;
 }
 
 export default function FullScreenCertificate ({
@@ -23,7 +31,7 @@ export default function FullScreenCertificate ({
   recipientName,
   displayHTML,
   onClose
-}) {
+}: IFullScreenCertificateAPI): TemplateResult {
   if (!hasCertificateDefinition) {
     return null;
   }

@@ -1,4 +1,5 @@
 import { html } from '@polymer/lit-element';
+import { TemplateResult } from 'lit-html';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.full-certificate-css';
 import '../../atoms/CertificateDetails';
@@ -8,14 +9,19 @@ import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 
-function renderDisplayHTML (displayHTML) {
+function renderDisplayHTML (displayHTML): TemplateResult {
   return html`<section class='buv-c-full-certificate qa-full-certificate'>${unsafeHTML(urlToLink(displayHTML))}</section>`;
+}
+
+export interface IFullCertificate {
+  hasCertificateDefinition: boolean;
+  displayHTML?: string;
 }
 
 export default function FullCertificate ({
   hasCertificateDefinition,
   displayHTML
-}) {
+}: IFullCertificate): TemplateResult {
   if (!hasCertificateDefinition) {
     return null;
   }
