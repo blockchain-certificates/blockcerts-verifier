@@ -28,10 +28,20 @@ describe('FullScreenCertificate component test suite', function () {
     });
 
     describe('and the displayHTML property contains a URL', function () {
-      it('should transform it to a clickable link', function () {
-        const fixtureDisplayHTML = '<div>This is a test, click on www.blockcerts.org</div>';
-        const instance = FullScreenCertificate({ displayHTML: fixtureDisplayHTML, hasCertificateDefinition: true });
-        expect(assertStringInValues(instance, '<a href="http://www.blockcerts.org" target="_blank" rel="noopener noreferrer">www.blockcerts.org</a>')).toBe(true);
+      describe('and the clickableUrls flag is set to true', function () {
+        it('should transform it to a clickable link', function () {
+          const fixtureDisplayHTML = '<div>This is a test, click on www.blockcerts.org</div>';
+          const instance = FullScreenCertificate({ displayHTML: fixtureDisplayHTML, hasCertificateDefinition: true, clickableUrls: true });
+          expect(assertStringInValues(instance, '<a href="http://www.blockcerts.org" target="_blank" rel="noopener noreferrer">www.blockcerts.org</a>')).toBe(true);
+        });
+      });
+
+      describe('and the clickableUrls flag is set to false', function () {
+        it('should not transform it to a clickable link', function () {
+          const fixtureDisplayHTML = '<div>This is a test, click on www.blockcerts.org</div>';
+          const instance = FullScreenCertificate({ displayHTML: fixtureDisplayHTML, hasCertificateDefinition: true, clickableUrls: false });
+          expect(assertStringInValues(instance, '<a href="http://www.blockcerts.org" target="_blank" rel="noopener noreferrer">www.blockcerts.org</a>')).toBe(false);
+        });
       });
     });
   });

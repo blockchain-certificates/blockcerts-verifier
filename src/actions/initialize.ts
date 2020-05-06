@@ -1,9 +1,13 @@
+import { ThunkAction } from 'redux-thunk';
+import { Action } from './action';
 import * as ACTIONS from '../constants/actionTypes';
 import updateCertificateUrl from './updateCertificateUrl';
 import { getAPIOptions } from '../models/API';
 import setLocale from '../i18n/setLocale';
 
-export default function initialize (options = {}) {
+// TODO: define first any: State
+// TODO: define second any: APIOptions
+export default function initialize (options = {}): ThunkAction<void, any, void, Action<any>> {
   return function (dispatch) {
     const APIOptions = getAPIOptions(options);
 
@@ -15,6 +19,7 @@ export default function initialize (options = {}) {
     });
 
     if (APIOptions.src) {
+      // eslint-disable-next-line @typescript-eslint/no-floating-promises
       dispatch(updateCertificateUrl(APIOptions.src));
     }
 

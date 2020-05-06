@@ -15,11 +15,13 @@ import '../../molecules/SocialShare';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 
-function renderDisplayHTML (displayHTML): TemplateResult {
-  return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(urlToLink(displayHTML))}</div>`;
+function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
+  const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
+  return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(htmlToDisplay)}</div>`;
 }
 
 export interface IFullScreenCertificateAPI {
+  clickableUrls?: boolean;
   hasCertificateDefinition: boolean;
   recipientName?: string;
   displayHTML?: string;
@@ -27,6 +29,7 @@ export interface IFullScreenCertificateAPI {
 }
 
 export default function FullScreenCertificate ({
+  clickableUrls,
   hasCertificateDefinition,
   recipientName,
   displayHTML,
@@ -58,7 +61,7 @@ export default function FullScreenCertificate ({
           <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
         <div class='buv-c-fullscreen-certificate__certificate'>
-          ${displayHTML ? renderDisplayHTML(displayHTML) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
+          ${displayHTML ? renderDisplayHTML(displayHTML, clickableUrls) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
         </div>
       </section>
     </section>

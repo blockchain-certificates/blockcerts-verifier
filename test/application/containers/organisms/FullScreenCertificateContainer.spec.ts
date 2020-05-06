@@ -9,6 +9,7 @@ import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import { getVerificationStatus } from '../../../../src/selectors/verification';
 import stepVerified from '../../../../src/actions/stepVerified';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
+import initialize from '../../../../src/actions/initialize';
 
 describe('FullScreenCertificateContainer test suite', function () {
   let store;
@@ -28,6 +29,9 @@ describe('FullScreenCertificateContainer test suite', function () {
 
       beforeEach(async function () {
         await store.dispatch(updateCertificateDefinition(XSSCertificateFixture));
+        store.dispatch(initialize({
+          clickableUrls: true
+        }));
         state = store.getState();
       });
 
@@ -45,6 +49,10 @@ describe('FullScreenCertificateContainer test suite', function () {
 
       it('should retrieve the sanitized displayHtml property', function () {
         expect(mapStateToProps(state).displayHTML).toBe('<section><div style="background-color:red;">YO!</div></section>');
+      });
+
+      it('should retrieve the clickableUrls property', function () {
+        expect(mapStateToProps(state).clickableUrls).toBe(true);
       });
     });
 

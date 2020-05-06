@@ -9,16 +9,19 @@ import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 
-function renderDisplayHTML (displayHTML): TemplateResult {
-  return html`<section class='buv-c-full-certificate qa-full-certificate'>${unsafeHTML(urlToLink(displayHTML))}</section>`;
+function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
+  const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
+  return html`<section class='buv-c-full-certificate qa-full-certificate'>${unsafeHTML(htmlToDisplay)}</section>`;
 }
 
 export interface IFullCertificate {
+  clickableUrls?: boolean;
   hasCertificateDefinition: boolean;
   displayHTML?: string;
 }
 
 export default function FullCertificate ({
+  clickableUrls,
   hasCertificateDefinition,
   displayHTML
 }: IFullCertificate): TemplateResult {
@@ -28,7 +31,7 @@ export default function FullCertificate ({
 
   return html`
     ${CSS}
-    ${displayHTML ? renderDisplayHTML(displayHTML) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
+    ${displayHTML ? renderDisplayHTML(displayHTML, clickableUrls) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
     <div class='buv-c-full-certificate__details'>
       <buv-certificate-details class='buv-c-full-certificate__details-list'></buv-certificate-details>
       <buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
