@@ -6,12 +6,10 @@
 
         <title>blockcerts-verifier demo</title>
 
-        <script src="../node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
-        <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+        <script src="./@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+        <script src="./@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
 
-        <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-pages-shared-styles.js"></script>
-        <script type="module" src="../node_modules/@polymer/iron-demo-helpers/demo-snippet.js"></script>
-        <script type="module" src="../dist/ie11.js"></script>
+        <script type="module" src="./ie11.js"></script>
 
         <script>
           // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
@@ -22,20 +20,19 @@
             }
           };
         </script>
-
-        <custom-style>
-            <style is="custom-style" include="demo-pages-shared-styles">
-            </style>
-        </custom-style>
+        <style>
+            .main {
+                max-width: 700px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        </style>
     </head>
     <body>
-        <div class="vertical-section-container centered">
-            <h3>Basic blockcerts-verifier demo - Display mode Full</h3>
-            <demo-snippet>
-                <template>
-                    <blockcerts-verifier display-mode="full" src='../test/fixtures/valid-certificate-example.json'></blockcerts-verifier>
-                </template>
-            </demo-snippet>
-        </div>
+    <div class="main">
+        <h3>Basic blockcerts-verifier demo - Display mode Full</h3>
+        <blockcerts-verifier display-mode="full"></blockcerts-verifier>
+    </div>
+    </body>
     </body>
 </html>
