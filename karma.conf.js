@@ -14,6 +14,8 @@ module.exports = config => {
         { pattern: config.grep ? config.grep : 'test/e2e/*.test.js', type: 'module' }
       ],
 
+      browsers: ['FirefoxHeadless'], // Chrome from default config
+
       esm: {
         nodeResolve: true
       }
