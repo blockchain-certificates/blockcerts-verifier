@@ -36,8 +36,4 @@ describe('BlockcertsVerifier explorer apis e2e test suite', function () {
       expect(parsingFunctionStub.calledOnce).to.be.true;
     });
   });
-
-  it('passes the a11y audit', async function () {
-    await expect(element).shadowDom.to.be.accessible();
-  });
 });
