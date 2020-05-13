@@ -1,6 +1,6 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import sinon from 'sinon';
-import '../../dist/main';
+import '../../dist/ie11';
 import { ExplorerAPI } from '@blockcerts/cert-verifier-js';
 import { wait } from './helpers/wait';
 

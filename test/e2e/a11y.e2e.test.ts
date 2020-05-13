@@ -1,5 +1,5 @@
 import { fixture, html, expect } from '@open-wc/testing';
-import '../../dist/main';
+import '../../dist/ie11';
 
 describe('Blockcerts Verifier a11y test suite', function () {
   it('passes the a11y audit', async function () {
