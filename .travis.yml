@@ -11,7 +11,7 @@ before_script:
   - npm run test
 script:
   - npm run build
-  - npm run test:components
+  - npm run test:build
 after_script:
   - npm run test:coverage
   - npm run test:coverage:report

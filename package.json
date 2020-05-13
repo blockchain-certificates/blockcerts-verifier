@@ -79,7 +79,7 @@
     "build": "rollup -c rollup.config.js",
     "build:sanitizer": "rollup -c rollup-sanitizer.config.js",
     "test": "npm run test:application",
-    "test:components": "npm run test:components:retrieve && polymer test",
+    "test:build": "npm run test:components:retrieve && polymer test && npm run test:karma",
     "test:karma": "tsc -p tsconfig-test.json && karma start; npm run test:karma:cleanup",
     "test:karma:cleanup": "git clean -dfq",
     "test:components:retrieve": "node test/wct-script/retrieveTestFiles",
