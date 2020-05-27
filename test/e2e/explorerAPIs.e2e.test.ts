@@ -9,7 +9,7 @@ describe('BlockcertsVerifier explorer apis e2e test suite', function () {
   let parsingFunctionStub: sinon.SinonStub;
 
   beforeEach(async function () {
-    parsingFunctionStub = sinon.stub().returns('prout');
+    parsingFunctionStub = sinon.stub().returns('');
     element = await fixture(html`
       <blockcerts-verifier></blockcerts-verifier>
     `);

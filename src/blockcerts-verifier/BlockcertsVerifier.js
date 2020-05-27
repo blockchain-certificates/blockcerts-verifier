@@ -99,6 +99,7 @@ function BUVWrapper (props = {}) {
           allowSocialShare='${props['allow-social-share']}'
           displayMode='${props['display-mode']}'
           showMetadata='${props['show-metadata']}'
+          clickableUrls='${props['clickable-urls']}'
           theme='${props.theme}'
           locale='${props.locale}'
           explorerAPIs='${props.explorerAPIs}'
