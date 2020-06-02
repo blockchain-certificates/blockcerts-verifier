@@ -25,7 +25,7 @@ export interface IFullScreenCertificateAPI {
   hasCertificateDefinition: boolean;
   recipientName?: string;
   displayHTML?: string;
-  onClose?(): any;
+  onClose?: () => any;
 }
 
 export default function FullScreenCertificate ({

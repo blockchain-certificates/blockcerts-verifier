@@ -51,7 +51,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
 
     it('should emit the certificate-load event with the certificate id', async function () {
       let wasCalled = false;
-      function assertFunction (e) {
+      function assertFunction (e): void {
         wasCalled = true;
         expect(e.detail.certificateDefinition.id).toEqual(validCertificate.id);
       }
