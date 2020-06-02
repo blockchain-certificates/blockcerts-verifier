@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <title>blockcerts-verifier demo</title>
+
+        <script src="./@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+        <script type="module" src="./index.js"></script>
+
+        <script>
+          // HACK(keanulee): The Redux package assumes `process` exists - mock it here before
+          // the module is loaded.
+          window.process = {
+            env: {
+              NODE_ENV: 'development'
+            }
+          };
+
+          // the code below is directly copied from cert-verifier-js and will not work in this example
+          const explorerAPI = {
+            serviceURL: 'https://insight.bitpay.com/api/tx/{transaction_id}',
+            priority: 0,
+            parsingFunction: function (jsonResponse) {
+              if (jsonResponse.confirmations < CONFIG.MininumConfirmations) {
+                throw new VerifierError(SUB_STEPS.fetchRemoteHash, getText('errors', 'parseBitpayResponse'));
+              }
+              const time = timestampToDateObject(jsonResponse.blocktime);
+              const outputs = jsonResponse.vout;
+              const lastOutput = outputs[outputs.length - 1];
+              const issuingAddress = jsonResponse.vout[0].scriptPubKey.addresses[0];
+              const remoteHash = stripHashPrefix(lastOutput.scriptPubKey.hex, BLOCKCHAINS.bitcoin.prefixes);
+              const revokedAddresses = outputs
+                .filter(output => !!output.spentTxId)
+                .map(output => output.scriptPubKey.addresses[0]);
+
+              return {
+                remoteHash,
+                issuingAddress,
+                time,
+                revokedAddresses
+              };
+            }
+          };
+
+          document.addEventListener('DOMContentLoaded', function () {
+            const verifierElement = document.querySelectorAll('blockcerts-verifier')[0];
+            verifierElement.explorerAPIs = [explorerAPI];
+          });
+        </script>
+        <style>
+            .main {
+                max-width: 700px;
+                margin: 0 auto;
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <h3>Basic blockcerts-verifier demo - Explorer API</h3>
+            <blockcerts-verifier></blockcerts-verifier>
+        </div>
+    </body>
+</html>
