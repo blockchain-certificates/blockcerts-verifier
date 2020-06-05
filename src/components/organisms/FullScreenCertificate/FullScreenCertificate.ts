@@ -17,7 +17,7 @@ import urlToLink from '../../../helpers/urlToLink';
 
 function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
   const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
-  return html`<div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>${unsafeHTML(htmlToDisplay)}</div>`;
+  return html`${unsafeHTML(htmlToDisplay)}`;
 }
 
 export interface IFullScreenCertificateAPI {
@@ -60,7 +60,7 @@ export default function FullScreenCertificate ({
           ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__separator', showMotto: true, logoSize: 'medium' })}
           <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
-        <div class='buv-c-fullscreen-certificate__certificate'>
+        <div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>
           ${displayHTML ? renderDisplayHTML(displayHTML, clickableUrls) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
         </div>
       </section>
