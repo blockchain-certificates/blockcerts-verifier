@@ -29,7 +29,7 @@
     "@commitlint/cli": "^9.0.1",
     "@commitlint/config-conventional": "^9.0.1",
     "@open-wc/testing": "^2.5.16",
-    "@open-wc/testing-karma": "^3.3.19",
+    "@open-wc/testing-karma": "^4.0.3",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@types/jest": "^26.0.4",
     "@types/sinon": "^9.0.0",
