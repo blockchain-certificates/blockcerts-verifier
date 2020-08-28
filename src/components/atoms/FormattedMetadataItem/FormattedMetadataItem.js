@@ -8,9 +8,11 @@ import { html } from '@polymer/lit-element';
  */
 
 export default function FormattedMetadataItem (metadataObject, value) {
-  const title = metadataObject.title;
-  const type = metadataObject.type[0];
-  const format = metadataObject.format;
+  let { title, format, type } = metadataObject;
+
+  if (Array.isArray(type)) {
+    type = type[0];
+  }
 
   const titleHtml = html`<dt class='buv-c-metadata-list__title'>${title}</dt>`;
 
