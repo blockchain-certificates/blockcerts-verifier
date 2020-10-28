@@ -870,6 +870,10 @@ function safeAttrValue$1(tag, name, value, cssFilter) {
         value.substr(0, 8) === "https://" ||
         value.substr(0, 7) === "mailto:" ||
         value.substr(0, 4) === "tel:" ||
+        value.substr(0, 11) === "data:image/" ||
+        value.substr(0, 6) === "ftp://" ||
+        value.substr(0, 2) === "./" ||
+        value.substr(0, 3) === "../" ||
         value[0] === "#" ||
         value[0] === "/"
       )
@@ -1192,7 +1196,6 @@ function isClosing(html) {
  * @return {String}
  */
 function parseTag(html, onTag, escapeHtml) {
-  "user strict";
 
   var rethtml = "";
   var lastPos = 0;
@@ -1203,7 +1206,7 @@ function parseTag(html, onTag, escapeHtml) {
   var currentTagName = "";
   var currentHtml = "";
 
-  for (currentPos = 0; currentPos < len; currentPos++) {
+  chariterator: for (currentPos = 0; currentPos < len; currentPos++) {
     var c = html.charAt(currentPos);
     if (tagStart === false) {
       if (c === "<") {
@@ -1233,9 +1236,17 @@ function parseTag(html, onTag, escapeHtml) {
           tagStart = false;
           continue;
         }
-        if ((c === '"' || c === "'") && html.charAt(currentPos - 1) === "=") {
-          quoteStart = c;
-          continue;
+        if ((c === '"' || c === "'")) {
+          var i = 1;
+          var ic = html.charAt(currentPos - i);
+
+          while ((ic === " ") || (ic === "=")) {
+            if (ic === "=") {
+              quoteStart = c;
+              continue chariterator;
+            }
+            ic = html.charAt(currentPos - ++i);
+          }
         }
       } else {
         if (c === quoteStart) {
@@ -1262,7 +1273,6 @@ var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9_:\.\-]/gim;
  * @return {String}
  */
 function parseAttr(html, onAttr) {
-  "user strict";
 
   var lastPos = 0;
   var retAttrs = [];
@@ -1663,6 +1673,7 @@ const whiteListedCssProperties = {
   ...lib.getDefaultWhiteList(),
   bottom: true,
   left: true,
+  float: true,
   overflow: true,
   position: true,
   right: true,
