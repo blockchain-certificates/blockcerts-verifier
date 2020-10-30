@@ -15,6 +15,7 @@ const whiteListedCssProperties = {
   ...cssfilter.getDefaultWhiteList(),
   bottom: true,
   left: true,
+  float: true,
   overflow: true,
   position: true,
   right: true,
