@@ -26,7 +26,7 @@ export default {
     item: 'point contrôlé',
     itemPlural: 'points contrôlés',
     metadataButton: 'Voir les métadata',
-    metadataTitle: 'Métadata du certificat',
+    metadataTitle: 'Métadata',
     motto: 'Blockcerts, The Open Standard for Blockchain Credentials',
     recipient: 'Titulaire',
     share: 'Partager sur',

@@ -26,7 +26,7 @@ export default {
     item: 'Elemento',
     itemPlural: 'Elementos',
     metadataButton: 'Ver Metadata',
-    metadataTitle: 'Certificado Metadata',
+    metadataTitle: 'Metadata',
     motto: 'Blockcerts, El Estándar Abierto para Credenciales Blockchain',
     recipient: 'Recipiente',
     share: 'Comparte en',
