@@ -68,7 +68,7 @@
     "semistandard": "^14.1.0",
     "sinon": "^9.0.0",
     "snazzy": "^9.0.0",
-    "ts-jest": "^25.4.0",
+    "ts-jest": "^26.5.2",
     "typescript": "^3.8.3",
     "watch": "^1.0.2",
     "wc-sass-render": "1.0.0",
