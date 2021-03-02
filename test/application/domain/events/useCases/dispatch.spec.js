@@ -2,29 +2,34 @@ import sinon from 'sinon';
 import domain from '../../../../../src/domain';
 import certificateFixture from '../../../../fixtures/valid-certificate-example';
 import validCertificate from '../../../../assertions/validCertificate';
+const jsdom = require('jsdom');
+const { JSDOM } = jsdom;
 
 describe('domain events dispatch method test suite', function () {
+  let dispatchEventSpy;
+
+  beforeEach(function () {
+    const { window } = new JSDOM();
+    dispatchEventSpy = sinon.spy(window, 'dispatchEvent');
+  });
+
+  afterEach(function () {
+    dispatchEventSpy.restore();
+  });
+
   describe('given it is not called with a type', function () {
     it('should not emit an event', async function () {
       const { certificateDefinition } = await domain.certificates.parse(certificateFixture);
-      const dispatchEventSpy = sinon.spy(window, 'dispatchEvent');
-
       domain.events.dispatch('', certificateDefinition);
       expect(dispatchEventSpy.calledOnce).toBe(false);
-
-      dispatchEventSpy.restore();
     });
   });
 
   describe('given it is not called with a certificate definition', function () {
     it('should not emit an event', function () {
       const eventType = 'test-event';
-      const dispatchEventSpy = sinon.spy(window, 'dispatchEvent');
-
       domain.events.dispatch(eventType);
       expect(dispatchEventSpy.calledOnce).toBe(false);
-
-      dispatchEventSpy.restore();
     });
   });
 
