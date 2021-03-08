@@ -4,7 +4,7 @@ import sanitize from '../../sanitizer/sanitizer';
 import getDateFormat from '../i18n/getDateFormat';
 import { isValidUrl } from '../helpers/validations';
 
-export function getCertificateDefinition (state) { // TODO: define certificate definition - retrieve from CVJS?
+export function getCertificateDefinition (state): any { // TODO: define certificate definition - retrieve from CVJS?
   return state.certificateDefinition;
 }
 
