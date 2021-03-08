@@ -9,7 +9,7 @@ export const mapDispatchToProps = {
   onLoad: initialize
 };
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = (state): any => {
   return {
     errorMessage: getErrorMessage(state),
     hasCertificate: !!getCertificateDefinition(state)
