@@ -1,0 +1,29 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@polymer/lit-element"
+    versions:
+    - "> 0.5.1, < 1"
+  - dependency-name: wc-sass-render
+    versions:
+    - "> 1.0.0, < 2"
+  - dependency-name: husky
+    versions:
+    - 5.0.9
+    - 5.1.0
+    - 5.1.1
+    - 5.1.2
+  - dependency-name: "@commitlint/cli"
+    versions:
+    - 12.0.0
+  - dependency-name: "@commitlint/config-conventional"
+    versions:
+    - 12.0.0
+  - dependency-name: "@blockcerts/cert-verifier-js"
+    versions:
+    - 4.6.0
