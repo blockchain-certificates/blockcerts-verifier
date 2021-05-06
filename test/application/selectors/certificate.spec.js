@@ -5,7 +5,6 @@ import {
   getCertificateSubtitle,
   getCertificateTitle,
   getChain,
-  getDisplayHTML,
   getDownloadLink,
   getIssueDate,
   getIssuedOn,
@@ -125,14 +124,6 @@ describe('certificate selectors test suite', function () {
         const state = store.getState();
 
         expect(getIssuerLogo(state)).toBe(v2Fixture.badge.issuer.image);
-      });
-    });
-
-    describe('getDisplayHTML selector', function () {
-      it('should return the displayHTML', function () {
-        const state = store.getState();
-
-        expect(getDisplayHTML(state)).toBe('<section class="text" style="margin-top:12px;width:100%;display:inline-block;"><span style="display:block;font-family:Georgia, serif;font-weight:normal;font-size:1.25em;text-align:center;text-transform:none;margin:0 auto;width:100%;">YO!</span></section>');
       });
     });
 

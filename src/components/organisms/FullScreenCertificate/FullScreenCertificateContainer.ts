@@ -2,7 +2,7 @@ import connector from '../../../store/connector';
 import FullScreenCertificate, { IFullScreenCertificateAPI } from './FullScreenCertificate';
 import {
   getCertificateDefinition,
-  getDisplayHTML,
+  getDisplay,
   getRecipientName
 } from '../../../selectors/certificate';
 import resetCertificateDefinition from '../../../actions/resetCertificateDefinition';
@@ -15,7 +15,7 @@ export const mapDispatchToProps: Partial<IFullScreenCertificateAPI> = {
 export const mapStateToProps = (state): Partial<IFullScreenCertificateAPI> => ({
   recipientName: getRecipientName(state),
   hasCertificateDefinition: !!getCertificateDefinition(state),
-  displayHTML: getDisplayHTML(state),
+  displayHTML: getDisplay(state),
   clickableUrls: getClickableUrls(state)
 });
 

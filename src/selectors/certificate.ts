@@ -68,11 +68,26 @@ export function getIssuerLogo (state): string {
   return '';
 }
 
-export function getDisplayHTML (state): string {
+export function getDisplay (state): string {
   const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateDefinition) {
-    return sanitize(certificateDefinition.certificateJson.displayHtml);
+  if (!certificateDefinition) {
+    return '';
+  }
+
+  const { displayHtml, display } = certificateDefinition.certificateJson;
+  if (displayHtml) {
+    return sanitize(displayHtml);
+  }
+
+  if (display) {
+    switch (display.contentMediaType) {
+      case 'text/html':
+        return sanitize(display.content);
+
+      default:
+        return '';
+    }
   }
 
   return '';
