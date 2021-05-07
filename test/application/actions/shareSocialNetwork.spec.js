@@ -1,6 +1,6 @@
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import certificateFixture from '../../fixtures/valid-certificate-example';
+import certificateFixture from '../../fixtures/v2/valid-certificate-example.json';
 import { configureStore } from '../../../src/store';
 import shareSocialNetwork from '../../../src/actions/shareSocialNetwork';
 import validCertificate from '../../assertions/validCertificate';

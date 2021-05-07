@@ -1,7 +1,7 @@
 import { mapStateToProps } from '../../../../src/components/atoms/DownloadLink/DownloadLinkContainer';
 import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
-import certificateFixture from '../../../fixtures/valid-certificate-example';
+import certificateFixture from '../../../fixtures/v2/valid-certificate-example.json';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
 describe('DownloadLinkContainer test suite', function () {

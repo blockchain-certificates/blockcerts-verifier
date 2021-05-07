@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import domain from '../../../../../src/domain';
-import certificateFixture from '../../../../fixtures/valid-certificate-example';
+import certificateFixture from '../../../../fixtures/v2/valid-certificate-example.json';
 import validCertificate from '../../../../assertions/validCertificate';
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;

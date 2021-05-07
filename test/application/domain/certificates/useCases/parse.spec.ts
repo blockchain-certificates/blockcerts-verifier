@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import domain from '../../../../../src/domain';
-import certificateFixture from '../../../../fixtures/valid-certificate-example.json';
+import certificateFixture from '../../../../fixtures/v2/valid-certificate-example.json';
 import notACertificateDefinition from '../../../../fixtures/not-a-certificate-definition.json';
 import validCertificate from '../../../../assertions/validCertificate';
 import * as verifier from '@blockcerts/cert-verifier-js';

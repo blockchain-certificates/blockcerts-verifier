@@ -5,13 +5,12 @@ import {
   getCertificateSubtitle,
   getCertificateTitle,
   getChain,
-  getDisplayHTML,
   getDownloadLink,
   getIssueDate,
   getIssuedOn,
   getIssuerLogo,
   getIssuerName,
-  getMetadataJson,
+  getMetadata,
   getParentStep,
   getRecipientName,
   getRecordLink,
@@ -21,12 +20,12 @@ import {
   getVerifiedSteps, isTestChain
 } from '../../../src/selectors/certificate';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
-import v1Fixture from '../../fixtures/valid-v1-certificate';
-import v2Fixture from '../../fixtures/valid-certificate-example';
-import mocknetFixture from '../../fixtures/mocknet-valid-2.0';
-import mainnetFixture from '../../fixtures/mainnet-valid-2.0';
-import ethereumRopstenFixture from '../../fixtures/ethereum-ropsten-valid-2.0';
-import ethereumMainFixture from '../../fixtures/ethereum-main-valid-2.0';
+import v1Fixture from '../../fixtures/v1/valid-v1-certificate.json';
+import v2Fixture from '../../fixtures/v2/valid-certificate-example.json';
+import mocknetFixture from '../../fixtures/v2/mocknet-valid-2.0.json';
+import mainnetFixture from '../../fixtures/v2/mainnet-valid-2.0.json';
+import ethereumRopstenFixture from '../../fixtures/v2/ethereum-ropsten-valid-2.0.json';
+import ethereumMainFixture from '../../fixtures/v2/ethereum-main-valid-2.0.json';
 import { configureStore } from '../../../src/store';
 import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
@@ -35,14 +34,17 @@ import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 
 const RealDate = Date;
 
-function mockDate (isoDate) {
+function mockDate (isoDate): void {
+  // @ts-expect-error: mocking date at high level, silence TS
   global.Date = class extends RealDate {
     constructor () {
       super(isoDate);
+      // @ts-expect-error: mocking date at high level, silence TS
       return new RealDate(isoDate);
     }
 
-    getDate () {
+    // @ts-expect-error: mocking date at high level, silence TS
+    getDate (): string {
       return '23';
     }
   };
@@ -128,14 +130,6 @@ describe('certificate selectors test suite', function () {
       });
     });
 
-    describe('getDisplayHTML selector', function () {
-      it('should return the displayHTML', function () {
-        const state = store.getState();
-
-        expect(getDisplayHTML(state)).toBe('<section class="text" style="margin-top:12px;width:100%;display:inline-block;"><span style="display:block;font-family:Georgia, serif;font-weight:normal;font-size:1.25em;text-align:center;text-transform:none;margin:0 auto;width:100%;">YO!</span></section>');
-      });
-    });
-
     describe('getRecordLink selector', function () {
       describe('given the record link is a valid URL', function () {
         it('should return the record\'s link', function () {
@@ -160,14 +154,6 @@ describe('certificate selectors test suite', function () {
         const state = store.getState();
 
         expect(getDownloadLink(state)).toBe('https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97?format=json');
-      });
-    });
-
-    describe('getMetadataJson selector', function () {
-      it('should return metadata of a v2 certificate', function () {
-        const state = store.getState();
-
-        expect(getMetadataJson(state)).toEqual(JSON.parse(v2Fixture.metadataJson));
       });
     });
 
@@ -312,7 +298,7 @@ describe('certificate selectors test suite', function () {
       it('should return metadata of a v1 certificate', function () {
         const state = store.getState();
 
-        expect(getMetadataJson(state)).toEqual(JSON.parse(v1Fixture.document.assertion.metadataJson));
+        expect(getMetadata(state)).toEqual(JSON.parse(v1Fixture.document.assertion.metadataJson));
       });
     });
 

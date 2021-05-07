@@ -68,11 +68,37 @@ export function getIssuerLogo (state): string {
   return '';
 }
 
-export function getDisplayHTML (state): string {
+export function getDisplay (state): string {
   const certificateDefinition = getCertificateDefinition(state);
 
-  if (certificateDefinition) {
-    return sanitize(certificateDefinition.certificateJson.displayHtml);
+  if (!certificateDefinition) {
+    return '';
+  }
+
+  const { displayHtml, display } = certificateDefinition.certificateJson;
+  if (displayHtml) {
+    return sanitize(displayHtml);
+  }
+
+  if (display) {
+    switch (display.contentMediaType) {
+      case 'text/html':
+        return sanitize(display.content);
+
+      case 'image/png':
+      case 'image/jpeg':
+      case 'image/gif':
+      case 'image/bmp':
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        return `<img src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
+
+      case 'application/pdf':
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        return `<embed width="100%" height="100%" type="application/pdf" src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
+
+      default:
+        return '';
+    }
   }
 
   return '';
@@ -98,7 +124,7 @@ export function getDownloadLink (state): string {
   return '';
 }
 
-export function getMetadataJson (state): any { // TODO: define metadataJson - retrieve from CVJS?
+export function getMetadata (state): any { // TODO: define metadataJson - retrieve from CVJS?
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {

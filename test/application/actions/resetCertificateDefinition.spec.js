@@ -2,7 +2,7 @@ import { configureStore } from '../../../src/store';
 import { getCertificateDefinition, getVerifiedSteps } from '../../../src/selectors/certificate';
 import resetCertificateDefinition from '../../../src/actions/resetCertificateDefinition';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import validCertificateFixture from '../../fixtures/valid-certificate-example';
+import validCertificateFixture from '../../fixtures/v2/valid-certificate-example.json';
 import initialValidCertificateSteps from '../../assertions/initialValidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';

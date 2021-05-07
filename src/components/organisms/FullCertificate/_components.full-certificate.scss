@@ -13,6 +13,7 @@ $sectionSpacer: 20px;
   font-size: 12px;
   overflow: auto;
   word-wrap: break-word;
+  height: 100vh; // force pdf to scale up
   max-height: calc(100vh - 150px);
   line-height: initial;
 }
@@ -32,7 +33,6 @@ $sectionSpacer: 20px;
 
 @media only screen and (min-width: 640px) {
   .buv-c-full-certificate {
-    min-height: 550px;
     font-size: 16px;
   }
 }

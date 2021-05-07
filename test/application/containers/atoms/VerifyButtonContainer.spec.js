@@ -5,7 +5,7 @@ import {
 import getInitialState from '../../../../src/store/getInitialState';
 import { configureStore } from '../../../../src/store/index';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
-import validCertificateDefinition from '../../../fixtures/valid-certificate-example';
+import validCertificateDefinition from '../../../fixtures/v2/valid-certificate-example.json';
 import { getShowVerificationModal, getVerificationStatus } from '../../../../src/selectors/verification';
 import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';

@@ -18,7 +18,7 @@ export default async function parse (definition, options: CertificateOptions = {
       certificateDefinition
     };
   } catch (e) {
-    // console.error(e);
+    console.error(e);
     return {
       certificateDefinition: null,
       errorMessage: 'errors.invalidBlockcerts'

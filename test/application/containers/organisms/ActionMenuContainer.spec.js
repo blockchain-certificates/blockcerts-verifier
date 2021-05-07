@@ -2,7 +2,7 @@ import { mapStateToProps } from '../../../../src/components/organisms/ActionMenu
 import getInitialState from '../../../../src/store/getInitialState';
 import { configureStore } from '../../../../src/store';
 import * as DISPLAY_MODE from '../../../../src/constants/displayMode';
-import certificateFixture from '../../../fixtures/valid-certificate-example';
+import certificateFixture from '../../../fixtures/v2/valid-certificate-example.json';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
