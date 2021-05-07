@@ -34,14 +34,17 @@ import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 
 const RealDate = Date;
 
-function mockDate (isoDate) {
+function mockDate (isoDate): void {
+  // @ts-expect-error: mocking date at high level, silence TS
   global.Date = class extends RealDate {
     constructor () {
       super(isoDate);
+      // @ts-expect-error: mocking date at high level, silence TS
       return new RealDate(isoDate);
     }
 
-    getDate () {
+    // @ts-expect-error: mocking date at high level, silence TS
+    getDate (): string {
       return '23';
     }
   };
