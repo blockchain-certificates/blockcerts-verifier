@@ -85,6 +85,13 @@ export function getDisplay (state): string {
       case 'text/html':
         return sanitize(display.content);
 
+      case 'image/png':
+      case 'image/jpeg':
+      case 'image/gif':
+      case 'image/bmp':
+        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+        return `<img src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
+
       default:
         return '';
     }
