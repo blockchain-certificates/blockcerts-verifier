@@ -1,5 +1,5 @@
 import domain from '../../../../../src/domain';
-import validCertificate from '../../../../fixtures/valid-certificate-example';
+import validCertificate from '../../../../fixtures/v2/valid-certificate-example.json';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';

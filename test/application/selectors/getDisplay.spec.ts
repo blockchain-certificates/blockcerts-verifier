@@ -1,7 +1,7 @@
 import { getCertificateDefinition, getDisplay } from '../../../src/selectors/certificate';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import v2Fixture from '../../fixtures/valid-certificate-example.json';
-import v3Fixture from '../../fixtures/testnet-v3.0-beta.json';
+import v2Fixture from '../../fixtures/v2/valid-certificate-example.json';
+import v3Fixture from '../../fixtures/v3/testnet-v3.0-beta.json';
 import { configureStore } from '../../../src/store';
 import getInitialState from '../../../src/store/getInitialState';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';

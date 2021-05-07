@@ -20,12 +20,12 @@ import {
   getVerifiedSteps, isTestChain
 } from '../../../src/selectors/certificate';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
-import v1Fixture from '../../fixtures/valid-v1-certificate';
-import v2Fixture from '../../fixtures/valid-certificate-example';
-import mocknetFixture from '../../fixtures/mocknet-valid-2.0';
-import mainnetFixture from '../../fixtures/mainnet-valid-2.0';
-import ethereumRopstenFixture from '../../fixtures/ethereum-ropsten-valid-2.0';
-import ethereumMainFixture from '../../fixtures/ethereum-main-valid-2.0';
+import v1Fixture from '../../fixtures/v1/valid-v1-certificate.json';
+import v2Fixture from '../../fixtures/v2/valid-certificate-example.json';
+import mocknetFixture from '../../fixtures/v2/mocknet-valid-2.0.json';
+import mainnetFixture from '../../fixtures/v2/mainnet-valid-2.0.json';
+import ethereumRopstenFixture from '../../fixtures/v2/ethereum-ropsten-valid-2.0.json';
+import ethereumMainFixture from '../../fixtures/v2/ethereum-main-valid-2.0.json';
 import { configureStore } from '../../../src/store';
 import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';

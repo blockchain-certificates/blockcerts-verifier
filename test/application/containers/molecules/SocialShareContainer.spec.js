@@ -1,7 +1,7 @@
 import { configureStore } from '../../../../src/store/index';
 import { mapStateToProps } from '../../../../src/components/molecules/SocialShare/SocialShareContainer';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
-import certificateFixture from '../../../fixtures/valid-certificate-example';
+import certificateFixture from '../../../fixtures/v2/valid-certificate-example.json';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
 describe('SocialShareContainer test suite', function () {

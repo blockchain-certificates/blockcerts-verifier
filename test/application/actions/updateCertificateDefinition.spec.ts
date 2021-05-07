@@ -9,7 +9,7 @@ import {
 } from '../../../src/selectors/certificate';
 import { getErrorMessage } from '../../../src/selectors/error';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
-import certificateFixture from '../../fixtures/valid-certificate-example.json';
+import certificateFixture from '../../fixtures/v2/valid-certificate-example.json';
 import notACertificateDefinition from '../../fixtures/not-a-certificate-definition.json';
 import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
 import validCertificate from '../../assertions/validCertificate';

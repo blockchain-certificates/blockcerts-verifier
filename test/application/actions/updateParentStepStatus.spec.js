@@ -4,7 +4,7 @@ import updateParentStepStatus from '../../../src/actions/updateParentStepStatus'
 import { getParentStep, getVerifiedSteps } from '../../../src/selectors/certificate';
 import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import certificateFixture from '../../fixtures/valid-certificate-example';
+import certificateFixture from '../../fixtures/v2/valid-certificate-example.json';
 import oneChildCertificateFixture from '../../fixtures/one-child-certificate-example';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 

@@ -4,7 +4,7 @@ import getInitialState from '../../../src/store/getInitialState';
 import { mapDispatchToProps, mapStateToProps } from '../../../src/blockcerts-verifier/BlockcertsVerifierContainer';
 import { getDisplayMode } from '../../../src/selectors/api';
 import setErrorMessage from '../../../src/actions/setErrorMessage';
-import fixtureCertificate from '../../fixtures/mainnet-valid-2.0.json';
+import fixtureCertificate from '../../fixtures/v2/mainnet-valid-2.0.json';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 
 describe('BlockcertsVerifierContainer test suite', function () {

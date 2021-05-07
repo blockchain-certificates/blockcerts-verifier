@@ -2,7 +2,7 @@ import { configureStore } from '../../../../src/store';
 import { mapStateToProps, mapDispatchToProps } from '../../../../src/components/organisms/FullScreenCertificate/FullScreenCertificateContainer';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import XSSCertificateFixture from '../../../fixtures/xss-certificate-example.json';
-import certificateFixture from '../../../fixtures/valid-certificate-example.json';
+import certificateFixture from '../../../fixtures/v2/valid-certificate-example.json';
 import { getCertificateDefinition, getFinalStep, getVerifiedSteps } from '../../../../src/selectors/certificate';
 import initialValidCertificateSteps from '../../../assertions/initialValidCertificateSteps';
 import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';

@@ -2,8 +2,8 @@ import { mapStateToProps } from '../../../../src/components/organisms/Verificati
 import { configureStore } from '../../../../src/store';
 import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
-import certificateFixture from '../../../fixtures/valid-certificate-example';
-import mainnetCertificateFixture from '../../../fixtures/ethereum-main-valid-2.0';
+import certificateFixture from '../../../fixtures/v2/valid-certificate-example.json';
+import mainnetCertificateFixture from '../../../fixtures/v2/ethereum-main-valid-2.0.json';
 import validCertificateStepsAssertions from '../../../assertions/validCertificateSteps';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 import { getVerifiedSteps } from '../../../../src/selectors/certificate';

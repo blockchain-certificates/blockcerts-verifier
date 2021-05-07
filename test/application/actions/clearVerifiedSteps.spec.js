@@ -2,7 +2,7 @@ import clearVerifiedSteps from '../../../src/actions/clearVerifiedSteps';
 import { configureStore } from '../../../src/store';
 import { getVerifiedSteps } from '../../../src/selectors/certificate';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
-import certificateFixture from '../../fixtures/valid-certificate-example';
+import certificateFixture from '../../fixtures/v2/valid-certificate-example.json';
 import initialValidCertificateSteps from '../../assertions/initialValidCertificateSteps';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 
