@@ -10,7 +10,7 @@ import {
   getIssuedOn,
   getIssuerLogo,
   getIssuerName,
-  getMetadataJson,
+  getMetadata,
   getParentStep,
   getRecipientName,
   getRecordLink,
@@ -157,14 +157,6 @@ describe('certificate selectors test suite', function () {
       });
     });
 
-    describe('getMetadataJson selector', function () {
-      it('should return metadata of a v2 certificate', function () {
-        const state = store.getState();
-
-        expect(getMetadataJson(state)).toEqual(JSON.parse(v2Fixture.metadataJson));
-      });
-    });
-
     describe('getTransactionLink selector', function () {
       it('should return the transaction\'s link', function () {
         const state = store.getState();
@@ -306,7 +298,7 @@ describe('certificate selectors test suite', function () {
       it('should return metadata of a v1 certificate', function () {
         const state = store.getState();
 
-        expect(getMetadataJson(state)).toEqual(JSON.parse(v1Fixture.document.assertion.metadataJson));
+        expect(getMetadata(state)).toEqual(JSON.parse(v1Fixture.document.assertion.metadataJson));
       });
     });
 

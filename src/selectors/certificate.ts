@@ -124,7 +124,7 @@ export function getDownloadLink (state): string {
   return '';
 }
 
-export function getMetadataJson (state): any { // TODO: define metadataJson - retrieve from CVJS?
+export function getMetadata (state): any { // TODO: define metadataJson - retrieve from CVJS?
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
