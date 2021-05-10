@@ -76,7 +76,6 @@
     "web-component-tester": "^6.9.0"
   },
   "scripts": {
-    "postinstall": "husky install",
     "build": "rollup -c rollup.config.js",
     "build:sanitizer": "rollup -c rollup-sanitizer.config.js",
     "test": "npm run test:application",
