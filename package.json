@@ -31,7 +31,7 @@
     "@open-wc/testing": "^2.5.16",
     "@open-wc/testing-karma": "^4.0.3",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
-    "@types/jest": "^26.0.4",
+    "@types/jest": "^27.0.0",
     "@types/sinon": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
