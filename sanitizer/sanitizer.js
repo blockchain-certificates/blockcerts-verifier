@@ -16,7 +16,7 @@ function createCommonjsModule(fn, module) {
  * @author 老雷<leizongmin@gmail.com>
  */
 
-function getDefaultWhiteList () {
+function getDefaultWhiteList$1 () {
   // 白名单值说明：
   // true: 允许该属性
   // Function: function (val) { } 返回true表示允许该属性，其他值均表示不允许
@@ -397,27 +397,27 @@ var REGEXP_URL_JAVASCRIPT = /javascript\s*\:/img;
  * @param {String} value
  * @return {String}
  */
-function safeAttrValue(name, value) {
+function safeAttrValue$1(name, value) {
   if (REGEXP_URL_JAVASCRIPT.test(value)) return '';
   return value;
 }
 
 
-var whiteList = getDefaultWhiteList();
-var getDefaultWhiteList_1 = getDefaultWhiteList;
+var whiteList$1 = getDefaultWhiteList$1();
+var getDefaultWhiteList_1$1 = getDefaultWhiteList$1;
 var onAttr_1 = onAttr;
 var onIgnoreAttr_1 = onIgnoreAttr;
-var safeAttrValue_1 = safeAttrValue;
+var safeAttrValue_1$1 = safeAttrValue$1;
 
-var _default = {
-	whiteList: whiteList,
-	getDefaultWhiteList: getDefaultWhiteList_1,
+var _default$1 = {
+	whiteList: whiteList$1,
+	getDefaultWhiteList: getDefaultWhiteList_1$1,
 	onAttr: onAttr_1,
 	onIgnoreAttr: onIgnoreAttr_1,
-	safeAttrValue: safeAttrValue_1
+	safeAttrValue: safeAttrValue_1$1
 };
 
-var util = {
+var util$1 = {
   indexOf: function (arr, item) {
     var i, j;
     if (Array.prototype.indexOf) {
@@ -471,7 +471,7 @@ var util = {
  * @return {String}
  */
 function parseStyle (css, onAttr) {
-  css = util.trimRight(css);
+  css = util$1.trimRight(css);
   if (css[css.length - 1] !== ';') css += ';';
   var cssLength = css.length;
   var isParenthesisOpen = false;
@@ -482,11 +482,11 @@ function parseStyle (css, onAttr) {
   function addNewAttr () {
     // 如果没有正常的闭合圆括号，则直接忽略当前属性
     if (!isParenthesisOpen) {
-      var source = util.trim(css.slice(lastPos, i));
+      var source = util$1.trim(css.slice(lastPos, i));
       var j = source.indexOf(':');
       if (j !== -1) {
-        var name = util.trim(source.slice(0, j));
-        var value = util.trim(source.slice(j + 1));
+        var name = util$1.trim(source.slice(0, j));
+        var value = util$1.trim(source.slice(j + 1));
         // 必须有属性名称
         if (name) {
           var ret = onAttr(lastPos, retCSS.length, name, value, source);
@@ -521,10 +521,10 @@ function parseStyle (css, onAttr) {
     }
   }
 
-  return util.trim(retCSS);
+  return util$1.trim(retCSS);
 }
 
-var parser = parseStyle;
+var parser$1 = parseStyle;
 
 /**
  * cssfilter
@@ -543,7 +543,7 @@ var parser = parseStyle;
  * @param {Object} obj
  * @return {Boolean}
  */
-function isNull (obj) {
+function isNull$1 (obj) {
   return (obj === undefined || obj === null);
 }
 
@@ -553,7 +553,7 @@ function isNull (obj) {
  * @param {Object} obj
  * @return {Object}
  */
-function shallowCopyObject (obj) {
+function shallowCopyObject$1 (obj) {
   var ret = {};
   for (var i in obj) {
     ret[i] = obj[i];
@@ -570,16 +570,16 @@ function shallowCopyObject (obj) {
  *   - {Function} onIgnoreAttr
  *   - {Function} safeAttrValue
  */
-function FilterCSS (options) {
-  options = shallowCopyObject(options || {});
-  options.whiteList = options.whiteList || _default.whiteList;
-  options.onAttr = options.onAttr || _default.onAttr;
-  options.onIgnoreAttr = options.onIgnoreAttr || _default.onIgnoreAttr;
-  options.safeAttrValue = options.safeAttrValue || _default.safeAttrValue;
+function FilterCSS$2 (options) {
+  options = shallowCopyObject$1(options || {});
+  options.whiteList = options.whiteList || _default$1.whiteList;
+  options.onAttr = options.onAttr || _default$1.onAttr;
+  options.onIgnoreAttr = options.onIgnoreAttr || _default$1.onIgnoreAttr;
+  options.safeAttrValue = options.safeAttrValue || _default$1.safeAttrValue;
   this.options = options;
 }
 
-FilterCSS.prototype.process = function (css) {
+FilterCSS$2.prototype.process = function (css) {
   // 兼容各种奇葩输入
   css = css || '';
   css = css.toString();
@@ -592,7 +592,7 @@ FilterCSS.prototype.process = function (css) {
   var onIgnoreAttr = options.onIgnoreAttr;
   var safeAttrValue = options.safeAttrValue;
 
-  var retCSS = parser(css, function (sourcePosition, position, name, value, source) {
+  var retCSS = parser$1(css, function (sourcePosition, position, name, value, source) {
 
     var check = whiteList[name];
     var isWhite = false;
@@ -615,7 +615,7 @@ FilterCSS.prototype.process = function (css) {
     if (isWhite) {
 
       var ret = onAttr(name, value, opts);
-      if (isNull(ret)) {
+      if (isNull$1(ret)) {
         return name + ':' + value;
       } else {
         return ret;
@@ -624,7 +624,7 @@ FilterCSS.prototype.process = function (css) {
     } else {
 
       var ret = onIgnoreAttr(name, value, opts);
-      if (!isNull(ret)) {
+      if (!isNull$1(ret)) {
         return ret;
       }
 
@@ -635,9 +635,9 @@ FilterCSS.prototype.process = function (css) {
 };
 
 
-var css = FilterCSS;
+var css = FilterCSS$2;
 
-var lib = createCommonjsModule(function (module, exports) {
+var lib$1 = createCommonjsModule(function (module, exports) {
 /**
  * cssfilter
  *
@@ -664,18 +664,18 @@ function filterCSS (html, options) {
 // 输出
 exports = module.exports = filterCSS;
 exports.FilterCSS = css;
-for (var i in _default) exports[i] = _default[i];
+for (var i in _default$1) exports[i] = _default$1[i];
 
 // 在浏览器端使用
 if (typeof window !== 'undefined') {
   window.filterCSS = module.exports;
 }
 });
-var lib_1 = lib.cssfilter;
-var lib_2 = lib.FilterCSS;
+lib$1.cssfilter;
+lib$1.FilterCSS;
 
-var util$1 = {
-  indexOf: function(arr, item) {
+var util = {
+  indexOf: function (arr, item) {
     var i, j;
     if (Array.prototype.indexOf) {
       return arr.indexOf(item);
@@ -687,7 +687,7 @@ var util$1 = {
     }
     return -1;
   },
-  forEach: function(arr, fn, scope) {
+  forEach: function (arr, fn, scope) {
     var i, j;
     if (Array.prototype.forEach) {
       return arr.forEach(fn, scope);
@@ -696,17 +696,17 @@ var util$1 = {
       fn.call(scope, arr[i], i, arr);
     }
   },
-  trim: function(str) {
+  trim: function (str) {
     if (String.prototype.trim) {
       return str.trim();
     }
     return str.replace(/(^\s*)|(\s*$)/g, "");
   },
-  spaceIndex: function(str) {
+  spaceIndex: function (str) {
     var reg = /\s|\n|\t/;
     var match = reg.exec(str);
     return match ? match.index : -1;
-  }
+  },
 };
 
 /**
@@ -715,11 +715,11 @@ var util$1 = {
  * @author Zongmin Lei<leizongmin@gmail.com>
  */
 
-var FilterCSS$1 = lib.FilterCSS;
-var getDefaultCSSWhiteList = lib.getDefaultWhiteList;
+var FilterCSS$1 = lib$1.FilterCSS;
+var getDefaultCSSWhiteList = lib$1.getDefaultWhiteList;
 
 
-function getDefaultWhiteList$1() {
+function getDefaultWhiteList() {
   return {
     a: ["target", "href", "title"],
     abbr: ["title"],
@@ -727,7 +727,15 @@ function getDefaultWhiteList$1() {
     area: ["shape", "coords", "href", "alt"],
     article: [],
     aside: [],
-    audio: ["autoplay", "controls", "loop", "preload", "src"],
+    audio: [
+      "autoplay",
+      "controls",
+      "crossorigin",
+      "loop",
+      "muted",
+      "preload",
+      "src",
+    ],
     b: [],
     bdi: ["dir"],
     bdo: ["dir"],
@@ -747,6 +755,8 @@ function getDefaultWhiteList$1() {
     dl: [],
     dt: [],
     em: [],
+    figcaption: [],
+    figure: [],
     font: ["color", "size", "face"],
     footer: [],
     h1: [],
@@ -771,8 +781,10 @@ function getDefaultWhiteList$1() {
     small: [],
     span: [],
     sub: [],
+    summary: [],
     sup: [],
     strong: [],
+    strike: [],
     table: ["width", "border", "align", "valign"],
     tbody: ["align", "valign"],
     td: ["width", "rowspan", "colspan", "align", "valign"],
@@ -783,7 +795,19 @@ function getDefaultWhiteList$1() {
     tt: [],
     u: [],
     ul: [],
-    video: ["autoplay", "controls", "loop", "preload", "src", "height", "width"]
+    video: [
+      "autoplay",
+      "controls",
+      "crossorigin",
+      "loop",
+      "muted",
+      "playsinline",
+      "poster",
+      "preload",
+      "src",
+      "height",
+      "width",
+    ],
   };
 }
 
@@ -855,14 +879,14 @@ function escapeHtml(html) {
  * @param {Object} cssFilter
  * @return {String}
  */
-function safeAttrValue$1(tag, name, value, cssFilter) {
+function safeAttrValue(tag, name, value, cssFilter) {
   // unescape attribute value firstly
   value = friendlyAttrValue(value);
 
   if (name === "href" || name === "src") {
     // filter `href` and `src` attribute
     // only allow the value that starts with `http://` | `https://` | `mailto:` | `/` | `#`
-    value = util$1.trim(value);
+    value = util.trim(value);
     if (value === "#") return "#";
     if (
       !(
@@ -883,21 +907,21 @@ function safeAttrValue$1(tag, name, value, cssFilter) {
   } else if (name === "background") {
     // filter `background` attribute (maybe no use)
     // `javascript:`
-    REGEXP_DEFAULT_ON_TAG_ATTR_4.lastIndex = 0;
-    if (REGEXP_DEFAULT_ON_TAG_ATTR_4.test(value)) {
+    REGEXP_DEFAULT_ON_TAG_ATTR_4$1.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_4$1.test(value)) {
       return "";
     }
   } else if (name === "style") {
     // `expression()`
-    REGEXP_DEFAULT_ON_TAG_ATTR_7.lastIndex = 0;
-    if (REGEXP_DEFAULT_ON_TAG_ATTR_7.test(value)) {
+    REGEXP_DEFAULT_ON_TAG_ATTR_7$1.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_7$1.test(value)) {
       return "";
     }
     // `url()`
-    REGEXP_DEFAULT_ON_TAG_ATTR_8.lastIndex = 0;
-    if (REGEXP_DEFAULT_ON_TAG_ATTR_8.test(value)) {
-      REGEXP_DEFAULT_ON_TAG_ATTR_4.lastIndex = 0;
-      if (REGEXP_DEFAULT_ON_TAG_ATTR_4.test(value)) {
+    REGEXP_DEFAULT_ON_TAG_ATTR_8$1.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_8$1.test(value)) {
+      REGEXP_DEFAULT_ON_TAG_ATTR_4$1.lastIndex = 0;
+      if (REGEXP_DEFAULT_ON_TAG_ATTR_4$1.test(value)) {
         return "";
       }
     }
@@ -920,12 +944,12 @@ var REGEXP_QUOTE_2 = /&quot;/g;
 var REGEXP_ATTR_VALUE_1 = /&#([a-zA-Z0-9]*);?/gim;
 var REGEXP_ATTR_VALUE_COLON = /&colon;?/gim;
 var REGEXP_ATTR_VALUE_NEWLINE = /&newline;?/gim;
-var REGEXP_DEFAULT_ON_TAG_ATTR_4 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a)\:/gi;
-var REGEXP_DEFAULT_ON_TAG_ATTR_7 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
-var REGEXP_DEFAULT_ON_TAG_ATTR_8 = /u\s*r\s*l\s*\(.*/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_4$1 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a)\:/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_7$1 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_8$1 = /u\s*r\s*l\s*\(.*/gi;
 
 /**
- * escape doube quote
+ * escape double quote
  *
  * @param {String} str
  * @return {String} str
@@ -981,7 +1005,7 @@ function clearNonPrintableCharacter(str) {
   for (var i = 0, len = str.length; i < len; i++) {
     str2 += str.charCodeAt(i) < 32 ? " " : str.charAt(i);
   }
-  return util$1.trim(str2);
+  return util.trim(str2);
 }
 
 /**
@@ -1026,27 +1050,27 @@ function onIgnoreTagStripAll() {
  */
 function StripTagBody(tags, next) {
   if (typeof next !== "function") {
-    next = function() {};
+    next = function () {};
   }
 
   var isRemoveAllTag = !Array.isArray(tags);
   function isRemoveTag(tag) {
     if (isRemoveAllTag) return true;
-    return util$1.indexOf(tags, tag) !== -1;
+    return util.indexOf(tags, tag) !== -1;
   }
 
   var removeList = [];
   var posStart = false;
 
   return {
-    onIgnoreTag: function(tag, html, options) {
+    onIgnoreTag: function (tag, html, options) {
       if (isRemoveTag(tag)) {
         if (options.isClosing) {
           var ret = "[/removed]";
           var end = options.position + ret.length;
           removeList.push([
             posStart !== false ? posStart : options.position,
-            end
+            end,
           ]);
           posStart = false;
           return ret;
@@ -1060,16 +1084,16 @@ function StripTagBody(tags, next) {
         return next(tag, html, options);
       }
     },
-    remove: function(html) {
+    remove: function (html) {
       var rethtml = "";
       var lastPos = 0;
-      util$1.forEach(removeList, function(pos) {
+      util.forEach(removeList, function (pos) {
         rethtml += html.slice(lastPos, pos[0]);
         lastPos = pos[1];
       });
       rethtml += html.slice(lastPos);
       return rethtml;
-    }
+    },
   };
 }
 
@@ -1092,7 +1116,7 @@ var STRIP_COMMENT_TAG_REGEXP = /<!--[\s\S]*?-->/g;
  */
 function stripBlankChar(html) {
   var chars = html.split("");
-  chars = chars.filter(function(char) {
+  chars = chars.filter(function (char) {
     var c = char.charCodeAt(0);
     if (c === 127) return false;
     if (c <= 31) {
@@ -1104,13 +1128,13 @@ function stripBlankChar(html) {
   return chars.join("");
 }
 
-var whiteList$1 = getDefaultWhiteList$1();
-var getDefaultWhiteList_1$1 = getDefaultWhiteList$1;
+var whiteList = getDefaultWhiteList();
+var getDefaultWhiteList_1 = getDefaultWhiteList;
 var onTag_1 = onTag;
 var onIgnoreTag_1 = onIgnoreTag;
 var onTagAttr_1 = onTagAttr;
 var onIgnoreTagAttr_1 = onIgnoreTagAttr;
-var safeAttrValue_1$1 = safeAttrValue$1;
+var safeAttrValue_1 = safeAttrValue;
 var escapeHtml_1 = escapeHtml;
 var escapeQuote_1 = escapeQuote;
 var unescapeQuote_1 = unescapeQuote;
@@ -1126,14 +1150,14 @@ var stripBlankChar_1 = stripBlankChar;
 var cssFilter = defaultCSSFilter;
 var getDefaultCSSWhiteList_1 = getDefaultCSSWhiteList;
 
-var _default$1 = {
-	whiteList: whiteList$1,
-	getDefaultWhiteList: getDefaultWhiteList_1$1,
+var _default = {
+	whiteList: whiteList,
+	getDefaultWhiteList: getDefaultWhiteList_1,
 	onTag: onTag_1,
 	onIgnoreTag: onIgnoreTag_1,
 	onTagAttr: onTagAttr_1,
 	onIgnoreTagAttr: onIgnoreTagAttr_1,
-	safeAttrValue: safeAttrValue_1$1,
+	safeAttrValue: safeAttrValue_1,
 	escapeHtml: escapeHtml_1,
 	escapeQuote: escapeQuote_1,
 	unescapeQuote: unescapeQuote_1,
@@ -1165,13 +1189,13 @@ var _default$1 = {
  * @return {String}
  */
 function getTagName(html) {
-  var i = util$1.spaceIndex(html);
+  var i = util.spaceIndex(html);
   if (i === -1) {
     var tagName = html.slice(1, -1);
   } else {
     var tagName = html.slice(1, i + 1);
   }
-  tagName = util$1.trim(tagName).toLowerCase();
+  tagName = util.trim(tagName).toLowerCase();
   if (tagName.slice(0, 1) === "/") tagName = tagName.slice(1);
   if (tagName.slice(-1) === "/") tagName = tagName.slice(0, -1);
   return tagName;
@@ -1195,7 +1219,7 @@ function isClosing(html) {
  * @param {Function} escapeHtml
  * @return {String}
  */
-function parseTag(html, onTag, escapeHtml) {
+function parseTag$1(html, onTag, escapeHtml) {
 
   var rethtml = "";
   var lastPos = 0;
@@ -1236,11 +1260,11 @@ function parseTag(html, onTag, escapeHtml) {
           tagStart = false;
           continue;
         }
-        if ((c === '"' || c === "'")) {
+        if (c === '"' || c === "'") {
           var i = 1;
           var ic = html.charAt(currentPos - i);
 
-          while ((ic === " ") || (ic === "=")) {
+          while (ic.trim() === "" || ic === "=") {
             if (ic === "=") {
               quoteStart = c;
               continue chariterator;
@@ -1272,7 +1296,7 @@ var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9_:\.\-]/gim;
  * @param {Function} onAttr e.g. `function (name, value)`
  * @return {String}
  */
-function parseAttr(html, onAttr) {
+function parseAttr$1(html, onAttr) {
 
   var lastPos = 0;
   var retAttrs = [];
@@ -1280,7 +1304,7 @@ function parseAttr(html, onAttr) {
   var len = html.length;
 
   function addAttr(name, value) {
-    name = util$1.trim(name);
+    name = util.trim(name);
     name = name.replace(REGEXP_ILLEGAL_ATTR_NAME, "").toLowerCase();
     if (name.length < 1) return;
     var ret = onAttr(name, value || "");
@@ -1306,7 +1330,7 @@ function parseAttr(html, onAttr) {
         if (j === -1) {
           break;
         } else {
-          v = util$1.trim(html.slice(lastPos + 1, j));
+          v = util.trim(html.slice(lastPos + 1, j));
           addAttr(tmpName, v);
           tmpName = false;
           i = j;
@@ -1320,7 +1344,7 @@ function parseAttr(html, onAttr) {
       if (tmpName === false) {
         j = findNextEqual(html, i);
         if (j === -1) {
-          v = util$1.trim(html.slice(lastPos, i));
+          v = util.trim(html.slice(lastPos, i));
           addAttr(v);
           tmpName = false;
           lastPos = i + 1;
@@ -1332,7 +1356,7 @@ function parseAttr(html, onAttr) {
       } else {
         j = findBeforeEqual(html, i - 1);
         if (j === -1) {
-          v = util$1.trim(html.slice(lastPos, i));
+          v = util.trim(html.slice(lastPos, i));
           v = stripQuoteWrap(v);
           addAttr(tmpName, v);
           tmpName = false;
@@ -1349,11 +1373,11 @@ function parseAttr(html, onAttr) {
     if (tmpName === false) {
       addAttr(html.slice(lastPos));
     } else {
-      addAttr(tmpName, stripQuoteWrap(util$1.trim(html.slice(lastPos))));
+      addAttr(tmpName, stripQuoteWrap(util.trim(html.slice(lastPos))));
     }
   }
 
-  return util$1.trim(retAttrs.join(" "));
+  return util.trim(retAttrs.join(" "));
 }
 
 function findNextEqual(str, i) {
@@ -1393,10 +1417,10 @@ function stripQuoteWrap(text) {
   }
 }
 
-var parseTag_1 = parseTag;
-var parseAttr_1 = parseAttr;
+var parseTag_1 = parseTag$1;
+var parseAttr_1 = parseAttr$1;
 
-var parser$1 = {
+var parser = {
 	parseTag: parseTag_1,
 	parseAttr: parseAttr_1
 };
@@ -1407,11 +1431,11 @@ var parser$1 = {
  * @author Zongmin Lei<leizongmin@gmail.com>
  */
 
-var FilterCSS$2 = lib.FilterCSS;
+var FilterCSS = lib$1.FilterCSS;
 
 
-var parseTag$1 = parser$1.parseTag;
-var parseAttr$1 = parser$1.parseAttr;
+var parseTag = parser.parseTag;
+var parseAttr = parser.parseAttr;
 
 
 /**
@@ -1420,7 +1444,7 @@ var parseAttr$1 = parser$1.parseAttr;
  * @param {Object} obj
  * @return {Boolean}
  */
-function isNull$1(obj) {
+function isNull(obj) {
   return obj === undefined || obj === null;
 }
 
@@ -1433,19 +1457,19 @@ function isNull$1(obj) {
  *   - {Boolean} closing
  */
 function getAttrs(html) {
-  var i = util$1.spaceIndex(html);
+  var i = util.spaceIndex(html);
   if (i === -1) {
     return {
       html: "",
-      closing: html[html.length - 2] === "/"
+      closing: html[html.length - 2] === "/",
     };
   }
-  html = util$1.trim(html.slice(i + 1, -1));
+  html = util.trim(html.slice(i + 1, -1));
   var isClosing = html[html.length - 1] === "/";
-  if (isClosing) html = util$1.trim(html.slice(0, -1));
+  if (isClosing) html = util.trim(html.slice(0, -1));
   return {
     html: html,
-    closing: isClosing
+    closing: isClosing,
   };
 }
 
@@ -1455,7 +1479,7 @@ function getAttrs(html) {
  * @param {Object} obj
  * @return {Object}
  */
-function shallowCopyObject$1(obj) {
+function shallowCopyObject(obj) {
   var ret = {};
   for (var i in obj) {
     ret[i] = obj[i];
@@ -1473,7 +1497,7 @@ function shallowCopyObject$1(obj) {
  *        css{whiteList, onAttr, onIgnoreAttr} `css=false` means don't use `cssfilter`
  */
 function FilterXSS(options) {
-  options = shallowCopyObject$1(options || {});
+  options = shallowCopyObject(options || {});
 
   if (options.stripIgnoreTag) {
     if (options.onIgnoreTag) {
@@ -1481,23 +1505,23 @@ function FilterXSS(options) {
         'Notes: cannot use these two options "stripIgnoreTag" and "onIgnoreTag" at the same time'
       );
     }
-    options.onIgnoreTag = _default$1.onIgnoreTagStripAll;
+    options.onIgnoreTag = _default.onIgnoreTagStripAll;
   }
 
-  options.whiteList = options.whiteList || _default$1.whiteList;
-  options.onTag = options.onTag || _default$1.onTag;
-  options.onTagAttr = options.onTagAttr || _default$1.onTagAttr;
-  options.onIgnoreTag = options.onIgnoreTag || _default$1.onIgnoreTag;
-  options.onIgnoreTagAttr = options.onIgnoreTagAttr || _default$1.onIgnoreTagAttr;
-  options.safeAttrValue = options.safeAttrValue || _default$1.safeAttrValue;
-  options.escapeHtml = options.escapeHtml || _default$1.escapeHtml;
+  options.whiteList = options.whiteList || _default.whiteList;
+  options.onTag = options.onTag || _default.onTag;
+  options.onTagAttr = options.onTagAttr || _default.onTagAttr;
+  options.onIgnoreTag = options.onIgnoreTag || _default.onIgnoreTag;
+  options.onIgnoreTagAttr = options.onIgnoreTagAttr || _default.onIgnoreTagAttr;
+  options.safeAttrValue = options.safeAttrValue || _default.safeAttrValue;
+  options.escapeHtml = options.escapeHtml || _default.escapeHtml;
   this.options = options;
 
   if (options.css === false) {
     this.cssFilter = false;
   } else {
     options.css = options.css || {};
-    this.cssFilter = new FilterCSS$2(options.css);
+    this.cssFilter = new FilterCSS(options.css);
   }
 }
 
@@ -1507,7 +1531,7 @@ function FilterXSS(options) {
  * @param {String} html
  * @return {String}
  */
-FilterXSS.prototype.process = function(html) {
+FilterXSS.prototype.process = function (html) {
   // compatible with the input
   html = html || "";
   html = html.toString();
@@ -1526,37 +1550,37 @@ FilterXSS.prototype.process = function(html) {
 
   // remove invisible characters
   if (options.stripBlankChar) {
-    html = _default$1.stripBlankChar(html);
+    html = _default.stripBlankChar(html);
   }
 
   // remove html comments
   if (!options.allowCommentTag) {
-    html = _default$1.stripCommentTag(html);
+    html = _default.stripCommentTag(html);
   }
 
   // if enable stripIgnoreTagBody
   var stripIgnoreTagBody = false;
   if (options.stripIgnoreTagBody) {
-    var stripIgnoreTagBody = _default$1.StripTagBody(
+    var stripIgnoreTagBody = _default.StripTagBody(
       options.stripIgnoreTagBody,
       onIgnoreTag
     );
     onIgnoreTag = stripIgnoreTagBody.onIgnoreTag;
   }
 
-  var retHtml = parseTag$1(
+  var retHtml = parseTag(
     html,
-    function(sourcePosition, position, tag, html, isClosing) {
+    function (sourcePosition, position, tag, html, isClosing) {
       var info = {
         sourcePosition: sourcePosition,
         position: position,
         isClosing: isClosing,
-        isWhite: whiteList.hasOwnProperty(tag)
+        isWhite: whiteList.hasOwnProperty(tag),
       };
 
       // call `onTag()`
       var ret = onTag(tag, html, info);
-      if (!isNull$1(ret)) return ret;
+      if (!isNull(ret)) return ret;
 
       if (info.isWhite) {
         if (info.isClosing) {
@@ -1565,11 +1589,11 @@ FilterXSS.prototype.process = function(html) {
 
         var attrs = getAttrs(html);
         var whiteAttrList = whiteList[tag];
-        var attrsHtml = parseAttr$1(attrs.html, function(name, value) {
+        var attrsHtml = parseAttr(attrs.html, function (name, value) {
           // call `onTagAttr()`
-          var isWhiteAttr = util$1.indexOf(whiteAttrList, name) !== -1;
+          var isWhiteAttr = util.indexOf(whiteAttrList, name) !== -1;
           var ret = onTagAttr(tag, name, value, isWhiteAttr);
-          if (!isNull$1(ret)) return ret;
+          if (!isNull(ret)) return ret;
 
           if (isWhiteAttr) {
             // call `safeAttrValue()`
@@ -1582,7 +1606,7 @@ FilterXSS.prototype.process = function(html) {
           } else {
             // call `onIgnoreTagAttr()`
             var ret = onIgnoreTagAttr(tag, name, value, isWhiteAttr);
-            if (!isNull$1(ret)) return ret;
+            if (!isNull(ret)) return ret;
             return;
           }
         });
@@ -1596,7 +1620,7 @@ FilterXSS.prototype.process = function(html) {
       } else {
         // call `onIgnoreTag()`
         var ret = onIgnoreTag(tag, html, info);
-        if (!isNull$1(ret)) return ret;
+        if (!isNull(ret)) return ret;
         return escapeHtml(html);
       }
     },
@@ -1613,7 +1637,7 @@ FilterXSS.prototype.process = function(html) {
 
 var xss = FilterXSS;
 
-var lib$1 = createCommonjsModule(function (module, exports) {
+var lib = createCommonjsModule(function (module, exports) {
 /**
  * xss
  *
@@ -1639,8 +1663,8 @@ function filterXSS(html, options) {
 exports = module.exports = filterXSS;
 exports.filterXSS = filterXSS;
 exports.FilterXSS = xss;
-for (var i in _default$1) exports[i] = _default$1[i];
-for (var i in parser$1) exports[i] = parser$1[i];
+for (var i in _default) exports[i] = _default[i];
+for (var i in parser) exports[i] = parser[i];
 
 // using `xss` on the browser, output `filterXSS` to the globals
 if (typeof window !== "undefined") {
@@ -1649,15 +1673,19 @@ if (typeof window !== "undefined") {
 
 // using `xss` on the WebWorker, output `filterXSS` to the globals
 function isWorkerEnv() {
-  return typeof self !== 'undefined' && typeof DedicatedWorkerGlobalScope !== 'undefined' && self instanceof DedicatedWorkerGlobalScope;
+  return (
+    typeof self !== "undefined" &&
+    typeof DedicatedWorkerGlobalScope !== "undefined" &&
+    self instanceof DedicatedWorkerGlobalScope
+  );
 }
 if (isWorkerEnv()) {
   self.filterXSS = module.exports;
 }
 });
-var lib_1$1 = lib$1.xss;
-var lib_2$1 = lib$1.filterXSS;
-var lib_3 = lib$1.FilterXSS;
+lib.xss;
+lib.filterXSS;
+lib.FilterXSS;
 
 function isBase64 (value) {
   const test = /^data:.+;base64,/;
@@ -1670,7 +1698,7 @@ function getBase64Data (value) {
 }
 
 const whiteListedCssProperties = {
-  ...lib.getDefaultWhiteList(),
+  ...lib$1.getDefaultWhiteList(),
   bottom: true,
   left: true,
   float: true,
@@ -1690,7 +1718,7 @@ const whiteListedCssProperties = {
 };
 
 function modifyWhiteList () {
-  const whiteList = lib$1.getDefaultWhiteList();
+  const whiteList = lib.getDefaultWhiteList();
   Object.keys(whiteList).forEach(el => {
     whiteList[el].push('style');
     whiteList[el].push('class');
@@ -1701,7 +1729,7 @@ function modifyWhiteList () {
 
 function handleTagAttr (tag, name, value, isWhiteAttr) {
   if (name === 'style') {
-    return `${name}="${lib(value, {
+    return `${name}="${lib$1(value, {
       whiteList: whiteListedCssProperties
     }).replace(/; /g, ';')}"`;
   }
@@ -1721,7 +1749,7 @@ function handleTagAttr (tag, name, value, isWhiteAttr) {
 
 function handleAttrValue (tag, name, value, cssFilter) {
   // unescape attribute value firstly
-  value = lib$1.friendlyAttrValue(value);
+  value = lib.friendlyAttrValue(value);
 
   if (name === 'href' || name === 'src') {
     // filter `href` and `src` attribute
@@ -1734,32 +1762,32 @@ function handleAttrValue (tag, name, value, cssFilter) {
   } else if (name === 'background') {
     // filter `background` attribute (maybe no use)
     // `javascript:`
-    REGEXP_DEFAULT_ON_TAG_ATTR_4$1.lastIndex = 0;
-    if (REGEXP_DEFAULT_ON_TAG_ATTR_4$1.test(value)) {
+    REGEXP_DEFAULT_ON_TAG_ATTR_4.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_4.test(value)) {
       return '';
     }
   } else if (name === 'style') {
     // `expression()`
-    REGEXP_DEFAULT_ON_TAG_ATTR_7$1.lastIndex = 0;
-    if (REGEXP_DEFAULT_ON_TAG_ATTR_7$1.test(value)) {
+    REGEXP_DEFAULT_ON_TAG_ATTR_7.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_7.test(value)) {
       return '';
     }
     // `url()`
-    REGEXP_DEFAULT_ON_TAG_ATTR_8$1.lastIndex = 0;
-    if (REGEXP_DEFAULT_ON_TAG_ATTR_8$1.test(value)) {
-      REGEXP_DEFAULT_ON_TAG_ATTR_4$1.lastIndex = 0;
-      if (REGEXP_DEFAULT_ON_TAG_ATTR_4$1.test(value)) {
+    REGEXP_DEFAULT_ON_TAG_ATTR_8.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_8.test(value)) {
+      REGEXP_DEFAULT_ON_TAG_ATTR_4.lastIndex = 0;
+      if (REGEXP_DEFAULT_ON_TAG_ATTR_4.test(value)) {
         return '';
       }
     }
     if (cssFilter !== false) {
-      cssFilter = cssFilter || lib$1.getDefaultCSSWhiteList();
+      cssFilter = cssFilter || lib.getDefaultCSSWhiteList();
       value = cssFilter.process(value);
     }
   }
 
   // escape `<>"` before returns
-  value = lib$1.escapeAttrValue(value);
+  value = lib.escapeAttrValue(value);
   return value;
 }
 
@@ -1777,9 +1805,9 @@ function utilTrim (str) {
 }
 
 // RegExp list from xss
-var REGEXP_DEFAULT_ON_TAG_ATTR_4$1 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a):/gi;
-var REGEXP_DEFAULT_ON_TAG_ATTR_7$1 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
-var REGEXP_DEFAULT_ON_TAG_ATTR_8$1 = /u\s*r\s*l\s*\(.*/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_4 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a):/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_7 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_8 = /u\s*r\s*l\s*\(.*/gi;
 
 const options = {
   whiteList: modifyWhiteList(),
@@ -1788,10 +1816,10 @@ const options = {
   onTagAttr: handleTagAttr,
   safeAttrValue: handleAttrValue
 };
-const sanitizer = new lib$1.FilterXSS(options);
+const sanitizer = new lib.FilterXSS(options);
 
 function sanitize (html) {
   return sanitizer.process(html);
 }
 
-export default sanitize;
+export { sanitize as default };
