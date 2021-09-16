@@ -8,10 +8,19 @@ import '../../atoms/VerifyButton';
 import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
+import domain from '../../../domain';
 
 function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
+  const buvCertificateClasses: string[] = [
+    'buv-c-full-certificate',
+    'qa-fullscreen-certificate'
+  ];
+  if (domain.certificates.displayHtmlHasNoWidthConstraint(displayHTML)) {
+    buvCertificateClasses.push('buv-c-full-certificate--fixed-width');
+  }
+
   const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
-  return html`<section class='buv-c-full-certificate qa-full-certificate'>${unsafeHTML(htmlToDisplay)}</section>`;
+  return html`<section class$=${buvCertificateClasses.join(' ')}>${unsafeHTML(htmlToDisplay)}</section>`;
 }
 
 export interface IFullCertificate {

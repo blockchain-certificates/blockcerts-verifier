@@ -51,3 +51,8 @@ $sectionSpacer: 20px;
   min-width: calc(100% - 190px);
   width: calc(100% - 105px);
 }
+
+.buv-c-full-certificate--fixed-width {
+  max-width: 460px;
+  min-width: 0;
+}
