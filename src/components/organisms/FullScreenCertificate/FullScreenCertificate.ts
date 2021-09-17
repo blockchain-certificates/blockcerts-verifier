@@ -14,6 +14,7 @@ import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
+import domain from '../../../domain';
 
 function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
   const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
@@ -39,6 +40,14 @@ export default function FullScreenCertificate ({
     return null;
   }
 
+  const buvFullscreenCertificateClasses: string[] = [
+    'buv-c-fullscreen-certificate__certificate',
+    'qa-fullscreen-certificate'
+  ];
+  if (displayHTML && domain.certificates.displayHtmlHasNoWidthConstraint(displayHTML)) {
+    buvFullscreenCertificateClasses.push('buv-c-certificate--fixed-width');
+  }
+
   return html`
     ${CSS}
     <section class='buv-c-fullscreen-certificate'>
@@ -60,7 +69,7 @@ export default function FullScreenCertificate ({
           ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__separator', showMotto: true, logoSize: 'medium' })}
           <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
-        <div class='buv-c-fullscreen-certificate__certificate  qa-fullscreen-certificate'>
+        <div class$=${buvFullscreenCertificateClasses.join(' ')}>
           ${displayHTML ? renderDisplayHTML(displayHTML, clickableUrls) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
         </div>
       </section>
