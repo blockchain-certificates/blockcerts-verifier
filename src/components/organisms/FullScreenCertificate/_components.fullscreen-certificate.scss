@@ -1,5 +1,6 @@
 @import '../../../shared-styles/settings.variables';
 @import '../../../shared-styles/objects.text';
+@import '../../../shared-styles/components.certificate';
 
 .buv-c-fullscreen-certificate {
   z-index: 200;
@@ -124,11 +125,6 @@
     width: 100%;
     overflow: auto;
   }
-}
-
-.buv-c-fullscreen-certificate__certificate-fixed-width {
-  max-width: 460px;
-  min-width: 0;
 }
 
 .buv-c-fullscreen-certificate__verify-other {

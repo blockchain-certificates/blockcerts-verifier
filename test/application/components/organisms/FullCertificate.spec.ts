@@ -31,7 +31,7 @@ describe('FullCertificate component test suite', function () {
       it('should render the displayHtml inside a parent with a width constrain CSS class', function () {
         const fixtureDisplayHTML = '<section class="text">This is a test</section>';
         const instance = FullCertificate({ displayHTML: fixtureDisplayHTML, hasCertificateDefinition: true });
-        expect(assertStringInValues(instance, 'buv-c-full-certificate--fixed-width')).toBe(true);
+        expect(assertStringInValues(instance, 'buv-c-certificate--fixed-width')).toBe(true);
       });
     });
 
@@ -39,7 +39,7 @@ describe('FullCertificate component test suite', function () {
       it('should render the displayHtml inside a parent without a width constrain CSS class', function () {
         const fixtureDisplayHTML = '<div>This is a test</div>';
         const instance = FullCertificate({ displayHTML: fixtureDisplayHTML, hasCertificateDefinition: true });
-        expect(assertStringInValues(instance, 'buv-c-full-certificate--fixed-width')).toBe(false);
+        expect(assertStringInValues(instance, 'buv-c-certificate--fixed-width')).toBe(false);
       });
     });
 

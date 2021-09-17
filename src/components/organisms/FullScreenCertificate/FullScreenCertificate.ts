@@ -45,7 +45,7 @@ export default function FullScreenCertificate ({
     'qa-fullscreen-certificate'
   ];
   if (displayHTML && domain.certificates.displayHtmlHasNoWidthConstraint(displayHTML)) {
-    buvFullscreenCertificateClasses.push('buv-c-fullscreen-certificate__certificate-fixed-width');
+    buvFullscreenCertificateClasses.push('buv-c-certificate--fixed-width');
   }
 
   return html`

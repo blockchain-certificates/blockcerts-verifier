@@ -16,7 +16,7 @@ function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): Templa
     'qa-fullscreen-certificate'
   ];
   if (domain.certificates.displayHtmlHasNoWidthConstraint(displayHTML)) {
-    buvCertificateClasses.push('buv-c-full-certificate--fixed-width');
+    buvCertificateClasses.push('buv-c-certificate--fixed-width');
   }
 
   const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
