@@ -4,6 +4,7 @@ import initializeVerificationSteps from './initializeVerificationSteps';
 import retrieve from './retrieve';
 import read from './read';
 import parse from './parse';
+import isPathToCertificateValidURI from './isPathToCertificateValidURI';
 
 export {
   displayHtmlHasNoWidthConstraint,
@@ -11,5 +12,6 @@ export {
   initializeVerificationSteps,
   retrieve,
   read,
-  parse
+  parse,
+  isPathToCertificateValidURI
 };

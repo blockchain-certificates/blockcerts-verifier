@@ -4,6 +4,10 @@ import { getCertificateUrl } from '../../../src/selectors/input';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 import { CertificateOptions } from '@blockcerts/cert-verifier-js';
 import { getExplorerAPIs } from '../../../src/selectors/api';
+import { getCertificateDefinition } from '../../../src/selectors/certificate';
+import { wait } from '../../e2e/helpers/waitForKarma';
+import validCertificateFixture from '../../fixtures/v2/valid-certificate-example.json';
+import validCertificateAssertion from '../../assertions/validCertificate';
 
 describe('initialize action creator test suite', function () {
   let store;
@@ -17,15 +21,32 @@ describe('initialize action creator test suite', function () {
   });
 
   describe('given it is called with a src option', function () {
-    it('should update the certificate URL with the value', function () {
-      const fixtureURL = 'https://www.test.com';
-      const options = {
-        src: fixtureURL
-      };
+    describe('and the src is a URL', function () {
+      it('should update the certificate URL with the value', function () {
+        const fixtureURL = 'https://www.test.com';
+        const options = {
+          src: fixtureURL
+        };
 
-      store.dispatch(initialize(options));
-      const state = store.getState();
-      expect(getCertificateUrl(state)).toBe(fixtureURL);
+        store.dispatch(initialize(options));
+        const state = store.getState();
+        expect(getCertificateUrl(state)).toBe(fixtureURL);
+      });
+    });
+
+    describe('and the src is a JSON string of a Blockcerts', function () {
+      it('should update the certificate definition with the value', async function () {
+        const options = {
+          src: JSON.stringify(validCertificateFixture)
+        };
+
+        await store.dispatch(initialize(options));
+        // since we don't await for the resolution of the dispatch of certificate definition update we need to
+        // wait for the update to take place.
+        await wait(10);
+        const state = store.getState();
+        expect(getCertificateDefinition(state).id).toBe(validCertificateAssertion.id);
+      });
     });
   });
 
