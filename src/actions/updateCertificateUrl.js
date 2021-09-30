@@ -2,13 +2,11 @@ import * as ACTIONS from '../constants/actionTypes';
 import validateUrlInput from './validateUrlInput';
 import domain from '../domain';
 import updateCertificateDefinition from './updateCertificateDefinition';
-
-import { isValidLocalPath, isValidUrl } from '../helpers/validations';
 import setErrorMessage from './setErrorMessage';
 
 export default function updateCertificateUrl (url) {
   return async function (dispatch) {
-    const isUrlValid = isValidUrl(url) || isValidLocalPath(url);
+    const isUrlValid = domain.certificates.isPathToCertificateValidURI(url);
     dispatch(validateUrlInput(isUrlValid));
 
     if (!isUrlValid) {
