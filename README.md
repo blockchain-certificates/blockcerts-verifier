@@ -95,7 +95,7 @@ The certificate displays similar as `full`. NOTA: only works for certificates th
   ```html
   <blockcerts-verifier show-metadata></blockcerts-verifier>
   ```
-- `src`: (String. default: `''`). Allows loading an initial record with no further actions required. `src` can be either an absolute URL, or a relative path.  
+- `src`: (String. default: `''`). Allows loading an initial record with no further actions required. `src` can be either an absolute URL, a relative path or a stringified certificate definition.  
   
   Example:
   
