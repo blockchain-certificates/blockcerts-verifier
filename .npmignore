@@ -1,6 +1,7 @@
 test/
 src/
 sanitizer/
+dev/
 
 index.html
 *.yml
