@@ -6,18 +6,14 @@ export interface ICertificateObject {
   errorMessage?: string;
 }
 
-function getVersion (definition: string): number {
-  const parsedDefinition = JSON.parse(definition);
-  return retrieveBlockcertsVersion(parsedDefinition['@context']);
-}
-
-export default async function parse (definition: string, options: CertificateOptions = {}): Promise<ICertificateObject> {
+// TODO: define input type to be a valid blockcerts document definition
+export default async function parse (definition: any, options: CertificateOptions = {}): Promise<ICertificateObject> {
   if (!options.locale) {
     options.locale = 'auto';
   }
 
   try {
-    const version: number = getVersion(definition);
+    const version: number = retrieveBlockcertsVersion(definition['@context']);
     let certificateDefinition;
     if (version === 1) {
       certificateDefinition = new CertificateV1(definition, options);
