@@ -6,7 +6,8 @@ import verifyCertificate from './verifyCertificate';
 import { getDisableAutoVerify, getExplorerAPIs, getLocale } from '../selectors/api';
 import showVerificationModal from './showVerificationModal';
 
-export default function updateCertificateDefinition (definition) {
+// TODO: define input type to be a valid blockcerts document definition
+export default function updateCertificateDefinition (definition: any) {
   return async function (dispatch, getState) {
     const state = getState();
     const locale = getLocale(state);

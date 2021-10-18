@@ -27,7 +27,7 @@ export default function initialize (options = {}): ThunkAction<void, any, void, 
       dispatch(updateCertificateUrl(src));
     } else if (isJson(src)) {
       // eslint-disable-next-line @typescript-eslint/no-floating-promises
-      dispatch(updateCertificateDefinition(src));
+      dispatch(updateCertificateDefinition(JSON.parse(src)));
     }
 
     setLocale(locale);
