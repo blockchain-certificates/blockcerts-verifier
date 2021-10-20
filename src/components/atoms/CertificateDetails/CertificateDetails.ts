@@ -1,10 +1,31 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.certificate-details-css';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
 
-const isValidLink = (link) => link.indexOf(' ') === -1;
+const isValidLink = (link: string): boolean => !link.includes(' ');
 
-function renderListDetail ({ title, value, isDisplayColumn, renderInline = false }) {
+interface IRenderInterface {
+  title?: string;
+  value?: string;
+  isDisplayColumn?: boolean;
+  renderInline?: boolean;
+  transactionLink?: string;
+}
+
+export interface ICertificateDetailsApi {
+  recipientName?: string;
+  issuedOn?: string;
+  issueDate?: string;
+  issuerName?: string;
+  issuerPublicKey?: string;
+  transactionLink?: string;
+  transactionId?: string;
+  direction?: any; // enum
+  hideRecipientName?: boolean;
+}
+
+function renderListDetail ({ title, value, isDisplayColumn, renderInline = false }: IRenderInterface): TemplateResult {
   const classes = [
     'buv-c-certificate-details__group',
     isDisplayColumn ? '' : 'buv-c-certificate-details__group--row'
@@ -26,7 +47,7 @@ function renderListDetail ({ title, value, isDisplayColumn, renderInline = false
   </div>`;
 }
 
-function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }) {
+function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }: IRenderInterface): TemplateResult {
   if (isValidLink(transactionLink)) {
     if (isDisplayColumn) {
       return renderListDetail({ title, value, isDisplayColumn, renderInline: true });
@@ -52,7 +73,7 @@ export default function CertificateDetails ({
   transactionId,
   direction,
   hideRecipientName
-}) {
+}: ICertificateDetailsApi): TemplateResult {
   const details = [];
   if (!hideRecipientName) {
     details.push({
