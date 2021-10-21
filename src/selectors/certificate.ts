@@ -124,7 +124,7 @@ export function getDownloadLink (state): string {
   return '';
 }
 
-export function getMetadata (state): any { // TODO: define metadataJson - retrieve from CVJS?
+export function getMetadata (state): any { // we cannot know in advance the shape of the metadata as it's specific to each cert
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -252,7 +252,7 @@ export function getIssuerPublicKey (state): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.certificateJson.verification.publicKey;
+    return certificateDefinition.publicKey;
   }
 
   return '';

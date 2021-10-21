@@ -1,12 +1,12 @@
 import currentLocale from './valueObjects/currentLocale';
 import { getLanguagesTexts } from './getSupportedLanguages';
 
-export default function getText (group, item = '', usePlural = false, count = 0) {
+export default function getText (group: string, item?: string, usePlural?: boolean, count?: number): string {
   if (!group) {
     return '';
   }
 
-  if (group.indexOf('.') > -1) {
+  if (group.includes('.')) {
     const splittedGroup = group.split('.');
     group = splittedGroup[0];
     item = splittedGroup[1];

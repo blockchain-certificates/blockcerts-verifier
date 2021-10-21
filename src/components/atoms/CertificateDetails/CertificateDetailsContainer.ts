@@ -1,9 +1,8 @@
 import connector from '../../../store/connector';
-import CertificateDetails from './CertificateDetails';
+import CertificateDetails, { ICertificateDetailsApi } from './CertificateDetails';
 import {
   getIssueDate,
   getIssuedOn,
-  getIssuerLogo,
   getIssuerName,
   getIssuerPublicKey,
   getRecipientName,
@@ -11,12 +10,11 @@ import {
   getTransactionLink
 } from '../../../selectors/certificate';
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = (state): ICertificateDetailsApi => ({
   recipientName: getRecipientName(state),
   issueDate: getIssueDate(state),
   issuedOn: getIssuedOn(state),
   issuerName: getIssuerName(state),
-  issuerLogo: getIssuerLogo(state),
   transactionLink: getTransactionLink(state),
   transactionId: getTransactionId(state),
   issuerPublicKey: getIssuerPublicKey(state)

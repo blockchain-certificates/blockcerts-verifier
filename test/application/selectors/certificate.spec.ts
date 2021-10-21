@@ -9,7 +9,7 @@ import {
   getIssueDate,
   getIssuedOn,
   getIssuerLogo,
-  getIssuerName,
+  getIssuerName, getIssuerPublicKey,
   getMetadata,
   getParentStep,
   getRecipientName,
@@ -216,6 +216,16 @@ describe('certificate selectors test suite', function () {
 
           expect(getParentStep(state, 'statusCheck')).toEqual(expectedOutput);
         });
+      });
+    });
+
+    describe('getPublicKey method', function () {
+      it('should return the publicKey of the issuer associated with the blockcerts issuance', function () {
+        const state = store.getState();
+        // technically this happens after verification. Since we don't want to do that here,
+        // we mock to assume it was done
+        state.certificateDefinition.publicKey = 'ecdsa-koblitz-pubkey:msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8';
+        expect(getIssuerPublicKey(state)).toBe('ecdsa-koblitz-pubkey:msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8');
       });
     });
   });
