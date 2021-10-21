@@ -51,6 +51,9 @@ describe('CertificateDetailsContainer test suite', function () {
 
       it('should retrieve the issuer\'s public key', async function () {
         const state = store.getState();
+        // technically this happens after verification. Since we don't want to do that here,
+        // we mock to assume it was done
+        state.certificateDefinition.publicKey = 'ecdsa-koblitz-pubkey:msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8';
         expect(mapStateToProps(state).issuerPublicKey).toBe('ecdsa-koblitz-pubkey:msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8');
       });
     });
