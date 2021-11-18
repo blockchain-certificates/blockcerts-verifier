@@ -103,6 +103,7 @@ function BUVWrapper (props = {}) {
           theme='${props.theme}'
           locale='${props.locale}'
           explorerAPIs='${props.explorerAPIs}'
+          didResolverUrl='${props['did-resolver-url']}'
         ></buv-raw>`;
 }
 

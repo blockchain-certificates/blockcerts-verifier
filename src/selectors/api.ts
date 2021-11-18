@@ -39,3 +39,7 @@ export function getExplorerAPIs (state): ExplorerAPI[] {
 export function getClickableUrls (state): boolean {
   return state.clickableUrls;
 }
+
+export function getDidResolverUrl (state): string {
+  return state.didResolverUrl;
+}

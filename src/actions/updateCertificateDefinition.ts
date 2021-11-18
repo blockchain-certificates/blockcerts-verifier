@@ -3,16 +3,20 @@ import * as CERTIFICATE_EVENTS from '../constants/certificateEvents';
 import domain from '../domain';
 import setErrorMessage from './setErrorMessage';
 import verifyCertificate from './verifyCertificate';
-import { getDisableAutoVerify, getExplorerAPIs, getLocale } from '../selectors/api';
+import { getDidResolverUrl, getDisableAutoVerify, getExplorerAPIs, getLocale } from '../selectors/api';
 import showVerificationModal from './showVerificationModal';
+import { CertificateOptions } from '@blockcerts/cert-verifier-js';
 
 // TODO: define input type to be a valid blockcerts document definition
 export default function updateCertificateDefinition (definition: any) {
   return async function (dispatch, getState) {
     const state = getState();
-    const locale = getLocale(state);
-    const explorerAPIs = getExplorerAPIs(state);
-    const { certificateDefinition, errorMessage } = await domain.certificates.parse(definition, { locale, explorerAPIs });
+    const options: CertificateOptions = {
+      locale: getLocale(state),
+      explorerAPIs: getExplorerAPIs(state),
+      didResolverUrl: getDidResolverUrl(state)
+    };
+    const { certificateDefinition, errorMessage } = await domain.certificates.parse(definition, options);
 
     dispatch(setErrorMessage(errorMessage));
 
