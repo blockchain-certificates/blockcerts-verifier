@@ -1,9 +1,8 @@
 import { isValidLocalPath, isValidUrl } from '../../../helpers/validations';
 import downloadFlag from '../../../constants/downloadFlag';
 
-function handleError (error) {
+function handleError () {
   const errorMessage = 'errors.invalidBlockcertsUrl';
-  console.error(error);
   return {
     certificateDefinition: null,
     errorMessage
@@ -26,6 +25,7 @@ export default function retrieve (url) {
           certificateDefinition: JSON.parse(text)
         };
       } catch (err) {
+        console.log(err);
         return handleError(err);
       }
     })

@@ -155,13 +155,22 @@ describe('updateCertificateDefinition action creator test suite', function () {
         const fixtureOptions: CertificateOptions = {
           explorerAPIs: [{
             priority: 0,
-            parsingFunction: () => {},
+            parsingFunction: (): any => {},
             serviceURL: 'test.com'
           }]
         };
         store.dispatch(initialize(fixtureOptions));
         await store.dispatch(updateCertificateDefinition(certificateFixture));
         expect((global as any).domainParseStub.firstCall.args[1].explorerAPIs).toEqual(fixtureOptions.explorerAPIs);
+      });
+    });
+
+    describe('given the consumer provided a custom didUrlResolver', function () {
+      it('should pass the didUrlResolver', async function () {
+        const didResolverUrl = 'https://resolver.blockcerts.org';
+        store.dispatch(initialize({ didResolverUrl }));
+        await store.dispatch(updateCertificateDefinition(certificateFixture));
+        expect((global as any).domainParseStub.firstCall.args[1].didResolverUrl).toBe(didResolverUrl);
       });
     });
   });

@@ -12,7 +12,8 @@ const APIKeys = {
   'clickable-urls': Boolean,
   theme: THEME.DARK | THEME.BRIGHT,
   locale: String,
-  explorerAPIs: {}
+  explorerAPIs: {},
+  'did-resolver-url': String
 };
 
 const APICamelCase = Object.keys(APIKeys)
