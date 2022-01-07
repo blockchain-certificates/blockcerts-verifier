@@ -16,7 +16,7 @@
     "@webcomponents/webcomponentsjs": "2.6.0",
     "autolinker": "^3.14.1",
     "cssfilter": "0.0.10",
-    "lit-html": "0.10.2",
+    "lit-html": "2.1.1",
     "proxy-polyfill": "^0.3.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
