@@ -24,16 +24,19 @@
   min-width: 300px;
   max-width: $modalMaxDimension;
   min-height: calc(#{$modalMaxDimension} - 50px);
-  padding: 38px 38px 98px;
+  padding: 49px 38px 98px;
   box-sizing: border-box;
 
   @media only screen and (max-width: $modalMaxDimension) {
     height: 100vh;
     min-height: 100vh;
+    top: 0;
+    left: 0;
+    transform: none;
   }
 }
 
 .buv-c-modal__close-button {
-  top: 20px;
-  right: 20px;
+  top: 25px;
+  right: 25px;
 }
