@@ -41,7 +41,6 @@ describe('getMetadata selector', function () {
 
     it('should return metadata of the certificate', function () {
       const state = store.getState();
-      console.log(JSON.parse(v3Fixture.metadata));
       expect(getMetadata(state)).toEqual(JSON.parse(v3Fixture.metadata));
     });
   });
