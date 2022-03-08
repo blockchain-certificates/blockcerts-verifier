@@ -1,4 +1,4 @@
-import { ExplorerAPI } from '@blockcerts/cert-verifier-js';
+import { ExplorerAPI } from '@blockcerts/explorer-lookup';
 
 export function getDisableAutoVerify (state): boolean {
   return state.disableAutoVerify;
