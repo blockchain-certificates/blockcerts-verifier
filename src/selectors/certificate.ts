@@ -252,7 +252,7 @@ export function getIssuerPublicKey (state): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.certificateJson.verification.publicKey;
+    return certificateDefinition.publicKey;
   }
 
   return '';
