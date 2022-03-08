@@ -155,7 +155,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
         const fixtureOptions: CertificateOptions = {
           explorerAPIs: [{
             priority: 0,
-            parsingFunction: () => {},
+            parsingFunction: (): any => {},
             serviceURL: 'test.com'
           }]
         };
