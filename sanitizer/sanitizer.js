@@ -944,8 +944,10 @@ var REGEXP_QUOTE_2 = /&quot;/g;
 var REGEXP_ATTR_VALUE_1 = /&#([a-zA-Z0-9]*);?/gim;
 var REGEXP_ATTR_VALUE_COLON = /&colon;?/gim;
 var REGEXP_ATTR_VALUE_NEWLINE = /&newline;?/gim;
-var REGEXP_DEFAULT_ON_TAG_ATTR_4$1 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a)\:/gi;
-var REGEXP_DEFAULT_ON_TAG_ATTR_7$1 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_4$1 =
+  /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a)\:/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_7$1 =
+  /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_8$1 = /u\s*r\s*l\s*\(.*/gi;
 
 /**
@@ -1104,9 +1106,23 @@ function StripTagBody(tags, next) {
  * @return {String}
  */
 function stripCommentTag(html) {
-  return html.replace(STRIP_COMMENT_TAG_REGEXP, "");
+  var retHtml = "";
+  var lastPos = 0;
+  while (lastPos < html.length) {
+    var i = html.indexOf("<!--", lastPos);
+    if (i === -1) {
+      retHtml += html.slice(lastPos);
+      break;
+    }
+    retHtml += html.slice(lastPos, i);
+    var j = html.indexOf("-->", i);
+    if (j === -1) {
+      break;
+    }
+    lastPos = j + 3;
+  }
+  return retHtml;
 }
-var STRIP_COMMENT_TAG_REGEXP = /<!--[\s\S]*?-->/g;
 
 /**
  * remove invisible characters
@@ -1714,7 +1730,15 @@ const whiteListedCssProperties = {
   'justify-content': true,
   'align-items': true,
   'white-space': true,
-  'line-height': true
+  'line-height': true,
+  'grid-template-columns': true,
+  'grid-template-rows': true,
+  'grid-column': true,
+  'grid-row': true,
+  'grid-area': true,
+  'align-self': true,
+  'justify-self': true,
+  'span': true
 };
 
 function modifyWhiteList () {

@@ -72,7 +72,7 @@ describe('sanitizer test suite', function () {
     });
 
     it('should remove blacklisted CSS properties', function () {
-      const html = '<section><h1>Testing</h1><div style="align-self:center">Yo</div></section>';
+      const html = '<section><h1>Testing</h1><div style="visibility:visible">Yo</div></section>';
       const expectedOutput = '<section><h1>Testing</h1><div style="">Yo</div></section>';
       expect(sanitize(html)).toBe(expectedOutput);
     });

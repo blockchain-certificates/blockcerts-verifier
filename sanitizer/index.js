@@ -28,7 +28,15 @@ const whiteListedCssProperties = {
   'justify-content': true,
   'align-items': true,
   'white-space': true,
-  'line-height': true
+  'line-height': true,
+  'grid-template-columns': true,
+  'grid-template-rows': true,
+  'grid-column': true,
+  'grid-row': true,
+  'grid-area': true,
+  'align-self': true,
+  'justify-self': true,
+  span: true
 };
 
 function modifyWhiteList () {
