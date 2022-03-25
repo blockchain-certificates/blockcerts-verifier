@@ -24,7 +24,17 @@ export default [{
     'label': 'Getting issuer profile',
     'parentStep': 'formatValidation',
     'status': 'success'
-  }, {'code': 'parseIssuerKeys', 'label': 'Parsing issuer keys', 'parentStep': 'formatValidation', 'status': 'success'}]
+  }, {
+    'code': 'parseIssuerKeys',
+    'label': 'Parsing issuer keys',
+    'parentStep': 'formatValidation',
+    'status': 'success'
+  }, {
+    'code': 'checkImagesIntegrity',
+    'label': 'Verifying Images Integrity',
+    'parentStep': 'formatValidation',
+    'status': 'success'
+  }]
 }, {
   'code': 'hashComparison',
   'label': 'Hash comparison',
