@@ -30,7 +30,7 @@
     "@babel/preset-typescript": "^7.9.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.2.0",
-    "@open-wc/testing": "^2.5.16",
+    "@open-wc/testing": "^3.1.2",
     "@open-wc/testing-karma": "^4.0.3",
     "@polymer/iron-demo-helpers": "^3.0.0-pre.19",
     "@types/jest": "^27.0.0",
