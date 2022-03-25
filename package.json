@@ -9,7 +9,7 @@
   "main": "dist/main.js",
   "dependencies": {
     "@babel/runtime": "^7.6.0",
-    "@blockcerts/cert-verifier-js": "^5.12.1",
+    "@blockcerts/cert-verifier-js": "^5.12.2",
     "@blockcerts/cert-verifier-js-v1-legacy": "^3.0.0",
     "@polymer/lit-element": "0.5.1",
     "@polymer/polymer": "3.4.1",
