@@ -29,6 +29,11 @@ export default [{
     'label': 'Parse issuer keys',
     'labelPending': 'Parsing issuer keys',
     'parentStep': 'formatValidation'
+  }, {
+    'code': 'checkImagesIntegrity',
+    'label': 'Verify Images Integrity',
+    'labelPending': 'Verifying Images Integrity',
+    'parentStep': 'formatValidation',
   }]
 }, {
   'code': 'hashComparison',

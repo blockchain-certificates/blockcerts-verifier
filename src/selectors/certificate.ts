@@ -75,10 +75,12 @@ export function getDisplay (state): string {
     return '';
   }
 
-  const { displayHtml, display } = certificateDefinition.certificateJson;
+  const { displayHtml } = certificateDefinition.certificateJson;
   if (displayHtml) {
     return sanitize(displayHtml);
   }
+
+  const display = certificateDefinition.display;
 
   if (display) {
     switch (display.contentMediaType) {
