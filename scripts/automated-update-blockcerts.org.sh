@@ -2,38 +2,21 @@
 
 # automate PR process to Blockcerts.org: update blockcerts-verifier dependency
 GITHUB_COM=github.com
-BLOCKCERTS_GITHUB_REPO=blockchain-certificates/blockchain-certificates.github.io
+BLOCKCERTS_GITHUB_REPO=blockchain-certificates-web/blockchain-certificates-web.github.io
 GIT_REPO=$GITHUB_COM/$BLOCKCERTS_GITHUB_REPO.git
-WORK_BRANCH=chore/update-bv
+WORK_BRANCH=feat/update-bv
 GITHUB_USER=botcerts
 
 # clone CTS repo
 git clone https://$GIT_REPO
-cd blockchain-certificates.github.io
+cd blockchain-certificates-web.github.io
 
 # rename remote to add authentication
 git remote rm origin
 git remote add origin https://$GITHUB_USER:$BOTCERTS_PR_GITHUB_TOKEN@$GIT_REPO
 
-# checkout new branch
-git checkout -b $WORK_BRANCH
-
-# update blockcerts-verifier
-npm install
-npm i @blockcerts/blockcerts-verifier
-
-# clean unwanted files. Note: we could also handle that with .gitignore
-echo 'Clean unwanted files'
-pwd
-git clean -df
-
-# commit
-git status
-git add .
-git commit -m "chore(BUV): update to latest version"
-
-# push
-git push origin $WORK_BRANCH
+# run script from client repo
+. scripts/update_blockcerts_verifier.sh
 
 # open PR
 #{
