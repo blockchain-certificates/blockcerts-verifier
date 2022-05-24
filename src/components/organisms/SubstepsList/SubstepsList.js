@@ -24,6 +24,7 @@ class SubstepsList extends LitElement {
   static get properties () {
     return {
       subSteps: [],
+      suites: [],
       isOpen: Boolean,
       hasError: Boolean
     };
@@ -56,9 +57,26 @@ class SubstepsList extends LitElement {
     }
   }
 
-  _render ({ subSteps, hasError }) {
+  renderSuites (suites) {
+    if (suites.length <= 1) {
+      return;
+    }
+
+    console.log('suites', suites);
+    return suites.map(suite => {
+      return html`
+          <h3>Proof type: ${suite.proofType}</h3>
+          <buv-substeps-list subSteps='${suite.subSteps}'></buv-substeps-list>`;
+    });
+  }
+
+  _render ({ subSteps = [], suites = [], hasError }) {
     if (!subSteps) {
       return null;
+    }
+
+    if (!subSteps.length && suites.length === 1) {
+      subSteps = suites[0].subSteps;
     }
 
     let isOpen = this.isOpen;
@@ -95,7 +113,8 @@ class SubstepsList extends LitElement {
       <span class='buv-o-link__text--underline'>${isOpen ? getText('text.substepsListClose') : itemString}</span>
     </a>
     <div class$='${listClasses}' style$='max-height: ${maxHeight}px'>
-      ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)}
+      ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)} 
+      ${this.renderSuites(suites)}
     </div>
     `;
   }

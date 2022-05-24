@@ -1,20 +1,43 @@
 import * as ACTIONS from '../constants/actionTypes';
 import { getParentStep } from '../selectors/certificate';
-import VERIFICATION_STATUS from '../constants/verificationStatus';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import type { ThunkAction } from 'redux-thunk';
+import type { Action } from './action';
+import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';
 
-function oneChildIsSuccess (parent) {
-  return parent.subSteps.some(s => s.status === VERIFICATION_STATUS.SUCCESS);
+function stepVerificationIsSuccessful (step): boolean {
+  return step.status === VERIFICATION_STATUSES.SUCCESS;
 }
 
-function allChildrenAreSuccess (parent) {
-  return parent.subSteps.every(s => s.status === VERIFICATION_STATUS.SUCCESS);
+function stepVerificationIsFailure (step): boolean {
+  return step.status === VERIFICATION_STATUSES.FAILURE;
 }
 
-function oneChildIsFailure (parent) {
-  return parent.subSteps.some(s => s.status === VERIFICATION_STATUS.FAILURE);
+function oneChildIsSuccess (parent: IVerificationMapItem): boolean {
+  let suiteVerification = true;
+  if (parent.suites?.length) {
+    suiteVerification = parent.suites?.flatMap(suite => suite.subSteps).some(stepVerificationIsSuccessful);
+  }
+  return suiteVerification || parent.subSteps.some(stepVerificationIsSuccessful);
 }
 
-export default function updateParentStepStatus (parentStepCode) {
+function allChildrenAreSuccess (parent: IVerificationMapItem): boolean {
+  let suiteVerification = true;
+  if (parent.suites?.length) {
+    suiteVerification = parent.suites?.flatMap(suite => suite.subSteps).every(stepVerificationIsSuccessful);
+  }
+  return suiteVerification && parent.subSteps.every(stepVerificationIsSuccessful);
+}
+
+function oneChildIsFailure (parent: IVerificationMapItem): boolean {
+  let suiteVerification = false;
+  if (parent.suites?.length) {
+    suiteVerification = parent.suites?.flatMap(suite => suite.subSteps).some(stepVerificationIsFailure);
+  }
+  return parent.subSteps.some(stepVerificationIsFailure);
+}
+
+export default function updateParentStepStatus (parentStepCode: string): ThunkAction<void, any, void, Action<any>> {
   return function (dispatch, getState) {
     if (parentStepCode == null) {
       return;
@@ -25,16 +48,16 @@ export default function updateParentStepStatus (parentStepCode) {
     const parent = getParentStep(state, parentStepCode);
     let status = parent.status;
 
-    if (status === VERIFICATION_STATUS.DEFAULT && oneChildIsSuccess(parent)) {
-      status = VERIFICATION_STATUS.STARTED;
+    if (status === VERIFICATION_STATUSES.DEFAULT && oneChildIsSuccess(parent)) {
+      status = VERIFICATION_STATUSES.STARTING;
     }
 
-    if (status !== VERIFICATION_STATUS.DEFAULT && allChildrenAreSuccess(parent)) {
-      status = VERIFICATION_STATUS.SUCCESS;
+    if (status !== VERIFICATION_STATUSES.DEFAULT && allChildrenAreSuccess(parent)) {
+      status = VERIFICATION_STATUSES.SUCCESS;
     }
 
     if (oneChildIsFailure(parent)) {
-      status = VERIFICATION_STATUS.FAILURE;
+      status = VERIFICATION_STATUSES.FAILURE;
     }
 
     dispatch({

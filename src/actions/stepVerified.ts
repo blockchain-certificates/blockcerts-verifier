@@ -1,6 +1,9 @@
 import * as ACTIONS from '../constants/actionTypes';
 import updateParentStepStatus from './updateParentStepStatus';
 import stepQueueFactory from '../helpers/stepQueue';
+import type { IVerificationStepCallbackAPI } from '@blockcerts/cert-verifier-js';
+import type { ThunkAction } from 'redux-thunk';
+import type { Action } from './action';
 
 const stepQueue = stepQueueFactory();
 
@@ -15,40 +18,14 @@ function dispatchActionsFactory (dispatch) {
   };
 }
 
-export default function stepVerified (stepDefinition) {
+export default function stepVerified (stepDefinition: IVerificationStepCallbackAPI): ThunkAction<void, any, void, Action<IVerificationStepCallbackAPI>> {
   return function (dispatch, getState) {
-    const state = getState();
-
-    console.log(stepDefinition.code);
-    console.log(state.verifiedSteps);
-
-    const parentStepCode = state.verifiedSteps.find(step => {
-      console.log('looking in step', step);
-      console.log('substeps', step.subSteps);
-      console.log('suites', step.suites);
-      console.log(step.suites?.subSteps);
-      return step.subSteps.some(substep => substep.code === stepDefinition.code) ||
-      step.suites?.some(suite => suite.subSteps?.some(substep => substep.code === stepDefinition.code));
-    }
-    ).code;
-
-    console.log('found in parent', parentStepCode);
-
-    const step = {
-      ...stepDefinition,
-      ...stepDefinition.errorMessage && {
-        errorMessage: stepDefinition.errorMessage
-      },
-      parentStep: parentStepCode
-    };
-
     const dispatchActions = dispatchActionsFactory(dispatch);
-
     if (!stepQueue.dispatchCb) {
       // register only once
       stepQueue.registerCb(dispatchActions);
     }
-    stepQueue.push(step);
+    stepQueue.push(stepDefinition);
     stepQueue.execute();
   };
 }

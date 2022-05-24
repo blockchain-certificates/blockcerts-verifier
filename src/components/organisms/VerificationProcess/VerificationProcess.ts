@@ -52,7 +52,7 @@ class VerificationProcess extends LitElement {
   })}
       ${step.status === VERIFICATION_STATUSES.STARTING
     ? html`${this.verificationInProgressTemplate()}`
-    : html`<buv-substeps-list subSteps='${step.subSteps}' hasError?='${hasError}'></buv-substeps-list>`
+    : html`<buv-substeps-list subSteps='${step.subSteps}' suites='${step.suites}' hasError?='${hasError}'></buv-substeps-list>`
 }
     `);
 
