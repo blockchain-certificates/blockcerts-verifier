@@ -8,22 +8,16 @@ import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { TemplateResult } from 'lit-html';
 import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';
 
-interface IProperties {
-  steps: IVerificationMapItem[];
-  transactionLink: string;
-  hasError: boolean;
-  isTestChain: boolean;
-}
-
 class VerificationProcess extends LitElement {
   private listElement: Element;
 
-  static get properties (): IProperties {
+  static get properties (): any {
+    // if the interface is defined properly with typescript, then the boolean values do not get updated.
     return {
       steps: [],
-      transactionLink: '',
-      hasError: false,
-      isTestChain: false
+      transactionLink: String,
+      hasError: Boolean,
+      isTestChain: Boolean
     };
   }
 
@@ -55,6 +49,8 @@ class VerificationProcess extends LitElement {
           : html`<buv-substeps-list subSteps='${step.subSteps}' suites='${step.suites}' hasError?='${hasError}'></buv-substeps-list>`
         }
     `);
+
+    console.log('isTestChain', isTestChain);
 
     // TODO: better handle this dynamic class (cf npm classnames)
     const progressBarClasses = [
@@ -93,6 +89,7 @@ window.customElements.define('buv-verification-process-raw', VerificationProcess
 // wrap VerificationProcess in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function VerificationProcessWrapper ({ steps, transactionLink, hasError, isTestChain }): TemplateResult {
+  console.log('wrapper isTestChain', isTestChain);
   return html`<buv-verification-process-raw
     steps='${steps}'
     hasError?='${hasError}'
