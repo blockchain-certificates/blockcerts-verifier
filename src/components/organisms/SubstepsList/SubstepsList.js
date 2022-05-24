@@ -62,12 +62,13 @@ class SubstepsList extends LitElement {
       return;
     }
 
-    console.log('suites', suites);
-    return suites.map(suite => {
-      return html`
-          <h3>Proof type: ${suite.proofType}</h3>
-          <buv-substeps-list subSteps='${suite.subSteps}'></buv-substeps-list>`;
-    });
+    return suites
+      .filter(suite => suite.subSteps.length > 0)
+      .map(suite => {
+        return html`
+            <dt class='buv-o-text-12 buv-o-text-bold'>Proof type: ${suite.proofType}</dt>
+            <buv-substeps-list subSteps='${suite.subSteps}'></buv-substeps-list>`;
+      });
   }
 
   _render ({ subSteps = [], suites = [], hasError }) {
@@ -87,7 +88,7 @@ class SubstepsList extends LitElement {
     }
 
     const renderedSubSteps = subSteps.filter(subStep => subStep.status);
-    const itemsLength = renderedSubSteps.length;
+    const itemsLength = renderedSubSteps.length || suites.length;
     // TODO: translate with plural Item
     const itemString = `${itemsLength} ${getText('text', 'item', true, itemsLength)}`;
     // we are setting the closing height to 1px so that we can trigger a closing action on the first click on hide button.

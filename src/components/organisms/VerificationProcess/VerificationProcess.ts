@@ -44,16 +44,16 @@ class VerificationProcess extends LitElement {
     const innerHTML = steps
       .filter(step => step.status !== VERIFICATION_STATUSES.DEFAULT)
       .map((step, i) => html`
-      ${VerificationStep({
-    ...step,
-    isParent: true,
-    isFirst: i === 0,
-    isTestChain
-  })}
-      ${step.status === VERIFICATION_STATUSES.STARTING
-    ? html`${this.verificationInProgressTemplate()}`
-    : html`<buv-substeps-list subSteps='${step.subSteps}' suites='${step.suites}' hasError?='${hasError}'></buv-substeps-list>`
-}
+        ${VerificationStep({
+          ...step,
+          isParent: true,
+          isFirst: i === 0,
+          isTestChain
+        })}
+        ${step.status === VERIFICATION_STATUSES.STARTING
+          ? html`${this.verificationInProgressTemplate()}`
+          : html`<buv-substeps-list subSteps='${step.subSteps}' suites='${step.suites}' hasError?='${hasError}'></buv-substeps-list>`
+        }
     `);
 
     // TODO: better handle this dynamic class (cf npm classnames)

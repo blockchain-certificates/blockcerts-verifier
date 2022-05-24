@@ -22,7 +22,7 @@
 
 .buv-c-substeps-list__list {
   max-height: 0;
-  overflow: hidden;
+  overflow: scroll;
   -webkit-transition: max-height .3s ease-in;
   -o-transition: max-height .3s ease-in;
   transition: max-height .3s ease-in;
