@@ -1,15 +1,14 @@
 import sinon from 'sinon';
-import { Certificate, retrieveBlockcertsVersion, BlockcertsVersion } from '@blockcerts/cert-verifier-js/dist/verifier-es';
+import { Certificate, retrieveBlockcertsVersion, BlockcertsVersion, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js/dist/verifier-es';
 import { Certificate as CertificateV1 } from '@blockcerts/cert-verifier-js-v1-legacy';
 import domain from '../../../src/domain';
-import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
 
 function validVerifyStub (stepsCb): any {
   validCertificateStepsAssertions.forEach(step => step.subSteps.forEach(substep => stepsCb(substep)));
   return {
-    status: VERIFICATION_STATUS.SUCCESS,
+    status: VERIFICATION_STATUSES.SUCCESS,
     message: {
       label: 'Verified',
       // eslint-disable-next-line no-template-curly-in-string
@@ -22,7 +21,7 @@ function validVerifyStub (stepsCb): any {
 function invalidVerifyStub (stepsCb): any {
   invalidCertificateStepsAssertions.forEach(step => step.subSteps.forEach(substep => stepsCb(substep)));
   return {
-    status: VERIFICATION_STATUS.FAILURE,
+    status: VERIFICATION_STATUSES.FAILURE,
     message: {
       label: 'Error'
     }

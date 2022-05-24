@@ -7,8 +7,8 @@ import mainnetCertificateFixture from '../../../fixtures/v2/ethereum-main-valid-
 import validCertificateStepsAssertions from '../../../assertions/validCertificateSteps';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 import { getVerifiedSteps } from '../../../../src/selectors/certificate';
-import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import updateParentStepStatus from '../../../../src/actions/updateParentStepStatus';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 jest.mock('../../../../src/helpers/stepQueue');
 
@@ -62,10 +62,10 @@ describe('VerificationProcessContainer test suite', function () {
           parentSteps.forEach(parentStep => {
             const parentCode = parentStep.code;
             // assume process has started
-            parentStep.status = VERIFICATION_STATUS.STARTED;
+            parentStep.status = VERIFICATION_STATUSES.STARTING;
             // prepare substeps
             parentStep.subSteps.forEach(substep => {
-              substep.status = VERIFICATION_STATUS.SUCCESS;
+              substep.status = VERIFICATION_STATUSES.SUCCESS;
               substep.label = substep.labelPending;
               delete substep.labelPending;
             });
@@ -92,9 +92,9 @@ describe('VerificationProcessContainer test suite', function () {
           const parentCode = parentStep.code;
 
           // assume process has started
-          parentStep.status = VERIFICATION_STATUS.STARTED;
+          parentStep.status = VERIFICATION_STATUSES.STARTING;
           // prepare substeps
-          parentStep.subSteps[0].status = VERIFICATION_STATUS.FAILURE;
+          parentStep.subSteps[0].status = VERIFICATION_STATUSES.FAILURE;
 
           store.dispatch(updateParentStepStatus(parentCode));
 

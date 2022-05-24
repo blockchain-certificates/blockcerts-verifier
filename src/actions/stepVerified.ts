@@ -19,7 +19,20 @@ export default function stepVerified (stepDefinition) {
   return function (dispatch, getState) {
     const state = getState();
 
-    const parentStepCode = state.verifiedSteps.find(step => step.subSteps.some(substep => substep.code === stepDefinition.code)).code;
+    console.log(stepDefinition.code);
+    console.log(state.verifiedSteps);
+
+    const parentStepCode = state.verifiedSteps.find(step => {
+      console.log('looking in step', step);
+      console.log('substeps', step.subSteps);
+      console.log('suites', step.suites);
+      console.log(step.suites?.subSteps);
+      return step.subSteps.some(substep => substep.code === stepDefinition.code) ||
+      step.suites?.some(suite => suite.subSteps?.some(substep => substep.code === stepDefinition.code));
+    }
+    ).code;
+
+    console.log('found in parent', parentStepCode);
 
     const step = {
       ...stepDefinition,

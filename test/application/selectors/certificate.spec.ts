@@ -19,7 +19,6 @@ import {
   getTransactionLink,
   getVerifiedSteps, isTestChain
 } from '../../../src/selectors/certificate';
-import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import v1Fixture from '../../fixtures/v1/valid-v1-certificate.json';
 import v2Fixture from '../../fixtures/v2/valid-certificate-example.json';
 import mocknetFixture from '../../fixtures/v2/mocknet-valid-2.0.json';
@@ -31,6 +30,7 @@ import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 const RealDate = Date;
 
@@ -73,7 +73,7 @@ describe('certificate selectors test suite', function () {
       it('should return only the steps which have a started verification', function () {
         const state = store.getState();
         const verifiedSteps = getVerifiedSteps(state);
-        verifiedSteps[0].status = VERIFICATION_STATUS.STARTED;
+        verifiedSteps[0].status = VERIFICATION_STATUSES.STARTING;
 
         expect(getStartedVerificationSteps(state)).toEqual([verifiedSteps[0]]);
       });

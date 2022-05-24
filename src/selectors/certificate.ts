@@ -1,8 +1,9 @@
-import VERIFICATION_STATUS from '../constants/verificationStatus';
 import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
 import getDateFormat from '../i18n/getDateFormat';
 import { isValidUrl } from '../helpers/validations';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';
 
 export function getCertificateDefinition (state): any { // TODO: define certificate definition - retrieve from CVJS?
   return state.certificateDefinition;
@@ -177,22 +178,22 @@ export function isTestChain (state): boolean {
   return chain === 'Mocknet' || chain.includes('Testnet');
 }
 
-export function getVerifiedSteps (state): any { // TODO: define verifiedSteps -- retrieve from CVJS?
+export function getVerifiedSteps (state): IVerificationMapItem[] {
   return state.verifiedSteps || [];
 }
 
-export function getParentStep (state, parentStepCode): any { // TODO: define step -- retrieve from CVJS?
+export function getParentStep (state, parentStepCode): IVerificationMapItem {
   return getVerifiedSteps(state).find(step => step.code === parentStepCode);
 }
 
-export function getStartedVerificationSteps (state): any { // TODO: define verification steps -- retrieve from CVJS?
+export function getStartedVerificationSteps (state): IVerificationMapItem[] {
   const verifiedSteps = getVerifiedSteps(state);
 
-  return verifiedSteps.filter(step => step.status !== VERIFICATION_STATUS.DEFAULT);
+  return verifiedSteps.filter(step => step.status !== VERIFICATION_STATUSES.DEFAULT);
 }
 
 export function getHasError (state): boolean {
-  return getVerifiedSteps(state).some(s => s.status === VERIFICATION_STATUS.FAILURE);
+  return getVerifiedSteps(state).some(s => s.status === VERIFICATION_STATUSES.FAILURE);
 }
 
 /* V1 SPECIFIC */

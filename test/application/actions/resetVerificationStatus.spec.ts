@@ -1,8 +1,8 @@
 import { configureStore } from '../../../src/store';
-import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import resetVerificationStatus from '../../../src/actions/resetVerificationStatus';
 import { getVerificationStatus } from '../../../src/selectors/verification';
 import { getFinalStep } from '../../../src/selectors/certificate';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 describe('resetVerificationStatus action creator test suite', function () {
   let store;
@@ -18,13 +18,13 @@ describe('resetVerificationStatus action creator test suite', function () {
   it('should reset the verificationStatus to the default status', function () {
     let state = store.getState();
 
-    state.verificationStatus = VERIFICATION_STATUS.SUCCESS;
+    state.verificationStatus = VERIFICATION_STATUSES.SUCCESS;
 
     store.dispatch(resetVerificationStatus());
 
     state = store.getState();
 
-    expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.DEFAULT);
+    expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUSES.DEFAULT);
   });
 
   it('should reset the verificationStatus to the default status', function () {

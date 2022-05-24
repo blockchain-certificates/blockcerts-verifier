@@ -1,13 +1,13 @@
 import domain from '../domain';
 import * as ACTIONS from '../constants/actionTypes';
 import * as CERTIFICATE_EVENTS from '../constants/certificateEvents';
-import VERIFICATION_STATUS from '../constants/verificationStatus';
 import stepVerified from './stepVerified';
 import clearVerifiedSteps from './clearVerifiedSteps';
 import updateVerificationStatus from './updateVerificationStatus';
 import { getCertificateDefinition } from '../selectors/certificate';
 import { getDisableVerify } from '../selectors/api';
 import updateFinalStep from './updateFinalStep';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 export default function verifyCertificate () {
   return async function (dispatch, getState) {
@@ -22,7 +22,7 @@ export default function verifyCertificate () {
       type: ACTIONS.VERIFY_CERTIFICATE
     });
 
-    dispatch(updateVerificationStatus(VERIFICATION_STATUS.STARTED));
+    dispatch(updateVerificationStatus(VERIFICATION_STATUSES.STARTING));
 
     dispatch(clearVerifiedSteps());
     const certificateDefinition = getCertificateDefinition(state);
