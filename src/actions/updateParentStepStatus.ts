@@ -34,7 +34,7 @@ function oneChildIsFailure (parent: IVerificationMapItem): boolean {
   if (parent.suites?.length) {
     suiteVerification = parent.suites?.flatMap(suite => suite.subSteps).some(stepVerificationIsFailure);
   }
-  return parent.subSteps.some(stepVerificationIsFailure);
+  return suiteVerification || parent.subSteps.some(stepVerificationIsFailure);
 }
 
 export default function updateParentStepStatus (parentStepCode: string): ThunkAction<void, any, void, Action<any>> {
