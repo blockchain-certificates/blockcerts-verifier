@@ -20,6 +20,7 @@ class SubstepsList extends LitElement {
     this.totalHeight = 0;
     this.heightWasReset = false;
     this.hasNestedList = false;
+    this.renderEvent = null;
   }
 
   static get properties () {
@@ -27,7 +28,8 @@ class SubstepsList extends LitElement {
       subSteps: [],
       suites: [],
       isOpen: Boolean,
-      hasError: Boolean
+      hasError: Boolean,
+      isNested: Boolean
     };
   }
 
@@ -40,9 +42,8 @@ class SubstepsList extends LitElement {
   }
 
   _didRender () {
-    if (!this.totalHeight) {
+    if (this.totalHeight === 0) {
       const listParent = this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list')[0];
-      console.log(this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list'));
       const listElements = listParent ? Array.from(listParent.childNodes) : [];
       this.totalHeight = listElements.reduce((acc, element) => {
         if (element.getBoundingClientRect) {
@@ -56,6 +57,17 @@ class SubstepsList extends LitElement {
         listParent.style.maxHeight = this.totalHeight + 'px';
         this.heightWasReset = true;
       }
+    }
+    if (this.isNested && !this.renderEvent) {
+      this.renderEvent = new CustomEvent('child-list-rendered', {
+        detail: {
+          childHeight: this.totalHeight,
+          name: this.name
+        },
+        bubbles: true,
+        composed: true
+      });
+      this.dispatchEvent(this.renderEvent);
     }
   }
 
@@ -72,6 +84,9 @@ class SubstepsList extends LitElement {
       return [];
     }
     this.hasNestedList = renderableSuites.length > 1;
+    this.shadowRoot.addEventListener('child-list-rendered', (e) => {
+      this.totalHeight += e.detail.childHeight;
+    });
     return renderableSuites;
   }
 
@@ -91,11 +106,11 @@ class SubstepsList extends LitElement {
       .map(suite => {
         return html`
             ${this.renderSuiteTitle(suite, renderableSuites)}
-            <buv-substeps-list subSteps='${suite.subSteps}' hasError?='${hasError}'></buv-substeps-list>`;
+            <buv-substeps-list subSteps='${suite.subSteps}' hasError?='${hasError}' isNested?='${true}'></buv-substeps-list>`;
       });
   }
 
-  _render ({ subSteps = [], suites = [], hasError }) {
+  _render ({ subSteps = [], suites = [], hasError, isNested = false }) {
     if (!subSteps) {
       return null;
     }
@@ -107,6 +122,7 @@ class SubstepsList extends LitElement {
     }
 
     let isOpen = this.isOpen;
+    this.isNested = isNested;
 
     if (!this.wasForcedOpen && hasError) {
       isOpen = true;
