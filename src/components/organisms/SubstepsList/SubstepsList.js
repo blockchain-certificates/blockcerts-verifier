@@ -19,6 +19,7 @@ class SubstepsList extends LitElement {
     // its first render. We only want to do this once in the lifecycle. See ADR-005.
     this.totalHeight = 0;
     this.heightWasReset = false;
+    this.hasNestedList = false;
   }
 
   static get properties () {
@@ -41,6 +42,7 @@ class SubstepsList extends LitElement {
   _didRender () {
     if (!this.totalHeight) {
       const listParent = this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list')[0];
+      console.log(this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list'));
       const listElements = listParent ? Array.from(listParent.childNodes) : [];
       this.totalHeight = listElements.reduce((acc, element) => {
         if (element.getBoundingClientRect) {
@@ -57,17 +59,39 @@ class SubstepsList extends LitElement {
     }
   }
 
-  renderSuites (suites) {
+  getRenderableSuites (suites) {
     if (suites.length <= 1) {
       return;
     }
 
-    return suites
-      .filter(suite => suite.subSteps.length > 0)
+    const renderableSuites = suites
+      .filter(suite => suite.subSteps.length > 0) // do not render list with no substeps
+      .filter(suite => suite.subSteps.some(subStep => subStep.status)); // do no render list if the substeps where not updated
+
+    if (renderableSuites.length === 0) {
+      return [];
+    }
+    this.hasNestedList = renderableSuites.length > 1;
+    return renderableSuites;
+  }
+
+  renderSuiteTitle (suite, renderableSuites) {
+    if (renderableSuites.length === 1) {
+      // if there is only one suite we merge the substeps with the main substeps
+      return null;
+    }
+    return html`<dt class='buv-o-text-12 buv-o-text-bold'>Proof type: ${suite.proofType}</dt>`;
+  }
+
+  renderSuites (renderableSuites, hasError) {
+    if (!renderableSuites) {
+      return;
+    }
+    return renderableSuites
       .map(suite => {
         return html`
-            <dt class='buv-o-text-12 buv-o-text-bold'>Proof type: ${suite.proofType}</dt>
-            <buv-substeps-list subSteps='${suite.subSteps}'></buv-substeps-list>`;
+            ${this.renderSuiteTitle(suite, renderableSuites)}
+            <buv-substeps-list subSteps='${suite.subSteps}' hasError?='${hasError}'></buv-substeps-list>`;
       });
   }
 
@@ -75,6 +99,8 @@ class SubstepsList extends LitElement {
     if (!subSteps) {
       return null;
     }
+
+    suites = this.getRenderableSuites(suites);
 
     if (!subSteps.length && suites.length === 1) {
       subSteps = suites[0].subSteps;
@@ -89,6 +115,10 @@ class SubstepsList extends LitElement {
 
     const renderedSubSteps = subSteps.filter(subStep => subStep.status);
     const itemsLength = renderedSubSteps.length || suites.length;
+
+    if (itemsLength === 0) {
+      return null;
+    }
     // TODO: translate with plural Item
     const itemString = `${itemsLength} ${getText('text', 'item', true, itemsLength)}`;
     // we are setting the closing height to 1px so that we can trigger a closing action on the first click on hide button.
@@ -105,7 +135,8 @@ class SubstepsList extends LitElement {
     const listClasses = [
       'buv-c-substeps-list__list',
       'buv-js-substeps-list__list',
-      isOpen ? 'is-open' : ''
+      isOpen ? 'is-open' : '',
+      this.hasNestedList ? 'is-nested' : ''
     ].join(' ');
 
     return html`
@@ -115,7 +146,7 @@ class SubstepsList extends LitElement {
     </a>
     <div class$='${listClasses}' style$='max-height: ${maxHeight}px'>
       ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)} 
-      ${this.renderSuites(suites)}
+      ${this.renderSuites(suites, hasError)}
     </div>
     `;
   }
