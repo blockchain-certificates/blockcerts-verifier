@@ -110,16 +110,14 @@ class SubstepsList extends LitElement {
       });
   }
 
-  _render ({ subSteps = [], suites = [], hasError, isNested = false }) {
-    if (!subSteps) {
-      return null;
-    }
+  _render ({ subSteps = [], suites = [], hasError = false, isNested = false }) {
+    let renderableSubsteps = JSON.parse(JSON.stringify(subSteps));
+    let renderableSuites = this.getRenderableSuites(suites);
 
-    suites = this.getRenderableSuites(suites);
-
-    if (!subSteps.length && suites.length === 1) {
-      subSteps = suites[0].subSteps;
-      suites = null;
+    if (!renderableSubsteps.length && renderableSuites.length === 1) {
+      const originalSubsteps = JSON.parse(JSON.stringify(renderableSubsteps));
+      renderableSubsteps = originalSubsteps.concat(renderableSuites[0].subSteps);
+      renderableSuites = null; // render suite only once
     }
 
     this.isNested = isNested;
@@ -129,8 +127,8 @@ class SubstepsList extends LitElement {
       this.wasForcedOpen = true;
     }
 
-    const renderedSubSteps = subSteps.filter(subStep => subStep.status);
-    const itemsLength = renderedSubSteps.length || suites.length;
+    const renderedSubSteps = renderableSubsteps.filter(subStep => subStep.status);
+    const itemsLength = renderedSubSteps.length || renderableSuites.length;
 
     if (itemsLength === 0) {
       return null;
@@ -162,7 +160,7 @@ class SubstepsList extends LitElement {
     </a>
     <div class$='${listClasses}' style$='max-height: ${maxHeight}px'>
       ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)} 
-      ${this.renderSuites(suites, hasError)}
+      ${this.renderSuites(renderableSuites, hasError)}
     </div>
     `;
   }
