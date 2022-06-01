@@ -73,7 +73,7 @@ class SubstepsList extends LitElement {
 
   getRenderableSuites (suites) {
     if (!suites || !suites.length) {
-      return;
+      return [];
     }
 
     const renderableSuites = suites
@@ -114,7 +114,7 @@ class SubstepsList extends LitElement {
     let renderableSubsteps = JSON.parse(JSON.stringify(subSteps));
     let renderableSuites = this.getRenderableSuites(suites);
 
-    if (!renderableSubsteps.length && renderableSuites.length === 1) {
+    if (renderableSuites.length === 1) {
       const originalSubsteps = JSON.parse(JSON.stringify(renderableSubsteps));
       renderableSubsteps = originalSubsteps.concat(renderableSuites[0].subSteps);
       renderableSuites = null; // render suite only once
