@@ -121,11 +121,10 @@ class SubstepsList extends LitElement {
       subSteps = suites[0].subSteps;
     }
 
-    let isOpen = this.isOpen;
     this.isNested = isNested;
 
     if (!this.wasForcedOpen && hasError) {
-      isOpen = true;
+      this.isOpen = true;
       this.wasForcedOpen = true;
     }
 
@@ -138,27 +137,27 @@ class SubstepsList extends LitElement {
     // TODO: translate with plural Item
     const itemString = `${itemsLength} ${getText('text', 'item', true, itemsLength)}`;
     // we are setting the closing height to 1px so that we can trigger a closing action on the first click on hide button.
-    const maxHeight = isOpen ? this.totalHeight : 1;
+    const maxHeight = this.isOpen ? this.totalHeight : 1;
 
     // TODO: better handle this dynamic class (cf npm classnames)
     const linkClasses = [
       'buv-o-text-12',
       'buv-o-link',
       'buv-c-substeps-list__link',
-      isOpen ? 'is-open' : ''
+      this.isOpen ? 'is-open' : ''
     ].join(' ');
 
     const listClasses = [
       'buv-c-substeps-list__list',
       'buv-js-substeps-list__list',
-      isOpen ? 'is-open' : '',
+      this.isOpen ? 'is-open' : '',
       this.hasNestedList ? 'is-nested' : ''
     ].join(' ');
 
     return html`
     ${CSS}
     <a title='${getText('text.substepsListHint')}' onclick='${this.toggleOpen}' class$='${linkClasses}'>
-      <span class='buv-o-link__text--underline'>${isOpen ? getText('text.substepsListClose') : itemString}</span>
+      <span class='buv-o-link__text--underline'>${this.isOpen ? getText('text.substepsListClose') : itemString}</span>
     </a>
     <div class$='${listClasses}' style$='max-height: ${maxHeight}px'>
       ${renderedSubSteps.map(subStep => html`${VerificationStep(subStep)}`)} 
