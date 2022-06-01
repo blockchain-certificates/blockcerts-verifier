@@ -119,6 +119,7 @@ class SubstepsList extends LitElement {
 
     if (!subSteps.length && suites.length === 1) {
       subSteps = suites[0].subSteps;
+      suites = null;
     }
 
     this.isNested = isNested;
