@@ -50,8 +50,6 @@ class VerificationProcess extends LitElement {
         }
     `);
 
-    console.log('isTestChain', isTestChain);
-
     // TODO: better handle this dynamic class (cf npm classnames)
     const progressBarClasses = [
       'buv-c-verification-progress-bar__tube',
@@ -89,7 +87,6 @@ window.customElements.define('buv-verification-process-raw', VerificationProcess
 // wrap VerificationProcess in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
 function VerificationProcessWrapper ({ steps, transactionLink, hasError, isTestChain }): TemplateResult {
-  console.log('wrapper isTestChain', isTestChain);
   return html`<buv-verification-process-raw
     steps='${steps}'
     hasError?='${hasError}'

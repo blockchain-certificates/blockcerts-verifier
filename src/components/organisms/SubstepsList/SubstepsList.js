@@ -72,13 +72,13 @@ class SubstepsList extends LitElement {
   }
 
   getRenderableSuites (suites) {
-    if (suites.length <= 1) {
+    if (!suites || !suites.length) {
       return;
     }
 
     const renderableSuites = suites
       .filter(suite => suite.subSteps.length > 0) // do not render list with no substeps
-      .filter(suite => suite.subSteps.some(subStep => subStep.status)); // do no render list if the substeps where not updated
+      .filter(suite => suite.subSteps.some(subStep => subStep.status)); // do no render list if the substeps were not updated
 
     if (renderableSuites.length === 0) {
       return [];
