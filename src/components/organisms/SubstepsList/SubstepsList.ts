@@ -2,8 +2,33 @@ import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.substeps-list-css';
 import VerificationStep from '../../molecules/VerificationStep';
 import getText from '../../../i18n/getText';
+import type { TemplateResult } from 'lit-html';
+// import type { IVerificationMapItemSuite } from '@blockcerts/cert-verifier-js';
+// import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+
+// TODO: import from CVJS - currently defined here to be able to test in autonomy (error with cvjs build)
+export interface VerificationSubstep {
+  code: string;
+  label: string;
+  labelPending: string;
+  parentStep: string;
+  status: any;
+}
+export interface IVerificationMapItemSuite {
+  proofType: string;
+  subSteps: VerificationSubstep[];
+}
 
 class SubstepsList extends LitElement {
+  isOpen: boolean;
+  wasForcedOpen: boolean;
+  resetOpen: boolean;
+  totalHeight: number;
+  heightWasReset: boolean;
+  isNested: boolean; // if the list is nested into another one
+  hasNestedList: boolean; // if the list is the parent of nested lists
+  renderEvent: CustomEvent;
+
   constructor () {
     super();
     this.isOpen = false;
@@ -23,7 +48,7 @@ class SubstepsList extends LitElement {
     this.renderEvent = null;
   }
 
-  static get properties () {
+  static get properties (): any {
     return {
       subSteps: [],
       suites: [],
@@ -33,7 +58,7 @@ class SubstepsList extends LitElement {
     };
   }
 
-  toggleOpen () {
+  toggleOpen (): void {
     if (this.wasForcedOpen && !this.resetOpen) {
       this.isOpen = true;
       this.resetOpen = true;
@@ -41,10 +66,10 @@ class SubstepsList extends LitElement {
     this.isOpen = !this.isOpen;
   }
 
-  _didRender () {
+  _didRender (): void {
     if (this.totalHeight === 0) {
-      const listParent = this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list')[0];
-      const listElements = listParent ? Array.from(listParent.childNodes) : [];
+      const listParent: HTMLElement = this.shadowRoot.querySelectorAll('.buv-js-substeps-list__list')[0] as HTMLElement;
+      const listElements: HTMLElement[] = listParent ? Array.from(listParent.childNodes) as HTMLElement[] : [];
       this.totalHeight = listElements.reduce((acc, element) => {
         if (element.getBoundingClientRect) {
           return acc + element.getBoundingClientRect().height;
@@ -61,8 +86,7 @@ class SubstepsList extends LitElement {
     if (this.isNested && !this.renderEvent) {
       this.renderEvent = new CustomEvent('child-list-rendered', {
         detail: {
-          childHeight: this.totalHeight,
-          name: this.name
+          childHeight: this.totalHeight
         },
         bubbles: true,
         composed: true
@@ -71,7 +95,7 @@ class SubstepsList extends LitElement {
     }
   }
 
-  getRenderableSuites (suites) {
+  getRenderableSuites (suites): IVerificationMapItemSuite[] {
     if (!suites || !suites.length) {
       return [];
     }
@@ -84,13 +108,13 @@ class SubstepsList extends LitElement {
       return [];
     }
     this.hasNestedList = renderableSuites.length > 1;
-    this.shadowRoot.addEventListener('child-list-rendered', (e) => {
+    this.shadowRoot.addEventListener('child-list-rendered', (e: CustomEvent) => {
       this.totalHeight += e.detail.childHeight;
     });
     return renderableSuites;
   }
 
-  renderSuiteTitle (suite, renderableSuites) {
+  renderSuiteTitle (suite, renderableSuites): TemplateResult {
     if (renderableSuites.length === 1) {
       // if there is only one suite we merge the substeps with the main substeps
       return null;
@@ -98,7 +122,7 @@ class SubstepsList extends LitElement {
     return html`<dt class='buv-o-text-12 buv-o-text-bold'>Proof type: ${suite.proofType}</dt>`;
   }
 
-  renderSuites (renderableSuites, hasError) {
+  renderSuites (renderableSuites, hasError): TemplateResult[] {
     if (!renderableSuites) {
       return;
     }
@@ -110,7 +134,7 @@ class SubstepsList extends LitElement {
       });
   }
 
-  _render ({ subSteps = [], suites = [], hasError = false, isNested = false }) {
+  _render ({ subSteps = [], suites = [], hasError = false, isNested = false } = {}): TemplateResult {
     let renderableSubsteps = JSON.parse(JSON.stringify(subSteps));
     let renderableSuites = this.getRenderableSuites(suites);
 
@@ -128,7 +152,7 @@ class SubstepsList extends LitElement {
     }
 
     const renderedSubSteps = renderableSubsteps.filter(subStep => subStep.status);
-    const itemsLength = renderedSubSteps.length || renderableSuites.length;
+    const itemsLength: number = renderedSubSteps.length || renderableSuites.length;
 
     if (itemsLength === 0) {
       return null;
