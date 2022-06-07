@@ -3,10 +3,20 @@ import sanitize from '../../sanitizer/sanitizer';
 import getDateFormat from '../i18n/getDateFormat';
 import { isValidUrl } from '../helpers/validations';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
-import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';
+import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 
-export function getCertificateDefinition (state): any { // TODO: define certificate definition - retrieve from CVJS?
+export function getCertificateDefinition (state): Certificate {
   return state.certificateDefinition;
+}
+
+export function getSigners (state): Signers[] {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.signers;
+  }
+
+  return [];
 }
 
 export function getIssuedOn (state): string {
@@ -76,7 +86,8 @@ export function getDisplay (state): string {
     return '';
   }
 
-  const { displayHtml } = certificateDefinition.certificateJson;
+  // V2 concern
+  const { displayHtml } = (certificateDefinition as any).certificateJson;
   if (displayHtml) {
     return sanitize(displayHtml);
   }
@@ -141,41 +152,24 @@ export function getMetadata (state): any { // we cannot know in advance the shap
   return null;
 }
 
-export function getTransactionLink (state): string {
-  const certificateDefinition = getCertificateDefinition(state);
-
-  if (certificateDefinition) {
-    return certificateDefinition.transactionLink;
-  }
-
-  return '';
+export function getTransactionLink (state): string[] {
+  const signers = getSigners(state);
+  return signers.map(signer => signer.transactionLink);
 }
 
-export function getTransactionId (state): string {
-  const certificateDefinition = getCertificateDefinition(state);
-
-  if (certificateDefinition) {
-    return certificateDefinition.transactionId;
-  }
-
-  return '';
+export function getTransactionId (state): string[] {
+  const signers = getSigners(state);
+  return signers.map(signer => signer.transactionId);
 }
 
-export function getChain (state): string {
-  const certificateDefinition = getCertificateDefinition(state);
-
-  if (certificateDefinition) {
-    const { chain } = certificateDefinition;
-    return chain.name;
-  }
-
-  return '';
+export function getChain (state): string[] {
+  const signers = getSigners(state);
+  return signers.map(signer => signer.chain?.name);
 }
 
 export function isTestChain (state): boolean {
-  const chain = getChain(state);
-
-  return chain === 'Mocknet' || chain.includes('Testnet');
+  const chains = getChain(state);
+  return chains.some(chain => chain === 'Mocknet' || chain.includes('Testnet'));
 }
 
 export function getVerifiedSteps (state): IVerificationMapItem[] {
@@ -194,6 +188,35 @@ export function getStartedVerificationSteps (state): IVerificationMapItem[] {
 
 export function getHasError (state): boolean {
   return getVerifiedSteps(state).some(s => s.status === VERIFICATION_STATUSES.FAILURE);
+}
+
+export function getFinalStep (state): any { // TODO: define step -- retrieve from CVJS?
+  return state.finalStep;
+}
+
+export function getIssuerPublicKey (state): string[] {
+  const signers = getSigners(state);
+  return signers.map(signer => signer.issuerPublicKey);
+}
+
+export function getIssuerProfileUrl (state): string[] {
+  const signers = getSigners(state);
+  return signers.map(signer => signer.issuerProfileUrl);
+}
+
+export function getIssuerProfileDomain (state): string[] {
+  const signers = getSigners(state);
+  return signers.map(signer => signer.issuerProfileDomain);
+}
+
+export function getSignatureSuiteType (state): string[] {
+  const signers = getSigners(state);
+  return signers.map(signer => signer.signatureSuiteType);
+}
+
+export function getSignatureSigningDate (state): string[] {
+  const signers = getSigners(state);
+  return signers.map(signer => signer.signingDate);
 }
 
 /* V1 SPECIFIC */
@@ -231,7 +254,7 @@ export function getCertificateSignatures (state): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.signatureImage;
+    return (certificateDefinition as any).signatureImage;
   }
 
   return '';
@@ -242,20 +265,6 @@ export function getCertificateSeal (state): string {
 
   if (certificateDefinition) {
     return certificateDefinition.sealImage;
-  }
-
-  return '';
-}
-
-export function getFinalStep (state): any { // TODO: define step -- retrieve from CVJS?
-  return state.finalStep;
-}
-
-export function getIssuerPublicKey (state): string {
-  const certificateDefinition = getCertificateDefinition(state);
-
-  if (certificateDefinition) {
-    return certificateDefinition.publicKey;
   }
 
   return '';
