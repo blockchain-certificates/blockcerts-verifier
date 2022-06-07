@@ -5,10 +5,19 @@ import { configureStore } from './index';
 
 const store = configureStore();
 
-export default function connector (component, { mapDispatchToProps = {}, mapStateToProps = () => {}, ownProps = {} }) {
+interface IConnectorStateParameter<DP, SP, OP> {
+  mapDispatchToProps?: DP;
+  mapStateToProps?: (args: any) => SP; // TODO: define state shape
+  ownProps?: OP;
+}
+
+export default function connector<DP, SP, OP > (
+  component,
+  { mapDispatchToProps, mapStateToProps, ownProps }: IConnectorStateParameter<DP, SP, OP>
+) {
   return class extends connect(store)(LitElement) {
     mapDispatchToProps () {
-      return bindActionCreators(mapDispatchToProps, store.dispatch);
+      return bindActionCreators<DP, any>(mapDispatchToProps, store.dispatch);
     }
 
     mapStateToProps () {
