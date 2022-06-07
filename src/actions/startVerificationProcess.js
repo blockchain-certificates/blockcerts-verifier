@@ -3,7 +3,7 @@ import showVerificationModal from './showVerificationModal';
 import verifyCertificate from './verifyCertificate';
 
 export default function startVerificationProcess () {
-  return function (dispatch, getState) {
+  return function (dispatch) {
     dispatch({
       type: ACTIONS.START_VERFICATION_PROCESS
     });

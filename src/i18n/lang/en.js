@@ -5,7 +5,6 @@ export default {
     invalidBlockcertsUrl: 'Not a valid credential URL.',
     invalidFormatDragAndDrop: 'Only JSON files are accepted',
     invalidUrl: 'This does not seem to be a valid URL.',
-    noDownloadLink: 'No link provided for download!',
     noMetadata: 'No metadata specified for this record',
     noShareUrl: 'No URL to share!',
     noTransactionId: 'No transaction ID'

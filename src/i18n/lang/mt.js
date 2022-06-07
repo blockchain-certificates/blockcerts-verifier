@@ -5,7 +5,6 @@ export default {
     invalidBlockcertsUrl: 'Il-URL taċ-ċertifikat mhuwiex validu',
     invalidFormatDragAndDrop: 'Only JSON files are accepted',
     invalidUrl: 'This does not seem to be a valid URL.',
-    noDownloadLink: 'No link provided for download!',
     noMetadata: 'No metadata specified for this record',
     noShareUrl: 'No URL to share!',
     noTransactionId: 'No transaction ID'
