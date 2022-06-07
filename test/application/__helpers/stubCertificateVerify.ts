@@ -4,6 +4,7 @@ import { Certificate as CertificateV1 } from '@blockcerts/cert-verifier-js-v1-le
 import domain from '../../../src/domain';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
+import type { Signers } from '@blockcerts/cert-verifier-js';
 
 function validVerifyStub (stepsCb): any {
   validCertificateStepsAssertions.forEach(step => step.subSteps.forEach(substep => stepsCb(substep)));
@@ -28,7 +29,7 @@ function invalidVerifyStub (stepsCb): any {
   };
 }
 
-export default function stubCertificateVerify (certificateFixture, valid = true): void {
+export default function stubCertificateVerify (certificateFixture, signers: Signers[] = [], valid = true): void {
   if (!certificateFixture) {
     throw new Error('No certificate definition passed to mock its verify option. Make sure to pass the same certificate as the one you will put in the state for the test.');
   }
@@ -48,7 +49,8 @@ export default function stubCertificateVerify (certificateFixture, valid = true)
     domainParseStub = sinon.stub(domain.certificates, 'parse').returns({
       certificateDefinition: {
         ...parsedCertificate,
-        verify: valid ? validVerifyStub : invalidVerifyStub
+        verify: valid ? validVerifyStub : invalidVerifyStub,
+        signers
       }
     });
     global.domainParseStub = domainParseStub;

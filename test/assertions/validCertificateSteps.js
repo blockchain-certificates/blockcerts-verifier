@@ -1,72 +1,109 @@
-export default [{
-  'code': 'formatValidation',
-  'label': 'Format validation',
-  'labelPending': 'Validating format',
-  'status': 'success',
-  'isLast': false,
-  'subSteps': [{
-    'code': 'getTransactionId',
-    'label': 'Getting transaction ID',
-    'parentStep': 'formatValidation',
-    'status': 'success'
-  }, {
-    'code': 'computeLocalHash',
-    'label': 'Computing local hash',
-    'parentStep': 'formatValidation',
-    'status': 'success'
-  }, {
-    'code': 'fetchRemoteHash',
-    'label': 'Fetching remote hash',
-    'parentStep': 'formatValidation',
-    'status': 'success'
-  }, {
-    'code': 'getIssuerProfile',
-    'label': 'Getting issuer profile',
-    'parentStep': 'formatValidation',
-    'status': 'success'
-  }, {
-    'code': 'parseIssuerKeys',
-    'label': 'Parsing issuer keys',
-    'parentStep': 'formatValidation',
-    'status': 'success'
-  }, {
-    'code': 'checkImagesIntegrity',
-    'label': 'Verifying Images Integrity',
-    'parentStep': 'formatValidation',
-    'status': 'success'
-  }]
-}, {
-  'code': 'hashComparison',
-  'label': 'Hash comparison',
-  'labelPending': 'Comparing hash',
-  'status': 'success',
-  'isLast': false,
-  'subSteps': [{
-    'code': 'compareHashes',
-    'label': 'Comparing hashes',
-    'parentStep': 'hashComparison',
-    'status': 'success'
-  }, {
-    'code': 'checkMerkleRoot',
-    'label': 'Checking Merkle Root',
-    'parentStep': 'hashComparison',
-    'status': 'success'
-  }, {'code': 'checkReceipt', 'label': 'Checking Receipt', 'parentStep': 'hashComparison', 'status': 'success'}]
-}, {
-  'code': 'statusCheck',
-  'label': 'Status check',
-  'labelPending': 'Checking record status',
-  'status': 'success',
-  'isLast': true,
-  'subSteps': [{
-    'code': 'checkRevokedStatus',
-    'label': 'Checking Revoked Status',
-    'parentStep': 'statusCheck',
-    'status': 'success'
-  }, {
-    'code': 'checkAuthenticity',
-    'label': 'Checking Authenticity',
-    'parentStep': 'statusCheck',
-    'status': 'success'
-  }, {'code': 'checkExpiresDate', 'label': 'Checking Expiration Date', 'parentStep': 'statusCheck', 'status': 'success'}]
-}];
+export default [
+  {
+    "code": "formatValidation",
+    "label": "Format validation",
+    "labelPending": "Validating format",
+    "subSteps": [
+      {
+        "code": "checkImagesIntegrity",
+        "label": "Verifying Images Integrity",
+        "parentStep": "formatValidation",
+        "status": "success"
+      }
+    ],
+    "isLast": false,
+    "status": "success"
+  },
+  {
+    "code": "proofVerification",
+    "label": "Proof Verification",
+    "labelPending": "Verifying Proof",
+    "subSteps": [],
+    "suites": [
+      {
+        "proofType": "MerkleProof2017",
+        "subSteps": [
+          {
+            "code": "getTransactionId",
+            "label": "Get transaction ID",
+            "labelPending": "Getting transaction ID",
+            "parentStep": "proofVerification",
+            "status": "standby"
+          },
+          {
+            "code": "computeLocalHash",
+            "label": "Compute local hash",
+            "labelPending": "Computing local hash",
+            "parentStep": "proofVerification",
+            "status": "standby"
+          },
+          {
+            "code": "fetchRemoteHash",
+            "label": "Fetch remote hash",
+            "labelPending": "Fetching remote hash",
+            "parentStep": "proofVerification",
+            "status": "standby"
+          },
+          {
+            "code": "compareHashes",
+            "label": "Compare hashes",
+            "labelPending": "Comparing hashes",
+            "parentStep": "proofVerification",
+            "status": "standby"
+          },
+          {
+            "code": "checkMerkleRoot",
+            "label": "Check Merkle Root",
+            "labelPending": "Checking Merkle Root",
+            "parentStep": "proofVerification",
+            "status": "standby"
+          },
+          {
+            "code": "checkReceipt",
+            "label": "Check Receipt",
+            "labelPending": "Checking Receipt",
+            "parentStep": "proofVerification",
+            "status": "standby"
+          },
+          {
+            "code": "parseIssuerKeys",
+            "label": "Parse issuer keys",
+            "labelPending": "Parsing issuer keys",
+            "parentStep": "proofVerification",
+            "status": "standby"
+          },
+          {
+            "code": "checkAuthenticity",
+            "label": "Check Authenticity",
+            "labelPending": "Checking Authenticity",
+            "parentStep": "proofVerification",
+            "status": "standby"
+          }
+        ]
+      }
+    ],
+    "isLast": false,
+    "status": "starting"
+  },
+  {
+    "code": "statusCheck",
+    "label": "Status check",
+    "labelPending": "Checking record status",
+    "subSteps": [
+      {
+        "code": "checkRevokedStatus",
+        "label": "Checking Revoked Status",
+        "parentStep": "statusCheck",
+        "status": "success"
+      },
+      {
+        "code": "checkExpiresDate",
+        "label": "Checking Expiration Date",
+        "parentStep": "statusCheck",
+        "status": "success"
+      }
+    ],
+    "isLast": true,
+    "status": "success"
+  }
+];

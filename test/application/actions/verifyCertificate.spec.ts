@@ -97,7 +97,7 @@ describe('verifyCertificate action creator test suite', function () {
     });
 
     describe('given there is an invalid certificate in the state', function () {
-      stubCertificateVerify(invalidCertificateFixture, false);
+      stubCertificateVerify(invalidCertificateFixture, [], false);
 
       it('should store the different steps in the state', async function () {
         store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
@@ -111,7 +111,7 @@ describe('verifyCertificate action creator test suite', function () {
 
     describe('verifying a second certificate', function () {
       describe('given the certificates definition is a valid definition', function () {
-        stubCertificateVerify(invalidCertificateFixture, false);
+        stubCertificateVerify(invalidCertificateFixture, [], false);
 
         it('should only maintain the verifiedSteps of the latest certificate verified', async function () {
           await store.dispatch(verifyCertificate());
