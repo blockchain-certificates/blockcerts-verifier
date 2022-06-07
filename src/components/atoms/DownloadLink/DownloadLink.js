@@ -19,7 +19,7 @@ export default function DownloadLink ({ downloadLink, display = '' }) {
 
   return html`
     ${CSS}
-    <a class$='${classes}' href='${downloadLink}' title$='${info}' aria-disabled?='false'>
+    <a class$='${classes}' href='${downloadLink}' title$='${info}'>
       <span class$='${isPlainText ? 'buv-o-button-link__label' : 'buv-u-visually-hidden'}'>${info}</span>
     </a>`;
 }
