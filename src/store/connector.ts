@@ -8,13 +8,13 @@ const store = configureStore();
 
 interface IConnectorStateParameter<DP, SP, OP> {
   mapDispatchToProps?: DP;
-  mapStateToProps?: (args: any) => SP; // TODO: define state shape
+  mapStateToProps?: (args?: any) => SP; // TODO: define state shape
   ownProps?: OP;
 }
 
 export default function connector<DP, SP, OP > (
   component,
-  { mapDispatchToProps, mapStateToProps, ownProps }: IConnectorStateParameter<DP, SP, OP>
+  { mapDispatchToProps = ({} as any), mapStateToProps = () => ({} as any), ownProps = ({} as any) }: IConnectorStateParameter<DP, SP, OP>
 ) {
   return class extends connect(store)(LitElement) {
     mapDispatchToProps (): DP {
