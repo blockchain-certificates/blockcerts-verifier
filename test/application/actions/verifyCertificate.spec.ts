@@ -108,22 +108,6 @@ describe('verifyCertificate action creator test suite', function () {
         expect(getVerifiedSteps(state)).toEqual(invalidCertificateStepsAssertions);
       });
     });
-
-    describe('verifying a second certificate', function () {
-      describe('given the certificates definition is a valid definition', function () {
-        stubCertificateVerify(invalidCertificateFixture, [], false);
-
-        it('should only maintain the verifiedSteps of the latest certificate verified', async function () {
-          await store.dispatch(verifyCertificate());
-
-          await store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
-          await store.dispatch(verifyCertificate());
-          const state = store.getState();
-
-          expect(getVerifiedSteps(state)).toEqual(invalidCertificateStepsAssertions);
-        });
-      });
-    });
   });
 
   describe('given the verification of certificates is disabled', function () {

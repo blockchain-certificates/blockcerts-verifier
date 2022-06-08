@@ -31,7 +31,7 @@ describe('updateParentStepStatus action creator test suite', function () {
     describe('given the child status is success', function () {
       it('should update the parentStep with the started status', function () {
         const preState = store.getState();
-        const parentStep = getVerifiedSteps(preState)[0];
+        const parentStep = getVerifiedSteps(preState)[2];
         const parentCode = parentStep.code;
 
         // prepare substep
@@ -90,9 +90,6 @@ describe('updateParentStepStatus action creator test suite', function () {
         const preState = store.getState();
         const parentStep = getVerifiedSteps(preState)[0];
         const parentCode = parentStep.code;
-
-        // delete superfluous child to maintain the test purpose
-        parentStep.subSteps.pop();
 
         // prepare substep
         parentStep.subSteps[0].status = VERIFICATION_STATUSES.SUCCESS;

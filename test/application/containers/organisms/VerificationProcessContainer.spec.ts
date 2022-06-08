@@ -124,22 +124,26 @@ describe('VerificationProcessContainer test suite', function () {
 
       beforeEach(async function () {
         // put some verifiedSteps items in the state
-        await store.dispatch(updateCertificateDefinition(certificateFixture));
+        await store.dispatch(updateCertificateDefinition(mainnetCertificateFixture));
       });
 
       describe('and the certificate is valid', function () {
         beforeEach(async function () {
           const preState = store.getState();
           const parentSteps = getVerifiedSteps(preState);
+          // verification is disabled so that we manually update the steps
           parentSteps.forEach(parentStep => {
             const parentCode = parentStep.code;
             // assume process has started
             parentStep.status = VERIFICATION_STATUSES.STARTING;
             // prepare substeps
-            parentStep.subSteps.forEach(substep => {
-              substep.status = VERIFICATION_STATUSES.SUCCESS;
-              substep.label = substep.labelPending;
-              delete substep.labelPending;
+            parentStep.subSteps.forEach(subStep => {
+              subStep.status = VERIFICATION_STATUSES.SUCCESS;
+            });
+            parentStep.suites?.forEach(suite => {
+              suite.subSteps.forEach(subStep => {
+                subStep.status = VERIFICATION_STATUSES.SUCCESS;
+              });
             });
 
             store.dispatch(updateParentStepStatus(parentCode));

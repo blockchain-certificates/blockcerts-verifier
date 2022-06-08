@@ -154,16 +154,26 @@ export function getMetadata (state): any { // we cannot know in advance the shap
 
 export function getTransactionLink (state): string[] {
   const signers = getSigners(state);
+  if (signers.length === 0) {
+    return getV1Property(state, 'transactionLink') ?? [];
+  }
   return signers.map(signer => signer.transactionLink);
 }
 
 export function getTransactionId (state): string[] {
   const signers = getSigners(state);
+  if (signers.length === 0) {
+    return getV1Property(state, 'transactionId') ?? [];
+  }
   return signers.map(signer => signer.transactionId);
 }
 
 export function getChain (state): string[] {
   const signers = getSigners(state);
+  if (signers.length === 0) {
+    const chain = getV1Property(state, 'chain');
+    return chain ? chain.map(chain => chain?.name) : [];
+  }
   return signers.map(signer => signer.chain?.name);
 }
 
@@ -220,6 +230,15 @@ export function getSignatureSigningDate (state): string[] {
 }
 
 /* V1 SPECIFIC */
+function getV1Property (state, property: string): any[] {
+  const certificateDefinition = getCertificateDefinition(state);
+  if (certificateDefinition) {
+    return [certificateDefinition[property]];
+  }
+
+  return null;
+}
+
 export function getCertificateImage (state): string {
   const certificateDefinition = getCertificateDefinition(state);
 

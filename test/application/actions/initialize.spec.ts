@@ -43,7 +43,7 @@ describe('initialize action creator test suite', function () {
         await store.dispatch(initialize(options));
         // since we don't await for the resolution of the dispatch of certificate definition update we need to
         // wait for the update to take place.
-        await wait(10);
+        await wait(1000);
         const state = store.getState();
         expect(getCertificateDefinition(state).id).toBe(validCertificateAssertion.id);
       });

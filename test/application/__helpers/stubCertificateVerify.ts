@@ -6,8 +6,16 @@ import validCertificateStepsAssertions from '../../assertions/validCertificateSt
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
 import type { Signers } from '@blockcerts/cert-verifier-js';
 
+function updateStep (stepsCb, step) {
+  step.subSteps.forEach(substep => stepsCb(substep));
+  step.suites?.forEach(suite => {
+    suite.subSteps.forEach(substep => stepsCb(substep));
+  });
+}
+
 function validVerifyStub (stepsCb): any {
-  validCertificateStepsAssertions.forEach(step => step.subSteps.forEach(substep => stepsCb(substep)));
+  console.log('Verify with success');
+  validCertificateStepsAssertions.forEach(updateStep.bind(null, stepsCb));
   return {
     status: VERIFICATION_STATUSES.SUCCESS,
     message: {
@@ -20,7 +28,7 @@ function validVerifyStub (stepsCb): any {
 }
 
 function invalidVerifyStub (stepsCb): any {
-  invalidCertificateStepsAssertions.forEach(step => step.subSteps.forEach(substep => stepsCb(substep)));
+  invalidCertificateStepsAssertions.forEach(updateStep.bind(null, stepsCb));
   return {
     status: VERIFICATION_STATUSES.FAILURE,
     message: {

@@ -6,7 +6,8 @@ export default [
     "subSteps": [
       {
         "code": "checkImagesIntegrity",
-        "label": "Verifying Images Integrity",
+        "label": "Verify Images Integrity",
+        "labelPending": "Verifying Images Integrity",
         "parentStep": "formatValidation",
         "status": "success"
       }
@@ -28,62 +29,62 @@ export default [
             "label": "Get transaction ID",
             "labelPending": "Getting transaction ID",
             "parentStep": "proofVerification",
-            "status": "standby"
+            "status": "success"
           },
           {
             "code": "computeLocalHash",
             "label": "Compute local hash",
             "labelPending": "Computing local hash",
             "parentStep": "proofVerification",
-            "status": "standby"
+            "status": "success"
           },
           {
             "code": "fetchRemoteHash",
             "label": "Fetch remote hash",
             "labelPending": "Fetching remote hash",
             "parentStep": "proofVerification",
-            "status": "standby"
+            "status": "success"
           },
           {
             "code": "compareHashes",
             "label": "Compare hashes",
             "labelPending": "Comparing hashes",
             "parentStep": "proofVerification",
-            "status": "standby"
+            "status": "success"
           },
           {
             "code": "checkMerkleRoot",
             "label": "Check Merkle Root",
             "labelPending": "Checking Merkle Root",
             "parentStep": "proofVerification",
-            "status": "standby"
+            "status": "success"
           },
           {
             "code": "checkReceipt",
             "label": "Check Receipt",
             "labelPending": "Checking Receipt",
             "parentStep": "proofVerification",
-            "status": "standby"
+            "status": "success"
           },
           {
             "code": "parseIssuerKeys",
             "label": "Parse issuer keys",
             "labelPending": "Parsing issuer keys",
             "parentStep": "proofVerification",
-            "status": "standby"
+            "status": "success"
           },
           {
             "code": "checkAuthenticity",
             "label": "Check Authenticity",
             "labelPending": "Checking Authenticity",
             "parentStep": "proofVerification",
-            "status": "standby"
+            "status": "success"
           }
         ]
       }
     ],
     "isLast": false,
-    "status": "starting"
+    "status": "success"
   },
   {
     "code": "statusCheck",
@@ -92,13 +93,15 @@ export default [
     "subSteps": [
       {
         "code": "checkRevokedStatus",
-        "label": "Checking Revoked Status",
+        "label": "Check Revoked Status",
+        "labelPending": "Checking Revoked Status",
         "parentStep": "statusCheck",
         "status": "success"
       },
       {
         "code": "checkExpiresDate",
-        "label": "Checking Expiration Date",
+        "label": "Check Expiration Date",
+        "labelPending": "Checking Expiration Date",
         "parentStep": "statusCheck",
         "status": "success"
       }
