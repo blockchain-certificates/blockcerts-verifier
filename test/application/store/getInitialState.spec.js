@@ -1,6 +1,6 @@
 import getInitialState from '../../../src/store/getInitialState';
 import { getVerifiedSteps } from '../../../src/selectors/certificate';
-import { getAllowDownloadPDF, getDisplayMode, getTheme } from '../../../src/selectors/api';
+import { getDisableDownloadPdf, getDisplayMode, getTheme } from '../../../src/selectors/api';
 import * as DISPLAY_MODE from '../../../src/constants/displayMode';
 import * as THEME from '../../../src/constants/theme';
 
@@ -43,7 +43,7 @@ describe('store getInitialState test suite', function () {
 
   describe('default allow download pdf enable', function () {
     it('should be set to true', function () {
-      expect(getAllowDownloadPDF(getInitialState())).toBe(true);
+      expect(getDisableDownloadPdf(getInitialState())).toBe(false);
     });
   });
 });
