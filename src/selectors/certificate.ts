@@ -179,7 +179,7 @@ export function getChain (state): string[] {
 
 export function isTestChain (state): boolean {
   const chains = getChain(state);
-  return chains.some(chain => chain === 'Mocknet' || chain.includes('Testnet'));
+  return chains.some(chain => chain === 'Mocknet' || chain?.includes('Testnet'));
 }
 
 export function getVerifiedSteps (state): IVerificationMapItem[] {

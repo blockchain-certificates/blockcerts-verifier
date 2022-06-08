@@ -6,6 +6,7 @@ export default {
     invalidFormatDragAndDrop: 'Sono accettati solo file JSON',
     invalidUrl: 'Questo non sembra essere un URL valido.',
     noDownloadLink: 'Link per il download non fornito!',
+    noIssuerName: 'No name provided',
     noMetadata: 'Nessun Metadata specificato per questo record',
     noShareUrl: 'Non c\'è un URL da condividere!',
     noTransactionId: 'Nessun ID transazione'

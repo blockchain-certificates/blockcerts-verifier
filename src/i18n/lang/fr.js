@@ -6,6 +6,7 @@ export default {
     invalidFormatDragAndDrop: 'Seul le format JSON est accepté',
     invalidUrl: 'URL invalide',
     noDownloadLink: 'Aucun lien disponible pour le téléchargement!',
+    noIssuerName: 'Pas de nom fourni',
     noMetadata: 'Ce certificat ne contient pas de métadata',
     noShareUrl: 'Pas d\'URL à partager!',
     noTransactionId: 'Pas d\'identifiant de transaction'

@@ -15,7 +15,6 @@ export const mapStateToProps = (state): ICertificateDetailsApi => ({
   issueDate: getIssueDate(state),
   issuedOn: getIssuedOn(state),
   issuerName: getIssuerName(state),
-  transactionLink: getTransactionLink(state),
   transactionId: getTransactionId(state),
   issuerPublicKey: getIssuerPublicKey(state),
   issuerProfileDomain: getIssuerProfileDomain(state),

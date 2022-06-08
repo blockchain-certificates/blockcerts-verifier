@@ -3,7 +3,7 @@ import CSS from './_components.certificate-details-css';
 import getText from '../../../i18n/getText';
 import { TemplateResult } from 'lit-html';
 
-const isValidLink = (link: string): boolean => !link.includes(' ');
+const isValidLink = (link: string): boolean => !link?.includes(' ');
 
 interface IRenderInterface {
   title?: string;
@@ -19,7 +19,6 @@ export interface ICertificateDetailsApi {
   issueDate?: string;
   issuerName?: string;
   issuerPublicKey?: string[];
-  transactionLink?: string[];
   transactionId?: string[];
   issuerProfileUrl?: string[];
   issuerProfileDomain?: string[];
@@ -73,7 +72,6 @@ export default function CertificateDetails ({
   issuerProfileDomain,
   issuerProfileUrl,
   issuerPublicKey,
-  transactionLink,
   transactionId,
   direction,
   hideRecipientName
@@ -86,8 +84,6 @@ export default function CertificateDetails ({
     });
   }
 
-  console.log('issuerPublicKey', issuerPublicKey);
-
   details.push(
     {
       title: getText('text.issueDate'),
@@ -95,17 +91,34 @@ export default function CertificateDetails ({
     },
     {
       title: getText('text.issuerName'),
-      value: issuerName
-    },
-    {
-      title: getText('text.issuerProfileDomain'),
-      value: html`<a href$='${issuerProfileUrl}' target="_blank">${issuerProfileDomain}</a>`
-    },
-    {
-      title: getText('text.issuerPublicKey'),
-      value: issuerPublicKey
+      value: issuerName || getText('errors.noIssuerName')
     }
   );
+
+  for (let i = 0; i < issuerPublicKey.length; i++) {
+    if (issuerProfileDomain[i]) {
+      details.push({
+        title: getText('text.issuerProfileDomain'),
+        value: html`<a href$='${issuerProfileUrl[i]}' target="_blank">${issuerProfileDomain[i]}</a>`
+      });
+    }
+
+    if (issuerPublicKey[i]) {
+      details.push({
+        title: getText('text.issuerPublicKey'),
+        value: issuerPublicKey[i]
+      });
+    }
+
+    if (transactionId[i]) {
+      details.push(
+        {
+          title: getText('text.transactionId'),
+          value: transactionId[i]
+        }
+      );
+    }
+  }
 
   const isDisplayColumn = direction === 'column';
   const definitionListDetails = details.map(detail => renderListDetail({ ...detail, isDisplayColumn }));
@@ -120,7 +133,6 @@ export default function CertificateDetails ({
     ${CSS}
     <dl class$='${classes}'>
         ${definitionListDetails}
-        ${renderTransactionId({ transactionLink, title: `${getText('text.transactionId')}:`, value: transactionId[0], isDisplayColumn })}
     </dl>
   `;
 }
