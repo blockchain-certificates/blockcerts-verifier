@@ -23,6 +23,7 @@ export default {
     issueDate: 'Data',
     issuerName: 'Organizzazione Issuer',
     issuerPublicKey: 'Chiave pubblica del Issuer',
+    issuerProfileDomain: 'Informazzione del Issuer',
     item: 'Elemento',
     itemPlural: 'Elementi',
     metadataButton: 'Visualizza Metadata',

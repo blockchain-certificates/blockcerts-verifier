@@ -23,6 +23,7 @@ export default {
     issueDate: 'Issue Date',
     issuerName: 'Issuer',
     issuerPublicKey: 'Issuer\'s public key',
+    issuerProfileDomain: 'Issuer\'s information',
     item: 'Item',
     itemPlural: 'Items',
     metadataButton: 'View Metadata',

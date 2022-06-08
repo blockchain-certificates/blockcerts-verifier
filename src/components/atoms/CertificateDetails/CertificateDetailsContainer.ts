@@ -3,7 +3,7 @@ import CertificateDetails, { ICertificateDetailsApi } from './CertificateDetails
 import {
   getIssueDate,
   getIssuedOn,
-  getIssuerName,
+  getIssuerName, getIssuerProfileDomain, getIssuerProfileUrl,
   getIssuerPublicKey,
   getRecipientName,
   getTransactionId,
@@ -17,7 +17,9 @@ export const mapStateToProps = (state): ICertificateDetailsApi => ({
   issuerName: getIssuerName(state),
   transactionLink: getTransactionLink(state),
   transactionId: getTransactionId(state),
-  issuerPublicKey: getIssuerPublicKey(state)
+  issuerPublicKey: getIssuerPublicKey(state),
+  issuerProfileDomain: getIssuerProfileDomain(state),
+  issuerProfileUrl: getIssuerProfileUrl(state)
 });
 
 const ownProps = {

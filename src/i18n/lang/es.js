@@ -23,6 +23,7 @@ export default {
     issueDate: 'Fecha de Emisión',
     issuerName: 'Emisor',
     issuerPublicKey: 'Llave publica del Emisor',
+    issuerProfileDomain: 'Información del Emisor',
     item: 'Elemento',
     itemPlural: 'Elementos',
     metadataButton: 'Ver Metadata',

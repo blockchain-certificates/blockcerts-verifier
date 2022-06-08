@@ -10,7 +10,7 @@ interface IRenderInterface {
   value?: string;
   isDisplayColumn?: boolean;
   renderInline?: boolean;
-  transactionLink?: string;
+  transactionLink?: string[];
 }
 
 export interface ICertificateDetailsApi {
@@ -18,9 +18,11 @@ export interface ICertificateDetailsApi {
   issuedOn?: string;
   issueDate?: string;
   issuerName?: string;
-  issuerPublicKey?: string;
-  transactionLink?: string;
-  transactionId?: string;
+  issuerPublicKey?: string[];
+  transactionLink?: string[];
+  transactionId?: string[];
+  issuerProfileUrl?: string[];
+  issuerProfileDomain?: string[];
   direction?: any; // enum
   hideRecipientName?: boolean;
 }
@@ -48,7 +50,7 @@ function renderListDetail ({ title, value, isDisplayColumn, renderInline = false
 }
 
 function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }: IRenderInterface): TemplateResult {
-  if (isValidLink(transactionLink)) {
+  if (isValidLink(transactionLink[0])) {
     if (isDisplayColumn) {
       return renderListDetail({ title, value, isDisplayColumn, renderInline: true });
     }
@@ -68,6 +70,8 @@ export default function CertificateDetails ({
   issuedOn,
   issueDate,
   issuerName,
+  issuerProfileDomain,
+  issuerProfileUrl,
   issuerPublicKey,
   transactionLink,
   transactionId,
@@ -82,6 +86,8 @@ export default function CertificateDetails ({
     });
   }
 
+  console.log('issuerPublicKey', issuerPublicKey);
+
   details.push(
     {
       title: getText('text.issueDate'),
@@ -90,6 +96,10 @@ export default function CertificateDetails ({
     {
       title: getText('text.issuerName'),
       value: issuerName
+    },
+    {
+      title: getText('text.issuerProfileDomain'),
+      value: html`<a href$='${issuerProfileUrl}' target="_blank">${issuerProfileDomain}</a>`
     },
     {
       title: getText('text.issuerPublicKey'),
@@ -110,7 +120,7 @@ export default function CertificateDetails ({
     ${CSS}
     <dl class$='${classes}'>
         ${definitionListDetails}
-        ${renderTransactionId({ transactionLink, title: `${getText('text.transactionId')}:`, value: transactionId, isDisplayColumn })}
+        ${renderTransactionId({ transactionLink, title: `${getText('text.transactionId')}:`, value: transactionId[0], isDisplayColumn })}
     </dl>
   `;
 }
