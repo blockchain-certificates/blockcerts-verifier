@@ -33,6 +33,7 @@ export default {
     recipient: 'Recipient',
     share: 'Share on',
     shareButton: 'Share on Social Networks',
+    signatureSuiteType: 'Digital signature type',
     signed: 'Signed by',
     substepsListClose: 'Hide',
     substepsListHint: 'Toggle open list of substeps',

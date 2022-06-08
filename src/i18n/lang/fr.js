@@ -33,6 +33,7 @@ export default {
     recipient: 'Titulaire',
     share: 'Partager sur',
     shareButton: 'Partager sur les réseaux sociaux',
+    signatureSuiteType: 'Type de signature numérique',
     signed: 'Signé par',
     substepsListClose: 'Fermer',
     substepsListHint: 'Afficher les sous-étapes',

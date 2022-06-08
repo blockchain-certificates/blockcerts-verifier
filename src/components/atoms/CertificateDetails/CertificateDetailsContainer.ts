@@ -5,9 +5,8 @@ import {
   getIssuedOn,
   getIssuerName, getIssuerProfileDomain, getIssuerProfileUrl,
   getIssuerPublicKey,
-  getRecipientName,
-  getTransactionId,
-  getTransactionLink
+  getRecipientName, getSignatureSuiteType,
+  getTransactionId
 } from '../../../selectors/certificate';
 
 export const mapStateToProps = (state): ICertificateDetailsApi => ({
@@ -18,7 +17,8 @@ export const mapStateToProps = (state): ICertificateDetailsApi => ({
   transactionId: getTransactionId(state),
   issuerPublicKey: getIssuerPublicKey(state),
   issuerProfileDomain: getIssuerProfileDomain(state),
-  issuerProfileUrl: getIssuerProfileUrl(state)
+  issuerProfileUrl: getIssuerProfileUrl(state),
+  signatureSuiteType: getSignatureSuiteType(state)
 });
 
 const ownProps = {

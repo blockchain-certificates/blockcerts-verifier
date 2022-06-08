@@ -3,8 +3,6 @@ import CSS from './_components.certificate-details-css';
 import getText from '../../../i18n/getText';
 import { TemplateResult } from 'lit-html';
 
-const isValidLink = (link: string): boolean => !link?.includes(' ');
-
 interface IRenderInterface {
   title?: string;
   value?: string;
@@ -22,6 +20,7 @@ export interface ICertificateDetailsApi {
   transactionId?: string[];
   issuerProfileUrl?: string[];
   issuerProfileDomain?: string[];
+  signatureSuiteType?: string[];
   direction?: any; // enum
   hideRecipientName?: boolean;
 }
@@ -48,22 +47,6 @@ function renderListDetail ({ title, value, isDisplayColumn, renderInline = false
   </div>`;
 }
 
-function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }: IRenderInterface): TemplateResult {
-  if (isValidLink(transactionLink[0])) {
-    if (isDisplayColumn) {
-      return renderListDetail({ title, value, isDisplayColumn, renderInline: true });
-    }
-
-    return html`
-      <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
-        <dt class='buv-c-certificate-details__title  buv-c-certificate-details--inline'>${title}</dt>
-        <dd class='buv-c-certificate-details--inline'>${value}</dd>
-      </div>`;
-  } else {
-    return html`<span>${getText('errors.noTransactionId')}</span>`;
-  }
-}
-
 export default function CertificateDetails ({
   recipientName,
   issuedOn,
@@ -74,7 +57,8 @@ export default function CertificateDetails ({
   issuerPublicKey,
   transactionId,
   direction,
-  hideRecipientName
+  hideRecipientName,
+  signatureSuiteType
 }: ICertificateDetailsApi): TemplateResult {
   const details = [];
   if (!hideRecipientName) {
@@ -96,6 +80,13 @@ export default function CertificateDetails ({
   );
 
   for (let i = 0; i < issuerPublicKey.length; i++) {
+    if (signatureSuiteType[i]) {
+      details.push({
+        title: getText('text.signatureSuiteType'),
+        value: signatureSuiteType[i]
+      });
+    }
+
     if (issuerProfileDomain[i]) {
       details.push({
         title: getText('text.issuerProfileDomain'),

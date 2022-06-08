@@ -33,6 +33,7 @@ export default {
     recipient: 'Recipiente',
     share: 'Comparte en',
     shareButton: 'Comparte en Redes Sociales',
+    signatureSuiteType: 'Tipo de firma digital',
     signed: 'Firmado Por',
     substepsListClose: 'Esconde',
     substepsListHint: 'Pasa lista abierta de sub-pasos',

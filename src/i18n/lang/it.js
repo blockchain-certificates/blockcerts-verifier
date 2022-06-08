@@ -34,6 +34,7 @@ export default {
     share: 'Condividi',
     shareButton: 'Condividi sui Social Network',
     signed: 'Firmato da',
+    signatureSuiteType: 'Digital signature type',
     substepsListClose: 'Nascondi',
     substepsListHint: 'Mostra gli step secondari',
     transactionId: 'ID transazione',
