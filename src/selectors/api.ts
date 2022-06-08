@@ -12,6 +12,10 @@ export function getAllowDownload (state): boolean {
   return state.allowDownload;
 }
 
+export function getAllowDownloadPDF (state): boolean {
+  return state.allowDownloadPDF;
+}
+
 export function getAllowSocialShare (state): boolean {
   return state.allowSocialShare;
 }
