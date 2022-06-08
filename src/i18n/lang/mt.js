@@ -16,6 +16,7 @@ export default {
     certified: 'Certified by',
     closeButton: 'Click to close',
     downloadLink: 'Download Record in JSON format',
+    downloadPDFLink: 'Download PDF',
     dragAndDropHint: '(you can also drag & drop your file).',
     fileUpload: 'Choose JSON file',
     issued: 'Issued on',
