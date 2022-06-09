@@ -49,5 +49,8 @@ export default {
   date: {
     months: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
     pattern: 'DD MM YYYY'
+  },
+  numbers: {
+    ordinal: '°'
   }
 };

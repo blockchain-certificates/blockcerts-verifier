@@ -49,5 +49,8 @@ export default {
   date: {
     months: ['enero', 'feb', 'marzo', 'abr', 'mayo', 'jun', 'jul', 'agosto', 'set', 'oct', 'nov', 'dic'],
     pattern: 'MM DD, YYYY'
+  },
+  numbers: {
+    ordinal: '°'
   }
 };

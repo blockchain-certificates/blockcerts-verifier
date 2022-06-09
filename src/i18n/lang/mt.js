@@ -49,5 +49,18 @@ export default {
   date: {
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
     pattern: 'MM DD, YYYY'
+  },
+  numbers: {
+    ordinal: [
+      'l-ewwel',
+      'it-tieni',
+      'it-tielet',
+      'ir-raba\'',
+      'il-ħames',
+      'is-sitt',
+      'is-seba\'',
+      'it-tmien',
+      'id-disa\''
+    ]
   }
 };

@@ -49,5 +49,8 @@ export default {
   date: {
     months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
     pattern: 'MM DD, YYYY'
+  },
+  numbers: {
+    ordinal: ['th', 'st', 'nd', 'rd']
   }
 };
