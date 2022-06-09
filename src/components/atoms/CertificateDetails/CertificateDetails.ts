@@ -2,6 +2,7 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.certificate-details-css';
 import getText from '../../../i18n/getText';
 import { TemplateResult } from 'lit-html';
+import getOrdinalNumber from '../../../i18n/getOrdinalNumber';
 
 interface IRenderInterface {
   title?: string;
@@ -52,13 +53,13 @@ export default function CertificateDetails ({
   issuedOn,
   issueDate,
   issuerName,
-  issuerProfileDomain,
-  issuerProfileUrl,
-  issuerPublicKey,
-  transactionId,
+  issuerProfileDomain = [],
+  issuerProfileUrl = [],
+  issuerPublicKey = [],
+  transactionId = [],
   direction,
   hideRecipientName,
-  signatureSuiteType
+  signatureSuiteType = []
 }: ICertificateDetailsApi): TemplateResult {
   const details = [];
   if (!hideRecipientName) {
@@ -80,23 +81,28 @@ export default function CertificateDetails ({
   );
 
   for (let i = 0; i < issuerPublicKey.length; i++) {
+    let prefix = '';
+    if (issuerPublicKey.length > 1) {
+      prefix = `${getOrdinalNumber(i + 1)} `;
+    }
+
     if (signatureSuiteType[i]) {
       details.push({
-        title: getText('text.signatureSuiteType'),
+        title: `${prefix}${getText('text.signatureSuiteType')}`,
         value: signatureSuiteType[i]
       });
     }
 
     if (issuerProfileDomain[i]) {
       details.push({
-        title: getText('text.issuerProfileDomain'),
+        title: `${prefix}${getText('text.issuerProfileDomain')}`,
         value: html`<a href$='${issuerProfileUrl[i]}' target="_blank">${issuerProfileDomain[i]}</a>`
       });
     }
 
     if (issuerPublicKey[i]) {
       details.push({
-        title: getText('text.issuerPublicKey'),
+        title: `${prefix}${getText('text.issuerPublicKey')}`,
         value: issuerPublicKey[i]
       });
     }
@@ -104,7 +110,7 @@ export default function CertificateDetails ({
     if (transactionId[i]) {
       details.push(
         {
-          title: getText('text.transactionId'),
+          title: `${prefix}${getText('text.transactionId')}`,
           value: transactionId[i]
         }
       );

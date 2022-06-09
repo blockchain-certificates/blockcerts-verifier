@@ -62,11 +62,6 @@ describe('CertificateDetailsContainer test suite', function () {
         expect(mapStateToProps(state).issuerName).toBe('Auto Testnet');
       });
 
-      it('should retrieve the transaction link', async function () {
-        const state = store.getState();
-        expect(mapStateToProps(state).transactionLink[0]).toBe('https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea');
-      });
-
       it('should retrieve the transaction id', async function () {
         const state = store.getState();
         expect(mapStateToProps(state).transactionId[0]).toBe('62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea');

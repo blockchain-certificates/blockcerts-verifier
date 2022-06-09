@@ -206,7 +206,6 @@ export function getFinalStep (state): any { // TODO: define step -- retrieve fro
 
 export function getIssuerPublicKey (state): string[] {
   const signers = getSigners(state);
-  console.log('signers', signers);
   return signers.map(signer => signer.issuerPublicKey);
 }
 

@@ -14,7 +14,6 @@ function updateStep (stepsCb, step) {
 }
 
 function validVerifyStub (stepsCb): any {
-  console.log('Verify with success');
   validCertificateStepsAssertions.forEach(updateStep.bind(null, stepsCb));
   return {
     status: VERIFICATION_STATUSES.SUCCESS,
