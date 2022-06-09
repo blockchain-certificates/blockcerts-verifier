@@ -2,10 +2,25 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.suite-verification-status-css';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { TemplateResult } from 'lit-html';
+import { getText } from '../../../i18n';
 
 export interface ISuiteVerificationStatus {
   isTestChain: boolean;
   status: VERIFICATION_STATUSES;
+}
+
+function getTitle (isTestChain: boolean, status: VERIFICATION_STATUSES): string {
+  let message = 'signatureStatusSuccess';
+
+  if (isTestChain) {
+    message = 'signatureStatusTestSuccess';
+  }
+
+  if (status === VERIFICATION_STATUSES.FAILURE) {
+    message = 'signatureStatusFailure';
+  }
+
+  return getText('text', message);
 }
 
 export default function SuiteVerificationStatus ({
@@ -20,18 +35,8 @@ export default function SuiteVerificationStatus ({
     isTestChain ? 'is-test' : ''
   ].join(' ');
 
-  let title = 'This signature has been successfully verified';
-
-  if (isTestChain) {
-    title = 'This signature has been successfully verified but has been issued on a test chain';
-  }
-
-  if (status === VERIFICATION_STATUSES.FAILURE) {
-    title = 'This signature yielded an error during verification';
-  }
-
   return html`
       ${CSS}
-      <a class$='${classes}' title$='${title}'><slot></slot></a>
+      <a class$='${classes}' title$='${getTitle(isTestChain, status)}'><slot></slot></a>
   `;
 }
