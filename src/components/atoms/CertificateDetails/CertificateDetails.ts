@@ -3,6 +3,7 @@ import CSS from './_components.certificate-details-css';
 import getText from '../../../i18n/getText';
 import { TemplateResult } from 'lit-html';
 import getOrdinalNumber from '../../../i18n/getOrdinalNumber';
+import '../SuiteVerificationStatus';
 
 interface IRenderInterface {
   title?: string;
@@ -89,7 +90,9 @@ export default function CertificateDetails ({
     if (signatureSuiteType[i]) {
       details.push({
         title: `${prefix}${getText('text.signatureSuiteType')}`,
-        value: signatureSuiteType[i]
+        value: html`<buv-suite-verification-status suiteType$='${signatureSuiteType[i]}'>
+            ${signatureSuiteType[i]}
+        </buv-suite-verification-status>`
       });
     }
 

@@ -8,7 +8,7 @@ const store = configureStore();
 
 interface IConnectorStateParameter<DP, SP, OP> {
   mapDispatchToProps?: DP;
-  mapStateToProps?: (args?: any) => SP; // TODO: define state shape
+  mapStateToProps?: (state: any, ownProps?: any) => SP; // TODO: define state shape
   ownProps?: OP;
 }
 
@@ -21,8 +21,8 @@ export default function connector<DP, SP, OP > (
       return bindActionCreators<DP, any>(mapDispatchToProps, store.dispatch);
     }
 
-    mapStateToProps (): SP {
-      return mapStateToProps(store.getState());
+    mapStateToProps (componentProps): SP {
+      return mapStateToProps(store.getState(), componentProps);
     }
 
     static get properties (): OP {
@@ -32,7 +32,7 @@ export default function connector<DP, SP, OP > (
     _render (_props: any): TemplateResult {
       const componentProps = {
         ...this.mapDispatchToProps(),
-        ...this.mapStateToProps(),
+        ...this.mapStateToProps(_props),
         ..._props
       };
 
