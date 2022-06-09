@@ -90,7 +90,7 @@ export default function CertificateDetails ({
     if (signatureSuiteType[i]) {
       details.push({
         title: `${prefix}${getText('text.signatureSuiteType')}`,
-        value: html`<buv-suite-verification-status suiteType$='${signatureSuiteType[i]}'>
+        value: html`<buv-suite-verification-status suiteType$='${signatureSuiteType[i]}' index$='${i}'>
             ${signatureSuiteType[i]}
         </buv-suite-verification-status>`
       });

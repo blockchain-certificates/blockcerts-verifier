@@ -1,17 +1,18 @@
 import connector from '../../../store/connector';
 import SuiteVerificationStatus, { ISuiteVerificationStatus } from './SuiteVerificationStatus';
-import { isTestChain } from '../../../selectors/certificate';
+import { isTestChainAtIndex } from '../../../selectors/certificate';
 import { getVerificationStatusForSuite } from '../../../selectors/verification';
 
 const mapStateToProps = (state, ownProps): ISuiteVerificationStatus => {
   return {
-    isTestChain: isTestChain(state),
+    isTestChain: isTestChainAtIndex(state, parseInt(ownProps.index, 10)),
     status: getVerificationStatusForSuite(state, ownProps.suiteType)
   };
 };
 
 const ownProps = {
-  suiteType: String
+  suiteType: String,
+  index: String
 };
 
 const SuiteVerificationStatusContainer = connector<any, ISuiteVerificationStatus, any>(

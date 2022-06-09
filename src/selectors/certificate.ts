@@ -182,6 +182,15 @@ export function isTestChain (state): boolean {
   return chains.some(chain => chain === 'Mocknet' || chain?.includes('Testnet'));
 }
 
+export function isTestChainAtIndex (state, index: number): boolean {
+  const chains = getChain(state);
+  const chain = chains[index];
+  if (!chain) {
+    return false;
+  }
+  return chain === 'Mocknet' || chain.includes('Testnet');
+}
+
 export function getVerifiedSteps (state): IVerificationMapItem[] {
   return state.verifiedSteps || [];
 }
