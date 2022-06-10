@@ -35,8 +35,13 @@ export default function SuiteVerificationStatus ({
     isTestChain ? 'is-test' : ''
   ].join(' ');
 
+  const title = getTitle(isTestChain, status);
+
   return html`
       ${CSS}
-      <a class$='${classes}' title$='${getTitle(isTestChain, status)}'><slot></slot></a>
+      <a class$='${classes}' title$='${title}'>
+          <span class='buv-u-visually-hidden'>${title}</span>
+          <slot></slot>
+      </a>
   `;
 }
