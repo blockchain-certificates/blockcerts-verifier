@@ -16,14 +16,36 @@ import validCertificate from '../../assertions/validCertificate';
 import { getShowVerificationModal, getVerificationHasStarted } from '../../../src/selectors/verification';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import initialize from '../../../src/actions/initialize';
-import { CertificateOptions } from '@blockcerts/cert-verifier-js';
+import { CertificateOptions, Signers } from '@blockcerts/cert-verifier-js';
 
 jest.mock('../../../src/helpers/stepQueue');
 
 describe('updateCertificateDefinition action creator test suite', function () {
   describe('given it is dispatched with a certificate definition', function () {
     let store;
-    stubCertificateVerify(certificateFixture);
+    const signersObjectForFixture: Signers[] = [
+      {
+        signingDate: '2018-01-23T00:43:15.978+00:00',
+        signatureSuiteType: 'MerkleProof2017',
+        issuerPublicKey: 'msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8',
+        issuerName: 'Auto Testnet',
+        issuerProfileDomain: 'auto-certificates.learningmachine.io',
+        issuerProfileUrl: 'https://auto-certificates.learningmachine.io/issuer/5915db9cf6548f11bcb9b9a2.json',
+        chain: {
+          code: 'testnet',
+          name: 'Bitcoin Testnet',
+          signatureValue: 'bitcoinTestnet',
+          transactionTemplates: {
+            full: 'https://testnet.blockchain.info/tx/{transaction_id}',
+            raw: 'https://testnet.blockchain.info/rawtx/{transaction_id}'
+          }
+        } as any,
+        transactionId: '62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea',
+        transactionLink: 'https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea',
+        rawTransactionLink: 'https://testnet.blockchain.info/rawtx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea'
+      }
+    ];
+    stubCertificateVerify(certificateFixture, signersObjectForFixture);
 
     beforeEach(function () {
       store = configureStore();
@@ -69,7 +91,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       const state = store.getState();
 
       const expectedOutput = 'https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea';
-      expect(getTransactionLink(state)).toBe(expectedOutput);
+      expect(getTransactionLink(state)[0]).toBe(expectedOutput);
     });
 
     it('should set the chain of the certificate in the state', async function () {
@@ -77,7 +99,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
       const state = store.getState();
 
       const expectedOutput = 'Bitcoin Testnet';
-      expect(getChain(state)).toBe(expectedOutput);
+      expect(getChain(state)[0]).toBe(expectedOutput);
     });
 
     it('should initially set the verifiedSteps property according to the certificate\'s verificationSteps', async function () {

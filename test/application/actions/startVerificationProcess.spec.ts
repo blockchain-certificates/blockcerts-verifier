@@ -1,7 +1,7 @@
 import { configureStore } from '../../../src/store';
 import { getShowVerificationModal, getVerificationStatus } from '../../../src/selectors/verification';
-import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import startVerificationProcess from '../../../src/actions/startVerificationProcess';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 describe('startVerificationProcess test suite', function () {
   let store;
@@ -23,7 +23,7 @@ describe('startVerificationProcess test suite', function () {
 
     it('should verify the certificate', function () {
       const state = store.getState();
-      expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.STARTED);
+      expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUSES.STARTING);
     });
   });
 });

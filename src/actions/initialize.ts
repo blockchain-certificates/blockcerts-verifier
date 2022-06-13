@@ -13,7 +13,7 @@ import updateCertificateDefinition from './updateCertificateDefinition';
 export default function initialize (options = {}): ThunkAction<void, any, void, Action<any>> {
   return function (dispatch) {
     const APIOptions = getAPIOptions(options);
-    const { src, locale } = APIOptions;
+    const { src, locale } = APIOptions as any;
 
     dispatch({
       type: ACTIONS.INITIALIZE,

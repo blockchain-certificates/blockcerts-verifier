@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
+    "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
-    "target": "es6",
-    "lib": ["es2018", "dom"],
+    "target": "esNext",
+    "lib": ["esNext", "dom"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",

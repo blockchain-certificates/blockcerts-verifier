@@ -7,8 +7,8 @@ import { configureStore } from '../../../../src/store/index';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import validCertificateDefinition from '../../../fixtures/v2/valid-certificate-example.json';
 import { getShowVerificationModal, getVerificationStatus } from '../../../../src/selectors/verification';
-import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 describe('VerifyButtonContainer test suite', function () {
   stubCertificateVerify(validCertificateDefinition);
@@ -62,7 +62,7 @@ describe('VerifyButtonContainer test suite', function () {
 
       it('should start the verification process', function () {
         const state = store.getState();
-        expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.STARTED);
+        expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUSES.STARTING);
       });
     });
   });

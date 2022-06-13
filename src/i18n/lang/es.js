@@ -5,6 +5,7 @@ export default {
     invalidBlockcertsUrl: 'No es URL de certificado valido.',
     invalidFormatDragAndDrop: 'Solo se aceptan archivos JSON',
     invalidUrl: 'Esto no parece ser un URL válido.',
+    noIssuerName: 'No nombre comunicado',
     noMetadata: 'No se han especificado metadatos para este registro',
     noShareUrl: 'No hay URL para compartir!',
     noTransactionId: 'No ID de transacción'
@@ -22,6 +23,7 @@ export default {
     issueDate: 'Fecha de Emisión',
     issuerName: 'Emisor',
     issuerPublicKey: 'Llave publica del Emisor',
+    issuerProfileDomain: 'Información del Emisor',
     item: 'Elemento',
     itemPlural: 'Elementos',
     metadataButton: 'Ver Metadata',
@@ -30,7 +32,11 @@ export default {
     recipient: 'Recipiente',
     share: 'Comparte en',
     shareButton: 'Comparte en Redes Sociales',
+    signatureSuiteType: 'Tipo de firma digital',
     signed: 'Firmado Por',
+    signatureStatusSuccess: 'La verificación de esta firma digital ha tenido éxito',
+    signatureStatusTestSuccess: 'La verificación de esta firma digital ha tenido éxito pero se utilizó una cadena de test',
+    signatureStatusFailure: 'Error en la verificación de esta firma digital',
     substepsListClose: 'Esconde',
     substepsListHint: 'Pasa lista abierta de sub-pasos',
     transactionId: 'ID de Transacción',
@@ -45,5 +51,8 @@ export default {
   date: {
     months: ['enero', 'feb', 'marzo', 'abr', 'mayo', 'jun', 'jul', 'agosto', 'set', 'oct', 'nov', 'dic'],
     pattern: 'MM DD, YYYY'
+  },
+  numbers: {
+    ordinal: '°'
   }
 };

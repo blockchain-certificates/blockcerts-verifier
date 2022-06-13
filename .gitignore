@@ -3,3 +3,4 @@
 /.idea/
 /dist
 /dev/index.js
+*.DS_Store
