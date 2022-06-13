@@ -1,11 +1,11 @@
-import { getDisplay } from '../../../../src/selectors/certificate';
+import { getDisplayAsHTML } from '../../../../src/selectors/certificate';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import v3Fixture from '../../../fixtures/v3/testnet-v3.0-beta.json';
 import { configureStore } from '../../../../src/store';
 import getInitialState from '../../../../src/store/getInitialState';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 
-describe('getDisplay selector', function () {
+describe('getDisplayAsHTML selector', function () {
   let store;
 
   beforeEach(function () {
@@ -27,7 +27,7 @@ describe('getDisplay selector', function () {
 
       it('should return the display HTML as coded into the document', function () {
         const state = store.getState();
-        expect(getDisplay(state)).toBe('<b>hello world</b>');
+        expect(getDisplayAsHTML(state)).toBe('<b>hello world</b>');
       });
     });
   });
