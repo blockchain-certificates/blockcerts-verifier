@@ -1,5 +1,6 @@
 import SubstepsList from '../../../../src/components/organisms/SubstepsList/SubstepsList';
 import type { VerificationSubstep } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 describe('Substeps list component test suite', function () {
   let instance: SubstepsList;
@@ -30,14 +31,14 @@ describe('Substeps list component test suite', function () {
         label: 'Parse issuer keys',
         labelPending: 'Parsing issuer keys',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       },
       {
         code: 'checkAuthenticity',
         label: 'Check Authenticity',
         labelPending: 'Checking Authenticity',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       }
     ];
 
@@ -78,14 +79,14 @@ describe('Substeps list component test suite', function () {
         label: 'Parse issuer keys',
         labelPending: 'Parsing issuer keys',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       },
       {
         code: 'checkAuthenticity',
         label: 'Check Authenticity',
         labelPending: 'Checking Authenticity',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       }
     ];
 
@@ -131,14 +132,14 @@ describe('Substeps list component test suite', function () {
         label: 'Parse issuer keys',
         labelPending: 'Parsing issuer keys',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       },
       {
         code: 'checkAuthenticity',
         label: 'Check Authenticity',
         labelPending: 'Checking Authenticity',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       }
     ];
     const suiteSubsteps: VerificationSubstep[] = [
@@ -147,7 +148,7 @@ describe('Substeps list component test suite', function () {
         label: 'Test a suite item',
         labelPending: 'Testing a suite item',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       }
     ];
 
@@ -195,14 +196,14 @@ describe('Substeps list component test suite', function () {
         label: 'Parse issuer keys',
         labelPending: 'Parsing issuer keys',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       },
       {
         code: 'checkAuthenticity',
         label: 'Check Authenticity',
         labelPending: 'Checking Authenticity',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       }
     ];
     const suiteSubsteps: VerificationSubstep[] = [
@@ -211,7 +212,7 @@ describe('Substeps list component test suite', function () {
         label: 'Test a suite item',
         labelPending: 'Testing a suite item',
         parentStep: 'proofVerification',
-        status: 'success'
+        status: VERIFICATION_STATUSES.SUCCESS
       }
     ];
 
