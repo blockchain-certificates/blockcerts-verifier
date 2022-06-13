@@ -1,7 +1,5 @@
 import SubstepsList from '../../../../src/components/organisms/SubstepsList/SubstepsList';
-import type { VerificationSubstep } from '../../../../src/components/organisms/SubstepsList/SubstepsList';
-// import type { VerificationSubstep } from '@blockcerts/cert-verifier-js';
-// import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import type { VerificationSubstep } from '@blockcerts/cert-verifier-js';
 
 describe('Substeps list component test suite', function () {
   let instance: SubstepsList;
