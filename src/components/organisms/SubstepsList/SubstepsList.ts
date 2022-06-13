@@ -3,21 +3,7 @@ import CSS from './_components.substeps-list-css';
 import VerificationStep from '../../molecules/VerificationStep';
 import getText from '../../../i18n/getText';
 import type { TemplateResult } from 'lit-html';
-// import type { IVerificationMapItemSuite } from '@blockcerts/cert-verifier-js';
-// import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
-
-// TODO: import from CVJS - currently defined here to be able to test in autonomy (error with cvjs build)
-export interface VerificationSubstep {
-  code: string;
-  label: string;
-  labelPending: string;
-  parentStep: string;
-  status: any;
-}
-export interface IVerificationMapItemSuite {
-  proofType: string;
-  subSteps: VerificationSubstep[];
-}
+import type { IVerificationMapItemSuite, VerificationSubstep } from '@blockcerts/cert-verifier-js';
 
 class SubstepsList extends LitElement {
   isOpen: boolean;
