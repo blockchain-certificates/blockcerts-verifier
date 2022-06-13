@@ -5,7 +5,6 @@ export default {
     invalidBlockcertsUrl: 'Ceci n\'est pas une URL de certificat valide.',
     invalidFormatDragAndDrop: 'Seul le format JSON est accepté',
     invalidUrl: 'URL invalide',
-    noDownloadLink: 'Aucun lien disponible pour le téléchargement!',
     noIssuerName: 'Pas de nom fourni',
     noMetadata: 'Ce certificat ne contient pas de métadata',
     noShareUrl: 'Pas d\'URL à partager!',
