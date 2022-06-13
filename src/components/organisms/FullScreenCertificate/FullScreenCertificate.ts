@@ -66,7 +66,7 @@ export default function FullScreenCertificate ({
           <buv-metadata class='buv-c-fullscreen-certificate__details-item  buv-c-fullscreen-certificate__separator' display='plaintext'></buv-metadata>
           <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>
           <buv-social-share class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-social-share>
-          ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__separator', showMotto: true, logoSize: 'medium' })}
+          ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__separator', showMotto: true })}
           <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
         </div>
         <div class$=${buvFullscreenCertificateClasses.join(' ')}>
