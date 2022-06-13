@@ -5,6 +5,7 @@ export default {
     invalidBlockcertsUrl: 'Non è un URL di certificato valido.',
     invalidFormatDragAndDrop: 'Sono accettati solo file JSON',
     invalidUrl: 'Questo non sembra essere un URL valido.',
+    noIssuerName: 'No name provided',
     noMetadata: 'Nessun Metadata specificato per questo record',
     noShareUrl: 'Non c\'è un URL da condividere!',
     noTransactionId: 'Nessun ID transazione'
@@ -23,6 +24,7 @@ export default {
     issueDate: 'Data',
     issuerName: 'Organizzazione Issuer',
     issuerPublicKey: 'Chiave pubblica del Issuer',
+    issuerProfileDomain: 'Informazzione del Issuer',
     item: 'Elemento',
     itemPlural: 'Elementi',
     metadataButton: 'Visualizza Metadata',
@@ -32,6 +34,10 @@ export default {
     share: 'Condividi',
     shareButton: 'Condividi sui Social Network',
     signed: 'Firmato da',
+    signatureStatusSuccess: 'This signature has been successfully verified',
+    signatureStatusTestSuccess: 'This signature has been successfully verified but has been issued on a test chain',
+    signatureStatusFailure: 'This signature yielded an error during verification',
+    signatureSuiteType: 'Digital signature type',
     substepsListClose: 'Nascondi',
     substepsListHint: 'Mostra gli step secondari',
     transactionId: 'ID transazione',
@@ -46,5 +52,8 @@ export default {
   date: {
     months: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
     pattern: 'DD MM YYYY'
+  },
+  numbers: {
+    ordinal: '°'
   }
 };

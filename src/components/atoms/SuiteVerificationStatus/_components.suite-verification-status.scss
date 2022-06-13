@@ -1,0 +1,18 @@
+@import '../FinalVerificationStep/_components.final-verification-step';
+
+.buv-c-suite-verification-status {
+  margin-left: 30px;
+  font-weight: 400;
+}
+
+.buv-c-suite-verification-status.is-visible {
+  font-size: 13px;
+}
+
+.buv-c-suite-verification-status.is-visible::after {
+  width: 20px;
+  height: 20px;
+  left: -28px;
+}
+
+@import 'src/shared-styles/utils.a11y';

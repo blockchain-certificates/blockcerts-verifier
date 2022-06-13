@@ -1,6 +1,6 @@
 import * as DISPLAY_MODE from '../constants/displayMode';
 import * as THEME from '../constants/theme';
-import VERIFICATION_STATUS from '../constants/verificationStatus';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 // TODO: implement typescript
 // TODO: export this typing from cert-verifier-js
@@ -15,7 +15,7 @@ export default function getInitialState (apiConfiguration = {}) {
     input: {},
     verifiedSteps: [],
     finalStep: null,
-    verificationStatus: VERIFICATION_STATUS.DEFAULT,
+    verificationStatus: VERIFICATION_STATUSES.DEFAULT,
     showVerificationModal: false,
     displayMode: DISPLAY_MODE.CARD,
     disableDownloadPdf: false,

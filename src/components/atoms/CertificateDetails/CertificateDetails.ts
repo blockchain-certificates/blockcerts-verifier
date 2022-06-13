@@ -2,15 +2,15 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.certificate-details-css';
 import getText from '../../../i18n/getText';
 import { TemplateResult } from 'lit-html';
-
-const isValidLink = (link: string): boolean => !link.includes(' ');
+import getOrdinalNumber from '../../../i18n/getOrdinalNumber';
+import '../SuiteVerificationStatus';
 
 interface IRenderInterface {
   title?: string;
   value?: string;
   isDisplayColumn?: boolean;
   renderInline?: boolean;
-  transactionLink?: string;
+  transactionLink?: string[];
 }
 
 export interface ICertificateDetailsApi {
@@ -18,9 +18,11 @@ export interface ICertificateDetailsApi {
   issuedOn?: string;
   issueDate?: string;
   issuerName?: string;
-  issuerPublicKey?: string;
-  transactionLink?: string;
-  transactionId?: string;
+  issuerPublicKey?: string[];
+  transactionId?: string[];
+  issuerProfileUrl?: string[];
+  issuerProfileDomain?: string[];
+  signatureSuiteType?: string[];
   direction?: any; // enum
   hideRecipientName?: boolean;
 }
@@ -47,32 +49,18 @@ function renderListDetail ({ title, value, isDisplayColumn, renderInline = false
   </div>`;
 }
 
-function renderTransactionId ({ title, value, transactionLink, isDisplayColumn }: IRenderInterface): TemplateResult {
-  if (isValidLink(transactionLink)) {
-    if (isDisplayColumn) {
-      return renderListDetail({ title, value, isDisplayColumn, renderInline: true });
-    }
-
-    return html`
-      <div class='buv-c-certificate-details__standalone  buv-o-text-11'>
-        <dt class='buv-c-certificate-details__title  buv-c-certificate-details--inline'>${title}</dt>
-        <dd class='buv-c-certificate-details--inline'>${value}</dd>
-      </div>`;
-  } else {
-    return html`<span>${getText('errors.noTransactionId')}</span>`;
-  }
-}
-
 export default function CertificateDetails ({
   recipientName,
   issuedOn,
   issueDate,
   issuerName,
-  issuerPublicKey,
-  transactionLink,
-  transactionId,
+  issuerProfileDomain = [],
+  issuerProfileUrl = [],
+  issuerPublicKey = [],
+  transactionId = [],
   direction,
-  hideRecipientName
+  hideRecipientName,
+  signatureSuiteType = []
 }: ICertificateDetailsApi): TemplateResult {
   const details = [];
   if (!hideRecipientName) {
@@ -89,13 +77,48 @@ export default function CertificateDetails ({
     },
     {
       title: getText('text.issuerName'),
-      value: issuerName
-    },
-    {
-      title: getText('text.issuerPublicKey'),
-      value: issuerPublicKey
+      value: issuerName || getText('errors.noIssuerName')
     }
   );
+
+  for (let i = 0; i < issuerPublicKey.length; i++) {
+    let prefix = '';
+    if (issuerPublicKey.length > 1) {
+      prefix = `${getOrdinalNumber(i + 1)} `;
+    }
+
+    if (signatureSuiteType[i]) {
+      details.push({
+        title: `${prefix}${getText('text.signatureSuiteType')}`,
+        value: html`<buv-suite-verification-status suiteType$='${signatureSuiteType[i]}' index$='${i}'>
+            ${signatureSuiteType[i]}
+        </buv-suite-verification-status>`
+      });
+    }
+
+    if (issuerProfileDomain[i]) {
+      details.push({
+        title: `${prefix}${getText('text.issuerProfileDomain')}`,
+        value: html`<a href$='${issuerProfileUrl[i]}' target="_blank">${issuerProfileDomain[i]}</a>`
+      });
+    }
+
+    if (issuerPublicKey[i]) {
+      details.push({
+        title: `${prefix}${getText('text.issuerPublicKey')}`,
+        value: issuerPublicKey[i]
+      });
+    }
+
+    if (transactionId[i]) {
+      details.push(
+        {
+          title: `${prefix}${getText('text.transactionId')}`,
+          value: transactionId[i]
+        }
+      );
+    }
+  }
 
   const isDisplayColumn = direction === 'column';
   const definitionListDetails = details.map(detail => renderListDetail({ ...detail, isDisplayColumn }));
@@ -110,7 +133,6 @@ export default function CertificateDetails ({
     ${CSS}
     <dl class$='${classes}'>
         ${definitionListDetails}
-        ${renderTransactionId({ transactionLink, title: `${getText('text.transactionId')}:`, value: transactionId, isDisplayColumn })}
     </dl>
   `;
 }

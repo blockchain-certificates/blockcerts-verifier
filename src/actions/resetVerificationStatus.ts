@@ -1,7 +1,7 @@
 import * as ACTIONS from '../constants/actionTypes';
 import updateVerificationStatus from './updateVerificationStatus';
-import VERIFICATION_STATUS from '../constants/verificationStatus';
 import updateFinalStep from './updateFinalStep';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 export default function resetVerificationStatus () {
   return function (dispatch) {
@@ -9,7 +9,7 @@ export default function resetVerificationStatus () {
       type: ACTIONS.RESET_VERIFICATION_STATUS
     });
 
-    dispatch(updateVerificationStatus(VERIFICATION_STATUS.DEFAULT));
+    dispatch(updateVerificationStatus(VERIFICATION_STATUSES.DEFAULT));
     dispatch(updateFinalStep(null));
   };
 }

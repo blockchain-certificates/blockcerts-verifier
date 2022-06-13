@@ -5,12 +5,12 @@ import {
   mapDispatchToProps,
   mapStateToProps
 } from '../../../../src/components/atoms/VerifyOtherCertificateLink/VerifyOtherCertificateLinkContainer';
-import VERIFICATION_STATUS from '../../../../src/constants/verificationStatus';
 import initialValidCertificateSteps from '../../../assertions/initialValidCertificateSteps';
 import { getCertificateDefinition, getFinalStep, getVerifiedSteps } from '../../../../src/selectors/certificate';
 import { getVerificationStatus } from '../../../../src/selectors/verification';
 import stepVerified from '../../../../src/actions/stepVerified';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 jest.mock('../../../../src/helpers/stepQueue');
 
@@ -54,7 +54,8 @@ describe('VerifyOtherCertificateLinkContainer test suite', function () {
           store.dispatch(stepVerified({
             code: 'getTransactionId',
             label: 'Getting transaction ID',
-            status: 'success'
+            status: VERIFICATION_STATUSES.SUCCESS,
+            parentStep: 'proofVerification'
           }));
           store.dispatch(mapDispatchToProps.onClick());
         });
@@ -66,7 +67,7 @@ describe('VerifyOtherCertificateLinkContainer test suite', function () {
 
         it('should reset the verification status', function () {
           const state = store.getState();
-          expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.DEFAULT);
+          expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUSES.DEFAULT);
         });
 
         it('should reset the verified steps', function () {

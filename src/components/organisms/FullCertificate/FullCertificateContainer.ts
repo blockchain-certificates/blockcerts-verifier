@@ -12,5 +12,8 @@ export const mapStateToProps = (state): Partial<IFullCertificate> => ({
   clickableUrls: getClickableUrls(state)
 });
 
-const FullCertificateContainer = connector(FullCertificate, { mapStateToProps });
+const FullCertificateContainer = connector<any, Partial<IFullCertificate>, any>(
+  FullCertificate,
+  { mapStateToProps }
+);
 export default FullCertificateContainer;

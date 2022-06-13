@@ -5,10 +5,10 @@ import updateCertificateDefinition from '../../../src/actions/updateCertificateD
 import validCertificateFixture from '../../fixtures/v2/valid-certificate-example.json';
 import initialValidCertificateSteps from '../../assertions/initialValidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
-import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import updateVerificationStatus from '../../../src/actions/updateVerificationStatus';
 import stepVerified from '../../../src/actions/stepVerified';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 jest.mock('../../../src/helpers/stepQueue');
 
@@ -20,11 +20,12 @@ describe('resetCertificateDefinition action creator test suite', function () {
     store = configureStore();
     // initially set a certificate definition in the state
     await store.dispatch(updateCertificateDefinition(validCertificateFixture));
-    store.dispatch(updateVerificationStatus(VERIFICATION_STATUS.SUCCESS));
+    store.dispatch(updateVerificationStatus(VERIFICATION_STATUSES.SUCCESS));
     store.dispatch(stepVerified({
       code: 'getTransactionId',
       label: 'Getting transaction ID',
-      status: 'success'
+      status: VERIFICATION_STATUSES.SUCCESS,
+      parentStep: 'proofVerification'
     }));
   });
 
@@ -50,6 +51,6 @@ describe('resetCertificateDefinition action creator test suite', function () {
     store.dispatch(resetCertificateDefinition());
     const state = store.getState();
 
-    expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.DEFAULT);
+    expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUSES.DEFAULT);
   });
 });

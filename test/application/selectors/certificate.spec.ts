@@ -19,7 +19,6 @@ import {
   getTransactionLink,
   getVerifiedSteps, isTestChain
 } from '../../../src/selectors/certificate';
-import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import v1Fixture from '../../fixtures/v1/valid-v1-certificate.json';
 import v2Fixture from '../../fixtures/v2/valid-certificate-example.json';
 import mocknetFixture from '../../fixtures/v2/mocknet-valid-2.0.json';
@@ -31,24 +30,7 @@ import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
-
-const RealDate = Date;
-
-function mockDate (isoDate): void {
-  // @ts-expect-error: mocking date at high level, silence TS
-  global.Date = class extends RealDate {
-    constructor () {
-      super(isoDate);
-      // @ts-expect-error: mocking date at high level, silence TS
-      return new RealDate(isoDate);
-    }
-
-    // @ts-expect-error: mocking date at high level, silence TS
-    getDate (): string {
-      return '23';
-    }
-  };
-}
+import { Signers, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 describe('certificate selectors test suite', function () {
   let store;
@@ -63,7 +45,29 @@ describe('certificate selectors test suite', function () {
   });
 
   describe('given the certificate is a V2 version', function () {
-    stubCertificateVerify(v2Fixture);
+    const signersObjectForFixture: Signers[] = [
+      {
+        signingDate: '2018-01-23T00:43:15.978+00:00',
+        signatureSuiteType: 'MerkleProof2017',
+        issuerPublicKey: 'msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8',
+        issuerName: 'Auto Testnet',
+        issuerProfileDomain: 'auto-certificates.learningmachine.io',
+        issuerProfileUrl: 'https://auto-certificates.learningmachine.io/issuer/5915db9cf6548f11bcb9b9a2.json',
+        chain: {
+          code: 'testnet',
+          name: 'Bitcoin Testnet',
+          signatureValue: 'bitcoinTestnet',
+          transactionTemplates: {
+            full: 'https://testnet.blockchain.info/tx/{transaction_id}',
+            raw: 'https://testnet.blockchain.info/rawtx/{transaction_id}'
+          }
+        } as any,
+        transactionId: '62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea',
+        transactionLink: 'https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea',
+        rawTransactionLink: 'https://testnet.blockchain.info/rawtx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea'
+      }
+    ];
+    stubCertificateVerify(v2Fixture, signersObjectForFixture);
 
     beforeEach(async function () {
       await store.dispatch(updateCertificateDefinition(v2Fixture));
@@ -73,7 +77,7 @@ describe('certificate selectors test suite', function () {
       it('should return only the steps which have a started verification', function () {
         const state = store.getState();
         const verifiedSteps = getVerifiedSteps(state);
-        verifiedSteps[0].status = VERIFICATION_STATUS.STARTED;
+        verifiedSteps[0].status = VERIFICATION_STATUSES.STARTING;
 
         expect(getStartedVerificationSteps(state)).toEqual([verifiedSteps[0]]);
       });
@@ -89,12 +93,9 @@ describe('certificate selectors test suite', function () {
 
     describe('getIssueDate selector', function () {
       it('should return a readable date', function () {
-        mockDate('Jan 23, 2018');
-
         const state = store.getState();
 
         expect(getIssueDate(state)).toBe('Jan 23, 2018');
-        global.Date = RealDate;
       });
     });
 
@@ -126,7 +127,7 @@ describe('certificate selectors test suite', function () {
       it('should return the issuer\'s logo', function () {
         const state = store.getState();
 
-        expect(getIssuerLogo(state)).toBe(v2Fixture.badge.issuer.image);
+        expect(getIssuerLogo(state)).toBe('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAIAAAAiOjnJAAACfElEQVR42u3bsWrCYBiGUa+g6lILIgiWaocqaBowARXEDB26dfAS3AUpdJBiB8HBK44Obo4SJE3Oy3MBH+GMfyoPLyMp8yo+gcASWAJLAktgCSwJLIElsCSwBJbAksASWAJLAktgCSwJLIElsCSwBJbAksASWAJLAktgCSwJLIElsCSwBJbAksASWAJLyjusx7doszts/rIp+lzecEP48ZXVAXlvd2j041LAaofzNE1PGW39u7/hhtX39lSadcYLsMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgsssMACCyywwAILLLDAAgusYsCqv4aNflySqt0ArDvBElhggQWWwBJYYIEFlsASWGCBBZbAElhggQUWWGAJLLDAAgsssATW9X72x9ZoelVzOHkaxLrkoZ95mgwWWGCBBZaBBRZYYIEFloEFFlhggQWWgQUWWGCBBZaBBRZYYIEFloEFFlhggQWWgQUWWGCBVUBY1W7QCmb57DlKitY4qfXeSwFL/iuUwBJYAksCS2AJLAksgSWwJLAElsCSwBJYAksCS2AJLAksgSWwJLAElsCSwBJYAksCS2AJLAksgSWwJLAElsCSwBJY+tedAYnk/pCN3t6xAAAAAElFTkSuQmCC');
       });
     });
 
@@ -161,7 +162,7 @@ describe('certificate selectors test suite', function () {
       it('should return the transaction\'s link', function () {
         const state = store.getState();
 
-        expect(getTransactionLink(state)).toEqual('https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea');
+        expect(getTransactionLink(state)[0]).toEqual('https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea');
       });
     });
 
@@ -169,7 +170,7 @@ describe('certificate selectors test suite', function () {
       it('should return the transaction\'s id link', function () {
         const state = store.getState();
 
-        expect(getTransactionId(state)).toEqual('62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea');
+        expect(getTransactionId(state)[0]).toEqual('62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea');
       });
     });
 
@@ -177,7 +178,7 @@ describe('certificate selectors test suite', function () {
       it('should return the chain name', function () {
         const state = store.getState();
 
-        expect(getChain(state)).toBe('Bitcoin Testnet');
+        expect(getChain(state)[0]).toBe('Bitcoin Testnet');
       });
     });
 
@@ -197,19 +198,15 @@ describe('certificate selectors test suite', function () {
                 code: 'checkRevokedStatus',
                 label: 'Check Revoked Status',
                 labelPending: 'Checking Revoked Status',
-                parentStep: 'statusCheck'
-              },
-              {
-                code: 'checkAuthenticity',
-                label: 'Check Authenticity',
-                labelPending: 'Checking Authenticity',
-                parentStep: 'statusCheck'
+                parentStep: 'statusCheck',
+                status: 'standby'
               },
               {
                 code: 'checkExpiresDate',
                 label: 'Check Expiration Date',
                 labelPending: 'Checking Expiration Date',
-                parentStep: 'statusCheck'
+                parentStep: 'statusCheck',
+                status: 'standby'
               }
             ]
           };
@@ -222,10 +219,7 @@ describe('certificate selectors test suite', function () {
     describe('getPublicKey method', function () {
       it('should return the publicKey of the issuer associated with the blockcerts issuance', function () {
         const state = store.getState();
-        // technically this happens after verification. Since we don't want to do that here,
-        // we mock to assume it was done
-        state.certificateDefinition.publicKey = 'ecdsa-koblitz-pubkey:msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8';
-        expect(getIssuerPublicKey(state)).toBe('ecdsa-koblitz-pubkey:msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8');
+        expect(getIssuerPublicKey(state)[0]).toBe('msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8');
       });
     });
   });
@@ -247,12 +241,9 @@ describe('certificate selectors test suite', function () {
 
     describe('getIssueDate selector', function () {
       it('should return a readable date', function () {
-        mockDate('May 5, 2017');
-
         const state = store.getState();
 
         expect(getIssueDate(state)).toBe('May 5, 2017');
-        global.Date = RealDate;
       });
     });
 
@@ -316,7 +307,7 @@ describe('certificate selectors test suite', function () {
       it('should return the transaction\'s link for a v1 certificate', function () {
         const state = store.getState();
 
-        expect(getTransactionLink(state)).toEqual('https://testnet.blockchain.info/tx/00dbc2c28a6d84653687c7ee2521fb73af1a907c8fcce93ac2c413a1298cd69d');
+        expect(getTransactionLink(state)[0]).toEqual('https://testnet.blockchain.info/tx/00dbc2c28a6d84653687c7ee2521fb73af1a907c8fcce93ac2c413a1298cd69d');
       });
     });
 
@@ -324,7 +315,7 @@ describe('certificate selectors test suite', function () {
       it('should return the transaction\'s id link for a v1 certificate', function () {
         const state = store.getState();
 
-        expect(getTransactionId(state)).toEqual('00dbc2c28a6d84653687c7ee2521fb73af1a907c8fcce93ac2c413a1298cd69d');
+        expect(getTransactionId(state)[0]).toEqual('00dbc2c28a6d84653687c7ee2521fb73af1a907c8fcce93ac2c413a1298cd69d');
       });
     });
 
@@ -332,7 +323,7 @@ describe('certificate selectors test suite', function () {
       it('should return the chain name for a v1 certificate', function () {
         const state = store.getState();
 
-        expect(getChain(state)).toBe('Bitcoin Testnet');
+        expect(getChain(state)[0]).toBe('Bitcoin Testnet');
       });
     });
 
@@ -393,7 +384,30 @@ describe('certificate selectors test suite', function () {
 
   describe('isTestChain selector', function () {
     describe('given the certificate chain is Mocknet', function () {
-      stubCertificateVerify(mocknetFixture);
+      const mocknetFixtureSigners: Signers[] = [
+        {
+          signingDate: '2017-06-29T14:58:57.461422+00:00',
+          signatureSuiteType: 'MerkleProof2017',
+          issuerPublicKey: 'This mock chain does not support issuing addresses',
+          issuerName: 'University of Learning',
+          issuerProfileDomain: 'www.blockcerts.org',
+          issuerProfileUrl: 'https://www.blockcerts.org/samples/2.0/issuer-testnet.json',
+          chain: {
+            code: 'mocknet',
+            name: 'Mocknet',
+            test: true,
+            signatureValue: 'mockchain',
+            transactionTemplates: {
+              full: '',
+              raw: ''
+            }
+          } as any,
+          transactionId: 'This has not been issued on a blockchain and is for testing only',
+          transactionLink: '',
+          rawTransactionLink: ''
+        }
+      ];
+      stubCertificateVerify(mocknetFixture, mocknetFixtureSigners);
 
       it('should return true', async function () {
         await store.dispatch(updateCertificateDefinition(mocknetFixture));
@@ -405,7 +419,29 @@ describe('certificate selectors test suite', function () {
     });
 
     describe('given the certificate chain is Bitcoin Testnet', function () {
-      stubCertificateVerify(v2Fixture);
+      const signersObjectForFixture: Signers[] = [
+        {
+          signingDate: '2018-01-23T00:43:15.978+00:00',
+          signatureSuiteType: 'MerkleProof2017',
+          issuerPublicKey: 'msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8',
+          issuerName: 'Auto Testnet',
+          issuerProfileDomain: 'auto-certificates.learningmachine.io',
+          issuerProfileUrl: 'https://auto-certificates.learningmachine.io/issuer/5915db9cf6548f11bcb9b9a2.json',
+          chain: {
+            code: 'testnet',
+            name: 'Bitcoin Testnet',
+            signatureValue: 'bitcoinTestnet',
+            transactionTemplates: {
+              full: 'https://testnet.blockchain.info/tx/{transaction_id}',
+              raw: 'https://testnet.blockchain.info/rawtx/{transaction_id}'
+            }
+          } as any,
+          transactionId: '62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea',
+          transactionLink: 'https://testnet.blockchain.info/tx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea',
+          rawTransactionLink: 'https://testnet.blockchain.info/rawtx/62b48b3bd8ead185ac38c844648dc3f7b1dcb08283d1de6c7eb8ae9f9f5daeea'
+        }
+      ];
+      stubCertificateVerify(v2Fixture, signersObjectForFixture);
 
       it('should return true', async function () {
         await store.dispatch(updateCertificateDefinition(v2Fixture));
@@ -417,7 +453,29 @@ describe('certificate selectors test suite', function () {
     });
 
     describe('given the certificate chain is Ethereum Ropsten', function () {
-      stubCertificateVerify(ethereumRopstenFixture);
+      const signersObjectForFixture: Signers[] = [
+        {
+          signingDate: '2017-07-20T09:33:47.490752+00:00',
+          signatureSuiteType: 'MerkleProof2017',
+          issuerPublicKey: '0x3d995ef85a8d1bcbed78182ab225b9f88dc8937c',
+          issuerName: 'University of Learning',
+          issuerProfileDomain: 'www.blockcerts.org',
+          issuerProfileUrl: 'https://www.blockcerts.org/samples/2.0/issuer-eth.json',
+          chain: {
+            code: 'ethropst',
+            name: 'Ethereum Testnet',
+            signatureValue: 'ethereumRopsten',
+            transactionTemplates: {
+              full: 'https://ropsten.etherscan.io/tx/{transaction_id}',
+              raw: 'https://ropsten.etherscan.io/getRawTx?tx={transaction_id}'
+            }
+          } as any,
+          transactionId: '0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59',
+          transactionLink: 'https://ropsten.etherscan.io/tx/0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59',
+          rawTransactionLink: 'https://ropsten.etherscan.io/getRawTx?tx=0x16bd0c4236bcadbb0b7709bddd573e9ccc6e6e96abd2f04636e72568fd3efa59'
+        }
+      ];
+      stubCertificateVerify(ethereumRopstenFixture, signersObjectForFixture);
 
       it('should return true', async function () {
         await store.dispatch(updateCertificateDefinition(ethereumRopstenFixture));
@@ -429,7 +487,33 @@ describe('certificate selectors test suite', function () {
     });
 
     describe('given the certificate chain is Bitcoin Mainnet', function () {
-      stubCertificateVerify(mainnetFixture);
+      const signersObjectForFixture: Signers[] = [
+        {
+          signingDate: '2018-02-07T23:52:16.636+00:00',
+          signatureSuiteType: 'MerkleProof2017',
+          issuerPublicKey: '1AwdUWQzJgfDDjeKtpPzMfYMHejFBrxZfo',
+          issuerName: 'Hyland Credentials',
+          issuerProfileDomain: 'blockcerts.learningmachine.com',
+          issuerProfileUrl: 'https://blockcerts.learningmachine.com/issuer/5a4fe9931f607f0f3452a65e.json',
+          chain: {
+            code: 'bitcoin',
+            name: 'Bitcoin',
+            prefixes: [
+              '6a20',
+              'OP_RETURN '
+            ],
+            signatureValue: 'bitcoinMainnet',
+            transactionTemplates: {
+              full: 'https://blockchain.info/tx/{transaction_id}',
+              raw: 'https://blockchain.info/rawtx/{transaction_id}'
+            }
+          } as any,
+          transactionId: '2378076e8e140012814e98a2b2cb1af07ec760b239c1d6d93ba54d658a010ecd',
+          transactionLink: 'https://blockchain.info/tx/2378076e8e140012814e98a2b2cb1af07ec760b239c1d6d93ba54d658a010ecd',
+          rawTransactionLink: 'https://blockchain.info/rawtx/2378076e8e140012814e98a2b2cb1af07ec760b239c1d6d93ba54d658a010ecd'
+        }
+      ];
+      stubCertificateVerify(mainnetFixture, signersObjectForFixture);
 
       it('should return false', async function () {
         await store.dispatch(updateCertificateDefinition(mainnetFixture));
@@ -441,7 +525,32 @@ describe('certificate selectors test suite', function () {
     });
 
     describe('given the certificate chain is Ethereum Main', function () {
-      stubCertificateVerify(ethereumMainFixture);
+      const signersObjectForFixture = [
+        {
+          signingDate: '2018-06-01T19:29:12.667+00:00',
+          signatureSuiteType: 'MerkleProof2017',
+          issuerPublicKey: '0x3d995ef85a8d1bcbed78182ab225b9f88dc8937c',
+          issuerName: 'University of Learning',
+          issuerProfileDomain: 'raw.githubusercontent.com',
+          issuerProfileUrl: 'https://raw.githubusercontent.com/AnthonyRonning/https-github.com-labnol-files/master/issuer-eth-mainnet.json?raw=true',
+          chain: {
+            code: 'ethmain',
+            name: 'Ethereum',
+            prefixes: [
+              '0x'
+            ],
+            signatureValue: 'ethereumMainnet',
+            transactionTemplates: {
+              full: 'https://etherscan.io/tx/{transaction_id}',
+              raw: 'https://etherscan.io/tx/{transaction_id}'
+            }
+          } as any,
+          transactionId: '0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3',
+          transactionLink: 'https://etherscan.io/tx/0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3',
+          rawTransactionLink: 'https://etherscan.io/tx/0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3'
+        }
+      ];
+      stubCertificateVerify(ethereumMainFixture, signersObjectForFixture);
 
       it('should return false', function () {
         store.dispatch(updateCertificateDefinition(ethereumMainFixture));
@@ -458,11 +567,6 @@ describe('certificate selectors test suite', function () {
 
     beforeEach(async function () {
       await store.dispatch(updateCertificateDefinition(mainnetFixture));
-      mockDate('2018-02-07');
-    });
-
-    afterEach(function () {
-      global.Date = RealDate;
     });
 
     describe('given the current locale is set to "en"', function () {

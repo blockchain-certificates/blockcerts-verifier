@@ -9,10 +9,10 @@ import initialValidCertificateStepsAssertions from '../../assertions/initialVali
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
-import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import validCertificate from '../../assertions/validCertificate';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 jest.mock('../../../src/helpers/stepQueue');
 
@@ -44,7 +44,7 @@ describe('verifyCertificate action creator test suite', function () {
 
         const state = store.getState();
 
-        expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.STARTED);
+        expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUSES.STARTING);
       });
 
       it('should emit the certificate-verify event with the certificate id', function () {
@@ -76,7 +76,7 @@ describe('verifyCertificate action creator test suite', function () {
 
         it('should set the verificationStatus in the state to success', async function () {
           const state = store.getState();
-          expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUS.SUCCESS);
+          expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUSES.SUCCESS);
         });
 
         it('should set the finalStep property in the state', async function () {
@@ -97,7 +97,7 @@ describe('verifyCertificate action creator test suite', function () {
     });
 
     describe('given there is an invalid certificate in the state', function () {
-      stubCertificateVerify(invalidCertificateFixture, false);
+      stubCertificateVerify(invalidCertificateFixture, [], false);
 
       it('should store the different steps in the state', async function () {
         store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
@@ -106,22 +106,6 @@ describe('verifyCertificate action creator test suite', function () {
         const state = store.getState();
 
         expect(getVerifiedSteps(state)).toEqual(invalidCertificateStepsAssertions);
-      });
-    });
-
-    describe('verifying a second certificate', function () {
-      describe('given the certificates definition is a valid definition', function () {
-        stubCertificateVerify(invalidCertificateFixture, false);
-
-        it('should only maintain the verifiedSteps of the latest certificate verified', async function () {
-          await store.dispatch(verifyCertificate());
-
-          await store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
-          await store.dispatch(verifyCertificate());
-          const state = store.getState();
-
-          expect(getVerifiedSteps(state)).toEqual(invalidCertificateStepsAssertions);
-        });
       });
     });
   });

@@ -1,15 +1,22 @@
 import sinon from 'sinon';
-import { Certificate, retrieveBlockcertsVersion, BlockcertsVersion } from '@blockcerts/cert-verifier-js/dist/verifier-es';
+import { Certificate, retrieveBlockcertsVersion, BlockcertsVersion, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js/dist/verifier-es';
 import { Certificate as CertificateV1 } from '@blockcerts/cert-verifier-js-v1-legacy';
 import domain from '../../../src/domain';
-import VERIFICATION_STATUS from '../../../src/constants/verificationStatus';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
+import type { Signers } from '@blockcerts/cert-verifier-js';
+
+function updateStep (stepsCb, step) {
+  step.subSteps.forEach(substep => stepsCb(substep));
+  step.suites?.forEach(suite => {
+    suite.subSteps.forEach(substep => stepsCb(substep));
+  });
+}
 
 function validVerifyStub (stepsCb): any {
-  validCertificateStepsAssertions.forEach(step => step.subSteps.forEach(substep => stepsCb(substep)));
+  validCertificateStepsAssertions.forEach(updateStep.bind(null, stepsCb));
   return {
-    status: VERIFICATION_STATUS.SUCCESS,
+    status: VERIFICATION_STATUSES.SUCCESS,
     message: {
       label: 'Verified',
       // eslint-disable-next-line no-template-curly-in-string
@@ -20,16 +27,16 @@ function validVerifyStub (stepsCb): any {
 }
 
 function invalidVerifyStub (stepsCb): any {
-  invalidCertificateStepsAssertions.forEach(step => step.subSteps.forEach(substep => stepsCb(substep)));
+  invalidCertificateStepsAssertions.forEach(updateStep.bind(null, stepsCb));
   return {
-    status: VERIFICATION_STATUS.FAILURE,
+    status: VERIFICATION_STATUSES.FAILURE,
     message: {
       label: 'Error'
     }
   };
 }
 
-export default function stubCertificateVerify (certificateFixture, valid = true): void {
+export default function stubCertificateVerify (certificateFixture, signers: Signers[] = [], valid = true): void {
   if (!certificateFixture) {
     throw new Error('No certificate definition passed to mock its verify option. Make sure to pass the same certificate as the one you will put in the state for the test.');
   }
@@ -49,7 +56,8 @@ export default function stubCertificateVerify (certificateFixture, valid = true)
     domainParseStub = sinon.stub(domain.certificates, 'parse').returns({
       certificateDefinition: {
         ...parsedCertificate,
-        verify: valid ? validVerifyStub : invalidVerifyStub
+        verify: valid ? validVerifyStub : invalidVerifyStub,
+        signers
       }
     });
     global.domainParseStub = domainParseStub;
