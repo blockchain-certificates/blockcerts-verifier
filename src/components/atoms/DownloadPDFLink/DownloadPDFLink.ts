@@ -2,22 +2,35 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.download-pdf-link-css';
 import getText from '../../../i18n/getText';
 import { TemplateResult } from 'lit-html';
+import { CONTENT_TYPES } from '../../../constants/contentTypes';
 
 export interface IDownloadPDFLinkApi {
-  isVisible?: boolean;
   display?: string;
+  isVisible?: boolean;
+  contentType?: CONTENT_TYPES;
+  contentEncoding?: string;
+  content?: string;
 }
 
-export default function DownloadPDFLink ({ isVisible = true, display = '' }: IDownloadPDFLinkApi = {
+export default function DownloadPDFLink ({
+  display = '',
+  isVisible = true,
+  contentType = null,
+  contentEncoding = '',
+  content = ''
+}: IDownloadPDFLinkApi = {
+  display: '',
   isVisible: true,
-  display: ''
+  contentType: null,
+  contentEncoding: '',
+  content: ''
 }): TemplateResult {
   if (!isVisible) {
     return null;
   }
 
   const onClick = (): void => {
-    console.log('on click');
+    console.log('on click', contentType, contentEncoding, content);
   };
 
   const isPlainText = display === 'plaintext';
