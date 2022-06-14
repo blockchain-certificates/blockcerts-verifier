@@ -1,6 +1,6 @@
 import replace from 'rollup-plugin-replace';
-import resolve from 'rollup-plugin-node-resolve';
-import cjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import cjs from '@rollup/plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import typescript from 'rollup-plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
@@ -12,7 +12,8 @@ export default [
       {
         file: 'dist/main.js',
         format: 'iife',
-        name: 'BlockcertsVerifier'
+        name: 'BlockcertsVerifier',
+        inlineDynamicImports: true
       }
     ],
     plugins: [
@@ -33,7 +34,8 @@ export default [
       {
         file: 'dist/ie11.js',
         format: 'iife',
-        name: 'BlockcertsVerifier'
+        name: 'BlockcertsVerifier',
+        inlineDynamicImports: true
       }
     ],
     plugins: [
