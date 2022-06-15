@@ -5,7 +5,7 @@ import COVER_PAGE_NO_ISSUER_LOGO from './fixtures/fixture-cover-page-no-issuer-l
 import COVER_PAGE_NO_QR_CODE from './fixtures/fixture-cover-page-no-qr-code';
 
 const mockCertificateTitle = 'mock certificate title';
-const mockIssuedDate = '00-00-0000 00:00:00';
+const mockIssueDate = '00-00-0000 00:00:00';
 const mockIssuerName = 'Mock Issuer Name';
 const mockIssuerLogo = 'Mock Issuer Logo';
 const mockRecipientName = 'Mock Recipient Name';
@@ -15,54 +15,59 @@ const mockIssuerPublicKey = 'Mock Issuer Public Key';
 describe('getPDFCoverPage function', function () {
   describe('given all the Blockcerts info is passed', function () {
     it('should return the correct cover page template', function () {
-      expect(getPDFCoverPage({
+      const result: HTMLElement = getPDFCoverPage({
         certificateTitle: mockCertificateTitle,
-        issuedDate: mockIssuedDate,
+        issueDate: mockIssueDate,
         issuerName: mockIssuerName,
         issuerLogo: mockIssuerLogo,
         recipientName: mockRecipientName,
         qrCodeImage: mockQRCodeImage,
         issuerPublicKey: mockIssuerPublicKey
-      })).toBe(COVER_PAGE_ALL_ELEMENTS);
+      });
+      expect(result.outerHTML).toBe(COVER_PAGE_ALL_ELEMENTS);
     });
   });
 
   describe('given no certificate title is passed', function () {
     it('should return the correct cover page template without certificate title', function () {
-      expect(getPDFCoverPage({
-        issuedDate: mockIssuedDate,
+      const result: HTMLElement = getPDFCoverPage({
+        issueDate: mockIssueDate,
         issuerName: mockIssuerName,
         issuerLogo: mockIssuerLogo,
         recipientName: mockRecipientName,
         qrCodeImage: mockQRCodeImage,
         issuerPublicKey: mockIssuerPublicKey
-      })).toBe(COVER_PAGE_NO_CERTIFICATE_TITLE);
+      });
+
+      expect(result.outerHTML).toBe(COVER_PAGE_NO_CERTIFICATE_TITLE);
     });
   });
 
   describe('given no issuer logo is passed', function () {
     it('should return the correct cover page template without issuer logo', function () {
-      expect(getPDFCoverPage({
+      const result: HTMLElement = getPDFCoverPage({
         certificateTitle: mockCertificateTitle,
-        issuedDate: mockIssuedDate,
+        issueDate: mockIssueDate,
         issuerName: mockIssuerName,
         recipientName: mockRecipientName,
         qrCodeImage: mockQRCodeImage,
         issuerPublicKey: mockIssuerPublicKey
-      })).toBe(COVER_PAGE_NO_ISSUER_LOGO);
+      });
+      expect(result.outerHTML).toBe(COVER_PAGE_NO_ISSUER_LOGO);
     });
   });
 
   describe('given no QR code image is passed', function () {
     it('should return the correct cover page template without a QR code image', function () {
-      expect(getPDFCoverPage({
+      const result: HTMLElement = getPDFCoverPage({
         certificateTitle: mockCertificateTitle,
-        issuedDate: mockIssuedDate,
+        issueDate: mockIssueDate,
         issuerName: mockIssuerName,
         issuerLogo: mockIssuerLogo,
         recipientName: mockRecipientName,
         issuerPublicKey: mockIssuerPublicKey
-      })).toBe(COVER_PAGE_NO_QR_CODE);
+      });
+      expect(result.outerHTML).toBe(COVER_PAGE_NO_QR_CODE);
     });
   });
 });

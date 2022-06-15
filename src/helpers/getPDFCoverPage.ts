@@ -8,7 +8,7 @@ export const PDF_COVER_PAGE_HEIGHT = 842;
 
 const getPDFCoverPage = ({
   certificateTitle = '',
-  issuedDate = '',
+  issueDate = '',
   issuerName = '',
   recipientName = '',
   issuerPublicKey = '',
@@ -16,14 +16,14 @@ const getPDFCoverPage = ({
   qrCodeImage = ''
 }: {
   certificateTitle?: string;
-  issuedDate: string;
+  issueDate: string;
   recipientName: string;
   issuerName: string;
   issuerPublicKey: string;
   issuerLogo?: string;
   qrCodeImage?: string;
-}): string => {
-  const html: string[] = [`<section style="width:${PDF_COVER_PAGE_WIDTH}px;height:${PDF_COVER_PAGE_HEIGHT}px;padding:40px 20px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;align-items:center;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,sans-serif;">`];
+}): HTMLElement => {
+  const html: string[] = [];
 
   if (certificateTitle || issuerLogo) {
     html.push('<section>');
@@ -40,7 +40,7 @@ const getPDFCoverPage = ({
   }
 
   html.push('<section style="text-align:center">');
-  html.push(`<p style="margin:15px 0">Issued on <b>${issuedDate}</b> to <b>${recipientName}</b></p>`);
+  html.push(`<p style="margin:15px 0">Issued on <b>${issueDate}</b> to <b>${recipientName}</b></p>`);
   html.push(`<p style="margin:15px 0">Issued By <b>${issuerName}</b></p>`);
   html.push(`<p style="margin:15px 0">${issuerPublicKey}</p>`);
   html.push('</section>');
@@ -51,9 +51,11 @@ const getPDFCoverPage = ({
 
   html.push(getBlockcertsLogo());
 
-  html.push('</section>');
+  const coverPageContainer = document.createElement('section');
+  coverPageContainer.setAttribute('style', `width:${PDF_COVER_PAGE_WIDTH}px;height:${PDF_COVER_PAGE_HEIGHT}px;padding:40px 20px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;align-items:center;font-family:'Open Sans',-apple-system,BlinkMacSystemFont,sans-serif;`);
+  coverPageContainer.innerHTML = html.join('');
 
-  return html.join('');
+  return coverPageContainer;
 };
 
 export default getPDFCoverPage;
