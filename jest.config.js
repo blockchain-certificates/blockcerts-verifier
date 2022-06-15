@@ -11,7 +11,8 @@ module.exports = {
     '^.+\\.(js)$': 'babel-jest'
   },
   testPathIgnorePatterns: [
-    './test/e2e'
+    './test/e2e',
+    '<rootDir>/node_modules'
   ],
   transformIgnorePatterns: [
     'node_modules/(?!(@polymer|lit-html|pwa-helpers|@blockcerts/cert-verifier-js)/)'
