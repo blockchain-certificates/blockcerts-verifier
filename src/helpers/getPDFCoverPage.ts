@@ -47,7 +47,10 @@ const getPDFCoverPage = ({
   html.push('</section>');
 
   if (qrCodeImage) {
-    html.push(`<section><img width="146" height="146" src="${qrCodeImage}" alt="Verify the document online"></section>`);
+    html.push('<section>');
+    html.push('<span style="margin-bottom:15px;font-size:12px">Scan the QR code to verify the document.</span>');
+    html.push(`<div style="margin:0 auto;width:120px;height:120px;background-repeat:no-repeat;background-position:center;background-size:contain;background-image:url('data:image/svg+xml;base64,${qrCodeImage}');"></div>`);
+    html.push('</section>');
   }
 
   html.push(getBlockcertsLogo());
