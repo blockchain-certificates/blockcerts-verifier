@@ -1,5 +1,5 @@
 import connector from '../../../store/connector';
-import DownloadPDFLink from './DownloadPDFLink';
+import { DownloadPDFLink } from './DownloadPDFLink';
 import {
   getCertificateDefinition,
   getCertificateTitle,
