@@ -18,6 +18,7 @@ export default {
     closeButton: 'Haz Click para cerrar',
     downloadLink: 'Descarga el Registro en formato JSON',
     downloadPDFLink: 'Descarga PDF',
+    downloadPDFLinkIsLoading: 'Generando PDF...',
     dragAndDropHint: '(también puedes arrastrar y soltar tu archivo).',
     fileUpload: 'Escoge archivo JSON',
     issued: 'Emitido el',

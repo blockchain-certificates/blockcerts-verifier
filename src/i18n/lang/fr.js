@@ -18,6 +18,7 @@ export default {
     closeButton: 'Cliquer pour fermer',
     downloadLink: 'Télécharger le certificat au format JSON',
     downloadPDFLink: 'Télécharger au format PDF',
+    downloadPDFLinkIsLoading: 'Création du PDF...',
     dragAndDropHint: '(vous pouvez aussi glisser et déposer votre fichier).',
     fileUpload: 'Choisir un fichier JSON',
     issued: 'Émis le',

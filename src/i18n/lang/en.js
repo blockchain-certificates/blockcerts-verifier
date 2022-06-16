@@ -18,6 +18,7 @@ export default {
     closeButton: 'Click to close',
     downloadLink: 'Download Record in JSON format',
     downloadPDFLink: 'Download PDF',
+    downloadPDFLinkIsLoading: 'Generating PDF...',
     dragAndDropHint: '(you can also drag & drop your file).',
     fileUpload: 'Choose JSON file',
     issued: 'Issued on',
