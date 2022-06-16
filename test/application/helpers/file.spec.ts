@@ -1,5 +1,6 @@
 import sinon from 'sinon';
-import { forceDownloadFile } from '../../../src/helpers/file';
+import { forceDownloadFile, getFileExtensionFromContentType } from '../../../src/helpers/file';
+import { CONTENT_TYPES } from '../../../src/constants/contentTypes';
 
 describe('forceDownloadFile function', function () {
   const mockContent = 'mock-content';
@@ -16,7 +17,6 @@ describe('forceDownloadFile function', function () {
     mockElement = document.createElement('a');
     spyClick = sinon.spy(mockElement, 'click');
     spy.mockReturnValue(mockElement);
-    forceDownloadFile(mockContent, mockContentType, mockContentEncoding, mockFilename, mockExtension);
   });
 
   afterEach(function () {
@@ -26,15 +26,39 @@ describe('forceDownloadFile function', function () {
 
   describe('a link element should be created', function () {
     it('with the right href value', function () {
+      forceDownloadFile(mockContent, mockContentType, mockContentEncoding, mockFilename, mockExtension);
       expect(mockElement.href).toBe('data:application/pdf;base64,mock-content');
     });
 
     it('with the right download attribute value', function () {
+      forceDownloadFile(mockContent, mockContentType, mockContentEncoding, mockFilename, mockExtension);
       expect(mockElement.download).toBe('mock-file.pdf');
+    });
+
+    describe('given no extension is passed', function () {
+      it('with the right download attribute without an extension', function () {
+        forceDownloadFile(mockContent, mockContentType, mockContentEncoding, mockFilename, '');
+        expect(mockElement.download).toBe('mock-file');
+      });
     });
   });
 
   it('the link element should be clicked', function () {
+    forceDownloadFile(mockContent, mockContentType, mockContentEncoding, mockFilename, mockExtension);
     expect(spyClick.calledOnce).toBe(true);
+  });
+});
+
+describe('getFileExtensionFromContentType function', function () {
+  describe('given the contentType is application pdf', function () {
+    it('should return the pdf extension', function () {
+      expect(getFileExtensionFromContentType(CONTENT_TYPES.APPLICATION_PDF)).toBe('pdf');
+    });
+  });
+
+  describe('given the contentType is not application pdf', function () {
+    it('should return an empty string', function () {
+      expect(getFileExtensionFromContentType('text/plain')).toBe('');
+    });
   });
 });
