@@ -10,6 +10,7 @@ import isPathToCertificateValidURI from './isPathToCertificateValidURI';
 export {
   displayHtmlHasNoWidthConstraint,
   download,
+  downloadPDF,
   initializeVerificationSteps,
   retrieve,
   read,
