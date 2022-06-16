@@ -1,9 +1,9 @@
-type TPageSize = {
+export type TElementSize = {
   width: number;
   height: number;
 };
 
-export function getHTMLElementSize (htmlElement: HTMLElement): TPageSize {
+export function getHTMLElementSize (htmlElement: HTMLElement): TElementSize {
   const { offsetWidth, offsetHeight } = htmlElement;
 
   return {
