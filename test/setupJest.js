@@ -17,13 +17,3 @@ Object.defineProperty(global.self, 'crypto', {
     getRandomValues: () => new Uint32Array(10)
   }
 });
-
-global.Image = class {
-  constructor () {
-    setTimeout(() => {
-      this.width = 100;
-      this.height = 100;
-      this.onload();
-    }, 100);
-  }
-};
