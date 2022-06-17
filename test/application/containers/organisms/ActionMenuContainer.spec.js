@@ -28,6 +28,16 @@ describe('ActionMenuContainer test suite', function () {
       });
     });
 
+    describe('given the API has the disableDownloadPdf property set', function () {
+      it('should return its value', function () {
+        const initialState = getInitialState({ disableDownloadPdf: true });
+        const store = configureStore(initialState);
+        const state = store.getState();
+
+        expect(mapStateToProps(state).disableDownloadPdf).toBe(true);
+      });
+    });
+
     describe('given the API has the showMetadata property set', function () {
       it('should return its value', function () {
         const initialState = getInitialState({ showMetadata: true });

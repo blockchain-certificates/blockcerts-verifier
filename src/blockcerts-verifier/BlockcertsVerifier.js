@@ -96,6 +96,7 @@ function BUVWrapper (props = {}) {
           disableAutoVerify='${props['disable-auto-verify']}'
           disableVerify='${props['disable-verify']}'
           allowDownload='${props['allow-download']}'
+          disableDownloadPdf='${props['disable-download-pdf']}'
           allowSocialShare='${props['allow-social-share']}'
           displayMode='${props['display-mode']}'
           showMetadata='${props['show-metadata']}'

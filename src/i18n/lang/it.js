@@ -17,6 +17,8 @@ export default {
     certified: 'Certificato da',
     closeButton: 'Fai clic per chiudere',
     downloadLink: 'Scarica il Record in formato JSON',
+    downloadPDFLink: 'Scarica in formato JSON',
+    downloadPDFLinkIsLoading: 'Generazione PDF...',
     dragAndDropHint: '(puoi anche trascinare il file).',
     fileUpload: 'Scegli il file JSON',
     issued: 'Rilasciato il',

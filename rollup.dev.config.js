@@ -1,7 +1,8 @@
 import serve from 'rollup-plugin-serve';
-import resolve from 'rollup-plugin-node-resolve';
+import resolve from '@rollup/plugin-node-resolve';
 import typescript from 'rollup-plugin-typescript';
 import livereload from 'rollup-plugin-livereload';
+import commonjs from '@rollup/plugin-commonjs';
 import fs from 'fs';
 
 const BUILD_OUTPUT_FOLDER = 'dev';
@@ -13,10 +14,12 @@ export default [
       {
         file: `${BUILD_OUTPUT_FOLDER}/index.js`,
         format: 'iife',
-        name: 'BlockcertsVerifier'
+        name: 'BlockcertsVerifier',
+        inlineDynamicImports: true
       }
     ],
     plugins: [
+      commonjs(),
       typescript(),
       resolve({
         browser: true,

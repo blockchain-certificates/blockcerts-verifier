@@ -6,7 +6,6 @@ import CSS from './_components.verification-process-css';
 import getText from '../../../i18n/getText';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { TemplateResult } from 'lit-html';
-import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';
 
 class VerificationProcess extends LitElement {
   private listElement: Element;

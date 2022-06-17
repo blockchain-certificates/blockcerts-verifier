@@ -1,4 +1,4 @@
-import { getDisplay } from '../../../../src/selectors/certificate';
+import { getDisplayAsHTML } from '../../../../src/selectors/certificate';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import v3FixtureWithPng from '../../../fixtures/v3/testnet-v3-beta-display-png.json';
 import { configureStore } from '../../../../src/store';
@@ -8,7 +8,7 @@ import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 const v3FixtureWithImage = JSON.parse(JSON.stringify(v3FixtureWithPng));
 v3FixtureWithImage.display.contentMediaType = 'image/gif';
 
-describe('getDisplay selector', function () {
+describe('getDisplayAsHTML selector', function () {
   let store;
 
   beforeEach(function () {
@@ -32,7 +32,7 @@ describe('getDisplay selector', function () {
         await store.dispatch(updateCertificateDefinition(v3FixtureWithImage));
         const state = store.getState();
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        expect(getDisplay(state)).toBe(`<img src="data:image/gif;base64,${v3FixtureWithImage.display.content}"/>`);
+        expect(getDisplayAsHTML(state)).toBe(`<img src="data:image/gif;base64,${v3FixtureWithImage.display.content}"/>`);
       });
     });
   });

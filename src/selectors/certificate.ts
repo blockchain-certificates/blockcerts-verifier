@@ -4,6 +4,7 @@ import getDateFormat from '../i18n/getDateFormat';
 import { isValidUrl } from '../helpers/validations';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
+import { CONTENT_TYPES } from '../constants/contentTypes';
 
 export function getCertificateDefinition (state): Certificate {
   return state.certificateDefinition;
@@ -79,7 +80,49 @@ export function getIssuerLogo (state): string {
   return '';
 }
 
-export function getDisplay (state): string {
+export function getDisplayContentType (state): CONTENT_TYPES | null {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (!certificateDefinition) {
+    return null;
+  }
+
+  if ('displayHtml' in certificateDefinition.certificateJson) {
+    return CONTENT_TYPES.TEXT_HTML;
+  }
+
+  return certificateDefinition.display?.contentMediaType as CONTENT_TYPES;
+}
+
+export function getDisplayContentEncoding (state): string {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (!certificateDefinition) {
+    return '';
+  }
+
+  if ('displayHtml' in certificateDefinition.certificateJson) {
+    return '';
+  }
+
+  return certificateDefinition.display?.contentEncoding;
+}
+
+export function getDisplayContent (state): string {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (!certificateDefinition) {
+    return '';
+  }
+
+  if ('displayHtml' in certificateDefinition.certificateJson) {
+    return certificateDefinition.certificateJson.displayHtml;
+  }
+
+  return certificateDefinition.display?.content ?? '';
+}
+
+export function getDisplayAsHTML (state): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (!certificateDefinition) {
@@ -96,17 +139,17 @@ export function getDisplay (state): string {
 
   if (display) {
     switch (display.contentMediaType) {
-      case 'text/html':
+      case CONTENT_TYPES.TEXT_HTML:
         return sanitize(display.content);
 
-      case 'image/png':
-      case 'image/jpeg':
-      case 'image/gif':
-      case 'image/bmp':
+      case CONTENT_TYPES.IMAGE_PNG:
+      case CONTENT_TYPES.IMAGE_JPEG:
+      case CONTENT_TYPES.IMAGE_GIF:
+      case CONTENT_TYPES.IMAGE_BMP:
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         return `<img src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
 
-      case 'application/pdf':
+      case CONTENT_TYPES.APPLICATION_PDF:
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         return `<embed width="100%" height="100%" type="application/pdf" src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
 
@@ -296,4 +339,8 @@ export function getCertificateSeal (state): string {
   }
 
   return '';
+}
+
+export function getIsGeneratingPDF (state): boolean {
+  return state.isGeneratingPDF;
 }

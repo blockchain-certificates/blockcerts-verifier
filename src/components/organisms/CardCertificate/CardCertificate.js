@@ -1,6 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.card-css';
 import '../../atoms/VerifyButton';
+import '../../atoms/DownloadPDFLink';
 import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
 
@@ -26,7 +27,8 @@ export default function CardCertificate (props) {
     issueDate,
     issuerName,
     recordLink,
-    hideVerifyButton
+    hideVerifyButton,
+    disableDownloadPdf
   } = props;
 
   let { hideRecordLink } = props;
@@ -54,6 +56,11 @@ export default function CardCertificate (props) {
           <h1 class$=${titleClass}>${certificateTitle}</h1>
           <h2 class$='${titleClass}  buv-c-card__recipient'>${recipientName}</h2>
           <span class='buv-o-text-12'>${getText('text.issued')} <time datetime$='${issuedOn}'>${issueDate}</time> ${getText('text.by')} ${issuerName}</span>
+          ${disableDownloadPdf
+            ? ''
+            : html`<div class='buv-c-card__download-button'>
+            <buv-download-pdf-link></buv-download-pdf-link>
+          </div>`}
         </div>
       ${
   hideRecordLink

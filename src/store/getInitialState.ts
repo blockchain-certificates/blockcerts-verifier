@@ -18,6 +18,7 @@ export default function getInitialState (apiConfiguration = {}) {
     verificationStatus: VERIFICATION_STATUSES.DEFAULT,
     showVerificationModal: false,
     displayMode: DISPLAY_MODE.CARD,
+    disableDownloadPdf: false,
     theme: THEME.BRIGHT,
     ...apiConfiguration
   };

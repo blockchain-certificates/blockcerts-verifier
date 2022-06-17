@@ -5,6 +5,7 @@ import CSS from './_components.fullscreen-certificate-css';
 import '../../atoms/CertificateDetails';
 import CloseButton from '../../atoms/CloseButton';
 import '../../atoms/DownloadLink';
+import '../../atoms/DownloadPDFLink';
 import '../../atoms/FinalVerificationStep';
 import '../../atoms/VerifyOtherCertificateLink';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo';
@@ -27,6 +28,7 @@ export interface IFullScreenCertificateAPI {
   recipientName?: string;
   displayHTML?: string;
   onClose?: () => any;
+  disableDownloadPdf?: boolean;
 }
 
 export default function FullScreenCertificate ({
@@ -34,7 +36,8 @@ export default function FullScreenCertificate ({
   hasCertificateDefinition,
   recipientName,
   displayHTML,
-  onClose
+  onClose,
+  disableDownloadPdf
 }: IFullScreenCertificateAPI): TemplateResult {
   if (!hasCertificateDefinition) {
     return null;
@@ -64,6 +67,7 @@ export default function FullScreenCertificate ({
           </buv-final-verification-step>
           <buv-certificate-details direction='column' hideRecipientName></buv-certificate-details>
           <buv-metadata class='buv-c-fullscreen-certificate__details-item  buv-c-fullscreen-certificate__separator' display='plaintext'></buv-metadata>
+          ${disableDownloadPdf ? '' : html`<buv-download-pdf-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-pdf-link>`}
           <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>
           <buv-social-share class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-social-share>
           ${BlockcertsLogo({ className: 'buv-c-fullscreen-certificate__separator', showMotto: true })}

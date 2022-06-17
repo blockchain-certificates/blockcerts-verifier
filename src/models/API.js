@@ -6,6 +6,7 @@ const APIKeys = {
   'disable-auto-verify': Boolean,
   'disable-verify': Boolean,
   'allow-download': Boolean,
+  'disable-download-pdf': Boolean,
   'allow-social-share': Boolean,
   'display-mode': String,
   'show-metadata': Boolean,

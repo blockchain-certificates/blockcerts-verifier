@@ -10,6 +10,7 @@ import {
   getRecipientName,
   getRecordLink
 } from '../../../selectors/certificate';
+import { getDisableDownloadPdf } from '../../../selectors/api';
 
 const mapStateToProps = (state) => ({
   hasCertificateDefinition: !!getCertificateDefinition(state),
@@ -19,7 +20,8 @@ const mapStateToProps = (state) => ({
   issuedOn: getIssuedOn(state),
   issuerName: getIssuerName(state),
   issuerLogo: getIssuerLogo(state),
-  recordLink: getRecordLink(state)
+  recordLink: getRecordLink(state),
+  disableDownloadPdf: getDisableDownloadPdf(state)
 });
 
 const ownProps = {

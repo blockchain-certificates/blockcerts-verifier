@@ -1,6 +1,6 @@
 import replace from 'rollup-plugin-replace';
-import resolve from 'rollup-plugin-node-resolve';
-import cjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import typescript from 'rollup-plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
@@ -12,10 +12,12 @@ export default [
       {
         file: 'dist/main.js',
         format: 'iife',
-        name: 'BlockcertsVerifier'
+        name: 'BlockcertsVerifier',
+        inlineDynamicImports: true
       }
     ],
     plugins: [
+      commonjs(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
@@ -33,11 +35,12 @@ export default [
       {
         file: 'dist/ie11.js',
         format: 'iife',
-        name: 'BlockcertsVerifier'
+        name: 'BlockcertsVerifier',
+        inlineDynamicImports: true
       }
     ],
     plugins: [
-      cjs({
+      commonjs({
         include: 'node_modules/**'
       }),
       typescript(),
