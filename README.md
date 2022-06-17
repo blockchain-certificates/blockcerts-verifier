@@ -69,6 +69,13 @@ The component will understand the following options:
    ```html
    <blockcerts-verifier disable-auto-verify></blockcerts-verifier>
    ```
+- `disable-download-pdf`: (Boolean. default: `false`). Disables the Download PDF functionality.
+   
+   Example:
+   
+   ```html
+   <blockcerts-verifier disable-download-pdf></blockcerts-verifier>
+   ```
 - `disable-verify`: (Boolean. default: `false`). Disables verification of the record altogether. 
   
   Example:
