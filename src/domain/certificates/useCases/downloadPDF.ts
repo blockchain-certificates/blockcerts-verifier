@@ -69,7 +69,7 @@ const generateCoverPage = async (
 };
 
 const extractHtmlLayoutFromContainer = (htmlLayout: HTMLElement, isLayoutLegacy: boolean): HTMLElement[] => {
-  // Path is static, always the same (set in legacy display)
+  // DOM Path is static, always the same (set in legacy display)
   return isLayoutLegacy
     ? [htmlLayout]
     : Array.from(htmlLayout.querySelectorAll(':scope > div > div'));
