@@ -19,7 +19,7 @@ describe('getPageOrientation function', function () {
 describe('savePDF function', function () {
   it('should save the PDF with the correct filename', function () {
     const stubSave: sinon.SinonStub = sinon.stub();
-    const mockJsPDF = {
+    const mockJsPDF: Partial<jsPDF> = {
       save: stubSave
     };
     const mockFileName = 'mock-file-name.pdf';
@@ -38,10 +38,10 @@ describe('addImageToPDF function', function () {
     const fixtureY = 30;
     const fixtureCompression: ImageCompression = 'FAST';
     const stubAddImage: sinon.SinonStub = sinon.stub();
-    const mockJsPDF = {
+    const mockJsPDF: Partial<jsPDF> = {
       addImage: stubAddImage
     };
-    addImageToPDF(mockJsPDF, fixtureImageData, fixtureWidth, fixtureHeight, fixtureX, fixtureY, fixtureCompression);
+    addImageToPDF(mockJsPDF as jsPDF, fixtureImageData, fixtureWidth, fixtureHeight, fixtureX, fixtureY, fixtureCompression);
 
     expect(stubAddImage.getCall(0).args[0]).toEqual(
       { compression: 'FAST', format: 'PNG', height: 200, imageData: 'mock-image-data', width: 100, x: 20, y: 30 }
