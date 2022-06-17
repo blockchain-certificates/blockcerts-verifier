@@ -43,6 +43,7 @@ export async function addHTMLPageToPDF (
   const orientation: jsPDFOptions['orientation'] = getPageOrientation(width, height);
 
   if (!pdf) {
+    // eslint-disable-next-line new-cap
     pdf = new jsPDF({
       unit: 'px',
       hotfixes: ['px_scaling'],

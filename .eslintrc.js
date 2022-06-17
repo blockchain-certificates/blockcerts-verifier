@@ -23,7 +23,6 @@ module.exports = {
     '@typescript-eslint/strict-boolean-expressions': [0],
     '@typescript-eslint/no-explicit-any': [0], // remove one day, maybe. This is early days so we have some anys.
     '@typescript-eslint/restrict-plus-operands': [0],
-    '@typescript-eslint/consistent-type-definitions': [0],
-    'new-cap': 'off'
+    '@typescript-eslint/consistent-type-definitions': [0]
   }
 };
