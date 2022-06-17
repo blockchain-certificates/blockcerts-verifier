@@ -55,6 +55,7 @@ class DownloadPDFLink extends LitElement {
     const classes = [
       'buv-o-button-link',
       'buv-c-download-pdf-link',
+      'buv-js-download-pdf-link',
       isPlainText ? '' : 'buv-c-download-pdf-link__icon'
     ].join(' ');
 
@@ -71,7 +72,7 @@ class DownloadPDFLink extends LitElement {
   }
 
   toggleButtonLoading (isLoading: boolean) {
-    const buttonElement: HTMLElement = this.shadowRoot.querySelector('.buv-c-download-pdf-link');
+    const buttonElement: HTMLElement = this.shadowRoot.querySelector('.buv-js-download-pdf-link');
     buttonElement.classList.toggle('buv-c-download-pdf-link--loading', isLoading);
   }
 
