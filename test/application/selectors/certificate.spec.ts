@@ -23,8 +23,8 @@ import v1Fixture from '../../fixtures/v1/valid-v1-certificate.json';
 import v2Fixture from '../../fixtures/v2/valid-certificate-example.json';
 import mocknetFixture from '../../fixtures/v2/mocknet-valid-2.0.json';
 import mainnetFixture from '../../fixtures/v2/mainnet-valid-2.0.json';
-import mainnet3Fixture from '../../fixtures/v3/testnet-v3.0-beta.json';
-import mainnet3PdfFixture from '../../fixtures/v3/testnet-v3.0-beta-display-pdf.json';
+import testnet3Fixture from '../../fixtures/v3/testnet-v3.0-beta.json';
+import testnet3PdfFixture from '../../fixtures/v3/testnet-v3.0-beta-display-pdf.json';
 import ethereumRopstenFixture from '../../fixtures/v2/ethereum-ropsten-valid-2.0.json';
 import ethereumMainFixture from '../../fixtures/v2/ethereum-main-valid-2.0.json';
 import { configureStore } from '../../../src/store';
@@ -602,7 +602,7 @@ describe('certificate selectors test suite', function () {
       describe('and the contentMediaType is not defined', function () {
         beforeEach(async function () {
           await store.dispatch(updateCertificateDefinition({
-            ...mainnet3Fixture,
+            ...testnet3Fixture,
             display: {
               contentMediaType: null,
               content: 'content'
@@ -618,7 +618,7 @@ describe('certificate selectors test suite', function () {
 
       describe('and the contentMediaType is defined', function () {
         beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(mainnet3Fixture));
+          await store.dispatch(updateCertificateDefinition(testnet3Fixture));
         });
 
         it('should return the value of the contentMediaType', function () {
@@ -641,7 +641,7 @@ describe('certificate selectors test suite', function () {
     describe('given the certificate has a display property', function () {
       describe('and the contentEncoding is not defined', function () {
         beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(mainnet3Fixture));
+          await store.dispatch(updateCertificateDefinition(testnet3Fixture));
         });
 
         it('should return undefined', function () {
@@ -652,7 +652,7 @@ describe('certificate selectors test suite', function () {
 
       describe('and the contentEncoding is defined', function () {
         beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(mainnet3PdfFixture));
+          await store.dispatch(updateCertificateDefinition(testnet3PdfFixture));
         });
 
         it('should return the value of the contentMediaType', function () {
@@ -679,7 +679,7 @@ describe('certificate selectors test suite', function () {
       describe('and the content is not defined', function () {
         beforeEach(async function () {
           await store.dispatch(updateCertificateDefinition({
-            ...mainnet3Fixture,
+            ...testnet3Fixture,
             display: {}
           }));
         });
@@ -692,7 +692,7 @@ describe('certificate selectors test suite', function () {
 
       describe('and the content is defined', function () {
         beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(mainnet3Fixture));
+          await store.dispatch(updateCertificateDefinition(testnet3Fixture));
         });
 
         it('should return the value of the content', function () {
