@@ -1,6 +1,6 @@
 import replace from 'rollup-plugin-replace';
 import resolve from '@rollup/plugin-node-resolve';
-import cjs from '@rollup/plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import typescript from 'rollup-plugin-typescript';
 import { terser } from 'rollup-plugin-terser';
@@ -17,6 +17,7 @@ export default [
       }
     ],
     plugins: [
+      commonjs(),
       replace({
         'process.env.NODE_ENV': JSON.stringify('production')
       }),
@@ -39,7 +40,7 @@ export default [
       }
     ],
     plugins: [
-      cjs({
+      commonjs({
         include: 'node_modules/**'
       }),
       typescript(),
