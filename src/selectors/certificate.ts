@@ -340,3 +340,7 @@ export function getCertificateSeal (state): string {
 
   return '';
 }
+
+export function getIsGeneratingPDF (state): boolean {
+  return state.isGeneratingPDF;
+}

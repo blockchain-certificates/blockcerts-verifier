@@ -1,31 +1,18 @@
 import connector from '../../../store/connector';
-import { DownloadPDFLink } from './DownloadPDFLink';
+import DownloadPDFLink from './DownloadPDFLink';
 import {
   getCertificateDefinition,
-  getCertificateTitle,
-  getDisplayContent,
-  getDisplayContentEncoding,
-  getDisplayContentType,
-  getIssueDate,
-  getIssuerLogo,
-  getIssuerName,
-  getIssuerPublicKey,
-  getRecipientName,
-  getRecordLink
+  getIsGeneratingPDF
 } from '../../../selectors/certificate';
+import downloadPDF from '../../../actions/downloadPDF';
+
+export const mapDispatchToProps = {
+  onClick: downloadPDF
+};
 
 export const mapStateToProps = (state) => ({
   isVisible: !!getCertificateDefinition(state),
-  contentType: getDisplayContentType(state),
-  contentEncoding: getDisplayContentEncoding(state),
-  content: getDisplayContent(state),
-  recipientName: getRecipientName(state),
-  certificateTitle: getCertificateTitle(state),
-  issueDate: getIssueDate(state),
-  issuerName: getIssuerName(state),
-  issuerLogo: getIssuerLogo(state),
-  recordLink: getRecordLink(state),
-  issuerPublicKey: getIssuerPublicKey(state)
+  isGeneratingPDF: getIsGeneratingPDF(state)
 });
 
 const ownProps = {
@@ -34,6 +21,6 @@ const ownProps = {
 
 const DownloadPDFLinkContainer = connector(
   DownloadPDFLink,
-  { mapStateToProps, ownProps }
+  { mapDispatchToProps, mapStateToProps, ownProps }
 );
 export default DownloadPDFLinkContainer;

@@ -11,6 +11,7 @@ import resetCertificateDefinition from './resetCertificateDefinition';
 import updateVerificationStatus from './updateVerificationStatus';
 import updateFinalStep from './updateFinalStep';
 import showVerificationModal from './showVerificationModal';
+import updateIsGeneratingPDF from './updateIsGeneratingPDF';
 
 export function app (state, action) {
   switch (action.type) {
@@ -49,6 +50,9 @@ export function app (state, action) {
 
     case ACTIONS.UPDATE_FINAL_STEP:
       return updateFinalStep(state, action);
+
+    case ACTIONS.UPDATE_IS_GENERATING_PDF:
+      return updateIsGeneratingPDF(state, action);
 
     default:
       return state;
