@@ -22,6 +22,7 @@ const HTML2PDF_CONTAINER_STYLE = {
   color: '#49555f',
   'font-size': '12px',
   'word-wrap': 'break-word',
+  'min-height': 'calc(100vh - 145px)',
   'box-sizing': 'border-box',
   margin: '0 auto',
   'min-width': '600px',
