@@ -1,8 +1,9 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.blockcerts-logo-css';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
 
-function simpleLogo () {
+function simpleLogo (): TemplateResult {
   return html`
     <svg class='buv-qa-logo--simple  buv-c-logo--small' viewBox="0 0 113 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <defs></defs>
@@ -29,7 +30,7 @@ function simpleLogo () {
   `;
 }
 
-function logoWithBranding () {
+export function logoWithBranding (): TemplateResult {
   return html`
     <svg class='buv-qa-logo--branded  buv-c-logo--medium' version="1.1" viewBox="0 0 686 163" xmlns="http://www.w3.org/2000/svg">
       <g fill="none" fill-rule="evenodd">
@@ -59,16 +60,19 @@ function logoWithBranding () {
   `;
 }
 
-const BlockcertsLogo = ({ className, showMotto = false } = {}) => {
+const BlockcertsLogo = ({ className = '', showMotto = false }: { className?: string; showMotto?: boolean } = {
+  className: '',
+  showMotto: false
+}): TemplateResult => {
   return html`
-  ${CSS}
-  <a href='https://www.blockcerts.org' title='${getText('text.blockcertsHint')}' class$='buv-c-logo  ${className}'>
-    ${
-  showMotto
-    ? logoWithBranding()
-    : simpleLogo()
-}
-  </a>`;
+    ${CSS}
+    <a href='https://www.blockcerts.org' title='${getText('text.blockcertsHint')}' class$='buv-c-logo  ${className}'>
+      ${
+        showMotto
+          ? logoWithBranding()
+          : simpleLogo()
+      }
+    </a>`;
 };
 
 export default BlockcertsLogo;
