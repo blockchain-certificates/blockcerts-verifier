@@ -40,7 +40,9 @@ const generateCoverPage = async (
   issuerName: string,
   issuerLogo: string,
   recordLink: string,
-  issuerPublicKey: string
+  issuerPublicKey: string[],
+  issuerPublicDomain: string[],
+  issuerPublicUrl: string[]
 ): Promise<jsPDF> => {
   const htmlContainer: HTMLElement = createDomContainer(HTML2PDF_CONTAINER_HIDE_STYLE);
 
@@ -52,6 +54,8 @@ const generateCoverPage = async (
     issuerName,
     issuerLogo,
     issuerPublicKey,
+    issuerPublicDomain,
+    issuerPublicUrl,
     recipientName,
     qrCodeImage
   });
@@ -131,7 +135,9 @@ const generatePdfDocument = async ({
   issuerName = '',
   issuerLogo = '',
   recordLink = '',
-  issuerPublicKey = ''
+  issuerPublicKey = [],
+  issuerProfileUrl = [],
+  issuerProfileDomain = []
 }: IDownloadPdfParameters): Promise<void> => {
   const fileName: string = certificateTitle;
   let pdf: jsPDF;
@@ -141,7 +147,17 @@ const generatePdfDocument = async ({
   const shouldHaveCoverPage: boolean = isContentHTML || isContentAnImage;
 
   if (shouldHaveCoverPage) {
-    pdf = await generateCoverPage(recipientName, certificateTitle, issueDate, issuerName, issuerLogo, recordLink, issuerPublicKey);
+    pdf = await generateCoverPage(
+      recipientName,
+      certificateTitle,
+      issueDate,
+      issuerName,
+      issuerLogo,
+      recordLink,
+      issuerPublicKey,
+      issuerProfileDomain,
+      issuerProfileUrl
+    );
   }
 
   if (isContentHTML) {
@@ -163,7 +179,9 @@ export interface IFirstCoverInfo {
   issuerName?: string;
   issuerLogo?: string;
   recordLink?: string;
-  issuerPublicKey?: string;
+  issuerPublicKey?: string[];
+  issuerProfileDomain?: string[];
+  issuerProfileUrl?: string[];
 }
 
 export interface IDownloadPdfParameters extends IFirstCoverInfo {
