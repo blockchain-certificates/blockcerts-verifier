@@ -7,26 +7,29 @@ import {
   getDisplayContentType,
   getIssueDate,
   getIssuerLogo,
-  getIssuerName,
+  getIssuerName, getIssuerProfileDomain, getIssuerProfileUrl,
   getIssuerPublicKey,
   getRecipientName,
   getRecordLink
 } from '../selectors/certificate';
+import { CONTENT_TYPES } from '../constants/contentTypes';
 
 export default function downloadPDF () {
   return async function (dispatch, getState) {
     const state = getState();
 
-    const contentType = getDisplayContentType(state);
-    const contentEncoding = getDisplayContentEncoding(state);
-    const content = getDisplayContent(state);
-    const recipientName = getRecipientName(state);
-    const certificateTitle = getCertificateTitle(state);
-    const issueDate = getIssueDate(state);
-    const issuerName = getIssuerName(state);
-    const issuerLogo = getIssuerLogo(state);
-    const recordLink = getRecordLink(state);
-    const issuerPublicKey = getIssuerPublicKey(state);
+    const contentType: CONTENT_TYPES = getDisplayContentType(state);
+    const contentEncoding: string = getDisplayContentEncoding(state);
+    const content: string = getDisplayContent(state);
+    const recipientName: string = getRecipientName(state);
+    const certificateTitle: string = getCertificateTitle(state);
+    const issueDate: string = getIssueDate(state);
+    const issuerName: string = getIssuerName(state);
+    const issuerLogo: string = getIssuerLogo(state);
+    const recordLink: string = getRecordLink(state);
+    const issuerPublicKey: string[] = getIssuerPublicKey(state);
+    const issuerProfileUrl: string[] = getIssuerProfileUrl(state);
+    const issuerProfileDomain: string[] = getIssuerProfileDomain(state);
 
     dispatch(isGeneratingPDF(true));
 
@@ -40,7 +43,9 @@ export default function downloadPDF () {
       issuerName,
       issuerLogo,
       recordLink,
-      issuerPublicKey
+      issuerPublicKey,
+      issuerProfileUrl,
+      issuerProfileDomain
     });
 
     dispatch(isGeneratingPDF(false));

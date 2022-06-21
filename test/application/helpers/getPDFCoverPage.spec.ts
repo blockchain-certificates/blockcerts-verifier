@@ -13,7 +13,9 @@ const mockIssuerName = 'Mock Issuer Name';
 const mockIssuerLogo = 'Mock Issuer Logo';
 const mockRecipientName = 'Mock Recipient Name';
 const mockQRCodeImage = 'Mock QR Code Image';
-const mockIssuerPublicKey = 'Mock Issuer Public Key';
+const mockIssuerPublicKey: string[] = ['Mock Issuer Public Key'];
+const mockIssuerPublicDomain: string[] = ['blockcerts.org'];
+const mockIssuerPublicUrl: string[] = ['https://blockcerts.org'];
 
 describe('getPDFCoverPage function', function () {
   let stubLogoFunction: sinon.SinonStub;
@@ -36,7 +38,9 @@ describe('getPDFCoverPage function', function () {
         issuerLogo: mockIssuerLogo,
         recipientName: mockRecipientName,
         qrCodeImage: mockQRCodeImage,
-        issuerPublicKey: mockIssuerPublicKey
+        issuerPublicKey: mockIssuerPublicKey,
+        issuerPublicDomain: mockIssuerPublicDomain,
+        issuerPublicUrl: mockIssuerPublicUrl
       });
       expect(result.outerHTML).toBe(COVER_PAGE_ALL_ELEMENTS);
     });
@@ -50,7 +54,9 @@ describe('getPDFCoverPage function', function () {
         issuerLogo: mockIssuerLogo,
         recipientName: mockRecipientName,
         qrCodeImage: mockQRCodeImage,
-        issuerPublicKey: mockIssuerPublicKey
+        issuerPublicKey: mockIssuerPublicKey,
+        issuerPublicDomain: mockIssuerPublicDomain,
+        issuerPublicUrl: mockIssuerPublicUrl
       });
 
       expect(result.outerHTML).toBe(COVER_PAGE_NO_CERTIFICATE_TITLE);
@@ -65,7 +71,9 @@ describe('getPDFCoverPage function', function () {
         issuerName: mockIssuerName,
         recipientName: mockRecipientName,
         qrCodeImage: mockQRCodeImage,
-        issuerPublicKey: mockIssuerPublicKey
+        issuerPublicKey: mockIssuerPublicKey,
+        issuerPublicDomain: mockIssuerPublicDomain,
+        issuerPublicUrl: mockIssuerPublicUrl
       });
       expect(result.outerHTML).toBe(COVER_PAGE_NO_ISSUER_LOGO);
     });
@@ -79,7 +87,9 @@ describe('getPDFCoverPage function', function () {
         issuerName: mockIssuerName,
         issuerLogo: mockIssuerLogo,
         recipientName: mockRecipientName,
-        issuerPublicKey: mockIssuerPublicKey
+        issuerPublicKey: mockIssuerPublicKey,
+        issuerPublicDomain: mockIssuerPublicDomain,
+        issuerPublicUrl: mockIssuerPublicUrl
       });
       expect(result.outerHTML).toBe(COVER_PAGE_NO_QR_CODE);
     });
