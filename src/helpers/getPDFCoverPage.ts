@@ -20,7 +20,7 @@ function buildIssuerInfo (issuerInfo: TIssuerInfo[]): string {
   const html: string[] = ['<div style="margin:15px 0">'];
 
   html.push('<dt style="margin-bottom:5px;text-transform:uppercase;font-weight:600;font-size:12px">Issuer Information</dt>');
-  html.push('<dd style="margin:0;word-break:break-all;font-size:13px">');
+  html.push('<dd style="margin:0;font-size:13px">');
   html.push('<div style="display:flex;flex-direction:column;align-content:center;row-gap:4px;padding:0 20px;font-size:12px">');
 
   html.push(...issuerInfo.map((info: TIssuerInfo, index: number): string => {
@@ -98,7 +98,7 @@ const getPDFCoverPage = ({
   ];
 
   html.push(...credentialProperties.map((credentialProperty: TCredentialProperty): string => {
-    return `<div style="margin:15px 0"><dt style="margin-bottom:5px;text-transform:uppercase;font-weight:600;font-size:12px">${credentialProperty.title}</dt><dd style="margin:0;word-break:break-all;font-size:13px">${credentialProperty.value}</dd></div>`;
+    return `<div style="margin:15px 0"><dt style="margin-bottom:5px;text-transform:uppercase;font-weight:600;font-size:12px">${credentialProperty.title}</dt><dd style="margin:0;font-size:13px">${credentialProperty.value}</dd></div>`;
   }));
 
   const issuerInfo: TIssuerInfo[] = issuerPublicKey.map((publicKey: string, index: number) => {
