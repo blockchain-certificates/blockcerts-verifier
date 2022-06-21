@@ -1,4 +1,5 @@
 import { logoWithBranding } from '../components/atoms/BlockcertsLogo/BlockcertsLogo';
+import getOrdinalNumber from '../i18n/getOrdinalNumber';
 
 export const PDF_COVER_PAGE_WIDTH = 595;
 export const PDF_COVER_PAGE_HEIGHT = 842;
@@ -15,22 +16,29 @@ type TIssuerInfo = {
 };
 
 function buildIssuerInfo (issuerInfo: TIssuerInfo[]): string {
+  const showOrdinalNumber: boolean = issuerInfo.length > 1;
   const html: string[] = ['<div style="margin:15px 0">'];
 
   html.push('<dt style="margin-bottom:5px;text-transform:uppercase;font-weight:600;font-size:12px">Issuer Information</dt>');
   html.push('<dd style="margin:0;word-break:break-all;font-size:13px">');
-  html.push('<div style="display:flex;flex-direction:row;justify-content:center;flex-wrap:wrap;row-gap:15px;padding:0 20px;font-size:12px">');
+  html.push('<div style="display:flex;flex-direction:column;align-content:center;row-gap:4px;padding:0 20px;font-size:12px">');
 
-  html.push(...issuerInfo.map((info: TIssuerInfo): string => {
-    const blockWidth: number = issuerInfo.length === 1 ? 100 : 45;
+  html.push(...issuerInfo.map((info: TIssuerInfo, index: number): string => {
+    const issuerBlockInfo: string[] = [
+      '<div style="display:flex;flex-direction:column;row-gap:3px;justify-content:center;padding:5px 10px">'
+    ];
 
-    const issuerBlockInfo: string[] = [`<div style="width:${blockWidth}%;display:flex;flex-direction:column;row-gap:3px;padding:0 10px">`];
-
+    issuerBlockInfo.push('<div>');
+    if (showOrdinalNumber) {
+      issuerBlockInfo.push(`<span style="font-weight:500;margin-right:10px">${getOrdinalNumber(index + 1)}</span>`);
+    }
     issuerBlockInfo.push(`<span>Public Key: ${info.publicKey}</span>`);
+    issuerBlockInfo.push('</div>');
 
     if (info.url && info.domain) {
       issuerBlockInfo.push(`<span><a href="${info.url}">${info.domain}</a></span>`);
     }
+
     issuerBlockInfo.push('</div>');
 
     return issuerBlockInfo.join('');
