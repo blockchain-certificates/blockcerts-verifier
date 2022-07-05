@@ -93,13 +93,8 @@ const generateLayoutPages = async (pdf: jsPDF, pagesContent: string): Promise<js
 
   const pages: HTMLElement[] = extractHtmlLayoutFromContainer(htmlContainer, isLayoutLegacy);
 
-  console.log('pages', pages);
-
   for (const page of pages) {
     const pageSize = getHTMLElementSize(page);
-
-    console.log('pageSize', pageSize);
-
     pdf = await addHTMLPageToPDF({
       pdf,
       pageHTMLElement: page,
@@ -109,7 +104,7 @@ const generateLayoutPages = async (pdf: jsPDF, pagesContent: string): Promise<js
     });
   }
 
-  // deleteDomContainer(htmlContainer);
+  deleteDomContainer(htmlContainer);
 
   return pdf;
 };
