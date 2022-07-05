@@ -65,7 +65,7 @@
 }
 
 .buv-c-verification-step.is-failure::after {
-  content: '\\274C'; // double escape needed for JS
+  content: '\274C';
   left: -32px;
   top: -1px;
   font-size: 11px;

@@ -65,7 +65,7 @@
 }
 
 .buv-c-final-verification-step.is-failure::after {
-  content: '\\274C'; // double escape needed for JS
+  content: '\274C';
   font-size: 17px;
   top: -1px;
   color: $errorColor;
