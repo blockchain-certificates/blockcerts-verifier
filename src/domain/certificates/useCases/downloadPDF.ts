@@ -11,10 +11,11 @@ import { forceDownloadFile, getFileExtensionFromContentType } from '../../../hel
 
 const HTML2PDF_DOM_CONTAINER_ID = 'html2pdf-dom-container-identifier';
 const HTML2PDF_CONTAINER_HIDE_STYLE = {
-  height: '0',
-  overflow: 'hidden'
+  overflow: 'hidden',
+  left: '-1000px'
 };
 const HTML2PDF_CONTAINER_STYLE = {
+  position: 'absolute',
   padding: '20px',
   'background-color': '#fff',
   'font-family': 'serif',
