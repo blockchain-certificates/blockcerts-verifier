@@ -18,7 +18,7 @@
     "cssfilter": "0.0.10",
     "html-canvas": "^0.0.4",
     "jspdf": "^2.5.1",
-    "lit-html": "0.10.2",
+    "lit-html": "2.2.7",
     "proxy-polyfill": "^0.3.0",
     "qrcode-svg": "^1.1.0",
     "redux": "^4.0.0",
