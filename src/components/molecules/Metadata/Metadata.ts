@@ -6,10 +6,12 @@ import getText from '../../../i18n/getText';
 import FormattedMetadataItem from '../../atoms/FormattedMetadataItem';
 
 function getProperties (metadataList) {
-  return metadataList.schema.properties.certificate.properties;
+  return metadataList.schema?.properties.certificate.properties;
 }
 
 class Metadata extends LitElement {
+  private isOpen: boolean;
+
   constructor () {
     super();
     this.isOpen = false;
@@ -40,7 +42,7 @@ class Metadata extends LitElement {
     let innerHTML = '';
     if (metadataList) {
       const properties = getProperties(metadataList);
-      innerHTML = metadataList.displayOrder.map(entry => {
+      innerHTML = metadataList.displayOrder?.map(entry => {
         const key = entry.split('.')[1]; // get key name
         const value = getValueFrom(metadataList, entry);
         return FormattedMetadataItem(properties[key], value);
