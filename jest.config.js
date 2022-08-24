@@ -4,6 +4,7 @@ module.exports = {
     '<rootDir>/node_modules'
   ],
   setupFiles: [
+    'jest-canvas-mock',
     './test/setupJest.js'
   ],
   transform: {

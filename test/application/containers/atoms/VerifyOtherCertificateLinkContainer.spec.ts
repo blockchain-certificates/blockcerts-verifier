@@ -1,6 +1,6 @@
 import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
-import certificateFixture from '../../../fixtures/v2/valid-certificate-example.json';
+import certificateFixture from '../../../fixtures/v2/mainnet-valid-2.0.json';
 import {
   mapDispatchToProps,
   mapStateToProps

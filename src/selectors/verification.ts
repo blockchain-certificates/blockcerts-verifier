@@ -10,6 +10,10 @@ export function getVerificationStatusForSuite (state, suiteType: string): VERIFI
   const proofVerificationSteps = verificationSteps.find(step => step.code === 'proofVerification');
   const suite = proofVerificationSteps.suites?.find(suite => suite.proofType === suiteType);
 
+  if (!suite) {
+    return '' as VERIFICATION_STATUSES;
+  }
+
   if (suite.subSteps.every(subStep => subStep.status === VERIFICATION_STATUSES.SUCCESS)) {
     return VERIFICATION_STATUSES.SUCCESS;
   }

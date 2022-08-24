@@ -455,7 +455,8 @@ describe('certificate selectors test suite', function () {
       });
     });
 
-    describe('given the certificate chain is Ethereum Ropsten', function () {
+    xdescribe('given the certificate chain is Ethereum Ropsten', function () {
+      // TODO: issuer profile not available anymore. Use newer issuance.
       const signersObjectForFixture: Signers[] = [
         {
           signingDate: '2017-07-20T09:33:47.490752+00:00',
@@ -527,7 +528,8 @@ describe('certificate selectors test suite', function () {
       });
     });
 
-    describe('given the certificate chain is Ethereum Main', function () {
+    xdescribe('given the certificate chain is Ethereum Main', function () {
+      // TODO: issuer profile not available anymore. Use newer issuance.
       const signersObjectForFixture = [
         {
           signingDate: '2018-06-01T19:29:12.667+00:00',
