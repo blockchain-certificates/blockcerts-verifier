@@ -1,21 +1,5 @@
 export default  [
   {
-    "code": "formatValidation",
-    "label": "Format validation",
-    "labelPending": "Validating format",
-    "subSteps": [
-      {
-        "code": "checkImagesIntegrity",
-        "label": "Verify Images Integrity",
-        "labelPending": "Verifying Images Integrity",
-        "parentStep": "formatValidation",
-        "status": "standby"
-      }
-    ],
-    "isLast": false,
-    "status": "standby"
-  },
-  {
     "code": "proofVerification",
     "label": "Proof Verification",
     "labelPending": "Verifying Proof",

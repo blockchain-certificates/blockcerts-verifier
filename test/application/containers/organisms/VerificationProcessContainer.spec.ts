@@ -171,7 +171,7 @@ describe('VerificationProcessContainer test suite', function () {
           // assume process has started
           parentStep.status = VERIFICATION_STATUSES.STARTING;
           // prepare substeps
-          parentStep.subSteps[0].status = VERIFICATION_STATUSES.FAILURE;
+          parentStep.suites[0].subSteps[0].status = VERIFICATION_STATUSES.FAILURE;
 
           store.dispatch(updateParentStepStatus(parentCode));
 
