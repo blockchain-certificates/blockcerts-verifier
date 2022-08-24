@@ -10,7 +10,6 @@ import validCertificateStepsAssertions from '../../assertions/validCertificateSt
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
-import validCertificate from '../../assertions/validCertificate';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
@@ -51,7 +50,7 @@ describe('verifyCertificate action creator test suite', function () {
         let wasCalled = false;
         function assertFunction (e) {
           wasCalled = true;
-          expect(e.detail.certificateDefinition.id).toEqual(validCertificate.id);
+          expect(e.detail.certificateDefinition.id).toEqual(validCertificateFixture.id);
         }
         window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, assertFunction);
         store.dispatch(verifyCertificate());

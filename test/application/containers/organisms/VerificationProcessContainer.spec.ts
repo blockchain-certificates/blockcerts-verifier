@@ -3,7 +3,7 @@ import { configureStore } from '../../../../src/store';
 import getInitialState from '../../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../../fixtures/v2/valid-certificate-example.json';
-import mainnetCertificateFixture from '../../../fixtures/v2/ethereum-main-valid-2.0.json';
+import mainnetCertificateFixture from '../../../fixtures/v2/mainnet-valid-2.0.json';
 import validCertificateStepsAssertions from '../../../assertions/validCertificateSteps';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 import { getVerifiedSteps } from '../../../../src/selectors/certificate';
@@ -62,27 +62,28 @@ describe('VerificationProcessContainer test suite', function () {
     describe('given the certificate is issued on a mainnet chain', function () {
       const signersObjectForFixture: Signers[] = [
         {
-          signingDate: '2018-06-01T19:29:12.667+00:00',
+          signingDate: '2018-02-07T23:52:16.636+00:00',
           signatureSuiteType: 'MerkleProof2017',
-          issuerPublicKey: '0x3d995ef85a8d1bcbed78182ab225b9f88dc8937c',
-          issuerName: 'University of Learning',
-          issuerProfileDomain: 'raw.githubusercontent.com',
-          issuerProfileUrl: 'https://raw.githubusercontent.com/AnthonyRonning/https-github.com-labnol-files/master/issuer-eth-mainnet.json?raw=true',
+          issuerPublicKey: '1AwdUWQzJgfDDjeKtpPzMfYMHejFBrxZfo',
+          issuerName: 'Hyland Credentials',
+          issuerProfileDomain: 'blockcerts.learningmachine.com',
+          issuerProfileUrl: 'https://blockcerts.learningmachine.com/issuer/5a4fe9931f607f0f3452a65e.json',
           chain: {
-            code: 'ethmain',
-            name: 'Ethereum',
+            code: 'bitcoin',
+            name: 'Bitcoin',
             prefixes: [
-              '0x'
+              '6a20',
+              'OP_RETURN '
             ],
-            signatureValue: 'ethereumMainnet',
+            signatureValue: 'bitcoinMainnet',
             transactionTemplates: {
-              full: 'https://etherscan.io/tx/{transaction_id}',
-              raw: 'https://etherscan.io/tx/{transaction_id}'
+              full: 'https://blockchain.info/tx/{transaction_id}',
+              raw: 'https://blockchain.info/rawtx/{transaction_id}'
             }
           } as any,
-          transactionId: '0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3',
-          transactionLink: 'https://etherscan.io/tx/0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3',
-          rawTransactionLink: 'https://etherscan.io/tx/0xa12c498c8fcf59ee2fe785c94c38be4797fb027e6450439a7ef30ad61d7616d3'
+          transactionId: '2378076e8e140012814e98a2b2cb1af07ec760b239c1d6d93ba54d658a010ecd',
+          transactionLink: 'https://blockchain.info/tx/2378076e8e140012814e98a2b2cb1af07ec760b239c1d6d93ba54d658a010ecd',
+          rawTransactionLink: 'https://blockchain.info/rawtx/2378076e8e140012814e98a2b2cb1af07ec760b239c1d6d93ba54d658a010ecd'
         }
       ];
       stubCertificateVerify(mainnetCertificateFixture, signersObjectForFixture);
