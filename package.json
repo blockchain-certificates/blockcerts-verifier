@@ -44,7 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^4.16.1",
     "@typescript-eslint/parser": "^4.16.1",
     "axe-core": "^4.0.1",
-    "babel-jest": "^27.5.1",
+    "babel-jest": "^29.2.1",
     "codecov": "^3.1.0",
     "concurrently": "^7.3.0",
     "deepmerge": "^4.2.2",
