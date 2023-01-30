@@ -23,6 +23,7 @@ export interface ICertificateDetailsApi {
   issuerProfileUrl?: string[];
   issuerProfileDomain?: string[];
   signatureSuiteType?: string[];
+  chain?: string[];
   direction?: any; // enum
   hideRecipientName?: boolean;
 }
@@ -49,6 +50,13 @@ function renderListDetail ({ title, value, isDisplayColumn, renderInline = false
   </div>`;
 }
 
+function formatChainString (chain: string): string {
+  if (chain) {
+    return ` (${chain})`;
+  }
+  return '';
+}
+
 export default function CertificateDetails ({
   recipientName,
   issuedOn,
@@ -60,7 +68,8 @@ export default function CertificateDetails ({
   transactionId = [],
   direction,
   hideRecipientName,
-  signatureSuiteType = []
+  signatureSuiteType = [],
+  chain = []
 }: ICertificateDetailsApi): TemplateResult {
   const details = [];
   if (!hideRecipientName) {
@@ -91,7 +100,7 @@ export default function CertificateDetails ({
       details.push({
         title: `${prefix}${getText('text.signatureSuiteType')}`,
         value: html`<buv-suite-verification-status suiteType$='${signatureSuiteType[i]}' index$='${i}'>
-            ${signatureSuiteType[i]}
+            ${signatureSuiteType[i]}${formatChainString(chain[i])}
         </buv-suite-verification-status>`
       });
     }

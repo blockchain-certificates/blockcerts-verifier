@@ -12,6 +12,7 @@ const FIXTURE_ISSUER_PROFILE_URL = ['https://www.multinational-organization.com/
 const FIXTURE_TRANSACTION_ID = ['transaction-id'];
 const FIXTURE_PUBLIC_KEY = ['public-key'];
 const FIXTURE_SIGNATURE_TYPE = ['MerkleProof2019'];
+const FIXTURE_CHAIN = ['Bitcoin'];
 const secondIssuerProfileDomain = 'https://www.another-organization.com';
 const secondIssuerProfileUrl = 'https://www.another-organization.com/profile.json';
 const secondSignatureType = 'Ed25519';
@@ -152,6 +153,21 @@ describe('CertificateDetails test suite', function () {
       it('should not use an ordinal indexer on the title', function () {
         expect(instanceAsString).not.toContain(`${getOrdinalNumber(1)} ${getText('text.signatureSuiteType')}`);
         expect(instanceAsString).toContain(getText('text', 'signatureSuiteType'));
+      });
+    });
+
+    describe('and a chain is set', function () {
+      beforeEach(function () {
+        instance = CertificateDetails({
+          issuerPublicKey: FIXTURE_PUBLIC_KEY,
+          signatureSuiteType: FIXTURE_SIGNATURE_TYPE,
+          chain: FIXTURE_CHAIN
+        });
+        instanceAsString = JSON.stringify(instance);
+      });
+
+      it('value should be rendered', function () {
+        expect(instanceAsString).toContain(` (${FIXTURE_CHAIN[0]})`);
       });
     });
 

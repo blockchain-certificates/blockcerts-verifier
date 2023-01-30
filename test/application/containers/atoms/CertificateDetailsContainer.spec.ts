@@ -71,6 +71,11 @@ describe('CertificateDetailsContainer test suite', function () {
         const state = store.getState();
         expect(mapStateToProps(state).issuerPublicKey[0]).toBe('msgxCqNzDiezUFrgQK7GZkWDGYC3fU6vQ8');
       });
+
+      it('should retrieve the anchoring chain', async function () {
+        const state = store.getState();
+        expect(mapStateToProps(state).chain[0]).toBe('Bitcoin Testnet');
+      });
     });
   });
 });
