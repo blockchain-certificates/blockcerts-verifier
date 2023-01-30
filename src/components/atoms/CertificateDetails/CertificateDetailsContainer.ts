@@ -1,6 +1,7 @@
 import connector from '../../../store/connector';
 import CertificateDetails, { ICertificateDetailsApi } from './CertificateDetails';
 import {
+  getChain,
   getIssueDate,
   getIssuedOn,
   getIssuerName, getIssuerProfileDomain, getIssuerProfileUrl,
@@ -18,7 +19,8 @@ export const mapStateToProps = (state): ICertificateDetailsApi => ({
   issuerPublicKey: getIssuerPublicKey(state),
   issuerProfileDomain: getIssuerProfileDomain(state),
   issuerProfileUrl: getIssuerProfileUrl(state),
-  signatureSuiteType: getSignatureSuiteType(state)
+  signatureSuiteType: getSignatureSuiteType(state),
+  chain: getChain(state)
 });
 
 const ownProps = {
