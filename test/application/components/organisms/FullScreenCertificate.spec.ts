@@ -145,4 +145,32 @@ describe('FullScreenCertificate component test suite', function () {
       });
     });
   });
+
+  describe('_shouldRender method', function () {
+    let instance;
+
+    beforeEach(function () {
+      instance = new FullScreenCertificateComponent();
+    });
+
+    afterEach(function () {
+      instance = null;
+    });
+
+    describe('given the displayHTML property is set in the changedProperties object', function () {
+      it('should return true', function () {
+        const result = instance._shouldRender(null, {
+          displayHTML: '<div>Yo</div>'
+        }, null);
+        expect(result).toBe(true);
+      });
+    });
+
+    describe('given the displayHTML property is not set in the changedProperties object', function () {
+      it('should return false', function () {
+        const result = instance._shouldRender(null, null, null);
+        expect(result).toBe(false);
+      });
+    });
+  });
 });

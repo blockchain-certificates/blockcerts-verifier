@@ -43,6 +43,14 @@ export class FullScreenCertificateComponent extends LitElement {
     };
   }
 
+  _shouldRender (
+    _props: IFullScreenCertificateAPI,
+    _changedProps: IFullScreenCertificateAPI,
+    _prevProps: IFullScreenCertificateAPI
+  ): boolean {
+    return !!_changedProps?.displayHTML;
+  }
+
   _render ({
     clickableUrls,
     hasCertificateDefinition,
