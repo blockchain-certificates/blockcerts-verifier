@@ -1,5 +1,5 @@
 import connector from '../../../store/connector';
-import FullCertificate, { IFullCertificate } from './FullCertificate';
+import { FullCertificate, IFullCertificate } from './FullCertificate';
 import {
   getCertificateDefinition,
   getDisplayAsHTML

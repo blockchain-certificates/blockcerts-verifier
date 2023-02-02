@@ -12,7 +12,7 @@ global.customElements = {
 
 Object.defineProperty(global.self, 'crypto', {
   value: {
-    // use node 15.x
+    // use node 15.x or above
     subtle: crypto.webcrypto.subtle,
     getRandomValues: () => new Uint32Array(10)
   }

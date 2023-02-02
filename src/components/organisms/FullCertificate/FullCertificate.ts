@@ -1,4 +1,4 @@
-import { html } from '@polymer/lit-element';
+import { html, LitElement } from '@polymer/lit-element';
 import { TemplateResult } from 'lit-html';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.full-certificate-css';
@@ -9,6 +9,7 @@ import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 import domain from '../../../domain';
+import { IFullScreenCertificateAPI } from '../FullScreenCertificate/FullScreenCertificate';
 
 function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
   const buvCertificateClasses: string[] = [
@@ -25,20 +26,37 @@ function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): Templa
 
 export interface IFullCertificate {
   clickableUrls?: boolean;
-  hasCertificateDefinition: boolean;
+  hasCertificateDefinition?: boolean;
   displayHTML?: string;
 }
 
-export default function FullCertificate ({
-  clickableUrls,
-  hasCertificateDefinition,
-  displayHTML
-}: IFullCertificate): TemplateResult {
-  if (!hasCertificateDefinition) {
-    return null;
+export class FullCertificateComponent extends LitElement {
+  static get properties () {
+    return {
+      clickableUrls: Boolean,
+      hasCertificateDefinition: Boolean,
+      displayHTML: String
+    };
   }
 
-  return html`
+  _shouldRender (
+    _props: IFullScreenCertificateAPI,
+    _changedProps: IFullScreenCertificateAPI,
+    _prevProps: IFullScreenCertificateAPI
+  ): boolean {
+    return !!_changedProps?.displayHTML;
+  }
+
+  _render ({
+    clickableUrls,
+    hasCertificateDefinition,
+    displayHTML
+  }: IFullCertificate): TemplateResult {
+    if (!hasCertificateDefinition) {
+      return null;
+    }
+
+    return html`
     ${CSS}
     ${displayHTML ? renderDisplayHTML(displayHTML, clickableUrls) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
     <div class='buv-c-full-certificate__details'>
@@ -48,4 +66,19 @@ export default function FullCertificate ({
       </buv-final-verification-step>
     </div>
   `;
+  }
 }
+
+window.customElements.define('buv-full-certificate-raw', FullCertificateComponent);
+function FullCertificateWrapper (props: IFullCertificate) {
+  return html`
+    <buv-full-certificate-raw
+      clickableUrls = '${props.clickableUrls}'
+      hasCertificateDefinition = '${props.hasCertificateDefinition}'
+      displayHTML = '${props.displayHTML}'
+    ></buv-full-certificate-raw>`;
+}
+
+export {
+  FullCertificateWrapper as FullCertificate
+};
