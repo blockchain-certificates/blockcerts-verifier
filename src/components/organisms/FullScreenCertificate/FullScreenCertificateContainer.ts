@@ -1,5 +1,5 @@
 import connector from '../../../store/connector';
-import FullScreenCertificate, { IFullScreenCertificateAPI } from './FullScreenCertificate';
+import { FullScreenCertificate, IFullScreenCertificateAPI } from './FullScreenCertificate';
 import {
   getCertificateDefinition,
   getDisplayAsHTML,
