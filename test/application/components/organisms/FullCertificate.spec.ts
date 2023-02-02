@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import * as litUnsafeHTML from 'lit-html/lib/unsafe-html.js';
 import { FullCertificateComponent, FullCertificate } from '../../../../src/components/organisms/FullCertificate/FullCertificate';
-import { assertClassInStringBits, assertStringInValues } from '../helpers/assertStringValues';
+import { assertStringInValues } from '../helpers/assertStringValues';
 
 describe('FullCertificate wrapper function test suite', function () {
   describe('setting the attributes of the API to the webcomponent', function () {
@@ -94,6 +94,34 @@ describe('FullCertificate component test suite', function () {
         const result = instance._render({ hasCertificateDefinition: true });
         const instanceAsString = JSON.stringify(result);
         expect(instanceAsString).toContain('buv-full-certificate-v1');
+      });
+    });
+  });
+
+  describe('_shouldRender method', function () {
+    let instance;
+
+    beforeEach(function () {
+      instance = new FullCertificateComponent();
+    });
+
+    afterEach(function () {
+      instance = null;
+    });
+
+    describe('given the displayHTML property is set in the changedProperties object', function () {
+      it('should return true', function () {
+        const result = instance._shouldRender(null, {
+          displayHTML: '<div>Yo</div>'
+        }, null);
+        expect(result).toBe(true);
+      });
+    });
+
+    describe('given the displayHTML property is not set in the changedProperties object', function () {
+      it('should return false', function () {
+        const result = instance._shouldRender(null, null, null);
+        expect(result).toBe(false);
       });
     });
   });

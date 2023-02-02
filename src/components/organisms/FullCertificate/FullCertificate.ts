@@ -9,6 +9,7 @@ import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 import domain from '../../../domain';
+import { IFullScreenCertificateAPI } from '../FullScreenCertificate/FullScreenCertificate';
 
 function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
   const buvCertificateClasses: string[] = [
@@ -36,6 +37,14 @@ export class FullCertificateComponent extends LitElement {
       hasCertificateDefinition: Boolean,
       displayHTML: String
     };
+  }
+
+  _shouldRender (
+    _props: IFullScreenCertificateAPI,
+    _changedProps: IFullScreenCertificateAPI,
+    _prevProps: IFullScreenCertificateAPI
+  ): boolean {
+    return !!_changedProps?.displayHTML;
   }
 
   _render ({
