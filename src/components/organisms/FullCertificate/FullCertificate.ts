@@ -40,11 +40,13 @@ export class FullCertificateComponent extends LitElement {
   }
 
   _shouldRender (
-    _props: IFullScreenCertificateAPI,
-    _changedProps: IFullScreenCertificateAPI,
-    _prevProps: IFullScreenCertificateAPI
+    props: IFullScreenCertificateAPI,
+    changedProps: IFullScreenCertificateAPI,
+    prevProps: IFullScreenCertificateAPI
   ): boolean {
-    return !!_changedProps?.displayHTML;
+    // we actually want to re rerender when the hasCertificateDefinition flag is set to false (ie: verify new record)
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-boolean-literal-compare
+    return !!changedProps?.displayHTML || changedProps?.hasCertificateDefinition === false;
   }
 
   _render ({
@@ -53,7 +55,9 @@ export class FullCertificateComponent extends LitElement {
     displayHTML
   }: IFullCertificate): TemplateResult {
     if (!hasCertificateDefinition) {
-      return null;
+      // lit-element won't enter the rendering path if the content is null
+      // (does not satisfy if condition in _propertiesChanged method)
+      return html``;
     }
 
     return html`

@@ -77,7 +77,7 @@ describe('FullScreenCertificate component test suite', function () {
       it('should return null', function () {
         const instance = new FullScreenCertificateComponent();
         const result = instance._render({ hasCertificateDefinition: false });
-        expect(result).toBeNull();
+        expect(result.strings).toEqual(['']);
       });
     });
 
@@ -170,6 +170,34 @@ describe('FullScreenCertificate component test suite', function () {
       it('should return false', function () {
         const result = instance._shouldRender(null, null, null);
         expect(result).toBe(false);
+      });
+    });
+
+    describe('given the hasCertificateDefinition property is undefined', function () {
+      it('should return false', function () {
+        const result = instance._shouldRender(null, {}, null);
+        expect(result).toBe(false);
+      });
+    });
+
+    describe('given the hasCertificateDefinition property is null', function () {
+      it('should return false', function () {
+        const result = instance._shouldRender(null, { hasCertificateDefinition: null }, null);
+        expect(result).toBe(false);
+      });
+    });
+
+    describe('given the hasCertificateDefinition property is true', function () {
+      it('should return false', function () {
+        const result = instance._shouldRender(null, { hasCertificateDefinition: true }, null);
+        expect(result).toBe(false);
+      });
+    });
+
+    describe('given the hasCertificateDefinition property is false', function () {
+      it('should return true', function () {
+        const result = instance._shouldRender(null, { hasCertificateDefinition: false }, null);
+        expect(result).toBe(true);
       });
     });
   });
