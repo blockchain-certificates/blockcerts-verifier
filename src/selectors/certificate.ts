@@ -5,6 +5,7 @@ import { isValidUrl } from '../helpers/validations';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../constants/contentTypes';
+import { getBase64String } from '../helpers/base64';
 
 export function getCertificateDefinition (state): Certificate {
   return state.certificateDefinition;
@@ -146,15 +147,13 @@ export function getDisplayAsHTML (state): string {
       case CONTENT_TYPES.IMAGE_JPEG:
       case CONTENT_TYPES.IMAGE_GIF:
       case CONTENT_TYPES.IMAGE_BMP:
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return `<img src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
+        return `<img src="${getBase64String(display)}"/>`;
 
       case CONTENT_TYPES.APPLICATION_PDF:
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return `<embed width="100%" height="100%" type="application/pdf" src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
+        return `<embed width="100%" height="100%" type="application/pdf" src="${getBase64String(display)}"/>`;
 
       case CONTENT_TYPES.VIDEO_MP4:
-        return `<video src="data:${display.contentMediaType};${display.contentEncoding},${display.content}" controls>`;
+        return `<video src="${getBase64String(display)}" controls style="max-width: 100%;">`;
 
       default:
         return '';
