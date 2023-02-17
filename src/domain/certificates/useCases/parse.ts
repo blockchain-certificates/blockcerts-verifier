@@ -1,4 +1,5 @@
 import {
+  Blockcerts,
   BlockcertsVersion,
   Certificate,
   CertificateOptions,
@@ -14,8 +15,7 @@ export interface ICertificateObject {
   errorMessage?: string;
 }
 
-// TODO: define input type to be a valid blockcerts document definition
-export default async function parse (definition: any, options: CertificateOptions = {}): Promise<ICertificateObject> {
+export default async function parse (definition: Blockcerts, options: CertificateOptions = {}): Promise<ICertificateObject> {
   if (!options.locale) {
     options.locale = 'auto';
   }

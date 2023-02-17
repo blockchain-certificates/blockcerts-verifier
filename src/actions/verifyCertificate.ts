@@ -8,9 +8,11 @@ import { getCertificateDefinition } from '../selectors/certificate';
 import { getDisableVerify } from '../selectors/api';
 import updateFinalStep from './updateFinalStep';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import type { Dispatch } from 'redux';
+import type { BlockcertsVerifierState } from '../store/getInitialState';
 
 export default function verifyCertificate () {
-  return async function (dispatch, getState) {
+  return async function (dispatch: Dispatch, getState: () => BlockcertsVerifierState): Promise<void> {
     const state = getState();
 
     if (getDisableVerify(state)) {
@@ -24,12 +26,14 @@ export default function verifyCertificate () {
 
     dispatch(updateVerificationStatus(VERIFICATION_STATUSES.STARTING));
 
+    // @ts-expect-error TODO properly type actions in TS
     dispatch(clearVerifiedSteps());
     const certificateDefinition = getCertificateDefinition(state);
 
     if (certificateDefinition) {
       domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, certificateDefinition);
       const finalStep = await certificateDefinition.verify(stepDefinition => {
+        // @ts-expect-error TODO properly type actions in TS
         dispatch(stepVerified(stepDefinition));
       });
 

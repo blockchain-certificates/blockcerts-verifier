@@ -1,9 +1,11 @@
 import * as ACTIONS from '../constants/actionTypes';
 import { getCertificateDefinition } from '../selectors/certificate';
 import domain from '../domain';
+import { Dispatch } from 'redux';
+import { BlockcertsVerifierState } from '../store/getInitialState';
 
 export default function () {
-  return function (dispatch, getState) {
+  return function (dispatch: Dispatch, getState: () => BlockcertsVerifierState): void {
     const certificateDefinition = getCertificateDefinition(getState());
     let resetSteps = [];
 

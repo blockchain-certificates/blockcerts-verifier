@@ -4,16 +4,16 @@ import { Certificate as CertificateV1 } from '@blockcerts/cert-verifier-js-v1-le
 import domain from '../../../src/domain';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
-import type { Signers } from '@blockcerts/cert-verifier-js';
+import type { Blockcerts, Signers } from '@blockcerts/cert-verifier-js';
 
-function updateStep (stepsCb, step) {
+function updateStep (stepsCb, step): void {
   step.subSteps.forEach(substep => stepsCb(substep));
   step.suites?.forEach(suite => {
     suite.subSteps.forEach(substep => stepsCb(substep));
   });
 }
 
-function validVerifyStub (stepsCb): any {
+function validVerifyStub (stepsCb: () => any): any {
   validCertificateStepsAssertions.forEach(updateStep.bind(null, stepsCb));
   return {
     status: VERIFICATION_STATUSES.SUCCESS,
@@ -36,7 +36,7 @@ function invalidVerifyStub (stepsCb): any {
   };
 }
 
-export default function stubCertificateVerify (certificateFixture, signers: Signers[] = [], valid = true): void {
+export default function stubCertificateVerify (certificateFixture: Blockcerts, signers: Signers[] = [], valid = true): void {
   if (!certificateFixture) {
     throw new Error('No certificate definition passed to mock its verify option. Make sure to pass the same certificate as the one you will put in the state for the test.');
   }

@@ -1,6 +1,6 @@
 import { CONTENT_TYPES } from '../constants/contentTypes';
 
-const isContentTypeImage = (contentType: CONTENT_TYPES) => {
+const isContentTypeImage = (contentType: CONTENT_TYPES): boolean => {
   const imagesContentTypes: CONTENT_TYPES[] = [
     CONTENT_TYPES.IMAGE_GIF,
     CONTENT_TYPES.IMAGE_BMP,

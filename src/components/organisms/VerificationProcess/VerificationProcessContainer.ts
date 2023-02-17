@@ -1,12 +1,13 @@
 import connector from '../../../store/connector';
-import VerificationProcess from './VerificationProcess';
+import VerificationProcess, { IVerificationProcessAPI } from './VerificationProcess';
 import {
   getHasError,
   getVerifiedSteps,
   isTestChain
 } from '../../../selectors/certificate';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
-export const mapStateToProps = (state) => {
+export const mapStateToProps = (state: BlockcertsVerifierState): IVerificationProcessAPI => {
   return {
     steps: JSON.parse(JSON.stringify(getVerifiedSteps(state))),
     isTestChain: isTestChain(state),
