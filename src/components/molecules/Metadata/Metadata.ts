@@ -4,39 +4,45 @@ import CSS from './_components.metadata-css';
 import CloseButton from '../../atoms/CloseButton';
 import getText from '../../../i18n/getText';
 import FormattedMetadataItem from '../../atoms/FormattedMetadataItem';
+import { TemplateResult } from 'lit-html';
 
-function getProperties (metadataList) {
+export interface IMetadataAPI {
+  _isOpen?: boolean;
+  metadataList: any; // TODO: define metadata object as it's supposed to be (see cert-issuer python checks)
+  display: string;
+}
+function getProperties (metadataList: any): any { // TODO: define metadata object as it's supposed to be (see cert-issuer python checks)
   return metadataList.schema?.properties.certificate.properties;
 }
 
 class Metadata extends LitElement {
-  private isOpen: boolean;
+  private _isOpen: boolean;
 
   constructor () {
     super();
-    this.isOpen = false;
+    this._isOpen = false;
     this.toggleOpen = this.toggleOpen.bind(this);
   }
 
-  static get properties () {
+  static get properties (): IMetadataAPI {
     return {
-      isOpen: Boolean,
-      metadataList: Object,
-      display: String
+      _isOpen: Boolean as any,
+      metadataList: Object as any,
+      display: String as any
     };
   }
 
-  toggleOpen () {
-    this.isOpen = !this.isOpen;
+  toggleOpen (): void {
+    this._isOpen = !this._isOpen;
   }
 
-  _render ({ metadataList, display }) {
+  _render ({ metadataList, display }: IMetadataAPI): TemplateResult {
     // TODO: better handle this dynamic class (cf npm classnames)
     const panelClasses = [
       'buv-o-overlay',
       'buv-c-metadata-container',
       'buv-u-slide-from-right',
-      this.isOpen ? 'is-active' : ''
+      this._isOpen ? 'is-active' : ''
     ].join(' ');
 
     let innerHTML = '';
@@ -81,7 +87,7 @@ class Metadata extends LitElement {
 
 window.customElements.define('buv-metadata-raw', Metadata);
 
-function MetadataWrapper (props) {
+function MetadataWrapper (props: IMetadataAPI): TemplateResult {
   return html`
     <buv-metadata-raw
       metadataList='${props.metadataList}'

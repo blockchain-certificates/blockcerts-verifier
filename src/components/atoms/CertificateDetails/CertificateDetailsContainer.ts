@@ -9,8 +9,9 @@ import {
   getRecipientName, getSignatureSuiteType,
   getTransactionId
 } from '../../../selectors/certificate';
+import { BlockcertsVerifierState } from '../../../store/getInitialState';
 
-export const mapStateToProps = (state): ICertificateDetailsApi => ({
+export const mapStateToProps = (state: BlockcertsVerifierState): ICertificateDetailsApi => ({
   recipientName: getRecipientName(state),
   issueDate: getIssueDate(state),
   issuedOn: getIssuedOn(state),

@@ -1,49 +1,50 @@
 import { ExplorerAPI } from '@blockcerts/explorer-lookup';
+import { BlockcertsVerifierState } from '../store/getInitialState';
 
-export function getDisableAutoVerify (state): boolean {
+export function getDisableAutoVerify (state: BlockcertsVerifierState): boolean {
   return state.disableAutoVerify;
 }
 
-export function getDisableVerify (state): boolean {
+export function getDisableVerify (state: BlockcertsVerifierState): boolean {
   return state.disableVerify;
 }
 
-export function getAllowDownload (state): boolean {
+export function getAllowDownload (state: BlockcertsVerifierState): boolean {
   return state.allowDownload;
 }
 
-export function getDisableDownloadPdf (state): boolean {
+export function getDisableDownloadPdf (state: BlockcertsVerifierState): boolean {
   return state.disableDownloadPdf;
 }
 
-export function getAllowSocialShare (state): boolean {
+export function getAllowSocialShare (state: BlockcertsVerifierState): boolean {
   return state.allowSocialShare;
 }
 
-export function getShowMetadata (state): boolean {
+export function getShowMetadata (state: BlockcertsVerifierState): boolean {
   return state.showMetadata;
 }
 
-export function getDisplayMode (state): string {
+export function getDisplayMode (state: BlockcertsVerifierState): string {
   return state.displayMode;
 }
 
-export function getTheme (state): string {
+export function getTheme (state: BlockcertsVerifierState): string {
   return state.theme;
 }
 
-export function getLocale (state): string {
+export function getLocale (state: BlockcertsVerifierState): string {
   return state.locale;
 }
 
-export function getExplorerAPIs (state): ExplorerAPI[] {
+export function getExplorerAPIs (state: BlockcertsVerifierState): ExplorerAPI[] {
   return state.explorerAPIs;
 }
 
-export function getClickableUrls (state): boolean {
+export function getClickableUrls (state: BlockcertsVerifierState): boolean {
   return state.clickableUrls;
 }
 
-export function getDidResolverUrl (state): string {
+export function getDidResolverUrl (state: BlockcertsVerifierState): string {
   return state.didResolverUrl;
 }

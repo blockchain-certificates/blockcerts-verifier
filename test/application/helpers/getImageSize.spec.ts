@@ -5,7 +5,7 @@ class MockImage {
   width;
   height;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  onload () {}
+  onload (): any {}
 
   constructor () {
     setTimeout(() => {

@@ -3,6 +3,7 @@ import { connect } from 'pwa-helpers/connect-mixin';
 import { bindActionCreators } from 'redux';
 import { configureStore } from './index';
 import type { TemplateResult } from 'lit-html';
+import { BlockcertsVerifierState } from './getInitialState';
 
 const store = configureStore();
 
@@ -13,15 +14,15 @@ interface IConnectorStateParameter<DP, SP, OP> {
 }
 
 export default function connector<DP, SP, OP > (
-  component,
-  { mapDispatchToProps = ({} as any), mapStateToProps = () => ({} as any), ownProps = ({} as any) }: IConnectorStateParameter<DP, SP, OP>
-) {
+  component: (props: any) => TemplateResult,
+  { mapDispatchToProps = ({} as any), mapStateToProps = (): any => ({} as any), ownProps = ({} as any) }: IConnectorStateParameter<DP, SP, OP>
+): new () => any {
   return class extends connect(store)(LitElement) {
     mapDispatchToProps (): DP {
       return bindActionCreators<DP, any>(mapDispatchToProps, store.dispatch);
     }
 
-    mapStateToProps (componentProps): SP {
+    mapStateToProps (componentProps: any): SP {
       return mapStateToProps(store.getState(), componentProps);
     }
 
@@ -39,7 +40,7 @@ export default function connector<DP, SP, OP > (
       return html`${component(componentProps)}`;
     }
 
-    _stateChanged (state): void {
+    _stateChanged (state: BlockcertsVerifierState): void {
       this._requestRender();
     }
   };

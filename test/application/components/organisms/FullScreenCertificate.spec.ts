@@ -60,7 +60,7 @@ describe('FullScreenCertificate wrapper function test suite', function () {
     });
 
     it('- onClose', function () {
-      const fixtureOnClose = () => true;
+      const fixtureOnClose = (): boolean => true;
       const instance = FullScreenCertificate({ onClose: fixtureOnClose });
       expect(instance.values[4]).toEqual(fixtureOnClose);
     });

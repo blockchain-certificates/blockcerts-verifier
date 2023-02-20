@@ -1,11 +1,12 @@
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { getVerifiedSteps } from './certificate';
+import { BlockcertsVerifierState } from '../store/getInitialState';
 
-export function getVerificationStatus (state): VERIFICATION_STATUSES {
+export function getVerificationStatus (state: BlockcertsVerifierState): VERIFICATION_STATUSES {
   return state.verificationStatus;
 }
 
-export function getVerificationStatusForSuite (state, suiteType: string): VERIFICATION_STATUSES {
+export function getVerificationStatusForSuite (state: BlockcertsVerifierState, suiteType: string): VERIFICATION_STATUSES {
   const verificationSteps = getVerifiedSteps(state);
   const proofVerificationSteps = verificationSteps.find(step => step.code === 'proofVerification');
   const suite = proofVerificationSteps.suites?.find(suite => suite.proofType === suiteType);
@@ -25,12 +26,12 @@ export function getVerificationStatusForSuite (state, suiteType: string): VERIFI
   return '' as VERIFICATION_STATUSES;
 }
 
-export function getVerificationHasStarted (state): boolean {
+export function getVerificationHasStarted (state: BlockcertsVerifierState): boolean {
   const status = getVerificationStatus(state);
 
   return status !== VERIFICATION_STATUSES.DEFAULT;
 }
 
-export function getShowVerificationModal (state): boolean {
+export function getShowVerificationModal (state: BlockcertsVerifierState): boolean {
   return state.showVerificationModal;
 }

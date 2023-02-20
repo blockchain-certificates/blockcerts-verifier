@@ -7,12 +7,13 @@ import {
 } from '../../../selectors/certificate';
 import resetCertificateDefinition from '../../../actions/resetCertificateDefinition';
 import { getClickableUrls, getDisableDownloadPdf } from '../../../selectors/api';
+import { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 export const mapDispatchToProps: Partial<IFullScreenCertificateAPI> = {
   onClose: resetCertificateDefinition
 };
 
-export const mapStateToProps = (state): Partial<IFullScreenCertificateAPI> => ({
+export const mapStateToProps = (state: BlockcertsVerifierState): Partial<IFullScreenCertificateAPI> => ({
   recipientName: getRecipientName(state),
   hasCertificateDefinition: !!getCertificateDefinition(state),
   displayHTML: getDisplayAsHTML(state),
