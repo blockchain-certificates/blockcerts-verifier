@@ -3,7 +3,7 @@ import CSS from './_components.substeps-list-css';
 import VerificationStep from '../../molecules/VerificationStep';
 import getText from '../../../i18n/getText';
 import type { TemplateResult } from 'lit-html';
-import type { IVerificationMapItemSuite, VerificationSubstep } from '@blockcerts/cert-verifier-js';
+import type { IVerificationMapItemSuite } from '@blockcerts/cert-verifier-js';
 
 class SubstepsList extends LitElement {
   isOpen: boolean;
@@ -81,7 +81,7 @@ class SubstepsList extends LitElement {
     }
   }
 
-  getRenderableSuites (suites): IVerificationMapItemSuite[] {
+  getRenderableSuites (suites: IVerificationMapItemSuite[]): IVerificationMapItemSuite[] {
     if (!suites || !suites.length) {
       return [];
     }
@@ -100,7 +100,7 @@ class SubstepsList extends LitElement {
     return renderableSuites;
   }
 
-  renderSuiteTitle (suite, renderableSuites): TemplateResult {
+  renderSuiteTitle (suite: IVerificationMapItemSuite, renderableSuites: IVerificationMapItemSuite[]): TemplateResult {
     if (renderableSuites.length === 1) {
       // if there is only one suite we merge the substeps with the main substeps
       return null;
@@ -108,7 +108,7 @@ class SubstepsList extends LitElement {
     return html`<dt class='buv-o-text-12 buv-o-text-bold'>Proof type: ${suite.proofType}</dt>`;
   }
 
-  renderSuites (renderableSuites, hasError): TemplateResult[] {
+  renderSuites (renderableSuites: IVerificationMapItemSuite[], hasError: boolean): TemplateResult[] {
     if (!renderableSuites) {
       return;
     }

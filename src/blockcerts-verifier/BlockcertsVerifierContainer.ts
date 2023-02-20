@@ -4,12 +4,14 @@ import { BlockcertsVerifier, SourceComponent } from './BlockcertsVerifier';
 import { getErrorMessage } from '../selectors/error';
 import { APIKeys } from '../models/API';
 import { getCertificateDefinition } from '../selectors/certificate';
+import { BlockcertsVerifierState } from '../store/getInitialState';
 
 export const mapDispatchToProps = {
   onLoad: initialize
 };
 
-export const mapStateToProps = (state): any => {
+// TODO: return BlockcertsVerifierAPI when made
+export const mapStateToProps = (state: BlockcertsVerifierState): any => {
   return {
     errorMessage: getErrorMessage(state),
     hasCertificate: !!getCertificateDefinition(state)

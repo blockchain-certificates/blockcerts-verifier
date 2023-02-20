@@ -48,7 +48,7 @@ describe('verifyCertificate action creator test suite', function () {
 
       it('should emit the certificate-verify event with the certificate id', function () {
         let wasCalled = false;
-        function assertFunction (e) {
+        function assertFunction (e): void {
           wasCalled = true;
           expect(e.detail.certificateDefinition.id).toEqual(validCertificateFixture.id);
         }

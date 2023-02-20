@@ -5,12 +5,13 @@ import { isValidUrl } from '../helpers/validations';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../constants/contentTypes';
+import { BlockcertsVerifierState } from '../store/getInitialState';
 
-export function getCertificateDefinition (state): Certificate {
+export function getCertificateDefinition (state: BlockcertsVerifierState): Certificate {
   return state.certificateDefinition;
 }
 
-export function getSigners (state): Signers[] {
+export function getSigners (state: BlockcertsVerifierState): Signers[] {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -20,7 +21,7 @@ export function getSigners (state): Signers[] {
   return [];
 }
 
-export function getIssuedOn (state): string {
+export function getIssuedOn (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -30,7 +31,7 @@ export function getIssuedOn (state): string {
   return '';
 }
 
-export function getIssueDate (state): string {
+export function getIssueDate (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -40,7 +41,7 @@ export function getIssueDate (state): string {
   return '';
 }
 
-export function getRecipientName (state): string {
+export function getRecipientName (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -50,7 +51,7 @@ export function getRecipientName (state): string {
   return '';
 }
 
-export function getCertificateTitle (state): string {
+export function getCertificateTitle (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -60,7 +61,7 @@ export function getCertificateTitle (state): string {
   return '';
 }
 
-export function getIssuerName (state): string {
+export function getIssuerName (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -70,7 +71,7 @@ export function getIssuerName (state): string {
   return '';
 }
 
-export function getIssuerLogo (state): string {
+export function getIssuerLogo (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -80,7 +81,7 @@ export function getIssuerLogo (state): string {
   return '';
 }
 
-export function getDisplayContentType (state): CONTENT_TYPES | null {
+export function getDisplayContentType (state: BlockcertsVerifierState): CONTENT_TYPES | null {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (!certificateDefinition) {
@@ -94,7 +95,7 @@ export function getDisplayContentType (state): CONTENT_TYPES | null {
   return certificateDefinition.display?.contentMediaType as CONTENT_TYPES;
 }
 
-export function getDisplayContentEncoding (state): string {
+export function getDisplayContentEncoding (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (!certificateDefinition) {
@@ -108,7 +109,7 @@ export function getDisplayContentEncoding (state): string {
   return certificateDefinition.display?.contentEncoding;
 }
 
-export function getDisplayContent (state): string {
+export function getDisplayContent (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (!certificateDefinition) {
@@ -122,7 +123,7 @@ export function getDisplayContent (state): string {
   return certificateDefinition.display?.content ?? '';
 }
 
-export function getDisplayAsHTML (state): string {
+export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (!certificateDefinition) {
@@ -161,7 +162,7 @@ export function getDisplayAsHTML (state): string {
   return '';
 }
 
-export function getRecordLink (state): string {
+export function getRecordLink (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition && isValidUrl(certificateDefinition.recordLink)) {
@@ -171,7 +172,7 @@ export function getRecordLink (state): string {
   return '';
 }
 
-export function getDownloadLink (state): string {
+export function getDownloadLink (state: BlockcertsVerifierState): string {
   const url = getRecordLink(state);
 
   if (url) {
@@ -181,7 +182,7 @@ export function getDownloadLink (state): string {
   return '';
 }
 
-export function getMetadata (state): any { // we cannot know in advance the shape of the metadata as it's specific to each cert
+export function getMetadata (state: BlockcertsVerifierState): any { // we cannot know in advance the shape of the metadata as it's specific to each cert
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -195,7 +196,7 @@ export function getMetadata (state): any { // we cannot know in advance the shap
   return null;
 }
 
-export function getTransactionLink (state): string[] {
+export function getTransactionLink (state: BlockcertsVerifierState): string[] {
   const signers = getSigners(state);
   if (signers.length === 0) {
     return getV1Property(state, 'transactionLink') ?? [];
@@ -203,7 +204,7 @@ export function getTransactionLink (state): string[] {
   return signers.map(signer => signer.transactionLink);
 }
 
-export function getTransactionId (state): string[] {
+export function getTransactionId (state: BlockcertsVerifierState): string[] {
   const signers = getSigners(state);
   if (signers.length === 0) {
     return getV1Property(state, 'transactionId') ?? [];
@@ -211,7 +212,7 @@ export function getTransactionId (state): string[] {
   return signers.map(signer => signer.transactionId);
 }
 
-export function getChain (state): string[] {
+export function getChain (state: BlockcertsVerifierState): string[] {
   const signers = getSigners(state);
   if (signers.length === 0) {
     const chain = getV1Property(state, 'chain');
@@ -220,12 +221,12 @@ export function getChain (state): string[] {
   return signers.map(signer => signer.chain?.name);
 }
 
-export function isTestChain (state): boolean {
+export function isTestChain (state: BlockcertsVerifierState): boolean {
   const chains = getChain(state);
   return chains.some(chain => chain === 'Mocknet' || chain?.includes('Testnet'));
 }
 
-export function isTestChainAtIndex (state, index: number): boolean {
+export function isTestChainAtIndex (state: BlockcertsVerifierState, index: number): boolean {
   const chains = getChain(state);
   const chain = chains[index];
   if (!chain) {
@@ -234,49 +235,50 @@ export function isTestChainAtIndex (state, index: number): boolean {
   return chain === 'Mocknet' || chain.includes('Testnet');
 }
 
-export function getVerifiedSteps (state): IVerificationMapItem[] {
+export function getVerifiedSteps (state: BlockcertsVerifierState): IVerificationMapItem[] {
   return state.verifiedSteps || [];
 }
 
-export function getParentStep (state, parentStepCode): IVerificationMapItem {
+// TODO: it should refer to the VerificationSteps enum from cvjs
+export function getParentStep (state: BlockcertsVerifierState, parentStepCode: any): IVerificationMapItem {
   return getVerifiedSteps(state).find(step => step.code === parentStepCode);
 }
 
-export function getStartedVerificationSteps (state): IVerificationMapItem[] {
+export function getStartedVerificationSteps (state: BlockcertsVerifierState): IVerificationMapItem[] {
   const verifiedSteps = getVerifiedSteps(state);
 
   return verifiedSteps.filter(step => step.status !== VERIFICATION_STATUSES.DEFAULT);
 }
 
-export function getHasError (state): boolean {
+export function getHasError (state: BlockcertsVerifierState): boolean {
   return getVerifiedSteps(state).some(s => s.status === VERIFICATION_STATUSES.FAILURE);
 }
 
-export function getFinalStep (state): any { // TODO: define step -- retrieve from CVJS?
+export function getFinalStep (state: BlockcertsVerifierState): any { // TODO: define step -- retrieve from CVJS?
   return state.finalStep;
 }
 
-export function getIssuerPublicKey (state): string[] {
+export function getIssuerPublicKey (state: BlockcertsVerifierState): string[] {
   const signers = getSigners(state);
   return signers.map(signer => signer.issuerPublicKey);
 }
 
-export function getIssuerProfileUrl (state): string[] {
+export function getIssuerProfileUrl (state: BlockcertsVerifierState): string[] {
   const signers = getSigners(state);
   return signers.map(signer => signer.issuerProfileUrl);
 }
 
-export function getIssuerProfileDomain (state): string[] {
+export function getIssuerProfileDomain (state: BlockcertsVerifierState): string[] {
   const signers = getSigners(state);
   return signers.map(signer => signer.issuerProfileDomain);
 }
 
-export function getSignatureSuiteType (state): string[] {
+export function getSignatureSuiteType (state: BlockcertsVerifierState): string[] {
   const signers = getSigners(state);
   return signers.map(signer => signer.signatureSuiteType);
 }
 
-export function getSignatureSigningDate (state): string[] {
+export function getSignatureSigningDate (state: BlockcertsVerifierState): string[] {
   const signers = getSigners(state);
   return signers.map(signer => signer.signingDate);
 }
@@ -291,7 +293,7 @@ function getV1Property (state, property: string): any[] {
   return null;
 }
 
-export function getCertificateImage (state): string {
+export function getCertificateImage (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -301,7 +303,7 @@ export function getCertificateImage (state): string {
   return '';
 }
 
-export function getCertificateSubtitle (state): string {
+export function getCertificateSubtitle (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -311,7 +313,7 @@ export function getCertificateSubtitle (state): string {
   return '';
 }
 
-export function getCertificateDescription (state): string {
+export function getCertificateDescription (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -321,7 +323,7 @@ export function getCertificateDescription (state): string {
   return '';
 }
 
-export function getCertificateSignatures (state): string {
+export function getCertificateSignatures (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -331,7 +333,7 @@ export function getCertificateSignatures (state): string {
   return '';
 }
 
-export function getCertificateSeal (state): string {
+export function getCertificateSeal (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
@@ -341,6 +343,6 @@ export function getCertificateSeal (state): string {
   return '';
 }
 
-export function getIsGeneratingPDF (state): boolean {
+export function getIsGeneratingPDF (state: BlockcertsVerifierState): boolean {
   return state.isGeneratingPDF;
 }

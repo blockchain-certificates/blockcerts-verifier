@@ -32,14 +32,15 @@ export interface IFullScreenCertificateAPI {
 }
 
 export class FullScreenCertificateComponent extends LitElement {
-  static get properties () {
+  static get properties (): IFullScreenCertificateAPI {
+    // if the interface is defined properly with typescript, then the boolean values do not get updated.
     return {
-      clickableUrls: Boolean,
-      hasCertificateDefinition: Boolean,
-      recipientName: String,
-      displayHTML: String,
-      onClose: Function,
-      disableDownloadPdf: Boolean
+      clickableUrls: Boolean as any,
+      hasCertificateDefinition: Boolean as any,
+      recipientName: String as any,
+      displayHTML: String as any,
+      onClose: Function as any,
+      disableDownloadPdf: Boolean as any
     };
   }
 
@@ -107,7 +108,7 @@ export class FullScreenCertificateComponent extends LitElement {
 }
 
 window.customElements.define('buv-fullscreen-certificate-raw', FullScreenCertificateComponent);
-function FullScreenCertificateWrapper (props: IFullScreenCertificateAPI) {
+function FullScreenCertificateWrapper (props: IFullScreenCertificateAPI): TemplateResult {
   return html`
     <buv-fullscreen-certificate-raw
       clickableUrls = '${props.clickableUrls}'

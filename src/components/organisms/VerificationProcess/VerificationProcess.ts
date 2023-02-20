@@ -4,19 +4,24 @@ import '../../atoms/FinalVerificationStep';
 import '../SubstepsList';
 import CSS from './_components.verification-process-css';
 import getText from '../../../i18n/getText';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { IVerificationMapItem, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { TemplateResult } from 'lit-html';
+
+export interface IVerificationProcessAPI {
+  steps: IVerificationMapItem[];
+  hasError: boolean;
+  isTestChain: boolean;
+}
 
 class VerificationProcess extends LitElement {
   private listElement: Element;
 
-  static get properties (): any {
+  static get properties (): IVerificationProcessAPI {
     // if the interface is defined properly with typescript, then the boolean values do not get updated.
     return {
       steps: [],
-      transactionLink: String,
-      hasError: Boolean,
-      isTestChain: Boolean
+      hasError: Boolean as any,
+      isTestChain: Boolean as any
     };
   }
 
@@ -33,7 +38,7 @@ class VerificationProcess extends LitElement {
     }
   }
 
-  _render ({ steps, transactionLink, hasError, isTestChain }): TemplateResult {
+  _render ({ steps, hasError, isTestChain }: IVerificationProcessAPI): TemplateResult {
     const innerHTML = steps
       .filter(step => step.status !== VERIFICATION_STATUSES.DEFAULT)
       .map((step, i) => html`
@@ -85,7 +90,7 @@ window.customElements.define('buv-verification-process-raw', VerificationProcess
 
 // wrap VerificationProcess in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
-function VerificationProcessWrapper ({ steps, transactionLink, hasError, isTestChain }): TemplateResult {
+function VerificationProcessWrapper ({ steps, hasError, isTestChain }: IVerificationProcessAPI): TemplateResult {
   return html`<buv-verification-process-raw
     steps='${steps}'
     hasError?='${hasError}'

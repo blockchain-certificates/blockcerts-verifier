@@ -1,8 +1,18 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.verification-step-css';
 import ErrorMessage from '../../atoms/ErrorMessage';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { TemplateResult } from 'lit-html';
 
-export default function VerificationStep ({ label, code, status, errorMessage, isParent, isFirst, isTestChain }) {
+export interface IVerificationStepAPI {
+  label: string;
+  status?: VERIFICATION_STATUSES;
+  errorMessage?: string;
+  isParent?: boolean;
+  isFirst?: boolean;
+  isTestChain?: boolean;
+}
+export default function VerificationStep ({ label, status, errorMessage, isParent, isFirst, isTestChain }: IVerificationStepAPI): TemplateResult {
   // TODO: better handle this dynamic class (cf npm classnames)
   const parentStepClasses = [
     'buv-o-text-15',

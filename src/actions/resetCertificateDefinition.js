@@ -1,5 +1,5 @@
 import * as ACTIONS from '../constants/actionTypes';
-import clearVerifiedSteps from '../actions/clearVerifiedSteps';
+import clearVerifiedSteps from './clearVerifiedSteps';
 import resetVerificationStatus from './resetVerificationStatus';
 
 export default function resetCertificateDefinition () {

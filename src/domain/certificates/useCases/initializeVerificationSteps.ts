@@ -1,6 +1,6 @@
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { Certificate, IVerificationMapItem, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
-export default function initializeVerificationSteps (definition) {
+export default function initializeVerificationSteps (definition: Certificate): IVerificationMapItem {
   const steps = JSON.parse(JSON.stringify(definition.verificationSteps));
   return steps.map((step, i) => ({
     ...step,

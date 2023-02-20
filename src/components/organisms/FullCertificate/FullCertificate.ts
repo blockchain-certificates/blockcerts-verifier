@@ -24,18 +24,19 @@ function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): Templa
   return html`<section class$=${buvCertificateClasses.join(' ')}>${unsafeHTML(htmlToDisplay)}</section>`;
 }
 
-export interface IFullCertificate {
+export interface IFullCertificateAPI {
   clickableUrls?: boolean;
   hasCertificateDefinition?: boolean;
   displayHTML?: string;
 }
 
 export class FullCertificateComponent extends LitElement {
-  static get properties () {
+  static get properties (): IFullCertificateAPI {
+    // if the interface is defined properly with typescript, then the boolean values do not get updated.
     return {
-      clickableUrls: Boolean,
-      hasCertificateDefinition: Boolean,
-      displayHTML: String
+      clickableUrls: Boolean as any,
+      hasCertificateDefinition: Boolean as any,
+      displayHTML: String as any
     };
   }
 
@@ -53,7 +54,7 @@ export class FullCertificateComponent extends LitElement {
     clickableUrls,
     hasCertificateDefinition,
     displayHTML
-  }: IFullCertificate): TemplateResult {
+  }: IFullCertificateAPI): TemplateResult {
     if (!hasCertificateDefinition) {
       // lit-element won't enter the rendering path if the content is null
       // (does not satisfy if condition in _propertiesChanged method)
@@ -74,7 +75,7 @@ export class FullCertificateComponent extends LitElement {
 }
 
 window.customElements.define('buv-full-certificate-raw', FullCertificateComponent);
-function FullCertificateWrapper (props: IFullCertificate) {
+function FullCertificateWrapper (props: IFullCertificateAPI): TemplateResult {
   return html`
     <buv-full-certificate-raw
       clickableUrls = '${props.clickableUrls}'
