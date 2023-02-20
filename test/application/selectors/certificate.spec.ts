@@ -228,7 +228,7 @@ describe('certificate selectors test suite', function () {
   });
 
   describe('given the certificate is a V1 version', function () {
-    stubCertificateVerify(v1Fixture);
+    stubCertificateVerify(v1Fixture as any);
 
     beforeEach(function () {
       store.dispatch(updateCertificateDefinition(v1Fixture));
