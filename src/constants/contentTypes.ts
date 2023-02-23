@@ -6,5 +6,5 @@ export enum CONTENT_TYPES {
   IMAGE_GIF = 'image/gif',
   IMAGE_BMP = 'image/bmp',
   APPLICATION_PDF = 'application/pdf',
-  VIDEO_MP4= 'video/mp4;'
+  VIDEO_MP4= 'video/mp4'
 }
