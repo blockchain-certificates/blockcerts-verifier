@@ -1,4 +1,4 @@
-import { BlockcertsV3Display } from '../../../cert-verifier-js';
+import { BlockcertsV3Display } from '@blockcerts/cert-verifier-js';
 
 const toBase64 = (textContent: string): string => {
   return window.btoa(textContent);
