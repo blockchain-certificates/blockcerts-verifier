@@ -12,10 +12,21 @@ import { getVerificationStatus } from '../../../src/selectors/verification';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { FakeXmlHttpRequest } from '../__helpers/FakeXmlHttpRequest';
 
 jest.mock('../../../src/helpers/stepQueue');
 
 describe('verifyCertificate action creator test suite', function () {
+  const initialXhr = XMLHttpRequest;
+
+  beforeAll(function () {
+    (global.XMLHttpRequest as any) = FakeXmlHttpRequest;
+  });
+
+  afterAll(function () {
+    global.XMLHttpRequest = initialXhr;
+  });
+
   describe('given the verification of certificates is not disabled', function () {
     let store;
 

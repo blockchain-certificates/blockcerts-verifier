@@ -4,12 +4,22 @@ import v3FixtureWithPng from '../../../fixtures/v3/testnet-v3-beta-display-png.j
 import { configureStore } from '../../../../src/store';
 import getInitialState from '../../../../src/store/getInitialState';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
+import { FakeXmlHttpRequest } from '../../__helpers/FakeXmlHttpRequest';
 
 const v3FixtureWithImage = JSON.parse(JSON.stringify(v3FixtureWithPng));
 v3FixtureWithImage.display.contentMediaType = 'image/jpeg';
 
 describe('getDisplayAsHTML selector', function () {
   let store;
+  const initialXhr = XMLHttpRequest;
+
+  beforeAll(function () {
+    (global.XMLHttpRequest as any) = FakeXmlHttpRequest;
+  });
+
+  afterAll(function () {
+    global.XMLHttpRequest = initialXhr;
+  });
 
   beforeEach(function () {
     const initialState = getInitialState({ disableVerify: true });

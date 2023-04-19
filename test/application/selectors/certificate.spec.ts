@@ -34,9 +34,19 @@ import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 import { Signers, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../../../src/constants/contentTypes';
+import { FakeXmlHttpRequest } from '../__helpers/FakeXmlHttpRequest';
 
 describe('certificate selectors test suite', function () {
   let store;
+  const initialXhr = XMLHttpRequest;
+
+  beforeAll(function () {
+    (global.XMLHttpRequest as any) = FakeXmlHttpRequest;
+  });
+
+  afterAll(function () {
+    global.XMLHttpRequest = initialXhr;
+  });
 
   beforeEach(function () {
     const initialState = getInitialState({ disableVerify: true });

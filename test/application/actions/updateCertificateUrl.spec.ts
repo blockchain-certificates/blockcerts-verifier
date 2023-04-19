@@ -6,6 +6,7 @@ import { getErrorMessage } from '../../../src/selectors/error';
 import getInitialState from '../../../src/store/getInitialState';
 import validCertificate from '../../assertions/validCertificate';
 import invalidCertificate from '../../fixtures/v2/invalid-certificate-example.json';
+import { FakeXmlHttpRequest } from '../__helpers/FakeXmlHttpRequest';
 
 const INVALID_URL = 'invalid url';
 const MOCK_SERVER_VALID_URL = 'http://localhost:3001/to/certificate';
@@ -14,12 +15,22 @@ const NOT_CERTIFICATE_URL = 'http://www.learningmachine.com';
 const VALID_LOCAL_PATH = '../../fixtures/mainnet-valid-2.0.json';
 
 describe('updateCertificateUrl action creator test suite', function () {
+  const initialXhr = XMLHttpRequest;
+
+  beforeAll(function () {
+    (global.XMLHttpRequest as any) = FakeXmlHttpRequest;
+  });
+
+  afterAll(function () {
+    global.XMLHttpRequest = initialXhr;
+  });
+
   describe('given the url inputted is an invalid url', function () {
     let store;
     let output;
 
     beforeEach(async function () {
-      const initialState = getInitialState({ disableAutoVerify: true });
+      const initialState = getInitialState({ disableVerify: true });
       store = configureStore(initialState);
       // prepare state the correct way
       output = await store.dispatch(updateCertificateUrl(INVALID_URL));
@@ -44,7 +55,7 @@ describe('updateCertificateUrl action creator test suite', function () {
     let store;
 
     beforeEach(function () {
-      const initialState = getInitialState({ disableAutoVerify: true });
+      const initialState = getInitialState({ disableVerify: true });
       store = configureStore(initialState);
     });
 
@@ -98,7 +109,7 @@ describe('updateCertificateUrl action creator test suite', function () {
     let store;
 
     beforeEach(async function () {
-      const initialState = getInitialState({ disableAutoVerify: true });
+      const initialState = getInitialState({ disableVerify: true });
       store = configureStore(initialState);
       await store.dispatch(updateCertificateUrl(VALID_LOCAL_PATH));
     });
