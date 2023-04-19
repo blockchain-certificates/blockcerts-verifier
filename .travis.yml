@@ -16,5 +16,5 @@ after_script:
   - npm run test:coverage
   - npm run test:coverage:report
 after_success:
-  - npm run semantic-release
+  - npm run semantic-release -- --debug
   - 'if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then sh scripts/automated-update-blockcerts.org.sh; fi' # if no changes (aka npm release), no commit then no PR
