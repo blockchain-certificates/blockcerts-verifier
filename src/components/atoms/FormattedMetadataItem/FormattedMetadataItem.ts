@@ -1,4 +1,5 @@
 import { html } from '@polymer/lit-element';
+import { TemplateResult } from 'lit-html';
 
 /** FormattedMetadataItem
  * return link for uri, email, phone number to apply in Metadata viewer
@@ -6,8 +7,8 @@ import { html } from '@polymer/lit-element';
  * @param value: String. link value
  * @returns string
  */
-
-export default function FormattedMetadataItem (metadataObject, value) {
+// TODO: define metadata object as it's supposed to be (see cert-issuer python checks)
+export default function FormattedMetadataItem (metadataObject: any, value: string): TemplateResult {
   let { title, format, type } = metadataObject;
 
   if (Array.isArray(type)) {
@@ -18,7 +19,7 @@ export default function FormattedMetadataItem (metadataObject, value) {
 
   let useTargetBlank = false;
   let hrefValue = '';
-  let linkWrap = value;
+  let linkWrap = html`${value}`;
   if (type === 'string') {
     switch (format) {
       case 'uri':

@@ -1,24 +1,25 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.error-message-css';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
 
-function isMessageTranslatable (message) {
-  return message.indexOf('.') > -1 && message.indexOf(' ') === -1;
+function isMessageTranslatable (message: string): boolean {
+  return message.includes('.') && !message.includes(' ');
 }
 
-function translate (message) {
+function translate (message: string) {
   if (isMessageTranslatable(message)) {
     return getText(message);
   }
   return message;
 }
 
-export default function ErrorMessage (message, solidBackground = false) {
+export default function ErrorMessage (message: string, solidBackground = false): TemplateResult {
   if (message == null) {
     return null;
   }
 
-  const classes = [
+  const classes: string = [
     'buv-c-error-message',
     'buv-qa-error-message',
     solidBackground ? 'buv-c-error-message--solid' : ''

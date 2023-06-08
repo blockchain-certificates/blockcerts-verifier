@@ -9,30 +9,72 @@ import '../components/organisms/CardCertificate';
 import '../components/organisms/FullCertificate';
 import '../components/organisms/FullScreenCertificate';
 import '../components/molecules/Footer/';
-import { APICamelCase } from '../models/API';
-import * as DISPLAY_MODE from '../constants/displayMode';
+import { APICamelCase, IBlockcertsVerifierAPI } from '../models/API';
+import { DISPLAY_MODE } from '../constants/displayMode';
+import { THEME } from '../constants/theme';
+import { ExplorerAPI } from '@blockcerts/explorer-lookup';
+import { TemplateResult } from 'lit-html';
+
+export interface IBlockcertsVerifierProps {
+  // path to hosted certificate, or certificate as a string
+  src?: string;
+  // hook function called when component is rendered
+  onLoad?: (IBlockcertsVerifierProps) => any;
+  // the error message to be displayed, if any
+  errorMessage?: string;
+  // boolean to check if a certificate has been loaded into the component
+  hasCertificate?: boolean;
+  // flag to disable foreground verification modal (background verification still occurs)
+  disableAutoVerify?: boolean;
+  // flag to disable verification
+  disableVerify?: boolean;
+  // flag to allow downloading the certificate json file
+  allowDownload?: boolean;
+  // flag to disable downloading the certificate as PDF
+  disableDownloadPdf?: boolean;
+  // flag to allow sharing certificate url on social medias
+  allowSocialShare?: boolean;
+  // configure the way the certificate is rendered (card mode, full mode or fullscreen mode)
+  displayMode?: DISPLAY_MODE;
+  // flag to display the "metadata" field of the certificate json
+  showMetadata?: boolean;
+  // flag to control whether URLs within the display property of the certificate are converted to hyperlinks or not
+  clickableUrls?: boolean;
+  // configure some colors to adapt to bright or dark HTML page context
+  theme?: THEME;
+  // language configuration
+  locale?: string;
+  // pass down your own configuration to a blockchain explorer. Allows for custom chains and/or custom API tokens
+  explorerAPIs?: ExplorerAPI[];
+  // point to your own DID resolver url
+  didResolverUrl?: string;
+}
 
 class BlockcertsVerifier extends LitElement {
+  private hasRenderedOnce: boolean;
+  private _props: IBlockcertsVerifierProps;
+  public onLoad: (IBlockcertsVerifierProps) => any = () => {};
+
   constructor () {
     super();
     this.hasRenderedOnce = false;
   }
 
-  static get properties () {
+  static get properties (): IBlockcertsVerifierProps {
     return {
-      onLoad: Function,
-      errorMessage: String,
-      hasCertificate: Boolean,
+      onLoad: Function as any,
+      errorMessage: String as any,
+      hasCertificate: Boolean as any,
       ...APICamelCase
     };
   }
 
-  _firstRendered () {
+  _firstRendered (): void {
     this.onLoad(this._props);
     this.hasRenderedOnce = true;
   }
 
-  _propertiesChanged (props, changedProps, prevProps) {
+  _propertiesChanged (props: IBlockcertsVerifierProps, changedProps: IBlockcertsVerifierProps, prevProps: IBlockcertsVerifierProps): void {
     this._props = props;
     super._propertiesChanged(props, changedProps, prevProps);
 
@@ -49,7 +91,7 @@ class BlockcertsVerifier extends LitElement {
     }
   }
 
-  renderCertificate (_props) {
+  renderCertificate (_props: IBlockcertsVerifierProps): TemplateResult {
     switch (_props.displayMode) {
       case DISPLAY_MODE.FULL:
         return html`<buv-full-certificate></buv-full-certificate>`;
@@ -60,7 +102,7 @@ class BlockcertsVerifier extends LitElement {
     }
   }
 
-  _render (_props) {
+  _render (_props: IBlockcertsVerifierProps): TemplateResult {
     const bodyClass = _props.hasCertificate ? 'buv-c-verifier-body  buv-c-verifier-body--padded' : '';
 
     return html`
@@ -85,9 +127,15 @@ class BlockcertsVerifier extends LitElement {
 
 window.customElements.define('buv-raw', BlockcertsVerifier);
 
+interface BUVWrapperProps extends IBlockcertsVerifierAPI {
+  onLoad?: (IBlockcertsVerifierProps) => any;
+  errorMessage?: string;
+  hasCertificate?: boolean;
+}
+
 // wrap Button in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
-function BUVWrapper (props = {}) {
+function BUVWrapper (props: BUVWrapperProps = {}): TemplateResult {
   return html`<buv-raw
           src='${props.src}'
           onLoad='${props.onLoad}'

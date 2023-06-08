@@ -1,9 +1,10 @@
 import connector from '../../../store/connector';
-import FinalVerificationStep from './FinalVerificationStep';
+import FinalVerificationStep, { FinalVerificationStepProps } from './FinalVerificationStep';
 import { getChain, getFinalStep, getTransactionLink, isTestChain } from '../../../selectors/certificate';
 import { getVerificationStatus } from '../../../selectors/verification';
+import { BlockcertsVerifierState } from '../../../store/getInitialState';
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = (state: BlockcertsVerifierState): FinalVerificationStepProps => ({
   finalStep: getFinalStep(state),
   chain: getChain(state),
   transactionLink: getTransactionLink(state),
@@ -11,10 +12,10 @@ export const mapStateToProps = (state) => ({
   status: getVerificationStatus(state)
 });
 
-const ownProps = {
-  isVisible: Boolean,
-  hideLink: Boolean,
-  standalone: Boolean
+const ownProps: FinalVerificationStepProps = {
+  isVisible: Boolean as any,
+  hideLink: Boolean as any,
+  standalone: Boolean as any
 };
 
 const FinalVerificationStepContainer = connector(FinalVerificationStep, { mapStateToProps, ownProps });

@@ -1,13 +1,14 @@
 import updateCertificateUrl from '../../../actions/updateCertificateUrl';
 import connector from '../../../store/connector';
-import Input from './Input';
+import Input, { InputProps } from './Input';
 import { getUrlIsValid } from '../../../selectors/input';
+import { BlockcertsVerifierState } from '../../../store/getInitialState';
 
-const mapDispatchToProps = {
+const mapDispatchToProps: InputProps = {
   onInput: updateCertificateUrl
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: BlockcertsVerifierState): InputProps => ({
   isValid: getUrlIsValid(state)
 });
 

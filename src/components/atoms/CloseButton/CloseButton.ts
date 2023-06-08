@@ -1,8 +1,14 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.close-button-css';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
 
-const CloseButton = ({ onClick = () => {}, className = '' } = {}) => {
+export interface CloseButtonProps {
+  onClick?: (args: any) => any;
+  className?: string;
+}
+
+const CloseButton = ({ onClick = () => {}, className = '' }: CloseButtonProps = {}): TemplateResult => {
   const classes = `buv-c-close-button  buv-c-close-button--hairline  ${className || 'buv-c-close-button--position'} `;
   return html`
     ${CSS}

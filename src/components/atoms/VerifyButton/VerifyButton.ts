@@ -2,8 +2,15 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.verify-button-css';
 import getText from '../../../i18n/getText';
 
-export default function VerifyButton ({ isHollow = false, isDisabled = false, onClick = () => {}, type = '' } = {}) {
-  const buttonClass = [
+export interface VerifyButtonProps {
+  isHollow?: boolean;
+  isDisabled?: boolean;
+  onClick?: (e: Event) => any;
+  type?: string;
+}
+
+export default function VerifyButton ({ isHollow = false, isDisabled = false, onClick = () => {}, type = '' }: VerifyButtonProps = {}) {
+  const buttonClass: string = [
     'buv-c-verify-button',
     isHollow ? 'buv-c-verify-button--hollow' : '',
     isDisabled ? 'is-disabled' : '',

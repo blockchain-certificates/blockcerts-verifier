@@ -7,10 +7,10 @@ import setLocale from '../i18n/setLocale';
 import domain from '../domain';
 import isJson from '../helpers/isJson';
 import updateCertificateDefinition from './updateCertificateDefinition';
+import { BlockcertsVerifierState } from '../store/getInitialState';
+import { IBlockcertsVerifierProps } from '../blockcerts-verifier/BlockcertsVerifier';
 
-// TODO: define first any: State
-// TODO: define second any: APIOptions
-export default function initialize (options = {}): ThunkAction<void, any, void, Action<any>> {
+export default function initialize (options = {}): ThunkAction<void, BlockcertsVerifierState, void, Action<{ options: IBlockcertsVerifierProps }>> {
   return function (dispatch) {
     const APIOptions = getAPIOptions(options);
     const { src, locale } = APIOptions as any;

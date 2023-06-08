@@ -3,7 +3,12 @@ import CSS from './_components.file-upload-css';
 import getText from '../../../i18n/getText';
 import canDragAndDrop from '../../../helpers/canDragAndDrop';
 
-export default function FileUpload ({ onChange = () => {}, hideFileUpload = false }) {
+export interface FileUploadProps {
+  onChange?: (file: File) => any;
+  hideFileUpload?: boolean;
+}
+
+export default function FileUpload ({ onChange = () => {}, hideFileUpload = false }: FileUploadProps) {
   if (hideFileUpload) {
     return null;
   }

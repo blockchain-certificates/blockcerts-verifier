@@ -1,8 +1,14 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.download-link-css';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
 
-export default function DownloadLink ({ downloadLink, display = '' }) {
+export interface DownloadLinkProps {
+  downloadLink?: string;
+  display?: string;
+}
+
+export default function DownloadLink ({ downloadLink, display = '' }: DownloadLinkProps): TemplateResult {
   if (!downloadLink) {
     return null;
   }

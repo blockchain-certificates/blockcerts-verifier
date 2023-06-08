@@ -9,7 +9,7 @@ export function configureStore (initialState = getInitialState()) {
   const middlewares = [thunk];
   if (ENV.debugEnabled) {
     // TODO: ensure the logger code does not make it to production build
-    middlewares.push(logger);
+    middlewares.push(logger as any);
   }
 
   return createStore(

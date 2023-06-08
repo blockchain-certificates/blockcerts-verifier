@@ -1,8 +1,8 @@
 import connector from '../../../store/connector';
-import { DragAndDrop } from './DragAndDrop';
+import { DragAndDrop, DragAndDropProps } from './DragAndDrop';
 import uploadCertificateDefinition from '../../../actions/uploadCertificateDefinition';
 
-const mapDispatchToProps = {
+const mapDispatchToProps: DragAndDropProps = {
   onDrop: uploadCertificateDefinition
 };
 

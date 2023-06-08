@@ -1,13 +1,24 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.drag-and-drop-css';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
 
-function isJson (file) {
+function isJson (file: File): boolean {
   const { name } = file;
   return name.substr(name.length - 4, 4) === 'json';
 }
 
+export interface DragAndDropProps {
+  isDraggedOver?: boolean;
+  denyDrop?: boolean;
+  onDrop?: (file: File) => any;
+}
+
 class DragAndDrop extends LitElement {
+  private isDraggedOver: boolean;
+  private denyDrop: boolean;
+  private _props: DragAndDropProps;
+
   constructor () {
     super();
     this.isDraggedOver = false;
@@ -18,27 +29,27 @@ class DragAndDrop extends LitElement {
     this.handleDrop = this.handleDrop.bind(this);
   }
 
-  static get properties () {
+  static get properties (): DragAndDropProps {
     return {
-      isDraggedOver: Boolean,
-      denyDrop: Boolean,
-      onDrop: Function
+      isDraggedOver: Boolean as any,
+      denyDrop: Boolean as any,
+      onDrop: Function as any
     };
   }
 
-  handleDragEnter () {
+  handleDragEnter (): void {
     this.isDraggedOver = true;
   }
 
-  handleDragOver (e) {
+  handleDragOver (e: DragEvent): void {
     e.preventDefault();
   }
 
-  handleDragLeave () {
+  handleDragLeave (): void {
     this.isDraggedOver = false;
   }
 
-  handleDrop (e) {
+  handleDrop (e: DragEvent): void {
     e.preventDefault();
     this.isDraggedOver = false;
 
@@ -52,12 +63,12 @@ class DragAndDrop extends LitElement {
     this._props.onDrop(file);
   }
 
-  _propertiesChanged (props, changedProps, prevProps) {
+  _propertiesChanged (props: DragAndDropProps, changedProps: DragAndDropProps, prevProps: DragAndDropProps): void {
     this._props = props;
     super._propertiesChanged(props, changedProps, prevProps);
   }
 
-  _render () {
+  _render (): TemplateResult {
     const classes = [
       'buv-c-drag-and-drop__droparea',
       this.isDraggedOver ? 'is-active' : ''
@@ -83,7 +94,7 @@ window.customElements.define('buv-drag-and-drop-raw', DragAndDrop);
 
 // wrap DragAndDrop in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
-function DragAndDropWrapper (props) {
+function DragAndDropWrapper (props: DragAndDropProps): TemplateResult {
   return html`
   <buv-drag-and-drop-raw
     onDrop='${props.onDrop}'

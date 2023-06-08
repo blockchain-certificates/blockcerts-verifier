@@ -1,4 +1,4 @@
-import { configureStore } from '../../../../src/store/index';
+import { configureStore } from '../../../../src/store';
 import { mapStateToProps } from '../../../../src/components/molecules/SocialShare/SocialShareContainer';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../../fixtures/v2/valid-certificate-example.json';
