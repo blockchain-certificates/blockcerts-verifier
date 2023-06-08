@@ -1,5 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import '../../dist/ie11';
+import '../../dist/main';
 import { wait } from './helpers/waitForKarma';
 
 describe('BlockcertsVerifier clickable urls e2e test suite', function () {
