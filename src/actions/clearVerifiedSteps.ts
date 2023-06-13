@@ -2,9 +2,16 @@ import * as ACTIONS from '../constants/actionTypes';
 import { getCertificateDefinition } from '../selectors/certificate';
 import domain from '../domain';
 import { Dispatch } from 'redux';
-import { BlockcertsVerifierState } from '../store/getInitialState';
+import type { BlockcertsVerifierState } from '../store/getInitialState';
+import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';
+import type { ThunkAction } from 'redux-thunk';
+import type { Action } from './action';
 
-export default function () {
+export interface ClearVerifiedStepsPayload {
+  resetSteps: IVerificationMapItem[];
+}
+
+export default function clearVerifiedSteps (): ThunkAction<void, BlockcertsVerifierState, void, Action<ClearVerifiedStepsPayload>> {
   return function (dispatch: Dispatch, getState: () => BlockcertsVerifierState): void {
     const certificateDefinition = getCertificateDefinition(getState());
     let resetSteps = [];

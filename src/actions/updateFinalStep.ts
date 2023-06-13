@@ -1,10 +1,16 @@
 import * as ACTIONS from '../constants/actionTypes';
+import type { IFinalStep } from '../store/getInitialState';
+import type { Action } from './action';
 
-// TODO: move this responsibility to cert-verifier-js
-export default function updateFinalStep (finalStep) {
+export interface UpdateFinalStepActionPayload {
+  finalStep: IFinalStep;
+}
+
+export default function updateFinalStep (finalStep: IFinalStep): Action<UpdateFinalStepActionPayload> {
   if (typeof finalStep === 'string') {
     finalStep = {
-      label: finalStep
+      label: finalStep,
+      description: ''
     };
   }
   return {

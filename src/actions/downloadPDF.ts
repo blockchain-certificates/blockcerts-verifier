@@ -1,5 +1,5 @@
 import domain from '../domain';
-import isGeneratingPDF from './isGeneratingPDF';
+import updateIsGeneratingPDF from './updateIsGeneratingPDF';
 import {
   getCertificateTitle,
   getDisplayContent,
@@ -33,7 +33,7 @@ export default function downloadPDF () {
     const issuerProfileUrl: string[] = getIssuerProfileUrl(state);
     const issuerProfileDomain: string[] = getIssuerProfileDomain(state);
 
-    dispatch(isGeneratingPDF(true));
+    dispatch(updateIsGeneratingPDF(true));
 
     await domain.certificates.downloadPDF({
       contentType,
@@ -50,6 +50,6 @@ export default function downloadPDF () {
       issuerProfileDomain
     });
 
-    dispatch(isGeneratingPDF(false));
+    dispatch(updateIsGeneratingPDF(false));
   };
 }

@@ -12,8 +12,10 @@ import updateVerificationStatus from './updateVerificationStatus';
 import updateFinalStep from './updateFinalStep';
 import showVerificationModal from './showVerificationModal';
 import updateIsGeneratingPDF from './updateIsGeneratingPDF';
+import type { BlockcertsVerifierState } from '../store/getInitialState';
+import type { Action } from '../actions/action';
 
-export function app (state, action) {
+export function app (state: BlockcertsVerifierState, action: Action<any>) {
   switch (action.type) {
     case ACTIONS.CLEAR_VERIFIED_STEPS:
       return clearVerifiedSteps(state, action);

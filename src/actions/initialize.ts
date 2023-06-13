@@ -10,7 +10,11 @@ import updateCertificateDefinition from './updateCertificateDefinition';
 import { BlockcertsVerifierState } from '../store/getInitialState';
 import { IBlockcertsVerifierProps } from '../blockcerts-verifier/BlockcertsVerifier';
 
-export default function initialize (options = {}): ThunkAction<void, BlockcertsVerifierState, void, Action<{ options: IBlockcertsVerifierProps }>> {
+export interface InitializeActionPayload {
+  options: IBlockcertsVerifierProps;
+}
+
+export default function initialize (options = {}): ThunkAction<void, BlockcertsVerifierState, void, Action<InitializeActionPayload>> {
   return function (dispatch) {
     const APIOptions = getAPIOptions(options);
     const { src, locale } = APIOptions as any;

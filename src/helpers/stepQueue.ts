@@ -2,7 +2,7 @@ import { VerificationSubstep } from '@blockcerts/cert-verifier-js';
 
 class StepQueue {
   private readonly queue: VerificationSubstep[];
-  private dispatchCb: (step: VerificationSubstep) => any;
+  public dispatchCb: (step: VerificationSubstep) => any;
   private isExecuting: boolean;
   private intervalId: number;
 

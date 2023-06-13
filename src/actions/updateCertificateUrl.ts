@@ -3,8 +3,14 @@ import validateUrlInput from './validateUrlInput';
 import domain from '../domain';
 import updateCertificateDefinition from './updateCertificateDefinition';
 import setErrorMessage from './setErrorMessage';
+import type { ThunkAction } from 'redux-thunk';
+import type { Action } from './action';
 
-export default function updateCertificateUrl (url) {
+export interface UpdateCertificateUrlActionPayload {
+  url: string;
+}
+
+export default function updateCertificateUrl (url: string): ThunkAction<void, any, void, Action<UpdateCertificateUrlActionPayload>> {
   return async function (dispatch) {
     const isUrlValid = domain.certificates.isPathToCertificateValidURI(url);
     dispatch(validateUrlInput(isUrlValid));
@@ -25,7 +31,7 @@ export default function updateCertificateUrl (url) {
     if (retrievedData.certificateDefinition) {
       await dispatch(updateCertificateDefinition(retrievedData.certificateDefinition));
     } else {
-      dispatch(setErrorMessage(retrievedData.errorMessage));
+      dispatch(setErrorMessage(retrievedData.errorMessage) as any); // TODO: fix type overload
     }
   };
 }
