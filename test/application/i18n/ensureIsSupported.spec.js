@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import * as i18n from '../../../src/i18n/index';
+import * as i18n from '../../../src/i18n';
 import ensureIsSupported from '../../../src/i18n/ensureIsSupported';
 
 describe('domain i18n ensureIsSupported use case test suite', function () {

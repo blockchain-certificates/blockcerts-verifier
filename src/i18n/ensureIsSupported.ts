@@ -1,20 +1,20 @@
 import { defaultLocale } from './detectLocale';
 import * as i18n from './index';
 
-export function setLocaleValidCase (locale) {
+export function setLocaleValidCase (locale: string): string {
   const localeParts = locale.split('-');
   return localeParts.length > 1
     ? `${localeParts[0].toLowerCase()}-${localeParts[1].toUpperCase()}`
     : localeParts[0].toLowerCase();
 }
 
-export default function ensureIsSupported (locale) {
+export default function ensureIsSupported (locale: string): string {
   let isSupported;
 
   const supportedLanguages = i18n.getSupportedLanguages().map(language => language.toLowerCase());
 
   // Test RFC 3066 language
-  isSupported = supportedLanguages.indexOf(locale.toLowerCase()) > -1;
+  isSupported = supportedLanguages.includes(locale.toLowerCase());
 
   // Test RFC 3066 language-country
   if (!isSupported) {

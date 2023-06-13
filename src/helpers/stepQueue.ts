@@ -1,21 +1,28 @@
+import { VerificationSubstep } from '@blockcerts/cert-verifier-js';
+
 class StepQueue {
+  private readonly queue: VerificationSubstep[];
+  private dispatchCb: (step: VerificationSubstep) => any;
+  private isExecuting: boolean;
+  private intervalId: number;
+
   constructor () {
     this.queue = [];
     this.dispatchCb = null;
     this.isExecuting = false;
-    this.intervalId = null;
+    this.intervalId = 0;
     this.dispatchNext = this.dispatchNext.bind(this);
   }
 
-  registerCb (dispatchCb) {
+  registerCb (dispatchCb: (step: VerificationSubstep) => any): void {
     this.dispatchCb = dispatchCb;
   }
 
-  push (step) {
+  push (step: VerificationSubstep): void {
     this.queue.push(step);
   }
 
-  dispatchNext () {
+  dispatchNext (): void {
     const step = this.queue.shift();
     if (step) {
       this.dispatchCb(step);
@@ -25,15 +32,15 @@ class StepQueue {
     }
   }
 
-  execute () {
+  execute (): void {
     if (!this.isExecuting && this.queue.length) {
       this.isExecuting = true;
-      this.intervalId = setInterval(this.dispatchNext, 200);
+      this.intervalId = window.setInterval(this.dispatchNext, 200);
     }
   }
 }
 
-const stepQueueFactory = () => {
+const stepQueueFactory = (): StepQueue => {
   return new StepQueue();
 };
 

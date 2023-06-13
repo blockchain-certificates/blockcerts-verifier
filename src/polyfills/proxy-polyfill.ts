@@ -21,7 +21,7 @@ export default function proxyPolyfill () {
    * @param {*} o
    * @return {boolean} whether this is probably a (non-null) Object
    */
-  function isObject (o) {
+  function isObject (o: any): boolean {
     return o ? (typeof o === 'object' || typeof o === 'function') : false;
   }
 
@@ -38,9 +38,10 @@ export default function proxyPolyfill () {
     // Construct revoke function, and set lastRevokeFn so that Proxy.revocable can steal it.
     // The caller might get the wrong revoke function if a user replaces or wraps scope.Proxy
     // to call itself, but that seems unlikely especially when using the polyfill.
-    let throwRevoked = function () {};
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    let throwRevoked: (arg: any) => any = function () {};
     lastRevokeFn = function () {
-      throwRevoked = function (trap) {
+      throwRevoked = function (trap: string) {
         throw new TypeError(`Cannot perform '${trap}' on a proxy that has been revoked`);
       };
     };
@@ -64,12 +65,14 @@ export default function proxyPolyfill () {
 
     // Define proxy as this, or a Function (if either it's callable, or apply is set).
     // TODO(samthor): Closure compiler doesn't know about 'construct', attempts to rename it.
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     let proxy = this;
     let isMethod = false;
     let isArray = false;
     if (typeof target === 'function') {
       proxy = function ProxyPolyfill () {
         const usingNew = (this && this.constructor === proxy);
+        // eslint-disable-next-line prefer-rest-params
         const args = Array.prototype.slice.call(arguments);
         throwRevoked(usingNew ? 'construct' : 'apply');
 
@@ -84,6 +87,7 @@ export default function proxyPolyfill () {
           // inspired by answers to https://stackoverflow.com/q/1606797
           args.unshift(target); // pass class as first arg to constructor, although irrelevant
           // nb. cast to convince Closure compiler that this is a constructor
+          // eslint-disable-next-line prefer-spread
           const f = /** @type {!Function} */ (target.bind.apply(target, args));
           /* eslint new-cap: "off" */
           return new f();
@@ -98,20 +102,24 @@ export default function proxyPolyfill () {
 
     // Create default getters/setters. Create different code paths as handler.get/handler.set can't
     // change after creation.
-    const getter = handler.get ? function (prop) {
-      throwRevoked('get');
-      return handler.get(this, prop, proxy);
-    } : function (prop) {
-      throwRevoked('get');
-      return this[prop];
-    };
-    const setter = handler.set ? function (prop, value) {
-      throwRevoked('set');
-      handler.set(this, prop, value, proxy);
-    } : function (prop, value) {
-      throwRevoked('set');
-      this[prop] = value;
-    };
+    const getter = handler.get
+      ? function (prop) {
+        throwRevoked('get');
+        return handler.get(this, prop, proxy);
+      }
+      : function (prop) {
+        throwRevoked('get');
+        return this[prop];
+      };
+    const setter = handler.set
+      ? function (prop, value) {
+        throwRevoked('set');
+        handler.set(this, prop, value, proxy);
+      }
+      : function (prop, value) {
+        throwRevoked('set');
+        this[prop] = value;
+      };
 
     // Clone direct properties (i.e., not part of a prototype).
     const propertyNames = Object.getOwnPropertyNames(target);
@@ -159,6 +167,7 @@ export default function proxyPolyfill () {
   };
 
   ProxyPolyfill.revocable = function (target, handler) {
+    // @ts-expect-error: this code was brought in from outside source
     const p = new ProxyPolyfill(target, handler);
     return { proxy: p, revoke: lastRevokeFn };
   };
