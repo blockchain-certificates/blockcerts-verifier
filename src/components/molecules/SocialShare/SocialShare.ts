@@ -2,28 +2,43 @@ import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.social-share-css';
 import CloseButton from '../../atoms/CloseButton';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
+
+export interface SocialShareProps {
+  isOpen?: boolean;
+  url?: string;
+  onShare?: (name: string) => any;
+  display?: string;
+}
+
+interface SocialMediaObject {
+  name: string;
+  shareUrl: string;
+}
 
 class SocialShare extends LitElement {
+  private isOpen: boolean;
+
   constructor () {
     super();
     this.isOpen = false;
     this.toggleOpen = this.toggleOpen.bind(this);
   }
 
-  static get properties () {
+  static get properties (): SocialShareProps {
     return {
-      url: String,
-      isOpen: String,
-      onShare: Function,
-      display: String
+      url: String as any,
+      isOpen: Boolean as any,
+      onShare: Function as any,
+      display: String as any
     };
   }
 
-  toggleOpen () {
+  toggleOpen (): void {
     this.isOpen = !this.isOpen;
   }
 
-  sharingTemplate ({ url, onShare, display }) {
+  sharingTemplate ({ url, onShare, display }: SocialShareProps): TemplateResult {
     if (!this.isOpen) {
       return;
     }
@@ -32,7 +47,7 @@ class SocialShare extends LitElement {
       return;
     }
     const isPlainText = display === 'plaintext';
-    const socialServices = [
+    const socialServices: SocialMediaObject[] = [
       {
         name: 'LinkedIn',
         shareUrl: `https://www.linkedin.com/shareArticle?url=${url}&mini=true`
@@ -78,7 +93,7 @@ class SocialShare extends LitElement {
     </div>`;
   }
 
-  sharingButton ({ url, display }) {
+  sharingButton ({ url, display }: SocialShareProps): TemplateResult {
     const isPlainText = display === 'plaintext';
     if (isPlainText) {
       this.isOpen = true;
@@ -98,7 +113,7 @@ class SocialShare extends LitElement {
     </button>`;
   }
 
-  _render (props) {
+  _render (props: SocialShareProps): TemplateResult {
     return html`
       ${CSS}
       ${this.sharingButton(props)}
@@ -111,7 +126,7 @@ window.customElements.define('buv-social-share-raw', SocialShare);
 
 // wrap SocialShare in order to plug into Container
 // necessary trade-off to deal with class component in the store connector
-function SocialShareWrapper (props) {
+function SocialShareWrapper (props: SocialShareProps): TemplateResult {
   return html`
   <buv-social-share-raw
     url='${props.url}'

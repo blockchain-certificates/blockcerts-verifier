@@ -3,8 +3,13 @@ import '../../atoms/Input';
 import '../../atoms/VerifyButton';
 
 import CSS from './_components.certificate-input-css';
+import { TemplateResult } from 'lit-html';
 
-const CertificateInput = ({ showInput = true }) => {
+export interface CertificateInputProps {
+  showInput?: boolean;
+}
+
+const CertificateInput = ({ showInput = true }: CertificateInputProps): TemplateResult => {
   if (!showInput) {
     return null;
   }

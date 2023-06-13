@@ -1,8 +1,9 @@
 import connector from '../../../store/connector';
-import CertificateInput from './CertificateInput';
+import CertificateInput, { CertificateInputProps } from './CertificateInput';
 import { getCertificateDefinition } from '../../../selectors/certificate';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = (state: BlockcertsVerifierState): CertificateInputProps => ({
   showInput: !getCertificateDefinition(state)
 });
 

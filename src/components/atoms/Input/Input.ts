@@ -9,7 +9,7 @@ export interface InputProps {
 
 const Input = ({ onInput = () => {}, isValid = true }: InputProps = {}) => {
   // TODO: better handle this dynamic class (cf npm classnames)
-  const inputClass: string = `buv-c-input ${isValid ? '' : 'is-invalid'}`;
+  const inputClass = `buv-c-input ${isValid ? '' : 'is-invalid'}`;
 
   return html`
     ${CSS}

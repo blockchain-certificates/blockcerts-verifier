@@ -3,8 +3,14 @@ import CSS from './_components.verification-modal-css';
 import '../../molecules/Footer';
 import '../../molecules/Modal';
 import '../VerificationProcess';
+import { TemplateResult } from 'lit-html';
 
-function VerificationModal ({ isOpen, onClose }) {
+export interface VerificationModalProps {
+  isOpen?: boolean;
+  onClose?: (e: Event) => any;
+}
+
+function VerificationModal ({ isOpen, onClose }: VerificationModalProps): TemplateResult {
   return html`
     ${CSS}
     <buv-modal isOpen?='${isOpen}' onClose='${onClose}'>

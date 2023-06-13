@@ -4,9 +4,24 @@ import '../../atoms/VerifyButton';
 import '../../atoms/DownloadPDFLink';
 import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
 
-function loadImage (props) {
-  return new Promise((resolve) => {
+export interface CardCertificateProps {
+  hasCertificateDefinition?: boolean;
+  recipientName?: string;
+  certificateTitle?: string;
+  issuedOn?: string;
+  issueDate?: string;
+  issuerName?: string;
+  issuerLogo?: string;
+  recordLink?: string;
+  hideVerifyButton?: boolean;
+  disableDownloadPdf?: boolean;
+  hideRecordLink?: boolean;
+}
+
+async function loadImage (props: CardCertificateProps): Promise<TemplateResult> {
+  return await new Promise((resolve) => {
     const tester = new Image();
     tester.addEventListener('load', () => {
       resolve(html`<img src='${props.issuerLogo}' alt='${props.issuerName}' class='buv-c-card__img'/>`);
@@ -18,7 +33,7 @@ function loadImage (props) {
   });
 }
 
-export default function CardCertificate (props) {
+export default function CardCertificate (props: CardCertificateProps): TemplateResult {
   const {
     hasCertificateDefinition,
     recipientName,
@@ -41,7 +56,7 @@ export default function CardCertificate (props) {
     hideRecordLink = true;
   }
 
-  const titleClass = [
+  const titleClass: string = [
     'buv-c-card__title',
     hideRecordLink ? 'buv-c-card__title--no-padding' : ''
   ].join(' ');

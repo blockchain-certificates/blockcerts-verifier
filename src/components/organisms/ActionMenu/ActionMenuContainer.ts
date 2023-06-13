@@ -1,5 +1,5 @@
 import connector from '../../../store/connector';
-import ActionMenu from './ActionMenu';
+import ActionMenu, { ActionMenuProps } from './ActionMenu';
 import {
   getAllowDownload,
   getDisableDownloadPdf,
@@ -9,8 +9,9 @@ import {
 } from '../../../selectors/api';
 import * as DISPLAY_MODE from '../../../constants/displayMode';
 import { getCertificateDefinition } from '../../../selectors/certificate';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
-export const mapStateToProps = (state) => ({
+export const mapStateToProps = (state: BlockcertsVerifierState): ActionMenuProps => ({
   allowDownload: getAllowDownload(state),
   disableDownloadPdf: getDisableDownloadPdf(state),
   allowSocialShare: getAllowSocialShare(state),

@@ -9,7 +9,7 @@ const SEPARATOR = '.';
  *    otherwise undefined
  */
 
-export default function getValueFrom (list, entry) {
+export default function getValueFrom (list: any, entry: string): any {
   const entryPath = entry.split(SEPARATOR);
 
   function getListSubkey (list, key, path) {

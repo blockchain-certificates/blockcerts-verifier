@@ -1,7 +1,13 @@
 import { isValidLocalPath, isValidUrl } from '../../../helpers/validations';
 import downloadFlag from '../../../constants/downloadFlag';
+import { Blockcerts } from '@blockcerts/cert-verifier-js';
 
-function handleError () {
+export interface RetrieveResult {
+  certificateDefinition: Blockcerts;
+  errorMessage?: string;
+}
+
+function handleError (): RetrieveResult {
   const errorMessage = 'errors.invalidBlockcertsUrl';
   return {
     certificateDefinition: null,
@@ -9,7 +15,7 @@ function handleError () {
   };
 }
 
-export default function retrieve (url) {
+export default async function retrieve (url: string): Promise<RetrieveResult> {
   if (!(isValidUrl(url) || isValidLocalPath(url))) {
     console.error('Invalid url to retrieve:', url);
     return null;
@@ -17,8 +23,8 @@ export default function retrieve (url) {
 
   const urlWithParam = url + downloadFlag;
 
-  return fetch(urlWithParam)
-    .then(res => res.text())
+  return await fetch(urlWithParam)
+    .then(async res => await res.text())
     .then(text => {
       try {
         return {
@@ -26,7 +32,7 @@ export default function retrieve (url) {
         };
       } catch (err) {
         console.log(err);
-        return handleError(err);
+        return handleError();
       }
     })
     .catch(handleError);

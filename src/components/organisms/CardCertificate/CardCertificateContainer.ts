@@ -1,5 +1,5 @@
 import connector from '../../../store/connector';
-import CardCertificate from './CardCertificate';
+import CardCertificate, { CardCertificateProps } from './CardCertificate';
 import {
   getCertificateDefinition,
   getCertificateTitle,
@@ -11,8 +11,9 @@ import {
   getRecordLink
 } from '../../../selectors/certificate';
 import { getDisableDownloadPdf } from '../../../selectors/api';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: BlockcertsVerifierState): CardCertificateProps => ({
   hasCertificateDefinition: !!getCertificateDefinition(state),
   recipientName: getRecipientName(state),
   certificateTitle: getCertificateTitle(state),
@@ -24,9 +25,9 @@ const mapStateToProps = (state) => ({
   disableDownloadPdf: getDisableDownloadPdf(state)
 });
 
-const ownProps = {
-  hideRecordLink: Boolean,
-  hideVerifyButton: Boolean
+const ownProps: CardCertificateProps = {
+  hideRecordLink: Boolean as any,
+  hideVerifyButton: Boolean as any
 };
 
 const CardCertificateContainer = connector(CardCertificate, { mapStateToProps, ownProps });

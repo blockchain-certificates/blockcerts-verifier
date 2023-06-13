@@ -6,10 +6,10 @@ import getText from '../../../i18n/getText';
 import FormattedMetadataItem from '../../atoms/FormattedMetadataItem';
 import { TemplateResult } from 'lit-html';
 
-export interface IMetadataAPI {
+export interface IMetadataProps {
   _isOpen?: boolean;
-  metadataList: any; // TODO: define metadata object as it's supposed to be (see cert-issuer python checks)
-  display: string;
+  metadataList?: any; // TODO: define metadata object as it's supposed to be (see cert-issuer python checks)
+  display?: string;
 }
 function getProperties (metadataList: any): any { // TODO: define metadata object as it's supposed to be (see cert-issuer python checks)
   return metadataList.schema?.properties.certificate.properties;
@@ -24,7 +24,7 @@ class Metadata extends LitElement {
     this.toggleOpen = this.toggleOpen.bind(this);
   }
 
-  static get properties (): IMetadataAPI {
+  static get properties (): IMetadataProps {
     return {
       _isOpen: Boolean as any,
       metadataList: Object as any,
@@ -36,7 +36,7 @@ class Metadata extends LitElement {
     this._isOpen = !this._isOpen;
   }
 
-  _render ({ metadataList, display }: IMetadataAPI): TemplateResult {
+  _render ({ metadataList, display }: IMetadataProps): TemplateResult {
     // TODO: better handle this dynamic class (cf npm classnames)
     const panelClasses = [
       'buv-o-overlay',
@@ -87,7 +87,7 @@ class Metadata extends LitElement {
 
 window.customElements.define('buv-metadata-raw', Metadata);
 
-function MetadataWrapper (props: IMetadataAPI): TemplateResult {
+function MetadataWrapper (props: IMetadataProps): TemplateResult {
   return html`
     <buv-metadata-raw
       metadataList='${props.metadataList}'

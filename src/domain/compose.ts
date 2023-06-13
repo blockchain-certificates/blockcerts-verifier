@@ -1,8 +1,8 @@
 import proxyPolyfill from '../polyfills/proxy-polyfill';
 
 // Proxy handler to intercept property calls
-const handler = {
-  get: (target, name) => {
+const handler: any = {
+  get: (target: any, name: string): any => {
     const result = name in target
       ? target[name]
       : null;
@@ -11,7 +11,7 @@ const handler = {
   }
 };
 
-const compose = (services = {}) => {
+const compose = (services = {}): any => {
   // Creates a domain object enhanced with the proxy handler
   if (!window.Proxy) {
     const ProxyPolyfill = proxyPolyfill();

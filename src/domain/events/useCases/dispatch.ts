@@ -1,4 +1,7 @@
-export default function dispatch (eventType = '', certificateDefinition = null, details) {
+import { Blockcerts } from '@blockcerts/cert-verifier-js';
+
+// eslint-disable-next-line @typescript-eslint/default-param-last
+export default function dispatch (eventType = '', certificateDefinition: Blockcerts = null, details: any): void {
   if (!eventType || typeof eventType !== 'string') {
     return;
   }

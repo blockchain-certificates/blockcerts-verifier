@@ -1,5 +1,6 @@
 import { ExplorerAPI } from '@blockcerts/explorer-lookup';
-import { BlockcertsVerifierState } from '../store/getInitialState';
+import type { BlockcertsVerifierState } from '../store/getInitialState';
+import type { THEME } from '../constants/theme';
 
 export function getDisableAutoVerify (state: BlockcertsVerifierState): boolean {
   return state.disableAutoVerify;
@@ -29,7 +30,7 @@ export function getDisplayMode (state: BlockcertsVerifierState): string {
   return state.displayMode;
 }
 
-export function getTheme (state: BlockcertsVerifierState): string {
+export function getTheme (state: BlockcertsVerifierState): THEME {
   return state.theme;
 }
 

@@ -1,7 +1,7 @@
 let testedOnce = false;
 let canDragAndDropCache = false;
 
-export default function canDragAndDrop () {
+export default function canDragAndDrop (): boolean {
   if (testedOnce) {
     return canDragAndDropCache;
   }
