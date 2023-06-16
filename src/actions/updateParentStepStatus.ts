@@ -37,7 +37,12 @@ function oneChildIsFailure (parent: IVerificationMapItem): boolean {
   return suiteVerification || parent.subSteps.some(stepVerificationIsFailure);
 }
 
-export default function updateParentStepStatus (parentStepCode: string): ThunkAction<void, any, void, Action<any>> {
+export interface UpdateParentStepStatusActionPayload {
+  parentStepCode: string;
+  status: VERIFICATION_STATUSES;
+}
+
+export default function updateParentStepStatus (parentStepCode: string): ThunkAction<void, any, void, Action<UpdateParentStepStatusActionPayload>> {
   return function (dispatch, getState) {
     if (parentStepCode == null) {
       return;

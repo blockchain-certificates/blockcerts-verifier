@@ -81,6 +81,7 @@ describe('FullScreenCertificateContainer test suite', function () {
           store.dispatch(stepVerified({
             code: 'getTransactionId',
             label: 'Getting transaction ID',
+            labelPending: '',
             status: VERIFICATION_STATUSES.SUCCESS,
             parentStep: 'proofVerification'
           }));

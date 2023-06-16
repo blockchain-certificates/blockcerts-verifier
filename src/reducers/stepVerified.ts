@@ -1,6 +1,7 @@
 import { getParentStep } from '../selectors/certificate';
 import { BlockcertsVerifierState } from '../store/getInitialState';
 import { IVerificationMapItem, VerificationSubstep } from '@blockcerts/cert-verifier-js';
+import type { Action } from '../actions/action';
 
 function updateSubstepIn (parent: IVerificationMapItem, substep: VerificationSubstep): void {
   let substepIndex = parent.subSteps.findIndex(s => s.code === substep.code);
@@ -18,8 +19,7 @@ function updateSubstepIn (parent: IVerificationMapItem, substep: VerificationSub
   }
 }
 
-// TODO: define action
-export default function stepVerified (state: BlockcertsVerifierState, action: any): BlockcertsVerifierState {
+export default function stepVerified (state: BlockcertsVerifierState, action: Action<VerificationSubstep>): BlockcertsVerifierState {
   const { parentStep } = action.payload;
   const storedParentState = getParentStep(state, parentStep);
   updateSubstepIn(storedParentState, action.payload);

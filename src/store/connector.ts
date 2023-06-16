@@ -17,9 +17,9 @@ export default function connector<DP, SP, OP > (
   component: (props: any) => TemplateResult,
   { mapDispatchToProps = ({} as any), mapStateToProps = (): any => ({} as any), ownProps = ({} as any) }: IConnectorStateParameter<DP, SP, OP>
 ): new () => any {
-  return class extends connect(store)(LitElement) {
+  return class extends connect(store as any)(LitElement) { // TS does not accept our own Action<any> to overload AnyAction
     mapDispatchToProps (): DP {
-      return bindActionCreators<DP, any>(mapDispatchToProps, store.dispatch);
+      return bindActionCreators<DP, any>(mapDispatchToProps, store.dispatch as any); // same
     }
 
     mapStateToProps (componentProps: any): SP {

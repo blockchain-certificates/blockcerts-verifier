@@ -6,7 +6,7 @@ import { terser } from 'rollup-plugin-terser';
 
 export default [
   {
-    input: 'src/blockcerts-verifier/index.js',
+    input: 'src/blockcerts-verifier/index.ts',
     output: [
       {
         file: 'dist/main.js',

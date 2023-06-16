@@ -18,8 +18,6 @@ import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import initialize from '../../../src/actions/initialize';
 import { CertificateOptions, Signers } from '@blockcerts/cert-verifier-js';
 
-jest.mock('../../../src/helpers/stepQueue');
-
 describe('updateCertificateDefinition action creator test suite', function () {
   describe('given it is dispatched with a certificate definition', function () {
     let store;
@@ -64,7 +62,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
 
     it('should set the error in the state to undefined', async function () {
       // initially trigger an error in the state
-      await store.dispatch(updateCertificateDefinition(notACertificateDefinition));
+      await store.dispatch(updateCertificateDefinition(notACertificateDefinition as any));
       await store.dispatch(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
@@ -108,7 +106,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
         disableVerify: true
       });
       const store = configureStore(initialState);
-      await store.dispatch(updateCertificateDefinition(certificateFixture));
+      await store.dispatch<any>(updateCertificateDefinition(certificateFixture));
       const state = store.getState();
 
       expect(getVerifiedSteps(state)).toEqual(initialValidCertificateStepsAssertions);
@@ -127,7 +125,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
         };
         const initialState = getInitialState(apiConfiguration);
         const store = configureStore(initialState);
-        await store.dispatch(updateCertificateDefinition(certificateFixture));
+        await store.dispatch<any>(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
 
         expect(getShowVerificationModal(state)).toBe(false);
@@ -141,7 +139,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
         };
         const initialState = getInitialState(apiConfiguration);
         const store = configureStore(initialState);
-        await store.dispatch(updateCertificateDefinition(certificateFixture));
+        await store.dispatch<any>(updateCertificateDefinition(certificateFixture));
         const state = store.getState();
         expect(getShowVerificationModal(state)).toBe(true);
       });
@@ -210,21 +208,21 @@ describe('updateCertificateDefinition action creator test suite', function () {
     });
 
     it('should not set the definition in the state', async function () {
-      await store.dispatch(updateCertificateDefinition(notACertificateDefinition));
+      await store.dispatch(updateCertificateDefinition(notACertificateDefinition as any));
       const state = store.getState();
 
       expect(getCertificateDefinition(state)).toBe(null);
     });
 
     it('should set the error in the state', async function () {
-      await store.dispatch(updateCertificateDefinition(notACertificateDefinition));
+      await store.dispatch(updateCertificateDefinition(notACertificateDefinition as any));
       const state = store.getState();
 
       expect(getErrorMessage(state)).toBe('errors.invalidBlockcerts');
     });
 
     it('should not start the verification process', async function () {
-      await store.dispatch(updateCertificateDefinition(notACertificateDefinition));
+      await store.dispatch(updateCertificateDefinition(notACertificateDefinition as any));
       const state = store.getState();
 
       expect(getVerificationHasStarted(state)).toBe(false);

@@ -5,12 +5,18 @@ import setErrorMessage from './setErrorMessage';
 import verifyCertificate from './verifyCertificate';
 import { getDidResolverUrl, getDisableAutoVerify, getExplorerAPIs, getLocale } from '../selectors/api';
 import showVerificationModal from './showVerificationModal';
-import type { CertificateOptions } from '@blockcerts/cert-verifier-js';
+import type { Blockcerts, CertificateOptions } from '@blockcerts/cert-verifier-js';
 import type { Dispatch } from 'redux';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
+import { Certificate } from '@blockcerts/cert-verifier-js';
+import { ThunkAction } from 'redux-thunk';
+import { Action } from './action';
 
-// TODO: define input type to be a valid blockcerts document definition
-export default function updateCertificateDefinition (definition: any) {
+export interface UpdateCertificateDefinitionActionPayload {
+  certificateDefinition: Certificate;
+}
+
+export default function updateCertificateDefinition (definition: Blockcerts): ThunkAction<void, any, void, Action<UpdateCertificateDefinitionActionPayload>> {
   return async function (dispatch: Dispatch, getState: () => BlockcertsVerifierState): Promise<void> {
     const state = getState();
     const options: CertificateOptions = {

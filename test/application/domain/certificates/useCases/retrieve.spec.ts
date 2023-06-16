@@ -50,8 +50,8 @@ describe('domain certificates retrieve method test suite', function () {
   });
 
   describe('given an invalid url', function () {
-    it('should return null', function () {
-      const result = domain.certificates.retrieve(INVALID_URL);
+    it('should return null', async function () {
+      const result = await domain.certificates.retrieve(INVALID_URL);
       expect(result).toBe(null);
     });
   });

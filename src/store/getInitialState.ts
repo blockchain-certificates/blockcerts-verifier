@@ -1,7 +1,7 @@
 import * as DISPLAY_MODE from '../constants/displayMode';
 import { Certificate, IVerificationMapItem, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { ExplorerAPI } from '@blockcerts/explorer-lookup';
-import { Theme } from '../constants/theme';
+import { THEME } from '../constants/theme';
 
 export interface IFinalStep {
   description: string;
@@ -19,7 +19,7 @@ export interface BlockcertsVerifierState {
   showVerificationModal: boolean;
   displayMode: string; // TODO: define enum
   disableDownloadPdf: boolean;
-  theme: Theme;
+  theme: THEME;
   src?: string;
   disableAutoVerify?: boolean;
   disableVerify?: boolean;
@@ -30,6 +30,7 @@ export interface BlockcertsVerifierState {
   locale?: string;
   explorerAPIs?: ExplorerAPI[];
   didResolverUrl?: string;
+  errorMessage?: string;
 }
 
 export default function getInitialState (apiConfiguration = {}): BlockcertsVerifierState {
@@ -41,7 +42,7 @@ export default function getInitialState (apiConfiguration = {}): BlockcertsVerif
     showVerificationModal: false,
     displayMode: DISPLAY_MODE.CARD,
     disableDownloadPdf: false,
-    theme: Theme.BRIGHT,
+    theme: THEME.BRIGHT,
     ...apiConfiguration
   };
 }

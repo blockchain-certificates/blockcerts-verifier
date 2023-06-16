@@ -4,9 +4,9 @@ import { Certificate as CertificateV1 } from '@blockcerts/cert-verifier-js-v1-le
 import domain from '../../../src/domain';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
-import type { Blockcerts, Signers } from '@blockcerts/cert-verifier-js';
+import type { Blockcerts, IVerificationMapItem, Signers } from '@blockcerts/cert-verifier-js';
 
-function updateStep (stepsCb, step): void {
+function updateStep (stepsCb, step: IVerificationMapItem): void {
   step.subSteps.forEach(substep => stepsCb(substep));
   step.suites?.forEach(suite => {
     suite.subSteps.forEach(substep => stepsCb(substep));

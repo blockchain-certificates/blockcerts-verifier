@@ -9,7 +9,7 @@ const BUILD_OUTPUT_FOLDER = 'dev';
 
 export default [
   {
-    input: 'src/blockcerts-verifier/index.js',
+    input: 'src/blockcerts-verifier/index.ts',
     output: [
       {
         file: `${BUILD_OUTPUT_FOLDER}/index.js`,

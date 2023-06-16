@@ -3,7 +3,7 @@ import {
   mapStateToProps
 } from '../../../../src/components/atoms/VerifyButton/VerifyButtonContainer';
 import getInitialState from '../../../../src/store/getInitialState';
-import { configureStore } from '../../../../src/store/index';
+import { configureStore } from '../../../../src/store';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import validCertificateDefinition from '../../../fixtures/v2/valid-certificate-example.json';
 import { getShowVerificationModal, getVerificationStatus } from '../../../../src/selectors/verification';

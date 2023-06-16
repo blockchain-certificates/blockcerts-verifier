@@ -5,7 +5,7 @@ import { isValidUrl } from '../helpers/validations';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../constants/contentTypes';
-import { BlockcertsVerifierState } from '../store/getInitialState';
+import { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';
 
 export function getCertificateDefinition (state: BlockcertsVerifierState): Certificate {
   return state.certificateDefinition;
@@ -254,7 +254,7 @@ export function getHasError (state: BlockcertsVerifierState): boolean {
   return getVerifiedSteps(state).some(s => s.status === VERIFICATION_STATUSES.FAILURE);
 }
 
-export function getFinalStep (state: BlockcertsVerifierState): any { // TODO: define step -- retrieve from CVJS?
+export function getFinalStep (state: BlockcertsVerifierState): IFinalStep {
   return state.finalStep;
 }
 
