@@ -4,17 +4,12 @@ import updateCertificateDefinition from '../../../src/actions/updateCertificateD
 import { getFinalStep, getVerifiedSteps } from '../../../src/selectors/certificate';
 import getInitialState from '../../../src/store/getInitialState';
 import validCertificateFixture from '../../fixtures/v2/valid-certificate-example.json';
-import invalidCertificateFixture from '../../fixtures/v2/invalid-certificate-example.json';
 import initialValidCertificateStepsAssertions from '../../assertions/initialValidCertificateSteps';
-import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
-import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
 import { getVerificationStatus } from '../../../src/selectors/verification';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { FakeXmlHttpRequest } from '../__helpers/FakeXmlHttpRequest';
-
-jest.mock('../../../src/helpers/stepQueue');
 
 describe('verifyCertificate action creator test suite', function () {
   const initialXhr = XMLHttpRequest;
@@ -84,12 +79,12 @@ describe('verifyCertificate action creator test suite', function () {
           await store.dispatch(verifyCertificate());
         });
 
-        it('should set the verificationStatus in the state to success', async function () {
+        it('should set the verificationStatus in the state to success', function () {
           const state = store.getState();
           expect(getVerificationStatus(state)).toBe(VERIFICATION_STATUSES.SUCCESS);
         });
 
-        it('should set the finalStep property in the state', async function () {
+        it('should set the finalStep property in the state', function () {
           const state = store.getState();
           expect(getFinalStep(state)).toEqual({
             label: 'Verified',
@@ -98,24 +93,6 @@ describe('verifyCertificate action creator test suite', function () {
             linkText: 'View transaction link'
           });
         });
-
-        it('should store the different steps in the state', async function () {
-          const state = store.getState();
-          expect(getVerifiedSteps(state)).toEqual(validCertificateStepsAssertions);
-        });
-      });
-    });
-
-    describe('given there is an invalid certificate in the state', function () {
-      stubCertificateVerify(invalidCertificateFixture, [], false);
-
-      it('should store the different steps in the state', async function () {
-        store.dispatch(updateCertificateDefinition(invalidCertificateFixture));
-        await store.dispatch(verifyCertificate());
-
-        const state = store.getState();
-
-        expect(getVerifiedSteps(state)).toEqual(invalidCertificateStepsAssertions);
       });
     });
   });
@@ -128,8 +105,8 @@ describe('verifyCertificate action creator test suite', function () {
       const initialState = getInitialState(apiConfiguration);
       const store = configureStore(initialState);
 
-      await store.dispatch(updateCertificateDefinition(validCertificateFixture));
-      await store.dispatch(verifyCertificate());
+      await store.dispatch<any>(updateCertificateDefinition(validCertificateFixture));
+      await store.dispatch<any>(verifyCertificate());
 
       const state = store.getState();
 

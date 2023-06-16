@@ -32,7 +32,7 @@ import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
-import { Signers, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { Blockcerts, Signers, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../../../src/constants/contentTypes';
 import { FakeXmlHttpRequest } from '../__helpers/FakeXmlHttpRequest';
 
@@ -241,7 +241,7 @@ describe('certificate selectors test suite', function () {
     stubCertificateVerify(v1Fixture as any);
 
     beforeEach(function () {
-      store.dispatch(updateCertificateDefinition(v1Fixture));
+      store.dispatch(updateCertificateDefinition(v1Fixture as unknown as Blockcerts));
     });
 
     describe('getIssuedOn selector', function () {
@@ -692,7 +692,7 @@ describe('certificate selectors test suite', function () {
         beforeEach(async function () {
           await store.dispatch(updateCertificateDefinition({
             ...testnet3Fixture,
-            display: {}
+            display: {} as any
           }));
         });
 

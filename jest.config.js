@@ -1,4 +1,5 @@
 module.exports = {
+  testEnvironment: 'jsdom',
   modulePaths: [
     '<rootDir>/src/',
     '<rootDir>/node_modules'

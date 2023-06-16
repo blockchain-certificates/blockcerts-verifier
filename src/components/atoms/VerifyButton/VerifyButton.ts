@@ -5,7 +5,7 @@ import getText from '../../../i18n/getText';
 export interface VerifyButtonProps {
   isHollow?: boolean;
   isDisabled?: boolean;
-  onClick?: (e: Event) => any;
+  onClick?: (e?: Event) => any;
   type?: string;
 }
 

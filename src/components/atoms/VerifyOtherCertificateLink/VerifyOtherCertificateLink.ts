@@ -3,7 +3,7 @@ import CSS from './_components.verify-other-certificate-css';
 import getText from '../../../i18n/getText';
 
 export interface VerifyOtherCertificateLinkProps {
-  onClick?: (e: Event) => any;
+  onClick?: (e?: Event) => any;
   isVisible?: boolean;
 }
 export default function VerifyOtherCertificateLink ({ onClick = () => {}, isVisible = false }: VerifyOtherCertificateLinkProps = {}) {

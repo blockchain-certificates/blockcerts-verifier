@@ -12,8 +12,6 @@ import stepVerified from '../../../../src/actions/stepVerified';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
-jest.mock('../../../../src/helpers/stepQueue');
-
 describe('VerifyOtherCertificateLinkContainer test suite', function () {
   let store;
 
@@ -54,6 +52,7 @@ describe('VerifyOtherCertificateLinkContainer test suite', function () {
           store.dispatch(stepVerified({
             code: 'getTransactionId',
             label: 'Getting transaction ID',
+            labelPending: '',
             status: VERIFICATION_STATUSES.SUCCESS,
             parentStep: 'proofVerification'
           }));

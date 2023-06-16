@@ -19,7 +19,9 @@ class StepQueue {
   }
 
   push (step: VerificationSubstep): void {
-    this.queue.push(step);
+    if (step) {
+      this.queue.push(step);
+    }
   }
 
   dispatchNext (): void {
@@ -35,7 +37,7 @@ class StepQueue {
   execute (): void {
     if (!this.isExecuting && this.queue.length) {
       this.isExecuting = true;
-      this.intervalId = window.setInterval(this.dispatchNext, 200);
+      this.intervalId = setInterval(this.dispatchNext, 200) as any;
     }
   }
 }

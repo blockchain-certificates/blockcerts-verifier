@@ -7,7 +7,7 @@ import updateVerificationStatus from './updateVerificationStatus';
 import { getCertificateDefinition } from '../selectors/certificate';
 import { getDisableVerify } from '../selectors/api';
 import updateFinalStep from './updateFinalStep';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { IFinalVerificationStatus, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { Dispatch } from 'redux';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
 
@@ -32,12 +32,12 @@ export default function verifyCertificate () {
 
     if (certificateDefinition) {
       domain.events.dispatch(CERTIFICATE_EVENTS.CERTIFICATE_VERIFY, certificateDefinition);
-      const finalStep = await certificateDefinition.verify(stepDefinition => {
+      const finalStep: IFinalVerificationStatus = await certificateDefinition.verify(stepDefinition => {
         // @ts-expect-error TODO properly type actions in TS
         dispatch(stepVerified(stepDefinition));
       });
 
-      dispatch(updateFinalStep(finalStep.message));
+      dispatch(updateFinalStep(finalStep.message as any));
       dispatch(updateVerificationStatus(finalStep.status));
     }
   };
