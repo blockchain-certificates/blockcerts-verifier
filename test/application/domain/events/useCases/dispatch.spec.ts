@@ -2,8 +2,7 @@ import sinon from 'sinon';
 import domain from '../../../../../src/domain';
 import certificateFixture from '../../../../fixtures/v2/valid-certificate-example.json';
 import validCertificate from '../../../../assertions/validCertificate';
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
+import { JSDOM } from 'jsdom';
 
 describe('domain events dispatch method test suite', function () {
   let dispatchEventSpy;
@@ -61,7 +60,7 @@ describe('domain events dispatch method test suite', function () {
           testKey
         };
         let wasCalled = false;
-        window.addEventListener(eventType, function (e) {
+        window.addEventListener(eventType, function (e: any) {
           wasCalled = true;
           expect(e.detail.testKey).toBe(testKey);
         });

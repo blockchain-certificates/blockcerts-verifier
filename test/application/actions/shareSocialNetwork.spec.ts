@@ -28,6 +28,7 @@ describe('shareSocialNetwork action creator test suite', function () {
       window.addEventListener(CERTIFICATE_EVENTS.CERTIFICATE_SHARE, assertFunction);
 
       await store.dispatch(updateCertificateDefinition(certificateFixture));
+      // @ts-expect-error not relevant to test case
       store.dispatch(shareSocialNetwork());
 
       // add failsafe, if no expect is called test is false positive

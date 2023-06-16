@@ -9,7 +9,7 @@ describe('updateFinalStep action', function () {
       description: 'This was a complete success',
       linkText: 'View more about the success'
     };
-    let updatedOutput = '';
+    let updatedOutput = null;
 
     beforeEach(function () {
       const store = configureStore();

@@ -7,7 +7,7 @@ describe('FileUpload component test suite', function () {
     it('should not render the Drag and Drop hint text', function () {
       const createElementStub = sinon.stub(document, 'createElement').returns({
         ontouchstart: null
-      });
+      } as any);
       const instance = FileUpload({});
       expect(assertClassInStringBits(instance, 'qa-drag-and-drop-hint')).toBe(false);
       createElementStub.restore();

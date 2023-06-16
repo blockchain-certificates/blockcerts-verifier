@@ -4,19 +4,20 @@ import { defaultLocale } from '../../../src/i18n/detectLocale';
 
 describe('setLocale test suite', function () {
   beforeEach(function () {
-    navigator.__defineGetter__('language', function () {
+    (navigator as any).__defineGetter__('language', function () {
       return 'fr-FR';
     });
   });
 
   afterEach(function () {
-    navigator.__defineGetter__('language', function () {
+    (navigator as any).__defineGetter__('language', function () {
       return 'es-ES';
     });
   });
 
   describe('given it is called with an falsy value', function () {
     it('should detect the current locale', function () {
+      // @ts-expect-error test case
       setLocale();
       expect(currentLocale.locale).toBe('fr');
     });
@@ -30,7 +31,7 @@ describe('setLocale test suite', function () {
 
     describe('and the navigator locale is not supported', function () {
       it('should use the default locale', function () {
-        navigator.__defineGetter__('language', function () {
+        (navigator as any).__defineGetter__('language', function () {
           return 'unsupported';
         });
         setLocale('auto');

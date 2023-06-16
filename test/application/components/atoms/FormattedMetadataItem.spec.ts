@@ -80,7 +80,7 @@ describe('FormattedMetadataItem component', function () {
 
   describe('when type is not string', function () {
     it('should render no format', function () {
-      FIXTURE_METADATA_OBJECT.type = 'noString';
+      FIXTURE_METADATA_OBJECT.type = ['noString'];
       FIXTURE_METADATA_OBJECT.format = 'uri';
       const output = JSON.stringify(FormattedMetadataItem(FIXTURE_METADATA_OBJECT, FIXTURE_VALUE));
       expect(output)

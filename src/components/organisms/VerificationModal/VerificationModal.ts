@@ -7,7 +7,7 @@ import { TemplateResult } from 'lit-html';
 
 export interface VerificationModalProps {
   isOpen?: boolean;
-  onClose?: (e: Event) => any;
+  onClose?: (e?: Event) => any;
 }
 
 function VerificationModal ({ isOpen, onClose }: VerificationModalProps): TemplateResult {

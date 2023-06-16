@@ -22,7 +22,7 @@ describe('FullCertificateContainer test suite', function () {
       let state;
 
       beforeEach(async function () {
-        await store.dispatch(updateCertificateDefinition(XSSCertificateFixture));
+        await store.dispatch(updateCertificateDefinition(XSSCertificateFixture) as any);
         store.dispatch(initialize({
           clickableUrls: true
         }));

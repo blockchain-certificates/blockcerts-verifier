@@ -4,6 +4,7 @@ import getText from '../../../src/i18n/getText';
 describe('domain i18n getText use case test suite', function () {
   describe('given it is invoked without the group', function () {
     it('should return an empty string', function () {
+      // @ts-expect-error testing no argument case
       const res = getText();
       expect(res).toBe('');
     });

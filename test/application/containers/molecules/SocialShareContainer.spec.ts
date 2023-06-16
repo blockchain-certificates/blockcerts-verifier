@@ -12,7 +12,7 @@ describe('SocialShareContainer test suite', function () {
       it('should return its value', async function () {
         const store = configureStore();
 
-        await store.dispatch(updateCertificateDefinition(certificateFixture));
+        await store.dispatch(updateCertificateDefinition(certificateFixture) as any);
 
         const state = store.getState();
         const expectedOutput = 'https://auto-certificates.learningmachine.io/certificate/54ae740e31aa571a8c718fa84924da97';

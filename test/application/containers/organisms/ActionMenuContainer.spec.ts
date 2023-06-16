@@ -55,7 +55,7 @@ describe('ActionMenuContainer test suite', function () {
         it('should set the isVisible property to true', async function () {
           const initialState = getInitialState({ displayMode: DISPLAY_MODE.FULL, disableAutoVerify: true });
           const store = configureStore(initialState);
-          await store.dispatch(updateCertificateDefinition(certificateFixture));
+          await store.dispatch(updateCertificateDefinition(certificateFixture) as any);
           const state = store.getState();
 
           expect(mapStateToProps(state).isVisible).toBe(true);
