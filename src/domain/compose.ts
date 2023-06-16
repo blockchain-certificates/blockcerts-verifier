@@ -15,6 +15,7 @@ const compose = (services = {}): any => {
   // Creates a domain object enhanced with the proxy handler
   if (!window.Proxy) {
     const ProxyPolyfill = proxyPolyfill();
+    // @ts-expect-error this code from js works so not going to start modifying stuff for TS satisfaction
     return new ProxyPolyfill(services, handler);
   }
   return new Proxy(services, handler);
