@@ -36,7 +36,7 @@ describe('updateFinalStep action', function () {
     it('should form the message to keep a similar shape as a success message', function () {
       const fixtureFinalStepMessage = 'Could not confirm the transaction';
       const store = configureStore();
-      store.dispatch(updateFinalStep(fixtureFinalStepMessage));
+      store.dispatch(updateFinalStep(fixtureFinalStepMessage as any)); // TODO: untangle this bit, it looks like it can be a string but not too?
       const state = store.getState();
       const updatedOutput = getFinalStep(state);
       expect(updatedOutput.label).toBe(fixtureFinalStepMessage);
