@@ -1,6 +1,24 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.full-certificate-css';
 import getText from '../../../i18n/getText';
+import { TemplateResult } from 'lit-html';
+
+export interface FullCertificateV1Props {
+  hasCertificateDefinition?: boolean;
+  certificateImage?: string;
+  certificateTitle?: string;
+  certificateSeal?: string;
+  certificateSignatures?: V1Signature[];
+  certificateSubtitle?: string;
+  certificateDescription?: string;
+  recipientName?: string;
+  issuerName?: string;
+}
+
+export interface V1Signature {
+  jobTitle: string;
+  image: string;
+}
 
 export default function FullCertificateV1 ({
   hasCertificateDefinition,
@@ -12,7 +30,7 @@ export default function FullCertificateV1 ({
   certificateDescription,
   recipientName,
   issuerName
-}) {
+}: FullCertificateV1Props): TemplateResult {
   if (!hasCertificateDefinition) {
     return null;
   }
