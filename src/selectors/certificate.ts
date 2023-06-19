@@ -6,6 +6,7 @@ import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../constants/contentTypes';
 import { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';
+import { V1Signature } from '../components/atoms/FullCertificateV1/FullCertificateV1';
 
 export function getCertificateDefinition (state: BlockcertsVerifierState): Certificate {
   return state.certificateDefinition;
@@ -323,14 +324,14 @@ export function getCertificateDescription (state: BlockcertsVerifierState): stri
   return '';
 }
 
-export function getCertificateSignatures (state: BlockcertsVerifierState): string {
+export function getCertificateSignatures (state: BlockcertsVerifierState): V1Signature[] {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
     return (certificateDefinition as any).signatureImage;
   }
 
-  return '';
+  return null;
 }
 
 export function getCertificateSeal (state: BlockcertsVerifierState): string {
