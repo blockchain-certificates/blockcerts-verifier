@@ -37,7 +37,7 @@ describe('domain events dispatch method test suite', function () {
       const eventType = 'test-event';
       const { certificateDefinition } = await domain.certificates.parse(certificateFixture);
       let wasCalled = false;
-      function assertFunction (e) {
+      function assertFunction (e): void {
         wasCalled = true;
         expect(e.detail.certificateDefinition.id).toEqual(validCertificate.id);
       }

@@ -21,7 +21,7 @@ describe('shareSocialNetwork action creator test suite', function () {
 
     it('should emit the certificate-share event with the certificate id', async function () {
       let wasCalled = false;
-      function assertFunction (e) {
+      function assertFunction (e): void {
         wasCalled = true;
         expect(e.detail.certificateDefinition.id).toEqual(validCertificate.id);
       }
@@ -40,7 +40,7 @@ describe('shareSocialNetwork action creator test suite', function () {
     it('should emit the certificate-share event with the network on which it was shared', async function () {
       let wasCalled = false;
       const testSocialNetwork = 'MySpace';
-      function assertFunction (e) {
+      function assertFunction (e): void {
         wasCalled = true;
         expect(e.detail.socialNetwork).toBe(testSocialNetwork);
       }

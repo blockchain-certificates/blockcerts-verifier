@@ -1,6 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.verify-button-css';
 import getText from '../../../i18n/getText';
+import type { TemplateResult } from 'lit-html';
 
 export interface VerifyButtonProps {
   isHollow?: boolean;
@@ -9,7 +10,7 @@ export interface VerifyButtonProps {
   type?: string;
 }
 
-export default function VerifyButton ({ isHollow = false, isDisabled = false, onClick = () => {}, type = '' }: VerifyButtonProps = {}) {
+export default function VerifyButton ({ isHollow = false, isDisabled = false, onClick = (): any => {}, type = '' }: VerifyButtonProps = {}): TemplateResult {
   const buttonClass: string = [
     'buv-c-verify-button',
     isHollow ? 'buv-c-verify-button--hollow' : '',

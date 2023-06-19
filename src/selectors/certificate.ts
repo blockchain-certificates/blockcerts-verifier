@@ -241,7 +241,7 @@ export function getVerifiedSteps (state: BlockcertsVerifierState): IVerification
 }
 
 // TODO: it should refer to the VerificationSteps enum from cvjs
-export function getParentStep (state: BlockcertsVerifierState, parentStepCode: any): IVerificationMapItem {
+export function getParentStep (state: BlockcertsVerifierState, parentStepCode: string): IVerificationMapItem {
   return getVerifiedSteps(state).find(step => step.code === parentStepCode);
 }
 
