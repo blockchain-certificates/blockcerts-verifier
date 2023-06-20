@@ -9,10 +9,11 @@ const SEPARATOR = '.';
  *    otherwise undefined
  */
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function getValueFrom (list: any, entry: string): any {
   const entryPath = entry.split(SEPARATOR);
 
-  function getListSubkey (list, key, path) {
+  function getListSubkey (list, key, path): any {
     const nextIndex = path.indexOf(key) + 1;
     const nextKey = path[nextIndex];
 

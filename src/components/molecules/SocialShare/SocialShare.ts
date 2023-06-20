@@ -11,7 +11,7 @@ export interface SocialShareProps {
   display?: string;
 }
 
-interface SocialMediaObject {
+export interface SocialMediaObject {
   name: string;
   shareUrl: string;
 }

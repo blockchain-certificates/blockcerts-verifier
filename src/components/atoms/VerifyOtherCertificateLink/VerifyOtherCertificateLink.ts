@@ -1,12 +1,13 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.verify-other-certificate-css';
 import getText from '../../../i18n/getText';
+import type { TemplateResult } from 'lit-html';
 
 export interface VerifyOtherCertificateLinkProps {
   onClick?: (e?: Event) => any;
   isVisible?: boolean;
 }
-export default function VerifyOtherCertificateLink ({ onClick = () => {}, isVisible = false }: VerifyOtherCertificateLinkProps = {}) {
+export default function VerifyOtherCertificateLink ({ onClick = (): any => {}, isVisible = false }: VerifyOtherCertificateLinkProps = {}): TemplateResult {
   if (!isVisible) {
     return null;
   }

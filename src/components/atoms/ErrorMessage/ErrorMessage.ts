@@ -7,7 +7,7 @@ function isMessageTranslatable (message: string): boolean {
   return message.includes('.') && !message.includes(' ');
 }
 
-function translate (message: string) {
+function translate (message: string): string {
   if (isMessageTranslatable(message)) {
     return getText(message);
   }

@@ -4,6 +4,7 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.footer-css';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo/index';
 import { THEME } from '../../../constants/theme';
+import type { TemplateResult } from 'lit-html';
 
 export interface FooterProps {
   forceInPlace?: boolean;
@@ -11,7 +12,7 @@ export interface FooterProps {
   theme?: THEME;
 }
 
-const Footer = ({ forceInPlace = false, interactive = false, theme }: FooterProps = {}) => {
+const Footer = ({ forceInPlace = false, interactive = false, theme }: FooterProps = {}): TemplateResult => {
   const classes = [
     'buv-c-footer',
     forceInPlace ? 'buv-c-footer--forced' : '',

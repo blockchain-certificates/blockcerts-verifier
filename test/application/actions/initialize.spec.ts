@@ -22,13 +22,13 @@ describe('initialize action creator test suite', function () {
 
   describe('given it is called with a src option', function () {
     describe('and the src is a URL', function () {
-      it('should update the certificate URL with the value', function () {
+      it('should update the certificate URL with the value', async function () {
         const fixtureURL = 'https://www.test.com';
         const options = {
           src: fixtureURL
         };
 
-        store.dispatch(initialize(options));
+        await store.dispatch(initialize(options));
         const state = store.getState();
         expect(getCertificateUrl(state)).toBe(fixtureURL);
       });

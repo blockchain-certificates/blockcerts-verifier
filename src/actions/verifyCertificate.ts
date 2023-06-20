@@ -10,8 +10,10 @@ import updateFinalStep from './updateFinalStep';
 import { IFinalVerificationStatus, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import type { Dispatch } from 'redux';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
+import { ThunkAction } from 'redux-thunk';
+import { Action } from './action';
 
-export default function verifyCertificate () {
+export default function verifyCertificate (): ThunkAction<void, BlockcertsVerifierState, any, Action<void>> {
   return async function (dispatch: Dispatch, getState: () => BlockcertsVerifierState): Promise<void> {
     const state = getState();
 

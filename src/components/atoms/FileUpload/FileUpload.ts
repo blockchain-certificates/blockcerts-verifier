@@ -2,13 +2,14 @@ import { html } from '@polymer/lit-element';
 import CSS from './_components.file-upload-css';
 import getText from '../../../i18n/getText';
 import canDragAndDrop from '../../../helpers/canDragAndDrop';
+import type { TemplateResult } from 'lit-html';
 
 export interface FileUploadProps {
   onChange?: (file: File) => any;
   hideFileUpload?: boolean;
 }
 
-export default function FileUpload ({ onChange = () => {}, hideFileUpload = false }: FileUploadProps) {
+export default function FileUpload ({ onChange = (): any => {}, hideFileUpload = false }: FileUploadProps): TemplateResult {
   if (hideFileUpload) {
     return null;
   }
