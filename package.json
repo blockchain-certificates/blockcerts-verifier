@@ -62,9 +62,7 @@
     "polymer-cli": "^1.8.1",
     "pwa-helpers": "^0.8.2",
     "rollup": "^3.25.3",
-    "rollup-plugin-commonjs": "^10.0.0",
     "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-node-resolve": "^5.0.0",
     "rollup-plugin-serve": "^1.0.1",
     "sass-lint": "^1.12.1",
     "semantic-release": "^18.0.0",
@@ -78,7 +76,7 @@
   },
   "scripts": {
     "build": "rollup -c rollup.config.mjs",
-    "build:sanitizer": "rollup -c rollup-sanitizer.config.js",
+    "build:sanitizer": "rollup -c rollup-sanitizer.config.mjs",
     "test": "npm run test:application",
     "test:build": "npm run test:components:retrieve && polymer test; npm run test:karma",
     "test:karma": "tsc -p tsconfig-test.json && karma start; npm run test:karma:cleanup",

@@ -1,5 +1,5 @@
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 
 export default {
   input: 'sanitizer/index.js',
@@ -16,11 +16,6 @@ export default {
       browser: true,
       preferBuiltins: true
     }),
-    commonjs({
-      namedExports: {
-        xss: ['xss'],
-        cssfilter: ['cssfilter']
-      }
-    })
+    commonjs()
   ]
 };
