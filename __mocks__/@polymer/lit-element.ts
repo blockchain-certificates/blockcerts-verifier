@@ -1,7 +1,8 @@
 import { html } from '@polymer/lit-element';
 
 class LitElement {
-  _propertiesChanged () {}
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  _propertiesChanged (): void {}
 }
 
 export {

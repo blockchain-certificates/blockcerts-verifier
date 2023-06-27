@@ -9,15 +9,19 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "baseUrl": "src",
-    "module": "commonjs",
+    "module": "esnext",
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "sourceMap": true,
     "skipLibCheck": true
   },
   "compileOnSave": false,
+  "include": [
+    "src"
+  ],
   "exclude": [
-    "node_modules",
-    "test"
+    "dist",
+    "sanitizer",
+    "src/**/**-css.js"
   ]
 }

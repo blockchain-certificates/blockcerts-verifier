@@ -6,9 +6,17 @@
  * More Information: https://github.com/blockchain-certificates/blockcerts-verifier#modifying-the-sanitizer
  **/
 
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
+
+var lib$1 = {exports: {}};
+
+var _default$1 = {};
+
+var lib = {exports: {}};
+
+var _default = {};
 
 /**
  * cssfilter
@@ -403,19 +411,11 @@ function safeAttrValue$1(name, value) {
 }
 
 
-var whiteList$1 = getDefaultWhiteList$1();
-var getDefaultWhiteList_1$1 = getDefaultWhiteList$1;
-var onAttr_1 = onAttr;
-var onIgnoreAttr_1 = onIgnoreAttr;
-var safeAttrValue_1$1 = safeAttrValue$1;
-
-var _default$1 = {
-	whiteList: whiteList$1,
-	getDefaultWhiteList: getDefaultWhiteList_1$1,
-	onAttr: onAttr_1,
-	onIgnoreAttr: onIgnoreAttr_1,
-	safeAttrValue: safeAttrValue_1$1
-};
+_default.whiteList = getDefaultWhiteList$1();
+_default.getDefaultWhiteList = getDefaultWhiteList$1;
+_default.onAttr = onAttr;
+_default.onIgnoreAttr = onIgnoreAttr;
+_default.safeAttrValue = safeAttrValue$1;
 
 var util$1 = {
   indexOf: function (arr, item) {
@@ -459,7 +459,7 @@ var util$1 = {
  * @author 老雷<leizongmin@gmail.com>
  */
 
-
+var _$3 = util$1;
 
 
 /**
@@ -470,8 +470,8 @@ var util$1 = {
  *   参数格式： function (sourcePosition, position, name, value, source)
  * @return {String}
  */
-function parseStyle (css, onAttr) {
-  css = util$1.trimRight(css);
+function parseStyle$1 (css, onAttr) {
+  css = _$3.trimRight(css);
   if (css[css.length - 1] !== ';') css += ';';
   var cssLength = css.length;
   var isParenthesisOpen = false;
@@ -482,11 +482,11 @@ function parseStyle (css, onAttr) {
   function addNewAttr () {
     // 如果没有正常的闭合圆括号，则直接忽略当前属性
     if (!isParenthesisOpen) {
-      var source = util$1.trim(css.slice(lastPos, i));
+      var source = _$3.trim(css.slice(lastPos, i));
       var j = source.indexOf(':');
       if (j !== -1) {
-        var name = util$1.trim(source.slice(0, j));
-        var value = util$1.trim(source.slice(j + 1));
+        var name = _$3.trim(source.slice(0, j));
+        var value = _$3.trim(source.slice(j + 1));
         // 必须有属性名称
         if (name) {
           var ret = onAttr(lastPos, retCSS.length, name, value, source);
@@ -521,10 +521,10 @@ function parseStyle (css, onAttr) {
     }
   }
 
-  return util$1.trim(retCSS);
+  return _$3.trim(retCSS);
 }
 
-var parser$1 = parseStyle;
+var parser$2 = parseStyle$1;
 
 /**
  * cssfilter
@@ -532,9 +532,8 @@ var parser$1 = parseStyle;
  * @author 老雷<leizongmin@gmail.com>
  */
 
-
-
-
+var DEFAULT$1 = _default;
+var parseStyle = parser$2;
 
 
 /**
@@ -572,10 +571,10 @@ function shallowCopyObject$1 (obj) {
  */
 function FilterCSS$2 (options) {
   options = shallowCopyObject$1(options || {});
-  options.whiteList = options.whiteList || _default$1.whiteList;
-  options.onAttr = options.onAttr || _default$1.onAttr;
-  options.onIgnoreAttr = options.onIgnoreAttr || _default$1.onIgnoreAttr;
-  options.safeAttrValue = options.safeAttrValue || _default$1.safeAttrValue;
+  options.whiteList = options.whiteList || DEFAULT$1.whiteList;
+  options.onAttr = options.onAttr || DEFAULT$1.onAttr;
+  options.onIgnoreAttr = options.onIgnoreAttr || DEFAULT$1.onIgnoreAttr;
+  options.safeAttrValue = options.safeAttrValue || DEFAULT$1.safeAttrValue;
   this.options = options;
 }
 
@@ -592,7 +591,7 @@ FilterCSS$2.prototype.process = function (css) {
   var onIgnoreAttr = options.onIgnoreAttr;
   var safeAttrValue = options.safeAttrValue;
 
-  var retCSS = parser$1(css, function (sourcePosition, position, name, value, source) {
+  var retCSS = parseStyle(css, function (sourcePosition, position, name, value, source) {
 
     var check = whiteList[name];
     var isWhite = false;
@@ -637,42 +636,43 @@ FilterCSS$2.prototype.process = function (css) {
 
 var css = FilterCSS$2;
 
-var lib$1 = createCommonjsModule(function (module, exports) {
 /**
  * cssfilter
  *
  * @author 老雷<leizongmin@gmail.com>
  */
 
+(function (module, exports) {
+	var DEFAULT = _default;
+	var FilterCSS = css;
 
 
+	/**
+	 * XSS过滤
+	 *
+	 * @param {String} css 要过滤的CSS代码
+	 * @param {Object} options 选项：whiteList, onAttr, onIgnoreAttr
+	 * @return {String}
+	 */
+	function filterCSS (html, options) {
+	  var xss = new FilterCSS(options);
+	  return xss.process(html);
+	}
 
 
-/**
- * XSS过滤
- *
- * @param {String} css 要过滤的CSS代码
- * @param {Object} options 选项：whiteList, onAttr, onIgnoreAttr
- * @return {String}
- */
-function filterCSS (html, options) {
-  var xss = new css(options);
-  return xss.process(html);
-}
+	// 输出
+	exports = module.exports = filterCSS;
+	exports.FilterCSS = FilterCSS;
+	for (var i in DEFAULT) exports[i] = DEFAULT[i];
 
+	// 在浏览器端使用
+	if (typeof window !== 'undefined') {
+	  window.filterCSS = module.exports;
+	} 
+} (lib, lib.exports));
 
-// 输出
-exports = module.exports = filterCSS;
-exports.FilterCSS = css;
-for (var i in _default$1) exports[i] = _default$1[i];
-
-// 在浏览器端使用
-if (typeof window !== 'undefined') {
-  window.filterCSS = module.exports;
-}
-});
-lib$1.cssfilter;
-lib$1.FilterCSS;
+var libExports$1 = lib.exports;
+var cssfilter = /*@__PURE__*/getDefaultExportFromCjs(libExports$1);
 
 var util = {
   indexOf: function (arr, item) {
@@ -715,9 +715,9 @@ var util = {
  * @author Zongmin Lei<leizongmin@gmail.com>
  */
 
-var FilterCSS$1 = lib$1.FilterCSS;
-var getDefaultCSSWhiteList = lib$1.getDefaultWhiteList;
-
+var FilterCSS$1 = libExports$1.FilterCSS;
+var getDefaultCSSWhiteList = libExports$1.getDefaultWhiteList;
+var _$2 = util;
 
 function getDefaultWhiteList() {
   return {
@@ -886,7 +886,7 @@ function safeAttrValue(tag, name, value, cssFilter) {
   if (name === "href" || name === "src") {
     // filter `href` and `src` attribute
     // only allow the value that starts with `http://` | `https://` | `mailto:` | `/` | `#`
-    value = util.trim(value);
+    value = _$2.trim(value);
     if (value === "#") return "#";
     if (
       !(
@@ -944,8 +944,11 @@ var REGEXP_QUOTE_2 = /&quot;/g;
 var REGEXP_ATTR_VALUE_1 = /&#([a-zA-Z0-9]*);?/gim;
 var REGEXP_ATTR_VALUE_COLON = /&colon;?/gim;
 var REGEXP_ATTR_VALUE_NEWLINE = /&newline;?/gim;
+// var REGEXP_DEFAULT_ON_TAG_ATTR_3 = /\/\*|\*\//gm;
 var REGEXP_DEFAULT_ON_TAG_ATTR_4$1 =
-  /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a)\:/gi;
+  /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a):/gi;
+// var REGEXP_DEFAULT_ON_TAG_ATTR_5 = /^[\s"'`]*(d\s*a\s*t\s*a\s*)\:/gi;
+// var REGEXP_DEFAULT_ON_TAG_ATTR_6 = /^[\s"'`]*(d\s*a\s*t\s*a\s*)\:\s*image\//gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_7$1 =
   /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_8$1 = /u\s*r\s*l\s*\(.*/gi;
@@ -1007,7 +1010,7 @@ function clearNonPrintableCharacter(str) {
   for (var i = 0, len = str.length; i < len; i++) {
     str2 += str.charCodeAt(i) < 32 ? " " : str.charAt(i);
   }
-  return util.trim(str2);
+  return _$2.trim(str2);
 }
 
 /**
@@ -1058,7 +1061,7 @@ function StripTagBody(tags, next) {
   var isRemoveAllTag = !Array.isArray(tags);
   function isRemoveTag(tag) {
     if (isRemoveAllTag) return true;
-    return util.indexOf(tags, tag) !== -1;
+    return _$2.indexOf(tags, tag) !== -1;
   }
 
   var removeList = [];
@@ -1089,7 +1092,7 @@ function StripTagBody(tags, next) {
     remove: function (html) {
       var rethtml = "";
       var lastPos = 0;
-      util.forEach(removeList, function (pos) {
+      _$2.forEach(removeList, function (pos) {
         rethtml += html.slice(lastPos, pos[0]);
         lastPos = pos[1];
       });
@@ -1144,51 +1147,29 @@ function stripBlankChar(html) {
   return chars.join("");
 }
 
-var whiteList = getDefaultWhiteList();
-var getDefaultWhiteList_1 = getDefaultWhiteList;
-var onTag_1 = onTag;
-var onIgnoreTag_1 = onIgnoreTag;
-var onTagAttr_1 = onTagAttr;
-var onIgnoreTagAttr_1 = onIgnoreTagAttr;
-var safeAttrValue_1 = safeAttrValue;
-var escapeHtml_1 = escapeHtml;
-var escapeQuote_1 = escapeQuote;
-var unescapeQuote_1 = unescapeQuote;
-var escapeHtmlEntities_1 = escapeHtmlEntities;
-var escapeDangerHtml5Entities_1 = escapeDangerHtml5Entities;
-var clearNonPrintableCharacter_1 = clearNonPrintableCharacter;
-var friendlyAttrValue_1 = friendlyAttrValue;
-var escapeAttrValue_1 = escapeAttrValue;
-var onIgnoreTagStripAll_1 = onIgnoreTagStripAll;
-var StripTagBody_1 = StripTagBody;
-var stripCommentTag_1 = stripCommentTag;
-var stripBlankChar_1 = stripBlankChar;
-var cssFilter = defaultCSSFilter;
-var getDefaultCSSWhiteList_1 = getDefaultCSSWhiteList;
+_default$1.whiteList = getDefaultWhiteList();
+_default$1.getDefaultWhiteList = getDefaultWhiteList;
+_default$1.onTag = onTag;
+_default$1.onIgnoreTag = onIgnoreTag;
+_default$1.onTagAttr = onTagAttr;
+_default$1.onIgnoreTagAttr = onIgnoreTagAttr;
+_default$1.safeAttrValue = safeAttrValue;
+_default$1.escapeHtml = escapeHtml;
+_default$1.escapeQuote = escapeQuote;
+_default$1.unescapeQuote = unescapeQuote;
+_default$1.escapeHtmlEntities = escapeHtmlEntities;
+_default$1.escapeDangerHtml5Entities = escapeDangerHtml5Entities;
+_default$1.clearNonPrintableCharacter = clearNonPrintableCharacter;
+_default$1.friendlyAttrValue = friendlyAttrValue;
+_default$1.escapeAttrValue = escapeAttrValue;
+_default$1.onIgnoreTagStripAll = onIgnoreTagStripAll;
+_default$1.StripTagBody = StripTagBody;
+_default$1.stripCommentTag = stripCommentTag;
+_default$1.stripBlankChar = stripBlankChar;
+_default$1.cssFilter = defaultCSSFilter;
+_default$1.getDefaultCSSWhiteList = getDefaultCSSWhiteList;
 
-var _default = {
-	whiteList: whiteList,
-	getDefaultWhiteList: getDefaultWhiteList_1,
-	onTag: onTag_1,
-	onIgnoreTag: onIgnoreTag_1,
-	onTagAttr: onTagAttr_1,
-	onIgnoreTagAttr: onIgnoreTagAttr_1,
-	safeAttrValue: safeAttrValue_1,
-	escapeHtml: escapeHtml_1,
-	escapeQuote: escapeQuote_1,
-	unescapeQuote: unescapeQuote_1,
-	escapeHtmlEntities: escapeHtmlEntities_1,
-	escapeDangerHtml5Entities: escapeDangerHtml5Entities_1,
-	clearNonPrintableCharacter: clearNonPrintableCharacter_1,
-	friendlyAttrValue: friendlyAttrValue_1,
-	escapeAttrValue: escapeAttrValue_1,
-	onIgnoreTagStripAll: onIgnoreTagStripAll_1,
-	StripTagBody: StripTagBody_1,
-	stripCommentTag: stripCommentTag_1,
-	stripBlankChar: stripBlankChar_1,
-	cssFilter: cssFilter,
-	getDefaultCSSWhiteList: getDefaultCSSWhiteList_1
-};
+var parser$1 = {};
 
 /**
  * Simple HTML Parser
@@ -1196,7 +1177,7 @@ var _default = {
  * @author Zongmin Lei<leizongmin@gmail.com>
  */
 
-
+var _$1 = util;
 
 /**
  * get tag name
@@ -1205,13 +1186,14 @@ var _default = {
  * @return {String}
  */
 function getTagName(html) {
-  var i = util.spaceIndex(html);
+  var i = _$1.spaceIndex(html);
+  var tagName;
   if (i === -1) {
-    var tagName = html.slice(1, -1);
+    tagName = html.slice(1, -1);
   } else {
-    var tagName = html.slice(1, i + 1);
+    tagName = html.slice(1, i + 1);
   }
-  tagName = util.trim(tagName).toLowerCase();
+  tagName = _$1.trim(tagName).toLowerCase();
   if (tagName.slice(0, 1) === "/") tagName = tagName.slice(1);
   if (tagName.slice(-1) === "/") tagName = tagName.slice(0, -1);
   return tagName;
@@ -1303,7 +1285,7 @@ function parseTag$1(html, onTag, escapeHtml) {
   return rethtml;
 }
 
-var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9_:\.\-]/gim;
+var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9\\_:.-]/gim;
 
 /**
  * parse input attributes and returns processed attributes
@@ -1315,12 +1297,13 @@ var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9_:\.\-]/gim;
 function parseAttr$1(html, onAttr) {
 
   var lastPos = 0;
+  var lastMarkPos = 0;
   var retAttrs = [];
   var tmpName = false;
   var len = html.length;
 
   function addAttr(name, value) {
-    name = util.trim(name);
+    name = _$1.trim(name);
     name = name.replace(REGEXP_ILLEGAL_ATTR_NAME, "").toLowerCase();
     if (name.length < 1) return;
     var ret = onAttr(name, value || "");
@@ -1334,19 +1317,18 @@ function parseAttr$1(html, onAttr) {
     if (tmpName === false && c === "=") {
       tmpName = html.slice(lastPos, i);
       lastPos = i + 1;
+      lastMarkPos = html.charAt(lastPos) === '"' || html.charAt(lastPos) === "'" ? lastPos : findNextQuotationMark(html, i + 1);
       continue;
     }
     if (tmpName !== false) {
       if (
-        i === lastPos &&
-        (c === '"' || c === "'") &&
-        html.charAt(i - 1) === "="
+        i === lastMarkPos
       ) {
         j = html.indexOf(c, i + 1);
         if (j === -1) {
           break;
         } else {
-          v = util.trim(html.slice(lastPos + 1, j));
+          v = _$1.trim(html.slice(lastMarkPos + 1, j));
           addAttr(tmpName, v);
           tmpName = false;
           i = j;
@@ -1360,7 +1342,7 @@ function parseAttr$1(html, onAttr) {
       if (tmpName === false) {
         j = findNextEqual(html, i);
         if (j === -1) {
-          v = util.trim(html.slice(lastPos, i));
+          v = _$1.trim(html.slice(lastPos, i));
           addAttr(v);
           tmpName = false;
           lastPos = i + 1;
@@ -1372,7 +1354,7 @@ function parseAttr$1(html, onAttr) {
       } else {
         j = findBeforeEqual(html, i - 1);
         if (j === -1) {
-          v = util.trim(html.slice(lastPos, i));
+          v = _$1.trim(html.slice(lastPos, i));
           v = stripQuoteWrap(v);
           addAttr(tmpName, v);
           tmpName = false;
@@ -1389,11 +1371,11 @@ function parseAttr$1(html, onAttr) {
     if (tmpName === false) {
       addAttr(html.slice(lastPos));
     } else {
-      addAttr(tmpName, stripQuoteWrap(util.trim(html.slice(lastPos))));
+      addAttr(tmpName, stripQuoteWrap(_$1.trim(html.slice(lastPos))));
     }
   }
 
-  return util.trim(retAttrs.join(" "));
+  return _$1.trim(retAttrs.join(" "));
 }
 
 function findNextEqual(str, i) {
@@ -1401,6 +1383,15 @@ function findNextEqual(str, i) {
     var c = str[i];
     if (c === " ") continue;
     if (c === "=") return i;
+    return -1;
+  }
+}
+
+function findNextQuotationMark(str, i) {
+  for (; i < str.length; i++) {
+    var c = str[i];
+    if (c === " ") continue;
+    if (c === "'" || c === '"') return i;
     return -1;
   }
 }
@@ -1433,13 +1424,8 @@ function stripQuoteWrap(text) {
   }
 }
 
-var parseTag_1 = parseTag$1;
-var parseAttr_1 = parseAttr$1;
-
-var parser = {
-	parseTag: parseTag_1,
-	parseAttr: parseAttr_1
-};
+parser$1.parseTag = parseTag$1;
+parser$1.parseAttr = parseAttr$1;
 
 /**
  * filter xss
@@ -1447,12 +1433,12 @@ var parser = {
  * @author Zongmin Lei<leizongmin@gmail.com>
  */
 
-var FilterCSS = lib$1.FilterCSS;
-
-
+var FilterCSS = libExports$1.FilterCSS;
+var DEFAULT = _default$1;
+var parser = parser$1;
 var parseTag = parser.parseTag;
 var parseAttr = parser.parseAttr;
-
+var _ = util;
 
 /**
  * returns `true` if the input value is `undefined` or `null`
@@ -1473,16 +1459,16 @@ function isNull(obj) {
  *   - {Boolean} closing
  */
 function getAttrs(html) {
-  var i = util.spaceIndex(html);
+  var i = _.spaceIndex(html);
   if (i === -1) {
     return {
       html: "",
       closing: html[html.length - 2] === "/",
     };
   }
-  html = util.trim(html.slice(i + 1, -1));
+  html = _.trim(html.slice(i + 1, -1));
   var isClosing = html[html.length - 1] === "/";
-  if (isClosing) html = util.trim(html.slice(0, -1));
+  if (isClosing) html = _.trim(html.slice(0, -1));
   return {
     html: html,
     closing: isClosing,
@@ -1503,11 +1489,25 @@ function shallowCopyObject(obj) {
   return ret;
 }
 
+function keysToLowerCase(obj) {
+  var ret = {};
+  for (var i in obj) {
+    if (Array.isArray(obj[i])) {
+      ret[i.toLowerCase()] = obj[i].map(function (item) {
+        return item.toLowerCase();
+      });
+    } else {
+      ret[i.toLowerCase()] = obj[i];
+    }
+  }
+  return ret;
+}
+
 /**
  * FilterXSS class
  *
  * @param {Object} options
- *        whiteList, onTag, onTagAttr, onIgnoreTag,
+ *        whiteList (or allowList), onTag, onTagAttr, onIgnoreTag,
  *        onIgnoreTagAttr, safeAttrValue, escapeHtml
  *        stripIgnoreTagBody, allowCommentTag, stripBlankChar
  *        css{whiteList, onAttr, onIgnoreAttr} `css=false` means don't use `cssfilter`
@@ -1521,16 +1521,20 @@ function FilterXSS(options) {
         'Notes: cannot use these two options "stripIgnoreTag" and "onIgnoreTag" at the same time'
       );
     }
-    options.onIgnoreTag = _default.onIgnoreTagStripAll;
+    options.onIgnoreTag = DEFAULT.onIgnoreTagStripAll;
+  }
+  if (options.whiteList || options.allowList) {
+    options.whiteList = keysToLowerCase(options.whiteList || options.allowList);
+  } else {
+    options.whiteList = DEFAULT.whiteList;
   }
 
-  options.whiteList = options.whiteList || _default.whiteList;
-  options.onTag = options.onTag || _default.onTag;
-  options.onTagAttr = options.onTagAttr || _default.onTagAttr;
-  options.onIgnoreTag = options.onIgnoreTag || _default.onIgnoreTag;
-  options.onIgnoreTagAttr = options.onIgnoreTagAttr || _default.onIgnoreTagAttr;
-  options.safeAttrValue = options.safeAttrValue || _default.safeAttrValue;
-  options.escapeHtml = options.escapeHtml || _default.escapeHtml;
+  options.onTag = options.onTag || DEFAULT.onTag;
+  options.onTagAttr = options.onTagAttr || DEFAULT.onTagAttr;
+  options.onIgnoreTag = options.onIgnoreTag || DEFAULT.onIgnoreTag;
+  options.onIgnoreTagAttr = options.onIgnoreTagAttr || DEFAULT.onIgnoreTagAttr;
+  options.safeAttrValue = options.safeAttrValue || DEFAULT.safeAttrValue;
+  options.escapeHtml = options.escapeHtml || DEFAULT.escapeHtml;
   this.options = options;
 
   if (options.css === false) {
@@ -1566,18 +1570,18 @@ FilterXSS.prototype.process = function (html) {
 
   // remove invisible characters
   if (options.stripBlankChar) {
-    html = _default.stripBlankChar(html);
+    html = DEFAULT.stripBlankChar(html);
   }
 
   // remove html comments
   if (!options.allowCommentTag) {
-    html = _default.stripCommentTag(html);
+    html = DEFAULT.stripCommentTag(html);
   }
 
   // if enable stripIgnoreTagBody
   var stripIgnoreTagBody = false;
   if (options.stripIgnoreTagBody) {
-    var stripIgnoreTagBody = _default.StripTagBody(
+    stripIgnoreTagBody = DEFAULT.StripTagBody(
       options.stripIgnoreTagBody,
       onIgnoreTag
     );
@@ -1591,7 +1595,7 @@ FilterXSS.prototype.process = function (html) {
         sourcePosition: sourcePosition,
         position: position,
         isClosing: isClosing,
-        isWhite: whiteList.hasOwnProperty(tag),
+        isWhite: Object.prototype.hasOwnProperty.call(whiteList, tag),
       };
 
       // call `onTag()`
@@ -1607,7 +1611,7 @@ FilterXSS.prototype.process = function (html) {
         var whiteAttrList = whiteList[tag];
         var attrsHtml = parseAttr(attrs.html, function (name, value) {
           // call `onTagAttr()`
-          var isWhiteAttr = util.indexOf(whiteAttrList, name) !== -1;
+          var isWhiteAttr = _.indexOf(whiteAttrList, name) !== -1;
           var ret = onTagAttr(tag, name, value, isWhiteAttr);
           if (!isNull(ret)) return ret;
 
@@ -1621,21 +1625,21 @@ FilterXSS.prototype.process = function (html) {
             }
           } else {
             // call `onIgnoreTagAttr()`
-            var ret = onIgnoreTagAttr(tag, name, value, isWhiteAttr);
+            ret = onIgnoreTagAttr(tag, name, value, isWhiteAttr);
             if (!isNull(ret)) return ret;
             return;
           }
         });
 
         // build new tag html
-        var html = "<" + tag;
+        html = "<" + tag;
         if (attrsHtml) html += " " + attrsHtml;
         if (attrs.closing) html += " /";
         html += ">";
         return html;
       } else {
         // call `onIgnoreTag()`
-        var ret = onIgnoreTag(tag, html, info);
+        ret = onIgnoreTag(tag, html, info);
         if (!isNull(ret)) return ret;
         return escapeHtml(html);
       }
@@ -1651,57 +1655,64 @@ FilterXSS.prototype.process = function (html) {
   return retHtml;
 };
 
-var xss = FilterXSS;
+var xss$1 = FilterXSS;
 
-var lib = createCommonjsModule(function (module, exports) {
 /**
  * xss
  *
  * @author Zongmin Lei<leizongmin@gmail.com>
  */
 
+(function (module, exports) {
+	var DEFAULT = _default$1;
+	var parser = parser$1;
+	var FilterXSS = xss$1;
 
+	/**
+	 * filter xss function
+	 *
+	 * @param {String} html
+	 * @param {Object} options { whiteList, onTag, onTagAttr, onIgnoreTag, onIgnoreTagAttr, safeAttrValue, escapeHtml }
+	 * @return {String}
+	 */
+	function filterXSS(html, options) {
+	  var xss = new FilterXSS(options);
+	  return xss.process(html);
+	}
 
+	exports = module.exports = filterXSS;
+	exports.filterXSS = filterXSS;
+	exports.FilterXSS = FilterXSS;
 
+	(function () {
+	  for (var i in DEFAULT) {
+	    exports[i] = DEFAULT[i];
+	  }
+	  for (var j in parser) {
+	    exports[j] = parser[j];
+	  }
+	})();
 
-/**
- * filter xss function
- *
- * @param {String} html
- * @param {Object} options { whiteList, onTag, onTagAttr, onIgnoreTag, onIgnoreTagAttr, safeAttrValue, escapeHtml }
- * @return {String}
- */
-function filterXSS(html, options) {
-  var xss$1 = new xss(options);
-  return xss$1.process(html);
-}
+	// using `xss` on the browser, output `filterXSS` to the globals
+	if (typeof window !== "undefined") {
+	  window.filterXSS = module.exports;
+	}
 
-exports = module.exports = filterXSS;
-exports.filterXSS = filterXSS;
-exports.FilterXSS = xss;
-for (var i in _default) exports[i] = _default[i];
-for (var i in parser) exports[i] = parser[i];
+	// using `xss` on the WebWorker, output `filterXSS` to the globals
+	function isWorkerEnv() {
+	  return (
+	    typeof self !== "undefined" &&
+	    typeof DedicatedWorkerGlobalScope !== "undefined" &&
+	    self instanceof DedicatedWorkerGlobalScope
+	  );
+	}
+	if (isWorkerEnv()) {
+	  self.filterXSS = module.exports;
+	} 
+} (lib$1, lib$1.exports));
 
-// using `xss` on the browser, output `filterXSS` to the globals
-if (typeof window !== "undefined") {
-  window.filterXSS = module.exports;
-}
-
-// using `xss` on the WebWorker, output `filterXSS` to the globals
-function isWorkerEnv() {
-  return (
-    typeof self !== "undefined" &&
-    typeof DedicatedWorkerGlobalScope !== "undefined" &&
-    self instanceof DedicatedWorkerGlobalScope
-  );
-}
-if (isWorkerEnv()) {
-  self.filterXSS = module.exports;
-}
-});
-lib.xss;
-lib.filterXSS;
-lib.FilterXSS;
+var libExports = lib$1.exports;
+var xss = /*@__PURE__*/getDefaultExportFromCjs(libExports);
 
 function isBase64 (value) {
   const test = /^data:.+;base64,/;
@@ -1714,7 +1725,7 @@ function getBase64Data (value) {
 }
 
 const whiteListedCssProperties = {
-  ...lib$1.getDefaultWhiteList(),
+  ...cssfilter.getDefaultWhiteList(),
   bottom: true,
   left: true,
   float: true,
@@ -1738,11 +1749,11 @@ const whiteListedCssProperties = {
   'grid-area': true,
   'align-self': true,
   'justify-self': true,
-  'span': true
+  span: true
 };
 
 function modifyWhiteList () {
-  const whiteList = lib.getDefaultWhiteList();
+  const whiteList = xss.getDefaultWhiteList();
   Object.keys(whiteList).forEach(el => {
     whiteList[el].push('style');
     whiteList[el].push('class');
@@ -1753,7 +1764,7 @@ function modifyWhiteList () {
 
 function handleTagAttr (tag, name, value, isWhiteAttr) {
   if (name === 'style') {
-    return `${name}="${lib$1(value, {
+    return `${name}="${cssfilter(value, {
       whiteList: whiteListedCssProperties
     }).replace(/; /g, ';')}"`;
   }
@@ -1773,7 +1784,7 @@ function handleTagAttr (tag, name, value, isWhiteAttr) {
 
 function handleAttrValue (tag, name, value, cssFilter) {
   // unescape attribute value firstly
-  value = lib.friendlyAttrValue(value);
+  value = xss.friendlyAttrValue(value);
 
   if (name === 'href' || name === 'src') {
     // filter `href` and `src` attribute
@@ -1805,13 +1816,13 @@ function handleAttrValue (tag, name, value, cssFilter) {
       }
     }
     if (cssFilter !== false) {
-      cssFilter = cssFilter || lib.getDefaultCSSWhiteList();
+      cssFilter = cssFilter || xss.getDefaultCSSWhiteList();
       value = cssFilter.process(value);
     }
   }
 
   // escape `<>"` before returns
-  value = lib.escapeAttrValue(value);
+  value = xss.escapeAttrValue(value);
   return value;
 }
 
@@ -1840,7 +1851,7 @@ const options = {
   onTagAttr: handleTagAttr,
   safeAttrValue: handleAttrValue
 };
-const sanitizer = new lib.FilterXSS(options);
+const sanitizer = new xss.FilterXSS(options);
 
 function sanitize (html) {
   return sanitizer.process(html);
