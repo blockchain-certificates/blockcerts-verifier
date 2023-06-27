@@ -6,11 +6,10 @@ module.exports = {
   ],
   setupFiles: [
     'jest-canvas-mock',
-    './test/setupJest.js'
+    './test/setupJest.ts'
   ],
   transform: {
-    '^.+\\.(ts)$': 'ts-jest',
-    '^.+\\.(js)$': 'babel-jest'
+    '^.+\\.((j|t)s)$': 'ts-jest'
   },
   testPathIgnorePatterns: [
     './test/e2e',
