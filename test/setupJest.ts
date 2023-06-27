@@ -8,10 +8,6 @@ require('jest-fetch-mock');
   observe (element, initObject): void {}
 };
 
-(global as any).customElements = {
-  define: () => {}
-};
-
 Object.defineProperty(global.self, 'crypto', {
   value: {
     // use node 15.x or above
