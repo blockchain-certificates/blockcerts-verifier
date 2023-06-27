@@ -65,7 +65,7 @@
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-serve": "^1.0.1",
     "sass-lint": "^1.12.1",
-    "semantic-release": "^18.0.0",
+    "semantic-release": "^21.0.5",
     "sinon": "^11.1.0",
     "ts-jest": "^29.1.0",
     "typescript": "^5.1.3",
