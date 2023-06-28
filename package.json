@@ -46,7 +46,7 @@
     "@typescript-eslint/parser": "^4.16.1",
     "axe-core": "^4.0.1",
     "codecov": "^3.1.0",
-    "concurrently": "^7.3.0",
+    "concurrently": "^8.2.0",
     "deepmerge": "^4.2.2",
     "eslint": "^7.21.0",
     "eslint-config-standard": "^16.0.2",
