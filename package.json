@@ -60,7 +60,7 @@
     "jest-environment-jsdom": "^29.5.0",
     "jest-fetch-mock": "^3.0.0",
     "karma-firefox-launcher": "^2.0.0",
-    "pwa-helpers": "^0.9.1",
+    "pwa-helpers": "^0.8.2",
     "rollup": "^3.25.3",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-serve": "^2.0.2",
