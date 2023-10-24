@@ -1,7 +1,7 @@
 import { html, fixture, expect } from '@open-wc/testing';
 import sinon from 'sinon';
 import '../../dist/main';
-import { ExplorerAPI } from '@blockcerts/cert-verifier-js';
+import type { ExplorerAPI } from '@blockcerts/explorer-lookup';
 import { wait } from './helpers/waitForKarma';
 
 describe('BlockcertsVerifier explorer apis e2e test suite', function () {
@@ -13,7 +13,7 @@ describe('BlockcertsVerifier explorer apis e2e test suite', function () {
         parsingFunction: parsingFunctionStub,
         priority: 0,
         // we provide a URL that returns a JSON to avoid any issue in cert verifier js explorer execution
-        serviceURL: 'https://raw.githubusercontent.com/blockchain-certificates/blockcerts-verifier/master/test/fixtures/mainnet-valid-2.0.json'
+        serviceURL: 'https://raw.githubusercontent.com/blockchain-certificates/blockcerts-verifier/master/test/fixtures/v2/mainnet-valid-2.0.json'
       };
       const element: any = await fixture(html`
         <blockcerts-verifier></blockcerts-verifier>
