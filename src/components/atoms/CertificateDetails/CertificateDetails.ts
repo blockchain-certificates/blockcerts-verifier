@@ -82,7 +82,6 @@ export default function CertificateDetails ({
   signatureSuiteType = [],
   chain = []
 }: ICertificateDetailsApi): TemplateResult {
-  console.log('Certificate details display', display);
   const details = [];
   if (!hideRecipientName) {
     details.push({
