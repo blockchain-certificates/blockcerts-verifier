@@ -65,10 +65,10 @@ export class FullCertificateComponent extends LitElement {
     ${CSS}
     ${displayHTML ? renderDisplayHTML(displayHTML, clickableUrls) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
     <div class='buv-c-full-certificate__details'>
-      <buv-certificate-details class='buv-c-full-certificate__details-list'></buv-certificate-details>
       <buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
         <buv-verify-button type='link'>${getText('text.verifyAgain')}</buv-verify-button>
       </buv-final-verification-step>
+      <buv-certificate-details display="grid" class='buv-c-full-certificate__details-list'></buv-certificate-details>
     </div>
   `;
   }

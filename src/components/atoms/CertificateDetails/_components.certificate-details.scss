@@ -13,6 +13,13 @@
   }
 }
 
+.buv-c-certificate-details--grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px; // sass-lint:disable-line no-misspelled-properties // TODO: update scss linter to a maintained version
+  padding: 20px 0 0;
+}
+
 .buv-c-certificate-details--column {
   flex-direction: column;
   padding-bottom: 0;
@@ -31,6 +38,11 @@
   @media only screen and (max-width: $breakpoint) {
     max-width: 100%;
   }
+}
+
+.buv-c-certificate-details__group--row-grid {
+  min-width: 0;
+  max-width: none;
 }
 
 .buv-c-certificate-details__title {

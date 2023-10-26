@@ -24,9 +24,9 @@ export const mapStateToProps = (state: BlockcertsVerifierState): ICertificateDet
   chain: getChain(state)
 });
 
-const ownProps = {
-  direction: String,
-  hideRecipientName: Boolean
+const ownProps: Partial<ICertificateDetailsApi> = {
+  display: String as any,
+  hideRecipientName: Boolean as any
 };
 
 const CertificateDetailsContainer = connector(CertificateDetails, { mapStateToProps, ownProps });

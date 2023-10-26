@@ -277,25 +277,38 @@ describe('CertificateDetails test suite', function () {
     });
   });
 
-  describe('given the direction is column', function () {
+  describe('given the display is column', function () {
     it('should render in column', function () {
       const instance = CertificateDetails({
         issuerPublicKey: FIXTURE_PUBLIC_KEY,
         signatureSuiteType: FIXTURE_SIGNATURE_TYPE,
-        direction: 'column'
+        display: 'column'
       });
       expect(assertClassInStringBits(instance, 'buv-c-certificate-details--column')).toBe(true);
+      expect(assertClassInStringBits(instance, 'buv-c-certificate-details--grid')).toBe(false);
     });
   });
 
-  describe('given the direction is not column', function () {
-    it('should not render in column', function () {
+  describe('given the display is grid', function () {
+    it('should render in grid', function () {
       const instance = CertificateDetails({
         issuerPublicKey: FIXTURE_PUBLIC_KEY,
         signatureSuiteType: FIXTURE_SIGNATURE_TYPE,
-        direction: ''
+        display: 'grid'
       });
       expect(assertClassInStringBits(instance, 'buv-c-certificate-details--column')).toBe(false);
+      expect(assertClassInStringBits(instance, 'buv-c-certificate-details--grid')).toBe(true);
+    });
+  });
+
+  describe('given the display is not specified', function () {
+    it('should not render in grid nor in column', function () {
+      const instance = CertificateDetails({
+        issuerPublicKey: FIXTURE_PUBLIC_KEY,
+        signatureSuiteType: FIXTURE_SIGNATURE_TYPE
+      });
+      expect(assertClassInStringBits(instance, 'buv-c-certificate-details--column')).toBe(false);
+      expect(assertClassInStringBits(instance, 'buv-c-certificate-details--grid')).toBe(false);
     });
   });
 });

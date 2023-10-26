@@ -5,10 +5,12 @@ import { TemplateResult } from 'lit-html';
 import getOrdinalNumber from '../../../i18n/getOrdinalNumber';
 import '../SuiteVerificationStatus';
 
+type TPossibleDisplays = 'column'| 'grid' | null;
+
 interface IRenderInterface {
   title?: string;
   value?: string;
-  isDisplayColumn?: boolean;
+  display?: TPossibleDisplays;
   renderInline?: boolean;
   transactionLink?: string[];
 }
@@ -24,19 +26,28 @@ export interface ICertificateDetailsApi {
   issuerProfileDomain?: string[];
   signatureSuiteType?: string[];
   chain?: string[];
-  direction?: any; // enum
+  display?: TPossibleDisplays;
   hideRecipientName?: boolean;
 }
 
-function renderListDetail ({ title, value, isDisplayColumn, renderInline = false }: IRenderInterface): TemplateResult {
+function isDisplayGrid (display: TPossibleDisplays): boolean {
+  return display === 'grid';
+}
+
+function isDisplayColumn (display: TPossibleDisplays): boolean {
+  return display === 'column';
+}
+
+function renderListDetail ({ title, value, display, renderInline = false }: IRenderInterface): TemplateResult {
   const classes = [
     'buv-c-certificate-details__group',
-    isDisplayColumn ? '' : 'buv-c-certificate-details__group--row'
+    isDisplayColumn(display) ? '' : 'buv-c-certificate-details__group--row',
+    isDisplayGrid(display) ? 'buv-c-certificate-details__group--row-grid' : ''
   ].join(' ');
 
   const titleClasses = [
     'buv-c-certificate-details__title',
-    isDisplayColumn ? '' : 'buv-o-text-11'
+    isDisplayColumn(display) ? '' : 'buv-o-text-11'
   ].join(' ');
 
   const ddClasses = [
@@ -66,7 +77,7 @@ export default function CertificateDetails ({
   issuerProfileUrl = [],
   issuerPublicKey = [],
   transactionId = [],
-  direction,
+  display,
   hideRecipientName,
   signatureSuiteType = [],
   chain = []
@@ -129,13 +140,13 @@ export default function CertificateDetails ({
     }
   }
 
-  const isDisplayColumn = direction === 'column';
-  const definitionListDetails = details.map(detail => renderListDetail({ ...detail, isDisplayColumn }));
+  const definitionListDetails = details.map(detail => renderListDetail({ ...detail, display }));
 
   const classes = [
     'buv-c-certificate-details',
     'buv-o-text-13',
-    isDisplayColumn ? 'buv-c-certificate-details--column' : ''
+    isDisplayColumn(display) ? 'buv-c-certificate-details--column' : '',
+    isDisplayGrid(display) ? 'buv-c-certificate-details--grid' : ''
   ].join(' ');
 
   return html`

@@ -90,7 +90,7 @@ export class FullScreenCertificateComponent extends LitElement {
             <buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
               <buv-verify-button type='link'>${getText('text.verifyAgain')}</buv-verify-button>
             </buv-final-verification-step>
-            <buv-certificate-details direction='column' hideRecipientName></buv-certificate-details>
+            <buv-certificate-details display='column' hideRecipientName></buv-certificate-details>
             <buv-metadata class='buv-c-fullscreen-certificate__details-item  buv-c-fullscreen-certificate__separator' display='plaintext'></buv-metadata>
             ${disableDownloadPdf ? '' : html`<buv-download-pdf-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-pdf-link>`}
             <buv-download-link class='buv-c-fullscreen-certificate__details-item' display='plaintext'></buv-download-link>
