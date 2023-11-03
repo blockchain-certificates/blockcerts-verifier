@@ -3,6 +3,7 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import terser from '@rollup/plugin-terser';
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default [
   {
@@ -25,7 +26,14 @@ export default [
         browser: true,
         preferBuiltins: true
       }),
-      terser()
+      terser(),
+      visualizer({
+        filename: 'bundle-stats.html',
+        title: 'Blockcerts-Verifier bundle stats',
+        template: 'sunburst',
+        open: true,
+        gzipSize: true
+      })
     ]
   }
 ];
