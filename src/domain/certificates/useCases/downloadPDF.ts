@@ -1,9 +1,10 @@
 import { CONTENT_TYPES } from '../../../constants/contentTypes';
-import jsPDF from 'jspdf';
+import type jsPDF from 'jspdf';
 import { getHTMLElementSize } from '../../../helpers/getHTMLElementSize';
 import { addHTMLPageToPDF, generatePdfFromImage, PDF_MARGIN, savePDF } from '../../../helpers/jspdf';
 import getPDFCoverPage, { PDF_COVER_PAGE_HEIGHT, PDF_COVER_PAGE_WIDTH } from '../../../helpers/getPDFCoverPage';
-import addCSSPropertiesToHTMLElement, { TCSSPropertiesObject } from '../../../helpers/cssProperties';
+import type { TCSSPropertiesObject } from '../../../helpers/cssProperties';
+import addCSSPropertiesToHTMLElement from '../../../helpers/cssProperties';
 import displayHtmlHasNoWidthConstraint from './displayHtmlHasNoWidthConstraint';
 import generateQrCode from '../../../helpers/generateQrCode';
 import isContentTypeImage from '../../../helpers/contentTypes';

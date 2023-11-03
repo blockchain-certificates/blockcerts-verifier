@@ -4,7 +4,7 @@ import '../../atoms/DownloadPDFLink';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
 import CSS from './_components.action-menu-css';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 export interface ActionMenuProps {
   allowDownload?: boolean;

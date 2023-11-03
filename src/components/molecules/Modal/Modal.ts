@@ -1,7 +1,7 @@
 import { html, LitElement } from '@polymer/lit-element';
 import CSS from './_components.modal-css';
 import CloseButton from '../../atoms/CloseButton';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 export interface ModalProps {
   isOpen?: boolean;

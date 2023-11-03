@@ -4,7 +4,7 @@ import '../../atoms/VerifyButton';
 import '../../atoms/DownloadPDFLink';
 import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 export interface CardCertificateProps {
   hasCertificateDefinition?: boolean;

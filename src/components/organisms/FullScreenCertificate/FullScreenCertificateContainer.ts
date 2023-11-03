@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import { FullScreenCertificate, IFullScreenCertificateAPI } from './FullScreenCertificate';
+import type { IFullScreenCertificateAPI } from './FullScreenCertificate';
+import { FullScreenCertificate } from './FullScreenCertificate';
 import {
   getCertificateDefinition,
   getDisplayAsHTML,
@@ -7,7 +8,7 @@ import {
 } from '../../../selectors/certificate';
 import resetCertificateDefinition from '../../../actions/resetCertificateDefinition';
 import { getClickableUrls, getDisableDownloadPdf } from '../../../selectors/api';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 export const mapDispatchToProps: Partial<IFullScreenCertificateAPI> = {
   onClose: resetCertificateDefinition

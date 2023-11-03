@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import FullCertificateV1, { FullCertificateV1Props } from './FullCertificateV1';
+import type { FullCertificateV1Props } from './FullCertificateV1';
+import FullCertificateV1 from './FullCertificateV1';
 import {
   getCertificateDefinition,
   getCertificateDescription,
@@ -11,7 +12,7 @@ import {
   getIssuerName,
   getRecipientName
 } from '../../../selectors/certificate';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 export const mapStateToProps = (state: BlockcertsVerifierState): FullCertificateV1Props => ({
   hasCertificateDefinition: !!getCertificateDefinition(state),

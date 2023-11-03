@@ -1,5 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.fullscreen-certificate-css';
 import '../../atoms/CertificateDetails';

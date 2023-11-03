@@ -1,4 +1,4 @@
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 const getRenderString = (data: TemplateResult): string => {
   const { strings, values }: TemplateResult = data;

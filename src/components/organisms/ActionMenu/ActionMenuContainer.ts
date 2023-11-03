@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import ActionMenu, { ActionMenuProps } from './ActionMenu';
+import type { ActionMenuProps } from './ActionMenu';
+import ActionMenu from './ActionMenu';
 import {
   getAllowDownload,
   getDisableDownloadPdf,

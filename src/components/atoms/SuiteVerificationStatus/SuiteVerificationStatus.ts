@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.suite-verification-status-css';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js'; // TODO: kill this import
 import type { TemplateResult } from 'lit-html';
 import { getText } from '../../../i18n';
 

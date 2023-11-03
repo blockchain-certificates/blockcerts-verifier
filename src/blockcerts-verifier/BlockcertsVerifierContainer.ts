@@ -4,7 +4,7 @@ import { BlockcertsVerifier, SourceComponent } from './BlockcertsVerifier';
 import { getErrorMessage } from '../selectors/error';
 import { APIKeys } from '../models/API';
 import { getCertificateDefinition } from '../selectors/certificate';
-import { BlockcertsVerifierState } from '../store/getInitialState';
+import type { BlockcertsVerifierState } from '../store/getInitialState';
 
 export const mapDispatchToProps = {
   onLoad: initialize

@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import CertificateInput, { CertificateInputProps } from './CertificateInput';
+import type { CertificateInputProps } from './CertificateInput';
+import CertificateInput from './CertificateInput';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 

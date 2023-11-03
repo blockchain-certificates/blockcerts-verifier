@@ -2,7 +2,7 @@ import { configureStore } from '../../../src/store';
 import initialize from '../../../src/actions/initialize';
 import { getCertificateUrl } from '../../../src/selectors/input';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
-import { CertificateOptions } from '@blockcerts/cert-verifier-js';
+import type { CertificateOptions } from '@blockcerts/cert-verifier-js';
 import { getExplorerAPIs } from '../../../src/selectors/api';
 import { getCertificateDefinition } from '../../../src/selectors/certificate';
 import { wait } from '../../e2e/helpers/waitForKarma';

@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import { SocialShare, SocialShareProps } from './SocialShare';
+import type { SocialShareProps } from './SocialShare';
+import { SocialShare } from './SocialShare';
 import { getRecordLink } from '../../../selectors/certificate';
 import shareSocialNetwork from '../../../actions/shareSocialNetwork';
 import type { BlockcertsVerifierState } from '../../../store/getInitialState';

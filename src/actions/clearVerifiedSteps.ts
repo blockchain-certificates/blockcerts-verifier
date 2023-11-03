@@ -1,7 +1,7 @@
 import * as ACTIONS from '../constants/actionTypes';
 import { getCertificateDefinition } from '../selectors/certificate';
 import domain from '../domain';
-import { Dispatch } from 'redux';
+import type { Dispatch } from 'redux';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
 import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';
 import type { ThunkAction } from 'redux-thunk';

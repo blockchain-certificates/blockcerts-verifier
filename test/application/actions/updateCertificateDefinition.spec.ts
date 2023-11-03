@@ -16,7 +16,7 @@ import validCertificate from '../../assertions/validCertificate';
 import { getShowVerificationModal, getVerificationHasStarted } from '../../../src/selectors/verification';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import initialize from '../../../src/actions/initialize';
-import { CertificateOptions, Signers } from '@blockcerts/cert-verifier-js';
+import type { CertificateOptions, Signers } from '@blockcerts/cert-verifier-js';
 
 describe('updateCertificateDefinition action creator test suite', function () {
   describe('given it is dispatched with a certificate definition', function () {

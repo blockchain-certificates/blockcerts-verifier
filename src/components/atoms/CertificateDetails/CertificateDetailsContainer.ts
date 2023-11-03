@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import CertificateDetails, { ICertificateDetailsApi } from './CertificateDetails';
+import type { ICertificateDetailsApi } from './CertificateDetails';
+import CertificateDetails from './CertificateDetails';
 import {
   getChain,
   getIssueDate,
@@ -9,7 +10,7 @@ import {
   getRecipientName, getSignatureSuiteType,
   getTransactionId
 } from '../../../selectors/certificate';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 export const mapStateToProps = (state: BlockcertsVerifierState): ICertificateDetailsApi => ({
   recipientName: getRecipientName(state),

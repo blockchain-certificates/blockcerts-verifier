@@ -1,4 +1,4 @@
-import { TElementSize } from './getHTMLElementSize';
+import type { TElementSize } from './getHTMLElementSize';
 
 const getImageSize = async (imageSource: string): Promise<TElementSize> => {
   return await new Promise(resolve => {

@@ -1,6 +1,6 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.final-verification-step-css';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 import type { IFinalStep } from '../../../store/getInitialState';
 
 function getDetails (finalStep: IFinalStep, chain: string[]): TemplateResult {

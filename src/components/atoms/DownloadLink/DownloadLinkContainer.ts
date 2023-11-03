@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import DownloadLink, { DownloadLinkProps } from './DownloadLink';
+import type { DownloadLinkProps } from './DownloadLink';
+import DownloadLink from './DownloadLink';
 import { getDownloadLink } from '../../../selectors/certificate';
 import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 

@@ -1,5 +1,5 @@
-import { ThunkAction } from 'redux-thunk';
-import { Action } from './action';
+import type { ThunkAction } from 'redux-thunk';
+import type { Action } from './action';
 import * as ACTIONS from '../constants/actionTypes';
 import updateCertificateUrl from './updateCertificateUrl';
 import { getAPIOptions } from '../models/API';
@@ -7,8 +7,8 @@ import setLocale from '../i18n/setLocale';
 import domain from '../domain';
 import isJson from '../helpers/isJson';
 import updateCertificateDefinition from './updateCertificateDefinition';
-import { BlockcertsVerifierState } from '../store/getInitialState';
-import { IBlockcertsVerifierProps } from '../blockcerts-verifier/BlockcertsVerifier';
+import type { BlockcertsVerifierState } from '../store/getInitialState';
+import type { IBlockcertsVerifierProps } from '../blockcerts-verifier/BlockcertsVerifier';
 
 export interface InitializeActionPayload {
   options: IBlockcertsVerifierProps;

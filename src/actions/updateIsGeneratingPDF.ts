@@ -1,5 +1,5 @@
 import * as ACTIONS from '../constants/actionTypes';
-import { Action } from './action';
+import type { Action } from './action';
 
 export interface UpdateIsGeneratingPDFActionPayload {
   isGeneratingPDF: boolean;

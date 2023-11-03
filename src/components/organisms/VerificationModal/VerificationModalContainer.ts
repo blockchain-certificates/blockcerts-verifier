@@ -1,8 +1,9 @@
 import connector from '../../../store/connector';
-import VerificationModal, { VerificationModalProps } from './VerificationModal';
+import type { VerificationModalProps } from './VerificationModal';
+import VerificationModal from './VerificationModal';
 import { getShowVerificationModal } from '../../../selectors/verification';
 import showVerificationModal from '../../../actions/showVerificationModal';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 export const mapStateToProps = (state: BlockcertsVerifierState): VerificationModalProps => ({
   isOpen: getShowVerificationModal(state)

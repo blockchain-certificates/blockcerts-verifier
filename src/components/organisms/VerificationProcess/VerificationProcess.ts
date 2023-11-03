@@ -4,7 +4,8 @@ import '../../atoms/FinalVerificationStep';
 import '../SubstepsList';
 import CSS from './_components.verification-process-css';
 import getText from '../../../i18n/getText';
-import { IVerificationMapItem, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js'; // TODO: kill this import
+import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';
 import type { TemplateResult } from 'lit-html';
 
 export interface IVerificationProcessAPI {

@@ -1,5 +1,5 @@
 import { html, LitElement } from '@polymer/lit-element';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.full-certificate-css';
 import '../../atoms/CertificateDetails';
@@ -9,7 +9,7 @@ import '../../atoms/FinalVerificationStep';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 import domain from '../../../domain';
-import { IFullScreenCertificateAPI } from '../FullScreenCertificate/FullScreenCertificate';
+import type { IFullScreenCertificateAPI } from '../FullScreenCertificate/FullScreenCertificate';
 
 function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
   const buvCertificateClasses: string[] = [

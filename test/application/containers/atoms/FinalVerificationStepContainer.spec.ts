@@ -6,7 +6,8 @@ import certificateFixture from '../../../fixtures/v2/valid-certificate-example.j
 import mainnetCertificateFixture from '../../../fixtures/v2/mainnet-valid-2.0.json';
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 import updateVerificationStatus from '../../../../src/actions/updateVerificationStatus';
-import { Signers, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import type { Signers } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 describe('FinalVerificationStepContainer test suite', function () {
   describe('mapStateToProps function', function () {
