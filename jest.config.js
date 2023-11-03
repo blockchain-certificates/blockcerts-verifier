@@ -17,5 +17,9 @@ module.exports = {
   ],
   transformIgnorePatterns: [
     'node_modules/(?!(@polymer|lit-html|pwa-helpers|@blockcerts/cert-verifier-js)/)'
-  ]
+  ],
+  globals: {
+    TextEncoder: require('util').TextEncoder,
+    TextDecoder: require('util').TextDecoder
+  }
 };

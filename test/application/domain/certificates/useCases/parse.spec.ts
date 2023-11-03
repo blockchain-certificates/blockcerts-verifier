@@ -3,8 +3,8 @@ import domain from '../../../../../src/domain';
 import certificateFixture from '../../../../fixtures/v2/valid-certificate-example.json';
 import notACertificateDefinition from '../../../../fixtures/not-a-certificate-definition.json';
 import validCertificate from '../../../../assertions/validCertificate';
-import * as verifier from '@blockcerts/cert-verifier-js';
-import { CertificateOptions } from '@blockcerts/cert-verifier-js';
+import verifier from '@blockcerts/cert-verifier-js';
+import type { CertificateOptions } from '@blockcerts/cert-verifier-js';
 
 describe('domain certificates parse method test suite', function () {
   describe('given a valid definition of a certificate', function () {
@@ -43,7 +43,9 @@ describe('domain certificates parse method test suite', function () {
     let certificateConstructorStub;
 
     beforeEach(function () {
-      certificateConstructorStub = sinon.stub(verifier, 'Certificate');
+      certificateConstructorStub = sinon.stub(verifier, 'Certificate').callsFake(() => ({
+        init: () => {} // prevent console error pollution
+      }));
     });
 
     afterEach(function () {
@@ -75,7 +77,9 @@ describe('domain certificates parse method test suite', function () {
   describe('handling custom blockchain explorers', function () {
     describe('given it is set as an option', function () {
       it('should pass it as an option to the Certificate constructor', async function () {
-        const certificateConstructorStub = sinon.stub(verifier, 'Certificate');
+        const certificateConstructorStub = sinon.stub(verifier, 'Certificate').callsFake(() => ({
+          init: () => {} // prevent console error pollution
+        }));
         const fixtureOptions: CertificateOptions = {
           explorerAPIs: [{
             priority: 0,
