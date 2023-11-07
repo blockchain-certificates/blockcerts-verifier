@@ -1,6 +1,6 @@
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
 import { getVerifiedSteps } from './certificate';
-import { BlockcertsVerifierState } from '../store/getInitialState';
+import type { BlockcertsVerifierState } from '../store/getInitialState';
 
 export function getVerificationStatus (state: BlockcertsVerifierState): VERIFICATION_STATUSES {
   return state.verificationStatus;

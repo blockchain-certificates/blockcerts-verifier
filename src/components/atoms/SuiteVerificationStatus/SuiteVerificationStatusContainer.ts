@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import SuiteVerificationStatus, { ISuiteVerificationStatus } from './SuiteVerificationStatus';
+import type { ISuiteVerificationStatus } from './SuiteVerificationStatus';
+import SuiteVerificationStatus from './SuiteVerificationStatus';
 import { isTestChainAtIndex } from '../../../selectors/certificate';
 import { getVerificationStatusForSuite } from '../../../selectors/verification';
 

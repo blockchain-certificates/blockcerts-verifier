@@ -5,12 +5,11 @@ import setErrorMessage from './setErrorMessage';
 import verifyCertificate from './verifyCertificate';
 import { getDidResolverUrl, getDisableAutoVerify, getExplorerAPIs, getLocale } from '../selectors/api';
 import showVerificationModal from './showVerificationModal';
-import type { Blockcerts, CertificateOptions } from '@blockcerts/cert-verifier-js';
+import type { Blockcerts, CertificateOptions, Certificate } from '@blockcerts/cert-verifier-js';
 import type { Dispatch } from 'redux';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
-import { Certificate } from '@blockcerts/cert-verifier-js';
-import { ThunkAction } from 'redux-thunk';
-import { Action } from './action';
+import type { ThunkAction } from 'redux-thunk';
+import type { Action } from './action';
 
 export interface UpdateCertificateDefinitionActionPayload {
   certificateDefinition: Certificate;

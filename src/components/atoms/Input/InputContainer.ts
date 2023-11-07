@@ -1,8 +1,9 @@
 import updateCertificateUrl from '../../../actions/updateCertificateUrl';
 import connector from '../../../store/connector';
-import Input, { InputProps } from './Input';
+import type { InputProps } from './Input';
+import Input from './Input';
 import { getUrlIsValid } from '../../../selectors/input';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 const mapDispatchToProps: InputProps = {
   onInput: updateCertificateUrl

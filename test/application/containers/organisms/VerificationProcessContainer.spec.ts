@@ -8,7 +8,8 @@ import validCertificateStepsAssertions from '../../../assertions/validCertificat
 import stubCertificateVerify from '../../__helpers/stubCertificateVerify';
 import { getVerifiedSteps } from '../../../../src/selectors/certificate';
 import updateParentStepStatus from '../../../../src/actions/updateParentStepStatus';
-import { Signers, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import type { Signers } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
 jest.mock('../../../../src/helpers/stepQueue');
 

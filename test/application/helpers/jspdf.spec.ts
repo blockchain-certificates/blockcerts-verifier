@@ -1,5 +1,6 @@
 import { addImageToPDF, getPageOrientation, savePDF } from '../../../src/helpers/jspdf';
-import jsPDF, { ImageCompression } from 'jspdf';
+import type { ImageCompression } from 'jspdf';
+import type jsPDF from 'jspdf';
 import sinon from 'sinon';
 
 describe('getPageOrientation function', function () {

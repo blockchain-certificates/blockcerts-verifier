@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import { IMetadataProps, Metadata } from './Metadata';
+import type { IMetadataProps } from './Metadata';
+import { Metadata } from './Metadata';
 import { getMetadata } from '../../../selectors/certificate';
 import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 

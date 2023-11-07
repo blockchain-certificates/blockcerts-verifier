@@ -1,4 +1,5 @@
-import addCSSPropertiesToHTMLElement, { TCSSPropertiesObject } from '../../../src/helpers/cssProperties';
+import type { TCSSPropertiesObject } from '../../../src/helpers/cssProperties';
+import addCSSPropertiesToHTMLElement from '../../../src/helpers/cssProperties';
 
 describe('addCSSPropertiesToHTMLElement function', function () {
   it('should add the style properties to the html element', function () {

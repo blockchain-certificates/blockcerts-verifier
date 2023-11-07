@@ -1,11 +1,12 @@
 import connector from '../../../store/connector';
-import { FullCertificate, IFullCertificateAPI } from './FullCertificate';
+import type { IFullCertificateAPI } from './FullCertificate';
+import { FullCertificate } from './FullCertificate';
 import {
   getCertificateDefinition,
   getDisplayAsHTML
 } from '../../../selectors/certificate';
 import { getClickableUrls } from '../../../selectors/api';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 export const mapStateToProps = (state: BlockcertsVerifierState): Partial<IFullCertificateAPI> => ({
   hasCertificateDefinition: !!getCertificateDefinition(state),

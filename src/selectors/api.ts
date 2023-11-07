@@ -1,4 +1,4 @@
-import { ExplorerAPI } from '@blockcerts/explorer-lookup';
+import type { ExplorerAPI } from '@blockcerts/explorer-lookup';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
 import type { THEME } from '../constants/theme';
 

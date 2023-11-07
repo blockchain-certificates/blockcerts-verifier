@@ -32,7 +32,8 @@ import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
-import { Blockcerts, Signers, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import type { Blockcerts, Signers } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../../../src/constants/contentTypes';
 import { FakeXmlHttpRequest } from '../__helpers/FakeXmlHttpRequest';
 

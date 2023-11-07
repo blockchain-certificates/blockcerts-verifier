@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.blockcerts-logo-css';
 import getText from '../../../i18n/getText';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 function simpleLogo (): TemplateResult {
   return html`

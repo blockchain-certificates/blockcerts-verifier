@@ -1,8 +1,9 @@
 import connector from '../../../store/connector';
-import FinalVerificationStep, { FinalVerificationStepProps } from './FinalVerificationStep';
+import type { FinalVerificationStepProps } from './FinalVerificationStep';
+import FinalVerificationStep from './FinalVerificationStep';
 import { getChain, getFinalStep, getTransactionLink, isTestChain } from '../../../selectors/certificate';
 import { getVerificationStatus } from '../../../selectors/verification';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 export const mapStateToProps = (state: BlockcertsVerifierState): FinalVerificationStepProps => ({
   finalStep: getFinalStep(state),

@@ -1,6 +1,7 @@
 import connector from '../../../store/connector';
 import resetCertificateDefinition from '../../../actions/resetCertificateDefinition';
-import VerifyOtherCertificateLink, { VerifyOtherCertificateLinkProps } from './VerifyOtherCertificateLink';
+import type { VerifyOtherCertificateLinkProps } from './VerifyOtherCertificateLink';
+import VerifyOtherCertificateLink from './VerifyOtherCertificateLink';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 

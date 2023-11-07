@@ -1,5 +1,5 @@
 import { html } from '@polymer/lit-element';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 /** FormattedMetadataItem
  * return link for uri, email, phone number to apply in Metadata viewer

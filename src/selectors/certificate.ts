@@ -2,11 +2,11 @@ import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
 import getDateFormat from '../i18n/getDateFormat';
 import { isValidUrl } from '../helpers/validations';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../constants/contentTypes';
-import { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';
-import { V1Signature } from '../components/atoms/FullCertificateV1/FullCertificateV1';
+import type { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';
+import type { V1Signature } from '../components/atoms/FullCertificateV1/FullCertificateV1';
 
 export function getCertificateDefinition (state: BlockcertsVerifierState): Certificate {
   return state.certificateDefinition;

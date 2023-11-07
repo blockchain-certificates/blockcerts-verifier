@@ -12,9 +12,9 @@ import {
   getRecipientName,
   getRecordLink
 } from '../selectors/certificate';
-import { CONTENT_TYPES } from '../constants/contentTypes';
+import type { CONTENT_TYPES } from '../constants/contentTypes';
 import type { Dispatch } from 'redux';
-import { BlockcertsVerifierState } from '../store/getInitialState';
+import type { BlockcertsVerifierState } from '../store/getInitialState';
 
 export default function downloadPDF () {
   return async function (dispatch: Dispatch, getState: () => BlockcertsVerifierState): Promise<void> {

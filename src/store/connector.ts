@@ -3,7 +3,7 @@ import { connect } from 'pwa-helpers/connect-mixin';
 import { bindActionCreators } from 'redux';
 import { configureStore } from './index';
 import type { TemplateResult } from 'lit-html';
-import { BlockcertsVerifierState } from './getInitialState';
+import type { BlockcertsVerifierState } from './getInitialState';
 
 const store = configureStore();
 

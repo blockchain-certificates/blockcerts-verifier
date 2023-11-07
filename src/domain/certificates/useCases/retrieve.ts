@@ -1,6 +1,6 @@
 import { isValidLocalPath, isValidUrl } from '../../../helpers/validations';
 import downloadFlag from '../../../constants/downloadFlag';
-import { Blockcerts } from '@blockcerts/cert-verifier-js';
+import type { Blockcerts } from '@blockcerts/cert-verifier-js';
 
 export interface RetrieveResult {
   certificateDefinition: Blockcerts;

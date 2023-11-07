@@ -1,11 +1,12 @@
 import connector from '../../../store/connector';
-import DownloadPDFLink, { IDownloadPDFLinkApi } from './DownloadPDFLink';
+import type { IDownloadPDFLinkApi } from './DownloadPDFLink';
+import DownloadPDFLink from './DownloadPDFLink';
 import {
   getCertificateDefinition,
   getIsGeneratingPDF
 } from '../../../selectors/certificate';
 import downloadPDF from '../../../actions/downloadPDF';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 export const mapDispatchToProps = {
   onClick: downloadPDF

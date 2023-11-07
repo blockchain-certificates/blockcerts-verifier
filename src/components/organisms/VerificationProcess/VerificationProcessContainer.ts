@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import VerificationProcess, { IVerificationProcessAPI } from './VerificationProcess';
+import type { IVerificationProcessAPI } from './VerificationProcess';
+import VerificationProcess from './VerificationProcess';
 import {
   getHasError,
   getVerifiedSteps,

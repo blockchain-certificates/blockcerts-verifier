@@ -1,10 +1,10 @@
 import sinon from 'sinon';
-import { Certificate, retrieveBlockcertsVersion, BlockcertsVersion, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { Certificate, retrieveBlockcertsVersion, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { Certificate as CertificateV1 } from '@blockcerts/cert-verifier-js-v1-legacy';
 import domain from '../../../src/domain';
 import validCertificateStepsAssertions from '../../assertions/validCertificateSteps';
 import invalidCertificateStepsAssertions from '../../assertions/invalidCertificateSteps';
-import type { Blockcerts, IVerificationMapItem, Signers } from '@blockcerts/cert-verifier-js';
+import type { Blockcerts, IVerificationMapItem, Signers, BlockcertsVersion } from '@blockcerts/cert-verifier-js';
 
 function updateStep (stepsCb, step: IVerificationMapItem): void {
   step.subSteps.forEach(substep => stepsCb(substep));

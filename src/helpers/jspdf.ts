@@ -1,6 +1,7 @@
-import jsPDF, { ImageCompression, jsPDFOptions } from 'jspdf';
+import type { ImageCompression, jsPDFOptions } from 'jspdf';
+import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
-import { TElementSize } from './getHTMLElementSize';
+import type { TElementSize } from './getHTMLElementSize';
 import getImageSize from './getImageSize';
 
 export const PDF_MARGIN = 10;

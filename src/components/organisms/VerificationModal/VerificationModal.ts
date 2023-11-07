@@ -3,7 +3,7 @@ import CSS from './_components.verification-modal-css';
 import '../../molecules/Footer';
 import '../../molecules/Modal';
 import '../VerificationProcess';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 export interface VerificationModalProps {
   isOpen?: boolean;

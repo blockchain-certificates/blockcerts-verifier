@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.error-message-css';
 import getText from '../../../i18n/getText';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 function isMessageTranslatable (message: string): boolean {
   return message.includes('.') && !message.includes(' ');

@@ -1,8 +1,8 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.verification-step-css';
 import ErrorMessage from '../../atoms/ErrorMessage';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
-import { TemplateResult } from 'lit-html';
+import type { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import type { TemplateResult } from 'lit-html';
 
 export interface IVerificationStepAPI {
   label: string;

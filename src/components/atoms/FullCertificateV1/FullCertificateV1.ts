@@ -1,7 +1,7 @@
 import { html } from '@polymer/lit-element';
 import CSS from './_components.full-certificate-css';
 import getText from '../../../i18n/getText';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 export interface FullCertificateV1Props {
   hasCertificateDefinition?: boolean;

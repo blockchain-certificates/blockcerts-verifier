@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import { DragAndDrop, DragAndDropProps } from './DragAndDrop';
+import type { DragAndDropProps } from './DragAndDrop';
+import { DragAndDrop } from './DragAndDrop';
 import uploadCertificateDefinition from '../../../actions/uploadCertificateDefinition';
 
 const mapDispatchToProps: DragAndDropProps = {

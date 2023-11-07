@@ -1,7 +1,8 @@
 import connector from '../../../store/connector';
-import Footer, { FooterProps } from './Footer';
+import type { FooterProps } from './Footer';
+import Footer from './Footer';
 import { getTheme } from '../../../selectors/api';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 const mapStateToProps = (state: BlockcertsVerifierState): FooterProps => ({
   theme: getTheme(state)

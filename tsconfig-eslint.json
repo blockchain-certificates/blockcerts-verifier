@@ -6,6 +6,8 @@
     "lib": ["es2018", "dom"],
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "importsNotUsedAsValues": "error",
+    "ignoreDeprecations": "5.0",
     "moduleResolution": "node",
     "baseUrl": "src",
     "module": "commonjs",

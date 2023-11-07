@@ -1,5 +1,6 @@
 import connector from '../../../store/connector';
-import VerifyButton, { VerifyButtonProps } from './VerifyButton';
+import type { VerifyButtonProps } from './VerifyButton';
+import VerifyButton from './VerifyButton';
 import { getCertificateDefinition } from '../../../selectors/certificate';
 import { getDisableVerify } from '../../../selectors/api';
 import startVerificationProcess from '../../../actions/startVerificationProcess';

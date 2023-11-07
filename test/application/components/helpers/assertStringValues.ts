@@ -1,4 +1,4 @@
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 export function assertClassInStringBits (instance: TemplateResult, className: string): boolean {
   return instance.values.some(value => {

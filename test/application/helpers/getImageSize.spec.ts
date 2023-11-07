@@ -1,5 +1,5 @@
 import getImageSize from '../../../src/helpers/getImageSize';
-import { TElementSize } from '../../../src/helpers/getHTMLElementSize';
+import type { TElementSize } from '../../../src/helpers/getHTMLElementSize';
 
 class MockImage {
   width;

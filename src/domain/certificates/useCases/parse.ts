@@ -1,12 +1,6 @@
-import {
-  Certificate,
-  retrieveBlockcertsVersion
-} from '@blockcerts/cert-verifier-js';
-import {
-  Certificate as CertificateV1,
-  CertificateOptions as CertificateOptionsV1
-} from '@blockcerts/cert-verifier-js-v1-legacy';
+import type { CertificateOptions as CertificateOptionsV1 } from '@blockcerts/cert-verifier-js-v1-legacy';
 import type {
+  Certificate,
   Blockcerts,
   BlockcertsVersion,
   CertificateOptions
@@ -23,9 +17,11 @@ export default async function parse (definition: Blockcerts, options: Certificat
   }
 
   try {
+    const { retrieveBlockcertsVersion, Certificate } = await import('@blockcerts/cert-verifier-js');
     const blockcertsVersion: BlockcertsVersion = retrieveBlockcertsVersion(definition['@context']);
     let certificateDefinition;
     if (blockcertsVersion.versionNumber === 1) {
+      const { Certificate: CertificateV1 } = await import('@blockcerts/cert-verifier-js-v1-legacy');
       certificateDefinition = new CertificateV1(definition, options as CertificateOptionsV1);
     } else {
       certificateDefinition = new Certificate(definition, options);

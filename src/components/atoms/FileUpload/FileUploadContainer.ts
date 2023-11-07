@@ -1,8 +1,9 @@
 import connector from '../../../store/connector';
-import FileUpload, { FileUploadProps } from './FileUpload';
+import type { FileUploadProps } from './FileUpload';
+import FileUpload from './FileUpload';
 import uploadCertificateDefinition from '../../../actions/uploadCertificateDefinition';
 import { getCertificateDefinition } from '../../../selectors/certificate';
-import { BlockcertsVerifierState } from '../../../store/getInitialState';
+import type { BlockcertsVerifierState } from '../../../store/getInitialState';
 
 const mapDispatchToProps: FileUploadProps = {
   onChange: uploadCertificateDefinition

@@ -4,7 +4,7 @@ import CSS from './_components.metadata-css';
 import CloseButton from '../../atoms/CloseButton';
 import getText from '../../../i18n/getText';
 import FormattedMetadataItem from '../../atoms/FormattedMetadataItem';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 export interface IMetadataProps {
   _isOpen?: boolean;

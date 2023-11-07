@@ -9,11 +9,12 @@ import '../components/organisms/CardCertificate';
 import '../components/organisms/FullCertificate';
 import '../components/organisms/FullScreenCertificate';
 import '../components/molecules/Footer/';
-import { APICamelCase, IBlockcertsVerifierAPI } from '../models/API';
+import type { IBlockcertsVerifierAPI } from '../models/API';
+import { APICamelCase } from '../models/API';
 import { DISPLAY_MODE } from '../constants/displayMode';
-import { THEME } from '../constants/theme';
-import { ExplorerAPI } from '@blockcerts/explorer-lookup';
-import { TemplateResult } from 'lit-html';
+import type { THEME } from '../constants/theme';
+import type { ExplorerAPI } from '@blockcerts/explorer-lookup';
+import type { TemplateResult } from 'lit-html';
 
 export interface IBlockcertsVerifierProps {
   // path to hosted certificate, or certificate as a string

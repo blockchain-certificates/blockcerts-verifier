@@ -3,7 +3,7 @@ import '../../atoms/Input';
 import '../../atoms/VerifyButton';
 
 import CSS from './_components.certificate-input-css';
-import { TemplateResult } from 'lit-html';
+import type { TemplateResult } from 'lit-html';
 
 export interface CertificateInputProps {
   showInput?: boolean;
