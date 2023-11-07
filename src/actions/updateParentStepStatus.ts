@@ -1,6 +1,6 @@
 import * as ACTIONS from '../constants/actionTypes';
 import { getParentStep } from '../selectors/certificate';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js'; // TODO: kill this import
+import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
 import type { ThunkAction } from 'redux-thunk';
 import type { Action } from './action';
 import type { IVerificationMapItem } from '@blockcerts/cert-verifier-js';

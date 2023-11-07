@@ -1,4 +1,4 @@
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js'; // TODO: kill this import
+import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
 import { getVerifiedSteps } from './certificate';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
 

@@ -1,6 +1,6 @@
 import * as DISPLAY_MODE from '../constants/displayMode';
 import { THEME } from '../constants/theme';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
 import type { Certificate, IVerificationMapItem } from '@blockcerts/cert-verifier-js';
 import type { ExplorerAPI } from '@blockcerts/explorer-lookup';
 

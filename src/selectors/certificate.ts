@@ -2,7 +2,7 @@ import domain from '../domain';
 import sanitize from '../../sanitizer/sanitizer';
 import getDateFormat from '../i18n/getDateFormat';
 import { isValidUrl } from '../helpers/validations';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js'; // TODO: kill this import
+import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../constants/contentTypes';
 import type { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';

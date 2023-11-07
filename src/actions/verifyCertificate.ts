@@ -7,7 +7,7 @@ import updateVerificationStatus from './updateVerificationStatus';
 import { getCertificateDefinition } from '../selectors/certificate';
 import { getDisableVerify } from '../selectors/api';
 import updateFinalStep from './updateFinalStep';
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js'; // TODO: kill this import
+import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
 import type { IFinalVerificationStatus } from '@blockcerts/cert-verifier-js';
 import type { Dispatch } from 'redux';
 import type { BlockcertsVerifierState } from '../store/getInitialState';

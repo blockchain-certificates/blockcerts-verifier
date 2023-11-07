@@ -1,4 +1,4 @@
-import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js'; // TODO: kill this import
+import { VERIFICATION_STATUSES } from '../../../constants/verificationStatuses';
 import type { Certificate, IVerificationMapItem } from '@blockcerts/cert-verifier-js';
 
 export default function initializeVerificationSteps (definition: Certificate): IVerificationMapItem {
