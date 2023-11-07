@@ -1,4 +1,3 @@
-import domain from '../domain';
 import updateIsGeneratingPDF from './updateIsGeneratingPDF';
 import {
   getCertificateTitle,
@@ -20,6 +19,8 @@ export default function downloadPDF () {
   return async function (dispatch: Dispatch, getState: () => BlockcertsVerifierState): Promise<void> {
     const state = getState();
 
+    const { default: downloadPDF } = await import('../domain/certificates/useCases/downloadPDF');
+
     const contentType: CONTENT_TYPES = getDisplayContentType(state);
     const contentEncoding: string = getDisplayContentEncoding(state);
     const content: string = getDisplayContent(state);
@@ -35,7 +36,7 @@ export default function downloadPDF () {
 
     dispatch(updateIsGeneratingPDF(true));
 
-    await domain.certificates.downloadPDF({
+    await downloadPDF({
       contentType,
       contentEncoding,
       content,
