@@ -7,13 +7,15 @@ import { visualizer } from 'rollup-plugin-visualizer';
 
 export default [
   {
-    input: 'src/blockcerts-verifier/index.ts',
+    input: {
+      main: 'src/blockcerts-verifier/index.ts'
+    },
     output: [
       {
-        file: 'dist/main.js',
-        format: 'iife',
+        dir: 'dist',
+        format: 'esm',
         name: 'BlockcertsVerifier',
-        inlineDynamicImports: true
+        inlineDynamicImports: false
       }
     ],
     plugins: [
