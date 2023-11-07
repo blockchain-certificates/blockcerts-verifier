@@ -15,7 +15,7 @@ To use the component in your project, install it via:
 ```
 
 ```html
-  <script src="node_modules/@blockcerts/blockcerts-verifier/dist/main.js"></script>
+  <script type="module" src="node_modules/@blockcerts/blockcerts-verifier/dist/main.js"></script>
 
   <blockcerts-verifier></blockcerts-verifier>
 ```
