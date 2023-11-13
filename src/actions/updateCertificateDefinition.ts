@@ -38,7 +38,7 @@ export default function updateCertificateDefinition (definition: Blockcerts): Th
 
     if (certificateDefinition != null) {
       // @ts-expect-error TODO properly type actions in TS
-      dispatch(autoVerify());
+      await dispatch(autoVerify()); // eslint-disable-line @typescript-eslint/await-thenable
     }
   };
 }
@@ -52,6 +52,6 @@ function autoVerify () {
       dispatch(showVerificationModal(true));
     }
     // @ts-expect-error TODO properly type actions in TS
-    dispatch(verifyCertificate());
+    await dispatch(verifyCertificate()); // eslint-disable-line @typescript-eslint/await-thenable
   };
 }

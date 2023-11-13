@@ -29,8 +29,7 @@ export default function updateCertificateUrl (url: string): ThunkAction<Promise<
     const retrievedData = await domain.certificates.retrieve(url);
 
     if (retrievedData.certificateDefinition) {
-      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression, @typescript-eslint/no-floating-promises
-      dispatch(updateCertificateDefinition(retrievedData.certificateDefinition));
+      await dispatch(updateCertificateDefinition(retrievedData.certificateDefinition));
     } else {
       dispatch(setErrorMessage(retrievedData.errorMessage) as any); // TODO: fix type overload
     }
