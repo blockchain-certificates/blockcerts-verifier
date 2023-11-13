@@ -10,8 +10,8 @@ export interface UpdateCertificateUrlActionPayload {
   url: string;
 }
 
-export default function updateCertificateUrl (url: string): ThunkAction<void, any, void, Action<UpdateCertificateUrlActionPayload>> {
-  return async function (dispatch) {
+export default function updateCertificateUrl (url: string): ThunkAction<Promise<void>, any, void, Action<UpdateCertificateUrlActionPayload>> {
+  return async function (dispatch): Promise<void> {
     const isUrlValid = domain.certificates.isPathToCertificateValidURI(url);
     dispatch(validateUrlInput(isUrlValid));
 

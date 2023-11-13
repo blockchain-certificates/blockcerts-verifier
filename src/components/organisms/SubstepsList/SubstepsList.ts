@@ -82,7 +82,7 @@ class SubstepsList extends LitElement {
   }
 
   getRenderableSuites (suites: IVerificationMapItemSuite[]): IVerificationMapItemSuite[] {
-    if (!suites || !suites.length) {
+    if (!suites?.length) {
       return [];
     }
 
