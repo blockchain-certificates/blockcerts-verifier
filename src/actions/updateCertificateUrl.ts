@@ -10,8 +10,8 @@ export interface UpdateCertificateUrlActionPayload {
   url: string;
 }
 
-export default function updateCertificateUrl (url: string): ThunkAction<void, any, void, Action<UpdateCertificateUrlActionPayload>> {
-  return async function (dispatch) {
+export default function updateCertificateUrl (url: string): ThunkAction<Promise<void>, any, void, Action<UpdateCertificateUrlActionPayload>> {
+  return async function (dispatch): Promise<void> {
     const isUrlValid = domain.certificates.isPathToCertificateValidURI(url);
     dispatch(validateUrlInput(isUrlValid));
 
@@ -29,7 +29,8 @@ export default function updateCertificateUrl (url: string): ThunkAction<void, an
     const retrievedData = await domain.certificates.retrieve(url);
 
     if (retrievedData.certificateDefinition) {
-      await dispatch(updateCertificateDefinition(retrievedData.certificateDefinition));
+      // eslint-disable-next-line @typescript-eslint/no-confusing-void-expression, @typescript-eslint/no-floating-promises
+      dispatch(updateCertificateDefinition(retrievedData.certificateDefinition));
     } else {
       dispatch(setErrorMessage(retrievedData.errorMessage) as any); // TODO: fix type overload
     }

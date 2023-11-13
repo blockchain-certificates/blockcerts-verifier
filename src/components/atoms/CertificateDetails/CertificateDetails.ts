@@ -5,7 +5,7 @@ import type { TemplateResult } from 'lit-html';
 import getOrdinalNumber from '../../../i18n/getOrdinalNumber';
 import '../SuiteVerificationStatus';
 
-type TPossibleDisplays = 'column'| 'grid' | null;
+type TPossibleDisplays = 'column' | 'grid' | null;
 
 interface IRenderInterface {
   title?: string;
@@ -97,7 +97,7 @@ export default function CertificateDetails ({
     },
     {
       title: getText('text.issuerName'),
-      value: issuerName || getText('errors.noIssuerName')
+      value: issuerName ?? getText('errors.noIssuerName')
     }
   );
 

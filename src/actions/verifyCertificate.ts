@@ -14,7 +14,7 @@ import type { BlockcertsVerifierState } from '../store/getInitialState';
 import type { ThunkAction } from 'redux-thunk';
 import type { Action } from './action';
 
-export default function verifyCertificate (): ThunkAction<void, BlockcertsVerifierState, any, Action<void>> {
+export default function verifyCertificate (): ThunkAction<Promise<void>, BlockcertsVerifierState, any, Action<void>> {
   return async function (dispatch: Dispatch, getState: () => BlockcertsVerifierState): Promise<void> {
     const state = getState();
 

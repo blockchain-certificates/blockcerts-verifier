@@ -15,9 +15,7 @@ function getOrdinalSuffixesForFrench (n: number): string {
   return suffixes[0];
 }
 
-const ordinalSuffixesForLocale: {
-  [languageKey: string]: (n?: number) => string;
-} = {
+const ordinalSuffixesForLocale: Record<string, (n?: number) => string> = {
   en: getOrdinalSuffixesForEnglish,
   fr: getOrdinalSuffixesForFrench,
   es: () => getText('numbers', 'ordinal'),

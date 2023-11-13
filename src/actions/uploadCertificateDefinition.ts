@@ -6,8 +6,8 @@ import type { BlockcertsVerifierState } from '../store/getInitialState';
 import type { Action } from './action';
 import type { Dispatch } from 'redux';
 
-export default function uploadCertificateDefinition (file: File): ThunkAction<void, BlockcertsVerifierState, void, Action<void>> {
-  return async function (dispatch: Dispatch) {
+export default function uploadCertificateDefinition (file: File): ThunkAction<Promise<void>, BlockcertsVerifierState, void, Action<void>> {
+  return async function (dispatch: Dispatch): Promise<void> {
     dispatch({
       type: ACTIONS.UPLOAD_CERTIFICATE_DEFINITION
     });
