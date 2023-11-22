@@ -63,7 +63,7 @@
     "karma-firefox-launcher": "^2.0.0",
     "pwa-helpers": "^0.8.2",
     "rimraf": "^5.0.5",
-    "rollup": "^3.25.3",
+    "rollup": "^4.5.1",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-serve": "^2.0.2",
     "rollup-plugin-visualizer": "^5.9.2",
