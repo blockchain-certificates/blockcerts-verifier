@@ -3,6 +3,7 @@ import autoIssuerProfile5915db9cf6548f11bcb9b9a2 from '../../fixtures/auto-issue
 import autoIssuerProfile58540bf958a6260d3c30fdc1 from '../../fixtures/auto-issuer-58540bf958a6260d3c30fdc1.json';
 import mainnetIssuerProfile5a4fe9931f607f0f3452a65e from '../../fixtures/mainnet-issuer-5a4fe9931f607f0f3452a65e.json';
 import blockcertsTestnetV2IssuerProfile from '../../fixtures/blockcerts-testnet-issuer-2.0.json';
+import v1IssuerProfile from '../../fixtures/v1/got-issuer_live.json';
 
 // after editing run npm run transpile:mocks:iife
 export class FakeXmlHttpRequest {
@@ -42,6 +43,10 @@ export class FakeXmlHttpRequest {
 
       case 'https://www.blockcerts.org/samples/2.0/issuer-testnet.json':
         return JSON.stringify(blockcertsTestnetV2IssuerProfile);
+
+      case 'http://www.blockcerts.org/mockissuer/issuer/got-issuer_live.json':
+      case 'https://www.blockcerts.org/mockissuer/issuer/got-issuer_live.json':
+        return JSON.stringify(v1IssuerProfile);
 
       // imported from CVJS, maybe not necessary but does not necessarily harm the implementation so leaving
       case 'https://blockstream.info/api/tx/2378076e8e140012814e98a2b2cb1af07ec760b239c1d6d93ba54d658a010ecd':
