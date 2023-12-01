@@ -7,7 +7,7 @@ import { CONTENT_TYPES } from '../constants/contentTypes';
 import getText from '../i18n/getText';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import type { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';
-import type { V1Signature } from '../components/atoms/FullCertificateV1/FullCertificateV1';
+import type { V1Signature } from '../models/V1Signature';
 
 export function getCertificateDefinition (state: BlockcertsVerifierState): Certificate {
   return state.certificateDefinition;
