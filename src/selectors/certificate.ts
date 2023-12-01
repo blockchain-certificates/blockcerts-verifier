@@ -3,10 +3,11 @@ import sanitize from '../../sanitizer/sanitizer';
 import getDateFormat from '../i18n/getDateFormat';
 import { isValidUrl } from '../helpers/validations';
 import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
-import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import { CONTENT_TYPES } from '../constants/contentTypes';
+import getText from '../i18n/getText';
+import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import type { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';
-import type { V1Signature } from '../components/atoms/FullCertificateV1/FullCertificateV1';
+import type { V1Signature } from '../models/V1Signature';
 
 export function getCertificateDefinition (state: BlockcertsVerifierState): Certificate {
   return state.certificateDefinition;
@@ -124,6 +125,55 @@ export function getDisplayContent (state: BlockcertsVerifierState): string {
   return certificateDefinition.display?.content ?? '';
 }
 
+export function getV1DisplayHtml (state: BlockcertsVerifierState): string {
+  const certificateImage = getCertificateImage(state);
+  const certificateTitle = getCertificateTitle(state);
+  const certificateSubtitle = getCertificateSubtitle(state);
+  const certificateDescription = getCertificateDescription(state);
+  const certificateSeal = getCertificateSeal(state);
+  const certificateSignatures = getCertificateSignatures(state);
+  const recipientName = getRecipientName(state);
+  const issuerName = getIssuerName(state);
+  const signatureList = certificateSignatures.map(signature => `
+    <li class='buv-c-full-certificate-signatures__signature'>
+        <img class='buv-c-full-certificate-img--secondary' src='${signature.image}' alt='${getText('text.signed')} ${signature.jobTitle}'/>
+        ${signature.jobTitle ? `<span class='buv-o-text-12'>${signature.jobTitle}</span>` : ''}
+    </li>
+  `);
+
+  let htmlString = '';
+
+  if (certificateImage) {
+    htmlString += `<img class='buv-c-full-certificate-img' src='${certificateImage}' alt='${certificateTitle}'/>`;
+  }
+
+  htmlString += `
+    <div class="buv-c-full-certificate__titles">
+        ${recipientName ? `<h1 class='buv-c-full-certificate__title  buv-c-full-certificate__title--name'>${recipientName}</h1>` : ''}
+        ${certificateTitle ? `<h2 class='buv-c-full-certificate__title  buv-c-full-certificate__title--main'>${certificateTitle}</h2>` : ''}
+        ${certificateSubtitle ? `<h3 class='buv-c-full-certificate__title  buv-c-full-certificate__title--sub'>${certificateSubtitle}</h3>` : ''}
+    </div>
+  `;
+
+  if (certificateDescription) {
+    htmlString += `<p class='buv-c-full-certificate__description'>${certificateDescription}</p>`;
+  }
+
+  if (signatureList.length) {
+    htmlString += `
+      <ul class='buv-c-full-certificate-signatures'>
+        ${signatureList.join('\n')}
+      </ul>
+    `;
+  }
+
+  if (certificateSeal) {
+    htmlString += `<img class='buv-c-full-certificate-img--secondary' src='${certificateSeal}' alt='${getText('text.certified')} ${issuerName}'/>`;
+  }
+
+  return htmlString;
+}
+
 export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
@@ -137,6 +187,7 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
     return sanitize(displayHtml);
   }
 
+  // V3
   const display = certificateDefinition.display;
 
   if (display) {
@@ -160,7 +211,8 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
     }
   }
 
-  return '';
+  // V1
+  return getV1DisplayHtml(state);
 }
 
 export function getRecordLink (state: BlockcertsVerifierState): string {

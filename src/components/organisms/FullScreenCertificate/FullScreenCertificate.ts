@@ -10,7 +10,6 @@ import '../../atoms/FinalVerificationStep';
 import '../../atoms/VerifyOtherCertificateLink';
 import BlockcertsLogo from '../../atoms/BlockcertsLogo';
 import '../../atoms/VerifyButton';
-import '../../atoms/FullCertificateV1';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
 import getText from '../../../i18n/getText';
@@ -99,7 +98,7 @@ export class FullScreenCertificateComponent extends LitElement {
             <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
           </div>
           <div class$=${buvFullscreenCertificateClasses.join(' ')}>
-            ${displayHTML ? renderDisplayHTML(displayHTML, clickableUrls) : html`<buv-full-certificate-v1></buv-full-certificate-v1>`}
+            ${renderDisplayHTML(displayHTML, clickableUrls)}
           </div>
         </section>
       </section>
