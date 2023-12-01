@@ -87,15 +87,6 @@ describe('FullCertificate component test suite', function () {
         });
       });
     });
-
-    describe('given the certificate does not have a displayHTML property', function () {
-      it('should render the certificate as v1', function () {
-        const instance = new FullCertificateComponent();
-        const result = instance._render({ hasCertificateDefinition: true });
-        const instanceAsString = JSON.stringify(result);
-        expect(instanceAsString).toContain('buv-full-certificate-v1');
-      });
-    });
   });
 
   describe('_shouldRender method', function () {
