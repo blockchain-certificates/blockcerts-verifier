@@ -65,7 +65,7 @@
     "rimraf": "^5.0.5",
     "rollup": "^4.6.1",
     "rollup-plugin-livereload": "^2.0.0",
-    "rollup-plugin-serve": "^2.0.2",
+    "rollup-plugin-serve": "^3.0.0",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass-lint": "^1.13.1",
     "semantic-release": "^22.0.7",
