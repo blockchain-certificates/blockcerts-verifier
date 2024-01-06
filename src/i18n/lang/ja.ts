@@ -34,7 +34,7 @@ export default {
     recipient: '取得者',
     share: 'シェア先：',
     shareButton: 'SNSでシェア',
-    signatureSuiteType: 'デジタル署名の書類',
+    signatureSuiteType: 'デジタル署名の種類',
     signatureStatusSuccess: 'この署名の認証に成功しました',
     signatureStatusTestSuccess: 'この署名の認証に成功しましたが、発行は試用のブロックチェーンで行われました。',
     signatureStatusFailure: 'この署名の認証中にエラーが発生しました',
