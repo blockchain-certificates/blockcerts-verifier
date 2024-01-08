@@ -2,12 +2,14 @@ import en from './lang/en';
 import es from './lang/es';
 import fr from './lang/fr';
 import it from './lang/it';
+import ja from './lang/ja';
 
 const i18n = {
   en,
   es,
   fr,
-  it
+  it,
+  ja
 };
 
 export default function getSupportedLanguages (): string[] {
