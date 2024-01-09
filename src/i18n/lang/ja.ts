@@ -52,7 +52,7 @@ export default {
   },
   date: {
     months: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-    pattern: 'YYYY-MM-DD'
+    pattern: 'YYYY年-MM-DD日'
   },
   numbers: {
     ordinal: ['番目', '番目', '番目', '番目']
