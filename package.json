@@ -68,7 +68,7 @@
     "rollup-plugin-serve": "^2.0.2",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass-lint": "^1.13.1",
-    "semantic-release": "^22.0.7",
+    "semantic-release": "^23.0.0",
     "sinon": "^17.0.1",
     "ts-jest": "^29.1.1",
     "typescript": "^5.1.3",
