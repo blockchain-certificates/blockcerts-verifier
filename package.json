@@ -42,7 +42,7 @@
     "@types/jest": "^29.5.8",
     "@types/qrcode-svg": "^1.1.1",
     "@types/sinon": "^17.0.1",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^6.10.0",
     "codecov": "^3.8.3",
     "concurrently": "^8.2.0",
