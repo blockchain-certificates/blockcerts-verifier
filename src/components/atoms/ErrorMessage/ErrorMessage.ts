@@ -14,7 +14,7 @@ function translate (message: string): string {
   return message;
 }
 
-export default function ErrorMessage (message: string, additionalErrorInfo: string, solidBackground = false): TemplateResult {
+export default function ErrorMessage (message: string, additionalErrorInfo: string = '', solidBackground = false): TemplateResult {
   if (message == null) {
     return null;
   }
