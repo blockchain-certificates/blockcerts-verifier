@@ -9,6 +9,7 @@ import type {
 export interface ICertificateObject {
   certificateDefinition: Certificate | null;
   errorMessage?: string;
+  additionalErrorInfo?: string;
 }
 
 export default async function parse (definition: Blockcerts, options: CertificateOptions = {}): Promise<ICertificateObject> {
@@ -35,7 +36,8 @@ export default async function parse (definition: Blockcerts, options: Certificat
     console.error(e);
     return {
       certificateDefinition: null,
-      errorMessage: 'errors.invalidBlockcerts'
+      errorMessage: 'errors.invalidBlockcerts',
+      additionalErrorInfo: e.message
     };
   }
 }

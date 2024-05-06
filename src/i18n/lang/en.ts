@@ -1,6 +1,7 @@
 export default {
   errors: {
     errorLabel: 'Error',
+    additionalErrorInfoLabel: 'The following error occurred:',
     invalidBlockcerts: 'Not a valid Blockcerts credential. Please check with the issuer or recipient that has provided this credential.',
     invalidBlockcertsUrl: 'Not a valid credential URL.',
     invalidFormatDragAndDrop: 'Only JSON files are accepted',

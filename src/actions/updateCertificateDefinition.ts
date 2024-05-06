@@ -23,9 +23,9 @@ export default function updateCertificateDefinition (definition: Blockcerts): Th
       explorerAPIs: getExplorerAPIs(state),
       didResolverUrl: getDidResolverUrl(state)
     };
-    const { certificateDefinition, errorMessage } = await domain.certificates.parse(definition, options);
+    const { certificateDefinition, errorMessage, additionalErrorInfo } = await domain.certificates.parse(definition, options);
 
-    dispatch(setErrorMessage(errorMessage));
+    dispatch(setErrorMessage(errorMessage, additionalErrorInfo));
 
     dispatch({
       type: ACTIONS.UPDATE_CERTIFICATE_DEFINITION,

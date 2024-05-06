@@ -1,6 +1,7 @@
 export default {
   errors: {
     errorLabel: 'エラー',
+    additionalErrorInfoLabel: '次のエラーが発生しました：',
     invalidBlockcerts: 'この証明書は有効なブロックサーツ証明書ではありません。発行者、もしくはこの証明書を提供した取得者にお問合せください。',
     invalidBlockcertsUrl: '有効な証明書URLではありません。',
     invalidFormatDragAndDrop: 'JSONファイルしか受理できません',

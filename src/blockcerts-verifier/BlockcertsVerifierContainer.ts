@@ -1,7 +1,7 @@
 import connector from '../store/connector';
 import initialize from '../actions/initialize';
 import { BlockcertsVerifier, SourceComponent } from './BlockcertsVerifier';
-import { getErrorMessage } from '../selectors/error';
+import { getAdditionalErrorInfo, getErrorMessage } from '../selectors/error';
 import { APIKeys } from '../models/API';
 import { getCertificateDefinition } from '../selectors/certificate';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
@@ -14,6 +14,7 @@ export const mapDispatchToProps = {
 export const mapStateToProps = (state: BlockcertsVerifierState): any => {
   return {
     errorMessage: getErrorMessage(state),
+    additionalErrorInfo: getAdditionalErrorInfo(state),
     hasCertificate: !!getCertificateDefinition(state)
   };
 };

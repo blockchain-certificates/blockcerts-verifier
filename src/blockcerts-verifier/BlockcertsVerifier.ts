@@ -23,6 +23,7 @@ export interface IBlockcertsVerifierProps {
   onLoad?: (IBlockcertsVerifierProps) => any;
   // the error message to be displayed, if any
   errorMessage?: string;
+  additionalErrorInfo?: string;
   // boolean to check if a certificate has been loaded into the component
   hasCertificate?: boolean;
   // flag to disable foreground verification modal (background verification still occurs)
@@ -65,6 +66,7 @@ class BlockcertsVerifier extends LitElement {
     return {
       onLoad: Function as any,
       errorMessage: String as any,
+      additionalErrorInfo: String as any,
       hasCertificate: Boolean as any,
       ...APICamelCase
     };
@@ -112,7 +114,7 @@ class BlockcertsVerifier extends LitElement {
         <buv-drag-and-drop>
           <div class='buv-c-verifier-layout'>
             <section class$='${bodyClass}'>
-              ${ErrorMessage(_props.errorMessage, true)}
+              ${ErrorMessage(_props.errorMessage, _props.additionalErrorInfo, true)}
               <buv-certificate-input></buv-certificate-input>
               <buv-action-menu></buv-action-menu>
               ${this.renderCertificate(_props)}
@@ -131,6 +133,7 @@ window.customElements.define('buv-raw', BlockcertsVerifier);
 interface BUVWrapperProps extends IBlockcertsVerifierAPI {
   onLoad?: (IBlockcertsVerifierProps) => any;
   errorMessage?: string;
+  additionalErrorInfo?: string;
   hasCertificate?: boolean;
 }
 
@@ -141,6 +144,7 @@ function BUVWrapper (props: BUVWrapperProps = {}): TemplateResult {
           src='${props.src}'
           onLoad='${props.onLoad}'
           errorMessage='${props.errorMessage}'
+          additionalErrorInfo='${props.additionalErrorInfo}'
           hasCertificate='${props.hasCertificate}'
           disableAutoVerify='${props['disable-auto-verify']}'
           disableVerify='${props['disable-verify']}'

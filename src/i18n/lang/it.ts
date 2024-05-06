@@ -1,6 +1,7 @@
 export default {
   errors: {
     errorLabel: 'Errore',
+    additionalErrorInfoLabel: 'Si è verificato il seguente errore:',
     invalidBlockcerts: 'Non è una definizione valida di Blockcerts.',
     invalidBlockcertsUrl: 'Non è un URL di certificato valido.',
     invalidFormatDragAndDrop: 'Sono accettati solo file JSON',

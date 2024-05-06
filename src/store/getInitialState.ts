@@ -32,6 +32,7 @@ export interface BlockcertsVerifierState {
   explorerAPIs?: ExplorerAPI[];
   didResolverUrl?: string;
   errorMessage?: string;
+  additionalErrorInfo?: string;
 }
 
 export default function getInitialState (apiConfiguration = {}): BlockcertsVerifierState {
