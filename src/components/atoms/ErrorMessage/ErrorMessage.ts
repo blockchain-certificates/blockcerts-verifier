@@ -14,7 +14,7 @@ function translate (message: string): string {
   return message;
 }
 
-export default function ErrorMessage (message: string, solidBackground = false): TemplateResult {
+export default function ErrorMessage (message: string, additionalErrorInfo: string = '', solidBackground = false): TemplateResult {
   if (message == null) {
     return null;
   }
@@ -27,8 +27,20 @@ export default function ErrorMessage (message: string, solidBackground = false):
 
   return html`
     ${CSS}
-    <p class$='${classes}'>
+    <div class$='${classes}'>
+      <p>
       <span class='buv-c-error-message-title'>${getText('errors.errorLabel')}</span>
       ${translate(message)}
-    </p>`;
+      </p>
+        ${additionalErrorInfo
+            ? html`<p class='buv-c-error-message-additional-info'>
+                <span class='buv-c-error-message-additional-info-title'>${getText('errors.additionalErrorInfoLabel')}</span>
+                <br>
+                <br>
+                ${additionalErrorInfo}
+              </p>`
+            : ''
+        }
+    </div>
+  `;
 }

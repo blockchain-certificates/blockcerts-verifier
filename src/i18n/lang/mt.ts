@@ -1,6 +1,7 @@
 export default {
   errors: {
     errorLabel: 'Żball',
+    additionalErrorInfoLabel: 'L-error li ġie jmiss:',
     invalidBlockcerts: 'Mhux kredenzjal validu ta \'Blockcerts\'. Jekk jogħġbok iċċekkja ma \'l-emittent jew ir-riċevitur li pprovda din il-kredenzjali.',
     invalidBlockcertsUrl: 'Il-URL taċ-ċertifikat mhuwiex validu',
     invalidFormatDragAndDrop: 'Only JSON files are accepted',
