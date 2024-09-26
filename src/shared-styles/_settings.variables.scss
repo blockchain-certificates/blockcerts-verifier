@@ -1,16 +1,10 @@
-$successColor: rgba(42, 178, 123, 1);
-$successBackgroundColor: rgba(42, 178, 123, .1);
-
-$errorColor: rgba(208, 2, 27, 1);
-$errorBackgroundColor: rgba(208, 2, 27, .1);
-
-$testColor: rgb(245, 166, 35);
-$testBackgroundColor: rgba(245, 166, 35, .1);
-
-$fontColor: rgba(3, 21, 50, 1);
-
+$successColor: rgb(42 178 123 / 100%);
+$successBackgroundColor: rgb(42 178 123 / 10%);
+$errorColor: rgb(208 2 27 / 100%);
+$errorBackgroundColor: rgb(208 2 27 / 10%);
+$testColor: rgb(245 166 35);
+$testBackgroundColor: rgb(245 166 35 / 10%);
+$fontColor: rgb(3 21 50 / 100%);
 $modalMaxDimension: 600px;
-
-$footerBackground: rgba(0, 0, 0, .1);
-
+$footerBackground: rgb(0 0 0 / 10%);
 $breakpoint: 750px;

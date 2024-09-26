@@ -7,12 +7,12 @@
   height: 0;
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 4px solid rgba(118, 128, 135, 1);
+  border-bottom: 4px solid rgb(118 128 135 / 100%);
   display: inline-block;
   vertical-align: 2px;
   margin: 0 6px;
-  -webkit-transition: -webkit-transform .3s ease-in;
-  -o-transition: transform .3s ease-in;
+  transition: -webkit-transform .3s ease-in;
+  transition: transform .3s ease-in;
   transition: transform .3s ease-in;
 }
 
@@ -23,9 +23,8 @@
 .buv-c-substeps-list__list {
   max-height: 0;
   overflow: auto;
-  -webkit-transition: max-height .3s ease-in;
-  -o-transition: max-height .3s ease-in;
   transition: max-height .3s ease-in;
+
   // allow for substeps dots to appear (hidden by overflow)
   padding-left: 50px;
   margin-left: -50px;

@@ -4,11 +4,11 @@
   display: flex;
   width: 100%;
   padding: 40px 30px;
-  background-color: rgba(255, 255, 255, .1);
+  background-color: rgb(255 255 255 / 10%);
   border: 1px solid $footerBackground;
   box-sizing: border-box;
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (width <= 600px) {
     flex-direction: column;
     grid-row-gap: 10px; // potentially useless since we are playing on the padding and height, but keeping for intent and future support
     height: 162px;

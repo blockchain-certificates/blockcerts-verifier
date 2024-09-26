@@ -11,12 +11,10 @@
   height: 12px;
   background-color: #fff;
   border-radius: 50%;
-  -webkit-transition: all .2s ease-out;
-  -o-transition: all .2s ease-out;
   transition: all .2s ease-out;
   z-index: 2;
   box-sizing: content-box;
-  box-shadow: 0 2px 4px 0 rgba(22, 40, 55, .21);
+  box-shadow: 0 2px 4px 0 rgb(22 40 55 / 21%);
 }
 
 .buv-c-badge--medium::before {
