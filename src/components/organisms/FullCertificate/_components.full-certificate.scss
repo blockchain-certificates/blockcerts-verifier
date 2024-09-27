@@ -4,7 +4,7 @@
 $sectionSpacer: 20px;
 
 .buv-c-full-certificate {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, .15);
+  box-shadow: 0 1px 5px rgb(0 0 0 / 15%);
   padding: $sectionSpacer;
   background-color: #fff;
   display: block;
@@ -32,7 +32,7 @@ $sectionSpacer: 20px;
   width: inherit;
 }
 
-@media only screen and (min-width: 640px) {
+@media only screen and (width >= 640px) {
   .buv-c-full-certificate {
     font-size: 16px;
   }
