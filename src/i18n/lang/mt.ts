@@ -52,8 +52,8 @@ export default {
     viewRecord: 'View Record'
   },
   date: {
-    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-    pattern: 'MM DD, YYYY'
+    months: ['Jannar', 'Frar', 'Marzu', 'April', 'Mejju', 'Ġunju', 'Lulju', 'Awwissu', 'Settembru', 'Ottubru', 'Novembru', 'Diċembru'],
+    pattern: 'DD MM YYYY'
   },
   numbers: {
     ordinal: [
