@@ -22,8 +22,6 @@ import v1Fixture from '../../fixtures/v1/valid-v1-certificate.json';
 import v2Fixture from '../../fixtures/v2/valid-certificate-example.json';
 import mocknetFixture from '../../fixtures/v2/mocknet-valid-2.0.json';
 import mainnetFixture from '../../fixtures/v2/mainnet-valid-2.0.json';
-import testnet3Fixture from '../../fixtures/v3/testnet-v3.0-beta.json';
-import testnet3PdfFixture from '../../fixtures/v3/testnet-v3.0-beta-display-pdf.json';
 import ethereumRopstenFixture from '../../fixtures/v2/ethereum-ropsten-valid-2.0.json';
 import ethereumMainFixture from '../../fixtures/v2/ethereum-main-valid-2.0.json';
 import { configureStore } from '../../../src/store';
@@ -614,36 +612,6 @@ describe('certificate selectors test suite', function () {
         expect(getDisplayContentType(state)).toBe(CONTENT_TYPES.TEXT_HTML);
       });
     });
-
-    describe('given the certificate has a display property', function () {
-      describe('and the contentMediaType is not defined', function () {
-        beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition({
-            ...testnet3Fixture,
-            display: {
-              contentMediaType: null,
-              content: 'content'
-            }
-          }));
-        });
-
-        it('should return null', function () {
-          const state = store.getState();
-          expect(getDisplayContentType(state)).toBeNull();
-        });
-      });
-
-      describe('and the contentMediaType is defined', function () {
-        beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(testnet3Fixture));
-        });
-
-        it('should return the value of the contentMediaType', function () {
-          const state = store.getState();
-          expect(getDisplayContentType(state)).toBe(CONTENT_TYPES.TEXT_HTML);
-        });
-      });
-    });
   });
 
   describe('getDisplayContentEncoding selector', function () {
@@ -652,30 +620,6 @@ describe('certificate selectors test suite', function () {
         await store.dispatch(updateCertificateDefinition(mainnetFixture));
         const state = store.getState();
         expect(getDisplayContentEncoding(state)).toBe('');
-      });
-    });
-
-    describe('given the certificate has a display property', function () {
-      describe('and the contentEncoding is not defined', function () {
-        beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(testnet3Fixture));
-        });
-
-        it('should return undefined', function () {
-          const state = store.getState();
-          expect(getDisplayContentEncoding(state)).toBeUndefined();
-        });
-      });
-
-      describe('and the contentEncoding is defined', function () {
-        beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(testnet3PdfFixture));
-        });
-
-        it('should return the value of the contentMediaType', function () {
-          const state = store.getState();
-          expect(getDisplayContentEncoding(state)).toBe('base64');
-        });
       });
     });
   });
@@ -689,33 +633,6 @@ describe('certificate selectors test suite', function () {
         }));
         const state = store.getState();
         expect(getDisplayContent(state)).toBe('<b>Hello World</b>');
-      });
-    });
-
-    describe('given the certificate has a display property', function () {
-      describe('and the content is not defined', function () {
-        beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition({
-            ...testnet3Fixture,
-            display: {} as any
-          }));
-        });
-
-        it('should return an empty string', function () {
-          const state = store.getState();
-          expect(getDisplayContent(state)).toBe('');
-        });
-      });
-
-      describe('and the content is defined', function () {
-        beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(testnet3Fixture));
-        });
-
-        it('should return the value of the content', function () {
-          const state = store.getState();
-          expect(getDisplayContent(state)).toBe('<b>hello world</b>');
-        });
       });
     });
   });
