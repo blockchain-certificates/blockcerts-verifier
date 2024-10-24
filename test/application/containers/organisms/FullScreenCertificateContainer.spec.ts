@@ -61,6 +61,14 @@ describe('FullScreenCertificateContainer test suite', function () {
       it('should retrieve the disableDownloadPdf property', function () {
         expect(mapStateToProps(state).disableDownloadPdf).toBe(false);
       });
+
+      it('should retrieve the certificateDescription property', function () {
+        expect(mapStateToProps(state).certificateDescription).toBe('details');
+      });
+
+      it('should retrieve the certificateTitle property', function () {
+        expect(mapStateToProps(state).certificateTitle).toBe('Test certificate');
+      });
     });
 
     describe('given there is no certificate definition in the state', function () {

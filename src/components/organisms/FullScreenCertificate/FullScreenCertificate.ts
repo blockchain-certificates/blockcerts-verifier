@@ -25,6 +25,8 @@ export interface IFullScreenCertificateAPI {
   clickableUrls?: boolean;
   hasCertificateDefinition?: boolean;
   recipientName?: string;
+  certificateTitle?: string;
+  certificateDescription?: string;
   displayHTML?: string;
   onClose?: () => any;
   disableDownloadPdf?: boolean;
@@ -37,6 +39,8 @@ export class FullScreenCertificateComponent extends LitElement {
       clickableUrls: Boolean as any,
       hasCertificateDefinition: Boolean as any,
       recipientName: String as any,
+      certificateTitle: String as any,
+      certificateDescription: String as any,
       displayHTML: String as any,
       onClose: Function as any,
       disableDownloadPdf: Boolean as any
@@ -57,6 +61,8 @@ export class FullScreenCertificateComponent extends LitElement {
     clickableUrls,
     hasCertificateDefinition,
     recipientName,
+    certificateTitle,
+    certificateDescription,
     displayHTML,
     onClose,
     disableDownloadPdf
@@ -80,7 +86,8 @@ export class FullScreenCertificateComponent extends LitElement {
       <section class='buv-c-fullscreen-certificate'>
         <header class='buv-c-fullscreen-certificate-header'>
           <div class='buv-c-fullscreen-certificate-header__content'>
-            <h1 class='buv-c-fullscreen-certificate__title'>${recipientName}</h1>
+            <h1 class='buv-c-fullscreen-certificate__title'>${certificateTitle ? certificateTitle + ' - ' : ''}${recipientName}</h1>
+            ${certificateDescription ? html`<h3 class="buv-c-fullscreen-certificate__description">${certificateDescription}</h3>` : ''}  
             ${CloseButton({ onClick: onClose, className: 'buv-c-fullscreen-certificate__close' })}
           </div>  
         </header>
@@ -113,6 +120,8 @@ function FullScreenCertificateWrapper (props: IFullScreenCertificateAPI): Templa
       clickableUrls = '${props.clickableUrls}'
       hasCertificateDefinition = '${props.hasCertificateDefinition}'
       recipientName = '${props.recipientName}'
+      certificateDescription = '${props.certificateDescription}'
+      certificateTitle = '${props.certificateTitle}'
       displayHTML = '${props.displayHTML}'
       onClose = '${props.onClose}'
       disableDownloadPdf = '${props.disableDownloadPdf}'
