@@ -20,19 +20,29 @@ describe('FullScreenCertificate wrapper function test suite', function () {
       expect(instance.strings[2].includes('recipientName')).toBe(true);
     });
 
+    it('- certificateDescription', function () {
+      const instance = FullScreenCertificate({});
+      expect(instance.strings[3].includes('certificateDescription')).toBe(true);
+    });
+
+    it('- certificateTitle', function () {
+      const instance = FullScreenCertificate({});
+      expect(instance.strings[4].includes('certificateTitle')).toBe(true);
+    });
+
     it('- displayHTML', function () {
       const instance = FullScreenCertificate({});
-      expect(instance.strings[3].includes('displayHTML')).toBe(true);
+      expect(instance.strings[5].includes('displayHTML')).toBe(true);
     });
 
     it('- onClose', function () {
       const instance = FullScreenCertificate({});
-      expect(instance.strings[4].includes('onClose')).toBe(true);
+      expect(instance.strings[6].includes('onClose')).toBe(true);
     });
 
     it('- disableDownloadPdf', function () {
       const instance = FullScreenCertificate({});
-      expect(instance.strings[5].includes('disableDownloadPdf')).toBe(true);
+      expect(instance.strings[7].includes('disableDownloadPdf')).toBe(true);
     });
   });
 
@@ -53,21 +63,33 @@ describe('FullScreenCertificate wrapper function test suite', function () {
       expect(instance.values[2]).toBe(fixtureName);
     });
 
+    it('- certificateDescription', function () {
+      const fixtureDescription = 'A test description';
+      const instance = FullScreenCertificate({ certificateDescription: fixtureDescription });
+      expect(instance.values[3]).toBe(fixtureDescription);
+    });
+
+    it('- certificateTitle', function () {
+      const fixtureDescription = 'A test title';
+      const instance = FullScreenCertificate({ certificateTitle: fixtureDescription });
+      expect(instance.values[4]).toBe(fixtureDescription);
+    });
+
     it('- displayHTML', function () {
       const fixtureHtml = '<div>Yo</div>';
       const instance = FullScreenCertificate({ displayHTML: fixtureHtml });
-      expect(instance.values[3]).toBe(fixtureHtml);
+      expect(instance.values[5]).toBe(fixtureHtml);
     });
 
     it('- onClose', function () {
       const fixtureOnClose = (): boolean => true;
       const instance = FullScreenCertificate({ onClose: fixtureOnClose });
-      expect(instance.values[4]).toEqual(fixtureOnClose);
+      expect(instance.values[6]).toEqual(fixtureOnClose);
     });
 
     it('- disableDownloadPdf', function () {
       const instance = FullScreenCertificate({ disableDownloadPdf: true });
-      expect(instance.values[5]).toBe(true);
+      expect(instance.values[7]).toBe(true);
     });
   });
 });

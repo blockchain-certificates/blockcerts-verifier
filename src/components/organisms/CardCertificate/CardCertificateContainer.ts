@@ -2,7 +2,7 @@ import connector from '../../../store/connector';
 import type { CardCertificateProps } from './CardCertificate';
 import CardCertificate from './CardCertificate';
 import {
-  getCertificateDefinition,
+  getCertificateDefinition, getCertificateDescription,
   getCertificateTitle,
   getIssueDate,
   getIssuedOn,
@@ -18,6 +18,7 @@ const mapStateToProps = (state: BlockcertsVerifierState): CardCertificateProps =
   hasCertificateDefinition: !!getCertificateDefinition(state),
   recipientName: getRecipientName(state),
   certificateTitle: getCertificateTitle(state),
+  certificateDescription: getCertificateDescription(state),
   issueDate: getIssueDate(state),
   issuedOn: getIssuedOn(state),
   issuerName: getIssuerName(state),

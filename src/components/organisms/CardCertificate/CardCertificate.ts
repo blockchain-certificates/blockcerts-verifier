@@ -10,6 +10,7 @@ export interface CardCertificateProps {
   hasCertificateDefinition?: boolean;
   recipientName?: string;
   certificateTitle?: string;
+  certificateDescription?: string;
   issuedOn?: string;
   issueDate?: string;
   issuerName?: string;
@@ -38,6 +39,7 @@ export default function CardCertificate (props: CardCertificateProps): TemplateR
     hasCertificateDefinition,
     recipientName,
     certificateTitle,
+    certificateDescription,
     issuedOn,
     issueDate,
     issuerName,
@@ -69,6 +71,7 @@ export default function CardCertificate (props: CardCertificateProps): TemplateR
         </div>
         <div class='buv-c-card__title-wrapper'>
           <h1 class$=${titleClass}>${certificateTitle}</h1>
+          ${certificateDescription ? html`<h3 class="buv-c-card__description">${certificateDescription}</h3>` : ''}  
           <h2 class$='${titleClass}  buv-c-card__recipient'>${recipientName}</h2>
           <span class='buv-o-text-12'>${getText('text.issued')} <time datetime$='${issuedOn}'>${issueDate}</time> ${getText('text.by')} ${issuerName}</span>
           ${disableDownloadPdf

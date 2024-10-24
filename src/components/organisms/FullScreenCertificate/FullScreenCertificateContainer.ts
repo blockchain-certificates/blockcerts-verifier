@@ -3,6 +3,8 @@ import type { IFullScreenCertificateAPI } from './FullScreenCertificate';
 import { FullScreenCertificate } from './FullScreenCertificate';
 import {
   getCertificateDefinition,
+  getCertificateTitle,
+  getCertificateDescription,
   getDisplayAsHTML,
   getRecipientName
 } from '../../../selectors/certificate';
@@ -16,6 +18,8 @@ export const mapDispatchToProps: Partial<IFullScreenCertificateAPI> = {
 
 export const mapStateToProps = (state: BlockcertsVerifierState): Partial<IFullScreenCertificateAPI> => ({
   recipientName: getRecipientName(state),
+  certificateTitle: getCertificateTitle(state),
+  certificateDescription: getCertificateDescription(state),
   hasCertificateDefinition: !!getCertificateDefinition(state),
   displayHTML: getDisplayAsHTML(state),
   clickableUrls: getClickableUrls(state),
