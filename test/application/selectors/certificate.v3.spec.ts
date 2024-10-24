@@ -2,18 +2,13 @@ import {
   getCertificateDescription,
   getCertificateTitle,
   getChain, getDisplayContent, getDisplayContentEncoding, getDisplayContentType,
-  getDownloadLink,
   getIssueDate,
   getIssuedOn,
   getIssuerLogo,
   getIssuerName, getIssuerPublicKey,
-  getParentStep,
   getRecipientName,
-  getRecordLink, getSigners,
-  getStartedVerificationSteps,
   getTransactionId,
-  getTransactionLink,
-  getVerifiedSteps, isTestChain
+  getTransactionLink
 } from '../../../src/selectors/certificate';
 import v3_2FixtureMocknet from '../../fixtures/v3/mocknet-vc-v2-name-description.json';
 import testnetV3Fixture from '../../fixtures/v3/testnet-v3.0-beta.json';
