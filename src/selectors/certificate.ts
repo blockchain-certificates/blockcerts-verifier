@@ -57,9 +57,7 @@ export function getCertificateTitle (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.name ??
-      (certificateDefinition.certificateJson as BlockcertsV3)?.name ??
-      '';
+    return certificateDefinition.name ?? '';
   }
 
   return '';
@@ -372,9 +370,7 @@ export function getCertificateDescription (state: BlockcertsVerifierState): stri
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.description ??
-      (certificateDefinition.certificateJson as BlockcertsV3)?.description ??
-      '';
+    return certificateDefinition.description ?? '';
   }
 
   return '';
