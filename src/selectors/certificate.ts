@@ -5,7 +5,7 @@ import { isValidUrl } from '../helpers/validations';
 import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
 import { CONTENT_TYPES } from '../constants/contentTypes';
 import getText from '../i18n/getText';
-import type { IVerificationMapItem, Signers, Certificate, BlockcertsV3 } from '@blockcerts/cert-verifier-js';
+import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import type { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';
 import type { V1Signature } from '../models/V1Signature';
 
@@ -57,9 +57,7 @@ export function getCertificateTitle (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.name ??
-      (certificateDefinition.certificateJson as BlockcertsV3)?.name ??
-      '';
+    return certificateDefinition.name ?? '';
   }
 
   return '';
@@ -372,9 +370,7 @@ export function getCertificateDescription (state: BlockcertsVerifierState): stri
   const certificateDefinition = getCertificateDefinition(state);
 
   if (certificateDefinition) {
-    return certificateDefinition.description ??
-      (certificateDefinition.certificateJson as BlockcertsV3)?.description ??
-      '';
+    return certificateDefinition.description ?? '';
   }
 
   return '';
