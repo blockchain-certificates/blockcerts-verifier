@@ -1,4 +1,4 @@
-import { CONTENT_TYPES } from '../../../constants/contentTypes';
+import { CONTENT_MEDIA_TYPES } from '../../../constants/contentTypes';
 import type jsPDF from 'jspdf';
 import { getHTMLElementSize } from '../../../helpers/getHTMLElementSize';
 import { addHTMLPageToPDF, generatePdfFromImage, PDF_MARGIN, savePDF } from '../../../helpers/jspdf';
@@ -145,7 +145,7 @@ const generatePdfDocument = async ({
   let pdf: jsPDF;
 
   const isContentAnImage: boolean = isContentTypeImage(contentType);
-  const isContentHTML: boolean = contentType === CONTENT_TYPES.TEXT_HTML;
+  const isContentHTML: boolean = contentType === CONTENT_MEDIA_TYPES.TEXT_HTML;
   const shouldHaveCoverPage: boolean = isContentHTML || isContentAnImage;
 
   if (shouldHaveCoverPage) {
@@ -167,7 +167,7 @@ const generatePdfDocument = async ({
   } else if (isContentAnImage) {
     pdf = await generatePdfFromImage(pdf, `data:${contentType};${contentEncoding},${content}`);
   } else {
-    const extension: string = getFileExtensionFromContentType(CONTENT_TYPES.APPLICATION_PDF);
+    const extension: string = getFileExtensionFromContentType(CONTENT_MEDIA_TYPES.APPLICATION_PDF);
     forceDownloadFile(content, contentType, contentEncoding, fileName, extension);
   }
 
@@ -187,7 +187,7 @@ export interface IFirstCoverInfo {
 }
 
 export interface IDownloadPdfParameters extends IFirstCoverInfo {
-  contentType: CONTENT_TYPES;
+  contentType: CONTENT_MEDIA_TYPES;
   contentEncoding: string;
   content: string;
 }

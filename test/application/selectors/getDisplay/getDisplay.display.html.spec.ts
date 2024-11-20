@@ -28,14 +28,11 @@ describe('getDisplayAsHTML selector', function () {
   });
 
   describe('given the certificate is a certificate with a display property', function () {
-    stubCertificateVerify(v3Fixture);
+    stubCertificateVerify(v3Fixture as any);
 
     describe('and the type is text/html', function () {
-      beforeEach(async function () {
-        await store.dispatch(updateCertificateDefinition(v3Fixture));
-      });
-
-      it('should return the display HTML as coded into the document', function () {
+      it('should return the display HTML as coded into the document', async function () {
+        await store.dispatch(updateCertificateDefinition(v3Fixture as any));
         const state = store.getState();
         expect(getDisplayAsHTML(state)).toBe('<b>hello world</b>');
       });

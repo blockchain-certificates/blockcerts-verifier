@@ -43,10 +43,10 @@ describe('getMetadata selector', function () {
   });
 
   describe('given the blockcerts document has a metadata property', function () {
-    stubCertificateVerify(v3Fixture);
+    stubCertificateVerify(v3Fixture as any);
 
     beforeEach(async function () {
-      await store.dispatch(updateCertificateDefinition(v3Fixture));
+      await store.dispatch(updateCertificateDefinition(v3Fixture as any));
     });
 
     it('should return metadata of the certificate', function () {

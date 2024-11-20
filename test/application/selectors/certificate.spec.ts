@@ -4,7 +4,7 @@ import {
   getCertificateSignatures,
   getCertificateSubtitle,
   getCertificateTitle,
-  getChain, getDisplayContent, getDisplayContentEncoding, getDisplayContentType,
+  getChain, getDisplayContentFromState, getDisplayContentEncodingFromState, getDisplayContentTypeFromState,
   getDownloadLink,
   getIssueDate,
   getIssuedOn,
@@ -32,7 +32,7 @@ import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 import type { Blockcerts, Signers } from '@blockcerts/cert-verifier-js';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { BLOCKCHAINS } from '@blockcerts/explorer-lookup';
-import { CONTENT_TYPES } from '../../../src/constants/contentTypes';
+import { CONTENT_MEDIA_TYPES } from '../../../src/constants/contentTypes';
 import { FakeXmlHttpRequest } from '../__helpers/FakeXmlHttpRequest';
 
 describe('certificate selectors test suite', function () {
@@ -609,7 +609,7 @@ describe('certificate selectors test suite', function () {
       it('should return text/html', async function () {
         await store.dispatch(updateCertificateDefinition(mainnetFixture));
         const state = store.getState();
-        expect(getDisplayContentType(state)).toBe(CONTENT_TYPES.TEXT_HTML);
+        expect(getDisplayContentTypeFromState(state)).toBe(CONTENT_MEDIA_TYPES.TEXT_HTML);
       });
     });
   });
@@ -619,7 +619,7 @@ describe('certificate selectors test suite', function () {
       it('should return an empty string', async function () {
         await store.dispatch(updateCertificateDefinition(mainnetFixture));
         const state = store.getState();
-        expect(getDisplayContentEncoding(state)).toBe('');
+        expect(getDisplayContentEncodingFromState(state)).toBe('');
       });
     });
   });
@@ -632,7 +632,7 @@ describe('certificate selectors test suite', function () {
           displayHtml: '<b>Hello World</b>'
         }));
         const state = store.getState();
-        expect(getDisplayContent(state)).toBe('<b>Hello World</b>');
+        expect(getDisplayContentFromState(state)).toBe('<b>Hello World</b>');
       });
     });
   });

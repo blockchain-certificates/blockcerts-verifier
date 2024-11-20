@@ -1,6 +1,6 @@
 import sinon from 'sinon';
 import { forceDownloadFile, getFileExtensionFromContentType } from '../../../src/helpers/file';
-import { CONTENT_TYPES } from '../../../src/constants/contentTypes';
+import { CONTENT_MEDIA_TYPES } from '../../../src/constants/contentTypes';
 
 describe('forceDownloadFile function', function () {
   const mockContent = 'mock-content';
@@ -52,7 +52,7 @@ describe('forceDownloadFile function', function () {
 describe('getFileExtensionFromContentType function', function () {
   describe('given the contentType is application pdf', function () {
     it('should return the pdf extension', function () {
-      expect(getFileExtensionFromContentType(CONTENT_TYPES.APPLICATION_PDF)).toBe('pdf');
+      expect(getFileExtensionFromContentType(CONTENT_MEDIA_TYPES.APPLICATION_PDF)).toBe('pdf');
     });
   });
 

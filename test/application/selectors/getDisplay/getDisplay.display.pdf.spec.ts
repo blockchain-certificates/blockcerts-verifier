@@ -28,15 +28,11 @@ describe('getDisplayAsHTML selector', function () {
   });
 
   describe('given the certificate is a certificate with an image display property', function () {
-    stubCertificateVerify(v3FixtureWithPdf);
+    stubCertificateVerify(v3FixtureWithPdf as any);
 
     describe('and the type is image/png', function () {
-      beforeEach(async function () {
-        await store.dispatch(updateCertificateDefinition(v3FixtureWithPdf));
-      });
-
       it('should return the display image as coded into the document', async function () {
-        await store.dispatch(updateCertificateDefinition(v3FixtureWithPdf));
+        await store.dispatch(updateCertificateDefinition(v3FixtureWithPdf as any));
         const state = store.getState();
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
         expect(getDisplayAsHTML(state)).toBe(`<embed width="100%" height="100%" type="application/pdf" src="data:application/pdf;base64,${v3FixtureWithPdf.display.content}"/>`);

@@ -3,11 +3,12 @@ import sanitize from '../../../sanitizer/sanitizer';
 import getDateFormat from '../../i18n/getDateFormat';
 import { isValidUrl } from '../../helpers/validations';
 import { VERIFICATION_STATUSES } from '../../constants/verificationStatuses';
-import { CONTENT_TYPES } from '../../constants/contentTypes';
+import { CONTENT_MEDIA_TYPES } from '../../constants/contentTypes';
 import getText from '../../i18n/getText';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
 import type { BlockcertsVerifierState, IFinalStep } from '../../store/getInitialState';
 import type { V1Signature } from '../../models/V1Signature';
+import { getDisplay, getDisplayContent, getDisplayContentEncoding, getDisplayContentMediaType } from './display';
 
 export function getCertificateDefinition (state: BlockcertsVerifierState): Certificate {
   return state.certificateDefinition;
@@ -83,7 +84,7 @@ export function getIssuerLogo (state: BlockcertsVerifierState): string {
   return '';
 }
 
-export function getDisplayContentType (state: BlockcertsVerifierState): CONTENT_TYPES | null {
+export function getDisplayContentTypeFromState (state: BlockcertsVerifierState): CONTENT_MEDIA_TYPES | null {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (!certificateDefinition) {
@@ -91,13 +92,13 @@ export function getDisplayContentType (state: BlockcertsVerifierState): CONTENT_
   }
 
   if ('displayHtml' in certificateDefinition.certificateJson) {
-    return CONTENT_TYPES.TEXT_HTML;
+    return CONTENT_MEDIA_TYPES.TEXT_HTML;
   }
 
-  return getDisplay(certificateDefinition)?.contentMediaType as CONTENT_TYPES ?? null;
+  return getDisplayContentMediaType(getDisplay(certificateDefinition));
 }
 
-export function getDisplayContentEncoding (state: BlockcertsVerifierState): string {
+export function getDisplayContentEncodingFromState (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (!certificateDefinition) {
@@ -108,10 +109,10 @@ export function getDisplayContentEncoding (state: BlockcertsVerifierState): stri
     return '';
   }
 
-  return getDisplay(certificateDefinition)?.contentEncoding ?? '';
+  return getDisplayContentEncoding(getDisplay(certificateDefinition));
 }
 
-export function getDisplayContent (state: BlockcertsVerifierState): string {
+export function getDisplayContentFromState (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
   if (!certificateDefinition) {
@@ -122,7 +123,7 @@ export function getDisplayContent (state: BlockcertsVerifierState): string {
     return certificateDefinition.certificateJson.displayHtml;
   }
 
-  return getDisplay(certificateDefinition)?.content ?? '';
+  return getDisplayContent(getDisplay(certificateDefinition));
 }
 
 export function getV1DisplayHtml (state: BlockcertsVerifierState): string {
@@ -174,10 +175,6 @@ export function getV1DisplayHtml (state: BlockcertsVerifierState): string {
   return htmlString;
 }
 
-export function getDisplay (certificateDefinition) {
-  return certificateDefinition.display;
-}
-
 export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
@@ -195,20 +192,20 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
   const display = getDisplay(certificateDefinition);
 
   if (display) {
-    switch (getDisplayContentType(state)) {
-      case CONTENT_TYPES.TEXT_HTML:
+    switch (getDisplayContentMediaType(display)) {
+      case CONTENT_MEDIA_TYPES.TEXT_HTML:
         return sanitize(display.content);
 
-      case CONTENT_TYPES.IMAGE_PNG:
-      case CONTENT_TYPES.IMAGE_JPEG:
-      case CONTENT_TYPES.IMAGE_GIF:
-      case CONTENT_TYPES.IMAGE_BMP:
+      case CONTENT_MEDIA_TYPES.IMAGE_PNG:
+      case CONTENT_MEDIA_TYPES.IMAGE_JPEG:
+      case CONTENT_MEDIA_TYPES.IMAGE_GIF:
+      case CONTENT_MEDIA_TYPES.IMAGE_BMP:
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return `<img src="data:${getDisplayContentType(state)};${getDisplayContentEncoding(state)},${getDisplayContent(state)}"/>`;
+        return `<img src="data:${getDisplayContentMediaType(display)};${getDisplayContentEncoding(display)},${getDisplayContent(display)}"/>`;
 
-      case CONTENT_TYPES.APPLICATION_PDF:
+      case CONTENT_MEDIA_TYPES.APPLICATION_PDF:
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return `<embed width="100%" height="100%" type="application/pdf" src="data:${getDisplayContentType(state)};${getDisplayContentEncoding(state)},${getDisplayContent(state)}"/>`;
+        return `<embed width="100%" height="100%" type="application/pdf" src="data:${getDisplayContentMediaType(display)};${getDisplayContentEncoding(display)},${getDisplayContent(display)}"/>`;
 
       default:
         return '';
