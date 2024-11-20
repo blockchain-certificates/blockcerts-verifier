@@ -195,7 +195,7 @@ describe('certificate selectors test suite', function () {
 
         it('should return undefined', function () {
           const state = store.getState();
-          expect(getDisplayContentEncoding(state)).toBeUndefined();
+          expect(getDisplayContentEncoding(state)).toBe('');
         });
       });
 

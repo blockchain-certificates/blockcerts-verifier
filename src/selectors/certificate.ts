@@ -94,7 +94,7 @@ export function getDisplayContentType (state: BlockcertsVerifierState): CONTENT_
     return CONTENT_TYPES.TEXT_HTML;
   }
 
-  return certificateDefinition.display?.contentMediaType as CONTENT_TYPES;
+  return getDisplay(certificateDefinition)?.contentMediaType as CONTENT_TYPES ?? null;
 }
 
 export function getDisplayContentEncoding (state: BlockcertsVerifierState): string {
@@ -108,7 +108,7 @@ export function getDisplayContentEncoding (state: BlockcertsVerifierState): stri
     return '';
   }
 
-  return certificateDefinition.display?.contentEncoding;
+  return getDisplay(certificateDefinition)?.contentEncoding ?? '';
 }
 
 export function getDisplayContent (state: BlockcertsVerifierState): string {
@@ -122,7 +122,7 @@ export function getDisplayContent (state: BlockcertsVerifierState): string {
     return certificateDefinition.certificateJson.displayHtml;
   }
 
-  return certificateDefinition.display?.content ?? '';
+  return getDisplay(certificateDefinition)?.content ?? '';
 }
 
 export function getV1DisplayHtml (state: BlockcertsVerifierState): string {
@@ -174,6 +174,10 @@ export function getV1DisplayHtml (state: BlockcertsVerifierState): string {
   return htmlString;
 }
 
+export function getDisplay (certificateDefinition) {
+  return certificateDefinition.display;
+}
+
 export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
   const certificateDefinition = getCertificateDefinition(state);
 
@@ -188,10 +192,10 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
   }
 
   // V3
-  const display = certificateDefinition.display;
+  const display = getDisplay(certificateDefinition);
 
   if (display) {
-    switch (display.contentMediaType) {
+    switch (getDisplayContentType(state)) {
       case CONTENT_TYPES.TEXT_HTML:
         return sanitize(display.content);
 
@@ -200,11 +204,11 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
       case CONTENT_TYPES.IMAGE_GIF:
       case CONTENT_TYPES.IMAGE_BMP:
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return `<img src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
+        return `<img src="data:${getDisplayContentType(state)};${getDisplayContentEncoding(state)},${getDisplayContent(state)}"/>`;
 
       case CONTENT_TYPES.APPLICATION_PDF:
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        return `<embed width="100%" height="100%" type="application/pdf" src="data:${display.contentMediaType};${display.contentEncoding},${display.content}"/>`;
+        return `<embed width="100%" height="100%" type="application/pdf" src="data:${getDisplayContentType(state)};${getDisplayContentEncoding(state)},${getDisplayContent(state)}"/>`;
 
       default:
         return '';
