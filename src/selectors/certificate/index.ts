@@ -84,6 +84,26 @@ export function getIssuerLogo (state: BlockcertsVerifierState): string {
   return '';
 }
 
+export function getIsVerifiablePresentation (state: BlockcertsVerifierState): boolean {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.isVerifiablePresentation;
+  }
+
+  return false;
+}
+
+export function getVerifiableCredentials (state: BlockcertsVerifierState): any[] {
+  const certificateDefinition = getCertificateDefinition(state);
+
+  if (certificateDefinition) {
+    return certificateDefinition.verifiableCredentials;
+  }
+
+  return [];
+}
+
 export function getDisplayContentTypeFromState (state: BlockcertsVerifierState): CONTENT_MEDIA_TYPES | null {
   const certificateDefinition = getCertificateDefinition(state);
 
@@ -183,12 +203,28 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
   }
 
   // V2 concern
-  const { displayHtml } = (certificateDefinition as any).certificateJson;
+  let { displayHtml } = (certificateDefinition as any).certificateJson;
   if (displayHtml) {
     return sanitize(displayHtml);
   }
 
   // V3
+  if (getIsVerifiablePresentation(state)) {
+    return getVerifiableCredentials(state).map(credential => {
+      return `<li>${getV3DisplayHtml(credential)}</li>`;
+    }).join('\n');
+  } else {
+    displayHtml = getV3DisplayHtml(certificateDefinition);
+    if (displayHtml) {
+      return displayHtml;
+    }
+  }
+
+  // V1
+  return getV1DisplayHtml(state);
+}
+
+function getV3DisplayHtml (certificateDefinition): string {
   const display = getDisplay(certificateDefinition);
 
   if (display) {
@@ -211,9 +247,6 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
         return '';
     }
   }
-
-  // V1
-  return getV1DisplayHtml(state);
 }
 
 export function getRecordLink (state: BlockcertsVerifierState): string {

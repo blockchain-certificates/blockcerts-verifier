@@ -8,7 +8,7 @@ import {
   getIssuerName, getIssuerPublicKey,
   getRecipientName,
   getTransactionId,
-  getTransactionLink
+  getTransactionLink, getIsVerifiablePresentation
 } from '../../../src/selectors/certificate';
 import v3_2FixtureMocknet from '../../fixtures/v3/mocknet-vc-v2-name-description.json';
 import testnetV3Fixture from '../../fixtures/v3/testnet-v3.0-beta.json';
@@ -62,6 +62,13 @@ describe('certificate selectors test suite', function () {
 
     beforeEach(async function () {
       await store.dispatch(updateCertificateDefinition(v3_2FixtureMocknet as any));
+    });
+
+    describe('getIsVerifiablePresentation selector', function () {
+      it('should return false', function () {
+        const state = store.getState();
+        expect(getIsVerifiablePresentation(state)).toBe(false);
+      });
     });
 
     describe('getIssuedOn selector', function () {
