@@ -1,13 +1,13 @@
-import domain from '../domain';
-import sanitize from '../../sanitizer/sanitizer';
-import getDateFormat from '../i18n/getDateFormat';
-import { isValidUrl } from '../helpers/validations';
-import { VERIFICATION_STATUSES } from '../constants/verificationStatuses';
-import { CONTENT_TYPES } from '../constants/contentTypes';
-import getText from '../i18n/getText';
+import domain from '../../domain';
+import sanitize from '../../../sanitizer/sanitizer';
+import getDateFormat from '../../i18n/getDateFormat';
+import { isValidUrl } from '../../helpers/validations';
+import { VERIFICATION_STATUSES } from '../../constants/verificationStatuses';
+import { CONTENT_TYPES } from '../../constants/contentTypes';
+import getText from '../../i18n/getText';
 import type { IVerificationMapItem, Signers, Certificate } from '@blockcerts/cert-verifier-js';
-import type { BlockcertsVerifierState, IFinalStep } from '../store/getInitialState';
-import type { V1Signature } from '../models/V1Signature';
+import type { BlockcertsVerifierState, IFinalStep } from '../../store/getInitialState';
+import type { V1Signature } from '../../models/V1Signature';
 
 export function getCertificateDefinition (state: BlockcertsVerifierState): Certificate {
   return state.certificateDefinition;
