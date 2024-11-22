@@ -210,6 +210,7 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
 
   // V3
   if (getIsVerifiablePresentation(state)) {
+    // TODO: this is useless as VPs are handled by their own component
     return getVerifiableCredentials(state).map(credential => {
       return `<li>${getV3DisplayHtml(credential)}</li>`;
     }).join('\n');
@@ -224,7 +225,7 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
   return getV1DisplayHtml(state);
 }
 
-function getV3DisplayHtml (certificateDefinition): string {
+export function getV3DisplayHtml (certificateDefinition): string {
   const display = getDisplay(certificateDefinition);
 
   if (display) {
