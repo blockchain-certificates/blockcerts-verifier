@@ -104,6 +104,10 @@ export function getVerifiableCredentials (state: BlockcertsVerifierState): any[]
   return [];
 }
 
+export function getVerificationStatusForCredential (certificateDefinition: Certificate): any {
+  return certificateDefinition.verificationStatus;
+}
+
 export function getDisplayContentTypeFromState (state: BlockcertsVerifierState): CONTENT_MEDIA_TYPES | null {
   const certificateDefinition = getCertificateDefinition(state);
 

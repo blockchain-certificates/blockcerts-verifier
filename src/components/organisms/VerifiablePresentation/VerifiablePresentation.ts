@@ -1,8 +1,9 @@
 import { html, LitElement } from '@polymer/lit-element';
 import { unsafeHTML } from 'lit-html/lib/unsafe-html.js';
 import CSS from './_components.verifiable-presentation-css';
-import { getV3DisplayHtml } from '../../../selectors/certificate';
+import { getV3DisplayHtml, getVerificationStatusForCredential } from '../../../selectors/certificate';
 import type { TemplateResult } from 'lit-html';
+import '../../atoms/FinalVerificationStep';
 
 export interface IVerifiablePresentationApi {
   verifiableCredentials: any[];
@@ -37,7 +38,16 @@ class VerifiablePresentation extends LitElement {
       <div class="slider">
         <ul class="buv-c-verifiable-presentation">
           ${verifiableCredentials.map((credential) => html`
-            <li id$="${credential.id}" class="buv-c-verifiable-presentation__credential">${unsafeHTML(getV3DisplayHtml(credential))}</li>
+            <li id$="${credential.id}" class="buv-c-verifiable-presentation__credential">
+                <buv-final-verification-step 
+                  finalStep="${getVerificationStatusForCredential(credential)?.message}"
+                  status="${getVerificationStatusForCredential(credential)?.status}"
+                  isVisible 
+                  standalone
+                >
+                </buv-final-verification-step>
+                ${unsafeHTML(getV3DisplayHtml(credential))}
+            </li>
           `)}
         </ul>
       </div>
