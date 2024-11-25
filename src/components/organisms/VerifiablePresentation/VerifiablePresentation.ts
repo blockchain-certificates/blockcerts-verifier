@@ -32,21 +32,24 @@ class VerifiablePresentation extends LitElement {
       ${CSS}
       <ul>
         ${verifiableCredentials.map((credential, i) => html`
-          <li class="buv-c-verifiable-presentation-navigation"><a onclick="${() => { this.scrollCredentialIntoView(credential.id); }}">Credential ${i + 1}</a></li>
+          <li class="buv-c-verifiable-presentation-navigation">
+            <a onclick="${() => { this.scrollCredentialIntoView(credential.id); }}">Credential ${i + 1}</a>
+          </li>
         `)}
       </ul>
       <div class="slider">
         <ul class="buv-c-verifiable-presentation">
           ${verifiableCredentials.map((credential) => html`
             <li id$="${credential.id}" class="buv-c-verifiable-presentation__credential">
+                ${unsafeHTML(getV3DisplayHtml(credential))}
                 <buv-final-verification-step 
                   finalStep="${getVerificationStatusForCredential(credential)?.message}"
                   status="${getVerificationStatusForCredential(credential)?.status}"
                   isVisible 
                   standalone
+                  isOverlay
                 >
                 </buv-final-verification-step>
-                ${unsafeHTML(getV3DisplayHtml(credential))}
             </li>
           `)}
         </ul>
