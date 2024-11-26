@@ -10,6 +10,8 @@ export interface IVerifiablePresentationApi {
 }
 
 class VerifiablePresentation extends LitElement {
+  private vcNavigationElements: NodeListOf<Element>;
+
   static get properties (): IVerifiablePresentationApi {
     // if the interface is defined properly with typescript, then the boolean values do not get updated.
     return {
@@ -24,18 +26,43 @@ class VerifiablePresentation extends LitElement {
 
   scrollCredentialIntoView (id: string): void {
     const element = this.shadowRoot.getElementById(id);
+    this.activateLink(id);
     element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  }
+
+  activateLink (id: string): void {
+    this.vcNavigationElements.forEach((element) => {
+      element.classList.remove('is-active');
+    });
+    const link = this.shadowRoot.querySelector(`[data-target="${id}"]`);
+    link.classList.add('is-active');
+  }
+
+  _firstRendered () {
+    this.vcNavigationElements = this.shadowRoot.querySelectorAll('.js-verifiable-presentation-navigation');
   }
 
   _render ({ verifiableCredentials }): TemplateResult {
     return html`
       ${CSS}
       <ul>
-        ${verifiableCredentials.map((credential, i) => html`
-          <li class="buv-c-verifiable-presentation-navigation">
-            <a onclick="${() => { this.scrollCredentialIntoView(credential.id); }}">Credential ${i + 1}</a>
-          </li>
-        `)}
+        ${verifiableCredentials.map((credential, i) => {
+          const linkClasslist = [
+            'js-verifiable-presentation-navigation',
+            'buv-c-verifiable-presentation-navigation__link',
+            i === 0 ? 'is-active' : ''
+          ].join(' ');
+          return html`
+            <li class="buv-c-verifiable-presentation-navigation">
+              <a 
+                class$="${linkClasslist}"
+                data-target$="${credential.id}"
+                onclick="${() => { this.scrollCredentialIntoView(credential.id); }}">
+                  Credential ${i + 1}
+              </a>
+            </li>
+          `;
+        })}
       </ul>
       <div class="slider">
         <ul class="buv-c-verifiable-presentation">

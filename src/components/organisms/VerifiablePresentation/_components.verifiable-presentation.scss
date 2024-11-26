@@ -38,6 +38,8 @@
   cursor: pointer;
 }
 
-.buv-c-verifiable-presentation-navigation:active {
-  top: 1px;
+.buv-c-verifiable-presentation-navigation__link.is-active,
+.buv-c-verifiable-presentation-navigation__link:active,
+.buv-c-verifiable-presentation-navigation__link:focus {
+  border-bottom: 1px dashed;
 }
