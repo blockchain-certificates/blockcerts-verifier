@@ -5,12 +5,13 @@ import CSS from './_components.full-certificate-css';
 import '../../atoms/CertificateDetails';
 import '../../atoms/VerifyButton';
 import '../../atoms/FinalVerificationStep';
+import '../VerifiablePresentation';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 import domain from '../../../domain';
 import type { IFullScreenCertificateAPI } from '../FullScreenCertificate/FullScreenCertificate';
 
-function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
+function renderDisplayHTML (displayHTML: string, clickableUrls: boolean, isVerifiablePresentation: boolean): TemplateResult {
   const buvCertificateClasses: string[] = [
     'buv-c-full-certificate',
     'qa-fullscreen-certificate'
@@ -20,6 +21,9 @@ function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): Templa
   }
 
   const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
+  if (isVerifiablePresentation) {
+    return html`<buv-verifiable-presentation></buv-verifiable-presentation>`;
+  }
   return html`<section class$=${buvCertificateClasses.join(' ')}>${unsafeHTML(htmlToDisplay)}</section>`;
 }
 
@@ -27,6 +31,7 @@ export interface IFullCertificateAPI {
   clickableUrls?: boolean;
   hasCertificateDefinition?: boolean;
   displayHTML?: string;
+  isVerifiablePresentation?: boolean;
 }
 
 export class FullCertificateComponent extends LitElement {
@@ -35,7 +40,8 @@ export class FullCertificateComponent extends LitElement {
     return {
       clickableUrls: Boolean as any,
       hasCertificateDefinition: Boolean as any,
-      displayHTML: String as any
+      displayHTML: String as any,
+      isVerifiablePresentation: Boolean as any
     };
   }
 
@@ -52,7 +58,8 @@ export class FullCertificateComponent extends LitElement {
   _render ({
     clickableUrls,
     hasCertificateDefinition,
-    displayHTML
+    displayHTML,
+    isVerifiablePresentation
   }: IFullCertificateAPI): TemplateResult {
     if (!hasCertificateDefinition) {
       // lit-element won't enter the rendering path if the content is null
@@ -62,7 +69,7 @@ export class FullCertificateComponent extends LitElement {
 
     return html`
     ${CSS}
-    ${renderDisplayHTML(displayHTML, clickableUrls)}
+    ${renderDisplayHTML(displayHTML, clickableUrls, isVerifiablePresentation)}
     <div class='buv-c-full-certificate__details'>
       <buv-final-verification-step class='buv-c-fullscreen-certificate__verification-status' isVisible hideLink standalone>
         <buv-verify-button type='link'>${getText('text.verifyAgain')}</buv-verify-button>
@@ -80,6 +87,7 @@ function FullCertificateWrapper (props: IFullCertificateAPI): TemplateResult {
       clickableUrls = '${props.clickableUrls}'
       hasCertificateDefinition = '${props.hasCertificateDefinition}'
       displayHTML = '${props.displayHTML}'
+      isVerifiablePresentation = '${props.isVerifiablePresentation}'
     ></buv-full-certificate-raw>`;
 }
 
