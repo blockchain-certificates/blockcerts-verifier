@@ -15,6 +15,7 @@ export interface FinalVerificationStepProps {
   transactionLink?: string[];
   isTestChain?: boolean;
   isVisible?: boolean;
+  isOverlay?: boolean;
   finalStep?: IFinalStep;
   hideLink?: boolean;
   status?: string;
@@ -29,7 +30,8 @@ export default function FinalVerificationStep ({
   finalStep = null,
   hideLink = false,
   status = '',
-  standalone = false
+  standalone = false,
+  isOverlay = false
 }: FinalVerificationStepProps = {}): TemplateResult {
   if (!finalStep) {
     return;
@@ -38,7 +40,8 @@ export default function FinalVerificationStep ({
   const wrapperClasses: string = [
     standalone ? 'buv-c-final-verification-step--standalone-wrapper' : '',
     `is-${status}`,
-    isTestChain ? 'is-test' : ''
+    isTestChain ? 'is-test' : '',
+    isOverlay ? 'buv-c-final-verification-step--overlay' : ''
   ].join(' ');
 
   // TODO: better handle this dynamic class (cf npm classnames)
@@ -49,6 +52,7 @@ export default function FinalVerificationStep ({
     'buv-qa-verification-step',
     isVisible ? 'is-visible' : '',
     isTestChain ? 'is-test' : '',
+    isOverlay ? 'is-overlay' : '',
     `is-${status}`,
     status && !standalone ? 'buv-c-badge  buv-c-badge--large' : ''
   ].join(' ');
@@ -59,7 +63,8 @@ export default function FinalVerificationStep ({
     'buv-u-full-width',
     'buv-o-text-12',
     'is-final',
-    isVisible ? 'is-visible' : ''
+    isVisible ? 'is-visible' : '',
+    isOverlay ? 'is-overlay' : ''
   ].join(' ');
 
   const title = finalStep.label;

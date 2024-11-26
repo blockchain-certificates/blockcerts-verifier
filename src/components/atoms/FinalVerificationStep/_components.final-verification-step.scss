@@ -72,6 +72,7 @@
   padding: 10px;
   box-sizing: border-box;
   border-left: 3px solid;
+  text-align: left;
 }
 
 .buv-c-final-verification-step--standalone-wrapper.is-success {
@@ -102,6 +103,16 @@
   left: -30px;
 }
 
+.buv-c-final-verification-step--standalone.is-overlay {
+  min-width: 500px;
+  width: 100%;
+}
+
+.buv-c-verification-substep.is-overlay {
+  min-width: 500px;
+  width: 500px;
+}
+
 .buv-c-verification-substep.is-final {
   display: none;
   line-height: 1.35;
@@ -113,6 +124,23 @@
 
 .buv-c-verification-substep::after {
   display: none;
+}
+
+.buv-c-final-verification-step--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 30px;
+  width: 35px;
+  padding: 4px;
+  transition: width .3s ease-in-out, height .3s ease-in-out, padding .3s ease-in-out;
+  overflow: hidden;
+}
+
+.buv-c-final-verification-step--overlay:hover {
+  padding: 10px;
+  width: 100%;
+  height: auto;
 }
 
 @import '../../../shared-styles/utils.flow';

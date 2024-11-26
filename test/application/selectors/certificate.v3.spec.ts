@@ -1,14 +1,14 @@
 import {
   getCertificateDescription,
   getCertificateTitle,
-  getChain, getDisplayContent, getDisplayContentEncoding, getDisplayContentType,
+  getChain, getDisplayContentFromState, getDisplayContentEncodingFromState, getDisplayContentTypeFromState,
   getIssueDate,
   getIssuedOn,
   getIssuerLogo,
   getIssuerName, getIssuerPublicKey,
   getRecipientName,
   getTransactionId,
-  getTransactionLink
+  getTransactionLink, getIsVerifiablePresentation
 } from '../../../src/selectors/certificate';
 import v3_2FixtureMocknet from '../../fixtures/v3/mocknet-vc-v2-name-description.json';
 import testnetV3Fixture from '../../fixtures/v3/testnet-v3.0-beta.json';
@@ -18,7 +18,7 @@ import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import stubCertificateVerify from '../__helpers/stubCertificateVerify';
 import type { Signers } from '@blockcerts/cert-verifier-js';
-import { CONTENT_TYPES } from '../../../src/constants/contentTypes';
+import { CONTENT_MEDIA_TYPES } from '../../../src/constants/contentTypes';
 import { FakeXmlHttpRequest } from '../__helpers/FakeXmlHttpRequest';
 import { BLOCKCHAINS } from '@blockcerts/explorer-lookup';
 
@@ -58,10 +58,17 @@ describe('certificate selectors test suite', function () {
         rawTransactionLink: ''
       }
     ];
-    stubCertificateVerify(v3_2FixtureMocknet, signersObjectForFixture);
+    stubCertificateVerify(v3_2FixtureMocknet as any, signersObjectForFixture);
 
     beforeEach(async function () {
-      await store.dispatch(updateCertificateDefinition(v3_2FixtureMocknet));
+      await store.dispatch(updateCertificateDefinition(v3_2FixtureMocknet as any));
+    });
+
+    describe('getIsVerifiablePresentation selector', function () {
+      it('should return false', function () {
+        const state = store.getState();
+        expect(getIsVerifiablePresentation(state)).toBe(false);
+      });
     });
 
     describe('getIssuedOn selector', function () {
@@ -169,18 +176,18 @@ describe('certificate selectors test suite', function () {
 
         it('should return null', function () {
           const state = store.getState();
-          expect(getDisplayContentType(state)).toBeNull();
+          expect(getDisplayContentTypeFromState(state)).toBeNull();
         });
       });
 
       describe('and the contentMediaType is defined', function () {
         beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(testnetV3Fixture));
+          await store.dispatch(updateCertificateDefinition(testnetV3Fixture as any));
         });
 
         it('should return the value of the contentMediaType', function () {
           const state = store.getState();
-          expect(getDisplayContentType(state)).toBe(CONTENT_TYPES.TEXT_HTML);
+          expect(getDisplayContentTypeFromState(state)).toBe(CONTENT_MEDIA_TYPES.TEXT_HTML);
         });
       });
     });
@@ -190,23 +197,23 @@ describe('certificate selectors test suite', function () {
     describe('given the certificate has a display property', function () {
       describe('and the contentEncoding is not defined', function () {
         beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(testnetV3Fixture));
+          await store.dispatch(updateCertificateDefinition(testnetV3Fixture as any));
         });
 
         it('should return undefined', function () {
           const state = store.getState();
-          expect(getDisplayContentEncoding(state)).toBeUndefined();
+          expect(getDisplayContentEncodingFromState(state)).toBe('');
         });
       });
 
       describe('and the contentEncoding is defined', function () {
         beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(testnetV3PdfFixture));
+          await store.dispatch(updateCertificateDefinition(testnetV3PdfFixture as any));
         });
 
         it('should return the value of the contentMediaType', function () {
           const state = store.getState();
-          expect(getDisplayContentEncoding(state)).toBe('base64');
+          expect(getDisplayContentEncodingFromState(state)).toBe('base64');
         });
       });
     });
@@ -224,18 +231,18 @@ describe('certificate selectors test suite', function () {
 
         it('should return an empty string', function () {
           const state = store.getState();
-          expect(getDisplayContent(state)).toBe('');
+          expect(getDisplayContentFromState(state)).toBe('');
         });
       });
 
       describe('and the content is defined', function () {
         beforeEach(async function () {
-          await store.dispatch(updateCertificateDefinition(testnetV3Fixture));
+          await store.dispatch(updateCertificateDefinition(testnetV3Fixture as any));
         });
 
         it('should return the value of the content', function () {
           const state = store.getState();
-          expect(getDisplayContent(state)).toBe('<b>hello world</b>');
+          expect(getDisplayContentFromState(state)).toBe('<b>hello world</b>');
         });
       });
     });

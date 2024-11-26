@@ -1,9 +1,9 @@
 import updateIsGeneratingPDF from './updateIsGeneratingPDF';
 import {
   getCertificateTitle,
-  getDisplayContent,
-  getDisplayContentEncoding,
-  getDisplayContentType,
+  getDisplayContentFromState,
+  getDisplayContentEncodingFromState,
+  getDisplayContentTypeFromState,
   getIssueDate,
   getIssuerLogo,
   getIssuerName, getIssuerProfileDomain, getIssuerProfileUrl,
@@ -11,7 +11,7 @@ import {
   getRecipientName,
   getRecordLink
 } from '../selectors/certificate';
-import type { CONTENT_TYPES } from '../constants/contentTypes';
+import type { CONTENT_MEDIA_TYPES } from '../constants/contentTypes';
 import type { Dispatch } from 'redux';
 import type { BlockcertsVerifierState } from '../store/getInitialState';
 
@@ -21,9 +21,9 @@ export default function downloadPDF () {
 
     const { default: downloadPDF } = await import('../domain/certificates/useCases/downloadPDF');
 
-    const contentType: CONTENT_TYPES = getDisplayContentType(state);
-    const contentEncoding: string = getDisplayContentEncoding(state);
-    const content: string = getDisplayContent(state);
+    const contentType: CONTENT_MEDIA_TYPES = getDisplayContentTypeFromState(state);
+    const contentEncoding: string = getDisplayContentEncodingFromState(state);
+    const content: string = getDisplayContentFromState(state);
     const recipientName: string = getRecipientName(state);
     const certificateTitle: string = getCertificateTitle(state);
     const issueDate: string = getIssueDate(state);

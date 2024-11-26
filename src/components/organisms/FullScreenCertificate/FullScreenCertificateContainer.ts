@@ -6,7 +6,7 @@ import {
   getCertificateTitle,
   getCertificateDescription,
   getDisplayAsHTML,
-  getRecipientName
+  getRecipientName, getIsVerifiablePresentation
 } from '../../../selectors/certificate';
 import resetCertificateDefinition from '../../../actions/resetCertificateDefinition';
 import { getClickableUrls, getDisableDownloadPdf } from '../../../selectors/api';
@@ -23,7 +23,8 @@ export const mapStateToProps = (state: BlockcertsVerifierState): Partial<IFullSc
   hasCertificateDefinition: !!getCertificateDefinition(state),
   displayHTML: getDisplayAsHTML(state),
   clickableUrls: getClickableUrls(state),
-  disableDownloadPdf: getDisableDownloadPdf(state)
+  disableDownloadPdf: getDisableDownloadPdf(state),
+  isVerifiablePresentation: getIsVerifiablePresentation(state)
 });
 
 const FullScreenCertificateContainer = connector(FullScreenCertificate, { mapDispatchToProps, mapStateToProps });

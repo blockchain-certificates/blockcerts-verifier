@@ -34,10 +34,6 @@ describe('getDisplayAsHTML selector', function () {
     stubCertificateVerify(v3FixtureWithImage);
 
     describe('and the type is image/bmp', function () {
-      beforeEach(async function () {
-        await store.dispatch(updateCertificateDefinition(v3FixtureWithImage));
-      });
-
       it('should return the display image as coded into the document', async function () {
         await store.dispatch(updateCertificateDefinition(v3FixtureWithImage));
         const state = store.getState();

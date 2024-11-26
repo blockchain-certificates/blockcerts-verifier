@@ -1,4 +1,4 @@
-import { CONTENT_TYPES } from '../constants/contentTypes';
+import { CONTENT_MEDIA_TYPES } from '../constants/contentTypes';
 
 export function forceDownloadFile (content: string, contentType: string, contentEncoding: string, fileName: string, fileExtension = ''): void {
   const linkSource = `data:${contentType};${contentEncoding},${content}`;
@@ -16,7 +16,7 @@ export function forceDownloadFile (content: string, contentType: string, content
 
 export function getFileExtensionFromContentType (contentType: string): string {
   switch (contentType) {
-    case CONTENT_TYPES.APPLICATION_PDF:
+    case CONTENT_MEDIA_TYPES.APPLICATION_PDF:
       return 'pdf';
     default:
       return '';

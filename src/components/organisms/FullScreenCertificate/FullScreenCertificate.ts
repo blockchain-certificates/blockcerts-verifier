@@ -12,12 +12,16 @@ import BlockcertsLogo from '../../atoms/BlockcertsLogo';
 import '../../atoms/VerifyButton';
 import '../../molecules/Metadata';
 import '../../molecules/SocialShare';
+import '../VerifiablePresentation';
 import getText from '../../../i18n/getText';
 import urlToLink from '../../../helpers/urlToLink';
 import domain from '../../../domain';
 
-function renderDisplayHTML (displayHTML: string, clickableUrls: boolean): TemplateResult {
+function renderDisplayHTML (displayHTML: string, clickableUrls: boolean, isVerifiablePresentation: boolean): TemplateResult {
   const htmlToDisplay = clickableUrls ? urlToLink(displayHTML) : displayHTML;
+  if (isVerifiablePresentation) {
+    return html`<buv-verifiable-presentation></buv-verifiable-presentation>`;
+  }
   return html`${unsafeHTML(htmlToDisplay)}`;
 }
 
@@ -30,6 +34,7 @@ export interface IFullScreenCertificateAPI {
   displayHTML?: string;
   onClose?: () => any;
   disableDownloadPdf?: boolean;
+  isVerifiablePresentation?: boolean;
 }
 
 export class FullScreenCertificateComponent extends LitElement {
@@ -43,7 +48,8 @@ export class FullScreenCertificateComponent extends LitElement {
       certificateDescription: String as any,
       displayHTML: String as any,
       onClose: Function as any,
-      disableDownloadPdf: Boolean as any
+      disableDownloadPdf: Boolean as any,
+      isVerifiablePresentation: Boolean as any
     };
   }
 
@@ -65,7 +71,8 @@ export class FullScreenCertificateComponent extends LitElement {
     certificateDescription,
     displayHTML,
     onClose,
-    disableDownloadPdf
+    disableDownloadPdf,
+    isVerifiablePresentation
   }: IFullScreenCertificateAPI): TemplateResult {
     if (!hasCertificateDefinition) {
       // lit-element won't enter the rendering path if the content is null
@@ -105,7 +112,7 @@ export class FullScreenCertificateComponent extends LitElement {
             <buv-verify-other-certificate class='buv-c-fullscreen-certificate__verify-other'></buv-verify-other-certificate>
           </div>
           <div class$=${buvFullscreenCertificateClasses.join(' ')}>
-            ${renderDisplayHTML(displayHTML, clickableUrls)}
+            ${renderDisplayHTML(displayHTML, clickableUrls, isVerifiablePresentation)}
           </div>
         </section>
       </section>
@@ -125,6 +132,7 @@ function FullScreenCertificateWrapper (props: IFullScreenCertificateAPI): Templa
       displayHTML = '${props.displayHTML}'
       onClose = '${props.onClose}'
       disableDownloadPdf = '${props.disableDownloadPdf}'
+      isVerifiablePresentation = '${props.isVerifiablePresentation}'
     ></buv-fullscreen-certificate-raw>`;
 }
 

@@ -16,7 +16,8 @@ export const mapStateToProps = (state: BlockcertsVerifierState): FinalVerificati
 const ownProps: FinalVerificationStepProps = {
   isVisible: Boolean as any,
   hideLink: Boolean as any,
-  standalone: Boolean as any
+  standalone: Boolean as any,
+  isOverlay: Boolean as any
 };
 
 const FinalVerificationStepContainer = connector(FinalVerificationStep, { mapStateToProps, ownProps });
