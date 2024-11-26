@@ -11,6 +11,7 @@ export interface IVerifiablePresentationApi {
 
 class VerifiablePresentation extends LitElement {
   private vcNavigationElements: NodeListOf<Element>;
+  private scrollItems: NodeListOf<Element>;
 
   static get properties (): IVerifiablePresentationApi {
     // if the interface is defined properly with typescript, then the boolean values do not get updated.
@@ -22,6 +23,7 @@ class VerifiablePresentation extends LitElement {
   constructor () {
     super();
     this.scrollCredentialIntoView = this.scrollCredentialIntoView.bind(this);
+    this.activateLink = this.activateLink.bind(this);
   }
 
   scrollCredentialIntoView (id: string): void {
@@ -40,6 +42,27 @@ class VerifiablePresentation extends LitElement {
 
   _firstRendered () {
     this.vcNavigationElements = this.shadowRoot.querySelectorAll('.js-verifiable-presentation-navigation');
+    this.scrollItems = this.shadowRoot.querySelectorAll('.js-scroll-snap-item');
+    this.scrollItems.forEach((element) => {
+      if ('onscrollsnapchange' in element) {
+        element.addEventListener('scrollsnapchange', (e) => {
+          const childElementInView = (e as any).snapTargetInline;
+          const childElementInViewId = childElementInView.getAttribute('id');
+          this.activateLink(childElementInViewId);
+        });
+      } else {
+        element.addEventListener('scroll', () => {
+          const childElementInView = Array.from(element.children).find((child) => {
+            const rect = child.getBoundingClientRect();
+            return rect.left >= 0 && rect.right <= window.innerWidth;
+          });
+          if (childElementInView) {
+            const childElementInViewId = childElementInView.getAttribute('id');
+            this.activateLink(childElementInViewId);
+          }
+        });
+      }
+    });
   }
 
   _render ({ verifiableCredentials }): TemplateResult {
@@ -65,7 +88,7 @@ class VerifiablePresentation extends LitElement {
         })}
       </ul>
       <div class="slider">
-        <ul class="buv-c-verifiable-presentation">
+        <ul class="buv-c-verifiable-presentation js-scroll-snap-item">
           ${verifiableCredentials.map((credential) => html`
             <li id$="${credential.id}" class="buv-c-verifiable-presentation__credential">
                 ${unsafeHTML(getV3DisplayHtml(credential))}
