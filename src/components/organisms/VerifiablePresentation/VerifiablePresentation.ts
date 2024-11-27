@@ -6,7 +6,8 @@ import type { TemplateResult } from 'lit-html';
 import '../../atoms/FinalVerificationStep';
 
 export interface IVerifiablePresentationApi {
-  verifiableCredentials: any[];
+  // this is a hack to force rerenders as the verification of individual credentials occurs
+  verifiableCredentials: string;
 }
 
 class VerifiablePresentation extends LitElement {
@@ -16,7 +17,8 @@ class VerifiablePresentation extends LitElement {
   static get properties (): IVerifiablePresentationApi {
     // if the interface is defined properly with typescript, then the boolean values do not get updated.
     return {
-      verifiableCredentials: Array as any
+      // this is a hack to force rerenders as the verification of individual credentials occurs
+      verifiableCredentials: String as any
     };
   }
 
@@ -65,11 +67,13 @@ class VerifiablePresentation extends LitElement {
     });
   }
 
-  _render ({ verifiableCredentials }): TemplateResult {
+  _render ({ verifiableCredentials }: IVerifiablePresentationApi): TemplateResult {
+    // this is a hack to force rerenders as the verification of individual credentials occurs
+    const VCList: any[] = JSON.parse(verifiableCredentials);
     return html`
       ${CSS}
       <ul>
-        ${verifiableCredentials.map((credential, i) => {
+        ${VCList.map((credential, i) => {
           const linkClasslist = [
             'js-verifiable-presentation-navigation',
             'buv-c-verifiable-presentation-navigation__link',
@@ -89,12 +93,16 @@ class VerifiablePresentation extends LitElement {
       </ul>
       <div class="slider">
         <ul class="buv-c-verifiable-presentation js-scroll-snap-item">
-          ${verifiableCredentials.map((credential) => html`
+          ${VCList.map((credential) => html`
             <li id$="${credential.id}" class="buv-c-verifiable-presentation__credential">
                 ${unsafeHTML(getV3DisplayHtml(credential))}
                 <buv-final-verification-step 
-                  finalStep="${getVerificationStatusForCredential(credential)?.message}"
-                  status="${getVerificationStatusForCredential(credential)?.status}"
+                  finalStep="${
+                    typeof getVerificationStatusForCredential(credential)?.message === 'string'
+                      ? { label: getVerificationStatusForCredential(credential)?.message }
+                      : getVerificationStatusForCredential(credential)?.message
+                  }"
+                  status$="${getVerificationStatusForCredential(credential)?.status}"
                   isVisible 
                   standalone
                   isOverlay
