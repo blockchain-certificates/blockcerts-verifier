@@ -17,7 +17,9 @@ const ownProps: FinalVerificationStepProps = {
   isVisible: Boolean as any,
   hideLink: Boolean as any,
   standalone: Boolean as any,
-  isOverlay: Boolean as any
+  isOverlay: Boolean as any,
+  status: String as any,
+  finalStep: Object as any
 };
 
 const FinalVerificationStepContainer = connector(FinalVerificationStep, { mapStateToProps, ownProps });
