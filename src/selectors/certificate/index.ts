@@ -214,6 +214,7 @@ export function getDisplayAsHTML (state: BlockcertsVerifierState): string {
 
   // V3
   if (getIsVerifiablePresentation(state)) {
+    // return basic html to trigger rendering
     return '<div></div>';
   } else {
     displayHtml = getV3DisplayHtml(certificateDefinition);

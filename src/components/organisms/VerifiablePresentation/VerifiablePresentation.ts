@@ -97,7 +97,11 @@ class VerifiablePresentation extends LitElement {
             <li id$="${credential.id}" class="buv-c-verifiable-presentation__credential">
                 ${unsafeHTML(getV3DisplayHtml(credential))}
                 <buv-final-verification-step 
-                  finalStep="${getVerificationStatusForCredential(credential)?.message}"
+                  finalStep="${
+                    typeof getVerificationStatusForCredential(credential)?.message === 'string'
+                      ? { label: getVerificationStatusForCredential(credential)?.message }
+                      : getVerificationStatusForCredential(credential)?.message
+                  }"
                   status$="${getVerificationStatusForCredential(credential)?.status}"
                   isVisible 
                   standalone

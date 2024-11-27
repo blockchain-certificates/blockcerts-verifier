@@ -35,8 +35,7 @@ describe('certificate selectors test suite', function () {
     describe('getDisplayAsHTML selector', function () {
       it('should return the display HTML as coded into the document', function () {
         const state = store.getState();
-        expect(getDisplayAsHTML(state)).toBe('<li><div style="background-color:transparent;padding:6px;display:inline-flex;align-items:center;flex-direction:column;">Yo</div></li>\n' +
-          '<li><div style="background-color:transparent;padding:6px;display:inline-flex;align-items:center;flex-direction:column;">Yo</div></li>');
+        expect(getDisplayAsHTML(state)).toBe('<div></div>');
       });
     });
   });
