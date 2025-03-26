@@ -36,7 +36,9 @@ const whiteListedCssProperties = {
   'grid-area': true,
   'align-self': true,
   'justify-self': true,
-  span: true
+  span: true,
+  container: true,
+	"aspect-ratio": true,
 };
 
 function modifyWhiteList () {
