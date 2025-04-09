@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-require-imports */
 const mockValidCertificate = require('../fixtures/v2/valid-certificate-example.json');
 const mockInvalidCertificate = require('../fixtures/v2/invalid-certificate-example.json');
 const express = require('express');

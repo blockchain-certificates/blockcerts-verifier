@@ -40,7 +40,7 @@ describe('getDisplayAsHTML selector', function () {
       it('should return the display image as coded into the document', async function () {
         await store.dispatch(updateCertificateDefinition(v3FixtureWithImage));
         const state = store.getState();
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+         
         expect(getDisplayAsHTML(state)).toBe(`<img src="data:image/png;base64,${v3FixtureWithImage.display.content}"/>`);
       });
     });

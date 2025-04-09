@@ -22,10 +22,10 @@ export class FakeXmlHttpRequest {
     this.onload();
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+   
   onload (): void {}
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
+   
   setRequestHeader (): void {}
 
   getMockResponseText (): string {

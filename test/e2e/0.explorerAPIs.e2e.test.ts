@@ -22,7 +22,7 @@ describe('BlockcertsVerifier explorer apis e2e test suite', function () {
       await wait(10);
       element.src = 'https://blockcerts.learningmachine.com/certificate/fe53b323df845641b74e8d3f6d175ea0';
       await wait(2000);
-      // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+       
       expect(parsingFunctionStub.calledOnce).to.be.true;
     });
   });

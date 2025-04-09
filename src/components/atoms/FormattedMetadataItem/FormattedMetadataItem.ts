@@ -9,7 +9,8 @@ import type { TemplateResult } from 'lit-html';
  */
 // TODO: define metadata object as it's supposed to be (see cert-issuer python checks)
 export default function FormattedMetadataItem (metadataObject: any, value: string): TemplateResult {
-  let { title, format, type } = metadataObject;
+  const { format, title } = metadataObject;
+  let { type } = metadataObject;
 
   if (Array.isArray(type)) {
     type = type[0];

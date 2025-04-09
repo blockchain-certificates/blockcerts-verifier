@@ -19,7 +19,7 @@ function validVerifyStub (stepsCb: () => any): any {
     status: VERIFICATION_STATUSES.SUCCESS,
     message: {
       label: 'Verified',
-      // eslint-disable-next-line no-template-curly-in-string
+       
       description: 'This is a valid ${chain} certificate.',
       linkText: 'View transaction link'
     }

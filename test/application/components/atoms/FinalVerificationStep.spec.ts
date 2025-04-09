@@ -48,7 +48,7 @@ describe('FinalVerificationStep component test suite', function () {
   describe('given the chain is provided', function () {
     it('should replace the chain in the text', function () {
       const fixtureFinalStep: IFinalStep = {
-        // eslint-disable-next-line no-template-curly-in-string
+         
         description: 'here we test ${chain}',
         label: 'this is a test'
       };

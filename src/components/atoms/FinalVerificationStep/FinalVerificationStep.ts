@@ -5,7 +5,7 @@ import type { IFinalStep } from '../../../store/getInitialState';
 
 function getDetails (finalStep: IFinalStep, chain: string[]): TemplateResult {
   return finalStep.description
-    // eslint-disable-next-line no-template-curly-in-string
+     
     ? html`<p class='buv-c-verification-step__description  buv-qa-final-step-description'>${finalStep.description.replace('${chain}', chain[0])}</p>`
     : null;
 }

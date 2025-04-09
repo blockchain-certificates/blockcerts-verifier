@@ -1,10 +1,8 @@
 import crypto from 'crypto';
-require('jest-fetch-mock');
+import 'jest-fetch-mock';
 
 (global as any).MutationObserver = class {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   disconnect (): void {}
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
   observe (element, initObject): void {}
 };
 

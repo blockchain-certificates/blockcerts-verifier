@@ -17,7 +17,7 @@ describe('BlockcertsVerifier clickable urls e2e test suite', function () {
           .querySelectorAll('buv-fullscreen-certificate-raw')[0].shadowRoot
           .querySelectorAll('.qa-fullscreen-certificate')[0]
           .querySelectorAll('a');
-        // eslint-disable-next-line no-void
+         
         void expect(linkElements.length).to.equal(1);
       });
     });

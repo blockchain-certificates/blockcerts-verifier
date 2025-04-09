@@ -34,7 +34,7 @@ describe('getDisplayAsHTML selector', function () {
       it('should return the display image as coded into the document', async function () {
         await store.dispatch(updateCertificateDefinition(v3FixtureWithPdf as any));
         const state = store.getState();
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+         
         expect(getDisplayAsHTML(state)).toBe(`<embed width="100%" height="100%" type="application/pdf" src="data:application/pdf;base64,${v3FixtureWithPdf.display.content}"/>`);
       });
     });
