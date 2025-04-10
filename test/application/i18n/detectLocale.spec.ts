@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import detectLocale from '../../../src/i18n/detectLocale';
 
 describe('domain i18n detectLocale use case test suite', function () {

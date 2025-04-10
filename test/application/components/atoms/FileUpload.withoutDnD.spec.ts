@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import sinon from 'sinon';
 import FileUpload from '../../../../src/components/atoms/FileUpload/FileUpload';
 import { assertClassInStringBits } from '../helpers/assertStringValues';

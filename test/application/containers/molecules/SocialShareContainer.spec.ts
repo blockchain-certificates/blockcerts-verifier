@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { configureStore } from '../../../../src/store';
 import { mapStateToProps } from '../../../../src/components/molecules/SocialShare/SocialShareContainer';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';

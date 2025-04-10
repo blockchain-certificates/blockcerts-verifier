@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import { getDisplayAsHTML } from '../../../../src/selectors/certificate';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import v3Fixture from '../../../fixtures/v3/testnet-v3.0-beta.json';

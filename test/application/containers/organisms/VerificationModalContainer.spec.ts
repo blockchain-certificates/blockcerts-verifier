@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { mapStateToProps, mapDispatchToProps } from '../../../../src/components/organisms/VerificationModal/VerificationModalContainer';
 import { configureStore } from '../../../../src/store';
 import getInitialState from '../../../../src/store/getInitialState';

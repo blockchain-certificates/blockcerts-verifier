@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import sinon from 'sinon';
 import * as i18n from '../../../src/i18n';
 import ensureIsSupported from '../../../src/i18n/ensureIsSupported';

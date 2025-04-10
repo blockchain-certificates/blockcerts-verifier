@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import isContentTypeImage from '../../../src/helpers/contentTypes';
 import { CONTENT_MEDIA_TYPES } from '../../../src/constants/contentTypes';
 

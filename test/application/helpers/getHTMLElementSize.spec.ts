@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { getHTMLElementSize } from '../../../src/helpers/getHTMLElementSize';
 
 describe('getHTMLElementSize function test suite', function () {

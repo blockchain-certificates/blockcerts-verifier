@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { configureStore } from '../../../src/store';
 import resetVerificationStatus from '../../../src/actions/resetVerificationStatus';
 import { getVerificationStatus } from '../../../src/selectors/verification';

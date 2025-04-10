@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import CertificateDetails from '../../../../src/components/atoms/CertificateDetails/CertificateDetails';
 import { assertClassInStringBits } from '../helpers/assertStringValues';
 import { getText } from '../../../../src/i18n';

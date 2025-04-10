@@ -1,15 +1,21 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import SubstepsList from '../../../../src/components/organisms/SubstepsList/SubstepsList';
 import type { VerificationSubstep } from '@blockcerts/cert-verifier-js';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
+
+// needed to register the element in the HTML constructors list in jsdom
+window.customElements.define('substeps-list', SubstepsList);
 
 describe('Substeps list component test suite', function () {
   let instance: SubstepsList;
 
   beforeEach(function () {
     instance = new SubstepsList();
-    (instance as any).shadowRoot = {
-      addEventListener: () => {}
-    };
+    Object.defineProperty(instance, 'shadowRoot', {
+      get: () => ({
+        addEventListener: () => {}
+      })
+    });
   });
 
   afterEach(function () {

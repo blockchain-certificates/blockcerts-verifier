@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeAll, afterAll } from 'vitest';
 import { getIsVerifiablePresentation, getDisplayAsHTML } from '../../../src/selectors/certificate';
 import verifiablePresentationFixture from '../../fixtures/v3/mocknet-verifiable-presentation.json';
 import { configureStore } from '../../../src/store';

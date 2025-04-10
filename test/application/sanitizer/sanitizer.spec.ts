@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import sanitize from '../../../sanitizer/sanitizer';
 
 describe('sanitizer test suite', function () {

@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import FinalVerificationStep from '../../../../src/components/atoms/FinalVerificationStep/FinalVerificationStep';
 import { assertClassInStringBits, assertStringInValues } from '../helpers/assertStringValues';
 import type { IFinalStep } from '../../../../src/store/getInitialState';
@@ -48,7 +49,7 @@ describe('FinalVerificationStep component test suite', function () {
   describe('given the chain is provided', function () {
     it('should replace the chain in the text', function () {
       const fixtureFinalStep: IFinalStep = {
-         
+
         description: 'here we test ${chain}',
         label: 'this is a test'
       };

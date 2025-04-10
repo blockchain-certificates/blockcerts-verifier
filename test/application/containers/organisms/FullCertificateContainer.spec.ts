@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { configureStore } from '../../../../src/store';
 import { mapStateToProps } from '../../../../src/components/organisms/FullCertificate/FullCertificateContainer';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';

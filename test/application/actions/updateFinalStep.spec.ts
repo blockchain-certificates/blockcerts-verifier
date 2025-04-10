@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach } from 'vitest';
 import { configureStore } from '../../../src/store';
 import { getFinalStep } from '../../../src/selectors/certificate';
 import updateFinalStep from '../../../src/actions/updateFinalStep';

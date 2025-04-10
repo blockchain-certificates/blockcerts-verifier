@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import getRenderString from '../../../src/helpers/getRenderString';
 import { html } from 'lit-html';
 

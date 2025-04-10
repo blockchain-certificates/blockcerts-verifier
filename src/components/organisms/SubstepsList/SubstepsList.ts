@@ -22,7 +22,7 @@ class SubstepsList extends LitElement {
     // 2 properties below are a trick to manage the force opening without triggering contempt from LitElement
     // one allows us to know we have forced an opening
     // the second one allows us to make sure isOpen is at the correct state.
-    // We can't modify isOpen directly otherwise we get console poluted with warnings.
+    // We can't modify isOpen directly otherwise we get console polluted with warnings.
     this.wasForcedOpen = false;
     this.resetOpen = false;
     this.toggleOpen = this.toggleOpen.bind(this);

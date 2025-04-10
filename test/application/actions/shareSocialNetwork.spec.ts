@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import * as CERTIFICATE_EVENTS from '../../../src/constants/certificateEvents';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
 import certificateFixture from '../../fixtures/v2/valid-certificate-example.json';

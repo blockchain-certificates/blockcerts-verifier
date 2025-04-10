@@ -1,5 +1,4 @@
-import sinon from 'sinon';
-import * as litUnsafeHTML from 'lit-html/lib/unsafe-html.js';
+import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
 import { FullCertificateComponent, FullCertificate } from '../../../../src/components/organisms/FullCertificate/FullCertificate';
 import { assertStringInValues } from '../helpers/assertStringValues';
 
@@ -39,6 +38,7 @@ describe('FullCertificate wrapper function test suite', function () {
     });
   });
 });
+
 describe('FullCertificate component test suite', function () {
   describe('_render method', function () {
     describe('given there is no certificate definition', function () {
@@ -55,12 +55,16 @@ describe('FullCertificate component test suite', function () {
       beforeEach(function () {
         instance = new FullCertificateComponent();
         // call through unsafeHTML directive
-        sinon.stub(litUnsafeHTML, 'unsafeHTML').callsFake(str => str);
+        vi.mock('lit-html/lib/unsafe-html.js', () => {
+          return {
+            unsafeHTML: (str) => str
+          };
+        });
       });
 
       afterEach(function () {
         instance = null;
-        sinon.restore();
+        vi.restoreAllMocks();
       });
 
       it('should render the displayHTML property', function () {

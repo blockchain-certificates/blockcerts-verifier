@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import urlToLink from '../../../src/helpers/urlToLink';
 
 const TARGET_BLANK = 'target="_blank"';

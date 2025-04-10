@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeAll } from 'vitest';
 import domain from '../../../../../src/domain';
 import validCertificate from '../../../../fixtures/v2/valid-certificate-example.json';
 
@@ -59,7 +60,7 @@ describe('domain certificates retrieve method test suite', function () {
   // failing, issue opened:
   // https://github.com/bitinn/node-fetch/issues/481
   // https://github.com/matthew-andrews/isomorphic-fetch/issues/76#issuecomment-402784514
-  xdescribe('given a valid local path', function () {
+  describe.skip('given a valid local path', function () {
     it('fetches the json format from that path', async function () {
       const result = await domain.certificates.retrieve(VALID_LOCAL_PATH);
       expect(result).toEqual(validCertificate);

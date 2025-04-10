@@ -1,10 +1,10 @@
+import { describe, expect, it, beforeAll, afterAll, vi } from 'vitest';
 import getPDFCoverPage from '../../../src/helpers/getPDFCoverPage';
 import COVER_PAGE_ALL_ELEMENTS from './fixtures/fixture-cover-page-all-elements';
 import COVER_PAGE_NO_CERTIFICATE_TITLE from './fixtures/fixture-cover-page-no-certificate-title';
 import COVER_PAGE_NO_ISSUER_LOGO from './fixtures/fixture-cover-page-no-issuer-logo';
 import COVER_PAGE_NO_QR_CODE from './fixtures/fixture-cover-page-no-qr-code';
 import * as BlockcertsLogoComponent from '../../../src/components/atoms/BlockcertsLogo/BlockcertsLogo';
-import sinon from 'sinon';
 import { html } from 'lit-html';
 
 const mockCertificateTitle = 'mock certificate title';
@@ -18,15 +18,13 @@ const mockIssuerPublicDomain: string[] = ['blockcerts.org'];
 const mockIssuerPublicUrl: string[] = ['https://blockcerts.org'];
 
 describe('getPDFCoverPage function', function () {
-  let stubLogoFunction: sinon.SinonStub;
-
-  beforeEach(function () {
+  beforeAll(function () {
     // Stubbing the logo helper since it doesn't render variables
-    stubLogoFunction = sinon.stub(BlockcertsLogoComponent, 'logoWithBranding').returns(html`<img src>`);
+    vi.spyOn(BlockcertsLogoComponent, 'logoWithBranding').mockReturnValue(html`<img src>`);
   });
 
-  afterEach(function () {
-    stubLogoFunction.restore();
+  afterAll(function () {
+    vi.resetAllMocks();
   });
 
   describe('given all the Blockcerts info is passed', function () {

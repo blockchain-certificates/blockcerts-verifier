@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import {
   getCertificateDescription,
   getCertificateTitle,

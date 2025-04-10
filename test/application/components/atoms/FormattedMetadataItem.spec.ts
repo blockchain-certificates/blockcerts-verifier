@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import FormattedMetadataItem from '../../../../src/components/atoms/FormattedMetadataItem/FormattedMetadataItem';
 
 const FIXTURE_VALUE = 'http://a.dummy.link';

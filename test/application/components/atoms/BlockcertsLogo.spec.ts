@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import BlockcertsLogo from '../../../../src/components/atoms/BlockcertsLogo/BlockcertsLogo';
 import { assertClassInStringBits } from '../helpers/assertStringValues';
 

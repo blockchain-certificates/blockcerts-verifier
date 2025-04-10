@@ -1,8 +1,9 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import getOrdinalNumber from '../../../src/i18n/getOrdinalNumber';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 
 // language is not officially enabled, see `getSupportedLanguages` file. Translation is also incomplete
-xdescribe('i18n getOrdinalNumber test suite', function () {
+describe.skip('i18n getOrdinalNumber test suite', function () {
   beforeEach(function () {
     currentLocale.locale = 'mt';
   });

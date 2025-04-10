@@ -1,10 +1,11 @@
+import { describe, expect, it, beforeEach } from 'vitest';
 import getImageSize from '../../../src/helpers/getImageSize';
 import type { TElementSize } from '../../../src/helpers/getHTMLElementSize';
 
 class MockImage {
   width;
   height;
-   
+
   onload (): any {}
 
   constructor () {

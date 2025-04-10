@@ -1,3 +1,4 @@
+import { describe, expect, it} from 'vitest';
 import toBase64 from '../../../src/helpers/base64';
 
 describe('toBase64 function', function () {

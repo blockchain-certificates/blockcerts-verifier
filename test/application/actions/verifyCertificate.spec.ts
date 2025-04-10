@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach, beforeAll, afterAll } from 'vitest';
 import { configureStore } from '../../../src/store';
 import verifyCertificate from '../../../src/actions/verifyCertificate';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
@@ -88,7 +89,7 @@ describe('verifyCertificate action creator test suite', function () {
           const state = store.getState();
           expect(getFinalStep(state)).toEqual({
             label: 'Verified',
-             
+
             description: 'This is a valid ${chain} certificate.',
             linkText: 'View transaction link'
           });
