@@ -6,7 +6,6 @@
     "target": "es6",
     "lib": ["esNext", "dom"],
     "emitDecoratorMetadata": true,
-    "importsNotUsedAsValues": "error",
     "ignoreDeprecations": "5.0",
     "experimentalDecorators": true,
     "moduleResolution": "node",
