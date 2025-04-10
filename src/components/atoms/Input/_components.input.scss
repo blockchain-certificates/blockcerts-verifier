@@ -1,8 +1,8 @@
-@import '../../../shared-styles/settings.variables';
+@use '../../../shared-styles/settings/variables';
 
 .buv-c-input {
   font-size: 15px;
-  color: $fontColor;
+  color: variables.$fontColor;
   border-radius: 2px 0 0 2px;
   padding: 12px 15px;
   background-color: rgb(243 244 245 / 600%);
@@ -21,4 +21,4 @@
   letter-spacing: -.25px;
 }
 
-@import '../../../shared-styles/utils.a11y';
+@import '../../../shared-styles/utils/a11y';

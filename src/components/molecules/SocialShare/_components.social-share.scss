@@ -1,7 +1,7 @@
-@import '../../../shared-styles/objects.text';
-@import '../../../shared-styles/objects.button-link';
-@import '../../../shared-styles/objects.link';
-@import '../../../shared-styles/objects.overlay';
+@use '../../../shared-styles/objects/text';
+@use '../../../shared-styles/objects/button-link';
+@use '../../../shared-styles/objects/link';
+@use '../../../shared-styles/objects/overlay';
 
 .buv-c-social-share-link {
   width: 17px;
@@ -44,4 +44,4 @@
   text-decoration: none;
 }
 
-@import '../../../shared-styles/utils.a11y';
+@import '../../../shared-styles/utils/a11y';

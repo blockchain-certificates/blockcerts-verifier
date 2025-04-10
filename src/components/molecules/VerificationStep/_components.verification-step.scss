@@ -1,6 +1,6 @@
-@import '../../../shared-styles/settings.variables';
-@import '../../../shared-styles/objects.text';
-@import '../../../shared-styles/components.badge';
+@use '../../../shared-styles/settings/variables';
+@use '../../../shared-styles/objects/text';
+@use '../../../shared-styles/components/badge';
 
 .buv-c-verification-step {
   position: relative;
@@ -50,7 +50,7 @@
 }
 
 .buv-c-verification-step.is-success::after {
-  border: solid $successColor;
+  border: solid variables.$successColor;
   border-width: 0 2px 2px 0;
   left: -29px;
   width: 5px;
@@ -59,7 +59,7 @@
 }
 
 .buv-c-verification-step.is-success.is-test::after {
-  border-color: $fontColor;
+  border-color: variables.$fontColor;
 }
 
 .buv-c-verification-step.is-failure::after {
@@ -67,7 +67,7 @@
   left: -32px;
   top: -1px;
   font-size: 11px;
-  color: $errorColor;
+  color: variables.$errorColor;
 }
 
 @supports (-ms-ime-align: auto) {

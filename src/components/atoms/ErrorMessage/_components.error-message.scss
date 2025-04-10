@@ -1,7 +1,7 @@
-@import '../../../shared-styles/settings.variables';
+@use '../../../shared-styles/settings/variables';
 
 .buv-c-error-message {
-  background: $errorBackgroundColor;
+  background: variables.$errorBackgroundColor;
   border-radius: 2px;
   letter-spacing: .05px;
   padding: 10px;
@@ -14,7 +14,7 @@
 }
 
 .buv-c-error-message-title {
-  color: $errorColor;
+  color: variables.$errorColor;
   font-weight: bold;
   display: block;
   margin-bottom: 5px;

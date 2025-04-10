@@ -1,4 +1,4 @@
-@import  '../../../shared-styles/settings.variables';
+@use '../../../shared-styles/settings/variables';
 
 .buv-c-verification-modal__process {
   display: flex;
@@ -19,7 +19,7 @@
   box-sizing: border-box;
   overflow: auto;
 
-  @media only screen and (max-width: $modalMaxDimension) {
+  @media only screen and (max-width: variables.$modalMaxDimension) {
     // vh does not work with border-box?
     max-height: calc(100vh - 120px);
   }

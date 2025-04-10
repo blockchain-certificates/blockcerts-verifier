@@ -1,4 +1,4 @@
-@import '../../../shared-styles/settings.variables';
+@use '../../../shared-styles/settings/variables';
 
 .buv-c-verification-process {
   position: relative;
@@ -17,7 +17,7 @@
 .buv-c-verification-progress-bar__tube {
   min-height: 14px;
   transition: flex .4s ease-in-out, max-height .4s ease-in;
-  background-color: $successColor;
+  background-color: variables.$successColor;
   border-radius: 7px;
   flex-grow: 0;
   opacity: 0;
@@ -33,7 +33,7 @@
 }
 
 .buv-c-verification-progress-bar__tube.has-errored {
-  background-color: $errorColor;
+  background-color: variables.$errorColor;
 }
 
 .buv-c-verification-progress-bar.no-transition {
@@ -45,4 +45,4 @@
   margin-top: 0;
 }
 
-@import '../../../shared-styles/utils.a11y';
+@import '../../../shared-styles/utils/a11y';

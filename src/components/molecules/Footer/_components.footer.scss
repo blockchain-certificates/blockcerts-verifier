@@ -1,11 +1,11 @@
-@import '../../../shared-styles/settings.variables';
-@import '../../../shared-styles/objects.text';
+@use '../../../shared-styles/settings/variables';
+@use '../../../shared-styles/objects/text';
 
 .buv-c-footer {
   width: 100%;
   height: 60px;
-  background-color: $footerBackground;
-  color: $fontColor;
+  background-color: variables.$footerBackground;
+  color: variables.$fontColor;
   fill: #111;
   display: flex;
   justify-content: space-between;

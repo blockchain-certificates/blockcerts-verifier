@@ -1,5 +1,5 @@
-@import '../../../shared-styles/objects.link';
-@import '../../../shared-styles/objects.button-link';
+@use '../../../shared-styles/objects/link';
+@use '../../../shared-styles/objects/button-link';
 
 .buv-c-download-pdf-link {
   padding: 0;
@@ -37,4 +37,4 @@
   }
 }
 
-@import '../../../shared-styles/utils.a11y';
+@import '../../../shared-styles/utils/a11y';
