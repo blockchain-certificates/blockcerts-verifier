@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
     "target": "es6",
@@ -23,6 +23,7 @@
   ],
   "exclude": [
     "dist",
+    "dev",
     "sanitizer",
     "src/**/**-css.js"
   ]
