@@ -51,7 +51,7 @@ export class FullCertificateComponent extends LitElement {
     prevProps: IFullScreenCertificateAPI
   ): boolean {
     // we actually want to re rerender when the hasCertificateDefinition flag is set to false (ie: verify new record)
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-boolean-literal-compare
+     
     return !!changedProps?.displayHTML || changedProps?.hasCertificateDefinition === false;
   }
 

@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import { addImageToPDF, getPageOrientation, savePDF } from '../../../src/helpers/jspdf';
 import type { ImageCompression } from 'jspdf';
 import type jsPDF from 'jspdf';

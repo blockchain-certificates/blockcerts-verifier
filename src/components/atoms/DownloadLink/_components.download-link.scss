@@ -1,4 +1,4 @@
-@import '../../../shared-styles/objects.button-link';
+@use '../../../shared-styles/objects/button-link';
 
 .buv-c-download-link {
   text-decoration: none;
@@ -16,4 +16,4 @@
   pointer-events: none;
 }
 
-@import '../../../shared-styles/utils.a11y';
+@import '../../../shared-styles/utils/a11y';

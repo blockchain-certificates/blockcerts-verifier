@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { configureStore } from '../../../../src/store';
 import updateFinalStep from '../../../../src/actions/updateFinalStep';
 import { mapStateToProps } from '../../../../src/components/atoms/FinalVerificationStep/FinalVerificationStepContainer';

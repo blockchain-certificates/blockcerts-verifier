@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { configureStore } from '../../../src/store';
 import { getShowVerificationModal, getVerificationStatus } from '../../../src/selectors/verification';
 import startVerificationProcess from '../../../src/actions/startVerificationProcess';

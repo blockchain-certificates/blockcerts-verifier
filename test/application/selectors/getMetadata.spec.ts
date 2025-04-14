@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import { getMetadata } from '../../../src/selectors/certificate';
 import { configureStore } from '../../../src/store';
 import getInitialState from '../../../src/store/getInitialState';

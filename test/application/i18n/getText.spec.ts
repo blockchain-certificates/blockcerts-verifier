@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 import getText from '../../../src/i18n/getText';
 
@@ -42,7 +43,7 @@ describe('domain i18n getText use case test suite', function () {
 
   describe('given the current locale does not exist in the i18n data', function () {
     // TODO: is test relevant if we ensure the locale exists?
-    xit('should return an error', function () {
+    it.skip('should return an error', function () {
       currentLocale.locale = 'fr-FR';
       const res = getText('group', 'item');
       expect(res).toBe('[missing locale data]');

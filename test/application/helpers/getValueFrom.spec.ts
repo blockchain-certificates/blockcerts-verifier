@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import getValueFrom from '../../../src/helpers/getValueFrom';
 
 describe('getValueFrom method', function () {
@@ -41,6 +42,7 @@ describe('getValueFrom method', function () {
       expect(getValueFrom(list, entry)).toBe(testValue);
     });
   });
+
   describe('when the key value pair is not defined', function () {
     it('should return undefined in the first level', function () {
       const testValue = 'testValue';

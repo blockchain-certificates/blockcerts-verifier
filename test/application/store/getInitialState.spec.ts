@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import getInitialState from '../../../src/store/getInitialState';
 import { getVerifiedSteps } from '../../../src/selectors/certificate';
 import { getDisableDownloadPdf, getDisplayMode, getTheme } from '../../../src/selectors/api';

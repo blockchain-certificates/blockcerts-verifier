@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import type { TCSSPropertiesObject } from '../../../src/helpers/cssProperties';
 import addCSSPropertiesToHTMLElement from '../../../src/helpers/cssProperties';
 

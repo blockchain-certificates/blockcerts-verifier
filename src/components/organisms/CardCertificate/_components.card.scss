@@ -1,5 +1,6 @@
-@import '../../../shared-styles/objects.link';
-@import '../../../shared-styles/objects.text';
+@use '../../../shared-styles/settings/variables';
+@use '../../../shared-styles/objects/link';
+@use '../../../shared-styles/objects/text';
 
 .buv-c-card {
   position: relative;
@@ -74,7 +75,7 @@
   float: right;
 }
 
-@media only screen and (max-width: $modalMaxDimension) {
+@media only screen and (max-width: variables.$modalMaxDimension) {
   .buv-c-card__title {
     font-size: 16px;
   }

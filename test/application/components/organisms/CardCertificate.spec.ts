@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import CardCertificate from '../../../../src/components/organisms/CardCertificate/CardCertificate';
 import { assertClassInStringBits, assertStringInValues } from '../helpers/assertStringValues';
 

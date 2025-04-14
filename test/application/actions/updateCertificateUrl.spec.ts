@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach, beforeAll, afterAll } from 'vitest';
 import { configureStore } from '../../../src/store';
 import updateCertificateUrl from '../../../src/actions/updateCertificateUrl';
 import { getCertificateUrl, getUrlIsValid } from '../../../src/selectors/input';
@@ -105,7 +106,7 @@ describe('updateCertificateUrl action creator test suite', function () {
   // failing, issue opened:
   // https://github.com/bitinn/node-fetch/issues/481
   // https://github.com/matthew-andrews/isomorphic-fetch/issues/76#issuecomment-402784514
-  xdescribe('given it is dispatched with a valid local path', function () {
+  describe.skip('given it is dispatched with a valid local path', function () {
     let store;
 
     beforeEach(async function () {

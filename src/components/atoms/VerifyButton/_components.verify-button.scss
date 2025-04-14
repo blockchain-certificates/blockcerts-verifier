@@ -1,4 +1,4 @@
-@import '../../../shared-styles/settings.variables';
+@use '../../../shared-styles/settings/variables';
 
 $mainColor: #2ab27b;
 $secondaryColor: #fff;
@@ -31,7 +31,7 @@ $secondaryColor: #fff;
 
 .buv-c-verify-button--link {
   background: none;
-  color: $fontColor;
+  color: variables.$fontColor;
   border: 0;
   text-decoration: underline;
   padding: 0;

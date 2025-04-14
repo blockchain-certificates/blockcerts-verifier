@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { configureStore } from '../../../src/store';
 import getInitialState from '../../../src/store/getInitialState';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
@@ -149,7 +150,10 @@ describe('updateCertificateDefinition action creator test suite', function () {
       describe('given no locale has been set as an option', function () {
         it('should pass the locale set to auto', async function () {
           await store.dispatch(updateCertificateDefinition(certificateFixture));
-          expect((global as any).domainParseStub.firstCall.args[1].locale).toBe(undefined);
+          const assertionOptions = {
+            locale: undefined
+          };
+          expect((global as any).domainParseStub).toHaveBeenCalledWith(certificateFixture, assertionOptions);
         });
       });
 
@@ -157,7 +161,10 @@ describe('updateCertificateDefinition action creator test suite', function () {
         it('should pass the locale set to auto', async function () {
           store.dispatch(initialize({ locale: 'auto' }));
           await store.dispatch(updateCertificateDefinition(certificateFixture));
-          expect((global as any).domainParseStub.firstCall.args[1].locale).toBe('auto');
+          const assertionOptions = {
+            locale: 'auto'
+          };
+          expect((global as any).domainParseStub).toHaveBeenCalledWith(certificateFixture, assertionOptions);
         });
       });
 
@@ -165,7 +172,10 @@ describe('updateCertificateDefinition action creator test suite', function () {
         it('should pass the locale set accordingly', async function () {
           store.dispatch(initialize({ locale: 'fr' }));
           await store.dispatch(updateCertificateDefinition(certificateFixture));
-          expect((global as any).domainParseStub.firstCall.args[1].locale).toBe('fr');
+          const assertionOptions = {
+            locale: 'fr'
+          };
+          expect((global as any).domainParseStub).toHaveBeenCalledWith(certificateFixture, assertionOptions);
         });
       });
     });
@@ -181,7 +191,7 @@ describe('updateCertificateDefinition action creator test suite', function () {
         };
         store.dispatch(initialize(fixtureOptions));
         await store.dispatch(updateCertificateDefinition(certificateFixture));
-        expect((global as any).domainParseStub.firstCall.args[1].explorerAPIs).toEqual(fixtureOptions.explorerAPIs);
+        expect((global as any).domainParseStub).toHaveBeenCalledWith(certificateFixture, fixtureOptions);
       });
     });
 
@@ -190,7 +200,10 @@ describe('updateCertificateDefinition action creator test suite', function () {
         const didResolverUrl = 'https://resolver.blockcerts.org';
         store.dispatch(initialize({ didResolverUrl }));
         await store.dispatch(updateCertificateDefinition(certificateFixture));
-        expect((global as any).domainParseStub.firstCall.args[1].didResolverUrl).toBe(didResolverUrl);
+        const assertionOptions: CertificateOptions = {
+          didResolverUrl
+        };
+        expect((global as any).domainParseStub).toHaveBeenCalledWith(certificateFixture, assertionOptions);
       });
     });
   });

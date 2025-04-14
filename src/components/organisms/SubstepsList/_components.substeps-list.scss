@@ -1,5 +1,5 @@
-@import '../../../shared-styles/objects.text';
-@import '../../../shared-styles/objects.link';
+@use '../../../shared-styles/objects/text';
+@use '../../../shared-styles/objects/link';
 
 .buv-c-substeps-list__link::after {
   content: '';

@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { configureStore } from '../../../src/store';
 import { getCertificateDefinition, getVerifiedSteps } from '../../../src/selectors/certificate';
 import resetCertificateDefinition from '../../../src/actions/resetCertificateDefinition';

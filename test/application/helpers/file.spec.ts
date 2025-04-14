@@ -1,4 +1,4 @@
-import sinon from 'sinon';
+import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
 import { forceDownloadFile, getFileExtensionFromContentType } from '../../../src/helpers/file';
 import { CONTENT_MEDIA_TYPES } from '../../../src/constants/contentTypes';
 
@@ -10,17 +10,17 @@ describe('forceDownloadFile function', function () {
   const mockExtension = 'pdf';
 
   let mockElement;
-  let spy;
-  let spyClick: sinon.SinonSpy;
+  let spyCreateElement;
+  let spyClick;
   beforeEach(function () {
-    spy = jest.spyOn(document, 'createElement');
+    spyCreateElement = vi.spyOn(document, 'createElement');
     mockElement = document.createElement('a');
-    spyClick = sinon.spy(mockElement, 'click');
-    spy.mockReturnValue(mockElement);
+    spyClick = vi.spyOn(mockElement, 'click');
+    spyCreateElement.mockReturnValue(mockElement);
   });
 
   afterEach(function () {
-    spyClick.restore();
+    vi.restoreAllMocks();
     mockElement = null;
   });
 
@@ -45,7 +45,7 @@ describe('forceDownloadFile function', function () {
 
   it('the link element should be clicked', function () {
     forceDownloadFile(mockContent, mockContentType, mockContentEncoding, mockFilename, mockExtension);
-    expect(spyClick.calledOnce).toBe(true);
+    expect(spyClick).toHaveBeenCalledOnce();
   });
 });
 

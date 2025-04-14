@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import domain from '../../../../../src/domain';
 
 describe('domain certificates isPathToCertificateValidURI method test suite', function () {

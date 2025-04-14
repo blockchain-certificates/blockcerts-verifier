@@ -27,10 +27,10 @@ export default function initialize (options = {}): ThunkAction<void, BlockcertsV
     });
 
     if (domain.certificates.isPathToCertificateValidURI(src)) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+       
       dispatch(updateCertificateUrl(src));
     } else if (isJson(src)) {
-      // eslint-disable-next-line @typescript-eslint/no-floating-promises
+       
       dispatch(updateCertificateDefinition(JSON.parse(src)));
     }
 

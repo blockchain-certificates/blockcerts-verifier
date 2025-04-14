@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach } from 'vitest';
 import domain from '../../../../../src/domain';
 import certificateFixtureNoWidthConstraint from '../../../../fixtures/v2/valid-certificate-example.json';
 import certificateFixtureWidthConstraint from '../../../../fixtures/v2/mainnet-valid-2.0-with-width-constraint.json';

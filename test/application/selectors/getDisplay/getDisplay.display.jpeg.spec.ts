@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import { getDisplayAsHTML } from '../../../../src/selectors/certificate';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import v3FixtureWithPng from '../../../fixtures/v3/testnet-v3-beta-display-png.json';
@@ -41,7 +42,7 @@ describe('getDisplayAsHTML selector', function () {
       it('should return the display image as coded into the document', async function () {
         await store.dispatch(updateCertificateDefinition(v3FixtureWithImage));
         const state = store.getState();
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+
         expect(getDisplayAsHTML(state)).toBe(`<img src="data:image/jpeg;base64,${v3FixtureWithImage.display.content}"/>`);
       });
     });

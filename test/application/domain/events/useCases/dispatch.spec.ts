@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import sinon from 'sinon';
 import domain from '../../../../../src/domain';
 import certificateFixture from '../../../../fixtures/v2/valid-certificate-example.json';

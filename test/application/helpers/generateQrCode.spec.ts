@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import generateQrCode from '../../../src/helpers/generateQrCode';
 import assertionQrCode from './assertions/assertion-qr-code';
 

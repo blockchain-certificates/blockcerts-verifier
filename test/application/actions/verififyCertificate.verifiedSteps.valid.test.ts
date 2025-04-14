@@ -1,3 +1,4 @@
+import { describe, expect, it, vi } from 'vitest';
 import { getVerifiedSteps } from '../../../src/selectors/certificate';
 import { configureStore } from '../../../src/store';
 import updateCertificateDefinition from '../../../src/actions/updateCertificateDefinition';
@@ -12,14 +13,14 @@ describe('verifyCertificate action creator test suite', function () {
       stubCertificateVerify(validCertificateFixture);
 
       it('should store the different steps in the state', async function () {
-        jest.useFakeTimers();
+        vi.useFakeTimers();
         const store = configureStore();
         store.dispatch(updateCertificateDefinition(validCertificateFixture) as any);
         await store.dispatch(verifyCertificate() as any);
-        jest.runAllTimers();
+        vi.runAllTimers();
         const state = store.getState();
         expect(getVerifiedSteps(state)).toEqual(validCertificateStepsAssertions);
-        jest.useRealTimers();
+        vi.useRealTimers();
       });
     });
   });

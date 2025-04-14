@@ -1,3 +1,4 @@
+import { describe, expect, it } from 'vitest';
 import getOrdinalNumber from '../../../src/i18n/getOrdinalNumber';
 
 describe('i18n getOrdinalNumber test suite', function () {

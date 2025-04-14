@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable @typescript-eslint/no-require-imports */
 const { createDefaultConfig } = require('@open-wc/testing-karma');
 const merge = require('deepmerge');
 

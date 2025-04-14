@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import getOrdinalNumber from '../../../src/i18n/getOrdinalNumber';
 import currentLocale from '../../../src/i18n/valueObjects/currentLocale';
 

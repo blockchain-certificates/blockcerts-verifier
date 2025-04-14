@@ -1,6 +1,6 @@
-@import '../../../shared-styles/settings.variables';
-@import '../../../shared-styles/objects.text';
-@import '../../../shared-styles/components.certificate';
+@use '../../../shared-styles/settings/variables';
+@use '../../../shared-styles/objects/text';
+@use '../../../shared-styles/components/certificate';
 
 .buv-c-fullscreen-certificate {
   z-index: 200;
@@ -13,7 +13,7 @@
   overflow: auto;
   box-sizing: border-box;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     padding-top: 180px; // header height + verification status
   }
 }
@@ -23,7 +23,7 @@
   width: 100%;
   background-color: #fff;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     position: fixed;
     top: 0;
     z-index: 10;
@@ -38,7 +38,7 @@
   position: relative;
   box-sizing: border-box;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     flex-direction: column;
     justify-content: left;
     align-items: unset;
@@ -65,7 +65,7 @@
   max-width: 1440px;
   margin: 20px auto 0;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     flex-direction: column-reverse;
     margin-top: 0;
   }
@@ -79,7 +79,7 @@
   min-width: 220px;
   margin-right: 20px;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     max-width: 100vw;
     margin: 20px 0 0;
   }
@@ -88,7 +88,7 @@
 .buv-c-fullscreen-certificate__verification-status {
   margin-bottom: 15px;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     position: absolute;
     top: 100px;
     width: calc(100% - 40px); // 40px is buv-c-fullscreen-certificate__content padding
@@ -121,7 +121,7 @@
   min-width: 600px;
   line-height: initial;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     min-width: unset;
     width: 100%;
     overflow: auto;

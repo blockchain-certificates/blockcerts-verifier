@@ -1,7 +1,7 @@
-@import '../../../shared-styles/settings.variables';
-@import '../../../shared-styles/objects.link';
-@import '../../../shared-styles/objects.text';
-@import '../../molecules/VerificationStep/components.verification-step';
+@use '../../../shared-styles/settings/variables';
+@use '../../../shared-styles/objects/link';
+@use '../../../shared-styles/objects/text';
+@use '../../molecules/VerificationStep/components.verification-step';
 
 .buv-c-final-verification-step {
   white-space: nowrap;
@@ -9,20 +9,20 @@
   position: relative;
   font-weight: 600;
   font-size: 15px;
-  color: $fontColor;
+  color: variables.$fontColor;
   margin-top: 15px;
 }
 
 .buv-c-final-verification-step.is-success {
   font-size: 21px;
-  color: $successColor;
+  color: variables.$successColor;
   line-height: 19px;
 }
 
 .buv-c-final-verification-step.is-test,
 .buv-c-final-verification-step--standalone.is-success {
   font-size: 15px;
-  color: $fontColor;
+  color: variables.$fontColor;
 }
 
 .buv-c-final-verification-step.is-failure {
@@ -64,7 +64,7 @@
   content: '\274C';
   font-size: 17px;
   top: -1px;
-  color: $errorColor;
+  color: variables.$errorColor;
   background: none;
 }
 
@@ -76,18 +76,18 @@
 }
 
 .buv-c-final-verification-step--standalone-wrapper.is-success {
-  background-color: $successBackgroundColor;
-  border-color: $successColor;
+  background-color: variables.$successBackgroundColor;
+  border-color: variables.$successColor;
 }
 
 .buv-c-final-verification-step--standalone-wrapper.is-failure {
-  background-color: $errorBackgroundColor;
-  border-color: $errorColor;
+  background-color: variables.$errorBackgroundColor;
+  border-color: variables.$errorColor;
 }
 
 .buv-c-final-verification-step--standalone-wrapper.is-test {
-  background-color: $testBackgroundColor;
-  border-color: $testColor;
+  background-color: variables.$testBackgroundColor;
+  border-color: variables.$testColor;
 }
 
 .buv-c-final-verification-step--standalone {
@@ -143,5 +143,5 @@
   height: auto;
 }
 
-@import '../../../shared-styles/utils.flow';
-@import '../../../shared-styles/utils.width';
+@import '../../../shared-styles/utils/flow';
+@import '../../../shared-styles/utils/width';

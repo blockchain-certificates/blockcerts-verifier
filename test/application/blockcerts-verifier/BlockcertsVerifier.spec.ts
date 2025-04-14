@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import sinon from 'sinon';
 import { SourceComponent as BlockcertsVerifier } from '../../../src/blockcerts-verifier/BlockcertsVerifier';
 

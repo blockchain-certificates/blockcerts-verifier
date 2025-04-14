@@ -16,7 +16,7 @@ describe('BlockcertsVerifier verification modal test suite', function () {
           .querySelectorAll('buv-verification-modal')[0].shadowRoot
           .querySelectorAll('buv-modal')[0];
 
-        // eslint-disable-next-line no-void
+         
         void expect(modalElement.classList.contains('qa-isopen-true')).to.be.true;
       });
     });

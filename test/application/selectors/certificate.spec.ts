@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeAll, afterAll, beforeEach, afterEach } from 'vitest';
 import {
   getCertificateDescription,
   getCertificateImage, getCertificateSeal,
@@ -468,7 +469,7 @@ describe('certificate selectors test suite', function () {
       });
     });
 
-    xdescribe('given the certificate chain is Ethereum Ropsten', function () {
+    describe.skip('given the certificate chain is Ethereum Ropsten', function () {
       // TODO: issuer profile not available anymore. Use newer issuance.
       const signersObjectForFixture: Signers[] = [
         {
@@ -541,7 +542,7 @@ describe('certificate selectors test suite', function () {
       });
     });
 
-    xdescribe('given the certificate chain is Ethereum Main', function () {
+    describe.skip('given the certificate chain is Ethereum Main', function () {
       // TODO: issuer profile not available anymore. Use newer issuance.
       const signersObjectForFixture = [
         {

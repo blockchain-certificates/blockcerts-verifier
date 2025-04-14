@@ -239,11 +239,11 @@ export function getV3DisplayHtml (certificateDefinition): string {
       case CONTENT_MEDIA_TYPES.IMAGE_JPEG:
       case CONTENT_MEDIA_TYPES.IMAGE_GIF:
       case CONTENT_MEDIA_TYPES.IMAGE_BMP:
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+         
         return `<img src="data:${getDisplayContentMediaType(display)};${getDisplayContentEncoding(display)},${getDisplayContent(display)}"/>`;
 
       case CONTENT_MEDIA_TYPES.APPLICATION_PDF:
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+         
         return `<embed width="100%" height="100%" type="application/pdf" src="data:${getDisplayContentMediaType(display)};${getDisplayContentEncoding(display)},${getDisplayContent(display)}"/>`;
 
       default:

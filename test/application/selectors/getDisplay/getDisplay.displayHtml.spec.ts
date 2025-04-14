@@ -1,3 +1,4 @@
+import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import { getDisplayAsHTML } from '../../../../src/selectors/certificate';
 import updateCertificateDefinition from '../../../../src/actions/updateCertificateDefinition';
 import v2Fixture from '../../../fixtures/v2/valid-certificate-example.json';

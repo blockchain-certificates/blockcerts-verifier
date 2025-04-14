@@ -1,4 +1,4 @@
-import sinon from 'sinon';
+import { beforeEach, afterEach, vi } from 'vitest';
 import { Certificate, retrieveBlockcertsVersion, VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 import { Certificate as CertificateV1 } from '@blockcerts/cert-verifier-js-v1-legacy';
 import domain from '../../../src/domain';
@@ -19,7 +19,6 @@ function validVerifyStub (stepsCb: () => any): any {
     status: VERIFICATION_STATUSES.SUCCESS,
     message: {
       label: 'Verified',
-      // eslint-disable-next-line no-template-curly-in-string
       description: 'This is a valid ${chain} certificate.',
       linkText: 'View transaction link'
     }
@@ -43,8 +42,6 @@ export default function stubCertificateVerify (certificateFixture: Blockcerts, s
 
   const fixtureVersion: BlockcertsVersion = retrieveBlockcertsVersion(certificateFixture['@context']);
 
-  let domainParseStub;
-
   beforeEach(async function () {
     let parsedCertificate;
     if (fixtureVersion.versionNumber === 1) {
@@ -53,17 +50,19 @@ export default function stubCertificateVerify (certificateFixture: Blockcerts, s
       parsedCertificate = new Certificate(certificateFixture);
     }
     await parsedCertificate.init();
-    domainParseStub = sinon.stub(domain.certificates, 'parse').returns({
+
+    const domainParseStub = vi.spyOn(domain.certificates, 'parse')
+    domainParseStub.mockReturnValue({
       certificateDefinition: {
         ...parsedCertificate,
         verify: valid ? validVerifyStub : invalidVerifyStub,
         signers
       }
     });
-    global.domainParseStub = domainParseStub;
+    (global as any).domainParseStub = domainParseStub;
   });
 
   afterEach(function () {
-    domainParseStub.restore();
+    vi.restoreAllMocks();
   });
 }

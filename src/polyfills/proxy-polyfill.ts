@@ -38,7 +38,7 @@ export default function proxyPolyfill () {
     // Construct revoke function, and set lastRevokeFn so that Proxy.revocable can steal it.
     // The caller might get the wrong revoke function if a user replaces or wraps scope.Proxy
     // to call itself, but that seems unlikely especially when using the polyfill.
-    // eslint-disable-next-line @typescript-eslint/no-empty-function
+     
     let throwRevoked: (arg: any) => any = function () {};
     lastRevokeFn = function () {
       throwRevoked = function (trap: string) {

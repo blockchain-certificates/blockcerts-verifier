@@ -1,5 +1,5 @@
-@import '../../../shared-styles/settings.variables';
-@import '../../../shared-styles/objects.text';
+@use '../../../shared-styles/settings/variables';
+@use '../../../shared-styles/objects/text';
 
 .buv-c-certificate-details {
   display: flex;
@@ -7,7 +7,7 @@
   position: relative;
   padding-bottom: 60px;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     flex-direction: column;
     padding-bottom: 0;
   }
@@ -35,7 +35,7 @@
   max-width: 33%;
   margin-top: 0;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     max-width: 100%;
   }
 }
@@ -60,7 +60,7 @@
   position: absolute;
   bottom: 0;
 
-  @media only screen and (max-width: $breakpoint) {
+  @media only screen and (max-width: variables.$breakpoint) {
     position: initial;
     margin-top: 15px;
   }

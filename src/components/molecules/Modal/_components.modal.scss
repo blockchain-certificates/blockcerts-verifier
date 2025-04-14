@@ -1,5 +1,5 @@
-@import  '../../../shared-styles/settings.variables';
-@import '../../../shared-styles/objects.overlay';
+@use '../../../shared-styles/settings/variables';
+@use '../../../shared-styles/objects/overlay';
 
 .buv-c-modal {
   position: fixed;
@@ -22,12 +22,12 @@
   transform: translate(-50%, -50%);
   width: 100vw;
   min-width: 300px;
-  max-width: $modalMaxDimension;
-  min-height: calc(#{$modalMaxDimension} - 50px);
+  max-width: variables.$modalMaxDimension;
+  min-height: calc(#{variables.$modalMaxDimension} - 50px);
   padding: 49px 38px 98px;
   box-sizing: border-box;
 
-  @media only screen and (max-width: $modalMaxDimension) {
+  @media only screen and (max-width: variables.$modalMaxDimension) {
     height: 100vh;
     min-height: 100vh;
     top: 0;
