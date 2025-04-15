@@ -39,6 +39,7 @@
     "@rollup/plugin-replace": "^5.0.2",
     "@rollup/plugin-terser": "^0.4.3",
     "@rollup/plugin-typescript": "^11.1.1",
+    "@types/mocha": "^10.0.10",
     "@types/qrcode-svg": "^1.1.1",
     "@types/sinon": "^17.0.1",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
