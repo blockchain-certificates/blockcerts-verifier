@@ -68,7 +68,7 @@
     "build": "rimraf dist && rollup -c rollup.config.mjs",
     "build:sanitizer": "rollup -c rollup-sanitizer.config.mjs",
     "test": "npm run test:application",
-    "test:build": "npm run test:components:retrieve && polymer test; npm run test:karma",
+    "test:build": "npm run test:components:retrieve && polymer test; npm run test:e2e",
     "test:e2e": "tsc -p tsconfig-test.json && web-test-runner && npm run test:e2e:cleanup",
     "test:e2e:cleanup": "git clean -dfq",
     "test:application": "vitest run",
