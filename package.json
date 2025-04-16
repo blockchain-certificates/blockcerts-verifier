@@ -14,7 +14,7 @@
     "@blockcerts/cert-verifier-js": "^6.30.0",
     "@blockcerts/cert-verifier-js-v1-legacy": "^4.0.1",
     "@polymer/lit-element": "0.5.1",
-    "@polymer/polymer": "3.5.1",
+    "@polymer/polymer": "3.5.2",
     "@webcomponents/webcomponentsjs": "2.8.0",
     "autolinker": "^4.0.0",
     "cssfilter": "0.0.11",
