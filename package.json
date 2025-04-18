@@ -20,7 +20,7 @@
     "cssfilter": "0.0.11",
     "html-canvas": "^0.0.4",
     "jspdf": "^3.0.1",
-    "lit-html": "0.10.2",
+    "lit-html": "3.3.0",
     "proxy-polyfill": "^0.3.0",
     "pwa-helpers": "^0.8.4",
     "qrcode-svg": "^1.1.0",
