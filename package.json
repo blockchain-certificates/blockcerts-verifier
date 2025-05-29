@@ -55,7 +55,7 @@
     "rollup": "^4.22.4",
     "rollup-plugin-livereload": "^2.0.0",
     "rollup-plugin-serve": "^3.0.0",
-    "rollup-plugin-visualizer": "^5.9.2",
+    "rollup-plugin-visualizer": "^6.0.1",
     "semantic-release": "^24.2.3",
     "sinon": "^20.0.0",
     "stylelint": "^16.9.0",
