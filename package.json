@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@blockcerts/cert-verifier-js": "^6.34.0",
-    "@blockcerts/cert-verifier-js-v1-legacy": "^4.0.1",
+    "@blockcerts/cert-verifier-js-v1-legacy": "^4.0.2",
     "@polymer/lit-element": "0.5.1",
     "@polymer/polymer": "3.5.2",
     "@webcomponents/webcomponentsjs": "2.8.0",
