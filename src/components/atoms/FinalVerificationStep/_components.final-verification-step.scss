@@ -1,3 +1,4 @@
+@use 'sass:meta';
 @use '../../../shared-styles/settings/variables';
 @use '../../../shared-styles/objects/link';
 @use '../../../shared-styles/objects/text';
@@ -143,5 +144,5 @@
   height: auto;
 }
 
-@import '../../../shared-styles/utils/flow';
-@import '../../../shared-styles/utils/width';
+@include meta.load-css('../../../shared-styles/utils/flow');
+@include meta.load-css('../../../shared-styles/utils/width');

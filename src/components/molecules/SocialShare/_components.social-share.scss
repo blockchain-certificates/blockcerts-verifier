@@ -1,3 +1,4 @@
+@use 'sass:meta';
 @use '../../../shared-styles/objects/text';
 @use '../../../shared-styles/objects/button-link';
 @use '../../../shared-styles/objects/link';
@@ -44,4 +45,4 @@
   text-decoration: none;
 }
 
-@import '../../../shared-styles/utils/a11y';
+@include meta.load-css('../../../shared-styles/utils/a11y');

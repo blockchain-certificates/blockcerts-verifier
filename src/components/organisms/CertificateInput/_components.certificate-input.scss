@@ -1,4 +1,4 @@
-@import '../../../shared-styles/settings/variables';
+@use '../../../shared-styles/settings/variables' as *;
 
 .buv-c-certificate-input {
   display: flex;
