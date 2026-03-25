@@ -1,3 +1,5 @@
+@use 'sass:meta';
+
 // cf https://codepen.io/ndeniche/pen/ljbDL
 .buv-c-close-button {
   display: inline-block;
@@ -107,4 +109,4 @@
   position: relative;
 }
 
-@import '../../../shared-styles/utils/a11y';
+@include meta.load-css('../../../shared-styles/utils/a11y');
