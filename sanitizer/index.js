@@ -39,6 +39,8 @@ const whiteListedCssProperties = {
   span: true,
   container: true,
 	"aspect-ratio": true,
+  "text-wrap-style": true,
+	"z-index": true,
 };
 
 function modifyWhiteList () {
