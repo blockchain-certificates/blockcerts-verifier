@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Use Node.js from .nvmrc
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Start mock server
+        run: npm run start:mock-server &
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Test build (e2e)
+        run: npm run test:build
+
+      - name: E2E tests
+        run: npm run test:e2e
+
+      - name: Coverage
+        run: npm run test:coverage
+
+      - name: Upload coverage report
+        uses: codecov/codecov-action@v7
+        with:
+          files: coverage/lcov.info
+
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v6
+
+      - name: Update blockcerts.org
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        run: sh scripts/automated-update-blockcerts.org.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_DEPLOY_TOKEN }}
