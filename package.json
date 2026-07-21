@@ -46,7 +46,7 @@
     "@typescript-eslint/parser": "^8.23.0",
     "@vitest/coverage-istanbul": "^4.1.10",
     "@web/test-runner": "^0.20.1",
-    "concurrently": "^9.1.2",
+    "concurrently": "^10.0.3",
     "eslint": "^10.0.3",
     "express": "^5.1.0",
     "husky": "^9.1.7",
