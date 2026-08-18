@@ -116,6 +116,14 @@ The certificate displays similar as `full`. NOTA: only works for certificates th
   ``` 
   
 - `clickable-urls`: (Boolean, default: `false`). When set to true, the certificate view will identify and convert to clickable links (`<a href=...) any url ([http(s)://(www.)]blockcerts.org/[params]) contained in the `displayHTML` property of the certificate. 
+
+- `status-list-credential-cache-url`: (String, optional). Passed through to [cert-verifier-js](https://github.com/blockchain-certificates/cert-verifier-js#statuslistcredentialcacheurl)'s `statusListCredentialCacheUrl` option, to cache Bitstring/StatusList credentials according to their `ttl`. In the browser, only an HTTP(S) caching service URL is usable (filesystem paths are Node/server-side only and will throw if used here).
+
+  Example:
+
+  ```html
+  <blockcerts-verifier status-list-credential-cache-url='https://your-cache-service.example.com/cache'></blockcerts-verifier>
+  ```
   
 ## Custom Blockchain explorers - `explorerAPIs`
 Since v4.1.0 of [cert-verifier-js](https://github.com/blockchain-certificates/cert-verifier-js) accepts custom blockchain explorers, Blockcerts Verifier facilitates communicating such service for the verification process.
