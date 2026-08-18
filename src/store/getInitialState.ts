@@ -31,6 +31,7 @@ export interface BlockcertsVerifierState {
   locale?: string;
   explorerAPIs?: ExplorerAPI[];
   didResolverUrl?: string;
+  statusListCredentialCacheUrl?: string;
   errorMessage?: string;
   additionalErrorInfo?: string;
 }

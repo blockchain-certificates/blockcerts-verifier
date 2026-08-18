@@ -206,6 +206,18 @@ describe('updateCertificateDefinition action creator test suite', function () {
         expect((global as any).domainParseStub).toHaveBeenCalledWith(certificateFixture, assertionOptions);
       });
     });
+
+    describe('given the consumer provided a statusListCredentialCacheUrl', function () {
+      it('should pass the statusListCredentialCacheUrl', async function () {
+        const statusListCredentialCacheUrl = 'https://cache.blockcerts.org/status-list-cache';
+        store.dispatch(initialize({ statusListCredentialCacheUrl }));
+        await store.dispatch(updateCertificateDefinition(certificateFixture));
+        const assertionOptions: CertificateOptions = {
+          statusListCredentialCacheUrl
+        };
+        expect((global as any).domainParseStub).toHaveBeenCalledWith(certificateFixture, assertionOptions);
+      });
+    });
   });
 
   describe('given it is dispatched with a non-valid certificate definition', function () {

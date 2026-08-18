@@ -17,6 +17,7 @@ export interface IBlockcertsVerifierAPI {
   locale?: string;
   explorerAPIs?: ExplorerAPI[];
   'did-resolver-url'?: string;
+  'status-list-credential-cache-url'?: string;
 }
 
 const APIKeys: IBlockcertsVerifierAPI = {
@@ -32,7 +33,8 @@ const APIKeys: IBlockcertsVerifierAPI = {
   theme: THEME as any,
   locale: String as any,
   explorerAPIs: {} as any,
-  'did-resolver-url': String as any
+  'did-resolver-url': String as any,
+  'status-list-credential-cache-url': String as any
 };
 
 const APICamelCase = Object.keys(APIKeys)

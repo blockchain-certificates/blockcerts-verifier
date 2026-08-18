@@ -50,6 +50,10 @@ export interface IBlockcertsVerifierProps {
   explorerAPIs?: ExplorerAPI[];
   // point to your own DID resolver url
   didResolverUrl?: string;
+  // HTTP URL of a caching service used to cache StatusList2021/BitstringStatusList status list credentials
+  // between verifications, according to their ttl. See the cert-verifier-js documentation for the caching
+  // service contract. Note: only HTTP(S) URLs are usable here, filesystem caching is Node/server-side only.
+  statusListCredentialCacheUrl?: string;
 }
 
 class BlockcertsVerifier extends LitElement {

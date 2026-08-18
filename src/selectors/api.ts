@@ -49,3 +49,7 @@ export function getClickableUrls (state: BlockcertsVerifierState): boolean {
 export function getDidResolverUrl (state: BlockcertsVerifierState): string {
   return state.didResolverUrl;
 }
+
+export function getStatusListCredentialCacheUrl (state: BlockcertsVerifierState): string {
+  return state.statusListCredentialCacheUrl;
+}

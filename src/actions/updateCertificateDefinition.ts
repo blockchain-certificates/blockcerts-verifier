@@ -3,7 +3,7 @@ import * as CERTIFICATE_EVENTS from '../constants/certificateEvents';
 import domain from '../domain';
 import setErrorMessage from './setErrorMessage';
 import verifyCertificate from './verifyCertificate';
-import { getDidResolverUrl, getDisableAutoVerify, getExplorerAPIs, getLocale } from '../selectors/api';
+import { getDidResolverUrl, getDisableAutoVerify, getExplorerAPIs, getLocale, getStatusListCredentialCacheUrl } from '../selectors/api';
 import showVerificationModal from './showVerificationModal';
 import type { Blockcerts, CertificateOptions, Certificate } from '@blockcerts/cert-verifier-js';
 import type { Dispatch } from 'redux';
@@ -21,7 +21,8 @@ export default function updateCertificateDefinition (definition: Blockcerts): Th
     const options: CertificateOptions = {
       locale: getLocale(state),
       explorerAPIs: getExplorerAPIs(state),
-      didResolverUrl: getDidResolverUrl(state)
+      didResolverUrl: getDidResolverUrl(state),
+      statusListCredentialCacheUrl: getStatusListCredentialCacheUrl(state)
     };
     const { certificateDefinition, errorMessage, additionalErrorInfo } = await domain.certificates.parse(definition, options);
 
