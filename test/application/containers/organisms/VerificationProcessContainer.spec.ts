@@ -1,4 +1,4 @@
-import { describe, expect, it, beforeEach, afterEach, vi, beforeAll, afterAll } from 'vitest';
+import { describe, expect, it, beforeEach, afterEach, vi, afterAll } from 'vitest';
 import { mapStateToProps } from '../../../../src/components/organisms/VerificationProcess/VerificationProcessContainer';
 import { configureStore } from '../../../../src/store';
 import getInitialState from '../../../../src/store/getInitialState';
@@ -12,13 +12,11 @@ import updateParentStepStatus from '../../../../src/actions/updateParentStepStat
 import type { Signers } from '@blockcerts/cert-verifier-js';
 import { VERIFICATION_STATUSES } from '@blockcerts/cert-verifier-js';
 
+vi.mock('../../../../src/helpers/stepQueue');
+
 describe('VerificationProcessContainer test suite', function () {
   describe('mapStateToProps method', function () {
     let store;
-
-    beforeAll(function () {
-      vi.mock('../../../../src/helpers/stepQueue');
-    });
 
     afterAll(function () {
       vi.resetAllMocks();
