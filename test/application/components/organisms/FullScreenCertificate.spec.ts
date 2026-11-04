@@ -2,6 +2,12 @@ import { describe, expect, it, beforeEach, afterEach, vi } from 'vitest';
 import { FullScreenCertificateComponent, FullScreenCertificate } from '../../../../src/components/organisms/FullScreenCertificate/FullScreenCertificate';
 import { assertClassInStringBits, assertStringInValues } from '../helpers/assertStringValues';
 
+vi.mock('lit-html/lib/unsafe-html.js', () => {
+  return {
+    unsafeHTML: (str) => str
+  };
+});
+
 describe('FullScreenCertificate wrapper function test suite', function () {
   describe('setting the attributes of the API to the webcomponent', function () {
     it('- clickableUrls', function () {
@@ -107,12 +113,6 @@ describe('FullScreenCertificate component test suite', function () {
 
       beforeEach(function () {
         instance = new FullScreenCertificateComponent();
-        // call through unsafeHTML directive
-        vi.mock('lit-html/lib/unsafe-html.js', () => {
-          return {
-            unsafeHTML: (str) => str
-          };
-        });
       });
 
       afterEach(function () {
